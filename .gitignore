@@ -1,0 +1,13 @@
+# Secrets and private identifiers never live in this repo (they stay in ~/.config/cgpipe/ and ~/cg.env)
+.env
+*.env
+tokens.json
+denylist.txt
+
+# Editor, OS and local Claude Code settings
+.claude/settings.local.json
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
