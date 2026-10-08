@@ -1,0 +1,85 @@
+{
+  "spec_sha256": "9cb56a2baf0940cfc42c0840b257118ffd9d65d1f0f3595ad194d9429dfcdb96",
+  "target_validated": 0,
+  "budget_usd": 150,
+  "max_batches": 40,
+  "batch_size": 10,
+  "max_parallel_calls": 6,
+  "min_unused_sources": 25,
+  "pools": {
+    "scout": 2,
+    "write": 1,
+    "v1": 6,
+    "v2": 1,
+    "spike": 2,
+    "smoke": 2
+  },
+  "models": {
+    "scout": "haiku",
+    "write": "sonnet",
+    "v1": "haiku",
+    "v2": "opus",
+    "spike": "sonnet"
+  },
+  "effort": {
+    "scout": "low",
+    "write": "medium",
+    "v1": "medium",
+    "v2": "high",
+    "spike": "medium"
+  },
+  "call_budget_usd": {
+    "scout": 0.3,
+    "write": 1.0,
+    "v1": 0.3,
+    "v2": 4.0,
+    "spike": 6.0
+  },
+  "timeouts_sec": {
+    "scout": 900,
+    "write": 900,
+    "v1": 1500,
+    "v2": 1800,
+    "spike": 5400
+  },
+  "lines": {
+    "v1_keep": 65,
+    "v2_keep": 70
+  },
+  "quota": {
+    "implementation": 1,
+    "optimization": 5,
+    "research": 2
+  },
+  "method_mix": {
+    "perfseries": 0.45,
+    "research": 0.3,
+    "incident": 0.15,
+    "feature": 0.05,
+    "diffref": 0.05,
+    "conform": 0.0,
+    "port": 0.0,
+    "rebuild": 0.0
+  },
+  "similarity": {
+    "kill": 0.35,
+    "kill_seed": 0.6
+  },
+  "spike": {
+    "image": "cgpipe-spike:1",
+    "cpus": 3,
+    "memory": "5g",
+    "env_file": "~/.config/cgpipe/env"
+  },
+  "max_turns": {
+    "scout": 25,
+    "write": 6,
+    "v1": 30,
+    "v2": 6,
+    "spike": 150
+  },
+  "pace": {
+    "five_hour": 0.9,
+    "seven_day": 0.95
+  }
+}
