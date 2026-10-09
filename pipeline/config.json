@@ -71,6 +71,330 @@
     "memory": "5g",
     "env_file": "~/.config/cgpipe/env"
   },
+  "channels": [
+    {
+      "id": "std-conformance",
+      "class": "implementation",
+      "what": "published standards that ship an official conformance suite or test vectors",
+      "hints": "ISO/IEC, IETF RFC test vectors, W3C test suites, Khronos CTS, Unicode conformance files, ECMA, ITU-T reference software, IEEE 754 test suites",
+      "harvest": [
+        {
+          "kind": "gh_repo_search",
+          "q": "\"conformance test suite\" in:description,readme stars:>20",
+          "n": 50
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "\"test vectors\" in:readme stars:>200",
+          "n": 50
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "test-suite in:name stars:>30 archived:false",
+          "n": 50
+        }
+      ]
+    },
+    {
+      "id": "lang-vm-suites",
+      "class": "implementation",
+      "what": "language, VM, ISA and toolchain specification test suites",
+      "hints": "wasm spec tests, RISC-V arch tests, test262 subsets, assembler/disassembler test corpora, printf/strtod/date test corpora, linker and object-format test suites",
+      "harvest": [
+        {
+          "kind": "gh_repo_search",
+          "q": "testsuite in:name stars:>30 pushed:>2025-01-01",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "topic:assembler stars:>100 archived:false",
+          "n": 50
+        }
+      ]
+    },
+    {
+      "id": "lib-testsuites",
+      "class": "implementation",
+      "what": "mid-size libraries whose own data-driven test suites (input/expected files) are runnable and portable",
+      "hints": "GitHub repos with tests/ of thousands of fixture files; C, Go and Java libraries; parsers, formatters, codecs, calendars, units, geometry",
+      "harvest": [
+        {
+          "kind": "gh_repo_search",
+          "q": "language:C stars:500..5000 pushed:>2025-06-01 archived:false topic:parser",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:C stars:500..5000 pushed:>2025-06-01 archived:false topic:codec",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:C stars:500..5000 pushed:>2025-06-01 archived:false topic:compression",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:C stars:500..5000 pushed:>2025-06-01 archived:false topic:format",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Go stars:500..5000 pushed:>2025-06-01 archived:false topic:parser",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Go stars:500..5000 pushed:>2025-06-01 archived:false topic:codec",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Go stars:500..5000 pushed:>2025-06-01 archived:false topic:compression",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Go stars:500..5000 pushed:>2025-06-01 archived:false topic:format",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Rust stars:500..5000 pushed:>2025-06-01 archived:false topic:parser",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Rust stars:500..5000 pushed:>2025-06-01 archived:false topic:codec",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Rust stars:500..5000 pushed:>2025-06-01 archived:false topic:compression",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "language:Rust stars:500..5000 pushed:>2025-06-01 archived:false topic:format",
+          "n": 30
+        }
+      ]
+    },
+    {
+      "id": "known-green-repos",
+      "class": "implementation",
+      "what": "libraries whose own test suites are known to build and run in a container (public environment recipes)",
+      "hints": "SWE-smith environment profiles: C, C++, Go, JS/TS, Python and Rust repos with a working test command",
+      "harvest": [
+        {
+          "kind": "swesmith",
+          "langs": [
+            "c",
+            "cpp",
+            "golang",
+            "javascript",
+            "python",
+            "rust",
+            "typescript"
+          ],
+          "n": 700
+        }
+      ]
+    },
+    {
+      "id": "existing-ports",
+      "class": "implementation",
+      "what": "independent permissive ports or reimplementations of a library in another language, usable as a reference",
+      "hints": "crates.io 'pure Rust implementation of', 'pure Go port of', 'pure Python', Zig and Swift rewrites, 'Show HN: I rewrote X in'",
+      "harvest": [
+        {
+          "kind": "crates_search",
+          "q": "pure rust implementation"
+        },
+        {
+          "kind": "crates_search",
+          "q": "port of"
+        },
+        {
+          "kind": "npm_search",
+          "q": "port of"
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "\"port of\" in:description language:Go stars:>300",
+          "n": 50
+        }
+      ]
+    },
+    {
+      "id": "diff-oracles",
+      "class": "implementation",
+      "what": "real executables usable as differential oracles on generated inputs",
+      "hints": "assemblers, disassemblers, formula engines, typesetters, diff/patch, query dialects, font tools, image tools, CAD kernels, schedulers with exact output",
+      "harvest": [
+        {
+          "kind": "homebrew",
+          "n": 300
+        }
+      ]
+    },
+    {
+      "id": "oss-fuzz",
+      "class": "implementation",
+      "what": "OSS-Fuzz projects with fuzz targets and seed corpora, usable as differential harnesses and input generators",
+      "hints": "google/oss-fuzz projects list, fuzz corpora, projects with structure-aware fuzzers",
+      "harvest": [
+        {
+          "kind": "ossfuzz",
+          "languages": [
+            "c",
+            "c++",
+            "rust",
+            "go"
+          ],
+          "n": 300
+        }
+      ]
+    },
+    {
+      "id": "open-feature-issues",
+      "class": "implementation",
+      "what": "long-standing, large-scope feature requests or RFC issues that maintainers welcomed but nobody implemented, in active permissively licensed repos (500+ stars) with big runnable test suites",
+      "hints": "GitHub issues labelled enhancement / feature / RFC / help wanted with many upvotes, open for a year or more, no merged or open PR implementing them; multi-part scope (several formats, modes or backends); repos in Go, Rust, TypeScript, Python, C",
+      "harvest": [
+        {
+          "kind": "gh_issue_search",
+          "q": "is:issue is:open label:enhancement reactions:>30 comments:>10 created:<2025-10-01 -linked:pr language:Go archived:false",
+          "n": 30
+        },
+        {
+          "kind": "gh_issue_search",
+          "q": "is:issue is:open label:enhancement reactions:>30 comments:>10 created:<2025-10-01 -linked:pr language:Rust archived:false",
+          "n": 30
+        },
+        {
+          "kind": "gh_issue_search",
+          "q": "is:issue is:open label:enhancement reactions:>30 comments:>10 created:<2025-10-01 -linked:pr language:C archived:false",
+          "n": 30
+        },
+        {
+          "kind": "gh_issue_search",
+          "q": "is:issue is:open label:enhancement reactions:>30 comments:>10 created:<2025-10-01 -linked:pr language:TypeScript archived:false",
+          "n": 30
+        },
+        {
+          "kind": "gh_issue_search",
+          "q": "is:issue is:open label:enhancement reactions:>30 comments:>10 created:<2025-10-01 -linked:pr language:Python archived:false",
+          "n": 30
+        }
+      ]
+    },
+    {
+      "id": "perf-release-pairs",
+      "class": "optimization",
+      "what": "real release pairs or PR series with a measured multi-x CPU speedup and unchanged output",
+      "hints": "CHANGELOG 'x faster', release notes, engineering blogs with benchmarks, 'performance' milestones; parsers, codecs, compressors, query engines, serializers, geometry, interpreters",
+      "harvest": [
+        {
+          "kind": "gh_pr_search",
+          "q": "is:pr is:merged label:performance \"faster\" in:title reactions:>5",
+          "n": 50
+        },
+        {
+          "kind": "gh_pr_search",
+          "q": "is:pr is:merged \"x faster\" in:title",
+          "n": 50
+        },
+        {
+          "kind": "gh_pr_search",
+          "q": "is:pr is:merged \"SIMD\" in:title reactions:>3",
+          "n": 50
+        },
+        {
+          "kind": "gh_pr_search",
+          "q": "is:pr is:merged \"vectorize\" in:title",
+          "n": 50
+        },
+        {
+          "kind": "gh_pr_search",
+          "q": "is:pr is:merged \"speedup\" in:title label:performance",
+          "n": 50
+        }
+      ]
+    },
+    {
+      "id": "perf-regressions",
+      "class": "optimization",
+      "what": "issue-tracker performance regressions or slow paths with a reproducer, a workload and a fix that touched several modules",
+      "hints": "GitHub issues labelled performance / regression with benchmarks, bisected slowdowns, profiling write-ups",
+      "harvest": [
+        {
+          "kind": "gh_pr_search",
+          "q": "is:issue is:closed label:performance label:regression linked:pr",
+          "n": 50
+        }
+      ]
+    },
+    {
+      "id": "instance-sets",
+      "class": "optimization",
+      "what": "permissively licensed benchmark instance sets and competitions with real workloads",
+      "hints": "SAT/MaxSAT/SMT competitions (CC-BY records), PACE challenge, DIMACS challenges, CVRP and scheduling sets, open corpora with licences stated",
+      "harvest": [
+        {
+          "kind": "gh_repo_search",
+          "q": "topic:sat-solver stars:>100 pushed:>2025-01-01",
+          "n": 40
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "topic:constraint-programming stars:>100 pushed:>2025-01-01",
+          "n": 40
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "\"benchmark instances\" in:readme stars:>50",
+          "n": 40
+        }
+      ]
+    },
+    {
+      "id": "research-loops",
+      "class": "research",
+      "what": "CPU-feasible train-evaluate problems with an objective metric, open data and an out-of-distribution split",
+      "hints": "compression and rate-distortion, heuristic search and solver configuration, classical ML with distribution shift, OCR and denoising, forecasting, program synthesis; licence must allow redistribution",
+      "harvest": [
+        {
+          "kind": "gh_repo_search",
+          "q": "leaderboard in:readme topic:benchmark stars:>200 pushed:>2025-01-01",
+          "n": 40
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "topic:time-series-forecasting topic:benchmark stars:>100",
+          "n": 30
+        },
+        {
+          "kind": "gh_repo_search",
+          "q": "\"held-out\" OR \"test split\" in:readme topic:dataset stars:>200",
+          "n": 30
+        }
+      ]
+    },
+    {
+      "id": "bench-parents",
+      "class": "implementation",
+      "what": "public long-horizon benchmark tasks to mutate onto a different real subject (never copy)",
+      "hints": "Proximal-Labs/frontier-swe, LHTB, Terminal-Bench, Commit0, GSO, SWE-Perf, RE-Bench task lists; keep the lever, change the subject"
+    },
+    {
+      "id": "papers-artifacts",
+      "class": "research",
+      "what": "research papers with released artifacts (code + data + evaluation scripts) whose result is a measurable engineering objective",
+      "hints": "artifact-evaluated papers (ACM badges), MLSys/OSDI/PLDI/SIGMOD artifacts, Papers with Code entries with CPU-scale baselines"
+    }
+  ],
   "max_turns": {
     "scout": 25,
     "write": 6,
@@ -81,5 +405,6 @@
   "pace": {
     "five_hour": 0.9,
     "seven_day": 0.95
-  }
+  },
+  "harvest_every_hours": 24
 }
