@@ -4,6 +4,12 @@
 tokens.json
 denylist.txt
 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
 # Editor, OS and local Claude Code settings
 .claude/settings.local.json
 .vscode/
