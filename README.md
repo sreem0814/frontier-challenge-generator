@@ -90,3 +90,90 @@ Stage details:
 - **The spike** aims for 60 minutes (the hard limit is 90). It builds the reference and runs about 10 cases first, and stops early if that fails. It reads the repo's CI config to learn its build and test commands, confirms the build and one grading run work offline, and leaves SPIKE.md with its commands and results; an inconclusive spike gets one more attempt that continues from SPIKE.md. For `feature` ideas, which have no reference yet, it checks instead that the repo builds offline, that its tests are deterministic, and that nothing upstream implements the feature.
 - **Spike verdicts** are mapped by the runner, first failure wins: reference not built K5, no oracle K3, not deterministic K4, no headroom K8, the untouched start doesn't score 0 K3, grading needs the network K7, a reference under 150 changed lines (600 for `feature`) K10, an optimization whose faster version changes the output K5, and for implementation ideas no sampled cases K3 or under 95 % of cases passed K5 (optimization and research ideas are judged on the measured speedup or metric gap instead). `feature` ideas have no reference yet, so the oracle and case checks wait for the bundle build. Otherwise a `fail` takes the spike's own kill code (K5 if none); grading that depends on a feature gVisor lacks is K7.
 - **Prompts** live in pipeline/prompts.txt. Each stage's system prompt is the COMMON section plus that stage's section, written once to ~/.cache/cgpipe/ and served from the prompt cache. Only the stage's input goes in the message.
+
+## 4. Cards, methods and scoring
+
+**The writer's card** has these fields:
+- **title**
+- **source:** URL @ version, plus the licence
+- **task:** what /app ships, what the agent builds or speeds up, and the interface
+- **grading:** the oracle, the hidden-set generator and the tolerance
+- **reference:** where it comes from, and why it scores 1 or the speedup it gets
+- **band:** the budget tier (2, 4, 8 or 20 h), and why a frontier agent finishes the scope in some trials but not on average
+- **cheat:** the obvious shortcut and how it is closed
+- **family, class and method**
+
+V1 adds a full card on top.
+
+| Method | Class | Idea shape |
+|---|---|---|
+| conform | impl | implement part of a standard, graded by its conformance suite plus generated hidden cases |
+| port | impl | port a real library to another language; an existing permissive port is the reference |
+| diffref | impl | match a real executable on generated inputs |
+| feature | impl | an original multi-part feature for a pinned commit of an active repo, ideally a long-standing upstream issue; hidden behavioural tests plus the repo's own suite |
+| rebuild | impl | remove a real subsystem from a pinned project; its tests and the original grade the rebuild |
+| perfseries | opt | baseline release vs a faster later release with unchanged output |
+| incident | impl/opt | a real regression or bug at scale, graded on a replayed workload |
+| research | research | a train-evaluate loop on open data with an OOD split |
+| mutate | any | move a public task's lever onto a different real subject |
+| own | any | your idea (`add-idea`), enters at V1 |
+
+The default mix is conform 20 %, port 15 %, diffref 15 %, perfseries 15 %, feature 15 %, research 10 %, rebuild 5 % and incident 5 % (`method_mix`).
+
+**Scores.** Each criterion is scored 1-5, with its weight in brackets:
+
+| Criterion | Weight | Meaning |
+|---|---|---|
+| Real | 3 | a real source with a paper trail |
+| Surf | 3 | grading-surface size |
+| Ref | 2 | reference strength |
+| Band | 3 | expected difficulty band |
+| Hor | 2 | long horizon |
+| Multi | 2 | many levers, smooth credit |
+| Seal | 2 | oracle and reference out of reach |
+| Nov | 2 | novelty against public tasks (not whether open-source implementations exist) |
+| Lic | 1 | the licence allows shipping |
+| Fit | 1 | fits the sandbox |
+| Build | 1 | our build cost |
+
+The runner computes the score as `round(100 × Σ weight·value / 110)`, from 20 to 100; it never takes a total from a model.
+
+**Band evidence caps.** Band is capped at 3 with no evidence (E0) and at 4 with a dated public source (E1).
+
+**Gates.** A criterion at 2 or below kills the seed, whatever its total:
+
+| Criterion | Kill code |
+|---|---|
+| Real | K2 |
+| Surf | K3 |
+| Ref | K5 |
+| Band | K8 |
+| Hor or Multi | K10 |
+| Seal | K11 |
+| Nov | K1 |
+| Lic | K6 |
+| Fit | K7 |
+
+Build at 1 also kills (K12).
+
+**Lines.** V1 keeps a seed at 65 or more. V2 keeps it when `final = min(V1, V2)` is 70 or more. Below a line, the kill code is K8.
+
+**Spike pass.** A spike validates the idea when its verdict is pass and none of the runner's checks fails (section 3, spike verdicts).
+
+| Code | Kill reason |
+|---|---|
+| K1 | near-duplicate of a public task or another seed |
+| K2 | no real source, or the repo can't be cloned |
+| K3 | grading surface too small or hand-rolled |
+| K4 | not deterministically gradable or too noisy |
+| K5 | no strong reference obtainable |
+| K6 | licence forbids shipping |
+| K7 | GPU, network at run time, > 8 CPU / 16 GB, or a missing gVisor feature |
+| K8 | too easy, or below the score line |
+| K9 | too hard: no trial would reach 0.9 of the reference (implementation) or beat the start (optimization, research), or no partial-credit curve |
+| K10 | not long-horizon, or one-lever |
+| K11 | cannot be sealed |
+| K12 | our build cost over 5 days |
+| K13 | a V1 call failed three times (set by the runner; a spike that fails three times parks its seed instead) |
+
+Seed ids are `S-im-NNN`, `S-op-NNN` and `S-rs-NNN`. A seed's status runs `short` → `l0-pass` → `v1-pass` → `v2-pass` → `validated`, or becomes `killed:Kn` at any stage.
