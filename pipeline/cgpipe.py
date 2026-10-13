@@ -270,14 +270,14 @@ class Corpus:
         self.docs = []
         cat = os.path.join(DATA, "catalog.csv")
         if os.path.exists(cat):
-            for r in csv.DictReader(open(cat)):
+            for r in csv.DictReader(open(cat, encoding="utf-8")):
                 if not r.get("dup_kind"):
                     t = toks(r["name"].replace("-", " ")) * 3 + toks(r.get("tags", "").replace("|", " ")) * 2 + \
                         toks(r.get("description", ""))
                     self.docs.append((f"{r['name']} [{r.get('location', '')}]", collections.Counter(t)))
         extra = os.path.join(DATA, "corpus-extra.tsv")
         if os.path.exists(extra):
-            for r in csv.DictReader(open(extra), delimiter="\t"):
+            for r in csv.DictReader(open(extra, encoding="utf-8"), delimiter="\t"):
                 t = toks(r.get("name", "").replace("-", " ")) * 3 + toks(r.get("description", ""))
                 self.docs.append((f"{r.get('name')} [{r.get('source')}]", collections.Counter(t)))
         df = collections.Counter()
