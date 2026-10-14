@@ -1552,6 +1552,92 @@ def check_urls(urls):
 
 
 # ---------------------------------------------------------------- dry-run fakes (zero tokens; test the plumbing)
+def inject_fault(stage):
+    """Dry-run only: CGPIPE_FAULTS="v1:half,write:always,scout:usage-once,v1:pace-once,v2:drop-id" injects failures.
+    Returns the modes that change a result instead of raising (drop-id)."""
+    modes = set()
+    for item in filter(None, os.environ.get("CGPIPE_FAULTS", "").split(",")):
+        st, mode = item.split(":")
+        if st != stage:
+            continue
+        flag = os.path.join(DATA, f".fault-{stage}-{mode}")
+        if mode == "always":
+            raise RuntimeError(f"injected failure ({stage})")
+        if mode == "half" and random.random() < 0.5:
+            raise RuntimeError(f"injected failure ({stage})")
+        if mode == "usage-once" and not os.path.exists(flag):
+            open(flag, "w").close()
+            raise UsageLimit("You've hit your session limit · resets 3:45pm")
+        if mode == "pace-once" and not os.path.exists(flag):
+            open(flag, "w").close()
+            with IO_LOCK:
+                UTIL["five_hour"] = (0.97, int(time.time()) + 2)
+        modes.add(mode)
+    return modes
+
+
+FAKE_WORDS = ("parser codec archive protocol solver geometry font layout tensor ledger scheduler cache index query "
+              "kernel loader linker assembler image audio packet stream graph router tokenizer formatter").split()
+
+
+def fake_text(rnd, n):
+    """Varied card text: a few real words plus unique tokens, so L0 kills only a few fake cards as duplicates."""
+    return " ".join(rnd.choice(FAKE_WORDS) if i % 3 == 0 else f"q{rnd.randrange(16**6):06x}" for i in range(n))
+
+
+def fake(stage, key, payload):
+    modes = inject_fault(stage)
+    rnd = random.Random(hashlib.sha256((stage + str(key)).encode()).hexdigest())
+    time.sleep(rnd.uniform(0.05, 0.3))
+    if stage == "harvest":
+        return {"rows": [{"class": payload["class"], "type": "repo", "name": f"{key}-{rnd.randrange(10**6)}",
+                          "url": f"https://github.com/fake{rnd.randrange(10**6)}/r{rnd.randrange(10**6)}"}
+                         for _ in range(12)]}
+    if stage == "enrich":
+        return {"facts": {k.lower(): {"stars": rnd.randrange(50, 9000), "spdx": "MIT", "archived": False, "fork": False,
+                                      "pushed": "2026-01-01", "kb": 900, "lang": "C", "release": "1.0", "head": "x",
+                                      "open_prs": 3, "test_kb": rnd.randrange(10, 9000)} for k in payload}}
+    if stage in ("smoke", "rowprobe"):
+        ok = rnd.random() > 0.3
+        return {"clone_ok": rnd.random() > 0.05, "eco": "rust", "build_ok": ok, "tests_total": 120 if ok else 0,
+                "tests_fail": 0, "deterministic": ok, "verdict": rnd.choice(["green", "amber"]) if ok else "red",
+                "test_files": 120, "ci_files": 2, "work_volume": "fake-vol" if payload.get("keep") else "", "log": ""}
+    if stage == "scout":
+        return {"rows": [{"class": rnd.choice(["implementation", "optimization", "research"]), "type": "standard",
+                          "name": f"{key}-src-{rnd.randrange(10**6)}", "url": f"https://example.org/{rnd.randrange(10**9)}",
+                          "version": "1.0", "licence": "MIT", "surface": "500 cases", "reference": "ref impl",
+                          "notes": ""} for _ in range(8)], "exhausted": rnd.random() < 0.1}
+    if stage == "write":
+        return {"cards": [{"class": r["class"] or "implementation", "family": "other",
+                           "method": rnd.choice(["conform", "port", "perfseries", "feature", "research"]),
+                           "row": r["row"], "title": fake_text(rnd, 3), "source": r["url"], "task": fake_text(rnd, 8),
+                           "grading": fake_text(rnd, 5), "reference": fake_text(rnd, 3), "band": "buckets", "cheat": "sealed"}
+                          for r in payload["rows"][:payload["batch_size"]]]}
+    if stage == "v1":
+        good = rnd.random() < 0.6
+        return {"facts": [], "full_card": {k: "fake" for k in SCHEMA["v1"]["properties"]["full_card"]["properties"]},
+                "scores": {k: {"v": rnd.choice([4, 5]) if good else rnd.choice([2, 3, 4]), "why": "fake"} for k in WEIGHTS},
+                "evidence_grade": rnd.choice(["E0", "E1"]), "evidence_url": "", "lookup_verdict": "none",
+                "frontier_hours": rnd.choice([3, 6, 10]), "tier_hours": 8,
+                "spike_plan": {"steps": ["x"], "pass_if": "x", "kill_if": "x", "est_minutes": 60},
+                "kill_code": "", "kill_reason": "", "summary": "fake"}
+    if stage == "v2":
+        seeds = payload["seeds"][1:] if "drop-id" in modes else payload["seeds"]
+        return {"seeds": [{"id": s["id"].lower(), "scores": {k: rnd.choice([3, 4, 5]) for k in WEIGHTS},
+                           "evidence_grade": "E1", "kill_code": "", "note": "fake"} for s in seeds],
+                "ranking": [s["id"] for s in payload["seeds"]], "batch_note": "fake"}
+    if stage == "spike":
+        ok = rnd.random() < 0.7
+        return {"reference_built": ok, "oracle_available": True, "cases_sampled": 50, "reference_cases_passed": 50,
+                "start_scores_zero": True, "offline_ok": True, "reference_lines": 800, "outputs_match": True,
+                "deterministic": True, "headroom_ok": True, "headroom_note": "", "build_minutes": 10,
+                "verifier_minutes_estimate": 20, "image_gb_estimate": 2, "gvisor_concerns": [], "blockers": [],
+                "commands_log": "", "quick_attempt": {"tried": True, "minutes": 12, "share": 0.05, "note": "fake"},
+                "verdict": "pass" if ok else "fail", "kill_code": "", "notes": "fake"}
+    raise ValueError(stage)
+
+
+# ---------------------------------------------------------------- commands
 def cmd_status():
     seeds, rows = all_seeds(), read_sources()
     st = collections.Counter(s["status"] for s in seeds)
@@ -1661,6 +1747,134 @@ def cmd_add_idea(text):
     hist(s, "add-idea", "l0-pass", "own idea: skips L0")
     save_seed(s)
     print(s["id"])
+
+
+def use_dry_data(keep=False):
+    """--dry-run never touches data/: it works in data-dry/, fresh unless --keep-dry, seeded with the inputs."""
+    # one folder per dry process, so a probe, a selftest and a dry run never share (or delete) each other's state
+    real, dry = os.path.join(ROOT, "data"), os.path.join(ROOT, "data-dry", os.environ.get("CGPIPE_DRY", "default"))
+    if not (keep and os.path.isdir(dry)):
+        shutil.rmtree(dry, ignore_errors=True)
+        os.makedirs(dry, exist_ok=True)
+        for f in ("catalog.csv", "corpus-extra.tsv", "sources.tsv"):
+            if os.path.exists(os.path.join(real, f)):
+                shutil.copy(os.path.join(real, f), dry)
+    set_data(dry)
+    print(f"dry run: working in {dry} (data/ untouched)", flush=True)
+
+
+def cmd_selftest():
+    """Zero-token robustness test: unit checks, then dry-run scenarios with injected faults."""
+    ok, total = 0, 0
+    msgs = ["You've hit your session limit · resets 3:45pm", "You've hit your weekly limit · resets Mon 12:00am",
+            "You've hit your Opus limit · resets 3:45pm", "You've hit your monthly spend limit",
+            "Usage limit reached · wrapping up", "API Error: Request rejected (429)",
+            "API Error: Server is temporarily limiting requests (not your usage limit)"]
+    good = all(LIMIT_RX.search(m) for m in msgs) and not LIMIT_RX.search("error_max_turns: reached the turn limit 40")
+    total += 1; ok += good
+    print(f"{'PASS' if good else 'FAIL'}  limit messages are recognised ({len(msgs)} documented forms)")
+    # the review gate and the trial ladder: zero-token decisions that decide what costs money next
+    g = [review_gate(True, [], [0.99], []) == (False, False, False, ""),                 # probe solve, no Qwen yet
+         review_gate(True, [], [1.0], [0.1])[1] is True,                                # Qwen fails: a gap
+         review_gate(True, [], [1.0], [0.95])[1] is False,                              # Qwen solves: no gap
+         review_gate(True, [0.5, 0.95], [0.5, 0.95], [])[0] is True,                    # in band with a pass
+         review_gate(True, [0.5], [0.5, 0.97], [])[0] is False,                         # no full-trial pass: not in band
+         review_gate(False, [0.3], [0.3], [])[0] is True,                               # optimization in band
+         review_gate(False, [], [0.3], [])[0] is False,                                 # a probe alone is no band
+         review_gate(False, [], [0.8], [0.5])[1] is True and review_gate(False, [], [0.8], [0.7])[1] is False,
+         review_gate(True, [], [1.0], [1, 1, 1, 0.2], 4)[2] is True]                    # Qwen solves 3/4: fails
+    total += 1; ok += all(g)
+    print(f"{'PASS' if all(g) else 'FAIL'}  review gate: band from full trials, gap against Qwen ({sum(g)}/{len(g)} cases)")
+
+    def tr(kind_id, reward, state="pulled"):
+        return {"task": "x", "runid": f"{kind_id}-20261021T000000Z", "reward": reward, "state": state, "cheat": kind_id == "cheat",
+                "infra": False, "budget": 1, "elapsed": 1, "host": "vm2"}
+    lc = {"qwen_first": True, "qwen_runs": 1, "qwen": {"model": "openrouter/qwen/q", "derive": "tmux"}, "cheat_max_secs": 3600}
+    steps = [("environment", True), ("verifier", True)]
+
+    def nxt(stage, trials, **kw):
+        b = dict({"slug": "x", "stage": stage, "steps": steps, "budget_secs": 28800}, **kw)
+        a = ladder_next(b, {"trials": trials}, lc)
+        return (a or {}).get("label"), (a or {}).get("mult")
+    lad = [nxt("ready for short probe", [])[0] == "qwen",                                       # Qwen first
+           nxt("ready for short probe", [tr("qwen", 0.2)])[0] == "probe10",                     # then the probe
+           nxt("above the band", [tr("probe10", 1.0), tr("qwen", 0.95)], above=True)[0] is None,  # Qwen solved: stop
+           nxt("above the band", [tr("probe10", 1.0)], above=True)[0] == "qwen",
+           nxt("gap", [tr("probe10", 1.0), tr("qwen", 0.1)], above=True, gap=True, ready=True, budget_secs=72000) == ("cheat", 0.05),
+           nxt("gap", [tr("probe10", 1.0), tr("qwen", 0.1)], above=True, gap=True, ready=False)[0] is None,  # build first
+           nxt("in band", [tr("probe10", 0.1)], ready=True)[0] == "l4-opus",
+           nxt("in band", [tr("probe10", 0.1), tr("l4-opus", 0.5)], ready=True)[0] == "cheat",
+           nxt("passed", [], passed=True)[0] is None]
+    total += 1; ok += all(lad)
+    print(f"{'PASS' if all(lad) else 'FAIL'}  trial ladder: cheapest evidence first, cheat last ({sum(lad)}/{len(lad)} cases)")
+    me = [sys.executable, "-I", os.path.abspath(__file__)]
+    tag = f"selftest-{os.getpid()}"
+
+    def run(extra, faults="", timeout=240, keep=False, signal_after=None, cmd="run"):
+        env = dict(os.environ, CGPIPE_FAULTS=faults, CGPIPE_DRY=tag)
+        extra = extra + (["--once"] if cmd in ("watch", "dashboard") else [])
+        p = subprocess.Popen(me + [cmd, "--dry-run"] + (["--keep-dry"] if keep else []) + extra,
+                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=env)
+        if signal_after:
+            time.sleep(signal_after); p.send_signal(signal.SIGTERM)
+        try:
+            out, _ = p.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            p.kill(); out = p.communicate()[0] + "\nHUNG"
+        return out
+
+    cases = [
+        ("happy path reaches the target", dict(extra=["--target", "5"]),
+         lambda o: "run end: target reached" in o and "harvest " in o and "enrich: facts" in o and "start rowprobe" in o),
+        ("restart resumes and ends at once", dict(extra=["--target", "5"], keep=True, timeout=60),
+         lambda o: "run end: target reached" in o and "start write" not in o),
+        ("dashboard renders from run state", dict(extra=[], keep=True, timeout=60, cmd="watch"),
+         lambda o: "funnel" in o and "validated" in o and "issues" in o),
+        ("web dashboard writes its page", dict(extra=["--port", "8798"], keep=True, timeout=60, cmd="dashboard"),
+         lambda o: "writing" in o and "<html" in open(os.path.join(ROOT, "data-dry", tag, "dashboard.html")).read()),
+        ("failing harvesters never block the run", dict(extra=["--target", "3"], faults="harvest:always"),
+         lambda o: "error harvest" in o and "run end: target reached" in o),
+        ("writer always failing stops cleanly", dict(extra=["--target", "3"], faults="write:always", timeout=120),
+         lambda o: "writer failed 3 times" in o and "HUNG" not in o and "run end:" in o),
+        ("flaky V1 still reaches the target", dict(extra=["--target", "3"], faults="v1:half"),
+         lambda o: "run end: target reached" in o),
+        ("usage limit pauses then recovers", dict(extra=["--target", "3"], faults="v1:usage-once,scout:usage-once"),
+         lambda o: "usage limit on" in o and "run end: target reached" in o),
+        ("high plan usage pauses then recovers", dict(extra=["--target", "3"], faults="v1:pace-once"),
+         lambda o: "pacing: five_hour plan usage at 97%" in o and "run end: target reached" in o),
+        ("SIGTERM stops gracefully", dict(extra=["--target", "50"], signal_after=3, timeout=120),
+         lambda o: "stop requested" in o and "run end: stop requested" in o),
+        ("batch cap ends the run", dict(extra=["--target", "50", "--max-batches", "2"], timeout=180),
+         lambda o: "run end: nothing left to do" in o),
+        ("target 0 runs until the batch cap", dict(extra=["--target", "0", "--max-batches", "2"], timeout=180),
+         lambda o: "target=inf" in o and "run end: nothing left to do" in o),
+        ("probe failures never block validation", dict(extra=["--target", "3"], faults="smoke:always,rowprobe:always"),
+         lambda o: "error rowprobe" in o and "run end: target reached" in o),
+        ("enrich failures never block the run", dict(extra=["--target", "3"], faults="enrich:always"),
+         lambda o: "error enrich" in o and "run end: target reached" in o),
+        ("a seed the judge skips is judged again", dict(extra=["--target", "3"], faults="v2:drop-id"),
+         lambda o: "run end: target reached" in o and o.count("start v2") > o.count("batch ") // 2),
+        ("spikes start from a re-probed build tree", dict(extra=["--target", "3"], faults="tree:always"),
+         lambda o: "run end: target reached" in o and "start smoke S-" in o),
+        ("an outage pauses before anything is killed", dict(extra=["--target", "3", "--max-batches", "1"],
+                                                           faults="v1:always", timeout=240),
+         lambda o: "probably an outage" in o and "killed K13" in o and "run end:" in o and "HUNG" not in o),
+        ("failing spikes park their seeds, not a hang", dict(extra=["--target", "3", "--max-batches", "1"],
+                                                             faults="spike:always", timeout=180),
+         lambda o: "parked at v2-pass" in o and "run end:" in o and "HUNG" not in o),
+    ]
+    for name, kw, check in cases:
+        t0 = time.time()
+        out = run(**kw)
+        good = check(out) and "Traceback" not in out
+        total += 1; ok += good
+        end = [l for l in out.splitlines() if "run end" in l]
+        print(f"{'PASS' if good else 'FAIL'}  {name}  ({time.time() - t0:.0f}s) {end[-1][23:] if end else ''}")
+        if not good:
+            print("\n".join(out.splitlines()[-15:]))
+    shutil.rmtree(os.path.join(ROOT, "data-dry", tag), ignore_errors=True)
+    print(f"selftest: {ok}/{total} passed")
+    sys.exit(0 if ok == total else 1)
 
 
 def main():
