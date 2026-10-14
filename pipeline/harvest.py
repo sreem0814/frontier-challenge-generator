@@ -249,3 +249,84 @@ def harvest_channel(ch):
 
 
 # ---------------------------------------------------------------- enricher
+ENRICH_FIELDS = """nameWithOwner stargazerCount isArchived isFork pushedAt diskUsage licenseInfo{spdxId}
+  primaryLanguage{name} defaultBranchRef{name target{oid}} latestRelease{tagName publishedAt}
+  openPRs: pullRequests(states:OPEN){totalCount}"""
+
+
+def gh_repo_of(url):
+    m = re.search(r"github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)", url or "")
+    return (m.group(1), m.group(2).removesuffix(".git")) if m else None
+
+
+def enrich(repos, tree_for=None):
+    """repos: list of (owner, name). Returns {"owner/name": facts}: real facts, or {"not_found": True} when GitHub
+    answered that the repo doesn't exist (renamed, deleted, private). Repos in a chunk whose call failed are left out
+    (unknown, retried later); raises when every chunk failed. One GraphQL point per 10 repos, plus one REST tree call
+    per repo in `tree_for` (the test-suite size is the expensive fact, so only rows that need it pay for it)."""
+    out, failed = {}, 0
+    chunks = [repos[i:i + 10] for i in range(0, len(repos), 10)]
+    for chunk in chunks:
+        body = " ".join(f'r{j}: repository(owner:"{o}", name:"{n}"){{ {ENRICH_FIELDS} }}' for j, (o, n) in enumerate(chunk))
+        try:
+            d = _gh(["graphql", "-f", f"query=query{{ {body} }}"])
+        except ApiError:
+            failed += 1
+            continue
+        data = d.get("data") or {}
+        for j, (o, n) in enumerate(chunk):
+            r = data.get(f"r{j}")
+            if f"r{j}" in data and r is None:
+                out[f"{o}/{n}".lower()] = {"not_found": True}
+                continue
+            if not r:
+                continue
+            out[f"{o}/{n}".lower()] = {
+                "stars": r["stargazerCount"], "spdx": (r.get("licenseInfo") or {}).get("spdxId") or "",
+                "archived": r["isArchived"], "fork": r["isFork"], "pushed": (r.get("pushedAt") or "")[:10],
+                "kb": r.get("diskUsage") or 0, "lang": (r.get("primaryLanguage") or {}).get("name") or "",
+                "release": (r.get("latestRelease") or {}).get("tagName") or "",
+                "head": ((r.get("defaultBranchRef") or {}).get("target") or {}).get("oid") or "",
+                "open_prs": r["openPRs"]["totalCount"]}
+    for key in (tree_for or []):
+        f = out.get(key.lower())
+        if not f or not f.get("head"):
+            continue
+        try:
+            t = _gh([f"repos/{key}/git/trees/{f['head']}?recursive=1"], timeout=120)
+        except ApiError:
+            continue
+        blobs = [x for x in t.get("tree", []) if x.get("type") == "blob" and TEST_DIR_RX.search(x.get("path", ""))]
+        f["test_files"], f["test_kb"] = len(blobs), round(sum(x.get("size", 0) for x in blobs) / 1024)
+        f["tree_truncated"] = bool(t.get("truncated"))
+    if chunks and failed == len(chunks):
+        raise ApiError("every enrich call failed")
+    return out
+
+
+PERMISSIVE = {"MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "Unlicense", "Zlib", "0BSD", "BSL-1.0",
+              "MPL-2.0", "CC0-1.0", "Python-2.0", "PSF-2.0", "BlueOak-1.0.0", "X11", "Unicode-3.0"}
+
+
+def priority(f, cls):
+    """A rough, explainable 0-100 ordering of rows for the writer. Facts only; no model judgement."""
+    if not f:
+        return 30.0                                   # unknown: middle of the pack, V1 finds out
+    if f.get("not_found") or f.get("archived") or f.get("fork"):
+        return 0.0
+    p = 20 * min(1.0, math.log10(max(f.get("stars", 0), 1)) / 4)            # 10k stars = full marks
+    p += 20 if f.get("spdx") in PERMISSIVE else (8 if f.get("spdx") in ("", "NOASSERTION", "OTHER") else 0)
+    pushed = f.get("pushed") or "1970"
+    p += 20 if pushed >= "2025" else (10 if pushed >= "2023" else 0)
+    if "test_kb" in f:                                  # the grading surface, when measured
+        p += 40 * min(1.0, math.log10(max(f["test_kb"], 1)) / 4)             # 10 MB of tests = full marks
+    else:
+        p += 15
+    return round(p, 1)
+
+
+# ---------------------------------------------------------------- smoke + test probe (no tokens; Docker)
+# Two throwaway containers share a named work volume mounted at /p: "fetch" (network on) clones the source and
+# downloads dependencies; "build" (--network none) builds offline and runs the project's suite three times with a
+# structured report. The script goes in and the reports come out with `docker cp` (no bind mounts), so the same
+# calls work against a remote Docker host. A probe right before a spike keeps the volume for it (keep=True).

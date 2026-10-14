@@ -406,5 +406,9 @@
     "five_hour": 0.9,
     "seven_day": 0.95
   },
-  "harvest_every_hours": 24
+  "harvest_every_hours": 24,
+  "enrich_batch": 60,
+  "tree_count_for": [
+    "implementation"
+  ]
 }
