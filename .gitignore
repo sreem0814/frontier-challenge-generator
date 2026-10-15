@@ -10,6 +10,9 @@ __pycache__/
 .venv/
 .pytest_cache/
 
+# Dry runs, prompt tries and selftests (README section 5)
+data-dry/
+
 # Editor, OS and local Claude Code settings
 .claude/settings.local.json
 .vscode/
