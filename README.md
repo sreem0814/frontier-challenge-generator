@@ -4,6 +4,22 @@ CG produces long-horizon software-engineering tasks for frontier coding agents. 
 
 This README is the manual for CG's idea pipeline, `cgpipe`, which finds task ideas and validates them in parallel.
 
+## Quick start
+
+```
+# once (section 5): build the image, then save the spike token
+docker build -t cgpipe-spike:1 -f pipeline/spike.Dockerfile pipeline
+bash pipeline/setup-token.sh
+
+bash pipeline/dashboard.sh start              # web dashboard: http://127.0.0.1:8765/
+python3 -I pipeline/cgpipe.py warmup          # zero tokens, 1-2 h, ends by itself; Ctrl-C is safe once about 20 rows are probed
+python3 -I pipeline/cgpipe.py run --max-batches 1 --target 2 --budget 25    # pilot: 1 batch, stop at 2 validated or $25
+python3 -I pipeline/cgpipe.py run             # full run: config defaults (10 validated, $150 across runs, 12 batches)
+
+python3 -I pipeline/cgpipe.py status          # any time: sources, seeds, yields, plan usage, cost
+python3 -I pipeline/cgpipe.py selftest        # after changing the code: zero-token robustness test
+```
+
 ## 1. How it works
 
 **A validated idea** has passed all three of these:
@@ -177,3 +193,73 @@ Build at 1 also kills (K12).
 | K13 | a V1 call failed three times (set by the runner; a spike that fails three times parks its seed instead) |
 
 Seed ids are `S-im-NNN`, `S-op-NNN` and `S-rs-NNN`. A seed's status runs `short` → `l0-pass` → `v1-pass` → `v2-pass` → `validated`, or becomes `killed:Kn` at any stage.
+
+## 5. Setup and running
+
+**Setup (once):**
+1. **Claude Code is logged in:** `~/.local/bin/claude --version` (2.1.304 tested).
+2. **The GitHub CLI is logged in:** `gh auth status`. Harvest and enrich use it: 5,000 API calls an hour and 30 searches a minute, no tokens.
+3. **Image for probes and spikes:** `docker build -t cgpipe-spike:1 -f pipeline/spike.Dockerfile pipeline`. It's about 2.8 GB, with ccache and cargo-nextest for the probe, and the build checks that `claude --version` works inside it.
+4. **A token for spike containers**, in your own terminal on VM1 (not through a `!` command in a Claude session):
+   ```
+   bash pipeline/setup-token.sh
+   ```
+   It runs `claude setup-token` (open the link it shows and approve), asks you to paste the token at a hidden prompt, saves it to `~/.config/cgpipe/env` with mode 600, and checks it inside the spike container with a one-word reply (under a cent). The pasted token is not echoed, not kept in shell history and not stored in this folder (`claude setup-token` itself prints it once so you can copy it). `--force` replaces an existing token. Inside a spike container the token is visible to the build scripts of the repo being built (upstream code, run as root with network): if that worries you, use a token from a separate account with its own limits.
+
+**Token pool (several accounts).** With more than one Claude account, keep their OAuth tokens in a pool and let CG spread the work: `python3 -I pipeline/tokens.py add <name> --plan "max 5x"` asks for the token at a hidden prompt (run it in your own terminal) and stores it in `~/.config/cgpipe/tokens.json` (mode 600, outside this folder). Three roles use pool tokens: `pipeline` (spike containers and the runner's own calls on VM 1, written to `~/.config/cgpipe/env`) and `vm2`, `vm3` (each runner's `~/cg.env`, for model trials). `list` shows each token's plan, roles and both limits (session and weekly) without its value; `check` reads the limits with one tiny Haiku call per token; `use <name> --for vm2` assigns one by hand; `auto` gives each role the token with the most headroom, preferring a different token per role. `remove` and `rename` manage names, and `adopt <name> --from vm2` takes a token already installed somewhere into the pool. The watchdog re-reads the limits every 30 minutes and moves the pipeline role; `remote_run.sh` moves a runner's role before each model trial and refuses to start one when its token is at a limit (a trial that stops at once would look hard). VM 1's own login (this coordinator and its build agents) is not in the pool. Values travel only through files and stdin, never on a command line or in output.
+
+**Running.** Run the Quick start commands inside tmux (`tmux new -s cgpipe`), so a run survives a closed terminal. The pilot costs about $2-3 up to the V2 verdict, plus up to $6 per spike.
+
+**Commands** (`python3 -I pipeline/cgpipe.py <command>`):
+
+| Command | What it does |
+|---|---|
+| `run` | the pipeline. Options: `--target N` (validated ideas to stop at; 0 means no target, so the budget or `max_batches` ends the run), `--budget USD`, `--max-batches N`, `--no-spike` (stop at `v2-pass`), `--no-smoke`, `--dry-run` (fake workers, no tokens) |
+| `warmup` | zero tokens: harvest, enrich and probe source rows (up to about 60 ahead of the writer), then exit. Run it before `run` so the first batch doesn't wait for probes |
+| `stop` | graceful stop: no new work; calls in flight finish |
+| `status` | counts, kills, yields per channel and method, plan usage, cost by stage, the best seeds |
+| `watch [--once]` | the dashboard in a terminal; `--once` prints one snapshot |
+| `dashboard` | the web dashboard (normally started with `dashboard.sh`) |
+| `try-prompts [ROWS] [V1S]` | real write and V1 calls on a few rows, in a scratch folder that is removed afterwards, to test the prompts (costs cents) |
+| `similar "<text>"` | nearest public tasks and seeds to any idea |
+| `add-idea "<text>"` | queue your own idea (enters at V1) |
+| `requeue <seed> v1\|v2\|spike` | send a seed back to a stage |
+| `import-sources <tsv>...` | add rows from research tables |
+| `selftest` | zero-token robustness test |
+| `ladder` / `ladder plan` | start the next model trial on each free runner from each bundle's stage (kit/BUILD.md step 7a): Qwen first, the frontier short probe, a full trial only in the band, the cheat trial last. The watchdog runs it every 10 minutes when `ladder.auto` is on; `plan` only prints the queue. `touch data/HOLD-vm2` holds a runner |
+
+- **The budget** counts every call in data/cost.jsonl, across runs. A $25 pilot followed by `run --budget 150` leaves the rest of the $150 for the full run. A call starts only if the budget covers it plus the caps of the calls in flight.
+- **Dry runs, prompt tries and selftests** each work in their own `data-dry/<name>/` folder and never touch data/.
+- **`CGPIPE_DATA=<folder>`** points any command at another data folder (it needs catalog.csv, corpus-extra.tsv and sources.tsv), for example to test `warmup` on a copy without touching data/. Real runs still allow only one runner per machine.
+- `add-idea`, `requeue` and `import-sources` are safest while the runner is stopped.
+
+**The web dashboard** runs in the background:
+```
+bash pipeline/dashboard.sh start [--port 8765] [--interval 10]
+bash pipeline/dashboard.sh status        # pid, URL, page age, whether the server answers, last log lines
+bash pipeline/dashboard.sh restart | stop | logs
+```
+
+How it works:
+- Every 10 s it rewrites data/dashboard.html, a self-contained page that reloads itself.
+- Python's built-in server serves it on 127.0.0.1:8765, localhost only.
+- To open it from your own computer, use VS Code's port forwarding, or `ssh -L 8765:127.0.0.1:8765 <VM1>`.
+- The script tracks the dashboard by its PID file, refuses to start a second copy, and never affects the pipeline.
+
+The page shows:
+- **tasks ready for trials** against `build_target` (10), and every bundle in kit/tasks/ with its progress through seven steps (environment, verifier, reference, text, L0, L3, premortem), reference size, instruction length, L0 and L3 results, trial runs, last activity and latest note (all read from the bundle's own files);
+- run state (running, paused or stopped, and why), spend, plan usage with reset times and pause thresholds;
+- validated ideas, which ones are being built, and efficiency: cost per validated idea, spike pass rate, ideas written per validated;
+- sources, and the funnel from written to validated, with kills by code and meaning;
+- every running pipeline job, the bottleneck stage, progress and ETA, average time per stage;
+- **issues**, each with what to ask Claude (including builds with no file changes for 90 minutes);
+- the last log lines.
+
+To have Claude look into something, say "check the cgpipe dashboard". Claude runs `watch --once`, reads the issues and the log, and proposes or applies a fix.
+
+**Pilot checklist, before the full run:**
+- Read the cards in data/seeds/.
+- Compare data/cost.jsonl with the costs above.
+- Read one V1 report and open its URLs.
+- Read one data/spikes/<id>/SPIKE.md.
+- Check how many V1 passes V2 keeps. If V2 kills most of them, set `models.v1` to `sonnet`.
