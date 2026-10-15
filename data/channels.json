@@ -1,0 +1,64 @@
+{
+ "std-conformance": {
+  "harvested": 1792512201.7893796,
+  "harvest_rows": 135,
+  "harvest_failed": false
+ },
+ "lang-vm-suites": {
+  "harvested": 1792512211.827483,
+  "harvest_rows": 58,
+  "harvest_failed": false
+ },
+ "lib-testsuites": {
+  "harvested": 1792512241.963859,
+  "harvest_rows": 87,
+  "harvest_failed": false
+ },
+ "known-green-repos": {
+  "harvested": 1792512262.1529145,
+  "harvest_rows": 690,
+  "harvest_failed": false
+ },
+ "existing-ports": {
+  "harvested": 1792512277.317624,
+  "harvest_rows": 212,
+  "harvest_failed": false
+ },
+ "diff-oracles": {
+  "harvested": 1792512297.6883314,
+  "harvest_rows": 284,
+  "harvest_failed": false
+ },
+ "oss-fuzz": {
+  "harvested": 1792512312.8933392,
+  "harvest_rows": 262,
+  "harvest_failed": false
+ },
+ "open-feature-issues": {
+  "harvested": 1792512338.1997547,
+  "harvest_rows": 150,
+  "harvest_failed": false
+ },
+ "perf-release-pairs": {
+  "harvested": 1792512348.326347,
+  "harvest_rows": 96,
+  "harvest_failed": false
+ },
+ "perf-regressions": {
+  "harvested": 1792512353.4098246,
+  "harvest_rows": 50,
+  "harvest_failed": false
+ },
+ "instance-sets": {},
+ "research-loops": {
+  "dry": 2,
+  "exhausted": true,
+  "scouted": 8
+ },
+ "bench-parents": {},
+ "papers-artifacts": {
+  "dry": 2,
+  "exhausted": true,
+  "scouted": 4
+ }
+}
