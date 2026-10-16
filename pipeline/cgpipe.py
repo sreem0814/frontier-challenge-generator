@@ -121,7 +121,7 @@ def load_config():
 
 
 def norm_url(u):
-    u = re.sub(r"^https?://(www\.)?", "", u.strip().lower())
+    u = re.sub(r"^https?://(www\.)?", "", (u or "").strip().lower())
     return re.sub(r"(\.git)?/*$", "", u)
 
 
