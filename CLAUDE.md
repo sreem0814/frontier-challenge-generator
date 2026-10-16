@@ -16,3 +16,8 @@ Rules for Claude Code sessions in this folder. The manual is README.md. Read it 
 - Sealed grading: hidden cases, reference outputs and grader code never go into a web search, a fetched URL or a model trial's prompt.
 - Downloaded code is read before it runs, and runs only with `python3 -I` or in a throwaway container.
 - Licences must allow shipping an input in a task bundle. No LLM-as-a-judge verifiers.
+
+## Files
+- Keep the root minimal: README.md, CLAUDE.md, capture/, pipeline/, data/, kit/, archive/.
+- No new markdown files. Results go into data files (data/seeds/, data/sources.tsv); findings and decisions go into an existing section of README.md.
+- kit/ is the task-building kit (kit/BUILD.md): validated ideas become bundles in kit/tasks/<task>/. archive/ holds the raw research tables (archive/research/).
