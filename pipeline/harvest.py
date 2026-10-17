@@ -330,3 +330,252 @@ def priority(f, cls):
 # downloads dependencies; "build" (--network none) builds offline and runs the project's suite three times with a
 # structured report. The script goes in and the reports come out with `docker cp` (no bind mounts), so the same
 # calls work against a remote Docker host. A probe right before a spike keeps the volume for it (keep=True).
+PROBE_SH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "probe.sh")
+CACHE_VOLUMES = ["cg-cargo:/root/.cargo/registry", "cg-cargo-git:/root/.cargo/git", "cg-gomod:/root/go/pkg/mod",
+                 "cg-gobuild:/root/.cache/go-build", "cg-pip:/root/.cache/pip", "cg-npm:/root/.npm",
+                 "cg-corepack:/root/.cache/node/corepack", "cg-ccache:/root/.cache/ccache"]
+
+
+def work_volume(url, ref):
+    return "cgp-work-" + hashlib.sha1(f"{url}|{ref}".encode()).hexdigest()[:12]
+
+
+def _docker(args, timeout=120, binary=False):
+    return subprocess.run(["docker"] + args, capture_output=True, text=not binary, timeout=timeout)
+
+
+def _probe_phase(name, vol, image, url, ref, phase, cpus, memory, caps, timeout, apt=()):
+    """Run one phase of probe.sh in its own container; return (stdout, {file name: bytes} from /out)."""
+    _docker(["rm", "-f", name])
+    cmd = ["create", "--name", name, "--cpus", str(cpus), "--memory", memory, "--pids-limit", "4096",
+           "-v", f"{vol}:/p", "-e", "CCACHE_DIR=/root/.cache/ccache"]
+    for v in CACHE_VOLUMES:
+        cmd += ["-v", v]
+    for k, v in caps.items():
+        cmd += ["-e", f"CAP_{k.upper()}={v}"]
+    cmd += ["-e", f"PROBE_CPUS={cpus}"]      # nproc inside the container reports the host's CPUs
+    if apt:
+        cmd += ["-e", "HINT_APT=" + " ".join(apt)]
+    if phase == "build":
+        cmd += ["--network", "none"]
+    cmd += [image, "bash", "/tmp/probe.sh", url, ref or "", phase, "3"]
+    p = _docker(cmd)
+    if p.returncode != 0:
+        raise RuntimeError(f"probe: docker create failed: {p.stderr.strip()[-200:]}")
+    try:
+        p = _docker(["cp", PROBE_SH, f"{name}:/tmp/probe.sh"])
+        if p.returncode != 0:
+            raise RuntimeError(f"probe: docker cp failed: {p.stderr.strip()[-200:]}")
+        try:
+            run = subprocess.run(["docker", "start", "-a", name], capture_output=True, text=True, timeout=timeout,
+                                 start_new_session=True)
+        except subprocess.TimeoutExpired:
+            _docker(["kill", name])
+            raise RuntimeError(f"probe {phase} timeout after {timeout}s")
+        files = {}
+        t = _docker(["cp", f"{name}:/out", "-"], timeout=300, binary=True)
+        if t.returncode == 0 and t.stdout:
+            import io, tarfile
+            with tarfile.open(fileobj=io.BytesIO(t.stdout)) as tar:
+                for m in tar.getmembers():
+                    if m.isfile() and m.size < 64 * 2**20:
+                        files[os.path.basename(m.name)] = tar.extractfile(m).read()
+        return run.stdout, files
+    finally:
+        _docker(["rm", "-f", name])
+
+
+def _junit(b):
+    import xml.etree.ElementTree as ET
+    try:
+        root = ET.fromstring(b)
+    except Exception:  # noqa: BLE001
+        return None
+    res = {}
+    for tc in root.iter("testcase"):
+        tags = {c.tag for c in tc}
+        res[f"{tc.get('classname', '')}::{tc.get('name', '')}"] = (
+            "fail" if tags & {"failure", "error"} else "skip" if "skipped" in tags else "pass")
+    return res
+
+
+def _jsonl(b, go):
+    res = {}
+    for line in b.decode(errors="replace").splitlines():
+        try:
+            e = json.loads(line)
+        except ValueError:
+            continue
+        if go:
+            if e.get("Test") and e.get("Action") in ("pass", "fail", "skip"):
+                res[f"{e['Package']}::{e['Test']}"] = e["Action"]
+            elif not e.get("Test") and e.get("Action") == "fail":      # package-level failure (build error, panic)
+                res[f"{e.get('Package')}::<package>"] = "fail"
+        else:                                                           # meson testlog.json
+            r = e.get("result", "")
+            res[e.get("name", "?")] = "pass" if r in ("OK", "EXPECTEDFAIL") else "skip" if r == "SKIP" else "fail"
+    return res
+
+
+def _jsjson(b):
+    try:
+        d = json.loads(b)
+    except ValueError:
+        return None
+    res = {}
+    if "stats" in d and "tests" in d:                                   # mocha --reporter json
+        for k, v in (("passes", "pass"), ("failures", "fail"), ("pending", "skip")):
+            for t in d.get(k, []):
+                res[f"{os.path.basename(t.get('file') or '')}::{t.get('fullTitle')}"] = v
+        return res
+    for f in d.get("testResults", []):                                  # jest / vitest
+        fn = os.path.basename(f.get("name", ""))
+        for a in f.get("assertionResults", []):
+            res[f"{fn}::{a.get('fullName') or a.get('title')}"] = {"passed": "pass", "failed": "fail"}.get(a.get("status"), "skip")
+        if f.get("status") == "failed" and not f.get("assertionResults"):
+            res[f"{fn}::<file>"] = "fail"                                 # suite failed to load
+    return res
+
+
+def _libtest(b):
+    res, binary = {}, ""
+    for m in re.finditer(r"^\s+(?:Running|Doc-tests) .*$|^test (.+?) \.\.\. (ok|FAILED|ignored).*$", b.decode(errors="replace"), re.M):
+        if m.group(1) is None:
+            binary = m.group(0).strip().split(" (")[0]
+        else:
+            res[f"{binary}::{m.group(1)}"] = {"ok": "pass", "FAILED": "fail", "ignored": "skip"}[m.group(2)]
+    return res
+
+
+def _one_run(files, i):
+    """(per-test map or automake counts, report format) for run i; (None, 'exit-code-only') without a report."""
+    if f"run{i}.xml" in files:
+        r = _junit(files[f"run{i}.xml"])
+        if r is not None:
+            return r, "xml"
+    if f"run{i}.jsonl" in files:
+        b = files[f"run{i}.jsonl"]
+        go = b'"Action"' in b[:2000]
+        return _jsonl(b, go), "go-json" if go else "meson-json"
+    if f"run{i}.json" in files:
+        r = _jsjson(files[f"run{i}.json"])
+        if r is not None:
+            return r, "json"
+    if f"run{i}.automake" in files:
+        c = {k: int(v) for k, v in re.findall(r"^# (TOTAL|PASS|SKIP|XFAIL|FAIL|XPASS|ERROR):\s+(\d+)",
+                                              files[f"run{i}.automake"].decode(errors="replace"), re.M)}
+        if c:
+            return c, "automake"
+    if f"run{i}.log" in files:
+        r = _libtest(files[f"run{i}.log"])
+        if r:
+            return r, "libtest-text"
+    return None, "exit-code-only"
+
+
+def parse_probe(out, files, min_tests=5):
+    """Facts and a green/amber/red verdict from probe.sh's stdout ("CG ..." lines) and /out files."""
+    g = lambda rx: (re.search(rx, out, re.M) or [None, None])[1]                      # noqa: E731
+    f = {"clone_ok": True, "ref": g(r"^CG clone ok ref=(\S*)"), "commit": g(r"^CG commit (\S+)"),
+         "eco": g(r"^CG eco (\S+)") or "unknown", "subdir": g(r"^CG subdir (\S+)") or "",
+         "test_files": int(g(r"^CG test_files (\d+)") or 0), "ci_files": int(g(r"^CG ci_files (\d+)") or 0),
+         "build_ok": "CG build ok" in out}
+    steps = {a: (int(b), int(c)) for a, b, c in re.findall(r"^CG step (\w+) rc=(\d+) s=(\d+)", out, re.M)}
+    f["fetch_ok"] = steps.get("fetch", (1, 0))[0] == 0
+    f["fetch_s"], f["build_s"] = steps.get("fetch", (0, 0))[1], steps.get("build", (0, 0))[1]
+    f["timeouts"] = re.findall(r"^CG timeout (\w+)", out, re.M)
+    listed = g(r"^CG tests_listed (\d+)")
+    f["tests_listed"] = int(listed) if listed else None
+    rcs = {int(a): int(b) for a, b in re.findall(r"^CG run(\d+) rc=(\d+)", out, re.M)}
+    f["run_rcs"] = [rcs[k] for k in sorted(rcs)]
+    secs = sorted(steps.get(f"run{k}", (0, 0))[1] for k in rcs)
+    f["suite_s"] = secs[len(secs) // 2] if secs else 0
+    runs, fmt = [], "exit-code-only"
+    for i in sorted(rcs):
+        r, kind = _one_run(files, i)
+        runs.append(r)
+        if r is not None:
+            fmt = kind
+    f["report_format"] = fmt
+    f["runs_without_report"] = sum(r is None for r in runs)
+    good = [r for r in runs if r is not None]
+    total = 0
+    if good and fmt != "automake":
+        names = set().union(*[set(r) for r in good])
+        flaky = sorted(n for n in names if len({r.get(n, "missing") for r in good}) > 1)
+        stable = sorted(n for n in names if all(r.get(n) == "fail" for r in good))
+        first = good[0]
+        total = len(first)
+        f.update(tests_total=total, tests_pass=sum(v == "pass" for v in first.values()),
+                 tests_fail=sum(v == "fail" for v in first.values()), tests_skip=sum(v == "skip" for v in first.values()),
+                 flaky_tests=len(flaky), flaky_names=flaky[:20], stable_failures=len(stable), stable_failure_names=stable[:20])
+    elif good:
+        total = good[0].get("TOTAL", 0)
+        f.update(tests_total=total, tests_pass=good[0].get("PASS", 0), tests_fail=good[0].get("FAIL", 0) + good[0].get("ERROR", 0),
+                 tests_skip=good[0].get("SKIP", 0), flaky_tests=int(len({json.dumps(r, sort_keys=True) for r in good}) > 1))
+    # a run that crashed before writing its report counts as nondeterminism, not as missing data
+    f["deterministic"] = bool(rcs) and len(set(f["run_rcs"])) == 1 and not f.get("flaky_tests") and \
+        (not f["runs_without_report"] or not good)
+    f["log"] = "\n".join(l[4:] for l in out.splitlines() if l.startswith("LOG "))[-600:]
+    for k in ("fetch", "build", "test"):
+        if f"cmd.{k}" in files:
+            f[f"cmd_{k}"] = files[f"cmd.{k}"].decode(errors="replace").strip()[:400]
+    f["oom"] = steps.get("build", (0, 0))[0] == 137 or any(rc == 137 for rc in f["run_rcs"])
+    apt = re.search(r"^CG apt rc=(\d+)", out, re.M)
+    f["apt_failed"] = bool(apt and apt.group(1) != "0")
+    if f["eco"] == "unknown":
+        f["verdict"] = "none"              # no build system at the root: a data, spec or test-vector repo
+    elif not f["build_ok"] and not total:
+        f["verdict"] = "amber" if (f["oom"] or f["apt_failed"] or f["timeouts"]) else "red"
+    elif f["build_ok"] and fmt != "exit-code-only" and f["deterministic"] and f.get("tests_pass", 0) >= (
+            1 if f["eco"] in ("cmake", "meson", "autotools") else min_tests):    # these count whole test programs
+        f["verdict"] = "green"
+    else:
+        f["verdict"] = "amber"
+    return f
+
+
+def probe(url, ref, image, cpus=4, memory="5g", caps=None, name="cgprobe", min_tests=5, keep=False, apt=()):
+    """Clone the source at `ref` (or `v<ref>`, else the default branch), fetch, build offline and run its test suite
+    three times. Returns facts (see parse_probe). With keep=True the build tree stays in a Docker volume for the
+    spike (work_volume); otherwise only the facts are kept.
+    clone_ok is False only when git says the repo is unreachable; anything else (no image, Docker down, network
+    trouble, a reachable repo that fails to clone, a timeout) raises, so the runner retries instead of recording a
+    false fact."""
+    caps = dict({"clone": 300, "fetch": 900, "build": 1500, "test": 900}, **(caps or {}))
+    vol = work_volume(url, ref)
+    _docker(["volume", "rm", "-f", vol])                                   # start clean
+    if _docker(["volume", "inspect", vol]).returncode == 0:               # still there: a container uses it
+        raise RuntimeError(f"probe: volume {vol} is in use (a spike?); retrying later")
+    if _docker(["volume", "create", vol]).returncode != 0:
+        raise RuntimeError("probe: docker volume create failed (is Docker running?)")
+    kept = False
+    try:
+        apt = [p for p in apt if re.fullmatch(r"[a-z0-9][a-z0-9+.-]{1,60}", p)][:40]
+        out1, files1 = _probe_phase(f"{name}-f", vol, image, url, ref, "fetch", cpus, memory, caps,
+                                    caps["clone"] + caps["fetch"] + 600, apt)
+        if "CG clone fail" in out1:
+            g = gh_repo_of(url)
+            try:                       # a network blip must not look like a deleted repo
+                _gh([f"repos/{g[0]}/{g[1]}"]) if g else None
+            except ApiError as e:
+                if "Not Found" in str(e):
+                    return {"clone_ok": False}
+                raise RuntimeError(f"probe: clone failed and GitHub did not answer ({e})")
+            if g:
+                raise RuntimeError("probe: clone failed but GitHub says the repo exists; retrying")
+            return {"clone_ok": False}
+        if "CG clone error" in out1:
+            raise RuntimeError("probe: repo reachable but the clone failed")
+        if "CG clone ok" not in out1:
+            raise RuntimeError(f"probe infrastructure error: {out1.strip()[-200:]}")
+        out2, files2 = _probe_phase(f"{name}-b", vol, image, url, ref, "build", cpus, memory, caps,
+                                    caps["build"] + 3 * caps["test"] + 600, apt)
+        f = parse_probe(out1 + out2, dict(files1, **files2), min_tests)
+        f["work_volume"], kept = (vol, True) if keep else ("", False)
+        if apt:
+            f["apt_hint"] = " ".join(apt)
+        return f
+    finally:
+        if not kept:
+            _docker(["volume", "rm", "-f", vol])

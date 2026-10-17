@@ -410,5 +410,25 @@
   "enrich_batch": 60,
   "tree_count_for": [
     "implementation"
-  ]
+  ],
+  "smoke": {
+    "cpus": 4,
+    "memory": "4g",
+    "min_tests": 5,
+    "caps": {
+      "clone": 300,
+      "fetch": 900,
+      "build": 1200,
+      "test": 600
+    },
+    "row_caps": {
+      "fetch": 600,
+      "build": 600,
+      "test": 300
+    }
+  },
+  "spike_green": {
+    "call_budget_usd": 3.0,
+    "timeout_sec": 3600
+  }
 }
