@@ -13,6 +13,22 @@ __pycache__/
 # Dry runs, prompt tries and selftests (README section 5)
 data-dry/
 
+# Pipeline runtime files in data/ (README section 8); seeds/, sources.tsv and the corpora stay tracked
+data/STOP
+data/.lock
+data/channels.json
+data/smoke.json
+data/hints.json
+data/usage.json
+data/state.json
+data/cost.jsonl
+data/pipeline.log
+data/runs/
+data/spikes/
+data/dashboard.html
+data/dashboard.pid
+data/dashboard.log
+
 # Editor, OS and local Claude Code settings
 .claude/settings.local.json
 .vscode/
