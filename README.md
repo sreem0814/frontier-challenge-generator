@@ -263,3 +263,55 @@ To have Claude look into something, say "check the cgpipe dashboard". Claude run
 - Read one V1 report and open its URLs.
 - Read one data/spikes/<id>/SPIKE.md.
 - Check how many V1 passes V2 keeps. If V2 kills most of them, set `models.v1` to `sonnet`.
+
+## 6. Robustness
+
+- **The spec stays the source of truth:** `run` refuses to start if capture/instructions.md no longer matches `spec_sha256` in config.json. Review COMMON, then update the hash.
+- **State:** one runner at a time: data/.lock per data folder, and ~/.cache/cgpipe/run.lock per machine for real runs (probe and spike containers are shared). Writes are atomic, so a crash loses only the calls in flight; those seeds are scheduled again on the next start.
+- **Typed results:** `--json-schema` checks every model output. A missing structured result counts as an error.
+- **Plan limits:**
+  - The runner recognises every documented limit message (session, weekly, Opus/Sonnet and spend limits, "Usage limit reached", server-side limiting, 429) and pauses until the window resets. The retry doesn't count as a failure.
+  - It also reads 5-hour and weekly usage from every call, and pauses new calls at 90 % and 95 % respectively (`pace`).
+- **Preflight:** `run` refuses to start when Claude Code, the `gh` login, Docker, the image or the spike token (mode 600) is missing, rather than turning every call into a failure. It also removes probe and spike containers left over from a crashed run.
+- **Caps:** every call has `--max-turns` and `--max-budget-usd`. A call that hits its turn, budget or time cap is retried with 1.5x caps, not identically. A call that times out is logged at its cap, so the budget never undercounts.
+- **Budget end:** when no new call fits the budget and nothing has run for a minute, the run ends as "budget reached" instead of idling.
+- **Outages:** when four different model calls fail within 10 minutes with errors that look like infrastructure (a login, network, provider or Docker outage; cap hits and bad answers don't count), the runner pauses new calls for 10 minutes and doesn't count those failures; after three such pauses with no success in between, failures count again.
+- **Retries:** a failed call is retried after 2 and then 4 minutes. A third failure takes the stage's fallback, so nothing loops forever:
+
+  | Stage | Fallback after a third failure |
+  |---|---|
+  | V1 | the seed is killed (K13) |
+  | spike | the seed is parked at `v2-pass` (it passed the judge; the failure is likely infrastructure): `requeue <id> spike` retries. A rejected spike token stops all spikes, with a dashboard issue, while V1 and V2 go on |
+  | V2 | the batch's seeds are parked at `v1-pass` (never promoted on V1 scores); `requeue <id> v2` retries |
+  | probe | V1 (or the spike) proceeds without it |
+  | harvest | scouts cover the channel until its next harvest |
+  | enrich | retried in 30 minutes; writing doesn't wait for it |
+  | scout | the channel is disabled |
+  | writer | no new batches this run |
+- **Watchdog:** `bash pipeline/watchdog.sh install` adds a cron job that runs every 10 minutes. If the runner died without being asked to stop (a crash, or a run that ended "stalled"), it restarts it in the tmux session `cgpipe`, at most once every 30 minutes; a run that ended on purpose (stop requested, target or budget reached, warm-up done, nothing left to do) is left alone. It also restarts the web dashboard if that died. Log: data/watchdog.log; `bash pipeline/watchdog.sh uninstall` removes it. Zero tokens.
+- **Stopping:**
+  - `stop`, or a first Ctrl-C or SIGTERM, finishes the calls in flight. A second Ctrl-C kills them, including their probe and spike containers.
+  - A leftover STOP file is cleared at start.
+  - A run also ends by itself when the target is reached, the budget is spent, nothing can move, or 15 minutes pass idle.
+- **Hallucination guards:**
+  - Facts come from the GitHub API where possible.
+  - V1 must cite a URL for every other fact, and the runner requests each one.
+  - Probes and spikes test the claims in real containers.
+  - Kill codes, classes, methods and families are schema enums, so a model can't write a code the runner ignores.
+- **Selftest:** 19 checks, all zero-token, none touching data/:
+  - the documented limit messages;
+  - 16 dry-run scenarios with injected faults: happy path, resume, failing harvesters, failing writer, flaky V1, usage-limit pause, high-usage pacing, SIGTERM, batch cap, no target, failing probes, failing enrich, a judge that skips a seed, a spike re-probe for its build tree, an outage, failing spikes;
+  - terminal and web dashboard rendering.
+
+## 7. Tuning
+
+| Symptom | Change |
+|---|---|
+| Most kills are K1 | add channels or harvest queries away from crowded families |
+| V2 kills most V1 passes | V1 is too lenient: use `sonnet` for V1, or raise `lines.v1_keep` |
+| Many K2 kills at the probe | look at the rows' URLs: deleted or private repos |
+| Many amber or red probes | read `log` and `timeouts` in data/smoke.json; raise `smoke.caps` for timeouts; add the missing tool to the image |
+| The first batch takes too long to start | lower the probe's `smoke.caps`, or run with `--no-smoke` (no probes; V1 and spikes run without build facts) |
+| Spikes come back inconclusive | raise `timeouts_sec.spike`, `max_turns.spike` or `call_budget_usd.spike`; add the missing toolchain to the image |
+| Frequent pacing pauses | lower `max_parallel_calls`, move more stages to Haiku, or run after the weekly reset |
+| Too few research seeds | raise `quota.research` |
