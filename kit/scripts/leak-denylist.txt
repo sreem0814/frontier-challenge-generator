@@ -1,0 +1,30 @@
+# Deny-list for remote_run.sh and l0_check.py: one extended regex per line, matched case-insensitively against
+# every text file in tasks/<task>/harbor/. A match refuses the run and fails L0.
+# Source: capture/instructions.md:15 (no programme, platform or client references, no evaluation vocabulary,
+# no public benchmark names). Lines starting with # are comments.
+
+# This project's own files (nothing from docs/, pipeline/, data/ or capture/ may be pasted into a bundle)
+capture/instructions
+docs/(PIPELINE|BUILD|REFERENCE|LOG)
+pipeline/(cgpipe|prompts|config)
+data/(seeds|sources|spikes)
+cgpipe
+# tb-ws confidential material must never reach this project's bundles either
+taskhub|acceptance-spec|docs/guidelines|course-tips|review-lessons
+# Platform identifiers are private: they live in ~/.config/cgpipe/denylist.txt (one regex per line, outside the
+# repo). remote_run.sh and l0_check.py read that file too when it exists.
+\bharbor\b
+# Evaluation vocabulary (the first three are the spec's examples; the rest are our own caution)
+the solver
+held[- ]?out
+reward[- ]?hack
+\boracle\b
+nop agent
+difficulty probe
+frontier (agent|model)
+# Model names. Not "Claude": the Dockerfile must install @anthropic-ai/claude-code.
+\b(Qwen|GPT-?[0-9]|Opus|Sonnet|Gemini)\b
+# Public benchmarks
+terminal[- ]?bench|tbench
+swe[- ]?bench
+humaneval|\bMBPP\b|livecodebench|\bHELM\b|bigcodebench
