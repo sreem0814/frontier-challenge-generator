@@ -1,0 +1,28 @@
+[task]
+name = "org/REPLACE-slug"                 # your organisation prefix, then the slug you submit under
+description = "REPLACE: one or two sentences on what the task is."
+
+[metadata]
+paradigm = "implementation"               # implementation | optimization | research (lowercase, matches the submit page)
+compute = "cpu"                           # must match [environment] gpus
+languages = ["REPLACE"]                   # what the agent writes
+category = "REPLACE"
+difficulty = "frontier"
+tags = ["REPLACE"]
+oracle_reward_threshold = 1.0             # what the reference reliably scores (1.0 for implementation)
+# reward_cap = "capped"                   # research only, required
+
+[agent]
+timeout_sec = 28800                       # a budget tier: 7200 | 14400 | 28800 | 72000
+
+[verifier]
+timeout_sec = 7200                        # leave environment_mode unset: the verifier must share the agent's container
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384                         # fits VM 1 (22 GB) and VM 3 (19 GB), so local runs match task.toml
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"                # same as [agent] timeout_sec, as a string
