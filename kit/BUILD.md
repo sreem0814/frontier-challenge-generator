@@ -47,3 +47,15 @@ Write per-task decisions as dated lines in README.md, not in a new file.
 | 7d | **Strengthen the reference from the probe** (optimization and research): a frontier trial at or near 1.0 means the reference is not near the best achievable (spec line 351). Before the gap check, raise the reference (more kernels, a better method, more tuning) or set S above it as a stretch target (line 51), refreeze, rerun L3 and the short probe. Implementation references are already the ceiling (upstream behaviour), so there the scope, not the reference, decides | the frontier's probe stays below the reference |
 | 8 | Premortem: a judge subagent reads the bundle against capture/instructions.md "What the pipeline checks" and names the three likeliest rejections; fix or rebut each. It also checks DeepSWE's four review dimensions: the grader tests what instruction.md asks, no more and no less; any reasonable implementation passes; the change is realistic; failures come from the work, not the environment | written in README.md |
 | 9 | `bash scripts/make_zip.sh <task>` | the user submits |
+
+## 4. L0: static checks
+`~/.local/bin/uv run --no-project --python 3.12 python -I scripts/l0_check.py <task>`. It checks the spec's structure rules:
+- required files, task.toml policy (name, paradigm, compute, budget tier, TASK_BUDGET_SECS, limits, no docker_image, no interpolation, no loader variables)
+- timer.sh byte-equal to the spec, the Dockerfile tail verbatim, a pinned debian-family base, Claude Code installed, ends as root, no timer autostart
+- instruction length and the /app/.timer pointer, PROVENANCE length
+- solution size, no archives, solve.sh not touching /tests or /logs/verifier
+- nothing graded under environment/
+- verifier hygiene (no kill by name, no reward literals in shell, PATH reset, loader variables unset)
+- sandbox warnings (Landlock, kill-process seccomp, valgrind, execute-only files, message queues, perf counters, nproc)
+- deny-list phrases (scripts/leak-denylist.txt) and leftover TODO/REPLACE markers.
+The report goes to tasks/<task>/build/l0-report.md.
