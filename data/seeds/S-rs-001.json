@@ -1,0 +1,293 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "8 h. Many levers with steady credit. A frontier agent beats the baseline reliably but averages below the reference. A weaker model changes one hyperparameter.",
+  "cheat": "Training on the eval text, or shipping a lookup of the eval corpus. Closed by sealed eval text, a size cap on weights, and a fixed budget.",
+  "grading": "Bits per byte on hidden text of other styles (simple encyclopedic and children's non-story text, themes withheld from training). Score normalised between the shipped baseline and our reference, with the training budget enforced.",
+  "reference": "We train a tuned configuration (tokenizer, size, LR schedule, batch size) at the same budget and record its score.",
+  "source": "https://huggingface.co/datasets/roneneldan/TinyStories (CDLA-Sharing-1.0) with https://github.com/karpathy/llm.c (MIT)",
+  "task": "/app ships a small CPU GPT training loop in C or Python, a TinyStories subset and a fixed CPU-time budget (8 cores). The agent improves tokenizer, model shape, optimiser, schedule and data order, then ships a model and an eval entry point.",
+  "title": "CPU small language model tuned for unseen text styles"
+ },
+ "class": "research",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "other",
+ "final": 61,
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour ai_rd_small_scaling_law [RE-Bench] 0.16"
+  ],
+  [
+   "2026-10-20T19:01:35Z",
+   "v1",
+   "pass",
+   "score 66; dead links []"
+  ],
+  [
+   "2026-10-20T19:05:05Z",
+   "v2",
+   "killed:K3",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-rs-001",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.163,
+    "ai_rd_small_scaling_law [RE-Bench]"
+   ],
+   [
+    0.151,
+    "S-op-003"
+   ],
+   [
+    0.147,
+    "Budget NanoGPT Speedrun [METR]"
+   ],
+   [
+    0.13,
+    "S-op-002"
+   ],
+   [
+    0.115,
+    "schedule-master [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "research",
+ "rank": 2,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 1,
+  "ci_files": 3,
+  "clone_ok": true,
+  "cmd_build": "make -j4",
+  "cmd_fetch": "true",
+  "cmd_test": "make test",
+  "commit": "f1e2ace651495b74ae22d45d1723443fd00ecd3a",
+  "deterministic": true,
+  "eco": "make",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "log": "sabled by default, run make with `USE_CUDNN=1` to try to enable\n\u2713 OpenMP found\n\u2717 NCCL is not found, disabling multi-GPU support\n---> On Linux you can try install NCCL with `sudo apt install libnccl2 libnccl-dev`\n\u2717 MPI not found\n\u2717 nvcc not found, skipping GPU/CUDA builds\n---------------------------------------------\ncc -Ofast -Wno-unused-result -Wno-ignored-pragmas -Wno-unknown-attributes -march=native -fopenmp -DOMP   train_gpt2.c -lm -lgomp -o train_gpt2\ncc -Ofast -Wno-unused-result -Wno-ignored-pragmas -Wno-unknown-attributes -march=native -fopenmp -DOMP   test_gpt2.c -lm -lgomp -o test_gpt2",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   2,
+   2,
+   2
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 4,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f1e2ace651495b74ae22d45d1723443fd00ecd3a",
+  "kb": 2151,
+  "lang": "Cuda",
+  "open_prs": 135,
+  "pushed": "2025-06-26",
+  "release": "",
+  "spdx": "MIT",
+  "stars": 31188
+ },
+ "source_key": "huggingface.co/datasets/roneneldan/tinystories; https://github.com/karpathy/llm.c|baseline-shipped-tiny-gpt-e-g-2-4-layers-128-d-with-nanogpt-",
+ "source_notes": "Card: 2,141,709 rows (train 2.12M, val 22k), 7.62 GB parquet; files tinystories_all_data.tar.gz, TinyStoriesV2-GPT4-train.txt. llm.c: CPU path train_gpt2.c, q:\"OMP_NUM_THREADS=8 ./train_gpt2\"; example step time ~1.3-1.45 s on M3 Max for GPT-2 124M fine-tune, batch 4, ctx 64, val loss 5.25->4.11 in 40 steps. README warns q:\"unless you have a beefy CPU\" you may not get far. OOD hidden split: train on TinyStories, evaluate on held-out text of other style (simple encyclopedic/children text, own CC-BY collection) or story themes withheld from train; in-domain val alone is not OOD. INFERRED run time on 8 CPUs: a 1-3 M-param char/BPE model gets ~10-30k tokens/s, so a 1 h run sees ~50-100M tokens; eval on 1 MB of hidden text ~10-30 s. Levers: tokenizer, architecture size/shape, LR schedule, batch size, mixed precision-free bf16 emulation, data order/curriculum, SIMD matmul in C.",
+ "source_url": "https://huggingface.co/datasets/roneneldan/TinyStories; https://github.com/karpathy/llm.c",
+ "source_version": "Baseline: shipped tiny GPT (e.g. 2-4 layers, 128-d) with nanoGPT-style loop or a bigram/n-gram model trained for a fixed budget -> Reference: tuned model/optimizer/tokenizer at same CPU-time budget (bigger-batch schedule, better tokenizer, weight tying, LR schedule)",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://huggingface.co/datasets/roneneldan/TinyStories",
+  "facts": [
+   {
+    "claim": "TinyStories dataset licence is CDLA-Sharing-1.0",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/roneneldan/TinyStories"
+   },
+   {
+    "claim": "Dataset totals 2,141,709 rows (train 2.12M, validation 22k) and 7.62 GB",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/roneneldan/TinyStories"
+   },
+   {
+    "claim": "Data files TinyStoriesV2-GPT4-train.txt and tinystories_all_data.tar.gz exist",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/roneneldan/TinyStories"
+   },
+   {
+    "claim": "CDLA-Sharing-1.0 is share-alike: shared or modified data must stay under CDLA-Sharing; computational results carry no obligations",
+    "status": "confirmed",
+    "url": "https://docs.data.world/en/214274-common-license-types-for-datasets.html"
+   },
+   {
+    "claim": "Full CDLA-Sharing-1.0 Section 3 redistribution and notice conditions",
+    "status": "not_found",
+    "url": "https://cdla.dev/sharing-1-0/"
+   },
+   {
+    "claim": "llm.c licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/llm.c"
+   },
+   {
+    "claim": "llm.c has a root CPU reference train_gpt2.c (about 1,000 lines, fp32) built with make train_gpt2",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/llm.c"
+   },
+   {
+    "claim": "README CPU run is OMP_NUM_THREADS=8 ./train_gpt2 and it finetunes GPT-2 124M, with a warning that you won't go far without a beefy CPU",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/llm.c"
+   },
+   {
+    "claim": "Sample step time about 1.3 s per step on an Apple M3 Max",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/llm.c"
+   },
+   {
+    "claim": "RE-Bench contains a small-scaling-law task (Scaling Law Experiment, 5e17 FLOPs, hidden size and steps prediction)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2411.15114"
+   },
+   {
+    "claim": "Task slug ai_rd_small_scaling_law in the METR repo",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2411.15114"
+   },
+   {
+    "claim": "Throughput 10-30k tokens/s on 8 CPUs for a 1-3M-param model",
+    "status": "not_found",
+    "url": "https://github.com/karpathy/llm.c"
+   },
+   {
+    "claim": "A hidden OOD split built from a CC-BY encyclopedic and children's non-story collection exists",
+    "status": "not_found",
+    "url": "https://huggingface.co/datasets/roneneldan/TinyStories"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Improving over baseline is plausible; reaching 0.9 of our tuned reference is uncertain. Partial credit exists per lever (tokenizer, size, LR, batch, order). Weaker model likely stops at one hyperparameter change.",
+   "build_cost": "About 3-5 days for trainer, OOD corpus sourcing and sealing, grader and budget enforcement, and reference tuning. Build class 2.",
+   "deliverable": "Trained model file under a size cap plus eval entry point; agent tunes tokenizer, shape, optimiser, schedule, batch and data order within a fixed budget.",
+   "gates_anticheat": "Sealed hidden text outside image; weight size cap; grader reruns the agent's eval; training budget must be enforced by a grader rerun of training under a timer, since a shipped weight file cannot prove its own training compute. Eval-text leakage is the main cheat, closed by sealing.",
+   "grading_surface": "Bits per byte on several sealed OOD text sets (encyclopedic, children's non-story, withheld story themes). Continuous metric on fixed hidden text; no per-test cases.",
+   "local_fit": "CPU-only, 8 cores, 16 GB, gVisor-safe; make build; no network at run time. Fits.",
+   "lookup": "partial: TinyStories small models and llm.c CPU finetunes are public; no public tuned config scored on OOD bpb.",
+   "provenance": "TinyStories (CDLA-Sharing-1.0, 2.14M rows, 7.62 GB) plus llm.c (MIT, active repo, root train_gpt2.c CPU reference). Reference config is ours to tune; no published OOD bpb config exists.",
+   "reference": "Our tuned configuration at the same budget. Not an upstream artifact; strength depends on our own tuning effort.",
+   "ships": "Small CPU GPT trainer derived from llm.c (C or Python), a TinyStories subset, CPU budget config (8 cores), eval entry point.",
+   "similarity": "Nearest neighbour RE-Bench small scaling law at 0.163 (over 0.15). Subject differs: CPU LM tuning for OOD bpb versus predicting hidden size and steps for a 5e17 FLOP OpenWebText loss. Not on the CROWDED list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8 h tier and many levers suggest the target band, but there is no dated public evidence of agents on this exact work, so capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 3-5 days: trainer, OOD corpus, sealing, budget enforcement, reference tuning."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, 8 cores, 16 GB, no network at run time; fits the sandbox, though CPU training is slow."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Tuning tokenizer, shape, schedule and data order over an 8 h CPU budget is genuinely sustained work."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "CDLA-Sharing-1.0 is share-alike and not OSI-approved; shipping a subset is allowed with its terms, but Section 3 full text was not verified."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five or more independent levers with steady bpb credit per lever."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest public neighbour RE-Bench small scaling law at 0.163 shares the small-LM budget subject; different deliverable."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real dataset (HF, CDLA-Sharing) and a real MIT repo with a root CPU trainer; the OOD split is not yet real."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is our own tuned config, not a complete upstream implementation; it would need real tuning effort to reach a strong ceiling."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden OOD text must be sourced and kept out of the image; no installable oracle, but sealing takes real work."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Continuous bpb over several hidden text sets; a hand-built OOD corpus is not a large executable oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Tuned variants do not beat baseline on the OOD probe beyond noise, or the OOD and in-domain bpb gap is too small to grade on, or throughput is under about 2k tokens/s so 8 h gives too little signal.",
+   "pass_if": "Throughput at least about 10k tokens/s, eval bpb deterministic, and a tuned variant beats baseline on the OOD probe by more than seed spread.",
+   "steps": [
+    "In a throwaway networked container, clone karpathy/llm.c at f1e2ace651495b74ae22d45d1723443fd00ecd3a and run make on the CPU path; record the build and any test rc (smoke_build showed rc 2 on make test with no per-test report).",
+    "Extract a 200-500 MB TinyStories subset and write a 1-3M-parameter config for the CPU trainer; measure tokens/s on 8 threads over 5 minutes.",
+    "Write an OOD probe of about 200 KB from sources you can show are CC-BY (encyclopedic and children's non-story text); keep it out of the training set and out of the repo.",
+    "Compute bits per byte for an untrained-to-shortly-trained baseline on the in-domain validation and the OOD probe; compare the gap.",
+    "Train two baseline seeds at 20 min each and measure OOD bpb spread; then train one tuned variant (LR schedule and batch size changed) and check whether the gain exceeds seed noise.",
+    "Verify the trainer is deterministic for eval (same weights give same bpb across runs) and check that the training-time cap can be enforced by a rerun under a timer."
+   ]
+  },
+  "summary": "The idea is a research task that tunes a small CPU GPT on TinyStories and is graded on bits per byte over sealed out-of-distribution text. It passes the gates with conditions: the dataset licence is share-alike, the smoke build is amber with no per-test report, the OOD corpus and training-budget enforcement still need to be designed and sealed, and the spike must confirm throughput and that tuning gains exceed seed noise."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 66,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-rs-001",
+  "kill_code": "",
+  "note": "The TinyStories licence and size and the llm.c MIT CPU path are confirmed. Two load-bearing claims are not_found: the CPU throughput, and the existence of a CC-BY OOD hidden corpus. Overlaps the METR budget NanoGPT speedrun and the RE-Bench scaling-law task in subject: GPT training tuned under a budget for loss. Speedrun tricks are recallable, so a frontier agent could reach or beat our self-tuned reference, which compresses the band. The grading surface is one continuous bpb metric on a few hidden sets. Seed spread and OpenMP reduction nondeterminism could swamp the gains. Enforcing the budget needs the grader to rerun training under a wall-clock timer. In gVisor, cgroup CPU limits are stubs, so the timer is noisy and costly. Survives only if the spike shows gains well above seed noise and an OOD gap large enough to grade on.",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 4,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 61
+}

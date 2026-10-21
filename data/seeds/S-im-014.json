@@ -1,0 +1,333 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "8 h. The four formats are independent buckets. xlsx and ods are easy, while BIFF8 xls with its CFB container, SST continuation records and xlsb record parsing are the long tail. A frontier agent usually finishes xlsx, ods and xlsb and gets part of xls. A weaker model stops after xlsx.",
+  "cheat": "Shelling out to a Rust or Python library is blocked: there is no network and no such binary in the image, and the verifier runs pure Go in a clean container. Hidden workbooks are generated at grade time, so fixture-hardcoding fails.",
+  "grading": "The repo's own fixtures (about 150 test files) plus workbooks made by a hidden generator (random types, shared strings, date systems, formulas, merged ranges). Output is compared exactly to JSON from the Rust reference binary, which is not in the image. Credit is per format and per case.",
+  "reference": "Upstream Rust crate at the pinned tag, driven by a thin JSON-dump binary. The expected outputs are produced from it, and a faithful port scores 1 on the cases it passes.",
+  "source": "https://github.com/tafia/calamine @ v0.37.0, MIT",
+  "task": "/app ships a history-less Go module skeleton, a Rust-generated JSON dump schema and the sample workbooks. The agent ports the xlsx, xlsb, xls (BIFF/CFB) and ods readers to Go: sheet listing, cell values, dates, formulas, merged cells, errors. Delivery is a Go package plus a CLI that dumps a workbook to JSON.",
+  "title": "Port calamine spreadsheet readers to Go"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "data-format",
+ "final": 78,
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-012 0.20"
+  ],
+  [
+   "2026-10-20T21:15:27Z",
+   "v1",
+   "pass",
+   "score 83; dead links []"
+  ],
+  [
+   "2026-10-20T21:18:09Z",
+   "v2",
+   "pass",
+   "final 78"
+  ],
+  [
+   "2026-10-20T21:26:01Z",
+   "smoke",
+   "green",
+   "rust: build ok, 217 tests, 0 failing, deterministic over 3 runs"
+  ],
+  [
+   "2026-10-20T23:19:10Z",
+   "spike",
+   "validated",
+   "Fixture counts: xls 41 (14 with formulas, 4 error cases), xlsx 73, xlsb 12 (only 2 with formulas), ods 15, xlsm 4. xls formula output is shallow: formulas dump as plain strings. The xlsb and ods buckets are small. The upstream suite is green and deterministic per the probe (217 tests, 0 failures). T"
+  ]
+ ],
+ "id": "S-im-014",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.205,
+    "S-im-012"
+   ],
+   [
+    0.157,
+    "S-im-008"
+   ],
+   [
+    0.133,
+    "S-im-006"
+   ],
+   [
+    0.122,
+    "Zig to Rust port [Bun]"
+   ],
+   [
+    0.117,
+    "organization-json-generator [original]"
+   ]
+  ]
+ },
+ "method": "port",
+ "rank": 2,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 271,
+  "ci_files": 2,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "f2c5948242fdfe390e292313a1f87f9db19b9633",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 13,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "_to_csv.rs (target/debug/examples/excel_to_csv-f3b153a132f6e5e2)\n  Executable unittests examples/read_hyperlinks.rs (target/debug/examples/read_hyperlinks-1b5056506405f85e)\n  Executable unittests examples/read_properties.rs (target/debug/examples/read_properties-de43484841da54b0)\n  Executable unittests examples/search_errors.rs (target/debug/examples/search_errors-6fb2d723b78d0a71)\n  Executable unittests examples/simple_read.rs (target/debug/examples/simple_read-f6eb3dc061e02290)\n  Executable unittests examples/xlsx_formula_stream.rs (target/debug/examples/xlsx_formula_stream-872abbacb2741afe)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   0,
+   0,
+   0
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 15,
+  "test_files": 148,
+  "tests_fail": 0,
+  "tests_listed": 284,
+  "tests_pass": 217,
+  "tests_skip": 0,
+  "tests_total": 217,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": "cgp-work-7e01ccb66c12"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f2c5948242fdfe390e292313a1f87f9db19b9633",
+  "kb": 7716,
+  "lang": "Rust",
+  "open_prs": 22,
+  "pushed": "2026-10-18",
+  "release": "v0.37.0",
+  "spdx": "MIT",
+  "stars": 2456,
+  "test_files": 148,
+  "test_kb": 21772,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/tafia/calamine|tafia-calamine",
+ "source_notes": "A pure Rust Excel/OpenDocument SpreadSheets file reader: rust on metal sheets",
+ "source_url": "https://github.com/tafia/calamine",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "The reference is Rust, so our own Go reference port is needed (K5/K12 risk, roughly 10k lines).",
+   "A hidden generator that writes valid xls/xlsb files is costly to build.",
+   "Merged-region API exists only for xlsx and xls. xlsb and ods have none in the dump.",
+   "Some fixtures are error cases (password, corrupt, OOM) and need an error-schema decision."
+  ],
+  "build_minutes": 5,
+  "cases_sampled": 145,
+  "commands_log": "Reused /p/src (HEAD f2c5948, tag v0.37.0). Wrote examples/jdump.rs, ran `cargo build --offline --example jdump`. Ran it twice over tests/*.{xls,xlsx,xlsm,xlsb,ods}. `diff -r` of the two output dirs is identical.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "No Go start exists, so the start scores 0. The Rust reference dumps all 145 fixtures. A Go reference port of about 10k lines of Rust must still be written by us.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1,
+  "kill_code": "",
+  "notes": "Fixture counts: xls 41 (14 with formulas, 4 error cases), xlsx 73, xlsb 12 (only 2 with formulas), ods 15, xlsm 4. xls formula output is shallow: formulas dump as plain strings. The xlsb and ods buckets are small. The upstream suite is green and deterministic per the probe (217 tests, 0 failures). The 284-vs-217 gap is likely doctests or examples; I did not reconcile it. The Rust source is public and known to models only in outline. The xls fixtures are real and reasonably large.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 145,
+  "reference_lines": 10000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/tafia/calamine/releases/tag/v0.37.0",
+  "facts": [
+   {
+    "claim": "calamine tag v0.37.0 exists (commit f2c5948, release dated 2026-10-18)",
+    "status": "confirmed",
+    "url": "https://github.com/tafia/calamine/releases/tag/v0.37.0"
+   },
+   {
+    "claim": "Repo licence is MIT (LICENSE-MIT.md linked from repo page)",
+    "status": "confirmed",
+    "url": "https://github.com/tafia/calamine"
+   },
+   {
+    "claim": "README says the crate reads xls, xlsx, xlsm, xlsb, xla, xlam and ods",
+    "status": "confirmed",
+    "url": "https://github.com/tafia/calamine"
+   },
+   {
+    "claim": "Repo shows 22 open pull requests",
+    "status": "confirmed",
+    "url": "https://github.com/tafia/calamine"
+   },
+   {
+    "claim": "Repo page mentions no Go or other-language port of calamine (excelize, ClosedXML, openpyxl appear only as benchmarks)",
+    "status": "confirmed",
+    "url": "https://github.com/tafia/calamine"
+   },
+   {
+    "claim": "Crate 0.36.1 on docs.rs describes pure-Rust reading of xls, xlsx, xlsb and ods; calamine-styles fork exists (style reading)",
+    "status": "confirmed",
+    "url": "https://docs.rs/crate/calamine/0.36.1/source/README.md"
+   },
+   {
+    "claim": "Pure-Go BIFF8 .xls reader nkiri/xls exists, MIT licence",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/nkiri/xls"
+   },
+   {
+    "claim": "Pure-Go .xls reader augcampos/xls exists, Apache-2.0 licence",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/augcampos/xls"
+   },
+   {
+    "claim": "A pure-Go XLSB reader or pure-Go ODS reader exists",
+    "status": "not_found",
+    "url": "https://pkg.go.dev/github.com/antoema342/go-spreadsheet"
+   },
+   {
+    "claim": "Microsoft primary Open Specifications pages for MS-XLS, MS-XLSB and MS-CFB are reachable and cover the formats (only a secondhand SheetJS mirror was found)",
+    "status": "not_found",
+    "url": "https://git.sheetjs.com/sheetjs/docs.sheetjs.com/raw/commit/2450d115db2610a6d616db02dd2ced4a237c75c7/docz/docs/09-miscellany/08-references.md"
+   },
+   {
+    "claim": "Seed count of 148 test files and 284 listed tests in the repo",
+    "status": "not_found",
+    "url": "https://github.com/tafia/calamine"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; four independent format buckets; xlsx, ods and xlsb are plausible for a frontier agent; BIFF8 xls with CFB, SST continuations and formula decoding is the long tail; weaker model likely stops after xlsx",
+   "build_cost": "about 3-4 days: JSON-dump driver, golden harness, and a generator that writes xls (BIFF8/CFB), xlsb and ods/xlsx files",
+   "deliverable": "Go package plus CLI that dumps xlsx, xlsb, xls and ods workbooks to JSON: sheet list, cell values, dates, formulas, merged ranges, errors",
+   "gates_anticheat": "no shelling out to Rust/Python/any converter; grader runs pure Go in a clean container with no network; hidden workbooks generated at grade time; the agent must not edit the grader or fixtures; a vendored-library cheat is closed by the clean container, but any Go module must be vendored in /app",
+   "grading_surface": "about 150 repo fixtures plus a hidden generator (random types, shared strings, date systems, formulas, merged ranges); exact JSON compare; per format and per case credit; generator is effectively unlimited",
+   "local_fit": "Go port runs on Debian CPU in 16 GB; the reference build is green offline in 17 s (smoke); gVisor fine",
+   "lookup": "partial: pure-Go xls readers exist (nkiri/xls MIT, augcampos/xls Apache-2.0); xlsx is covered by excelize (recallable, not a port); no pure-Go xlsb or ods reader found; no Go port of calamine found",
+   "provenance": "tafia/calamine @ v0.37.0 (commit f2c5948, MIT, released 2026-10-18, 2456 stars, not a fork, not archived); the release is two days old at validation time",
+   "reference": "upstream Rust crate at v0.37.0 driven by a JSON-dump binary; not in image; the output must be pinned to the schema (number and date formatting)",
+   "ships": "Go module skeleton, Rust-generated JSON dump schema, sample workbooks (per seed). Rust source is not shipped, so the port must come from the public format specs (MS-XLS, MS-XLSB, MS-CFB, ECMA-376, ODF) and memory of calamine",
+   "similarity": "max l0 neighbour 0.205 (S-im-012), then 0.157 (S-im-008); not on the CROWDED list; not a near-duplicate, so not K1"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Long tail in xls; no dated public evidence that frontier agents partly succeed at this exact port; 0.9 of reference across four formats is uncertain"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Generator for BIFF8/CFB/xlsb writers pushes build cost to about 3-4 days"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Go on CPU with no kernel features beyond gVisor norms; reference builds offline"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-format port needs sustained work over an 8 h tier"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, confirmed on repo page"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Four formats, each with several independent levers and per-case buckets"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour 0.205 is above the 0.15 threshold for a 5; no CROWDED match"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT crate at a pinned tag with a real commit; very fresh (2 days old)"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation that would score 1 on its own output"
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and generator stay out of the image; upstream Rust source is public but not shipped, so porting requires specs and recall"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 150 fixtures plus an unlimited generator across four formats; not yet 5 because the per-format case count is unverified"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Dump is non-deterministic, the xls formula output is too shallow to score, or the fixture count per format is too small to give partial-credit buckets.",
+   "pass_if": "Dump is deterministic across two runs, all four formats produce JSON on fixtures, and the xls bucket is reasonably sized relative to the others.",
+   "steps": [
+    "In a throwaway Linux container with network, clone tafia/calamine at v0.37.0 and confirm commit f2c5948; run cargo test --offline --no-run on the smoke command (green in 17 s).",
+    "Build a small JSON-dump driver against the crate (open_workbook_auto, worksheets, cell values, formulas, merged ranges, errors) and dump about 30 fixtures spanning xlsx, xlsb, xls and ods.",
+    "Run the dump twice and diff the outputs to confirm determinism and that the schema pins number and date formatting.",
+    "Count how many of the fixtures are BIFF8 xls with SST continuation records or formulas; this sets the size of the xls bucket and tests whether the 0.9 threshold is reachable.",
+    "Reconcile the test count: smoke says tests_listed 284 but tests_total 217; list the test names to confirm which set the grader would use.",
+    "Check whether the Rust crate's xls formula decoding is fully implemented (decode a formula-bearing xls fixture); if it is partial, the reference score ceiling for xls drops and the scope should shrink."
+   ]
+  },
+  "summary": "The seed is a real, MIT-licensed, freshly pinned calamine v0.37.0 whose reference is public and whose smoke build is green, with a sealed generator and a strong Ref score. The main risk is Band: a 0.9-of-reference pass across four formats in 8 h, with the BIFF8 xls long tail, needs a spike before it is trusted, and the xls formula scope should be checked before launch."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 83,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-014",
+  "kill_code": "",
+  "note": "Real MIT repo, and the release and offline smoke build are confirmed. Four format buckets give natural credit. Gaps: (1) The Rust crate is only an oracle. The verifier needs a Go reference that scores 1, and writing that port plus a generator that writes BIFF8/CFB, xlsb and ods pushes build cost toward 5 days. (2) The MS-XLS, MS-XLSB and MS-CFB specs were not confirmed reachable; they must ship in /app or xls becomes recall-only. (3) The JSON schema must pin float and date formatting exactly, or valid ports fail on formatting rather than the work.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 78
+}

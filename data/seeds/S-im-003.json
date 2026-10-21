@@ -1,0 +1,255 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "8 h. Many feature buckets (text, graphics, images, forms, outlines). A frontier agent gets text and graphics. Byte-exact xref, font metrics and compression details are the hard part. A weaker model stops at text.",
+  "cheat": "Calling node and jsPDF, or embedding expected PDFs. Closed by no node in the image and a hidden mutated call set.",
+  "grading": "Hidden call lists, each replayed with a fixed creation date. Output is compared byte for byte against PDFs produced by the real jsPDF; partial credit per case; the fraction passed over the reference's.",
+  "reference": "A port written by us, validated against jsPDF output. About 3k lines.",
+  "source": "https://github.com/parallax/jsPDF @ v4.2.1; MIT",
+  "task": "/app ships a pinned jsPDF snapshot's API documentation and sample scripts as JSON call lists. The agent ports the core to Python: pages, text and metrics for standard fonts, graphics, images, outlines, AcroForm basics and compression.",
+  "title": "jsPDF core ported to Python with byte-identical PDFs"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-002 0.25"
+  ],
+  [
+   "2026-10-20T19:00:13Z",
+   "v1",
+   "killed:K9",
+   "As written, too hard: /app ships only API docs and call lists with no jsPDF source and no expected PDFs, so a blind agent must reproduce jsPDF's internal byte layout (number formatting, object order, Producer version, fonts widths). Compression needs fflate's deflate, not zlib, so the compression bu"
+  ]
+ ],
+ "id": "S-im-003",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.249,
+    "S-im-002"
+   ],
+   [
+    0.24,
+    "S-im-001"
+   ],
+   [
+    0.154,
+    "S-rs-001"
+   ],
+   [
+    0.125,
+    "MiniJinja port to Go [Armin Ronacher]"
+   ],
+   [
+    0.093,
+    "JustHTML Python to JavaScript port [Simon Willison]"
+   ]
+  ]
+ },
+ "method": "port",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "git gnupg google-chrome-stable libasound2 libatk-bridge2.0-0 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libv4l-0 libx11-xcb1 libxcb-dri3-0 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxkbcommon0 libxrandr2 libxrender1 libxtst6 wget",
+  "build_ok": true,
+  "build_s": 23,
+  "ci_files": 3,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && npm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "npm ci --no-audit --no-fund",
+  "cmd_test": "npm test",
+  "commit": "20d32998267745aa5336e299baa65d4f45916fb5",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": true,
+  "fetch_s": 30,
+  "log": "\u001b[22m \u2192 \u001b[1mdist/jspdf.es.js, dist/jspdf.es.min.js\u001b[22m...\u001b[39m\n\u001b[32mcreated \u001b[1mdist/jspdf.es.js, dist/jspdf.es.min.js\u001b[22m in \u001b[1m5.8s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/index.js\u001b[22m \u2192 \u001b[1mdist/jspdf.node.js, dist/jspdf.node.min.js\u001b[22m...\u001b[39m\n\u001b[32mcreated \u001b[1mdist/jspdf.node.js, dist/jspdf.node.min.js\u001b[22m in \u001b[1m4.2s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/polyfills.js\u001b[22m \u2192 \u001b[1mdist/polyfills.umd.js\u001b[22m...\u001b[39m\n\u001b[32mcreated \u001b[1mdist/polyfills.umd.js\u001b[22m in \u001b[1m2.3s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/polyfills.js\u001b[22m \u2192 \u001b[1mdist/polyfills.es.js\u001b[22m...\u001b[39m\n\u001b[32mcreated \u001b[1mdist/polyfills.es.js\u001b[22m in \u001b[1m253ms\u001b[22m\u001b[39m",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 27,
+  "test_files": 335,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "20d32998267745aa5336e299baa65d4f45916fb5",
+  "kb": 144428,
+  "lang": "JavaScript",
+  "open_prs": 24,
+  "pushed": "2026-10-17",
+  "release": "v4.2.1",
+  "spdx": "MIT",
+  "stars": 31316,
+  "test_files": 335,
+  "test_kb": 10678,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/parallax/jspdf|parallax-jspdf",
+ "source_notes": "SWE-smith profile (javascript): its suite runs in a container; test command: npm run test-node. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/parallax/jsPDF",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/parallax/jsPDF/releases/tag/v4.2.1",
+  "facts": [
+   {
+    "claim": "parallax/jsPDF release v4.2.1 exists (release page; notes say it fixes two security issues: HTML injection in output methods and PDF object injection via free-text annotation colour)",
+    "status": "confirmed",
+    "url": "https://github.com/parallax/jsPDF/releases/tag/v4.2.1"
+   },
+   {
+    "claim": "package.json at v4.2.1 has version 4.2.1 and license MIT",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/package.json"
+   },
+   {
+    "claim": "Runtime dependencies include fflate ^0.8.1 and fast-png ^6.2.0, so Flate compression is done by fflate, not zlib",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/package.json"
+   },
+   {
+    "claim": "npm test runs jasmine test-node config; build runs rollup",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/package.json"
+   },
+   {
+    "claim": "Compression is off by default (compress option undefined; FlateEncode filter only when compress === true)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/src/jspdf.js"
+   },
+   {
+    "claim": "Creation date defaults to new Date() and can be set with setCreationDate; no constructor option",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/src/jspdf.js"
+   },
+   {
+    "claim": "Document /ID is random (16 random hex chars) unless setFileId is called, so byte-identical replay needs setFileId in the call lists",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/src/jspdf.js"
+   },
+   {
+    "claim": "Producer string is built as 'jsPDF ' + version; the literal version value was not visible in the fetched excerpt",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/src/jspdf.js"
+   },
+   {
+    "claim": "Standard-font metric tables live at src/libs/fonts.js",
+    "status": "not_found",
+    "url": "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/src/libs/fonts.js"
+   },
+   {
+    "claim": "A Python port of jsPDF exists or claims byte-identical output (lookup)",
+    "status": "not_found",
+    "url": "https://pypi.org/project/fpdf-py/"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. As written, a frontier agent given only docs must reproduce jsPDF internals (number formatting, object order, Producer version, /ID) blind; expected to score near zero. No dated evidence.",
+   "build_cost": "3 (about 3-5 days: jsPDF oracle build, call-list replay harness, and a 3k-line Python reference that matches bytes).",
+   "deliverable": "Python package producing PDFs byte-identical to jsPDF v4.2.1 for hidden call lists with fixed creation date.",
+   "gates_anticheat": "No node in image and hidden mutated call set would close replay of jsPDF; expected PDFs must stay hidden. Not the blocker.",
+   "grading_surface": "Hidden call lists replayed; byte compare per case; count not known (not given in seed). Surface is large, but most of it depends on bytes the agent cannot see.",
+   "local_fit": "Pure JS build (build_ok, 23 s) and Python port fit gVisor and 8 CPU/16 GB. Compression bucket needs fflate's deflate reproduced exactly; Python zlib will not match bytes.",
+   "lookup": "partial: jsPDF JS source is public (GitHub, npm), so a strong agent may recall much of it; no Python port found.",
+   "provenance": "parallax/jsPDF v4.2.1, MIT, release page exists; 31k stars per source facts; pushed 2026-10-17",
+   "reference": "Our own ~3k-line Python port, validated against jsPDF output. Completeness and compression coverage not evidenced.",
+   "ships": "Seed says: API docs and sample scripts as JSON call lists. No jsPDF source, no expected PDFs, no fonts metrics in /app as described.",
+   "similarity": "Neighbours S-im-002 0.249 and S-im-001 0.24 are seeds, not public tasks; no CROWDED match. Ports of document libraries are adjacent to JustHTML/MiniJinja but differ in subject."
+  },
+  "kill_code": "K9",
+  "kill_reason": "As written, too hard: /app ships only API docs and call lists with no jsPDF source and no expected PDFs, so a blind agent must reproduce jsPDF's internal byte layout (number formatting, object order, Producer version, fonts widths). Compression needs fflate's deflate, not zlib, so the compression bucket is unreachable. No trial would reach 0.9 of the reference. A smaller real scope could fix it: uncompressed standard-font text and graphics only, with the source snapshot shipped as a history-less port input.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Blind byte-exact porting with no expected PDFs or source in /app; no dated evidence, so capped low."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-5 days for the oracle harness and byte-matching reference."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "JS build and Python run fit the sandbox with no network need."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier fits the scope size."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, verified in package.json."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Text, graphics, images, outlines and forms are separate buckets, but compression and fonts depend on unavailable internals."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Neighbours above 0.15 are seeds, not public tasks, and nothing is CROWDED."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT library, pinned release v4.2.1 and a 31k-star upstream."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Own 3k-line port validated against jsPDF output; completeness and compression coverage not evidenced."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle is npm-installable only with node; hidden outputs can be precomputed, but jsPDF is widely recallable."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden call lists with per-case byte compare give many cases, but the count is not stated."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "The minimal uncompressed text PDF needs jsPDF internals absent from the shipped docs, or call lists do not fix the file ID, so no blind trial could reach 0.9 of the reference.",
+   "pass_if": "Output is deterministic with fixed date and fileId, and the uncompressed text case is fully specified by the shipped docs (or the missing details are few and listed).",
+   "steps": [
+    "In a networked throwaway container, clone parallax/jsPDF at v4.2.1 and run npm ci and npm run build (smoke says this takes about 23 s).",
+    "Do not rely on npm test: smoke run exit codes were 1 three times with no per-test report.",
+    "Write a 5-line node script: new jsPDF with fixed setCreationDate and setFileId, one page, one text line in Helvetica, one rect. Run it twice and cmp the outputs (determinism check).",
+    "Repeat with compress:true to confirm that output depends on fflate and that zlib output differs.",
+    "Check whether a 1-page uncompressed text document can be reproduced byte-for-byte from the shipped API docs alone, with no source and no expected PDFs: list every byte detail (number formatting, object order, Producer version, /Widths) that the docs do not state.",
+    "Record which call lists set setFileId; if none do, the replay is non-deterministic even for jsPDF itself."
+   ]
+  },
+  "summary": "jsPDF v4.2.1 is real and MIT-licensed, and its build and Python-port surface are sound, but the seed as written asks for byte-identical output with no source, no expected PDFs, and a compression path that depends on fflate, which zlib cannot reproduce. Killed K9 (too hard for any trial to reach 0.9 of the reference); a narrowed uncompressed text-and-graphics scope with the source shipped, plus the spike above, would be the path to re-validate."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [
+   "https://raw.githubusercontent.com/parallax/jsPDF/v4.2.1/src/libs/fonts.js"
+  ],
+  "ratio": 0.2
+ },
+ "v1_score": 73
+}

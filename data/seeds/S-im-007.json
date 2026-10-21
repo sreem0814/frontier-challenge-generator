@@ -1,0 +1,313 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "8 h. A frontier agent usually lands basic rendering but misses manifest semantics, conditionals, git templates and workspace edge cases. Buckets: local templates, variables, git source, conditionals, hooks, workspace. A weaker model stalls on the Rust build and the CLI plumbing.",
+  "cheat": "Hard-coding outputs for the visible templates. The hidden templates are generated and unseen, and the check is on file trees, not on source.",
+  "grading": "Hidden CLI behavioural tests build template trees from a generator, run the new command and compare the resulting file tree byte for byte against expected trees. The existing offline-capable uv tests act as a regression gate. Reward is the fraction of hidden cases passed over those the reference passes. A visible sample of 40 cases is included.",
+  "reference": "Written by us: about 2500 lines of Rust across the CLI, a template engine, git fetch, and tests. It passes all hidden cases. The upstream issue was never implemented, so there is no merged answer to recall.",
+  "source": "https://github.com/astral-sh/uv/issues/9754 @ 0.13.4 (head 2b50cbc), Apache-2.0",
+  "task": "/app ships a history-less snapshot of uv at the base commit with a prebuilt offline cargo vendor dir. The agent adds template-driven project creation: local-directory and file:// git templates, variable prompts and defaults supplied by flags and a template manifest, file and path rendering, conditional files, post-create steps, and lockfile and workspace integration. Delivered through the uv CLI.",
+  "title": "Project templating for uv init"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "build-system",
+ "final": 69,
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-006 0.25"
+  ],
+  [
+   "2026-10-20T19:02:27Z",
+   "v1",
+   "pass",
+   "score 80; dead links []"
+  ],
+  [
+   "2026-10-20T19:06:29Z",
+   "v2",
+   "killed:K5",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-im-007",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.245,
+    "S-im-006"
+   ],
+   [
+    0.16,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.156,
+    "S-op-002"
+   ],
+   [
+    0.122,
+    "git-to-zig [FrontierSWE]"
+   ],
+   [
+    0.116,
+    "MiniJinja port to Go [Armin Ronacher]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 3,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 249,
+  "ci_files": 47,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "deterministic": false,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 25,
+  "flaky_names": [
+   "uv::python::python_install::python_install_compile_bytecode",
+   "uv::python::python_install::python_install_compile_bytecode_existing",
+   "uv::python::python_install::python_install_compile_bytecode_graalpy",
+   "uv::python::python_install::python_install_compile_bytecode_multiple",
+   "uv::python::python_install::python_install_compile_bytecode_pyodide",
+   "uv::python::python_install::python_install_compile_bytecode_pypy",
+   "uv::python::python_install::python_install_compile_bytecode_upgrade",
+   "uv::python::python_install::python_install_debug",
+   "uv::python::python_install::python_install_debug_freethreaded",
+   "uv::python::python_install::python_install_default",
+   "uv::python::python_install::python_install_default_from_env",
+   "uv::python::python_install::python_install_default_prerelease",
+   "uv::python::python_install::python_install_default_preview"
+  ],
+  "flaky_tests": 13,
+  "log": "3627ebc7a85)\n  Executable unittests src/lib.rs (target/debug/deps/uv_unix-d0fd4ddcd1b71724)\n  Executable unittests src/lib.rs (target/debug/deps/uv_version-c180a16d1cce1d9c)\n  Executable unittests src/lib.rs (target/debug/deps/uv_virtualenv-b763e54cd6c7fd55)\n  Executable unittests src/lib.rs (target/debug/deps/uv_warnings-d840a01cf32e99e5)\n  Executable unittests src/lib.rs (target/debug/deps/uv_windows-6e96d78af1668aaa)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace-7bec8dae11ca73fe)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace_commands-d67361e3f4ec2108)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   124,
+   124,
+   124
+  ],
+  "runs_without_report": 1,
+  "stable_failure_names": [
+   "uv::build::audit::audit_best_id_selection",
+   "uv::build::audit::audit_dependency_groups",
+   "uv::build::audit::audit_extras",
+   "uv::build::audit::audit_ignore_by_alias",
+   "uv::build::audit::audit_ignore_by_id",
+   "uv::build::audit::audit_ignore_config",
+   "uv::build::audit::audit_ignore_mixed_matched_unmatched",
+   "uv::build::audit::audit_ignore_partial",
+   "uv::build::audit::audit_ignore_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed",
+   "uv::build::audit::audit_ignore_until_fixed_config",
+   "uv::build::audit::audit_ignore_until_fixed_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix_for_other_package",
+   "uv::build::audit::audit_invalid_service_url",
+   "uv::build::audit::audit_json_no_vulnerabilities",
+   "uv::build::audit::audit_json_preview_warning",
+   "uv::build::audit::audit_json_vulnerability_and_project_status",
+   "uv::build::audit::audit_malformed_vulnerability_record",
+   "uv::build::audit::audit_multiple_vulnerabilities_same_package"
+  ],
+  "stable_failures": 2959,
+  "subdir": "",
+  "suite_s": 600,
+  "test_files": 607,
+  "tests_fail": 2972,
+  "tests_listed": 5579,
+  "tests_pass": 102,
+  "tests_skip": 0,
+  "tests_total": 3074,
+  "timeouts": [
+   "run1",
+   "run2",
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "kb": 222999,
+  "lang": "Rust",
+  "open_prs": 626,
+  "pushed": "2026-10-20",
+  "release": "0.13.4",
+  "spdx": "Apache-2.0",
+  "stars": 90935,
+  "test_files": 607,
+  "test_kb": 21370,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/astral-sh/uv/issues/9754|astral-sh-uv-9754-add-support-for-templating-and-creating-pr",
+ "source_notes": "repo https://github.com/astral-sh/uv; opened 2024-12-09",
+ "source_url": "https://github.com/astral-sh/uv/issues/9754",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "",
+  "facts": [
+   {
+    "claim": "Issue #9754 'Add support for templating and creating projects with uv' exists and is open, labelled enhancement and wish, with no linked branch or PR",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/9754"
+   },
+   {
+    "claim": "uv 0.13.4 release exists, dated 2026-10-20; its listed items (wheel-variants validation, webpki-root-certs bump) do not mention templates or init",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/releases/tag/0.13.4"
+   },
+   {
+    "claim": "No merged or open PR implements git or manifest-driven project templates for uv init; upstream templating is limited to build-backend templates (PR #7857 and PR #9661 titles)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/pull/9661"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (from GitHub API spdx; LICENSE file not re-fetched)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv"
+   },
+   {
+    "claim": "Smoke build: offline cargo build succeeds in about 249 s; the full offline nextest run hit the 600 s timeout in all three runs, with 2972 of 3074 tests failing and the probe non-deterministic",
+    "status": "not_found",
+    "url": "https://github.com/astral-sh/uv"
+   },
+   {
+    "claim": "Reference implementation of about 2500 lines passes all hidden cases",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Visible sample of 40 cases and the hidden generator exist in the bundle",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; frontier likely lands local rendering and misses manifest semantics, conditionals, git templates and workspace edges; weaker model stalls at Rust build and CLI plumbing. Band capped at 3 because no dated public evidence",
+   "build_cost": "about 3 days: curate offline regression subset, write template-spec and hidden generator, verify reference against it",
+   "deliverable": "uv CLI extension: template-driven project creation (local dir and file:// git templates, variables via flags and manifest, file/path rendering, conditional files, post-create hooks, lockfile and workspace integration)",
+   "gates_anticheat": "Hidden trees are generated and unseen; check is on output trees, not source. Must lock hidden generator and reference out of image; test-file and build-config edits must be detected by a fresh-copy rerun; regression gate must be a curated offline subset, not the full suite",
+   "grading_surface": "hidden CLI cases that build template trees from a generator and byte-compare resulting file trees; reward = fraction passed over reference-passed cases",
+   "local_fit": "Rust toolchain fits 8 cores and 16 GB; build about 249 s; offline cargo vendor required; gVisor has no known blocker; the full nextest suite is not usable as a gate (timeouts, flaky)",
+   "lookup": "partial: upstream has build-backend templates for uv init (PR #7857, PR #9661) but no git or manifest project templates; no complete solution found or recallable",
+   "provenance": "astral-sh/uv @ 2b50cbc (release 0.13.4, 2026-10-20), Apache-2.0, issue #9754 open and unimplemented",
+   "reference": "Written by us, about 2500 lines Rust across CLI, template engine, git fetch and tests; not yet verified by a spike",
+   "ships": "history-less uv snapshot at base commit, prebuilt offline cargo vendor dir, visible 40-case sample",
+   "similarity": "l0 neighbours all below 0.25; nearest S-im-006 at 0.245 (a seed, not a public task); none crowded; not a K1 near-duplicate on the evidence available"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Capped at 3: no dated public evidence of agents on this kind of work; 8 h scope is large and a weaker model stalls"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days: curated offline gate, hidden generator and reference verification"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits gVisor and 8 cores/16 GB; full test suite times out, so a curated gate is needed"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Clear 8 h scope with many dependent steps across CLI, templating, git and workspace"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the source, vendor dir and reference"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Six independent buckets (local, variables, git, conditionals, hooks, workspace) give steady partial credit"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.245 is above the 0.15 novelty bar; not crowded; distinct from build-backend templates"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real uv repo at pinned release with 90k stars and a real issue, Apache-2.0"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Our own 2500-line reference, not yet verified; strong if it passes all hidden cases"
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Upstream never implemented templates and generator is hidden; the base snapshot is history-less; cheat paths need closing"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden generator-driven trees with byte compare, but only 40 visible cases; no unlimited executable oracle"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Curated offline subset cannot be made deterministic, or the generator's expected trees cannot be reproduced from the spec alone.",
+   "pass_if": "Offline build and curated subset are green and repeatable; generator output is deterministic; a stub passes local-copy cases while manifest, git and conditional buckets fail, giving graded partial credit.",
+   "steps": [
+    "In a throwaway networked Linux container, clone uv at 2b50cbc and run the cargo offline build with --locked to confirm the 249 s build from the probe.",
+    "Pick a curated list of offline-capable nextest tests (exclude network and flaky tests) and confirm the list runs green in under 20 min on three repeat runs.",
+    "Write a short template spec (manifest keys, variable syntax, rendering rules) and a 40-case generator with expected trees.",
+    "Stub a minimal local-directory template copy (no manifest, no git) inside the build and check that it passes the subset of cases that needs only local copying, to confirm the grader discriminates.",
+    "Check determinism: rerun the generator and grader three times with the same seed and confirm identical expected trees and scores.",
+    "Measure how far a stub gets on each bucket to confirm partial credit is steady, not all-or-nothing."
+   ]
+  },
+  "summary": "Seed S-im-007 passes validation with no kill: the uv issue is real, open and unimplemented, the 0.13.4 release exists, and licence is Apache-2.0. Main risks are the full test suite being unusable as a gate (amber, timeouts, non-deterministic) and that the template spec must be written precisely, since byte-exact tree comparison depends on it."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 80,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-007",
+  "kill_code": "",
+  "note": "Issue #9754 is real, open and unimplemented. But the manifest format, variable syntax and rendering rules would all be written by us, so the paper trail covers the request only, not the spec. Byte-for-byte tree comparison would accept another valid solution only if the task text pins every rendering rule, and that is not shown yet. The reference is not written. The full nextest suite timed out in all three runs and was not deterministic, so the regression gate must be a curated subset that has not been verified. pytest-cases at 0.16 is just over the novelty line. The build estimate of about 3 days is optimistic. Keep it only if the spike shows a fully pinned spec and a deterministic curated gate.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 69
+}

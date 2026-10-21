@@ -1,0 +1,303 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "8 h. Buckets by PDF feature. A frontier agent handles simple PDFs and misses object streams and font encodings. A weaker model parses only uncompressed text.",
+  "cheat": "Adding a PDF crate or shelling to pdftotext. Closed by an offline registry without such crates and no poppler in the image.",
+  "grading": "Hidden behavioural tests on generated and real PDFs, comparing text and page counts against poppler's pdftotext (precomputed). Plus the existing suite as regression. The base fails all new cases.",
+  "reference": "Our implementation, about 1.5-2k lines of Rust.",
+  "source": "https://github.com/openai/codex issue 1797 @ rust-v0.163.0; Apache-2.0",
+  "task": "/app ships a snapshot of the CLI's file-read tooling. The agent adds PDF support: xref and object streams, Flate/ASCII85/LZW filters, page text with ToUnicode CMaps, and page-range and size options, exposed through a read subcommand and API. The Rust build must work offline from vendored crates.",
+  "title": "Native PDF reading for the Codex CLI"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "data-format",
+ "final": 72,
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-002 0.36"
+  ],
+  [
+   "2026-10-20T19:00:43Z",
+   "v1",
+   "pass",
+   "score 73; dead links []"
+  ],
+  [
+   "2026-10-20T19:05:05Z",
+   "v2",
+   "pass",
+   "final 72"
+  ],
+  [
+   "2026-10-20T20:22:56Z",
+   "smoke",
+   "amber",
+   "node: build ok, 0 tests, 0 failing, deterministic over 3 runs"
+  ],
+  [
+   "2026-10-20T21:08:56Z",
+   "spike",
+   "validated",
+   "Passes the plan's criteria: offline vendored cargo build works, pdftotext is byte-identical across 3 runs, and a whitespace-normalised comparison matches 100% of sampled pages. Notes are in /work/SPIKE.md. Main risks are the invented carve (Real score weaker), a too-easy generated corpus (K8 risk un"
+  ]
+ ],
+ "id": "S-im-006",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.362,
+    "S-im-002"
+   ],
+   [
+    0.215,
+    "S-im-005"
+   ],
+   [
+    0.211,
+    "S-im-004"
+   ],
+   [
+    0.13,
+    "form-filling [original]"
+   ],
+   [
+    0.099,
+    "rust-sloth [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 1,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 31,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "false",
+  "commit": "2f5e242d9f869b0553bf37e007b85b2cbd9b31ef",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21553:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21672:14)\n    at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22292:23)\n    at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 1331,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": "cgp-work-6a0e103be51b"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cb00a67569450aea2fdb1b1f31fc042fc0b5416f",
+  "kb": 688333,
+  "lang": "Rust",
+  "open_prs": 163,
+  "pushed": "2026-10-20",
+  "release": "rust-v0.163.0",
+  "spdx": "Apache-2.0",
+  "stars": 130298,
+  "test_files": 1331,
+  "test_kb": 20632,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/openai/codex/issues/1797|openai-codex-1797-pdf-support",
+ "source_notes": "repo https://github.com/openai/codex; opened 2025-08-02",
+ "source_url": "https://github.com/openai/codex/issues/1797",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "codex-rs has no dedicated file-read crate: codex-file-system is a filesystem abstraction, so the 'file-read tooling' snapshot has to be carved and invented",
+   "Full-workspace vendor is 1.8 GB, so a carve is needed to keep the image small",
+   "Cold offline build of codex-file-system took 12-17 min here because of heavy dependencies via codex-protocol, so a carved crate must drop those",
+   "cargo vendor --locked fails on the shipped Cargo.lock; vendoring without --locked works",
+   "The base test suite was not run: codex-file-system sets test=false and has no tests",
+   "The generated corpus is not discriminating (naive pypdf matches pdftotext on every page); real PDFs and harder fonts are needed for the difficulty band, and pdftotext layout quirks need a normaliser",
+   "The 5 real CC-licensed PDFs from the plan were not collected"
+  ],
+  "build_minutes": 20,
+  "cases_sampled": 0,
+  "commands_log": "git clone --depth 1 --branch rust-v0.163.0 openai/codex; apt-get install poppler-utils libssl-dev pkg-config; cargo vendor /work/vend (3.5 min, 1.8 GB; --locked fails, plain works); add vendor source config to .cargo/config.toml; cargo build --offline -j6 -p codex-file-system (finished in 8m22s on the second run, after the first run's 12 min failure on missing openssl-sys); gen.py (reportlab + pikepdf: Flate, object streams, xref streams, TTF ToUnicode) gave 60 PDFs; pdftotext default/-raw/-layout x3 gave identical md5s; pypdf vs pdftotext after whitespace normalisation matched 192/192 pages, 60/60 page counts",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "No PDF support in codex rust-v0.163.0 (grep finds none; issue 1797 open, no PR found). Feature class, so no reference was built; poppler pdftotext (22.12) was run as the oracle on 60 generated PDFs. The generated corpus is easy: pypdf plus whitespace normalisation matches pdftotext on 192/192 pages and 60/60 page counts, so the hidden corpus needs real PDFs and harder fonts to reach the difficulty band.",
+  "headroom_ok": true,
+  "image_gb_estimate": 4,
+  "kill_code": "",
+  "notes": "Passes the plan's criteria: offline vendored cargo build works, pdftotext is byte-identical across 3 runs, and a whitespace-normalised comparison matches 100% of sampled pages. Notes are in /work/SPIKE.md. Main risks are the invented carve (Real score weaker), a too-easy generated corpus (K8 risk unless the hidden set includes real PDFs, ASCII85/LZW, predictors, encoded fonts and CID fonts), and the heavy dependency tree. The agent has no pdftotext, and poppler is not in the image. No attempt was made to check weaker-model or frontier difficulty.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 0,
+  "reference_lines": 1700,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/openai/codex/issues/1797",
+  "facts": [
+   {
+    "claim": "openai/codex issue #1797 exists, is titled 'PDF support', was opened 2025-08-02, and is still open",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/1797"
+   },
+   {
+    "claim": "The issue asks for the agent to read text, images, charts and tables in PDFs; it does not discuss filters, xref, object streams or text-extraction internals",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/1797"
+   },
+   {
+    "claim": "The issue has no linked branch or pull request; the latest comment (Sep 2026) proposes app-server inline PDF input_file items, not a parser in the file-read tool",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/1797"
+   },
+   {
+    "claim": "Release rust-v0.163.0 exists (published 15 Oct, year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0"
+   },
+   {
+    "claim": "rust-v0.163.0 release notes mention PDF or PDF parsing support",
+    "status": "contradicted",
+    "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0"
+   },
+   {
+    "claim": "Reference implementation of a PDF reader in the codex repo (upstream complete implementation to copy)",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/issues/1797"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Buckets: simple uncompressed text, Flate streams, xref streams, object streams, ToUnicode/font encodings, filters, page ranges. Frontier expected to clear simple PDFs; object streams and font encodings are the likely drop-off. No dated public evidence of agent performance.",
+   "build_cost": "3 (about 3-5 days: carve a codex-rs snapshot, vendor crates offline, precompute poppler outputs over a generated corpus, and write a 1.5-2k line reference).",
+   "deliverable": "Rust PDF reader module: xref tables and streams, object streams, Flate/ASCII85/LZW filters with predictors, page tree, text via ToUnicode CMaps, page-range and size options, exposed via a read subcommand and API.",
+   "gates_anticheat": "Offline vendored registry with no PDF crates; no poppler or pdftotext in the image; hidden cases and pdftotext outputs sealed outside /app; base must fail all new cases. Risk: text-output matching must be normalized or it encodes poppler's layout quirks.",
+   "grading_surface": "Hidden behavioural tests on generated and real PDFs comparing text and page counts to precomputed poppler pdftotext output, plus existing suite as regression. Surface can be large via a generator.",
+   "local_fit": "CPU-only Rust build, no network at run time, offline vendored crates: fits 8 cores/16 GB under gVisor. Smoke probe ran the node/pnpm root build, not the Rust workspace, so it gives no evidence on the offline cargo build.",
+   "lookup": "partial: general Rust PDF parsers and poppler are public; no codex PDF implementation or PR found; issue #1797 open with no linked PR.",
+   "provenance": "openai/codex @ rust-v0.163.0 (commit cb00a67 HEAD per seed; seed smoke commit c6e4438); Apache-2.0; issue #1797 open since 2025-08-02 with community demand but no PR.",
+   "reference": "Our own implementation, about 1.5-2k lines of Rust. No complete upstream PDF reader exists in codex; general Rust PDF crates exist but are not used.",
+   "ships": "A snapshot of the codex-rs file-read tooling carved out of the monorepo, with no git history past base; Cargo workspace vendored offline; no PDF crate in the registry.",
+   "similarity": "Nearest l0 neighbour S-im-002 at 0.362 (another seed, not a public task); others 0.215 and below; no CROWDED overlap; PDF parsing is not on the crowded list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of frontier agents on this kind of work, so capped at 3; the 8 h tier looks plausible but untested."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Snapshot carving, offline vendoring, poppler corpus, and 1.5-2k line reference make about 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, offline, fits 8 cores and 16 GB; the Rust build under gVisor is still unverified."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multiple interacting modules (parser, filters, CMaps, CLI, API) fit an 8 h budget."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Apache-2.0 allows shipping the snapshot; real PDF fixtures need individual licence checks."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Feature buckets (filters, xref streams, object streams, CMaps, page ranges, options) give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Closest l0 neighbour is 0.362 (another seed, not public); no public task above 0.15; PDF reading is not crowded."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real Apache-2.0 repo at a released tag and a real open feature request with community demand; no code-level PDF implementation to anchor the paper trail."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is ours and not a complete upstream implementation; behaviour is specified by poppler output, which is precise but poppler's layout quirks make it less clean."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden pdftotext outputs and generated PDFs are sealed; PDF parser code is recallable in outline, so the seal is partial."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated and real PDFs compared to pdftotext give a large surface; text normalization limits how far it scales."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Offline vendoring fails or the Rust build cannot run offline; pdftotext output varies between runs; or matching needs layout-specific rules covering most pages.",
+   "pass_if": "Offline cargo build of the file-read crate succeeds; pdftotext output is deterministic across three runs; a normalized comparison reaches at least 80% page match on the sample.",
+   "steps": [
+    "Throwaway container with network: clone openai/codex at rust-v0.163.0 and locate codex-rs; do not run the root pnpm probe, which does not exercise the Rust build.",
+    "Run cargo vendor offline on the codex-rs workspace and time a cargo build --offline of the crate that owns file-read tooling; record failures.",
+    "Generate 30 small PDFs with ToUnicode, Flate, xref streams, object streams and simple fonts, plus 5 real CC-licensed PDFs with licences checked.",
+    "Run poppler pdftotext (-layout off, and -raw) on the corpus three times; check that output is byte-identical across runs.",
+    "Measure how much normalization (whitespace, line joins) is needed to make a naive reference (for example, lopdf-based extraction, built only outside /app) match pdftotext on the corpus.",
+    "Decide: if pdftotext is deterministic and a normalizer of modest size matches at least 80% of pages, continue; otherwise kill."
+   ]
+  },
+  "summary": "The seed's source (openai/codex rust-v0.163.0, Apache-2.0) and the open PDF-support issue #1797 are confirmed, but no PR or upstream PDF reader exists, so the reference is our own and the grading relies on poppler output matching. The smoke probe ran the node root build rather than the Rust workspace, so the offline cargo build is unproven and the spike must check it first."
+ },
+ "v1_links": {
+  "checked": 2,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-006",
+  "kill_code": "",
+  "note": "Provenance is confirmed: openai/codex issue #1797 is open, the repo is Apache-2.0 and release rust-v0.163.0 exists. The fit is weak, though. The issue asks for multimodal PDF input, and its latest comment proposes inline input_file items, not a native parser in the file-read tool. A maintainer might reject this change, and the codex wrapper adds little beyond packaging. Consider reframing around ISO 32000 as the spec. Grading risk: matching pdftotext text output can encode poppler's layout quirks and reject a valid extractor. The grader needs a normalized, order-tolerant comparison, ideally per feature bucket: xref/objstm, filters and predictors, ToUnicode, page ranges. The offline Rust build is unverified, because the smoke probe ran the node root build and the fetch failed. codex-rs is large, so compile time under gVisor needs measuring. lopdf and pdf-extract designs are recallable, which lowers Seal. Our reference does not exist yet. The multi-bucket structure and a generator-backed surface are real strengths.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 72
+}

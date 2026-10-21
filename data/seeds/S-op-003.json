@@ -1,0 +1,251 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "4 h. Scope may be one-lever and has to include format variants and conversions. A frontier agent reaches mmap, and the remaining credit is conversion and parallelism. A weaker model breaks the alignment cases.",
+  "cheat": "Returning cached tensors or a checksum shortcut. Closed by fresh hidden files and a page-cache-aware harness.",
+  "grading": "Gate: tensor checksums identical for every format and shape on hidden synthetic model files. Score from wall-clock medians of cold and warm loads against S, measured by us.",
+  "reference": "The upstream mmap loader change, trimmed and measured by us. Upstream claims 10-100x, which we re-measure.",
+  "source": "https://github.com/ggml-org/llama.cpp PR 613, base pinned to the commit before it; MIT",
+  "task": "/app ships a trimmed snapshot of the old model loader, which reads and converts weights with copies, plus a CLI that loads a synthetic model file and runs a checksum pass. The agent makes load and first-token time much faster across the shipped file formats, using mmap, lazy paging, layout changes and parallel conversion.",
+  "title": "Model weight loader cold-start speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-002 0.34"
+  ],
+  [
+   "2026-10-20T19:01:04Z",
+   "v1",
+   "killed:K10",
+   "One-lever: the seed itself says mmap is the lever a frontier agent reaches, leaving only conversion and parallelism as partial credit on a 4 h tier. Also at risk: K8 (mmap is recallable from the public merged PR and current master) and K4 (cold-cache timing unproven under gVisor). The base pin is al"
+  ]
+ ],
+ "id": "S-op-003",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.342,
+    "S-op-002"
+   ],
+   [
+    0.253,
+    "S-op-001"
+   ],
+   [
+    0.15,
+    "synthetic [NL2Repo-Bench]"
+   ],
+   [
+    0.095,
+    "abetlen__llama-cpp-python-2bc1d97 [GSO]"
+   ],
+   [
+    0.095,
+    "abetlen__llama-cpp-python-218d361 [GSO]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential cmake git python3 python3-pip",
+  "build_ok": true,
+  "build_s": 361,
+  "ci_files": 60,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DLLAMA_BUILD_TESTS=ON -DLLAMA_TESTS_INSTALL=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "4a45de4f2c68f3d144f6c2431ad7c1da7e53c99e",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": " Linking CXX executable bin/llama-fit-params\n[436/443] Building CXX object app/CMakeFiles/llama-app.dir/llama.cpp.o\n[437/443] Building CXX object app/CMakeFiles/llama-app.dir/__/license.cpp.o\n[438/443] Building CXX object tools/results/CMakeFiles/llama-results.dir/results.cpp.o\n[439/443] Building CXX object tools/export-lora/CMakeFiles/llama-export-lora.dir/export-lora.cpp.o\n[440/443] Linking CXX executable bin/llama-results\n[441/443] Linking CXX executable bin/llama-export-lora\n[442/443] Building CXX object app/CMakeFiles/llama-app.dir/download.cpp.o\n[443/443] Linking CXX executable bin/llama",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "test-arg-parser::test-arg-parser",
+   "test-download-model::test-download-model",
+   "test-eval-callback-download-model::test-eval-callback-download-model",
+   "test-jinja-py::test-jinja-py"
+  ],
+  "stable_failures": 4,
+  "subdir": "",
+  "suite_s": 281,
+  "test_files": 288,
+  "tests_fail": 4,
+  "tests_listed": 59,
+  "tests_pass": 52,
+  "tests_skip": 3,
+  "tests_total": 59,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "39da130fcd1b6ca47d3c0522a40eccff41ea3dfb",
+  "kb": 460405,
+  "lang": "C++",
+  "open_prs": 1766,
+  "pushed": "2026-10-20",
+  "release": "v0.7.0",
+  "spdx": "MIT",
+  "stars": 131826,
+  "test_files": 288,
+  "test_kb": 5736,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/ggml-org/llama.cpp/pull/613|ggml-org-llama-cpp-613-make-loading-weights-10-100x-faster",
+ "source_notes": "repo https://github.com/ggml-org/llama.cpp; merged PR or fixed issue",
+ "source_url": "https://github.com/ggml-org/llama.cpp/pull/613",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ggml-org/llama.cpp/pull/613",
+  "facts": [
+   {
+    "claim": "PR #613 exists in ggml-org/llama.cpp, titled 'Make loading weights 10-100x faster', by jart with slaren credited, and it is merged into master (merge line visible, dated 2023-03-30).",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/613"
+   },
+   {
+    "claim": "PR #613 changes the weight file format so tensors are memory-mapped instead of read and copied, with 32-byte tensor alignment and split-file merging in the converter.",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/613"
+   },
+   {
+    "claim": "The PR's merge commit SHA and the exact pre-PR parent commit (the claimed base) are identified.",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/613"
+   },
+   {
+    "claim": "Smoke-build commit 4a45de4f is the pre-PR-613 base the seed says it pins to.",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp"
+   },
+   {
+    "claim": "Repository is MIT licensed.",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp"
+   },
+   {
+    "claim": "Current master still implements mmap, madvise (posix_madvise WILLNEED/RANDOM, MADV_WILLNEED prefetch) and mlock in src/llama-mmap.cpp, so the successor design is public and in the current tree.",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/blob/master/src/llama-mmap.cpp"
+   },
+   {
+    "claim": "Upstream's 10-100x speedup claim for the loader change.",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/613"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier. Frontier agent reaches mmap quickly; remaining credit is conversion and parallelism. Weaker model breaks alignment. No dated public evidence.",
+   "build_cost": "Smoke build 361 s green; trimming the snapshot and writing the harness is about 2-4 days. Estimated build cost band 4.",
+   "deliverable": "Faster load and first-token time across shipped formats via mmap, lazy paging, layout changes and parallel conversion, with identical tensor checksums.",
+   "gates_anticheat": "Checksum gate on fresh hidden files; page-cache-aware harness to stop cached-tensor and checksum shortcuts. Cold-cache control under gVisor is unproven.",
+   "grading_surface": "Tensor checksums on fresh hidden synthetic model files across formats and shapes (gate), then wall-clock medians of cold and warm loads vs reference speedup S.",
+   "local_fit": "Builds offline (smoke green, 361 s build). gVisor mmap and cold-cache control are the risk; no root drop_caches assumed.",
+   "lookup": "direct: the reference change is merged public history and its successor code (llama-mmap.cpp) is in current master; mmap-for-weights is textbook.",
+   "provenance": "llama.cpp PR #613 'Make loading weights 10-100x faster' (jart, slaren), merged 2023-03-30, MIT; base = pre-PR parent (SHA not confirmed).",
+   "reference": "Upstream mmap loader change, trimmed and re-measured by the pipeline; claim of 10-100x is unverified.",
+   "ships": "Trimmed pre-PR-613 snapshot of the read-and-copy GGML model loader plus a CLI that loads a synthetic model file and runs a checksum pass. History-less snapshot required.",
+   "similarity": "Neighbours S-op-002 (0.342) and S-op-001 (0.253) are above the 0.15 novelty threshold; both are unknown sibling seeds, not verified public tasks. Not a near-duplicate of a public task on inspection."
+  },
+  "kill_code": "K10",
+  "kill_reason": "One-lever: the seed itself says mmap is the lever a frontier agent reaches, leaving only conversion and parallelism as partial credit on a 4 h tier. Also at risk: K8 (mmap is recallable from the public merged PR and current master) and K4 (cold-cache timing unproven under gVisor). The base pin is also unconfirmed.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; the seed's own description says mmap is reached easily and only conversion/parallel credit remains, so 3 max without evidence."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Smoke build green in 361 s; snapshot trimming and harness are a few days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Offline build works, but gVisor mmap behaviour and unreachable cold-cache state weaken timing."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "One dominant lever (mmap) and a 4 h tier; the work is not long-horizon."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, which allows shipping the snapshot and reference."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Format variants give some buckets, but the main speedup is one lever, so credit is lumpy."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Two neighbours above 0.15 (0.342, 0.253) from sibling seeds on the same llama.cpp subject; not a listed public task."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Merged upstream PR #613 with MIT licence and a real codebase."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream change is real and public, but the 10-100x claim is unverified and the trimmed reference still needs measuring."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Reference design is public in merged history and current master; the synthetic hidden files are sealable, but the approach is recallable."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Checksums over a handful of formats and shapes; probably tens to low hundreds of hidden cases, not thousands."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Trivial mmap gets at least 90% of the reference speedup (one-lever, too easy), or the base and reference cannot be separated by timing noise, or the parent SHA cannot be confirmed.",
+   "pass_if": "Pre-613 parent confirmed; checksums identical across builds; reference warm-load speedup at least 3x the base with run-to-run spread under 20%; cold-cache control works or is dropped with a stated fallback.",
+   "steps": [
+    "Clone the repo in a throwaway container with network; check out the parent commit of PR #613 and confirm it is the pre-613 base; record the SHA.",
+    "Build the pre-613 loader snapshot and the reference (merged PR state) with cmake; note build time and whether the smoke suite result matches.",
+    "Write a small generator for synthetic GGML files in two or three formats/shapes and compute tensor checksums with both builds; confirm identical checksums.",
+    "Time load of the base and the reference with 5+ repeats each, warm cache; record median and the ratio.",
+    "Test whether cold cache can be controlled in this gVisor-like setup (writable /proc/sys/vm/drop_caches or equivalent); if not, drop the cold-load measurement from the design.",
+    "Check run-to-run variance across 5 runs; check that a trivial mmap-only implementation gets most of the reference speedup."
+   ]
+  },
+  "summary": "PR #613 (\"Make loading weights 10-100x faster\", merged 2023-03-30, MIT) is real and its successor mmap code is public in current master, so the lookup is direct and the mmap lever is recallable. The seed is one-lever on a 4 h tier with unproven cold-cache timing, so I kill it as K10 (with K8/K4 risk) unless the scope is widened to a multi-lever optimization."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

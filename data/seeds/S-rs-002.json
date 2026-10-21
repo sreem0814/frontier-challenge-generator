@@ -1,0 +1,234 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "4 h. A frontier agent improves the baseline by tuning but with diminishing returns, and the weaker model improves little. The bucket is the normalised gain.",
+  "cheat": "Training on the evaluation text or memorising it. The sealed corpus is absent from the image, and the model size is capped.",
+  "grading": "Bits per character on a sealed corpus from other authors and periods, normalised between the shipped baseline loss and the reference. A random split is not used. A hard gate requires the byte-level computation to be consistent.",
+  "reference": "Written by us: a tuned configuration with the same code under the same budget. The headroom is limited at this scale, so the reference score is measured at build.",
+  "source": "https://github.com/karpathy/nanoGPT (data/shakespeare_char) @ 3adf61e, MIT. Data provenance is not found, so the corpus must be swapped for public-domain texts.",
+  "task": "/app ships the nanoGPT CPU config and a public-domain multi-author character corpus for training. The agent has a fixed wall-clock budget on 8 cores to improve the model, optimiser, schedule and data handling, and delivers a checkpoint and a sampling script.",
+  "title": "Character LM under a fixed CPU budget on unseen-author text"
+ },
+ "class": "research",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-001 0.42"
+  ],
+  [
+   "2026-10-20T19:04:14Z",
+   "v1",
+   "killed:K10",
+   "One lever in practice: the score moves mainly through hyperparameter tuning of one ~10M-parameter character model, with a seeded headroom of ~0.4 bpc and the seed itself predicting diminishing returns and a weak weaker-model result. The multiple listed levers (width, block, optimiser, schedule, drop"
+  ]
+ ],
+ "id": "S-rs-002",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.418,
+    "S-rs-001"
+   ],
+   [
+    0.245,
+    "S-op-004"
+   ],
+   [
+    0.236,
+    "Budget NanoGPT Speedrun [METR]"
+   ],
+   [
+    0.215,
+    "S-op-005"
+   ],
+   [
+    0.102,
+    "ai_rd_nanogpt_chat_rl [RE-Bench]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 0,
+  "clone_ok": true,
+  "cmd_build": "false",
+  "cmd_fetch": "true",
+  "cmd_test": "false",
+  "commit": "3adf61e154c3fe3fca428ad6bc3818b27a3b8291",
+  "deterministic": true,
+  "eco": "unknown",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "log": "",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 0,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "none",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "3adf61e154c3fe3fca428ad6bc3818b27a3b8291",
+  "kb": 981,
+  "lang": "Python",
+  "open_prs": 105,
+  "pushed": "2025-11-12",
+  "release": "",
+  "spdx": "MIT",
+  "stars": 63948
+ },
+ "source_key": "github.com/karpathy/nanogpt; https://github.com/karpathy/nanogpt/tree/master/data/shakespeare_char|baseline-shipped-nanogpt-cpu-config-q-this-still-runs-in-abo",
+ "source_notes": "Data: train.bin 1,003,854 tokens, val.bin 111,540 (readme). OOD: hold out different author/period or different genre (e.g. public-domain novels the grader holds), not a random 10 percent split. INFERRED run time: ~3 min for the 2000-iter CPU config (page; core count not stated), eval 20 iters seconds; a 30-60 min budget on 8 CPUs allows ~6-10x more compute. Overlap: none with the public corpus; risk that tiny-scale tuning saturates quickly (limited headroom 1.88 to ~1.5). Levers: model width/depth, block size, optimizer, LR schedule, dropout, tokenization (char vs small BPE), batch size.",
+ "source_url": "https://github.com/karpathy/nanoGPT; https://github.com/karpathy/nanoGPT/tree/master/data/shakespeare_char",
+ "source_version": "Baseline: shipped nanoGPT CPU config; q:\"This still runs in about ~3 minutes, but gets us a loss of only 1.88\" (4 layers, 4 heads, 128-d, block 64, 2000 iters) -> Reference: same code with better hyperparameters / model within a wall-clock budget; page GPU run: q:\"the best validation loss is 1.4697\"",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E1",
+  "evidence_url": "https://the-decoder.com/metr-introduces-a-new-metric-to-calculate-exactly-when-ai-agents-become-more-expensive-than-humans/",
+  "facts": [
+   {
+    "claim": "karpathy/nanoGPT exists at commit 3adf61e154c3fe3fca428ad6bc3818b27a3b8291 and contains data/shakespeare_char",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/nanoGPT/tree/3adf61e154c3fe3fca428ad6bc3818b27a3b8291/data/shakespeare_char"
+   },
+   {
+    "claim": "data/shakespeare_char readme states train.bin has 1,003,854 tokens and val.bin has 111,540 tokens; source is Tiny Shakespeare (char-rnn)",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/nanoGPT/tree/3adf61e154c3fe3fca428ad6bc3818b27a3b8291/data/shakespeare_char"
+   },
+   {
+    "claim": "Repository licence is MIT, copyright Andrej Karpathy (2022)",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/nanoGPT/blob/3adf61e154c3fe3fca428ad6bc3818b27a3b8291/LICENSE"
+   },
+   {
+    "claim": "The shipped shakespeare_char config is a CPU config (seed says ~2000-iter CPU config)",
+    "status": "contradicted",
+    "url": "https://github.com/karpathy/nanoGPT/blob/3adf61e154c3fe3fca428ad6bc3818b27a3b8291/config/train_shakespeare_char.py"
+   },
+   {
+    "claim": "Shipped config is max_iters 5000, n_layer 6, n_head 6, n_embd 384, block_size 256, dropout 0.2, lr 1e-3; device is commented out (CPU only suggested as a MacBook comment)",
+    "status": "confirmed",
+    "url": "https://github.com/karpathy/nanoGPT/blob/3adf61e154c3fe3fca428ad6bc3818b27a3b8291/config/train_shakespeare_char.py"
+   },
+   {
+    "claim": "A public named task 'Budget NanoGPT Speedrun [METR]' exists as listed in l0_neighbours",
+    "status": "not_found",
+    "url": "https://the-decoder.com/metr-introduces-a-new-metric-to-calculate-exactly-when-ai-agents-become-more-expensive-than-humans/"
+   },
+   {
+    "claim": "METR's expenditure-horizon work uses the NanoGPT speedrun; GPT-5.5 and Opus-4.8 verified about 1% and 1.5% gains; GPT-5 and Opus-4.1 showed no real progress (article dated 2026-07-27, no METR report link)",
+    "status": "confirmed",
+    "url": "https://the-decoder.com/metr-introduces-a-new-metric-to-calculate-exactly-when-ai-agents-become-more-expensive-than-humans/"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier. Frontier agents would tune width, depth, LR, dropout and batch with diminishing returns; weaker model improves little. Public evidence (July 2026, secondary) shows frontier agents at ~1-1.5% verified gains on the NanoGPT speedrun, which is a different metric from bpc.",
+   "build_cost": "2 days or less: install CPU torch, run prepare.py, select and clean public-domain corpora, write the grader and normalisation. Smoke build verdict none is expected: the repo has no test suite and the run_rcs of 1 come from the placeholder cmd_test 'false', not from a training failure.",
+   "deliverable": "Checkpoint plus sampling script; scored as bits per character on a sealed held-out author/period corpus, normalised between the shipped baseline loss and the reference.",
+   "gates_anticheat": "Held-out corpus absent from image and grader-only; model size cap; byte-level consistency gate. Hyperparameter tuning cannot memorise an unseen corpus, so the main cheat is leaking held-out text into the training set, which is closable by sealing.",
+   "grading_surface": "One or a few held-out texts yielding one bpc number per run; not thousands of cases. Could be widened to several authors, but the seed does not specify it.",
+   "local_fit": "CPU-only, 8 cores, 16 GB: a ~10M parameter char model is trainable on CPU. Fits the sandbox.",
+   "lookup": "partial. The tinyshakespeare config is public and recallable, but the sealed corpus and its tuned values are not. Frontier models know nanoGPT defaults, so the baseline is not a secret.",
+   "provenance": "karpathy/nanoGPT @ 3adf61e (MIT, verified). Data folder shakespeare_char has no provenance statement; corpus must be replaced with public-domain multi-author texts, none selected yet.",
+   "reference": "Our own tuned config on the same code and budget; not an independent implementation; score measured only at build; headroom ~1.88 to ~1.5 bpc (seed estimate, unverified).",
+   "ships": "nanoGPT code and shakespeare_char-style config (the shipped config is not CPU-targeted; device is commented out), a public-domain training corpus, and a held-out OOD split kept by the grader.",
+   "similarity": "S-rs-001 (0.418, internal seed, not a public task). METR speedrun (0.236) and RE-Bench nanoGPT chat RL (0.102) are different deliverables. Not a K1 near-duplicate, but close to the same family of nanoGPT tuning."
+  },
+  "kill_code": "K10",
+  "kill_reason": "One lever in practice: the score moves mainly through hyperparameter tuning of one ~10M-parameter character model, with a seeded headroom of ~0.4 bpc and the seed itself predicting diminishing returns and a weak weaker-model result. The multiple listed levers (width, block, optimiser, schedule, dropout, tokenisation, batch) are all knobs on one config, so they give neither multi-part scope nor a long chain of dependent work. The 4 h tier is therefore not justified, and the normalised bpc gives little beyond a single number.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed predicts diminishing returns and frontier gains near 1-1.5% on the related speedrun; no evidence a frontier agent reaches 0.9 of the reference in some trials."
+   },
+   "Build": {
+    "v": 4,
+    "why": "About 2 days: CPU torch install, corpus curation, grader and normalisation."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU 8 cores 16 GB fits a small char model; a 4 h run is feasible."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "4 h is enough for tuning; work is repetitive sweeps rather than long dependent engineering."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Repo is MIT (verified); the new public-domain corpus still needs its licence checked."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Levers are knobs on one config collapsing to one scalar; partial credit is weak."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public task neighbour above 0.42 (internal seed at 0.418); METR speedrun differs in deliverable and metric."
+   },
+   "Real": {
+    "v": 4,
+    "why": "nanoGPT real, MIT, commit exists; the corpus is not yet chosen and the CPU config claim is contradicted."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is our own tuned config on the same code, not an independent implementation; headroom is small and unmeasured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Held-out corpus can be kept out of the image and the grader can hold it, but the public-domain selection needs care."
+   },
+   "Surf": {
+    "v": 2,
+    "why": "Grader is one or a few held-out texts giving one bpc number per run; no thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Sweep gain is within seed variance, or total achievable gain on the held-out author is under about 0.1 bpc (confirms K10: one-lever, no headroom to fill 4 h).",
+   "pass_if": "Best sweep config beats baseline by more than 3x the seed variance on the held-out author, and the ranking transfers to the held-out author.",
+   "steps": [
+    "In a throwaway Linux container with network, clone karpathy/nanoGPT at 3adf61e and install CPU-only torch.",
+    "Run data/shakespeare_char/prepare.py and train with the shipped config at 2000 iters on 8 CPU cores; record wall-clock and val bpc.",
+    "Run 3 seeds of the baseline to measure run-to-run variance in bpc.",
+    "Sweep 4 to 6 configs (width/depth, LR, dropout, block size) at the same budget on public Shakespeare val; record the spread.",
+    "Pick two public-domain authors not in the training set and hold one out; compute bpc with the same sampler/tokeniser; check that the sweep ranking holds on the held-out author.",
+    "Check determinism: rerun the best config with a fixed seed and confirm identical bpc."
+   ]
+  },
+  "summary": "S-rs-002 is killed under K10: the score is driven mainly by hyperparameter tuning of one small character model, and the seed itself predicts diminishing returns and little headroom, so the 4 h tier and multi-part scope are not justified. The nanoGPT repo, MIT licence and dataset counts check out, but the shipped config is not CPU-targeted and the reference is an unmeasured tuned config."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 57
+}

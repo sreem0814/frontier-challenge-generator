@@ -1,0 +1,260 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "4 h. One kernel is easy and several quant types give partial credit. The risk is that it is one-lever, so scope is widened to the matmul loop and threading. A weaker model stops at -O3 flags.",
+  "cheat": "Dropping precision or skipping blocks. Closed by the tolerance gate on random data, tail-size cases, and hidden shapes.",
+  "grading": "Gate: results match the reference kernels within a tight float tolerance on thousands of random block vectors, with odd sizes included. Score from wall-clock medians of the matmul benchmark on hidden shapes against S, the speedup of the merged kernels measured by us.",
+  "reference": "The upstream kernels from the merged PRs, rebuilt by us as a trimmed snapshot. Speedup measured by us.",
+  "source": "https://github.com/ggml-org/llama.cpp PR 1083 and neighbouring kernel PRs, base pinned to a commit before them; MIT",
+  "task": "/app ships a trimmed history-less ggml snapshot with scalar and naive quantised dot kernels (Q4_0, Q4_1, Q5, Q8_0 times Q8_0) and a bench/test harness. The agent speeds up all of them on x86 AVX2 and AVX-512 using intrinsics.",
+  "title": "Quantised dot-product kernels CPU speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-001 0.22"
+  ],
+  [
+   "2026-10-20T19:04:13Z",
+   "v1",
+   "killed:K11",
+   "The reference and its near-identical upstream source are installable (PyPI llama-cpp-python sdist 0.3.36 bundles llama.cpp source, MIT) and the kernels are recallable, so the oracle cannot be sealed. Secondary risk K8: famous AVX2 ggml dot kernels are recallable. The seed's source is also mis-scoped"
+  ]
+ ],
+ "id": "S-op-002",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.219,
+    "S-op-001"
+   ],
+   [
+    0.11,
+    "add-benchmark-lm-eval-harness [original]"
+   ],
+   [
+    0.103,
+    "abetlen__llama-cpp-python-2bc1d97 [GSO]"
+   ],
+   [
+    0.103,
+    "abetlen__llama-cpp-python-218d361 [GSO]"
+   ],
+   [
+    0.075,
+    "koota-entity-snapshot-rollback [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential cmake git python3 python3-pip",
+  "build_ok": true,
+  "build_s": 361,
+  "ci_files": 60,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DLLAMA_BUILD_TESTS=ON -DLLAMA_TESTS_INSTALL=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "4a45de4f2c68f3d144f6c2431ad7c1da7e53c99e",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": " Linking CXX executable bin/llama-fit-params\n[436/443] Building CXX object app/CMakeFiles/llama-app.dir/llama.cpp.o\n[437/443] Building CXX object app/CMakeFiles/llama-app.dir/__/license.cpp.o\n[438/443] Building CXX object tools/results/CMakeFiles/llama-results.dir/results.cpp.o\n[439/443] Building CXX object tools/export-lora/CMakeFiles/llama-export-lora.dir/export-lora.cpp.o\n[440/443] Linking CXX executable bin/llama-results\n[441/443] Linking CXX executable bin/llama-export-lora\n[442/443] Building CXX object app/CMakeFiles/llama-app.dir/download.cpp.o\n[443/443] Linking CXX executable bin/llama",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "test-arg-parser::test-arg-parser",
+   "test-download-model::test-download-model",
+   "test-eval-callback-download-model::test-eval-callback-download-model",
+   "test-jinja-py::test-jinja-py"
+  ],
+  "stable_failures": 4,
+  "subdir": "",
+  "suite_s": 281,
+  "test_files": 288,
+  "tests_fail": 4,
+  "tests_listed": 59,
+  "tests_pass": 52,
+  "tests_skip": 3,
+  "tests_total": 59,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "39da130fcd1b6ca47d3c0522a40eccff41ea3dfb",
+  "kb": 460405,
+  "lang": "C++",
+  "open_prs": 1766,
+  "pushed": "2026-10-20",
+  "release": "v0.7.0",
+  "spdx": "MIT",
+  "stars": 131826,
+  "test_files": 288,
+  "test_kb": 5736,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/ggml-org/llama.cpp/pull/1083|ggml-org-llama-cpp-1083-a-faster-version-for-q4-1-x-q8-0-dot",
+ "source_notes": "repo https://github.com/ggml-org/llama.cpp; merged PR or fixed issue",
+ "source_url": "https://github.com/ggml-org/llama.cpp/pull/1083",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ggml-org/llama.cpp/pull/1083",
+  "facts": [
+   {
+    "claim": "llama.cpp PR #1083 exists and is merged (title 'A faster version for Q4_1 x Q8_0 dot products', merged 2023-04-21 as commit 1bfc153)",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/1083"
+   },
+   {
+    "claim": "PR #1083 covers Q4_0, Q4_1, Q5 and Q8_0 dot-product kernels, as the seed states",
+    "status": "contradicted",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/1083"
+   },
+   {
+    "claim": "PR #1083 changes the block_q8_0 struct (stores a precomputed quant sum) and touches scalar, ARM_NEON and AVX2 paths, i.e. it is a format change, not a pure kernel speedup",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/1083"
+   },
+   {
+    "claim": "Repository licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/blob/master/LICENSE"
+   },
+   {
+    "claim": "Current upstream x86 CPU kernels live in ggml/src/ggml-cpu/arch/x86 as quants.c and repack.cpp",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/tree/master/ggml/src/ggml-cpu/arch/x86"
+   },
+   {
+    "claim": "A dedicated AVX-512 kernel file exists in that x86 directory",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp/tree/master/ggml/src/ggml-cpu/arch/x86"
+   },
+   {
+    "claim": "llama-cpp-python publishes a source distribution (0.3.36, 76.6 MB, released 2026-10-01) whose build bundles llama.cpp source via the vendor/llama.cpp submodule path; vendoring inferred from the page and sdist size, archive contents not listed",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/llama-cpp-python/"
+   },
+   {
+    "claim": "Quantised kernel PRs in 2023-2024 (#654, #933, #1051, #6414, #10010) are the neighbouring kernel history; #6414 replaced the vec_dot path with llamafile sgemm, so the 'merged kernels' are not one stable kernel set",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/10010"
+   },
+   {
+    "claim": "Smoke probe: 59 ctest tests, 52 pass, 4 stable failures at base, 3 skipped; verdict green despite the failures (taken from probe, not re-run)",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier; one kernel is easy; the card itself calls it one-lever. Frontier unlikely to reach 0.9 of S without upstream-level repack work; no dated evidence.",
+   "build_cost": "About 6 min per build plus about 5 min test suite; reference rebuild and snapshot are 1-2 days.",
+   "deliverable": "Faster AVX2/AVX-512 intrinsics for Q4_0, Q4_1, Q5 and Q8_0 dot products vs Q8_0 activations, keeping tolerance on random and odd-size blocks.",
+   "gates_anticheat": "Tolerance gate on random data and tail sizes closes precision-dropping and block-skipping. Editing tests or build flags is not closed by the card; needs a read-only grader.",
+   "grading_surface": "Tolerance gate on thousands of random block vectors plus wall-clock medians on hidden matmul shapes against S. Code-graded; benchmark noise on gVisor is unmeasured.",
+   "local_fit": "AVX-512 needs a host CPU with the feature; gVisor has no perf counters, so wall-clock timing must be median-based. 8 cores and 16 GB are sufficient.",
+   "lookup": "direct: current upstream x86 quants.c and repack.cpp are public (MIT) and the PyPI llama-cpp-python sdist (0.3.36) is installable and contains the llama.cpp source tree. Frontier models also likely recall ggml AVX2 q4_0 dot kernels.",
+   "provenance": "llama.cpp (MIT, ggml authors). PR #1083 is real but covers only Q4_1 x Q8_0 and changes the block_q8_0 layout (Apr 2023). Seed's 'merged kernels' span 2023-2024 PRs that were later superseded by sgemm/repack paths.",
+   "reference": "Upstream kernels rebuilt by us; S measured by us. Reference is a moving target (sgemm/repack since 2024), so S is only defined at the chosen base.",
+   "ships": "Trimmed history-less ggml snapshot at an early base; C/C++ with CMake; smoke build green in 361 s, 288 test files; 4 stable test failures at base.",
+   "similarity": "Nearest L0 neighbour S-op-001 at 0.219 (content not visible to me; may be a same-repo sibling). Other neighbours are GSO llama-cpp-python entries at about 0.10. Not in CROWDED list."
+  },
+  "kill_code": "K11",
+  "kill_reason": "The reference and its near-identical upstream source are installable (PyPI llama-cpp-python sdist 0.3.36 bundles llama.cpp source, MIT) and the kernels are recallable, so the oracle cannot be sealed. Secondary risk K8: famous AVX2 ggml dot kernels are recallable. The seed's source is also mis-scoped: PR #1083 covers only Q4_1 x Q8_0, so 'merged kernels' for Q4_0/Q4_1/Q5/Q8_0 are not one reference.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; the card's own assessment is that one kernel is easy and the scope is one-lever."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Smoke build is green at 361 s; a reference rebuild and trimmed snapshot fit within 2 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "AVX-512 depends on host CPU features, and gVisor timing is noisy; no perf counters allowed."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "A 4 h tier for kernel-level work with one main lever is not clearly long-horizon."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, which permits shipping the snapshot and reference."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Four quant types times scalar, AVX2 and AVX-512 give several partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top L0 neighbour is 0.219 (S-op-001, same repo, content unknown); nothing in CROWDED matches directly."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real merged MIT upstream and a real PR, but PR #1083 is a single Q4_1 x Q8_0 format change, not the four-kernel set the card describes."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete permissive upstream exists, but S is defined by upstream state at a 2023-era base, and the 'merged kernels' are not one stable set."
+   },
+   "Seal": {
+    "v": 1,
+    "why": "Upstream kernels are installable from the PyPI sdist and public on GitHub; the answer is recallable."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of random block vectors plus hidden-shape benchmarks give a large, code-graded surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Sdist or another installable package contains the exact upstream x86 quants code, or a frontier model reproduces the upstream AVX2 kernels from memory at about S.",
+   "pass_if": "Sdist does not contain the kernel source, and recall of the upstream AVX2 kernel is well below the reference speed.",
+   "steps": [
+    "In a throwaway container with network, download llama-cpp-python 0.3.36 sdist and check whether it contains ggml/src/ggml-cpu/arch/x86/quants.c (or an equivalent vendored copy).",
+    "If it does, the reference is installable offline: the seal fails unless the snapshot removes the sdist and similar copies from the image; confirm the grader image contains no such copy.",
+    "Probe recall: ask a frontier model (no network) to write the AVX2 Q4_0 x Q8_0 dot kernel from memory and compare it with the upstream file on the same input; record the speed ratio.",
+    "Build the snapshot base at a pre-2024 commit, build the reference, and time the four quant kernels on 3 hidden-style shapes with 5 medians each to see whether S is stable.",
+    "Check whether the AVX-512 path is usable on the grader's CPU class; if not, drop the AVX-512 bucket before any further work."
+   ]
+  },
+  "summary": "The seed's anchor PR #1083 is real and MIT-licensed, but it covers only Q4_1 x Q8_0 and is a format change, while the card claims four quant types. The reference (current upstream x86 kernels) is installable from the PyPI llama-cpp-python sdist and recallable, so the card fails sealing (K11) and is at risk of K8."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

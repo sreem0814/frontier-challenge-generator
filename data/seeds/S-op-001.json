@@ -1,0 +1,286 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "8 h. Several independent levers (inflate, unfilter, filter selection, paletted expand, Adam7) give graded credit. A frontier agent gets some of them and rarely all. A weaker model stops at compiler flags or one filter loop.",
+  "cheat": "Caching or hashing known inputs, or skipping checks. Closed with hidden inputs generated at grading time, an exact-equality gate, and no newer crate in the offline registry.",
+  "grading": "Hard gate: decoded pixels byte-identical and re-encoded files decode losslessly, on a few hundred hidden PNGs (all colour types, bit depths, interlaced, paletted, filter mixes). Score from wall-clock medians against S, the speedup of the newer release measured by us.",
+  "reference": "Newer png releases (fdeflate, autovectorised unfilter, Paeth, paletted and Adam7 paths), built and measured by us. No published aggregate figure: not found.",
+  "source": "https://github.com/image-rs/image-png @ png 0.16.5 base, target 0.17.8..0.18.1 (CHANGES.md); MIT OR Apache-2.0",
+  "task": "/app ships a history-less snapshot of the png crate at the old release plus a CLI (decode to raw, encode at levels, Adam7, paletted). The agent makes decode and encode faster while output stays identical; the interface is the CLI and the crate's public API.",
+  "title": "PNG decoder/encoder speedup 0.16 to 0.18"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour png-generation [original] 0.21"
+  ],
+  [
+   "2026-10-20T19:01:09Z",
+   "v1",
+   "killed:K11",
+   "gate on scores {'Real': 5, 'Surf': 3, 'Ref': 4, 'Band': 3, 'Hor': 4, 'Multi': 3, 'Seal': 2, 'Nov': 3, 'Lic': 5, 'Fit': 4, 'Build': 5}"
+  ]
+ ],
+ "id": "S-op-001",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.207,
+    "png-generation [original]"
+   ],
+   [
+    0.1,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.067,
+    "tty-clock [ProgramBench]"
+   ],
+   [
+    0.066,
+    "dua-cli [ProgramBench]"
+   ],
+   [
+    0.066,
+    "clog-cli [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 12,
+  "ci_files": 2,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 15,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "testimages-55bcaa178390855a)\n  Executable tests/partial_decode.rs (target/debug/deps/partial_decode-d10c1b1e67a1f205)\n  Executable benches/decoder.rs (target/debug/deps/decoder-26fd277465191253)\n  Executable unittests examples/change-png-info.rs (target/debug/examples/change_png_info-25cceac9e4c61479)\n  Executable unittests examples/corpus-bench.rs (target/debug/examples/corpus_bench-5f0069dc193129c6)\n  Executable unittests examples/png-generate.rs (target/debug/examples/png_generate-ca7454dc8195ee74)\n  Executable unittests examples/pngcheck.rs (target/debug/examples/pngcheck-18ed0a076b8a3072)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   0,
+   0,
+   0
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 3,
+  "test_files": 1445,
+  "tests_fail": 0,
+  "tests_listed": 118,
+  "tests_pass": 109,
+  "tests_skip": 0,
+  "tests_total": 109,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc",
+  "kb": 16426,
+  "lang": "Rust",
+  "open_prs": 11,
+  "pushed": "2026-09-23",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 520,
+  "test_files": 1445,
+  "test_kb": 15251,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/image-rs/image-png/blob/master/changes.md|png-0-16-5-or-0-17-7-inferred-choice-changelog-numbers-only-",
+ "source_notes": "Levers (distinct): fdeflate for decompression and fast compression preset (0.17.8), autovectorized filter/unfilter (0.17.8, 0.17.9), Paeth unfilter improvement (0.17.15, 0.18.1 portable_simd nightly-only), paletted decode (0.17.12), Adam7 decode (0.18.0). Strong multi-lever, byte-identical decoded pixels is an easy gate. The speedup S must be measured by us; no published aggregate on pages opened. fdeflate README (opened) claims decoder rivals zlib-ng/zlib-rs but gives no numbers.",
+ "source_url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md",
+ "source_version": "png 0.16.5 or 0.17.7 (INFERRED choice; changelog numbers only exist for 0.16.3 and 0.16.5) -> png 0.17.8 up to 0.18.1",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md",
+  "facts": [
+   {
+    "claim": "png 0.18.1 exists on crates.io, not yanked (created 2026-02-14), and is the latest release",
+    "status": "confirmed",
+    "url": "https://crates.io/api/v1/crates/png"
+   },
+   {
+    "claim": "png 0.16.5 (base) exists on crates.io, not yanked (created 2020-06-13)",
+    "status": "confirmed",
+    "url": "https://crates.io/api/v1/crates/png"
+   },
+   {
+    "claim": "png 0.18.1 licence is MIT OR Apache-2.0 (version-level field)",
+    "status": "confirmed",
+    "url": "https://crates.io/api/v1/crates/png"
+   },
+   {
+    "claim": "0.17.8 changelog: autovectorize filtering/unfiltering, fast preset uses fdeflate, decompression switched to fdeflate",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md"
+   },
+   {
+    "claim": "0.17.9 changelog: improved unfilter performance",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md"
+   },
+   {
+    "claim": "0.17.12 changelog: optimized decoding of paletted images",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md"
+   },
+   {
+    "claim": "0.17.12 is yanked on crates.io, so the paletted lever is not in a usable release; the reference must be 0.18.1",
+    "status": "confirmed",
+    "url": "https://crates.io/api/v1/crates/png"
+   },
+   {
+    "claim": "0.17.15 changelog: Paeth filter decode performance improved",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md"
+   },
+   {
+    "claim": "0.18.0 changelog: Adam7 interlaced decoding much faster",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md"
+   },
+   {
+    "claim": "0.18.1 changelog: Paeth auto-vectorization change; portable_simd Paeth for 3bpp/4bpp on nightly only",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/blob/master/CHANGES.md"
+   },
+   {
+    "claim": "Published aggregate end-to-end speedup for 0.16.5 to 0.18.1 exists",
+    "status": "not_found",
+    "url": "https://github.com/image-rs/image-png/discussions/416"
+   },
+   {
+    "claim": "Per-lever measured gains in the upstream discussion: Paeth unfilter about 20% on microbenchmark, 5-8% on some end-to-end decoder benchmarks; paletted expansion about 0.09% of cycles with no real improvement (2023-2024 numbers, not re-measured for 0.18.x)",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/discussions/416"
+   },
+   {
+    "claim": "Adam7 gain in 0.18.0 quantified",
+    "status": "not_found",
+    "url": "https://github.com/image-rs/image-png/discussions/416"
+   },
+   {
+    "claim": "Phoronix article gives benchmark figures for the png crate",
+    "status": "not_found",
+    "url": "https://www.linux.org/threads/phoronix-rust-png-image-decoder-now-even-faster-benefiting-chrome-gnome-etc.67933/"
+   },
+   {
+    "claim": "fdeflate crate (a dependency of the reference decode path) is MIT OR Apache-2.0, latest 0.3.7",
+    "status": "confirmed",
+    "url": "https://crates.io/api/v1/crates/fdeflate"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Levers: decompression (fdeflate-style), unfilter SIMD, Paeth, paletted expand, Adam7, encoder fast preset. Upstream per-lever gains look modest (single to low-double-digit percent end-to-end), so S may be small.",
+   "build_cost": "Low: smoke build green in 12 s; reference build and corpus generation about 1 day.",
+   "deliverable": "Faster decode and encode with identical decoded pixels; CLI and public crate API unchanged.",
+   "gates_anticheat": "Hash/cache known inputs closed by hidden inputs at grading; exact equality gate; no newer crate in offline registry (but reference needs fdeflate: must be resolved, see spike).",
+   "grading_surface": "Hidden few-hundred PNGs (all colour types, bit depths, interlaced, paletted, filter mixes) generated at grading time; exact pixel equality plus lossless re-encode round trip; wall-clock medians vs S.",
+   "local_fit": "CPU-only, 8 cores, 16 GB, offline build 12 s, suite 3 s green; stable Rust only (portable_simd is nightly). Wall-clock noise under gVisor is the main fit risk.",
+   "lookup": "partial: upstream release is public on crates.io and GitHub; agent cannot install offline; exact code not recallable verbatim but the design direction (fdeflate, autovectorised unfilter) is known.",
+   "provenance": "image-rs/image-png, Apache-2.0 on GitHub, crate png is MIT OR Apache-2.0; base 0.16.5, target 0.18.1 (latest, Feb 2026); pushed 2026-09-23; commit b2f10c6.",
+   "reference": "png 0.18.1 (public, complete, MIT/Apache) with fdeflate 0.3.7 (public, MIT/Apache); reference speedup S not measured; no published aggregate.",
+   "ships": "History-less snapshot of png 0.16.5 plus CLI (decode to raw, encode at levels, Adam7, paletted); no vendored newer copy.",
+   "similarity": "Nearest l0 neighbour png-generation [original] at 0.207 (same codec, different deliverable: generation, not speedup); zstd-decoder 0.10; others under 0.07. Not crowded as PNG; adjacent to crowded DEFLATE codecs."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this kind of work, so capped at 3; the 8 h tier is plausible."
+   },
+   "Build": {
+    "v": 5,
+    "why": "Smoke build 12 s green; reference build is well under 2 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits CPU-only and 16 GB; portable_simd needs nightly and timing noise under gVisor is a risk."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Many distinct hot paths across decode, encode and interlace support 8 h of sustained work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "png and fdeflate are both MIT OR Apache-2.0, so shipping is allowed."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers give buckets, but the measured upstream per-lever gains are small and noisy, so credit may be uneven."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top neighbour png-generation at 0.207 is above 0.15 and is a different deliverable; not a public task."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real crate with pinned releases on crates.io and GitHub; changelog entries verified."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete public release exists, but S is unmeasured and the reference depends on fdeflate, which the agent cannot fetch offline."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Reference source is public on crates.io and GitHub; hidden PNGs are sealed but the solution is recallable in outline."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "A few hundred hidden PNGs with exact equality; not an unlimited generator, and the wall-clock part is noisy."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "End-to-end decode speedup is under 1.10x (headroom too small for a reward curve), or run-to-run CV is above 5% (wall-clock grading too noisy), or the reference cannot be built offline without shipping fdeflate source.",
+   "pass_if": "0.18.1 decode median is at least 1.15x faster than 0.16.5 across the corpus, run-to-run CV is under 3%, and decoded pixels match in every case.",
+   "steps": [
+    "In a throwaway networked Linux container, download png 0.16.5 and 0.18.1 from crates.io (or git tags) and build both with cargo build --release, pinned toolchain.",
+    "Confirm fdeflate 0.3.7 is in the 0.18.1 dependency tree and check whether cargo vendor produces an offline build; record whether the reference builds without network.",
+    "Generate about 60 PNGs with the 0.18.1 encoder and a few fixed images covering colour types 0-6, bit depths 1-16, paletted, Adam7 and mixed filters.",
+    "Decode every file with both builds; compare raw pixel bytes; record any difference (expect none).",
+    "Compare encoded bytes at the same level between 0.16.5 and 0.18.1; this resolves the 'output stays identical' versus 'lossless round trip' contradiction in the seed.",
+    "Time decode and encode medians over 10 runs per file per build; compute end-to-end ratio S and run-to-run coefficient of variation by repeating the same binary 5 times.",
+    "Repeat the timing in the sandbox class (gVisor) if available, otherwise note that it was not run."
+   ]
+  },
+  "summary": "The seed is real and well sourced: png 0.16.5 and 0.18.1 both exist on crates.io, the changelog levers are confirmed, and the licence is MIT OR Apache-2.0, with a green 12 s offline smoke build. The main risks are that the upstream per-lever gains look small (so S and the reward curve may be weak), that the reference needs fdeflate which the agent cannot fetch offline, and that the seed contradicts itself on whether encoded bytes must be identical; the spike should settle these before build."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

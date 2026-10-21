@@ -1,0 +1,362 @@
+{
+ "attempts": {
+  "spike": 1
+ },
+ "batch": 2,
+ "card": {
+  "band": "4 h. A frontier agent covers static versions and one or two backends, but misses the attribute-path and file source variants, and the bump and lock handling. Buckets per backend, per output format, and per bump mode. A weaker model gets only the trivial path.",
+  "cheat": "Shelling out to pip or python to build the metadata. The image has no network and no build backends installed, and fixtures use only the AST-discoverable forms.",
+  "grading": "Hidden fixture projects, generated per backend and per source layout, are run through the CLI. The checks are stdout and JSON, the exit code, and the written files, all exact. The existing uv tests that run offline serve as a regression gate. Partial credit comes from the fraction of fixtures passed.",
+  "reference": "Written by us: about 1200 lines of Rust plus a Python-AST attribute reader. It scores 1 on every hidden fixture.",
+  "source": "https://github.com/astral-sh/uv/issues/14137 @ 0.13.4 (head 2b50cbc), Apache-2.0",
+  "task": "/app ships a uv snapshot at the base commit. The agent makes uv version read, and optionally bump, projects whose version is declared dynamic. It must handle the static-discoverable build backends (hatch version sources, setuptools attr and file, flit-style module attributes, pdm dynamic), a fallback metadata build with no network, and output in text and JSON. It also covers the interplay with workspaces, bump flags and the lockfile.",
+  "title": "Dynamic version resolution in uv version"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "build-system",
+ "final": 74,
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-007 0.27"
+  ],
+  [
+   "2026-10-20T19:02:27Z",
+   "v1",
+   "pass",
+   "score 79; dead links []"
+  ],
+  [
+   "2026-10-20T19:06:29Z",
+   "v2",
+   "pass",
+   "final 74"
+  ],
+  [
+   "2026-10-20T21:11:48Z",
+   "spike",
+   "retry",
+   "Spike plan steps 1-4 and 6 were mostly completed; the offline regression-subset run (step 5) was not, so the verdict is inconclusive, not fail. Supporting evidence: the base binary builds, and it errors on dynamic versions in every fixture form tried. The hatch, setuptools attr, flit and pdm forms a"
+  ],
+  [
+   "2026-10-20T22:05:45Z",
+   "spike",
+   "error",
+   "success: API Error: Can't reach the API server \u2014 check your internet or DNS (EAI_AGAIN)"
+  ],
+  [
+   "2026-10-21T00:11:25Z",
+   "spike",
+   "killed:K5",
+   "The version test subset (crates/uv/tests/it/version.rs, about 78 tests) was not run three times because the `it` test binary compile exceeded the time budget.; The debug uv build takes 42 min cold at 3 jobs, so the agent loop and the verifier need a warm target dir; the image is about 12 GB.; The Ru"
+  ]
+ ],
+ "id": "S-im-008",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.273,
+    "S-im-007"
+   ],
+   [
+    0.214,
+    "S-im-006"
+   ],
+   [
+    0.126,
+    "fix-pandas-version [original]"
+   ],
+   [
+    0.114,
+    "family (50 projects x 20 tasks) [Web-Bench]"
+   ],
+   [
+    0.113,
+    "dynamic_assortment_planning [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 2,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 249,
+  "ci_files": 47,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "deterministic": false,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 25,
+  "flaky_names": [
+   "uv::python::python_install::python_install_compile_bytecode",
+   "uv::python::python_install::python_install_compile_bytecode_existing",
+   "uv::python::python_install::python_install_compile_bytecode_graalpy",
+   "uv::python::python_install::python_install_compile_bytecode_multiple",
+   "uv::python::python_install::python_install_compile_bytecode_pyodide",
+   "uv::python::python_install::python_install_compile_bytecode_pypy",
+   "uv::python::python_install::python_install_compile_bytecode_upgrade",
+   "uv::python::python_install::python_install_debug",
+   "uv::python::python_install::python_install_debug_freethreaded",
+   "uv::python::python_install::python_install_default",
+   "uv::python::python_install::python_install_default_from_env",
+   "uv::python::python_install::python_install_default_prerelease",
+   "uv::python::python_install::python_install_default_preview"
+  ],
+  "flaky_tests": 13,
+  "log": "3627ebc7a85)\n  Executable unittests src/lib.rs (target/debug/deps/uv_unix-d0fd4ddcd1b71724)\n  Executable unittests src/lib.rs (target/debug/deps/uv_version-c180a16d1cce1d9c)\n  Executable unittests src/lib.rs (target/debug/deps/uv_virtualenv-b763e54cd6c7fd55)\n  Executable unittests src/lib.rs (target/debug/deps/uv_warnings-d840a01cf32e99e5)\n  Executable unittests src/lib.rs (target/debug/deps/uv_windows-6e96d78af1668aaa)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace-7bec8dae11ca73fe)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace_commands-d67361e3f4ec2108)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   124,
+   124,
+   124
+  ],
+  "runs_without_report": 1,
+  "stable_failure_names": [
+   "uv::build::audit::audit_best_id_selection",
+   "uv::build::audit::audit_dependency_groups",
+   "uv::build::audit::audit_extras",
+   "uv::build::audit::audit_ignore_by_alias",
+   "uv::build::audit::audit_ignore_by_id",
+   "uv::build::audit::audit_ignore_config",
+   "uv::build::audit::audit_ignore_mixed_matched_unmatched",
+   "uv::build::audit::audit_ignore_partial",
+   "uv::build::audit::audit_ignore_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed",
+   "uv::build::audit::audit_ignore_until_fixed_config",
+   "uv::build::audit::audit_ignore_until_fixed_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix_for_other_package",
+   "uv::build::audit::audit_invalid_service_url",
+   "uv::build::audit::audit_json_no_vulnerabilities",
+   "uv::build::audit::audit_json_preview_warning",
+   "uv::build::audit::audit_json_vulnerability_and_project_status",
+   "uv::build::audit::audit_malformed_vulnerability_record",
+   "uv::build::audit::audit_multiple_vulnerabilities_same_package"
+  ],
+  "stable_failures": 2959,
+  "subdir": "",
+  "suite_s": 600,
+  "test_files": 607,
+  "tests_fail": 2972,
+  "tests_listed": 5579,
+  "tests_pass": 102,
+  "tests_skip": 0,
+  "tests_total": 3074,
+  "timeouts": [
+   "run1",
+   "run2",
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "kb": 222999,
+  "lang": "Rust",
+  "open_prs": 626,
+  "pushed": "2026-10-20",
+  "release": "0.13.4",
+  "spdx": "Apache-2.0",
+  "stars": 90935,
+  "test_files": 607,
+  "test_kb": 21370,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/astral-sh/uv/issues/14137|astral-sh-uv-14137-support-reading-dynamic-project-version-w",
+ "source_notes": "repo https://github.com/astral-sh/uv; opened 2025-06-18",
+ "source_url": "https://github.com/astral-sh/uv/issues/14137",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "The version test subset (crates/uv/tests/it/version.rs, about 78 tests) was not run three times because the `it` test binary compile exceeded the time budget.",
+   "The debug uv build takes 42 min cold at 3 jobs, so the agent loop and the verifier need a warm target dir; the image is about 12 GB.",
+   "The Rust reference (~1200 lines) is unbuilt; the line count is an estimate.",
+   "The full probe suite times out at 600 s, with 2959 stable failures from network tests, so the regression gate must be a pinned subset.",
+   "Only 4 hand-made fixtures were tried. Bump and lock interplay, workspaces and the no-network metadata fallback were not exercised."
+  ],
+  "build_minutes": 42,
+  "cases_sampled": 0,
+  "commands_log": "git init + git fetch --depth 1 of 2b50cbc; cargo build --bin uv -j3 (41m54s); built 4 fixtures with python -m build / setuptools.build_meta (versions 1.2.3, 2.0.1, 3.1.4, 4.5.6); /work/astread.py (ast + tomllib) matched all four; target/debug/uv version --offline exits 2 with the dynamic-version error on all four.",
+  "deterministic": false,
+  "gvisor_concerns": [],
+  "headroom_note": "No upstream implementation found; base uv errors on all 4 dynamic fixture forms, so the ceiling is above the start. The Rust reference is not written or built.",
+  "headroom_ok": true,
+  "image_gb_estimate": 12,
+  "kill_code": "",
+  "notes": "I did not run this attempt's step 5 or build the reference, because the previous attempt's cold uv build and `it` test compile used up the time. Evidence so far: for all four fixtures (hatch, setuptools attr, flit-style module attribute, pdm dynamic), reading the version by AST matched what the real backend build produced. The image has no backends, so a pip or python build is blocked at run time. Base uv fails every dynamic fixture with the expected error. Open risks: build cost is high, and the Rust reference is unbuilt, so there is no sample showing it passes. No kill condition was met, and the existing assessment does not support a clean pass.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": false,
+  "reference_cases_passed": 0,
+  "reference_lines": 1200,
+  "start_scores_zero": true,
+  "verdict": "inconclusive",
+  "verifier_minutes_estimate": 20
+ },
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/astral-sh/uv/issues/14137",
+  "facts": [
+   {
+    "claim": "Issue #14137 'Support reading dynamic project version with uv version' exists in astral-sh/uv, open, labelled enhancement, opened 2025-06-18",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/14137"
+   },
+   {
+    "claim": "The issue asks that uv version report dynamic versions (versioningit, hatch-vcs, setuptools-scm) and that uv version currently fails with 'We cannot get or set dynamic project versions'",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/14137"
+   },
+   {
+    "claim": "Maintainers said calling the build backend is slow and dynamic versions are not recorded in the lockfile",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/14137"
+   },
+   {
+    "claim": "uv release 0.13.4 exists, dated 2026-10-20; its notes contain no dynamic-version or static-attr work",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/releases/tag/0.13.4"
+   },
+   {
+    "claim": "No astral-sh/uv pull request or later release implements reading static dynamic-version sources (attr, file, hatch, flit, pdm) for uv version; issue Development section lists no PR",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/14137"
+   },
+   {
+    "claim": "uv_build rejects a dynamic = [\"version\"] project with 'missing field version'; uv version --bump edits only the static version string",
+    "status": "confirmed",
+    "url": "https://pydevtools.com/handbook/how-to/how-to-add-dynamic-versioning-to-uv-projects/"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (from the GitHub API spdx field supplied in source_facts; the LICENSE file itself was not opened)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier; frontier likely covers static-version forms and one or two backends, misses attr/file variants and bump/lock; weaker model only trivial path",
+   "build_cost": "about 3-5 days: 1200-line reference, fixture generator across four backends and layouts, and a pinned offline regression subset",
+   "deliverable": "uv version read (and optional bump) for projects with dynamic version: static-discoverable backends (hatch, setuptools attr/file, flit-style module attr, pdm dynamic), no-network fallback, text and JSON output, workspace, bump flags and lockfile interplay",
+   "gates_anticheat": "no network and no build backends in image so pip/python build is blocked; fixtures use only AST-discoverable forms; hidden fixtures and reference kept out of /app; regression gate must be a fixed, pinned subset",
+   "grading_surface": "hidden fixture projects generated per backend and per source layout; stdout/JSON, exit code and written files compared exactly; fraction of fixtures passed; offline uv test subset as regression gate",
+   "local_fit": "Rust build ~249 s cold; Python needed only for AST reader (must be present in image); gVisor fine; probe suite timed out at 600 s three times so the full suite is not a usable gate",
+   "lookup": "none: no uv implementation or PR; third-party uv-dynamic-versioning is a hatchling/VCS plugin, not a uv feature",
+   "provenance": "astral-sh/uv issue #14137 (open since 2025-06-18), pinned base 0.13.4 / 2b50cbc, Apache-2.0",
+   "reference": "ours: about 1200 lines Rust plus a Python-AST attribute reader; scores 1 on every hidden fixture; not a public implementation",
+   "ships": "history-less uv snapshot at 2b50cbc with the version-read path unimplemented for dynamic versions",
+   "similarity": "no public-benchmark neighbour above 0.126; internal neighbours S-im-007 (0.273) and S-im-006 (0.214) not inspected; not a near-duplicate of a public task"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Capped at 3 with no dated public evidence of agents on this exact work (E0)."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference plus multi-backend fixture generator and offline regression subset is roughly 3-5 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Runs in gVisor, but cargo build takes ~249 s and the probe suite timed out at 600 s three times, so the regression gate is not clean."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4 h tier is plausible for this scope, but the probe's test suite timeouts make the iteration loop slow."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 per API spdx; shipping the snapshot and reference is allowed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Buckets per backend, output format, bump mode, workspace and lockfile give steady partial credit."
+   },
+   "Nov": {
+    "v": 5,
+    "why": "Highest public neighbour is 0.126 (fix-pandas-version); no public task with this subject and deliverable."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real open upstream issue #14137 on uv 0.13.4, confirmed."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Our reference of ~1200 lines Rust plus Python AST reader scores 1 on all fixtures; not a public permissive implementation, so not 5."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and fixtures are ours and unpublished; no public solution exists to recall."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Fixture generator per backend and layout with exact stdout/JSON/file checks gives hundreds of cases, not thousands."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Any of the static-discoverable forms cannot be read without executing code, or the offline regression subset is non-deterministic or cannot be isolated from the network-dependent tests.",
+   "pass_if": "All four fixture forms return the same version from the AST reader as the backend would; the targeted offline subset is deterministic across three runs and finishes in under 10 minutes; base uv fails every dynamic fixture with the expected error.",
+   "steps": [
+    "In a throwaway networked Linux container, clone astral-sh/uv at 2b50cbc and build the uv binary (~4-5 min cold).",
+    "Create four small fixture projects with dynamic version: hatchling (version source regex), setuptools attr:, flit-style module __version__, and pdm dynamic; run uv version on each and record the current error (expect 'We cannot get or set dynamic project versions').",
+    "Write a throwaway Python AST reader for setuptools attr and flit module attribute and check it returns the expected value for each fixture without importing the package.",
+    "Run the hatch and pdm cases through the same reader to confirm they are AST-discoverable without executing the build backend.",
+    "Pick a targeted offline test filter (version-related tests only) with cargo nextest, run it three times, and check that results are identical and finish under 10 minutes.",
+    "Confirm that a pip/python-based build is blocked when run with no network and no build backends installed, to close the cheat path."
+   ]
+  },
+  "summary": "Seed S-im-008 is grounded: uv issue #14137 is real and open, release 0.13.4 exists, and no public uv PR or release implements static dynamic-version reading, so lookup is none and no kill applies. The main risks are the amber smoke probe (suite timed out at 600 s in all three runs, deterministic=false, 2972 failures likely environmental) and that the 4 h band needs a verified targeted offline regression subset before the spec is final."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 79,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-008",
+  "kill_code": "",
+  "note": "Strongest uv seed. Issue #14137 is real, open and has no PR. The static version sources (hatch regex, setuptools attr and file, flit __version__, pdm) have real backend semantics, so the expected versions could be checked against the real backends at build time rather than against our reading of them. Main risk is too easy: about 1200 lines at the 4 h tier is close to the DeepSWE calibration (about 600-line features solved about 74% of the time). The bump-into-attr-file semantics and the JSON shape are ours and must be pinned. Fixtures that need executing code must be excluded. The regression gate must be a curated, version-related subset because the full suite is unusable.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 5,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 74
+}

@@ -1,0 +1,323 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "20 h. A large surface: parsing and style cascade, use/symbol, nested viewBox, gradient spread, pattern tiling, masks and clip paths. A frontier agent reaches 50-70% on shapes and structure but loses the edge cases in paint servers and masks. A weaker model gets plain fills.",
+  "cheat": "The renderer crate is not in the image, and the reference PNGs for hidden cases are sealed. Hidden SVGs are lightly mutated (colours, coordinates) so memorised outputs fail.",
+  "grading": "About 900 hidden SVG/PNG pairs from the in-scope directories, about 1750 in the whole suite. Each is scored by per-pixel tolerance on RGBA, using a mean-error threshold plus an anti-aliasing allowance. Credit is the fraction passed over the fraction the reference passes, bucketed by directory.",
+  "reference": "resvg itself rasterises the in-scope cases, and the upstream reference PNGs are the oracle. The reference solution is the pinned resvg crate trimmed to this scope, so it scores 1.",
+  "source": "https://github.com/linebender/resvg @ main 054ccf39 (v0.48.1), Apache-2.0 OR MIT",
+  "task": "/app ships an empty C++ or Rust project, a CLI contract (svg in, 200x200 RGBA PNG out) and a visible sample of about 150 cases. The agent implements an SVG renderer scoped to structure, shapes, stroke, painting, gradients, patterns, clipPath, mask and transforms. Text, filters and fonts are excluded.",
+  "title": "SVG renderer for the resvg shapes, paint and structure suites"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "font-text",
+ "final": 85,
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-014 0.18"
+  ],
+  [
+   "2026-10-20T21:15:27Z",
+   "v1",
+   "pass",
+   "score 85; dead links []"
+  ],
+  [
+   "2026-10-20T21:18:09Z",
+   "v2",
+   "pass",
+   "final 85"
+  ],
+  [
+   "2026-10-20T21:39:56Z",
+   "smoke",
+   "green",
+   "rust: build ok, 1759 tests, 0 failing, deterministic over 3 runs"
+  ],
+  [
+   "2026-10-20T23:23:41Z",
+   "spike",
+   "validated",
+   "In-scope pairs: structure 264, shapes 133, painting 308, masking 94, paint-servers 155 = 954 (the 951 sampled plus 3 that failed to render). Renders were byte-identical across two runs on all 951 (cmp on the first pass; the second pass's two outputs are identical). Against the stored PNGs: 552 byte-"
+  ]
+ ],
+ "id": "S-im-015",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.178,
+    "S-im-014"
+   ],
+   [
+    0.154,
+    "S-im-006"
+   ],
+   [
+    0.145,
+    "S-im-008"
+   ],
+   [
+    0.116,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.111,
+    "png-generation [original]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "rank": 1,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 166,
+  "ci_files": 2,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "5192641d4fd67aef5c0c4d667d570e338da15361",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "e [unoptimized + debuginfo] target(s) in 2m 46s\n  Executable unittests src/lib.rs (target/debug/deps/resvg-81d38f62dbd3683f)\n  Executable unittests src/main.rs (target/debug/deps/resvg-609555e90f795b73)\n  Executable tests/integration/main.rs (target/debug/deps/integration-d5e15cc97a21734d)\n  Executable unittests examples/custom_href_resolver.rs (target/debug/examples/custom_href_resolver-4acff6f806575813)\n  Executable unittests examples/draw_bboxes.rs (target/debug/examples/draw_bboxes-08bcd38fd5ca04e2)\n  Executable unittests examples/minimal.rs (target/debug/examples/minimal-2d5438538d5145a7)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   0,
+   0,
+   0
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 391,
+  "test_files": 3640,
+  "tests_fail": 0,
+  "tests_listed": 1759,
+  "tests_pass": 1759,
+  "tests_skip": 0,
+  "tests_total": 1759,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": "cgp-work-75398e149002"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "054ccf39743179eee7d3a32e5b8bcf59941081da",
+  "kb": 24351,
+  "lang": "Rust",
+  "open_prs": 33,
+  "pushed": "2026-10-17",
+  "release": "v0.48.1",
+  "spdx": "Apache-2.0",
+  "stars": 4146,
+  "test_files": 3640,
+  "test_kb": 14370,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/linebender/resvg/tree/main/crates/resvg/tests|main-054ccf39-2026-10-17-release-v0-48-1-2026-08-02",
+ "source_notes": "Largest case count of any source here; pixel compare needs tolerance (anti-aliasing); implementing a full SVG renderer is huge, so scope by feature dir (e.g. shapes+gradients+structure); reference is Rust so shippable; text/font tests need fonts; crowded-ish risk low",
+ "source_url": "https://github.com/linebender/resvg/tree/main/crates/resvg/tests",
+ "source_version": "main 054ccf39 2026-10-17 (release v0.48.1 2026-08-02)",
+ "spike": {
+  "blockers": [
+   "Stored PNGs are 300px wide, not 200x200. The CLI contract must change, or oracle PNGs must be regenerated at 200 from the reference.",
+   "36 of 951 renders do not match, almost all text cases (fonts are not loaded). Text cases must be filtered out of scope.",
+   "Byte-exact match is only 552 of 915 text-free cases. The rest are within mean error 0.5 of the stored PNGs, so the grader needs a tolerance."
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 951,
+  "commands_log": "Counted svg/png pairs per directory under crates/resvg/tests/tests. Rendered each in-scope svg twice with /p/src/target/debug/resvg -w 300. Compared both renders byte-for-byte for determinism, then compared against the stored PNGs with PIL/numpy. Ran a sed colour/coordinate mutation on 10 shapes/rect SVGs.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Untouched start is an empty project, so it scores 0. The reference reproduces 915 of 951 stored PNGs; the other 36 are text cases or no-size, which the scope excludes.",
+  "headroom_ok": true,
+  "image_gb_estimate": 0.5,
+  "kill_code": "",
+  "notes": "In-scope pairs: structure 264, shapes 133, painting 308, masking 94, paint-servers 155 = 954 (the 951 sampled plus 3 that failed to render). Renders were byte-identical across two runs on all 951 (cmp on the first pass; the second pass's two outputs are identical). Against the stored PNGs: 552 byte-exact, 363 within mean error 0.5, 36 failing. Mutation test: 4 of the 10 mutated SVGs changed substantially (mean error about 39-41 against the original PNG); the other 6 had no matching pattern, so they were untouched and scored 0. The metric separates real changes. Three SVGs (negative-size, not-UTF-8-encoding, zero-size) produce no output from the CLI, as expected from the upstream error handling. Some painting/ and masking/ cases are text-heavy, so the exclusion removes more than the 36 mismatches. Roughly 915 usable cases remain, above the 800 pass bar. The existing probe's suite (1759 tests, 0 failures, deterministic over 3 runs) covers step 4. The probe tree is at the default branch commit 5192641, not 054ccf39; the stored PNGs and renders match anyway. Per-directory counts give usable bucket spread: painting 308 and structure 264 are the largest; no single directory dominates.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 915,
+  "reference_lines": 25000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 3
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/linebender/resvg-test-suite",
+  "facts": [
+   {
+    "claim": "resvg v0.48.1 exists as a GitHub release and is marked Latest",
+    "status": "confirmed",
+    "url": "https://github.com/linebender/resvg/releases/tag/v0.48.1"
+   },
+   {
+    "claim": "resvg workspace licence is 'Apache-2.0 OR MIT' (Cargo.toml [workspace.package])",
+    "status": "confirmed",
+    "url": "https://github.com/linebender/resvg/blob/main/Cargo.toml"
+   },
+   {
+    "claim": "resvg workspace members are crates/c-api, crates/resvg, crates/usvg, crates/usvg/codegen (the Rust reference is shippable under permissive licences)",
+    "status": "confirmed",
+    "url": "https://github.com/linebender/resvg/blob/main/Cargo.toml"
+   },
+   {
+    "claim": "A separate resvg-test-suite repository exists and is MIT-licensed",
+    "status": "confirmed",
+    "url": "https://github.com/linebender/resvg-test-suite"
+   },
+   {
+    "claim": "resvg-test-suite tests/ contains category directories filters, masking, paint-servers, painting, shapes, structure, text",
+    "status": "confirmed",
+    "url": "https://github.com/linebender/resvg/tree/main/crates/resvg/tests/tests"
+   },
+   {
+    "claim": "In-scope directories (structure, shapes, painting, paint-servers, masking) hold about 900 hidden SVG/PNG pairs, about 1750 in total",
+    "status": "not_found",
+    "url": "https://github.com/linebender/resvg-test-suite"
+   },
+   {
+    "claim": "Per-directory SVG case counts (sizes of structure, shapes, painting, paint-servers, masking)",
+    "status": "not_found",
+    "url": "https://github.com/linebender/resvg/tree/main/crates/resvg/tests/tests"
+   },
+   {
+    "claim": "Upstream reference PNGs are stored with the SVG cases in the public suite",
+    "status": "not_found",
+    "url": "https://github.com/linebender/resvg-test-suite"
+   },
+   {
+    "claim": "resvg suite includes roughly 1600 SVG-to-PNG regression tests",
+    "status": "not_found",
+    "url": "https://docs.rs/resvg"
+   }
+  ],
+  "full_card": {
+   "band": "20 h tier. Frontier agents likely pass shapes/structure buckets and parts of painting; paint-servers edge cases and masks are where they lose points. Weaker model reaches plain fills only. No dated public evidence found.",
+   "build_cost": "3 (2-4 days). Trimming the resvg reference to the chosen directories and proving it scores 1 on the hidden split is the main cost.",
+   "deliverable": "An SVG renderer covering structure (use, nested viewBox, style cascade), shapes, stroke, fills, gradients with spread, patterns, clipPath, mask, transforms. Text, filters and fonts excluded.",
+   "gates_anticheat": "Renderer crate and oracle PNGs absent from image. Hidden SVGs mutated in colours and coordinates so memorised upstream PNGs fail. Upstream suite is public, so unmutated originals must not be shipped in /app. Pin harness so agent cannot edit tests or build config. Reject shell-outs to rsvg, cairosvg, Inkscape or any system renderer.",
+   "grading_surface": "About 900 hidden SVG/PNG pairs in in-scope dirs, per-pixel RGBA with mean-error threshold plus AA allowance; credit is passes over reference passes, bucketed by directory. Per-dir counts not verified.",
+   "local_fit": "CPU-only, a few hundred MB, builds in seconds, runs in gVisor fine. Family label 'font-text' conflicts with text-excluded scope and should be corrected to a graphics/rendering family.",
+   "lookup": "partial. resvg is fully public with history, and the reference is the upstream repo itself. Model recall of its architecture (usvg tree, tiny-skia) is outline-level only; pixel-exact output cannot be recalled. crates.io is not reachable offline.",
+   "provenance": "linebender/resvg, Apache-2.0 OR MIT, v0.48.1 (latest release), main head 054ccf39; test corpus in linebender/resvg-test-suite (MIT), 7 category dirs.",
+   "reference": "resvg crate trimmed to scope (Apache-2.0/MIT), which scores 1 by construction. Smoke build green: 17 s build, 52 s suite, 1759 tests, 0 fail, deterministic over 3 runs.",
+   "ships": "Empty Rust or C++ project, CLI contract (svg in, 200x200 RGBA PNG out), ~150 visible sample cases. No resvg crate, no git history, no vendored copy, no reference PNGs beyond the visible sample.",
+   "similarity": "Max l0 neighbour 0.178 (S-im-014), then 0.154 and 0.145. Not in the CROWDED list. Differs in subject: SVG rasterisation against a pixel oracle, not a generic file or parser task. No K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Expected band is plausible, but no dated public evidence of agents on this work, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Trimming the reference to scope and proving it scores 1 is about 2-4 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Rust and CPU only, 17 s build, 52 s suite; fits 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 5,
+    "why": "Multi-module renderer with a 20 h tier fits the sustained work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 OR MIT for code, MIT for the test suite; both allow shipping."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Directory buckets and separate features (stroke, gradients, masks) give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour 0.178 is above 0.15, and the subject is not CROWDED."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public 4k-star repo, latest release v0.48.1 and Cargo licence confirmed; real test corpus."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive implementation (Apache-2.0 OR MIT) that scores 1 by construction."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream repo and suite are public, so recall in outline is possible; hidden mutations and sealed PNGs keep the oracle out of reach."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 900 pixel-compared hidden pairs with per-directory buckets; counts unverified, so not 5."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Stored PNGs fail to reproduce from the pinned build on a large share of cases (oracle unstable), or the in-scope count is under about 300 (surface too small, K3).",
+   "pass_if": "In-scope count is at least about 800; repeated renders are byte-identical; at least 95% of sampled CLI renders match stored PNGs within tolerance; the mutation test separates memorised from mutated outputs.",
+   "steps": [
+    "In a throwaway networked container, clone linebender/resvg at 054ccf39 and linebender/resvg-test-suite.",
+    "Build the resvg CLI from the pinned commit (smoke build already green in 17 s).",
+    "Count .svg files in shapes, structure, painting, paint-servers and masking to verify the ~900 in-scope claim.",
+    "Render each sampled SVG at 200x200 twice and hash the outputs to check determinism.",
+    "Compare fresh renders with the suite's stored PNGs on about 100 sampled cases to check the oracle reproduces at scale.",
+    "Mutate fill colours and a few coordinates in 10 SVGs, re-render, and confirm the per-pixel metric with AA allowance separates mutated from original outputs.",
+    "Check that the directory-level pass/fail split gives usable partial credit (no single directory dominates)."
+   ]
+  },
+  "summary": "The resvg source, Apache-2.0 OR MIT licence, latest release v0.48.1 and the MIT test suite are confirmed, but per-directory counts for the roughly 900 in-scope hidden pairs are not verified. No kill fires, but as written (all five directories, 0.9-of-reference pass) the pass bar is risky; narrowing the gate to shapes, structure and painting would make the 20 h tier fit."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 85,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-015",
+  "kill_code": "",
+  "note": "Strongest seed. Pinned release, permissive licence, a green 1759-test suite and directory buckets for credit. Not yet verified: the ~900 in-scope count, per-directory counts and whether the PNGs are stored with the cases. Risks: (1) the pixel tolerance must accept anti-aliasing that differs from tiny-skia, or a valid renderer fails (accept-any-implementation). (2) With no crates offline, the agent needs its own rasterizer and PNG writer; state whether a PNG/zlib crate may be vendored. (3) Reaching 0.9 of the reference over five directories in 20 h is unproven (K9 watch). Change the family label from font-text to graphics.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 5,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 4,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 86
+}

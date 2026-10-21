@@ -1,0 +1,249 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "8 h. Several buckets (edits, EOL, search, performance bounds). A frontier agent builds a working tree and fails on CRLF splitting and large-file performance. A weaker model uses a plain string.",
+  "cheat": "Backing with a plain string array. Closed by hidden large-file performance thresholds and call-count checks.",
+  "grading": "A hidden randomised differential suite: edit sequences compared to a naive string model for text, line and offset queries, EOL and BOM handling, and search. Plus the node unit tests. The shipped base fails all cases.",
+  "reference": "The upstream implementation, about 2-3k lines.",
+  "source": "https://github.com/microsoft/vscode @ 1.142.0; MIT",
+  "task": "/app ships a trimmed snapshot of the editor's text-model layer with the piece-tree text buffer (red-black tree, line starts, EOL normalisation, chunk builder, search and edits) removed. The agent rebuilds it behind the existing TextBuffer interface.",
+  "title": "Rebuild piece-tree text buffer in VS Code"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-004 0.31"
+  ],
+  [
+   "2026-10-20T19:00:28Z",
+   "v1",
+   "killed:K11",
+   "gate on scores {'Real': 5, 'Surf': 5, 'Ref': 5, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 2, 'Nov': 4, 'Lic': 5, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-im-005",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.309,
+    "S-im-004"
+   ],
+   [
+    0.306,
+    "S-im-002"
+   ],
+   [
+    0.181,
+    "S-op-003"
+   ],
+   [
+    0.139,
+    "kd_tree [AlgoTune]"
+   ],
+   [
+    0.127,
+    "dep-tree [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "g++ git libkrb5-dev libsecret-1-dev libx11-dev libxkbfile-dev make pkg-config python3",
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 17,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && npm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "npm ci --no-audit --no-fund",
+  "cmd_test": "npm test",
+  "commit": "34c443e21f1946e3bb9c40ef6328de6a4c552280",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 442,
+  "log": "npm error gyp ERR! stack at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/build.js:216:23)\nnpm error gyp ERR! System Linux 6.8.0-138-generic\nnpm error gyp ERR! command \"/usr/local/bin/node\" \"/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js\" \"rebuild\"\nnpm error gyp ERR! cwd /p/src/node_modules/native-keymap\nnpm error gyp ERR! node -v v22.11.0\nnpm error gyp ERR! node-gyp -v v10.2.0\nnpm error gyp ERR! not ok\nnpm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-20T17_23_12_987Z-debug-0.log",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 7557,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "109b9b8bc132809d5141e23a5894ab82aecd40d1",
+  "kb": 1583760,
+  "lang": "TypeScript",
+  "open_prs": 2953,
+  "pushed": "2026-10-20",
+  "release": "1.142.0",
+  "spdx": "MIT",
+  "stars": 194131,
+  "test_files": 7556,
+  "test_kb": 135472,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/microsoft/vscode|microsoft-vscode",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: npm run compile && ./node_modules/.bin/mocha test/unit/node/index.js --delay --ui=tdd --timeout=5000 --exit --reporter m. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/microsoft/vscode",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/microsoft/vscode/tree/1.142.0/src/vs/editor/common/model/pieceTreeTextBuffer",
+  "facts": [
+   {
+    "claim": "microsoft/vscode tag 1.142.0 exists and is marked Latest (release published 14 October; year not shown on page, footer reads 2026)",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/vscode/releases/tag/1.142.0"
+   },
+   {
+    "claim": "At tag 1.142.0, src/vs/editor/common/model/pieceTreeTextBuffer contains pieceTreeBase.ts, pieceTreeTextBuffer.ts, pieceTreeTextBufferBuilder.ts and rbTreeBase.ts (listing truncated, so the full file set and sizes were not checked)",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/vscode/tree/1.142.0/src/vs/editor/common/model/pieceTreeTextBuffer"
+   },
+   {
+    "claim": "VS Code 1.142.0 LICENSE.txt is the MIT licence",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/vscode/blob/1.142.0/LICENSE.txt"
+   },
+   {
+    "claim": "test/unit/node/index.js (the mocha entry named in the seed) exists at tag 1.142.0",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/vscode/tree/1.142.0/test/unit/node"
+   },
+   {
+    "claim": "Editor test tree at 1.142.0 has a pieceTreeTextBuffer test directory plus textModel, textModelSearch, textModelTokens and textModelWithTokens test files (the upstream behaviour the hidden suite would mirror)",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/vscode/tree/1.142.0/src/vs/editor/test/common/model"
+   },
+   {
+    "claim": "Bistard/piece-table is an MIT-licensed TypeScript piece table with a red-black tree, described by its author as almost rewritten from VS Code's piece-table version (a public near-port that lowers lookup and recall barriers)",
+    "status": "confirmed",
+    "url": "https://github.com/Bistard/piece-table"
+   },
+   {
+    "claim": "Standalone npm or other package-manager copy of VS Code's piece tree exists",
+    "status": "not_found",
+    "url": "https://www.npmjs.com/package/rbts"
+   },
+   {
+    "claim": "Test file count 7556 and 135 MB test tree from GitHub API",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/vscode/tree/1.142.0/src/vs/editor/test/common/model"
+   },
+   {
+    "claim": "Reference pieceTree implementation is about 2-3k lines (file sizes not checked)",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/vscode/tree/1.142.0/src/vs/editor/common/model/pieceTreeTextBuffer"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Buckets: edits, EOL/BOM, line/offset queries, search, performance bounds. Frontier risk is CRLF splitting and large-file performance. Weaker model stops at plain string array. No dated public evidence of agent results, so Band capped at 3.",
+   "build_cost": "About 3-4 days: isolate pieceTree and its deps from the trimmed snapshot, write the naive-oracle differential harness, calibrate perf thresholds, and make the suite deterministic with per-test reporting.",
+   "deliverable": "Rebuilt piece-tree text buffer: red-black tree, line starts, CRLF/CR/LF normalisation, BOM handling, chunk builder, edits, offset/line queries, search, within large-file performance thresholds.",
+   "gates_anticheat": "Hidden tests and config sealed outside /app; naive oracle not in image. Closes plain string-array backing via wall-clock large-file thresholds and call-count checks. Vendoring a newer copy is closed by history-less snapshot. Wrapping a system tool is not useful here.",
+   "grading_surface": "Hidden randomised differential suite: random edit sequences compared against a naive string model for text, line and offset queries, EOL/BOM and search; plus node unit tests. Base fails all cases. Naive oracle gives an unlimited generator.",
+   "local_fit": "Fits Node/CPU/8 cores/16 GB. Wall-clock perf thresholds on gVisor may be noisy; calibrate over several runs. Smoke build amber: exit-code-only report, zero listed tests, rc 1 on all three runs, so the offline unit runner needs isolating.",
+   "lookup": "partial: VS Code HEAD and 1.142.0 are public and the file is famous; a MIT TypeScript near-port exists (Bistard/piece-table). Verbatim recall of about 2-3k lines not established.",
+   "provenance": "microsoft/vscode @ 1.142.0 (tag, latest stable, MIT). HEAD 109b9b8 pushed 2026-10-20. Piece tree lives under src/vs/editor/common/model/pieceTreeTextBuffer.",
+   "reference": "Upstream pieceTreeTextBuffer files at 1.142.0 (pieceTreeBase.ts, pieceTreeTextBuffer.ts, pieceTreeTextBufferBuilder.ts, rbTreeBase.ts). Line count not verified; seed says about 2-3k.",
+   "ships": "Trimmed text-model snapshot at base with the pieceTreeTextBuffer directory removed, history-less, behind the existing TextBuffer interface. Node/TypeScript, CPU only.",
+   "similarity": "Nearest seeds S-im-004 (0.309) and S-im-002 (0.306) are other seeds, not public tasks; not reviewed here. S-op-003 0.181 is below threshold. Public-task neighbours kd_tree 0.139 and dep-tree 0.127 are below 0.15. Not crowded (not a C compiler, JSON parser or regex engine), but it is a rebuild of a famous upstream module."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausibly finishable in 8 h by a strong agent, but no dated public evidence of agent results, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-4 days: isolating the piece tree, building the naive-oracle harness and calibrating perf."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Node/CPU fits the sandbox, but wall-clock perf thresholds on gVisor may be noisy and the smoke suite is amber."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier with dense multi-part work (EOL, BOM, search, offsets, perf) fits the budget."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT confirmed at 1.142.0; shipping the trimmed snapshot and reference is allowed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Edits, EOL/BOM, line/offset queries, search and perf are separate buckets with steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public-task neighbour above 0.15; internal seed neighbours at about 0.31 need a check against S-im-004 and S-im-002."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public microsoft/vscode tag 1.142.0 with the piece-tree files confirmed at that tag."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete MIT upstream implementation at a pinned tag, which is also the production code."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Upstream is public at the tag, the file is famous, and a MIT near-port exists, so recall is partial. Oracle is sealed, but the reference is not."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Randomised differential suite against a naive executable oracle has an unlimited generator, so it is thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Piece tree cannot be separated from the rest of the model layer without rewriting most of VS Code; or naive oracle disagrees with upstream on EOL/BOM in a way the spec cannot settle; or timings are too noisy to threshold.",
+   "pass_if": "Dependency closure is isolable within a few thousand lines; naive model agrees with upstream on all queries for the seeded set; perf timings vary by under about 20% across runs; per-test reporting works offline.",
+   "steps": [
+    "In a throwaway networked container, clone microsoft/vscode at tag 1.142.0 and confirm the four pieceTreeTextBuffer files are present.",
+    "Run npm ci offline-prep if needed, then run only the pieceTree and textModel mocha tests via --grep to get per-test pass/fail (the smoke run gave zero listed tests and rc 1 on all three runs, so check why).",
+    "Trim a copy: remove pieceTreeTextBuffer and list its imports from the rest of the model layer; record the dependency closure size in lines.",
+    "Write a naive string model (TextBuffer over a string) and a random edit generator with CRLF/CR/LF, BOM, insert/delete, line/offset and search queries.",
+    "Run the generator against the upstream pieceTreeTextBuffer for 1,000 seeded sequences and check the naive model agrees on every query; record any disagreements and whether they are spec-level or bugs.",
+    "Time build and edit on a generated 50-100 MB file over 3 runs each to see whether median wall-clock is stable enough for a threshold on gVisor.",
+    "Repeat the same seeds twice to check determinism."
+   ]
+  },
+  "summary": "The seed is real and licence-clean: the VS Code 1.142.0 tag, its piece-tree files and the MIT licence are all confirmed, and the grading surface (a naive-oracle differential suite) is large and sealable. Risks are that the piece tree is famous with a public MIT near-port (Seal 2, lookup partial), and that the smoke suite is amber, so the 8 h band and the perf thresholds still need a spike before a frontier band claim can stand."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 81
+}

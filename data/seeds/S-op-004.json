@@ -1,0 +1,251 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "8 h. Locating the regression is feasible for a frontier agent, but going beyond the baseline needs kernel work. A weaker model fixes only the obvious cause. Buckets by prompt and generation, quant type and thread count.",
+  "cheat": "Lowering precision or skipping layers. The logit tolerance and top-1 equality gate closes this.",
+  "grading": "The wall-clock median of the bench over fixed prompts and thread counts is compared to the baseline. A hard gate requires logits within a set tolerance of the baseline's, and the top-1 tokens must match. The reward is 2^u-1 against the reference's speedup.",
+  "reference": "The upstream fix and follow-up commits, which give a measured speedup. The exact figure is not found in the row and is measured when the bundle is built. The issue's affected platform must be confirmed as CPU.",
+  "source": "https://github.com/ggml-org/llama.cpp/issues/18258 (pinned at the build before the fix), MIT",
+  "task": "/app ships a history-less snapshot of the regressed ggml CPU path and a small quantised model. The agent finds the cause of the throughput drop and improves token generation and prompt-processing speed on 8 cores. The delivery is the buildable tree and the bench binary.",
+  "title": "Recover a CPU inference throughput regression in llama.cpp"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-002 0.38"
+  ],
+  [
+   "2026-10-20T19:03:32Z",
+   "v1",
+   "killed:K2",
+   "The cited issue #18258 is a CUDA/Windows GPU regression, and its fix PR #18266 is a GPU-layer argument change with no CPU kernel work and no measured speedup. The seed's CPU regression and reference speedup have no paper trail, so the task as written has no valid subject."
+  ]
+ ],
+ "id": "S-op-004",
+ "kill": "K2",
+ "l0": {
+  "neighbours": [
+   [
+    0.378,
+    "S-op-002"
+   ],
+   [
+    0.2,
+    "S-rs-001"
+   ],
+   [
+    0.178,
+    "S-im-013"
+   ],
+   [
+    0.153,
+    "abetlen__llama-cpp-python-2bc1d97 [GSO]"
+   ],
+   [
+    0.153,
+    "abetlen__llama-cpp-python-218d361 [GSO]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential cmake git python3 python3-pip",
+  "build_ok": true,
+  "build_s": 361,
+  "ci_files": 60,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DLLAMA_BUILD_TESTS=ON -DLLAMA_TESTS_INSTALL=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "4a45de4f2c68f3d144f6c2431ad7c1da7e53c99e",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": " Linking CXX executable bin/llama-fit-params\n[436/443] Building CXX object app/CMakeFiles/llama-app.dir/llama.cpp.o\n[437/443] Building CXX object app/CMakeFiles/llama-app.dir/__/license.cpp.o\n[438/443] Building CXX object tools/results/CMakeFiles/llama-results.dir/results.cpp.o\n[439/443] Building CXX object tools/export-lora/CMakeFiles/llama-export-lora.dir/export-lora.cpp.o\n[440/443] Linking CXX executable bin/llama-results\n[441/443] Linking CXX executable bin/llama-export-lora\n[442/443] Building CXX object app/CMakeFiles/llama-app.dir/download.cpp.o\n[443/443] Linking CXX executable bin/llama",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "test-arg-parser::test-arg-parser",
+   "test-download-model::test-download-model",
+   "test-eval-callback-download-model::test-eval-callback-download-model",
+   "test-jinja-py::test-jinja-py"
+  ],
+  "stable_failures": 4,
+  "subdir": "",
+  "suite_s": 281,
+  "test_files": 288,
+  "tests_fail": 4,
+  "tests_listed": 59,
+  "tests_pass": 52,
+  "tests_skip": 3,
+  "tests_total": 59,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "39da130fcd1b6ca47d3c0522a40eccff41ea3dfb",
+  "kb": 460405,
+  "lang": "C++",
+  "open_prs": 1766,
+  "pushed": "2026-10-20",
+  "release": "v0.7.0",
+  "spdx": "MIT",
+  "stars": 131826,
+  "test_files": 288,
+  "test_kb": 5736,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/ggml-org/llama.cpp/issues/18258|ggml-org-llama-cpp-18258-eval-bug-major-performance-drop-sin",
+ "source_notes": "repo https://github.com/ggml-org/llama.cpp; merged PR or fixed issue",
+ "source_url": "https://github.com/ggml-org/llama.cpp/issues/18258",
+ "source_version": "",
+ "status": "killed:K2",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ggml-org/llama.cpp/issues/18258",
+  "facts": [
+   {
+    "claim": "Issue #18258 exists in ggml-org/llama.cpp and reports a throughput drop after b7406",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/issues/18258"
+   },
+   {
+    "claim": "The issue's affected platform is CPU (seed requires CPU)",
+    "status": "contradicted",
+    "url": "https://github.com/ggml-org/llama.cpp/issues/18258"
+   },
+   {
+    "claim": "The reported regression is CUDA/GPU: Windows, RTX 3090, CUDA backend, token generation with a draft model dropped (e.g. 45 to 10 t/s for Qwen3-VL-32B)",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/issues/18258"
+   },
+   {
+    "claim": "The fix is PR #18266 'llama: fix magic number of 999 for GPU layers', merged 2025-12-27 (commit 026d2ad)",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/18266"
+   },
+   {
+    "claim": "PR #18266 is a CPU-path or kernel fix with a measured speedup (seed reference)",
+    "status": "contradicted",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/18266"
+   },
+   {
+    "claim": "Measured speedup figure for a reference fix",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/18266"
+   },
+   {
+    "claim": "Repository licence is MIT (copyright 2023-2026 The ggml authors)",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/blob/master/LICENSE"
+   }
+  ],
+  "full_card": {
+   "band": "Not assessable for CPU: no documented CPU regression to find. A frontier agent could bisect the tree but the target does not exist as described.",
+   "build_cost": "About 1 day for a sealed CPU bench plus reference, if a real CPU regression is found.",
+   "deliverable": "Buildable tree and bench binary; reward on CPU token generation and prompt-processing median wall-clock vs baseline.",
+   "gates_anticheat": "Logit tolerance and top-1 equality gate block precision lowering and layer skipping. Editing bench or build config is closed by shipping a sealed bench harness; not verified in this pass.",
+   "grading_surface": "Fixed prompts x thread counts x quant types/buckets, plus logit tolerance and top-1 gate. Size: tens of configs; not thousands.",
+   "local_fit": "CPU-only build fits 8 cores / 16 GB; CUDA not needed. Build 361 s.",
+   "lookup": "PR #18266 is public and merged, but it is not the claimed CPU fix. lookup_verdict partial.",
+   "provenance": "Real repo llama.cpp, MIT. Cited issue #18258 is a real regression report, but it is a CUDA/Windows GPU slowdown, not CPU. Fix PR #18266 is merged, touches GPU-layer argument handling (common/arg.cpp, llama-context, llama-model), no perf numbers.",
+   "reference": "Not established. Claimed reference (PR #18266) is not a CPU speedup and has no measurements. No CPU reference speedup exists in the public record.",
+   "ships": "History-less snapshot of llama.cpp at the pre-fix commit plus a small quantised model. Smoke build green at 4a45de4 (build 361 s, 59 ctest tests listed: 52 pass, 3 skip, 4 stable failures, deterministic).",
+   "similarity": "Nearest L0 neighbour S-op-002 at 0.378 (below 0.6 but not checked). No crowded-list match."
+  },
+  "kill_code": "K2",
+  "kill_reason": "The cited issue #18258 is a CUDA/Windows GPU regression, and its fix PR #18266 is a GPU-layer argument change with no CPU kernel work and no measured speedup. The seed's CPU regression and reference speedup have no paper trail, so the task as written has no valid subject.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "No evidence of a CPU target; the task as written has nothing to find."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Green build in 361 s; a sealed CPU bench adds about a day."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU build and bench fit 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Bisecting and kernel work could be long, but the target is missing."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, confirmed at LICENSE."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Prompt and generation, quant and thread buckets are real, but built on the wrong premise."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.378 (S-op-002); not checked against the crowded list in depth."
+   },
+   "Real": {
+    "v": 2,
+    "why": "Real repo and issue, but the cited regression is GPU-only and the fix is not a CPU change."
+   },
+   "Ref": {
+    "v": 1,
+    "why": "No CPU reference or measured speedup; the cited PR has no perf numbers."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The fix is public in merged history, so the snapshot must be history-less to stay sealed."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Bench over prompts, threads and quants gives a moderate surface, not thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "No CPU slowdown above 10% across the range, or the only slowdown is GPU or argument-handling code (as the cited issue is).",
+   "pass_if": "A reproducible CPU slowdown above 10% with a first bad commit that touches the CPU path and has a measurable fix.",
+   "steps": [
+    "In a throwaway container with network, clone llama.cpp at b7406 and at the seed commit 4a45de4f; build both CPU-only (-DGGML_CUDA=OFF) with -j 8.",
+    "Pick one small quantised model (the one shipped in the seed) and run the bench at 1, 4 and 8 threads, prompt and generation, 5 repeats each, medians.",
+    "If the CPU medians differ by less than 10% across b7406 and HEAD, stop: no CPU regression exists.",
+    "If a slowdown above 10% appears, bisect between the two commits on the CPU-only build to find the first bad commit.",
+    "Check the first bad commit's diff: does it touch ggml-cpu kernels, or only GPU layer/argument code?",
+    "Check determinism: repeat the bench 3 times; medians must agree within about 3%."
+   ]
+  },
+  "summary": "The seed's premise fails: issue #18258 and its fix PR #18266 concern a CUDA/GPU regression and GPU-layer argument handling, not the CPU ggml path, and no measured reference speedup is public. The repo is real and MIT-licensed and the smoke build is green, but the task would need a new CPU regression to be found first, so the card is killed as K2 unless a CPU-specific regression is established in the spike."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 52
+}

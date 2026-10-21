@@ -1,0 +1,278 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "8 h. A frontier agent gets whole-patch approval but not hunk-level edits, conflicts and schema parity. Buckets: whole approve and reject, per-hunk, modified hunks, conflict, schema. A weaker model fails on protocol plumbing.",
+  "cheat": "Auto-approving everything. Hidden clients reject and modify hunks, and the final bytes are checked.",
+  "grading": "Hidden protocol tests act as a scripted client over stdio JSON-RPC against a mock model. They check message shapes, the final file contents after partial approvals, and conflict outcomes. Reward is the fraction passed, with the existing app-server tests as a gate.",
+  "reference": "Written by us: about 1600 lines of Rust across the protocol types, the patch application and the server handlers. It scores 1.",
+  "source": "https://github.com/openai/codex/issues/2998 @ rust-v0.163.0 (head cb00a67), Apache-2.0",
+  "task": "/app ships a snapshot of the Rust workspace at the base. The agent adds to the app-server protocol a request and response flow in which proposed file edits are sent to the client as structured diffs. The client can approve, reject or modify each hunk, and the decision is applied back to the patch before it is run. It also covers per-hunk partial approval, conflict detection with edits made by the editor in the meantime, and schema generation.",
+  "title": "Editor-side diff and approval channel for Codex app-server"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "protocol",
+ "final": 55,
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-010 0.42"
+  ],
+  [
+   "2026-10-20T19:02:52Z",
+   "v1",
+   "pass",
+   "score 70; dead links ['https://github.com/openai/codex/blob/rust-v0.163.0/codex-rs/app-server-protocol/src/protocol/v2.rs']"
+  ],
+  [
+   "2026-10-20T19:06:29Z",
+   "v2",
+   "killed:K3",
+   "Upstream already ships file-change approval (item/fileChange/requestApproval, PR #6760 and #8451), so the base is partly solved, or it must be stripped into a fork no maintainer would accept. The per-hunk wire shapes would be invented by us and the hidden scripted-client tests are hand-written with "
+  ]
+ ],
+ "id": "S-im-011",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.422,
+    "S-im-010"
+   ],
+   [
+    0.243,
+    "S-im-006"
+   ],
+   [
+    0.235,
+    "S-im-009"
+   ],
+   [
+    0.112,
+    "paramiko [Commit0]"
+   ],
+   [
+    0.106,
+    "etree-xml-diff-patch [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 31,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "false",
+  "commit": "c6e4438a5d5befe6c8e59b01b6534eb8f0792230",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21553:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21672:14)\n    at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22292:23)\n    at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 1331,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cb00a67569450aea2fdb1b1f31fc042fc0b5416f",
+  "kb": 688333,
+  "lang": "Rust",
+  "open_prs": 163,
+  "pushed": "2026-10-20",
+  "release": "rust-v0.163.0",
+  "spdx": "Apache-2.0",
+  "stars": 130298,
+  "test_files": 1331,
+  "test_kb": 20632,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/openai/codex/issues/2998|openai-codex-2998-ide-integrated-diff-approval",
+ "source_notes": "repo https://github.com/openai/codex; opened 2025-08-31",
+ "source_url": "https://github.com/openai/codex/issues/2998",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/openai/codex/issues/2998",
+  "facts": [
+   {
+    "claim": "Repo openai/codex exists, Apache-2.0 licence (LICENSE file reads 'Apache License, Version 2.0')",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/blob/main/LICENSE"
+   },
+   {
+    "claim": "Issue #2998 exists, opened 2025-08-31, still open, requests IDE-side diff review and approve/reject flow for Codex",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/2998"
+   },
+   {
+    "claim": "Issue #2998 has no linked branches or pull requests",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/2998"
+   },
+   {
+    "claim": "Directory codex-rs/app-server-protocol exists at tag rust-v0.163.0",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/tree/rust-v0.163.0/codex-rs/app-server-protocol"
+   },
+   {
+    "claim": "Upstream already ships a v2 item/fileChange/requestApproval RPC with item/started and item/completed for file changes (PR #6760, Nov 2025), so base-level file-change approval exists upstream",
+    "status": "confirmed",
+    "url": "https://forge.lthn.ai/core/core-agent-ide/commit/d6c30ed25eb9667bb14eb8af20e7b712b25aee64"
+   },
+   {
+    "claim": "Follow-up #8451 adds session-level approval caching by absolute path and splits v2 decisions into command-execution and file-change enums",
+    "status": "confirmed",
+    "url": "https://forge.lthn.ai/core/core-agent-ide/commit/d6c30ed25eb9667bb14eb8af20e7b712b25aee64"
+   },
+   {
+    "claim": "Per-hunk approve/modify decision type exists in the released protocol (not found in search results; source file v2.rs at the tag returned 404 and was not read)",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/blob/rust-v0.163.0/codex-rs/app-server-protocol/src/protocol/v2.rs"
+   },
+   {
+    "claim": "Upstream release notes or changelog describe per-hunk approval for file changes",
+    "status": "not_found",
+    "url": "https://www.havoptic.com/tools/openai-codex"
+   },
+   {
+    "claim": "Seed states reference is about 1600 lines of Rust written by CG; no permissive complete upstream implementation of the per-hunk flow was found",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/issues/2998"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; frontier agent should reach partial credit across whole/per-hunk/modified/conflict/schema buckets; full 0.9 not evidenced; weaker model likely fails protocol plumbing",
+   "build_cost": "about 3-5 days including stripping upstream approval code and vendoring; probe did not build Rust (ran a node check on the Rust repo, commit mismatch c6e4438 vs head cb00a67)",
+   "deliverable": "Protocol types plus stdio JSON-RPC handlers for structured per-file diffs, per-hunk approve/reject/modify, whole-patch approve/reject, conflict detection, schema generation",
+   "gates_anticheat": "Existing app-server tests as gate; hidden tests in sealed grader; cheat = auto-approve everything, closed by checking final bytes after hunk modifications and conflicts; wire shapes must be pinned in the task text or acceptance is unfair",
+   "grading_surface": "Hidden scripted stdio JSON-RPC client tests against a mock model: message shapes, final file bytes after partial approval, conflict outcomes; count not known (seed says tens to hundreds of cases; not verified)",
+   "local_fit": "Rust workspace on gVisor, 8 cores 16 GB; cargo deps must be vendored for offline run; cold build time unknown",
+   "lookup": "partial: approval flow for file changes exists upstream since v2 (#6760, #8451); per-hunk not found; base source not directly read at tag",
+   "provenance": "openai/codex issue #2998 (open, no PRs) at rust-v0.163.0, Apache-2.0; repo pushed 2026-10-20, 130k stars",
+   "reference": "CG-written, about 1600 lines Rust; no permissive complete upstream reference for the per-hunk flow found",
+   "ships": "Rust workspace snapshot at base, but base already contains upstream v2 file-change approval (item/fileChange/requestApproval, PR #6760) which must be stripped or the task is partly pre-solved",
+   "similarity": "Nearest l0 neighbour S-im-010 at 0.422 (in-house seed, not public); S-im-006 0.243; no public task above 0.15; not on CROWDED list"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8 h tier is plausible but no dated public evidence of agents on this work; capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Rust workspace build not probed; base must be stripped of upstream approval code; estimate 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Rust workspace fits 8 cores and 16 GB; needs vendored crates for offline run."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several modules (protocol, patch apply, server handlers, schema) over 8 h."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at the LICENSE file."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Clear buckets: whole approve/reject, per-hunk, modified hunks, conflicts, schema."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public benchmark neighbour above 0.15; in-house neighbour at 0.422 is not public; not on CROWDED list."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real repo at a release tag and a real open issue requesting the feature; the feature itself is not merged upstream, and base already has partial prior art."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "CG-written 1600-line reference with no public complete implementation to compare; wire shapes not yet pinned in the task text."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle sealed, but upstream v2 file-change approval names are already in the base and in public history, so an agent can recall shapes."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden scripted-client protocol tests; likely hundreds of cases, but count unverified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Cold build or test suite cannot run deterministically offline; or per-hunk approval already exists in a merged later release (then K1 or K8); or stripping the upstream file-change flow turns the base into a fork that no maintainer would accept (K11/K2-type realism failure).",
+   "pass_if": "Reference-free build succeeds offline after vendoring in under about 45 min cold; existing app-server tests run deterministically; no per-hunk approval type is found in the tagged source or later releases; the base can be stripped without breaking the remaining protocol.",
+   "steps": [
+    "In a networked throwaway Linux container, clone openai/codex and check out rust-v0.163.0; confirm the commit (cb00a67 per source_facts vs c6e4438 in smoke_build) and record which one is used.",
+    "Read codex-rs/app-server-protocol/src (v2 and schema dirs) by local file read: list the item/fileChange/requestApproval request and response types and their fields; confirm whether any per-hunk decision type exists.",
+    "Run cargo vendor and cargo build for the app-server-protocol and app-server crates; time the cold build on 8 cores; confirm it succeeds offline after vendoring.",
+    "Run the existing app-server test suite with cargo test once; record pass/fail per test and check that two runs give identical results (determinism).",
+    "Check the upstream PR list and later releases for per-hunk or hunk-level approval wording (search only generic terms), to close the lookup gate.",
+    "Sketch the stripped base: list which lines of the v2 file-change approval would have to be removed so the base does not already solve the feature."
+   ]
+  },
+  "summary": "The Apache-2.0 repo, the open issue #2998 and the rust-v0.163.0 tag all check out, but upstream already has a v2 file-change approval RPC (PR #6760, follow-up #8451), so the base must be stripped and the per-hunk flow is not found in public sources. The Rust build was never probed (the smoke probe ran a node check at a different commit), so the build cost is unknown and the seed should go to a spike with the conditions above before any further investment."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [
+   "https://github.com/openai/codex/blob/rust-v0.163.0/codex-rs/app-server-protocol/src/protocol/v2.rs"
+  ],
+  "ratio": 0.16666666666666666
+ },
+ "v1_score": 70,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-011",
+  "kill_code": "K3",
+  "note": "Upstream already ships file-change approval (item/fileChange/requestApproval, PR #6760 and #8451), so the base is partly solved, or it must be stripped into a fork no maintainer would accept. The per-hunk wire shapes would be invented by us and the hidden scripted-client tests are hand-written with an unknown count. The probe ran a node check instead of the Rust build, on the wrong commit (c6e4438 instead of cb00a67), so the cold build is unverified. The v2.rs link at the tag is dead.",
+  "scores": {
+   "Band": 2,
+   "Build": 1,
+   "Fit": 2,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 55
+}

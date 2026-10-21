@@ -1,0 +1,213 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "4 h. A frontier agent gets the common matching but misses the reserved labels, CIDR expansion and the ordering rules. Buckets: parse, match, CIDR, policy keys. A weaker model gets only simple selectors.",
+  "cheat": "Recalling upstream code from memory. The packages are renamed and the hidden cases cover the edge semantics.",
+  "grading": "The package's own tests, plus hidden differential cases from the reference using generated label sets and selectors. The rule is exact equality of outputs and key ordering. The base scores 0, and the reward is the fraction passed.",
+  "reference": "The upstream implementation at the pinned release, which scores 1. The clone probe failed, so the build must be checked before commit.",
+  "source": "https://github.com/cilium/cilium @ v1.20.3 (head ee03276), Apache-2.0",
+  "task": "/app ships a pruned snapshot of the cilium Go packages for labels, label selectors and policy key matching, with the implementations removed and the interfaces kept. The agent rebuilds the parsing, CIDR label expansion, selector matching and the policy map key and entry semantics. The exact package slice is fixed when the bundle is built.",
+  "title": "Rebuild the label selector and policy key matching in cilium"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-012 0.32"
+  ],
+  [
+   "2026-10-20T19:03:32Z",
+   "v1",
+   "killed:K11",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 4, 'Band': 3, 'Hor': 3, 'Multi': 4, 'Seal': 2, 'Nov': 3, 'Lic': 5, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-im-013",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.325,
+    "S-im-012"
+   ],
+   [
+    0.183,
+    "S-im-011"
+   ],
+   [
+    0.182,
+    "S-im-009"
+   ],
+   [
+    0.116,
+    "prometheus-typed-label-sorting [DeepSWE]"
+   ],
+   [
+    0.1,
+    "ES-1841 PC XT clone emulator [pavkam]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "skipped": "probe failed 3 times: probe: repo reachable but the clone failed"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "ee032768dad70538116c9445a47a7f849056ed51",
+  "kb": 584180,
+  "lang": "Go",
+  "open_prs": 290,
+  "pushed": "2026-10-20",
+  "release": "v1.20.3",
+  "spdx": "Apache-2.0",
+  "stars": 25690,
+  "test_files": 2496,
+  "test_kb": 14966,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/cilium/cilium|oss-fuzz-cilium",
+ "source_notes": "OSS-Fuzz project, language go",
+ "source_url": "https://github.com/cilium/cilium",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/cilium/cilium/releases/tag/v1.20.3",
+  "facts": [
+   {
+    "claim": "cilium v1.20.3 release exists, published 15 Oct (year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/cilium/cilium/releases/tag/v1.20.3"
+   },
+   {
+    "claim": "v1.20.3 release targets commit bf1aba7 (full hash bf1aba7b34ab6d9c711315d78d8eefbea81962d1), not the seed's head ee032768 as the pinned commit",
+    "status": "contradicted",
+    "url": "https://github.com/cilium/cilium/releases/tag/v1.20.3"
+   },
+   {
+    "claim": "Repository licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/cilium/cilium/blob/main/LICENSE"
+   },
+   {
+    "claim": "pkg/labels exists at v1.20.3 with cidr.go, k8s.go, labels.go, set.go, array.go, validation.go and their tests",
+    "status": "confirmed",
+    "url": "https://github.com/cilium/cilium/tree/v1.20.3/pkg/labels"
+   },
+   {
+    "claim": "pkg/labels has a selector subpackage (selector-to-CIDR label expansion lives there)",
+    "status": "not_found",
+    "url": "https://github.com/cilium/cilium/tree/v1.20.3/pkg/labels"
+   },
+   {
+    "claim": "pkg/policy/types contains a dedicated policy map key file (key.go)",
+    "status": "not_found",
+    "url": "https://github.com/cilium/cilium/tree/v1.20.3/pkg/policy/types"
+   },
+   {
+    "claim": "pkg/policy/types contains entry.go and policyentry.go, selector.go and requirements.go with tests",
+    "status": "confirmed",
+    "url": "https://github.com/cilium/cilium/tree/v1.20.3/pkg/policy/types"
+   },
+   {
+    "claim": "Cilium pkg/labels API is publicly indexed on pkg.go.dev, and forks of labels/cidr appear there (lookup exposure)",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/cilium/cilium/pkg/labels"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier as proposed. Buckets: parse, match, CIDR, policy keys. Weaker model likely stops at simple selectors. No dated public evidence yet, so the Band score is capped at 3.",
+   "build_cost": "3-5 days. Smoke build failed at clone, so the build is unverified. Dependency closure of the pruned slice is unknown.",
+   "deliverable": "Go packages that parse labels, expand CIDR labels, match label selectors, and build policy map keys and entries, so they match the reference output and key ordering.",
+   "gates_anticheat": "Hidden cases and reference kept out of the image. Packages renamed. Close test/config edits by grading against a sealed copy of the test files. Vendoring is blocked offline. Verbatim recall of upstream is the main cheat path.",
+   "grading_surface": "The package's own tests plus hidden differential cases generated from label sets and selectors, compared for exact output equality including ordering. Count not measured.",
+   "local_fit": "Pure Go, CPU only, no network at run time. Fits the sandbox if the slice's dependency closure is small enough to compile offline.",
+   "lookup": "partial. Upstream code is public on GitHub, is indexed on pkg.go.dev, and is widely mirrored in forks. Renaming reduces direct copy, but the semantics are recallable.",
+   "provenance": "cilium/cilium v1.20.3 (Apache-2.0, OSS-Fuzz project). Release commit bf1aba7 per the release page; seed cites head ee03276, which must be reconciled before commit.",
+   "reference": "Upstream v1.20.3 source for the same packages, Apache-2.0, Go. Completeness is implied by the release but the pruned-slice build is unverified.",
+   "ships": "Pruned Go snapshot of pkg/labels (incl. cidr, k8s, array, set) and pkg/policy/types, bodies removed, interfaces kept, no git history.",
+   "similarity": "Nearest seed S-im-012 at 0.325 (another seed, not a public task). S-im-011 at 0.183. No public task above 0.15. No K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Scope is plausible for 4 h, but there is no dated public evidence of agent performance on this work, so the score is capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-5 days; the smoke build failed at clone so the slice build is unverified."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Pure Go, CPU only, offline. Fits if the dependency closure is small."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4 h is below the 8 h median and the scope is medium; a longer tier is probably needed to make it sustained work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the source, data and reference in a bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Parse, match, CIDR and policy-key buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour is another seed at 0.325, not a public task. Not crowded, but above the 0.15 bar."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real upstream Apache-2.0 release with a tagged commit and real source files."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream is a complete permissive implementation, but the pruned-slice build and the pinned commit are unverified."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Upstream code is public and mirrored, so the reference is recallable and the sealing depends on the renaming and hidden cases."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated differential cases over label sets and selectors give a large surface, though the count is not measured."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "The dependency closure of the pruned slice spans most of cilium, the reference is not deterministic, or the release commit cannot be pinned to a reproducible build.",
+   "pass_if": "Reference builds offline, package tests run deterministically on the reference, the pruned snapshot compiles with a manageable dependency closure, and the differential outputs repeat exactly across runs.",
+   "steps": [
+    "In a throwaway Linux container with network, clone cilium/cilium at the release commit bf1aba7 (tag v1.20.3) and record the commit against seed head ee03276.",
+    "Run go build and go test for ./pkg/labels/... and ./pkg/policy/types/... offline after go mod download; record time and any failures.",
+    "Count the package test cases that exist for these packages and note how many pass on the untouched upstream.",
+    "Prune the package bodies in a copy, keeping exported signatures, and check whether the snapshot compiles with its dependency closure (list the imports that pull in other cilium packages).",
+    "Generate about 50 random label sets and selectors, run the reference twice, and check the outputs and key ordering are identical across runs.",
+    "Check whether the pruned snapshot's stubs are enough to compile the package tests, which shows if the agent can start from the interfaces alone."
+   ]
+  },
+  "summary": "The seed is a real, Apache-2.0 upstream scope with a public release, but the pin is wrong: v1.20.3 targets commit bf1aba7, not the seed's ee03276, and the smoke build failed at clone, so the reference build is unverified. Upstream code is public and mirrored, so recall is a real cheat path, and the 4 h band is unevidenced; I'm not killing it, but it needs the spike before commit and likely a longer tier."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73
+}

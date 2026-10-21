@@ -1,0 +1,256 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "8 h. A single main lever, but a long C++ build and a wide semantic equivalence gate. A frontier agent gets the basic rewrite, but tie order and NULL semantics are hard. A weaker model cannot finish the build loop.",
+  "cheat": "Result-caching and special-casing the reproducer query are caught by varied hidden schemas and data. The fix is not in the image.",
+  "grading": "Gate: all results of about 400 hidden generated queries match the baseline (ties and NULL ordering included) and the shipped sqllogictests pass. Reward uses medians of runtime on a hidden dataset, with a memory cap, scored as 2^u-1.",
+  "reference": "The upstream PR (about 200 lines) plus the related ordered-aggregate rewrites, written by us to broaden the scope.",
+  "source": "https://github.com/duckdb/duckdb issue #10675 -> PR #10684 @ early 2024, MIT",
+  "task": "/app ships a history-less DuckDB snapshot at the regressed commit with a prebuilt-cache-free build recipe. DISTINCT ON and FIRST(x ORDER BY y) queries are up to 3x slower and use 4x the memory. The agent rewrites the plans (arg_min/arg_max-style) and widens the optimisation to related ordered-aggregate and window forms.",
+  "title": "DuckDB ordered-aggregate and DISTINCT ON regression"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour duckdb [ProgramBench] 0.21"
+  ],
+  [
+   "2026-10-20T21:16:39Z",
+   "v1",
+   "killed:K10",
+   "Scope is one narrow lever: the core is the merged 199-line upstream PR #10684, and the widening is reference-authored with no public spec or measured gap. The source notes already say it fits only as a sub-task. Secondary risk: K8, since the upstream diff is recallable in outline."
+  ]
+ ],
+ "id": "S-op-008",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.21,
+    "duckdb [ProgramBench]"
+   ],
+   [
+    0.207,
+    "S-op-007"
+   ],
+   [
+    0.178,
+    "S-im-018"
+   ],
+   [
+    0.166,
+    "S-im-017"
+   ],
+   [
+    0.086,
+    "custom-memory-heap-crash [archive]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential cmake git libssl-dev ninja-build python3",
+  "build_ok": false,
+  "build_s": 196,
+  "ci_files": 33,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DBUILD_UNITTESTS=ON -DENABLE_UNITTEST_CPP_TESTS=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "bfabf1000b153b1f842c54f58a134c486a80ed83",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 3,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "ons_distributive.cpp\nc++: fatal error: Killed signal terminated program cc1plus\ncompilation terminated.\n[20/701] Building CXX object extension/core_functions/scalar/generic/CMakeFiles/duckdb_core_functions_generic.dir/ub_duckdb_core_functions_generic.cpp.o\n[21/701] Building CXX object extension/core_functions/scalar/date/CMakeFiles/duckdb_core_functions_date.dir/ub_duckdb_core_functions_date.cpp.o\n[22/701] Building CXX object extension/core_functions/aggregate/holistic/CMakeFiles/duckdb_core_functions_holistic.dir/ub_duckdb_core_functions_holistic.cpp.o\nninja: build stopped: subcommand failed.",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 7489,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "bfabf1000b153b1f842c54f58a134c486a80ed83",
+  "kb": 557622,
+  "lang": "C++",
+  "open_prs": 361,
+  "pushed": "2026-10-20",
+  "release": "v1.5.6",
+  "spdx": "MIT",
+  "stars": 42300,
+  "test_files": 7498,
+  "test_kb": 44547,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/duckdb/duckdb/issues/10675|duckdb-0-9-3-dev3715-0-10-0-regressed-duckdb-after-pr-10684-",
+ "source_notes": "Levers: rewrite DISTINCT ON ordered FIRST into arg_min_null (builds on #10457 for FIRST(x ORDER BY y)); only 1 main lever, 199 added lines, 7 files. Reproducer is fully in the issue text. Fix is narrow so low multi-lever score: use as a sub-task inside a larger DuckDB task. Baseline before-fix time not given as number except the 3x claim.",
+ "source_url": "https://github.com/duckdb/duckdb/issues/10675",
+ "source_version": "DuckDB 0.9.3.dev3715 / 0.10.0 (regressed) -> DuckDB after PR #10684 (merged 2024-02-15)",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/duckdb/duckdb/issues/10675",
+  "facts": [
+   {
+    "claim": "Issue #10675 exists: DISTINCT ON regression in 0.10.0 vs 0.9.2, opened 2024-02-14, closed 2024-02-15",
+    "status": "confirmed",
+    "url": "https://github.com/duckdb/duckdb/issues/10675"
+   },
+   {
+    "claim": "Reporter states the slowdown is 'up to 3 times longer' for DISTINCT ON",
+    "status": "confirmed",
+    "url": "https://github.com/duckdb/duckdb/issues/10675"
+   },
+   {
+    "claim": "The issue reports a 4x memory increase",
+    "status": "not_found",
+    "url": "https://github.com/duckdb/duckdb/issues/10675"
+   },
+   {
+    "claim": "The issue reports FIRST(x ORDER BY y) queries as slower (the regression is DISTINCT ON only in the issue text)",
+    "status": "not_found",
+    "url": "https://github.com/duckdb/duckdb/issues/10675"
+   },
+   {
+    "claim": "PR #10684 exists, merged into main as ac42443 on 2024-02-15, rewriting ordered FIRST for DISTINCT ON into arg_min_null, and closes #10675",
+    "status": "confirmed",
+    "url": "https://github.com/duckdb/duckdb/pull/10684"
+   },
+   {
+    "claim": "PR #10684 diff is about 199 added lines in 7 files",
+    "status": "not_found",
+    "url": "https://github.com/duckdb/duckdb/pull/10684"
+   },
+   {
+    "claim": "PR #10457 (Issue #10224: ORDERED FIRST Rewrite) exists and was merged 2024-02-05 as c31e801, the earlier FIRST(x ORDER BY y) optimisation that #10684 builds on",
+    "status": "confirmed",
+    "url": "https://github.com/duckdb/duckdb/pull/10457"
+   },
+   {
+    "claim": "PR #10457 itself introduces the arg_min-style FIRST(x ORDER BY y) rewrite",
+    "status": "not_found",
+    "url": "https://github.com/duckdb/duckdb/pull/10457"
+   },
+   {
+    "claim": "DuckDB LICENSE is MIT (Copyright 2018-2026 Stichting DuckDB Foundation)",
+    "status": "confirmed",
+    "url": "https://github.com/duckdb/duckdb/blob/main/LICENSE"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. A frontier agent can likely port the narrow rewrite, which is the upstream diff recallable in outline; the widened forms are where scores separate. Weaker model likely stalls in the C++ build loop. Band 3 without dated evidence.",
+   "build_cost": "3 (days): build fix plus harness, dataset, and 400-query generator.",
+   "deliverable": "Patch to the planner/optimizer so DISTINCT ON and ordered FIRST are rewritten into arg_min_null-style aggregates, plus the claimed widening to related ordered-aggregate and window forms (reference-authored, not upstream).",
+   "gates_anticheat": "Hidden schemas and data defeat result caching and reproducer special-casing. Fix must not be in the image; history stripped so the upstream diff cannot be read. Tests and CMake config frozen for grading.",
+   "grading_surface": "Hidden ~400 generated queries compared with baseline results (ties and NULL order), shipped sqllogictests, median runtime and memory cap on a hidden dataset. Scored as 2^u-1 on speedup.",
+   "local_fit": "C++ DuckDB build on 8 cores and 16 GB is feasible but slow; smoke build failed and needs a fix before any spike. No network needed at run time.",
+   "lookup": "direct: the fix is in public git history, in the later release line (v1.5.6 per probe) and vendored in duckdb-r. Sealing relies on the history-less snapshot.",
+   "provenance": "Upstream DuckDB issue #10675 (closed 2024-02-15) fixed by merged PR #10684 (commit ac42443); earlier base PR #10457 merged 2024-02-05. Public git history, MIT.",
+   "reference": "Upstream PR #10684 (about 199 lines, MIT) plus own widening; the widening has no public spec, so hidden cases for it would encode our internals.",
+   "ships": "History-less DuckDB snapshot at the regressed early-2024 commit (must predate ac42443) with a build recipe; no vendored newer copy. Smoke build red: cmake build failed after 196 s, no test results parsed (tests_total 0).",
+   "similarity": "Nearest l0 neighbour is duckdb [ProgramBench] at 0.21 (above the 0.15 bar) and S-op-007 at 0.207; the subject is an upstream DuckDB optimiser fix, not a crowded task type, but it overlaps the DuckDB family."
+  },
+  "kill_code": "K10",
+  "kill_reason": "Scope is one narrow lever: the core is the merged 199-line upstream PR #10684, and the widening is reference-authored with no public spec or measured gap. The source notes already say it fits only as a sub-task. Secondary risk: K8, since the upstream diff is recallable in outline.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task; expected band is plausible but unmeasured."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Build fix, test harness, dataset and query generator are a multi-day job."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Heavy C++ build on 8 cores; smoke build red, so the environment is not yet proven."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Single narrow lever (about 199 lines in 7 files); not 8 h of sustained work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, verified against the LICENSE file."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Essentially one optimiser lever; widening adds some buckets but they are not independent or specified."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.21 (duckdb ProgramBench), above 0.15 bar; not an exact duplicate."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real issue and merged PR with MIT licence; slowdown figure confirmed, memory and FIRST claims unsupported."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "A complete permissive upstream implementation exists for the core, but the widened scope is unverified reference-authored code."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream code is public; a history-less snapshot helps, but a frontier agent can recall the approach in outline."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Shipped sqllogictests plus about 400 hidden queries; a generator could push it higher, but the narrow scope is small."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Upstream diff is unbuildable in the snapshot, results differ from baseline, or no widened form shows a gap beyond the reproducer (then the task is K10).",
+   "pass_if": "Base shows about 3x slowdown on the reproducer, the upstream diff restores parity with identical results, and at least one widened form shows a measurable, separate gap.",
+   "steps": [
+    "In a throwaway Linux container with network, clone DuckDB and check out the parent of ac42443 (the snapshot base) and confirm #10457 is in or out as the snapshot expects.",
+    "Build with cmake/ninja -j8 and record the time; fix the red smoke-build cause (log its first error).",
+    "Run the issue's DISTINCT ON reproducer and a FIRST(x ORDER BY y) query on a synthetic dataset to confirm the about 3x runtime gap on the base.",
+    "Apply the upstream PR #10684 diff in a scratch branch, rebuild, and confirm the speedup and identical results on 50 random queries with ties and NULLs.",
+    "Check whether the widened window or ordered-aggregate forms show a measurable gap on the base; if they do not, the widening adds no graded lever.",
+    "Run a sample of sqllogictests twice to check determinism."
+   ]
+  },
+  "summary": "The seed's core claim is real: DuckDB #10675 is confirmed, the 3x figure is the reporter's own, and the fix PR #10684 merged on 2024-02-15 under an MIT licence. The seed is not viable as an 8 h optimisation task: the fix is public and already in later releases, the 4x memory and FIRST(x ORDER BY y) claims are unsupported by the issue, the smoke build is red, and the widened scope has no public spec, so it should be killed as K10 or folded into a larger DuckDB task."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 63
+}

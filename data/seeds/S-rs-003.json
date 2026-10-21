@@ -1,0 +1,270 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "8 h. The levers are quantizer design, LPC order, long-term prediction and entropy coding. Partial credit is dense. A frontier agent improves beyond the baseline but is below the reference. A weaker model barely matches the baseline.",
+  "cheat": "A rate cap on real bytes prevents out-of-band side channels. Decoding runs in a clean container with no access to the evaluation audio.",
+  "grading": "The agent's codec runs on hidden utterances from the other-condition split and other speakers. Scored by SNR plus log-spectral distance averaged over three bitrates, with a rate cap checked on actual bytes. Normalised between the shipped baseline and our reference.",
+  "reference": "Our own LPC plus rANS codec with noise shaping, tuned on the training subset. It reaches a reported gain over the baseline.",
+  "source": "https://www.openslr.org/12/ (LibriSpeech, CC BY 4.0); Opus (BSD) as the baseline",
+  "task": "/app ships train-clean-100 subsets, an evaluation harness and a baseline (mu-law/ADPCM plus an Opus-style mode). The agent designs an encoder and decoder (LPC or noise-feedback coding, entropy coding, or a small CPU-trained learned codec) for a fixed bitrate set, and delivers an encode/decode CLI.",
+  "title": "Speech codec rate-distortion on LibriSpeech under a CPU budget"
+ },
+ "class": "research",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "codec",
+ "final": 65,
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-007 0.16"
+  ],
+  [
+   "2026-10-20T21:16:56Z",
+   "v1",
+   "pass",
+   "score 73; dead links []"
+  ],
+  [
+   "2026-10-20T21:18:09Z",
+   "v2",
+   "killed:K5",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-rs-003",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.162,
+    "S-op-007"
+   ],
+   [
+    0.154,
+    "S-op-006"
+   ],
+   [
+    0.106,
+    "ai_rd_small_scaling_law [RE-Bench]"
+   ],
+   [
+    0.104,
+    "S-op-008"
+   ],
+   [
+    0.077,
+    "add-benchmark-lm-eval-harness [original]"
+   ]
+  ]
+ },
+ "method": "research",
+ "rank": 5,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 6,
+  "clone_ok": true,
+  "cmd_build": "/p/tools/bin/meson compile -C build",
+  "cmd_fetch": "python3 -m venv /p/tools && /p/tools/bin/pip install -q meson && /p/tools/bin/meson setup build -Dbuildtype=release --wrap-mode=default",
+  "cmd_test": "/p/tools/bin/meson test -C build --num-processes 4; r=$?; cp build/meson-logs/testlog.json $OUT/run$i.jsonl; exit $r",
+  "commit": "5f74436ddd50a5e42907b403216284b941fa021e",
+  "deterministic": true,
+  "eco": "meson",
+  "fetch_ok": false,
+  "fetch_s": 12,
+  "log": "Version: 1.12.1\nSource dir: /p/src\nBuild dir: /p/src/build\nBuild type: native build\n\nmeson.build:2:11: ERROR: Command `/p/src/meson/get-version.py --package-version` failed with status 255.\n\nA full log can be found at /p/src/build/meson-logs/meson-log.txt\n\nERROR: Current directory is not a meson build directory: `/p/src/build`.\nPlease specify a valid build dir or change the working directory to it.\nIt is also possible that the build directory was generated with an old\nmeson version. Please regenerate it in this case.",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 44,
+  "tests_listed": 2,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "5f74436ddd50a5e42907b403216284b941fa021e",
+  "kb": 25368,
+  "lang": "C",
+  "open_prs": 39,
+  "pushed": "2026-10-19",
+  "release": "v1.5.2",
+  "spdx": "NOASSERTION",
+  "stars": 3349,
+  "test_files": 44,
+  "test_kb": 3273,
+  "tree_truncated": false
+ },
+ "source_key": "openslr.org/12/; https://github.com/xiph/opus; https://github.com/drowe67/codec2|baseline-mu-law-adpcm-or-opus-via-opus-demo-at-a-fixed-bitra",
+ "source_notes": "Subsets sizes (page): dev-clean 337M, test-clean 346M, test-other 328M, train-clean-100 6.3G (100 h), whole corpus ~1000 h 16 kHz. Opus README: no objective-quality numbers; Codec2 README: 700-3200 bit/s, no PESQ/MOS numbers; opus_demo has -cbr -complexity options. OOD: tune on train-clean-100 speakers, hidden = test-other (noisier) or different language/instrument data not in LibriSpeech. INFERRED run time per eval on 8 CPUs: 200 utterances (~30 min audio) encode+decode with Opus <30 s; a pure-Python/numpy LPC codec ~1-3 min; training a small conv/GRU codec on 10 h of audio ~1-3 h. Levers: LPC order, quantizer design, entropy coding (rANS), noise shaping, long-term prediction.",
+ "source_url": "https://www.openslr.org/12/; https://github.com/xiph/opus; https://github.com/drowe67/codec2",
+ "source_version": "Baseline: mu-law / ADPCM or Opus via opus_demo at a fixed bitrate, decoded and scored on a held-out set -> Reference: our own better codec, e.g. LPC/noise-feedback or small learned (CPU-trained) codec reaching higher quality at the same bitrate, or Opus at higher complexity setting",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.openslr.org/12/",
+  "facts": [
+   {
+    "claim": "LibriSpeech (openslr.org/12) is licensed CC BY 4.0",
+    "status": "confirmed",
+    "url": "https://www.openslr.org/12/"
+   },
+   {
+    "claim": "LibriSpeech test-other is a separate download (328M) and train-clean-100 is 6.3G (100 h); corpus is about 1000 h of 16 kHz read English",
+    "status": "confirmed",
+    "url": "https://www.openslr.org/12/"
+   },
+   {
+    "claim": "xiph/opus repository exists with about 3.3k stars and a meson.build at the root alongside autotools and CMake",
+    "status": "confirmed",
+    "url": "https://github.com/xiph/opus"
+   },
+   {
+    "claim": "Opus release v1.5.2 exists (minor maintenance release, April 2024)",
+    "status": "confirmed",
+    "url": "https://opus-codec.org/news"
+   },
+   {
+    "claim": "Opus licence is BSD-style (redistribution in source and binary form permitted) with a royalty-free patent licence; COPYING does not literally name BSD-3-Clause and its non-endorsement clause names IETF/ISOC",
+    "status": "confirmed",
+    "url": "https://github.com/xiph/opus/blob/main/COPYING"
+   },
+   {
+    "claim": "Opus SILK layer uses LPC, optional long-term (pitch) prediction, noise shaping (encoder side) and a range coder, so the seed's levers already exist in the baseline's public design (RFC 6716)",
+    "status": "confirmed",
+    "url": "https://www.rfc-editor.org/rfc/rfc6716"
+   },
+   {
+    "claim": "Our LPC+rANS reference codec reaches a reported gain over the baseline (no number given in the seed)",
+    "status": "not_found",
+    "url": "https://www.openslr.org/12/"
+   },
+   {
+    "claim": "smoke_build verdict red: build_ok false, fetch_ok false while clone_ok true; three runs exit 1 with no per-test report",
+    "status": "contradicted",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; frontier expected to beat baseline but stay below reference; weaker model near baseline; no dated public evidence",
+   "build_cost": "about 3 days: fix offline Opus meson build (probe red), build harness, baseline, metric and rate-cap checks",
+   "deliverable": "Encoder/decoder CLI for LPC or noise-feedback coding with entropy coding, scored on SNR+LSD at three fixed bitrates under a byte-level rate cap",
+   "gates_anticheat": "Rate cap on actual bytes; clean decode container without evaluation audio; need to confirm the decoder cannot read the hidden references and that the harness is not shipped",
+   "grading_surface": "Hidden utterances from other-condition split and other speakers, times three bitrates; count not stated in seed (estimate hundreds of utterances)",
+   "local_fit": "CPU-only C/Python fits 8 cores, 16 GB; LibriSpeech subset fits image size; Opus build must be made to work offline",
+   "lookup": "partial: SILK architecture (LPC, LTP, noise shaping, range coding) is public in RFC 6716 and xiph/opus source; reference is not public",
+   "provenance": "LibriSpeech (CC BY 4.0) audio plus xiph/opus v1.5.2 (BSD-style licence) as baseline; reference is a private LPC+rANS codec (not public)",
+   "reference": "Private LPC+rANS codec with noise shaping; reported gain unquantified; not checkable publicly",
+   "ships": "train-clean-100 subset, eval harness, Opus-based and mu-law/ADPCM baseline, CLI; hidden test-other/other-speaker utterances withheld",
+   "similarity": "Max l0 neighbour 0.162 (S-op-007), then 0.154 (S-op-006); contents of these seeds not checked here, likely Opus-family siblings; not a CROWDED subject"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task; the design is SILK-like and recallable, so difficulty is plausible but unproven"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days; the Opus offline build failed in the probe and must be repaired"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, 8 cores, 16 GB; no network needed at run time if Opus is pre-built or buildable offline"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier fits sustained tuning across levers"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "CC BY 4.0 needs attribution; Opus BSD-style permits redistribution; patent licence clause present"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Quantizer, LPC order, LTP, entropy coding, noise shaping and three bitrates give many partial-credit buckets"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours at 0.162 and 0.154 are below the 0.15 threshold only marginally and are unverified Opus-family siblings"
+   },
+   "Real": {
+    "v": 4,
+    "why": "LibriSpeech and xiph/opus v1.5.2 are real and pinned, but the reference is private and unverifiable"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Private reference with unquantified gain; not a complete public implementation scoring 1"
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Hidden public-audio splits withheld from the image; reference private; the model cannot recall audio verbatim"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden utterances times three bitrates with SNR and LSD gives dense surface; exact utterance count not stated"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Opus cannot be built offline after one repair attempt (then the baseline must drop to mu-law/ADPCM only); or a naive LPC prototype already matches the reference-level gain (K8); or the metric is non-deterministic across runs.",
+   "pass_if": "Opus builds offline and is deterministic; the LPC prototype gives a dense, non-trivial spread of SNR/LSD across bitrates and orders; baseline is clearly beatable but not trivially beaten.",
+   "steps": [
+    "In a throwaway networked Linux container, fetch xiph/opus at v1.5.2 (5f74436 per seed) and run meson setup and compile with the system meson; record the exact failure behind the red probe (fetch_ok false vs clone_ok true is contradictory).",
+    "Once Opus builds, build opus_demo and encode/decode 20 train-clean-100 utterances at three CBR bitrates; compute SNR and LSD per file with a short script.",
+    "Run the same encode/decode twice and diff the bytes and decoded PCM to confirm determinism.",
+    "Write a quick LPC (order 16) plus uniform quantizer with ideal entropy-estimated bytes; sweep order and step size to see whether SNR and LSD move smoothly at matched bytes against Opus.",
+    "Check that the rate cap on actual bytes is measurable and that a naive LPC coder does not already beat Opus on both metrics at all three bitrates (that would signal K8)."
+   ]
+  },
+  "summary": "The seed is a research-class speech codec task on LibriSpeech with a real, permissively licensed Opus baseline and a private reference; no gate fails, but the Opus offline build is red and the reference gain is unquantified, so the spike must first repair the baseline build. The main risk is that the target design (LPC, LTP, noise shaping, range coding) is already public in SILK/RFC 6716, which the 8 h band estimate does not account for."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-rs-003",
+  "kill_code": "",
+  "note": "Weakest survivor. The reference is unbuilt and its gain unquantified. The Opus build probe was red. SNR plus LSD rewards waveform matching, so a perceptual Opus baseline is easy to beat on SNR and the baseline-to-reference scale is uncalibrated. test-other is a weak OOD shift. Before investing, build the reference and measure the spread against mu-law/ADPCM.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 65
+}

@@ -1,0 +1,250 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "4 h. A frontier agent obtains a part of the speedup but not the full-width kernels. A weaker model has no gain. Buckets by quant type and shape class.",
+  "cheat": "Caching results or reducing precision. Inputs are random per run and the output gate is exact within tolerance.",
+  "grading": "The median wall-clock of a kernel bench over a set of shapes. A hard gate requires output equality to the baseline within a tolerance on random tensors. The reward is 2^u-1 against the reference's speedup.",
+  "reference": "Written by us from the known vectorisation pattern, and the speedup is measured at build. The subject is likely close to the existing quantised dot-product task, so it must differ in its shapes and quant types, or be dropped if judged a duplicate.",
+  "source": "https://github.com/ggml-org/llama.cpp/pull/2212 (lever moved from Metal to x86 CPU), MIT",
+  "task": "/app ships a snapshot of the ggml CPU backend where the Q4_0 and Q4_1 matrix-vector and small-batch matmul kernels are in a slower, scalar-leaning form. The agent speeds them up with AVX2 and AVX-512 where available, using blocking, unpacking and threading, while keeping the same results. The delivery is the buildable tree and the test binary.",
+  "title": "x86 CPU Q4_0/Q4_1 matrix-vector kernel speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-002 0.49"
+  ],
+  [
+   "2026-10-20T19:03:20Z",
+   "v1",
+   "killed:K11",
+   "The reference is upstream llama.cpp CPU kernel code that is public in git history (commits 1bfc153e, 581c3051) and recallable, so the grading cannot be sealed; the cited source PR #2212 is a Metal change, not x86, so the stated lever is contradicted; K1 risk also applies given neighbour S-op-002 at "
+  ]
+ ],
+ "id": "S-op-005",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.485,
+    "S-op-002"
+   ],
+   [
+    0.402,
+    "S-op-004"
+   ],
+   [
+    0.164,
+    "S-rs-001"
+   ],
+   [
+    0.11,
+    "vector_quantization [AlgoTune]"
+   ],
+   [
+    0.11,
+    "matrix_completion [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "mutate",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential cmake git python3 python3-pip",
+  "build_ok": true,
+  "build_s": 361,
+  "ci_files": 60,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DLLAMA_BUILD_TESTS=ON -DLLAMA_TESTS_INSTALL=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "4a45de4f2c68f3d144f6c2431ad7c1da7e53c99e",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": " Linking CXX executable bin/llama-fit-params\n[436/443] Building CXX object app/CMakeFiles/llama-app.dir/llama.cpp.o\n[437/443] Building CXX object app/CMakeFiles/llama-app.dir/__/license.cpp.o\n[438/443] Building CXX object tools/results/CMakeFiles/llama-results.dir/results.cpp.o\n[439/443] Building CXX object tools/export-lora/CMakeFiles/llama-export-lora.dir/export-lora.cpp.o\n[440/443] Linking CXX executable bin/llama-results\n[441/443] Linking CXX executable bin/llama-export-lora\n[442/443] Building CXX object app/CMakeFiles/llama-app.dir/download.cpp.o\n[443/443] Linking CXX executable bin/llama",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "test-arg-parser::test-arg-parser",
+   "test-download-model::test-download-model",
+   "test-eval-callback-download-model::test-eval-callback-download-model",
+   "test-jinja-py::test-jinja-py"
+  ],
+  "stable_failures": 4,
+  "subdir": "",
+  "suite_s": 281,
+  "test_files": 288,
+  "tests_fail": 4,
+  "tests_listed": 59,
+  "tests_pass": 52,
+  "tests_skip": 3,
+  "tests_total": 59,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "39da130fcd1b6ca47d3c0522a40eccff41ea3dfb",
+  "kb": 460405,
+  "lang": "C++",
+  "open_prs": 1766,
+  "pushed": "2026-10-20",
+  "release": "v0.7.0",
+  "spdx": "MIT",
+  "stars": 131826,
+  "test_files": 288,
+  "test_kb": 5736,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/ggml-org/llama.cpp/pull/2212|ggml-org-llama-cpp-2212-metal-faster-q4-0-and-q4-1-matrix-x-",
+ "source_notes": "repo https://github.com/ggml-org/llama.cpp; merged PR or fixed issue",
+ "source_url": "https://github.com/ggml-org/llama.cpp/pull/2212",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ggml-org/llama.cpp/pull/2212",
+  "facts": [
+   {
+    "claim": "PR #2212 is titled 'Metal: faster Q4_0 and Q4_1 matrix x vector kernels' and was merged on 2023-07-14",
+    "status": "contradicted",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/2212"
+   },
+   {
+    "claim": "The source PR is an x86 CPU kernel lever (seed says lever moved from Metal to x86 CPU)",
+    "status": "contradicted",
+    "url": "https://github.com/ggml-org/llama.cpp/pull/2212"
+   },
+   {
+    "claim": "llama.cpp repository licence is MIT (copyright The ggml authors)",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/blob/master/LICENSE"
+   },
+   {
+    "claim": "Upstream x86 AVX2 Q4_1 x Q8_0 dot-product work exists in public history (commit 1bfc153e, PR #1083, April 2023)",
+    "status": "confirmed",
+    "url": "https://git.peisongxiao.com/CS348Project/llama.cpp/commit/1bfc153e2f35ddd9d64b084e8d1a5e6fa57ad1c9"
+   },
+   {
+    "claim": "Upstream AVX2 Q4_0_8_8 repacked GEMV/GEMM kernels exist in public history (commit 581c3051, PR #8713)",
+    "status": "confirmed",
+    "url": "https://app.semanticdiff.com/gh/ngxson/llama.cpp/commit/581c305186a0ff93f360346c57e21fe16e967bb7"
+   },
+   {
+    "claim": "A dedicated AVX-512 ggml_vec_dot_q4_0_q8_0 PR exists",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp"
+   },
+   {
+    "claim": "Repo head 39da130f, release v0.7.0, 131826 stars, 1766 open PRs, MIT spdx",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier asserted by seed; no dated public evidence that frontier agents partly succeed at this exact work.",
+   "build_cost": "Build 361 s in smoke test; ~281 s suite; 4 stable failures at baseline need triage before any gate is set. Build cost itself is low (about 2 days).",
+   "deliverable": "Buildable tree with optimized Q4_0/Q4_1 AVX2/AVX-512 kernels, same outputs as baseline within tolerance.",
+   "gates_anticheat": "Output equality gate on random tensors per run; precision reduction and result caching are the named cheats and would fail the exact gate, but a recovered upstream kernel from git history would pass, which is the core problem.",
+   "grading_surface": "Median wall-clock of a kernel bench over a set of shapes plus exact-tolerance equality gate on random tensors; surface size not yet defined (likely tens of shape/quant buckets).",
+   "local_fit": "CPU-only, 8 cores, 16 GB, gVisor: AVX-512 availability depends on the host CPU, so the AVX-512 path may not be exercised in grading.",
+   "lookup": "direct: upstream AVX2 Q4_0/Q4_1 and repacked AVX kernels are in public git history of llama.cpp and recallable by a frontier model.",
+   "provenance": "Source PR #2212 is a merged Metal (Apple GPU) kernel change from July 2023, not an x86 CPU change; the x86 framing is the seed's own construction. The repo itself is real, MIT, and public.",
+   "reference": "Written by us from the known vectorisation pattern; upstream llama.cpp already contains equivalent kernels in public history, so the reference is effectively upstream code.",
+   "ships": "A snapshot of ggml CPU backend with Q4_0/Q4_1 matvec and small-batch matmul kernels degraded to scalar-leaning form; smoke build green at commit 4a45de4 in 361 s.",
+   "similarity": "l0 neighbour S-op-002 at 0.485 and S-op-004 at 0.402 (same quantised dot-product family); CROWDED list does not name it directly, but it is a quantised dot-product variant of a known subject."
+  },
+  "kill_code": "K11",
+  "kill_reason": "The reference is upstream llama.cpp CPU kernel code that is public in git history (commits 1bfc153e, 581c3051) and recallable, so the grading cannot be sealed; the cited source PR #2212 is a Metal change, not x86, so the stated lever is contradicted; K1 risk also applies given neighbour S-op-002 at 0.485.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "4 h band asserted with no dated public evidence; at most 3 without it."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Smoke build 361 s and suite 281 s; well inside 5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and fits 8 cores and 16 GB, but AVX-512 depends on host hardware."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Kernel work is substantial but narrow; 4 h tier is plausible for the scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, confirmed at the LICENSE file; shipping allowed."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Quant types times shape classes give several buckets with partial credit."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Close to public quantised dot-product subject (S-op-002 at 0.485, S-op-004 at 0.402); same subject and deliverable family."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Repo is real and MIT, but the cited PR is Metal, not x86, so the paper trail for the stated lever is contradicted."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference would be ours but is effectively upstream code, so it is strong on paper yet trivially reproducible."
+   },
+   "Seal": {
+    "v": 1,
+    "why": "Reference and original kernels are recallable from upstream history and memory, so the answer is not sealable."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Shape and quant buckets give a moderate surface; no executable oracle or unlimited generator is defined."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 30,
+   "kill_if": "Upstream AVX kernels can be recovered from history or recalled, or the 4 baseline failures cannot be explained as environment.",
+   "pass_if": "Mutated base is not reversible to upstream within a bounded effort, and the baseline suite is stable with 4 failures excluded.",
+   "steps": [
+    "Read the smoke-build test output to identify the 4 stable baseline failures and decide whether they are environment or real; exclude them from any gate.",
+    "In the upstream repo history, locate the ggml-cpu Q4_0 and Q4_1 vec_dot AVX2/AVX-512 implementations at the snapshot's commit and confirm the mutated base differs from them by a bounded set of functions.",
+    "Check whether the degraded base can be diffed back to the upstream code, which tells us if git history stripping is enough to seal it.",
+    "Measure baseline vs upstream-optimized kernel median times on two shapes to see the achievable speedup ceiling.",
+    "Decide: if upstream history is present in the snapshot or the kernels are recallable, kill as K11; if the mutation is large and not recoverable, reconsider with a different sealed subject."
+   ]
+  },
+  "summary": "The seed's source PR #2212 is a merged Metal GPU change, not an x86 CPU lever, so its paper trail is contradicted, although the llama.cpp repo itself is real and MIT. Because the optimised Q4_0/Q4_1 AVX kernels already exist in upstream public history and are recallable, the grading cannot be sealed and the task is killed as K11."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 58
+}

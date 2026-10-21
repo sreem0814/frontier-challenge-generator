@@ -1,0 +1,259 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "20 h. Large surface (about 500 fixtures across the three languages) gives dense credit. A frontier agent gets the common cases and not comment placement. A weaker model stops at plain CSS.",
+  "cheat": "Shipping or installing Prettier, or hard-coding fixture outputs. Closed by no node or prettier in the image, a mutated hidden set and a language restriction.",
+  "grading": "Hidden inputs, drawn from the CSS/SCSS/Less fixtures and mutated variants whose expected outputs are precomputed with the pinned Prettier, with several option sets. Exact output match per case; score is the fraction passed over the reference's.",
+  "reference": "Our own implementation of the CSS-family subset, checked against the pinned Prettier outputs. About 3-5k lines.",
+  "source": "https://github.com/prettier/prettier @ 3.9.10 (commit ca892240); MIT",
+  "task": "/app ships a CLI skeleton and a few sample inputs. The agent implements a formatter for CSS, SCSS and Less (comments, at-rules, maps, math, selectors, options) that reproduces Prettier's output byte for byte, in a language other than JS.",
+  "title": "Stylesheet formatter matching Prettier output"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "font-text",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-001 0.17"
+  ],
+  [
+   "2026-10-20T18:59:47Z",
+   "v1",
+   "killed:K11",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 3, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 2, 'Nov': 3, 'Lic': 5, 'Fit': 4, 'Build': 2}"
+  ]
+ ],
+ "id": "S-im-001",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.174,
+    "S-rs-001"
+   ],
+   [
+    0.159,
+    "S-op-002"
+   ],
+   [
+    0.151,
+    "S-op-001"
+   ],
+   [
+    0.112,
+    "css_layout_engine [SpecBench]"
+   ],
+   [
+    0.081,
+    "family [robust-kbench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 10,
+  "ci_files": 17,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack yarn run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack yarn install --frozen-lockfile || corepack yarn install --immutable",
+  "cmd_test": "npx jest --ci --json --outputFile=$OUT/run$i.json",
+  "commit": "ca89224084d406d11f61db7350044881c0744139",
+  "deterministic": false,
+  "eco": "node",
+  "fetch_ok": true,
+  "fetch_s": 32,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[42m\u001b[30m   DONE  \u001b[39m\u001b[49m\n README.md\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[42m\u001b[30m   DONE  \u001b[39m\u001b[49m\n THIRD-PARTY-NOTICES.md\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[2m.\u001b[22m\u001b[42m\u001b[30m   DONE  \u001b[39m\u001b[49m\nBuild package '@prettier/plugin-yuku' success in 553ms",
+  "oom": false,
+  "ref": "default",
+  "report_format": "json",
+  "run_rcs": [
+   1,
+   1,
+   133
+  ],
+  "runs_without_report": 1,
+  "stable_failure_names": [
+   "config-file-typescript.js::Should format file with tabWidth: 3 with config file '.prettierrc.mts'.",
+   "config-file-typescript.js::Should format file with tabWidth: 4 with config file '.prettierrc.ts'.",
+   "config-file-typescript.js::Should format file with tabWidth: 5 with config file 'prettier.config.ts'.",
+   "config-file-typescript.js::Should format file with tabWidth: 6 with config file 'prettier.config.mts'.",
+   "config-file-typescript.js::Should format file with tabWidth: 7 with config file 'prettier.config.cts'.",
+   "config-file-typescript.js::Should format file with tabWidth: 8 with config file '.prettierrc.cts'.",
+   "config-file-typescript.js::Should support typescript config files"
+  ],
+  "stable_failures": 7,
+  "subdir": "",
+  "suite_s": 256,
+  "test_files": 8454,
+  "tests_fail": 7,
+  "tests_listed": 1578,
+  "tests_pass": 433,
+  "tests_skip": 0,
+  "tests_total": 440,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "ca89224084d406d11f61db7350044881c0744139",
+  "kb": 182193,
+  "lang": "JavaScript",
+  "open_prs": 295,
+  "pushed": "2026-10-20",
+  "release": "3.9.10",
+  "spdx": "MIT",
+  "stars": 52383,
+  "test_files": 8457,
+  "test_kb": 14469,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/prettier/prettier|3-9-10-2026-10-10-commit-ca892240",
+ "source_notes": "Massive surface but each language needs a full parser (CSS/SCSS/Less, Markdown, YAML tractable subsets); JS/TS options matrix large; flow tests dominate count and are low value; formatting of comments is very fiddly",
+ "source_url": "https://github.com/prettier/prettier",
+ "source_version": "3.9.10 (2026-10-10) commit ca892240",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/prettier/prettier/releases/tag/3.9.10",
+  "facts": [
+   {
+    "claim": "Prettier release 3.9.10 exists (marked Latest, released 10 Oct)",
+    "status": "confirmed",
+    "url": "https://github.com/prettier/prettier/releases/tag/3.9.10"
+   },
+   {
+    "claim": "Seed pins 3.9.10 at commit ca892240 (head ca89224084d4...)",
+    "status": "contradicted",
+    "url": "https://github.com/prettier/prettier/releases/tag/3.9.10"
+   },
+   {
+    "claim": "Repository licence is MIT (Copyright James Long and contributors)",
+    "status": "confirmed",
+    "url": "https://github.com/prettier/prettier/blob/main/LICENSE"
+   },
+   {
+    "claim": "tests/format/css holds about 48 fixture subdirectories (atrule, comments, grid, important, ...)",
+    "status": "confirmed",
+    "url": "https://github.com/prettier/prettier/tree/main/tests/format/css"
+   },
+   {
+    "claim": "tests/format/scss and tests/format/less fixture directories exist",
+    "status": "not_found",
+    "url": "https://github.com/prettier/prettier/tree/main/tests/format/css"
+   },
+   {
+    "claim": "About 500 CSS/SCSS/Less fixtures in total",
+    "status": "not_found",
+    "url": "https://github.com/prettier/prettier/tree/main/tests/format/css"
+   },
+   {
+    "claim": "No non-JS formatter is known that reproduces Prettier's CSS output; existing Rust tools (malva, lax-css) use different designs",
+    "status": "confirmed",
+    "url": "https://lib.rs/crates/malva"
+   },
+   {
+    "claim": "Reference implementation of 3-5k lines exists and is checked against pinned outputs",
+    "status": "not_found",
+    "url": "https://github.com/prettier/prettier/releases/tag/3.9.10"
+   }
+  ],
+  "full_card": {
+   "band": "20 h tier. Frontier likely gets common cases; comments, maps and option edge cases lag. No dated public evidence; estimate only.",
+   "build_cost": "3-5 days: reference formatter for three syntaxes plus oracle precompute and mutation generator.",
+   "deliverable": "Non-JS CLI that formats CSS, SCSS and Less byte-identical to Prettier 3.9.10 across option sets.",
+   "gates_anticheat": "No node/prettier in image; mutated hidden set; language restriction (non-JS); hidden expected outputs never shipped.",
+   "grading_surface": "Hidden inputs from tests/format/css (plus scss/less, unverified) and mutated variants with precomputed Prettier outputs; exact match per case, fraction over reference.",
+   "local_fit": "CPU-only, offline at runtime; fits 8 cores/16 GB; Node needed only for precompute outside the image.",
+   "lookup": "Prettier source is public on GitHub and npm and recallable in part; no non-JS Prettier-identical port found. Partial.",
+   "provenance": "prettier/prettier, release 3.9.10 (tag commit 1172b82c, not ca892240 as seed states), MIT, JavaScript; real, widely used project.",
+   "reference": "Seed claims own 3-5k line implementation; not built or verified. Upstream printer-postcss is the only existing reference and is JS.",
+   "ships": "CLI skeleton plus a few sample CSS/SCSS/Less inputs; no Prettier code, no node in image.",
+   "similarity": "Nearest L0 neighbour S-rs-001 at 0.174 (above 0.15 threshold); S-op-002 0.159, S-op-001 0.151; not a public task. Not crowded."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task; estimate capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Reference of 3-5k lines plus oracle and mutation pipeline is roughly 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and offline at runtime; Node is needed only for the outside precompute."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "20 h tier is justified by a large multi-syntax surface."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, shippable."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Comments, at-rules, maps, math, selectors and options give many buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour 0.174 is slightly over 0.15; not a crowded subject, but close to seeds."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real repo at a published release, MIT, large active project."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "No reference built; the only existing reference is Prettier's JS printer, so a non-JS reference must be written and its completeness is unproven."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Fixtures and snapshots are public in the repo; only mutation seals the hidden set."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of cases possible via mutation, but base fixture count across the three languages is unverified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Fewer than about 150 usable cases across CSS/SCSS/Less, or nondeterministic outputs.",
+   "pass_if": "Three-language fixture total is at least 300 and two runs are byte-identical across all option sets.",
+   "steps": [
+    "In a throwaway networked container, clone prettier/prettier and check out tag 3.9.10; confirm the commit (expect 1172b82c, not ca892240).",
+    "npm install prettier@3.9.10 pinned, outside /app.",
+    "Count fixtures under tests/format/css, tests/format/scss and tests/format/less; record the total.",
+    "Run prettier on all fixtures with default options and two option sets; store output hashes.",
+    "Re-run the same commands and confirm byte-identical outputs (determinism).",
+    "Build 200 mutated variants (whitespace, comment moves, reordered declarations) and run prettier on them; confirm stable output.",
+    "Confirm the smoke_build amber result does not affect this oracle: the upstream jest suite is nondeterministic and is not used for grading."
+   ]
+  },
+  "summary": "The repo is real and MIT-licensed, but the pinned commit is wrong: tag 3.9.10 is 1172b82c, not ca892240, and the SCSS/Less fixture counts and the 3-5k line reference are unverified. No kill; the card goes to a spike that checks the fixture total and determinism before any build, with E0 evidence and a Band of 3 at most."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

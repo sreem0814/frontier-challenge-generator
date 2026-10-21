@@ -1,0 +1,227 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "8 h. A frontier agent usually wires truncation but misses rollout persistence, resume of forks and protocol schema updates. Buckets: truncate, fork, persistence, resume, protocol. A weaker model stalls on the large workspace build.",
+  "cheat": "Mutating history in memory only. Hidden tests restart the session from the rollout file and compare the replayed state.",
+  "grading": "Hidden Rust integration tests drive the core and app-server API against a mock model server. They check the history items, rollout file contents, event sequences, and resume results. Reward is the fraction passed, with the existing core suite as a regression gate.",
+  "reference": "Written by us: about 1800 lines of Rust across core, protocol, rollout and app-server, plus tests. It scores 1.",
+  "source": "https://github.com/openai/codex/issues/2948 @ rust-v0.163.0 (head cb00a67), Apache-2.0",
+  "task": "/app ships a history-less snapshot of the Rust workspace at the base. The agent adds editing of an earlier user turn: truncating or forking the conversation history at a turn, replaying from there, persisting the fork in the rollout file, and exposing it through the app-server protocol and the core session API, with resume across forks.",
+  "title": "Edit and fork past messages in the Codex CLI session core"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-007 0.29"
+  ],
+  [
+   "2026-10-20T19:02:21Z",
+   "v1",
+   "killed:K11",
+   "gate on scores {'Real': 5, 'Surf': 3, 'Ref': 3, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 2, 'Nov': 3, 'Lic': 5, 'Fit': 3, 'Build': 2}"
+  ]
+ ],
+ "id": "S-im-010",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.295,
+    "S-im-007"
+   ],
+   [
+    0.294,
+    "S-im-006"
+   ],
+   [
+    0.25,
+    "S-im-009"
+   ],
+   [
+    0.111,
+    "kubernetes-rust-rewrite [SWE-Marathon]"
+   ],
+   [
+    0.102,
+    "session-window-debug [tasks]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 31,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "false",
+  "commit": "c6e4438a5d5befe6c8e59b01b6534eb8f0792230",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21553:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21672:14)\n    at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22292:23)\n    at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 1331,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cb00a67569450aea2fdb1b1f31fc042fc0b5416f",
+  "kb": 688333,
+  "lang": "Rust",
+  "open_prs": 163,
+  "pushed": "2026-10-20",
+  "release": "rust-v0.163.0",
+  "spdx": "Apache-2.0",
+  "stars": 130298,
+  "test_files": 1331,
+  "test_kb": 20632,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/openai/codex/issues/2948|openai-codex-2948-edit-past-messages",
+ "source_notes": "repo https://github.com/openai/codex; opened 2025-08-30",
+ "source_url": "https://github.com/openai/codex/issues/2948",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/openai/codex/issues/2948",
+  "facts": [
+   {
+    "claim": "Issue openai/codex#2948 exists, opened 2025-08-30, still open, titled 'Edit past messages', with no linked branches or PRs in its Development section",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/2948"
+   },
+   {
+    "claim": "Thread cites a CLI implementation (jmpaz linked a comment on PR #2898); the page does not say whether that PR was merged",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/2948"
+   },
+   {
+    "claim": "Codex CLI already offers Esc-Esc backtrack to edit or fork from an earlier user message, plus a /fork command (third-party guide; no official release notes found)",
+    "status": "confirmed",
+    "url": "https://codex.danielvaughan.com/2026/04/08/codex-cli-tui-shortcuts-slash-commands/"
+   },
+   {
+    "claim": "Official OpenAI release notes or changelog naming the version that introduced Esc-Esc edit or fork-from-message",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/releases"
+   },
+   {
+    "claim": "rust-v0.163.0 contains no edit or fork-at-turn code in core, rollout or app-server (base not inspected)",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/releases"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Buckets: truncate, fork, persistence, resume, protocol. Frontier likely gets truncate and misses persistence/resume/protocol. Weaker model stalls on workspace build. No dated evidence found.",
+   "build_cost": "Medium-high: Rust workspace build plus mock server plus ~1800-line reference; smoke probe gives no Rust evidence (verdict amber, exit-code-only, 0 tests listed). Estimated 3-5 days of our build effort.",
+   "deliverable": "Truncate or fork core history at an earlier user turn, replay, persist fork in rollout file, expose via app-server protocol and core session API, resume across forks.",
+   "gates_anticheat": "Hidden tests restart from rollout file, so in-memory-only history mutation fails. Upstream git history must be stripped from /app. Editing tests/build config is outside the graded copy (to be confirmed in spike).",
+   "grading_surface": "Hidden Rust integration tests against a mock model server: history items, rollout file contents, event sequences, resume results; existing core suite as regression gate. Size not yet counted.",
+   "local_fit": "Rust workspace, CPU only, 8 cores, 16 GB: build time for codex-rs unknown; smoke probe built with node/pnpm command, so Rust build was not actually exercised (run_rcs all 1). Fit likely OK but unverified.",
+   "lookup": "partial: the feature exists publicly upstream (Esc-Esc backtrack, /fork) per a third-party guide; the issue itself is still open with no linked merged PR; upstream code is reachable through git history.",
+   "provenance": "openai/codex issue #2948 'Edit past messages' (opened 2025-08-30, open); repo at rust-v0.163.0, head cb00a67, Apache-2.0 per source_facts (licence not re-fetched).",
+   "reference": "Written by the seed author, ~1800 lines Rust across core/protocol/rollout/app-server plus tests. No public reference confirmed; upstream CLI reportedly has the feature in later versions.",
+   "ships": "history-less Rust workspace snapshot at base (must be checked: base may already contain backtrack/fork code).",
+   "similarity": "Neighbours S-im-007 0.295, S-im-006 0.294, S-im-009 0.25 (same seed family, different subject per seed notes); kubernetes-rust-rewrite 0.111; session-window-debug 0.102. Not crowded (not a single ~600-line feature in a popular repo as a DeepSWE clone; it is a multi-module session-core change). No K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8 h tier; plausible partial credit, but the 0.9-of-reference pass is unproven and there is no dated evidence."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 3-5 days of our build effort for a large Rust workspace and reference; the smoke probe does not verify it."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only Rust workspace on 8 cores/16 GB may fit, but codex-rs build time and memory are unverified."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-module work (core, protocol, rollout, app-server) across a large workspace; fits an 8 h budget."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 per source_facts; permissive for shipping the workspace and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five named buckets (truncate, fork, persistence, resume, protocol) give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Subject is a public upstream feature that is reportedly shipped, so the seed risks being a near-copy of a public change; no K1 since no public task matches."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real public repo and a real open issue (#2948) with 130k stars and an active codebase."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Own ~1800-line reference is not yet a verified complete permissive implementation; upstream partial implementation exists but its match to the spec is unknown."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Upstream implementation sits in public git history and the issue is public; the snapshot must be history-less and the base must not already include the feature."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Integration tests over several modules; likely hundreds of cases, not thousands, unless the mock server generates them."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Base already contains backtrack or fork at the turn level (K9/K1 risk), the build exceeds about 2 h or 16 GB, or the core suite is nondeterministic.",
+   "pass_if": "Base lacks the feature, cargo build finishes within about 1 h, the core suite is deterministic, and the upstream change is at least 150 lines across the four crates.",
+   "steps": [
+    "In a throwaway Linux container with network, clone openai/codex at tag rust-v0.163.0 (head cb00a67) and confirm the commit and Apache-2.0 licence.",
+    "Grep the base for existing backtrack, fork, truncate or rollback code in codex-rs (core, rollout, app-server) to confirm the feature is absent at base.",
+    "Build the Rust workspace with cargo (not the node/pnpm probe command), time it, and record peak memory on 8 cores/16 GB.",
+    "Locate the upstream commit or PR that shipped Esc-Esc backtrack or /fork (check PR #2898 and later releases) and measure its changed-line count in core, protocol, rollout and app-server.",
+    "Run the existing core test suite on the built base and record the pass count and whether it is deterministic across 3 runs.",
+    "Write a 20-line mock-model-server smoke test that replays a truncate-then-resume flow and confirm rollout file contents can be asserted."
+   ]
+  },
+  "summary": "The seed is real (openai/codex #2948, still open, Apache-2.0, 130k stars), but the feature is already reportedly shipped upstream as Esc-Esc backtrack and /fork, so lookup is partial and the base snapshot must be checked for existing code and history stripped. No gate is failed on current evidence, but the build cost is high and the smoke probe did not exercise the Rust build, so the spike must confirm the base lacks the feature and that cargo builds in time."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 68
+}

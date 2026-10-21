@@ -1,0 +1,314 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "8 h. Frontier agents get a simple export but fail on relocation, markers, extras and platform tags. Buckets: export, import, manifest, markers, relocation. A weaker model stops at copying files.",
+  "cheat": "Zipping the venv. Hidden tests relocate the output to another path and check the manifest hashes and the layout rules.",
+  "grading": "Hidden scenarios use a fixture wheel index and lockfiles from a generator. The tests check the exported tree layout, manifest hashes, and that the import command reproduces an identical site-packages listing and passes a smoke import. The reward is the fraction of scenarios passed, with the uv regression suite as a gate.",
+  "reference": "Written by us: about 2000 lines of Rust covering export, import, manifest hashing and relocation of the environment. It scores 1.",
+  "source": "https://github.com/astral-sh/uv/issues/11746 @ 0.13.4 (head 2b50cbc), Apache-2.0",
+  "task": "/app ships a uv snapshot at the base commit. The agent adds a command that exports a locked project into a relocatable directory: a managed interpreter, the resolved wheels from a local cache, an installable offline index, and a manifest with hashes. It also adds a matching import command that rebuilds the environment from that directory without network access.",
+  "title": "Portable offline Python layout export for uv"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "build-system",
+ "final": 55,
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-007 0.34"
+  ],
+  [
+   "2026-10-20T19:02:05Z",
+   "v1",
+   "pass",
+   "score 67; dead links ['https://backiee.wasmer.app/https_github_com/davnn/uv-pack']"
+  ],
+  [
+   "2026-10-20T19:06:29Z",
+   "v2",
+   "killed:K3",
+   "V1 contradicted the seed's framing: issue #11746 asks for a platform bundle built from pyproject.toml or requirements.txt, not a lockfile export. The layout and manifest-hash format would be invented by us, so exact checks would reject other valid designs. The surface is about 4-6 scenario families,"
+  ]
+ ],
+ "id": "S-im-009",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.342,
+    "S-im-007"
+   ],
+   [
+    0.282,
+    "S-im-008"
+   ],
+   [
+    0.181,
+    "S-im-006"
+   ],
+   [
+    0.144,
+    "tree-directory-parser [original]"
+   ],
+   [
+    0.108,
+    "task-task-graph-export [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 249,
+  "ci_files": 47,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "deterministic": false,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 25,
+  "flaky_names": [
+   "uv::python::python_install::python_install_compile_bytecode",
+   "uv::python::python_install::python_install_compile_bytecode_existing",
+   "uv::python::python_install::python_install_compile_bytecode_graalpy",
+   "uv::python::python_install::python_install_compile_bytecode_multiple",
+   "uv::python::python_install::python_install_compile_bytecode_pyodide",
+   "uv::python::python_install::python_install_compile_bytecode_pypy",
+   "uv::python::python_install::python_install_compile_bytecode_upgrade",
+   "uv::python::python_install::python_install_debug",
+   "uv::python::python_install::python_install_debug_freethreaded",
+   "uv::python::python_install::python_install_default",
+   "uv::python::python_install::python_install_default_from_env",
+   "uv::python::python_install::python_install_default_prerelease",
+   "uv::python::python_install::python_install_default_preview"
+  ],
+  "flaky_tests": 13,
+  "log": "3627ebc7a85)\n  Executable unittests src/lib.rs (target/debug/deps/uv_unix-d0fd4ddcd1b71724)\n  Executable unittests src/lib.rs (target/debug/deps/uv_version-c180a16d1cce1d9c)\n  Executable unittests src/lib.rs (target/debug/deps/uv_virtualenv-b763e54cd6c7fd55)\n  Executable unittests src/lib.rs (target/debug/deps/uv_warnings-d840a01cf32e99e5)\n  Executable unittests src/lib.rs (target/debug/deps/uv_windows-6e96d78af1668aaa)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace-7bec8dae11ca73fe)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace_commands-d67361e3f4ec2108)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   124,
+   124,
+   124
+  ],
+  "runs_without_report": 1,
+  "stable_failure_names": [
+   "uv::build::audit::audit_best_id_selection",
+   "uv::build::audit::audit_dependency_groups",
+   "uv::build::audit::audit_extras",
+   "uv::build::audit::audit_ignore_by_alias",
+   "uv::build::audit::audit_ignore_by_id",
+   "uv::build::audit::audit_ignore_config",
+   "uv::build::audit::audit_ignore_mixed_matched_unmatched",
+   "uv::build::audit::audit_ignore_partial",
+   "uv::build::audit::audit_ignore_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed",
+   "uv::build::audit::audit_ignore_until_fixed_config",
+   "uv::build::audit::audit_ignore_until_fixed_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix_for_other_package",
+   "uv::build::audit::audit_invalid_service_url",
+   "uv::build::audit::audit_json_no_vulnerabilities",
+   "uv::build::audit::audit_json_preview_warning",
+   "uv::build::audit::audit_json_vulnerability_and_project_status",
+   "uv::build::audit::audit_malformed_vulnerability_record",
+   "uv::build::audit::audit_multiple_vulnerabilities_same_package"
+  ],
+  "stable_failures": 2959,
+  "subdir": "",
+  "suite_s": 600,
+  "test_files": 607,
+  "tests_fail": 2972,
+  "tests_listed": 5579,
+  "tests_pass": 102,
+  "tests_skip": 0,
+  "tests_total": 3074,
+  "timeouts": [
+   "run1",
+   "run2",
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "kb": 222999,
+  "lang": "Rust",
+  "open_prs": 626,
+  "pushed": "2026-10-20",
+  "release": "0.13.4",
+  "spdx": "Apache-2.0",
+  "stars": 90935,
+  "test_files": 607,
+  "test_kb": 21370,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/astral-sh/uv/issues/11746|astral-sh-uv-11746-add-uv-layout-to-create-portable-offline-",
+ "source_notes": "repo https://github.com/astral-sh/uv; opened 2025-02-24",
+ "source_url": "https://github.com/astral-sh/uv/issues/11746",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/astral-sh/uv/issues/11746",
+  "facts": [
+   {
+    "claim": "uv issue #11746 exists and is open, labelled enhancement, opened 2025-02-24",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/11746"
+   },
+   {
+    "claim": "Issue #11746 is titled 'Add uv layout to create portable offline Python distributions' and asks for a platform-specific relocatable bundle (uv, interpreters, packages) started from pyproject.toml or requirements.txt, not a lockfile export as the seed states",
+    "status": "contradicted",
+    "url": "https://github.com/astral-sh/uv/issues/11746"
+   },
+   {
+    "claim": "No maintainer has said #11746 is planned, implemented or declined; #12403 was closed as a duplicate of it on 2025-03-24; last comment (+1) 2026-07-05",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/11746"
+   },
+   {
+    "claim": "uv is licensed Apache-2.0 (LICENSE-APACHE is Apache License 2.0)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/blob/main/LICENSE-APACHE"
+   },
+   {
+    "claim": "A community tool uv-pack exports a locked uv environment to an offline directory with python-build-standalone interpreter and wheels; it is not part of uv",
+    "status": "confirmed",
+    "url": "https://backiee.wasmer.app/https_github_com/davnn/uv-pack"
+   },
+   {
+    "claim": "Astral docs or uv releases ship a built-in relocatable or offline export of a locked project with managed Python",
+    "status": "not_found",
+    "url": "https://docs.astral.sh/uv/"
+   },
+   {
+    "claim": "Release 0.13.4 and head 2b50cbc, 90935 stars, 607 test files, smoke_build verdict amber (3 timeouts, 2972 failing tests, nondeterministic)",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; frontier agent plausibly finishes export+manifest and partial import; relocation and platform tags are the hard buckets; weaker model stops at file copy. No dated public evidence, so Band capped at 3.",
+   "build_cost": "about 3-4 days: curate gate subset, generate fixture index and lockfiles, pre-seed interpreter archive and wheel cache, write reference",
+   "deliverable": "new export and import subcommands in uv (Rust) producing a relocatable directory with managed interpreter, cached wheels, offline index, manifest with hashes",
+   "gates_anticheat": "gate on a narrowed uv regression subset (full suite is nondeterministic and times out, must be curated); hidden tests relocate output to another path; zipping the venv fails relocation and manifest checks; reject edits to tests and build config",
+   "grading_surface": "hidden fixture wheel index and lockfiles from a generator; checks tree layout, manifest hashes, identical site-packages listing after import, smoke import; est. 4-6 scenario families across 5 buckets",
+   "local_fit": "Rust build 249 s, fetch 25 s; managed-interpreter and wheel cache must be pre-seeded offline in the image; run-time network none; fits 8 cores / 16 GB",
+   "lookup": "partial: uv-pack (Python, community) covers a similar export; no official uv implementation found; #11746 open with no maintainer commitment",
+   "provenance": "Real uv repo (Apache-2.0); open issue #11746 requests a relocatable offline Python bundle; seed's 'lockfile export' framing differs from the issue's platform bundle framing.",
+   "reference": "own ~2000-line Rust reference, scores 1; no public complete implementation found",
+   "ships": "history-less uv snapshot at 2b50cbc in /app; Rust workspace, cargo offline build",
+   "similarity": "near seed siblings S-im-007 (0.342) and S-im-008 (0.282), S-im-006 (0.181); distinct subject from DeepSWE task-graph export (0.108); not a CROWDED subject"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8 h frontier band plausible with bucket structure, but no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Build itself is 249 s and green offline, but fixture generation, gate curation and reference writing take about 3-4 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust build fits the box, but the full test suite times out, so the gate must be curated; managed interpreter and wheels must be pre-seeded."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Export, import, manifest, markers and relocation are sustained multi-module work in an 8 h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at the LICENSE file."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five buckets (export, import, manifest, markers, relocation) give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Three neighbours above 0.15 (0.342, 0.282, 0.181) from sibling seeds; same family, so novelty is moderate."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real open upstream issue and Apache-2.0 repo; the seed's framing of the issue differs from its title."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Own complete 2000-line reference scoring 1; not an upstream merge, so it is not a measured speedup."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Generator and fixtures can stay hidden, but the uv-pack prior art and public issue discussion make the design partly recallable."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden scenarios from a generator over a few fixture indexes; several hundred cases possible but not thousands without more work."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Gate cannot be made deterministic, or managed-interpreter bundling requires network at run time.",
+   "pass_if": "Offline build green; curated gate subset deterministic across 3 runs; prototype export and relocated import reproduce an identical site-packages listing and a smoke import.",
+   "steps": [
+    "In a throwaway networked Linux container, clone astral-sh/uv at 2b50cbc and run cargo build --locked offline; confirm it builds in about 4 min.",
+    "Curate a gate subset of uv tests (the nondeterministic full suite cannot be the gate) and run it 3 times to confirm per-test determinism and runtime under 10 min.",
+    "Write a throwaway ~200-line export that copies a python-build-standalone interpreter and cached wheels from a lockfile into a directory with a sha256 manifest.",
+    "Relocate the output directory to a second path, run a minimal import subcommand offline, and diff the site-packages listing against the original.",
+    "Generate two fixture wheel indexes and lockfiles, and check that the expected output layout and manifest hashes are identical across two runs."
+   ]
+  },
+  "summary": "The seed is real and not killed: uv is Apache-2.0 and issue #11746 is open, though its title and platform-bundle framing differ from the seed's lockfile-export description. The main risk is the amber smoke build, since the full uv suite times out and is nondeterministic, so the gate must be curated in the spike."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [
+   "https://backiee.wasmer.app/https_github_com/davnn/uv-pack"
+  ],
+  "ratio": 0.25
+ },
+ "v1_score": 67,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-009",
+  "kill_code": "K3",
+  "note": "V1 contradicted the seed's framing: issue #11746 asks for a platform bundle built from pyproject.toml or requirements.txt, not a lockfile export. The layout and manifest-hash format would be invented by us, so exact checks would reject other valid designs. The surface is about 4-6 scenario families, which is small and hand-rolled. It also needs a pre-seeded managed interpreter, and the uv-pack link is dead.",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 2,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 2,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 55
+}

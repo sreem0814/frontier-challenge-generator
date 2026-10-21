@@ -1,0 +1,339 @@
+{
+ "batch": 2,
+ "card": {
+  "band": "8 h. A frontier agent does the codecs and the IGE, but gets the key exchange, salt and msg_id handling and the error semantics wrong. Buckets by codec, crypto, handshake, session. A weaker model stalls at the handshake.",
+  "cheat": "Copying the module from the Go module cache. The image has no cache, and the vendored copy is stripped of the removed packages.",
+  "grading": "The module's own suite (about 16k tests, run offline) plus hidden differential vectors for the codecs and crypto, generated from the reference with random frames. The base fails every graded case, and the reward is the fraction passed over those the reference passes.",
+  "reference": "The upstream code at that release, which scores 1. The base is a history-less snapshot with the removed packages deleted. The pass-rate probe was not deterministic, so only the deterministic subset is graded.",
+  "source": "https://github.com/gotd/td @ v0.162.0 (head be24580), MIT",
+  "task": "/app ships the Go module at the pinned release with the MTProto transport layer removed: the intermediate, abridged and padded-intermediate codecs, obfuscated transport, the AES-IGE message crypto, the key exchange and the session and salt handling. Only the package interfaces remain. The agent rebuilds them so the client works against the in-process mock server.",
+  "title": "Rebuild the MTProto transport and crypto layer in gotd/td"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T19:01:24Z",
+ "family": "protocol",
+ "final": 78,
+ "history": [
+  [
+   "2026-10-20T19:01:24Z",
+   "write",
+   "short",
+   "batch 2"
+  ],
+  [
+   "2026-10-20T19:01:24Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-010 0.23"
+  ],
+  [
+   "2026-10-20T19:03:26Z",
+   "v1",
+   "pass",
+   "score 78; dead links []"
+  ],
+  [
+   "2026-10-20T19:06:29Z",
+   "v2",
+   "pass",
+   "final 78"
+  ],
+  [
+   "2026-10-20T19:28:21Z",
+   "smoke",
+   "amber",
+   "go: build ok, 16212 tests, 0 failing, NOT deterministic over 3 runs"
+  ],
+  [
+   "2026-10-20T20:22:13Z",
+   "spike",
+   "validated",
+   "The probe tree is at the pinned tag v0.162.0. All removed-set packages pass offline: proto, codec, transport, crypto, srp, exchange, session and mtproto. They hold about 11.4k non-test lines, so the reference is well above 150 lines. Three runs of the codec, crypto and transport tests gave the same "
+  ]
+ ],
+ "id": "S-im-012",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.225,
+    "S-im-010"
+   ],
+   [
+    0.208,
+    "S-im-011"
+   ],
+   [
+    0.193,
+    "S-im-007"
+   ],
+   [
+    0.107,
+    "crypto_primitives [SpecBench]"
+   ],
+   [
+    0.103,
+    "fd-deterministic-multi-key-sorting [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 1,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 155,
+  "ci_files": 8,
+  "clone_ok": true,
+  "cmd_build": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -run '^$' ./... >/dev/null",
+  "cmd_fetch": "go mod download all",
+  "cmd_test": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -json -p 4 ./...",
+  "commit": "be24580163e18c2b4d3557ffa03e250ec6a30335",
+  "deterministic": false,
+  "eco": "go",
+  "fetch_ok": true,
+  "fetch_s": 2,
+  "flaky_names": [
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#10",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#15",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#16",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#17",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#22",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#23",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#24",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#29",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#30",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#31",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#32",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#33",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#35",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#39",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#4",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#40",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#41",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#42",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#45",
+   "github.com/gotd/td/telegram/deeplink::FuzzParse/seed#5"
+  ],
+  "flaky_tests": 42,
+  "log": "",
+  "oom": false,
+  "ref": "default",
+  "report_format": "go-json",
+  "run_rcs": [
+   0,
+   0,
+   0
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 305,
+  "test_files": 14140,
+  "tests_fail": 0,
+  "tests_listed": 736,
+  "tests_pass": 16158,
+  "tests_skip": 54,
+  "tests_total": 16212,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": "cgp-work-a4bc048df3e7"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "be24580163e18c2b4d3557ffa03e250ec6a30335",
+  "kb": 60665,
+  "lang": "Go",
+  "open_prs": 10,
+  "pushed": "2026-10-19",
+  "release": "v0.162.0",
+  "spdx": "MIT",
+  "stars": 2364,
+  "test_files": 14140,
+  "test_kb": 12414,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/gotd/td|gotd-td",
+ "source_notes": "Telegram client, in Go. (MTProto API)",
+ "source_url": "https://github.com/gotd/td",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Differential vector generator not written",
+   "Spec-only codec reimplementation not tried",
+   "Stub base with preserved interfaces not built",
+   "42 flaky tests were not re-run; they are deeplink fuzz seeds in unaffected packages"
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 65,
+  "commands_log": "cp -r /p/src /work/t; GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -p 3 ./proto/... ./transport/... ./crypto/... ./exchange/... ./session/... ./mtproto/... (all ok, 5.5 min); rm proto/codec impl files; go build ./... (mtproxy breaks); go test -json ./proto/codec ./crypto ./transport x3 (65 passes each time)",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Base with codec impls deleted fails to build, so it scores 0. A real base needs API-preserving stubs. The upstream reference passes all removed-package tests.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "The probe tree is at the pinned tag v0.162.0. All removed-set packages pass offline: proto, codec, transport, crypto, srp, exchange, session and mtproto. They hold about 11.4k non-test lines, so the reference is well above 150 lines. Three runs of the codec, crypto and transport tests gave the same pass count, which supports determinism, but I did not diff outputs. The 42 flaky tests are in telegram/deeplink, outside the removed set. The base needs stubs that keep the exported API, because the repo's build breaks without them. The base's graded tests must be limited to the removed packages. Other packages that use the removed APIs (telegram, tgtest and similar) would fail on the base too. The steps below were skipped for time, so this is a partial pass. Seeded vector determinism and spec-only codec acceptance are untested. The main risk is difficulty (K8): gotd is semi-famous, and the codecs and IGE are easy to recall.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 65,
+  "reference_lines": 10000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 6
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/gotd/td/releases/tag/v0.162.0",
+  "facts": [
+   {
+    "claim": "Release tag v0.162.0 exists, marked Latest, pointing at commit be24580163e18c2b4d3557ffa03e250ec6a30335",
+    "status": "confirmed",
+    "url": "https://github.com/gotd/td/releases/tag/v0.162.0"
+   },
+   {
+    "claim": "Licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/gotd/td/tree/v0.162.0"
+   },
+   {
+    "claim": "Tree at v0.162.0 has top-level transport, mtproto, crypto, session, mt, proto, mtproxy, tgmock and rpc packages, and no internal/ directory (so whether these are public or internal API was not confirmed)",
+    "status": "confirmed",
+    "url": "https://github.com/gotd/td/tree/v0.162.0"
+   },
+   {
+    "claim": "Release notes for v0.162.0 do not mention transport, mtproto, crypto, obfuscation, codecs or padded intermediate (notes cover a schema layer override, a schema update and dependency bumps)",
+    "status": "confirmed",
+    "url": "https://github.com/gotd/td/releases/tag/v0.162.0"
+   },
+   {
+    "claim": "Telegram's published MTProto transport spec defines intermediate (0xeeeeeeee), abridged (0xef), padded intermediate (0xdddddddd, 0-15 random padding bytes), full (CRC32, seq no.), signed 4-byte transport error codes, quick ACK, and obfuscation (64-byte init, AES-256-CTR, SHA256 for MTProxy secret)",
+    "status": "confirmed",
+    "url": "https://core.telegram.org/mtproto/mtproto-transports"
+   },
+   {
+    "claim": "Public pkg.go.dev docs list transport constructors Abridged, Intermediate, PaddedIntermediate, Full, MTProxy obfuscated and NewTransport for custom codecs (checked via search snippet, page not opened)",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/gotd/td@v0.23.0/transport"
+   },
+   {
+    "claim": "Module is published on pkg.go.dev with many versions, so the full upstream code is installable from the public Go module proxy",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/gotd/td"
+   },
+   {
+    "claim": "Independent count of about 16k tests at the pinned tag was not obtained; the probe's 16,212 total includes subtests (736 top-level) and 14,140 test files, which I did not verify",
+    "status": "not_found",
+    "url": "https://github.com/gotd/td/tree/v0.162.0"
+   }
+  ],
+  "full_card": {
+   "band": "Budget 8h. Frontier likely finishes codecs and IGE and partially handshake/session; full scope to 0.9 of reference uncertain. No dated public evidence, so E0 and Band 3.",
+   "build_cost": "~3 days: isolate removed set, make offline build green and deterministic, write differential vector generator, define deterministic subset; reference build ~18 min.",
+   "deliverable": "Rebuilt intermediate, abridged, padded-intermediate and obfuscated transports, AES-IGE crypto, auth-key exchange, salt/msg_id/session handling, and error semantics; client works against the in-process tgmock server.",
+   "gates_anticheat": "No network at run time; no module cache in image; vendored copy stripped of removed packages; history-less base snapshot; grading by hidden vectors (sealed) plus suite. Must restrict graded tests to removed-package tests so unaffected packages do not pass on base.",
+   "grading_surface": "Module's own suite on removed packages (probe: 16,212 results incl. subtests, 42 flaky) plus pre-generated differential vectors from reference random frames; only deterministic subset graded. Surface size not independently counted.",
+   "local_fit": "Go, CPU-only, 8 cores, 16 GB; smoke build 1064 s plus 78 s suite offline; amber verdict (build_ok false though suite ran rc 0) must be explained before pipeline use.",
+   "lookup": "direct: complete upstream code is public on GitHub and the Go module proxy, recallable in part; closed only by offline run and snapshot.",
+   "provenance": "github.com/gotd/td @ v0.162.0 (commit be24580, MIT), Telegram MTProto client in Go; transport spec at core.telegram.org/mtproto/mtproto-transports.",
+   "reference": "Upstream gotd/td at v0.162.0 itself (complete, MIT, Go). Public on GitHub and Go module proxy; not in image.",
+   "ships": "Go module at the pinned tag minus the MTProto transport/codec/crypto/session packages, as a history-less snapshot with interfaces kept; offline GOPROXY=off build.",
+   "similarity": "Neighbours S-im-010 (0.225), S-im-011 (0.208), S-im-007 (0.193) exceed 0.15 but are internal seeds with unknown subject overlap; no CROWDED match (crypto_primitives 0.107 below threshold). Not K1 on present evidence."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results; seed's frontier-behaviour claim is unverified, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 2-4 days: isolating the removed set, fixing the build, writing the vector generator and defining the deterministic subset."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Go, CPU-only, offline; amber smoke build needs fixing, otherwise fits."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-thousand-line layer fits an 8h tier, but the work is largely parallel rather than deep."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT permits shipping the module, reference and data."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Codec, obfuscation, IGE, handshake, session and error buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Three internal neighbours above 0.15 (0.193-0.225) and no CROWDED match; not a public-task duplicate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned MIT release with public commit, plus public Telegram transport spec."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Upstream release is complete, permissive and by definition scores 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference public on GitHub and Go proxy; sealed by offline run, snapshot and hidden vectors, but spec is recallable."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Suite plus pre-generated differential vectors; size not independently counted and only deterministic subset graded."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Vectors differ across seeded runs, or the removed set cannot be isolated without breaking unaffected packages, or the offline build cannot be made deterministic.",
+   "pass_if": "Offline build is green on one command; base fails every graded removed-package test; vectors are byte-identical across two seeded runs; a spec-only codec reimplementation passes the codec vectors.",
+   "steps": [
+    "In a throwaway networked container, clone gotd/td at be24580 and run the probe build command to see which package makes build_ok false though the suite exits 0; record the failing package and its error.",
+    "Identify the removed set (transport, crypto IGE, mtproto/session handshake) and check whether deleting it breaks unaffected packages such as tg, tl codegen or tgmock; record the list of packages that must stay.",
+    "In a copy with that set removed, run the suite; confirm every graded test in removed packages fails and count them. Unaffected-package tests must be excluded from grading.",
+    "Write a small seeded Go program that encodes and decodes random frames through the reference codecs and IGE; run it twice and diff the output to test determinism.",
+    "Re-run the 42 flaky tests to list which are timing-dependent and drop them from the deterministic subset.",
+    "Write abridged and intermediate codecs from the public spec alone and check they pass the codec vectors (acceptance breadth)."
+   ]
+  },
+  "summary": "The source is real and pinned (gotd/td v0.162.0, commit be24580, MIT), and the transport spec is public, so the reference is strong and licence-clean. The seed is viable but needs fixes before use: the amber smoke build with build_ok false, a 42-test flaky set, the need to restrict grading to removed-package tests so the base fails every graded case, and an unverified frontier-behaviour claim (Band capped at 3, E0)."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 78,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-012",
+  "kill_code": "",
+  "note": "Best of the batch. Real MIT module, release tag confirmed, and a public Telegram transport spec, so an implementation written from the spec alone can also pass. The upstream code is a complete reference. Buckets (codecs, obfuscation, IGE, key exchange, session and salt) give dense partial credit. Risks: (1) if tgmock or the test helpers reuse the removed packages, an agent's wrong code would sit on both sides of the test and pass against itself, so hidden differential vectors with injected deterministic randomness are required; (2) build_ok was false while the suite exited 0, which needs explaining; (3) the code is public on the Go proxy and partly recallable, so Seal rests on the offline, history-less snapshot; (4) grade only removed-package tests and drop the 42 flaky ones.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 80
+}

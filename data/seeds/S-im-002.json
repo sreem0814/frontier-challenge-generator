@@ -1,0 +1,253 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "4 h. Several strategies and settings give buckets. A frontier agent recalls much of the algorithm but misses tolerance and merge edge cases. A weaker model returns tables only for ruled grids.",
+  "cheat": "Installing pdfplumber from pip or the cache. Closed by removing it from the image, renaming modules, and hidden PDFs.",
+  "grading": "Hidden cases from the repo's sample PDFs and new generated PDFs, comparing extracted tables, bounding boxes and cell text to the real library, plus the existing suite. The shipped base fails all graded cases.",
+  "reference": "The upstream module at the pinned release, which scores 1. About 700-900 lines.",
+  "source": "https://github.com/jsvine/pdfplumber @ v0.11.10; MIT",
+  "task": "/app ships a history-less snapshot of pdfplumber with the table-finding subsystem removed (edge merging, intersections, cells, tables, text strategies, settings, and the page API and CLI hooks that use them). The agent rebuilds it.",
+  "title": "Rebuild PDF table extraction in pdfplumber"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-001 0.19"
+  ],
+  [
+   "2026-10-20T19:00:02Z",
+   "v1",
+   "killed:K8",
+   "The target is the upstream pdfplumber table-finding module, which is on PyPI (MIT) and in public git history, and is widely reproduced, so a frontier agent can plausibly recall much of it. Seal is weak because the oracle is installable. No dated public evidence shows partial agent success on this wo"
+  ]
+ ],
+ "id": "S-im-002",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.195,
+    "S-im-001"
+   ],
+   [
+    0.194,
+    "S-op-003"
+   ],
+   [
+    0.19,
+    "pdfplumber-stable [NL2Repo-Bench]"
+   ],
+   [
+    0.182,
+    "S-op-002"
+   ],
+   [
+    0.147,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 1,
+  "clone_ok": true,
+  "cmd_build": ". /p/venv/bin/activate && python -c \"import sys; print(sys.version)\"",
+  "cmd_fetch": "python3 -m venv /p/venv && . /p/venv/bin/activate && pip install -q -U pip &&\n         ex=$(python3 - <<\"EOF\"\nimport tomllib\nx=[]\ntry:\n  d=tomllib.load(open(\"pyproject.toml\",\"rb\")); x=list(((d.get(\"project\") or {}).get(\"optional-dependencies\") or {}).keys())\nexcept Exception: pass\nprint(\",\".join(e for e in x if not any(b in e.lower() for b in (\"doc\",\"gpu\",\"cuda\",\"win\",\"mac\"))))\nEOF\n);\n         grp",
+  "cmd_test": ". /p/venv/bin/activate && pytest -p no:cacheprovider -q -o junit_family=xunit2 --junitxml=$OUT/run$i.xml",
+  "commit": "4c64b92d5caccd71c645e98e0fabb0c4dba7ff45",
+  "deterministic": true,
+  "eco": "python",
+  "fetch_ok": true,
+  "fetch_s": 275,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "tests.test_repair.Test::test_from_issue_932",
+   "tests.test_repair.Test::test_other_repair_inputs",
+   "tests.test_repair.Test::test_repair_custom_path",
+   "tests.test_repair.Test::test_repair_password",
+   "tests.test_repair.Test::test_repair_setting",
+   "tests.test_repair.Test::test_repair_to_file"
+  ],
+  "stable_failures": 6,
+  "subdir": "",
+  "suite_s": 58,
+  "test_files": 101,
+  "tests_fail": 6,
+  "tests_listed": 171,
+  "tests_pass": 165,
+  "tests_skip": 0,
+  "tests_total": 171,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "4c64b92d5caccd71c645e98e0fabb0c4dba7ff45",
+  "kb": 21662,
+  "lang": "Python",
+  "open_prs": 39,
+  "pushed": "2026-10-15",
+  "release": "v0.11.10",
+  "spdx": "MIT",
+  "stars": 10831,
+  "test_files": 101,
+  "test_kb": 17994,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/jsvine/pdfplumber|jsvine-pdfplumber",
+ "source_notes": "SWE-smith profile (python): its suite runs in a container; test command: the language default. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/jsvine/pdfplumber",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://raw.githubusercontent.com/jsvine/pdfplumber/v0.11.10/pdfplumber/table.py",
+  "facts": [
+   {
+    "claim": "pdfplumber v0.11.10 is the current release, dated 2026-06-15 on PyPI",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/pdfplumber/"
+   },
+   {
+    "claim": "pdfplumber is MIT licensed",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/pdfplumber/"
+   },
+   {
+    "claim": "GitHub tag v0.11.10 exists in jsvine/pdfplumber",
+    "status": "confirmed",
+    "url": "https://github.com/jsvine/pdfplumber/tree/v0.11.10"
+   },
+   {
+    "claim": "pdfplumber/table.py at v0.11.10 is about 700 lines and defines snap_edges, join_edge_group, merge_edges, words_to_edges_h/v, edges_to_intersections, intersections_to_cells, cells_to_tables, TableSettings and TableFinder",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/jsvine/pdfplumber/v0.11.10/pdfplumber/table.py"
+   },
+   {
+    "claim": "NL2Repo-Bench is an ICML 2026 benchmark with 104 tasks, graded against upstream pytest suites",
+    "status": "confirmed",
+    "url": "https://proceedings.mlr.press/v306/ding26j.html"
+   },
+   {
+    "claim": "A pdfplumber-stable task exists in NL2Repo-Bench",
+    "status": "not_found",
+    "url": "https://github.com/multimodal-art-projection/NL2RepoBench"
+   },
+   {
+    "claim": "Public dated agent results on rebuilding pdfplumber table extraction exist",
+    "status": "not_found",
+    "url": "https://github.com/multimodal-art-projection/NL2RepoBench"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier suggested by seed; no dated public evidence found for agent performance on this work",
+   "build_cost": "about 2-4 days to strip the snapshot, write hidden-case generator and verify against library; smoke suite already has 6 deterministic failures at head that must be excluded from grading",
+   "deliverable": "rebuilt table finder (edges, intersections, cells, tables, text strategy), settings, page API and CLI hooks",
+   "gates_anticheat": "remove pdfplumber from image; hidden PDFs; rename modules. Recall of the upstream code is not closed by any of these",
+   "grading_surface": "hidden repo sample PDFs plus generated PDFs compared to the real library on tables, bboxes and cell text, plus existing suite",
+   "local_fit": "pure Python, CPU, small; fits sandbox; smoke green offline",
+   "lookup": "direct: the full upstream module is on PyPI and in GitHub history at the tag and later releases",
+   "provenance": "jsvine/pdfplumber v0.11.10 (MIT, PyPI 2026-06-15); smoke commit 4c64b92 is HEAD, not confirmed as the tag commit",
+   "reference": "upstream table.py and related utils at v0.11.10, roughly 700-900 lines, MIT",
+   "ships": "history-less snapshot with table subsystem removed; pdfplumber must be absent from image",
+   "similarity": "closest neighbours S-im-001 0.195, S-op-003 0.194, pdfplumber-stable 0.19 (NL2Repo, not verified in repo listing); all above 0.15"
+  },
+  "kill_code": "K8",
+  "kill_reason": "The target is the upstream pdfplumber table-finding module, which is on PyPI (MIT) and in public git history, and is widely reproduced, so a frontier agent can plausibly recall much of it. Seal is weak because the oracle is installable. No dated public evidence shows partial agent success on this work, so the claimed 4 h band is unsupported. Rescue would require a materially different spec (new strategies or API, changed defaults) so the work is no longer recall of upstream code.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "No dated evidence; the algorithm is famous and likely recallable, so a frontier agent may reach the reference too easily. Capped low without evidence."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Strip, hidden generator and oracle checks likely 2-4 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Python, CPU only, small footprint; smoke build green offline."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "About 700-900 lines in a 4 h tier is plausible but not clearly long-horizon."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT allows shipping the snapshot, data and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several strategies, settings, merge and cell stages give independent buckets."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Same subject as a public pdfplumber task (pdfplumber-stable, NL2Repo) with cosine 0.19 above the 0.15 bar; deliverable differs but subject overlaps."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT project, tagged release, 10.8k stars, release dated 2026-06-15."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream module at a pinned release."
+   },
+   "Seal": {
+    "v": 1,
+    "why": "Oracle (pdfplumber) and reference are installable from PyPI and present in public git history; memory cannot be sealed."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "171 existing tests plus unlimited generated PDFs compared to a live oracle; large but the oracle is public."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Recall-only build matches the oracle on most of the sample, meaning the task is recallable and too easy (K8).",
+   "pass_if": "Recall-only build scores clearly below 0.5 of oracle matches on the sample, showing that memory alone is not enough.",
+   "steps": [
+    "In a throwaway networked container, install pdfplumber==0.11.10 from PyPI as the oracle and confirm its version.",
+    "Confirm the tag commit matches the smoke commit 4c64b92; if not, use the tag commit for the snapshot.",
+    "Create a stripped copy with table.py, the table-related utils and the page table hooks removed; confirm the 6 stable head failures are excluded from grading.",
+    "Recall test: without opening upstream source, write a table finder from the stripped interface and spec alone, as a frontier agent would in one sitting.",
+    "Generate 20-30 PDFs (ruled grids, text-aligned tables, merged cells, skewed lines) and compare the recall-only output to the oracle on tables, bboxes and cell text.",
+    "Run the same sample twice to check determinism of the oracle output and of the comparison harness.",
+    "Score the recall-only build as a fraction of the oracle pass count."
+   ]
+  },
+  "summary": "The seed is real and MIT-licensed at a tagged pdfplumber release, with a ~700-line table.py that is verified at the tag, and the offline smoke build is green. It is killed as K8 because the reference and oracle are public and famous, so recall rather than engineering is likely to decide the outcome, and the claimed 4 h band has no dated evidence behind it."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 70
+}

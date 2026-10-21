@@ -1,0 +1,255 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "2 h. There are few levers, so a frontier agent usually succeeds. Credit comes from several levels and parameter paths. A weaker model finds the memset but not the row table.",
+  "cheat": "Gating on exact output stops skipping compression. Hidden size and level mixes prevent tuning to one case.",
+  "grading": "Gate: byte-identical output to the baseline for hidden inputs at levels 1-12 across all streaming API flows, plus the shipped tests. Medians of a hidden harness: tiny-input stream loops over sizes and levels. Reward is 2^u-1 against our reference.",
+  "reference": "The upstream fix in PR #2969 plus the separate rowHash init fix, measured on the same harness.",
+  "source": "https://github.com/facebook/zstd issue #2966 -> PR #2969, v1.5.1 vs v1.4.9, BSD-3-Clause",
+  "task": "/app ships a history-less zstd v1.5.1 snapshot. Repeated ZSTD_compressStream on tiny inputs is up to 100x slower than in v1.4.9 (71 s against 0.5 s). The agent finds the causes in the context init and reset path (the lost lean init, the heavy rowHash table init) and fixes them without breaking compatibility.",
+  "title": "Zstd streaming small-input compression slowdown"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "compression",
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-006 0.37"
+  ],
+  [
+   "2026-10-20T21:16:23Z",
+   "v1",
+   "killed:K10",
+   "Not long-horizon and one-lever: the reference is a one-line change (PR #2969) plus a small rowHash init fix, far below the 150 non-blank line scale gate. The seed itself calls it a 2-4 h regression task, and it fits no 8 h or 20 h tier. Lookup is partial (public fix, recallable), so K8 is a risk too"
+  ]
+ ],
+ "id": "S-op-007",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.371,
+    "S-op-006"
+   ],
+   [
+    0.185,
+    "zstd [ProgramBench]"
+   ],
+   [
+    0.167,
+    "S-im-017"
+   ],
+   [
+    0.151,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.144,
+    "S-im-018"
+   ]
+  ]
+ },
+ "method": "incident",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 13,
+  "ci_files": 10,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "49cf51799ea051457f57243527aa2058f999f005",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "compress/zstd_lazy.c.o\n[114/124] Linking C static library build/cmake/lib/libzstd.a\n[115/124] Linking C executable build/cmake/tests/datagen\n[116/124] Linking C executable build/cmake/programs/zstd\n[117/124] Linking C executable build/cmake/tests/fullbench\n[118/124] Linking C executable build/cmake/programs/zstd-frugal\n[119/124] Creating zstdcat symlink\n[120/124] Creating unzstd symlink\n[121/124] Creating zstdmt symlink\n[122/124] Linking C executable build/cmake/tests/fuzzer\n[123/124] Linking C executable build/cmake/tests/paramgrill\n[124/124] Linking C executable build/cmake/tests/zstreamtest",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 269,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "49cf51799ea051457f57243527aa2058f999f005",
+  "kb": 40610,
+  "lang": "C",
+  "open_prs": 160,
+  "pushed": "2026-10-06",
+  "release": "v1.5.7",
+  "spdx": "NOASSERTION",
+  "stars": 28061,
+  "test_files": 269,
+  "test_kb": 2156,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/facebook/zstd/issues/2966|zstd-v1-5-1-regressed-vs-v1-4-9-good-zstd-after-pr-2969-merg",
+ "source_notes": "Levers: only 2 (restore lean context init that was lost in commit 980f3bbf; separate rowHash heavy initialization still to fix). Maintainer could not reproduce on silesia (v1.5.1 faster, 45.2 vs 36.5 MB/s), so benchmark must use tiny inputs with streaming API. Good as a short (2-4h) hidden-regression task rather than a long one. Reproducer source not opened: only issue text.",
+ "source_url": "https://github.com/facebook/zstd/issues/2966",
+ "source_version": "zstd v1.5.1 (regressed) vs v1.4.9 (good) -> zstd after PR #2969 (merged 2022-01-05, part 1) plus separate rowHash init fix",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/facebook/zstd/issues/2966",
+  "facts": [
+   {
+    "claim": "Issue #2966 exists and reports v1.4.9 vs v1.5.1 streaming slowdown: 512 ms vs 71,266 ms at level 10 (Windows, DLL build), about 139x",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/issues/2966"
+   },
+   {
+    "claim": "Seed's general claim that tiny-input streaming is up to 100x slower on v1.5.1 is reporter-specific: the maintainer could not reproduce the >100x gap and measured about 2.5x; the reporter's number is Windows-only",
+    "status": "contradicted",
+    "url": "https://github.com/facebook/zstd/issues/2966"
+   },
+   {
+    "claim": "PR #2969 'fix performance issue in scenario #2966 (part 1)' exists and was merged into dev on Jan 5 2022 (merge commit 3c2c3fb)",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/2969"
+   },
+   {
+    "claim": "PR #2969 restores the lean context init lost in commit 980f3bb, and the key change is in lib/compress/zstd_cwksp.h, described as a single-line change (later reworded in commit 41ad733)",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/2969"
+   },
+   {
+    "claim": "The rowHash heavy initialization is NOT fixed by PR #2969; it was deferred to a separate follow-up (part 2, PR #2971 'do not initialize tag space', later closed)",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/2969"
+   },
+   {
+    "claim": "The reference fix is large enough for the scale gate (hundreds of changed lines, at least 150 non-blank code lines)",
+    "status": "contradicted",
+    "url": "https://github.com/facebook/zstd/pull/2969"
+   },
+   {
+    "claim": "Zstandard v1.5.1 release page exists; its listed changes do not mention streaming or context-init performance",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.1"
+   },
+   {
+    "claim": "Licence is BSD-style (three conditions: source and binary redistribution, non-endorsement, Meta copyright); the API spdx NOASSERTION is a detection artifact, and no patent grant appears in LICENSE",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/blob/dev/LICENSE"
+   },
+   {
+    "claim": "A public topic search found no separate v1.5.1-specific ZSTD_compressStream regression report beyond issue #2966",
+    "status": "not_found",
+    "url": "https://github.com/facebook/zstd/issues/2966"
+   }
+  ],
+  "full_card": {
+   "band": "2 h tier. Frontier agent probably finds the one lever in minutes; weaker model may find memset but not the rowHash table. Not a long-horizon scope.",
+   "build_cost": "Under 1 day to build and write the harness; the ctest/junit mapping needs repair (amber).",
+   "deliverable": "Patched lib/compress/ sources so repeated ZSTD_compressStream on tiny inputs regains v1.4.9-level speed at levels 1-12, with byte-identical output.",
+   "gates_anticheat": "Byte-identical output gate across streaming flows stops skipping compression; hidden size and level mixes stop per-case tuning; tests and build config read-only.",
+   "grading_surface": "Hidden timing harness (median wall-clock, tiny-input streaming loops over sizes and levels 1-12), byte-identity gate, plus shipped tests. Surface is modest: a few parameter paths.",
+   "local_fit": "C, cmake, 8 cores, CPU only: fits. Smoke ctest parsed 0 tests and exited rc 8 on all 3 runs, so per-test results are missing.",
+   "lookup": "partial: fix is public in upstream git history and later releases; history-less snapshot blocks git reading, but the one-line change is easily re-derived from the issue.",
+   "provenance": "facebook/zstd issue #2966 -> PR #2969 (part 1, merged Jan 2022 into dev); rowHash part via PR #2971 (closed). Release v1.5.1 (Dec 2021 per release page). Pinned commit 49cf5179 per smoke probe.",
+   "reference": "Upstream PR #2969 (lean init, one-line change in zstd_cwksp.h) plus the separate rowHash init fix. Reference is tiny; no complete implementation.",
+   "ships": "History-less C snapshot of zstd v1.5.1 with the lean-init and rowHash init regressions present; cmake build ~13 s.",
+   "similarity": "Nearest l0 neighbour S-op-006 at 0.371 (not a public task, but above the 0.15 bar). ProgramBench zstd 0.185. Not a crowded subject, but very narrow scope."
+  },
+  "kill_code": "K10",
+  "kill_reason": "Not long-horizon and one-lever: the reference is a one-line change (PR #2969) plus a small rowHash init fix, far below the 150 non-blank line scale gate. The seed itself calls it a 2-4 h regression task, and it fits no 8 h or 20 h tier. Lookup is partial (public fix, recallable), so K8 is a risk too.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Frontier agents usually finish it; no dated evidence of partial success; the weaker model's partial path is narrow."
+   },
+   "Build": {
+    "v": 5,
+    "why": "Builds in 13 s; ctest/junit mapping needs fixing for the amber probe."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "C and cmake, 13 s build, CPU only."
+   },
+   "Hor": {
+    "v": 1,
+    "why": "2 h work at most; the seed itself calls it a short regression task."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "LICENSE is BSD-style and allows shipping; the API NOASSERTION is a detection artifact."
+   },
+   "Multi": {
+    "v": 1,
+    "why": "Only two levers (lean init, rowHash init); no steady buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour is 0.371 (S-op-006), above the 0.15 bar; not a public task."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real issue, merged PR and release; the 100x figure is reporter-specific and was not reproduced by the maintainer."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "The reference is a one-line change plus a small rowHash fix, far below a complete implementation."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Upstream fix is public in later releases and is a one-liner that can be recalled or re-derived."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden timing harness plus byte-identity gate, but only a few parameter paths; not thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 25,
+   "kill_if": "Linux gap is under 2x (matches the maintainer's 2.5x), or the whole gain is a single line with no remaining headroom for multi-lever credit.",
+   "pass_if": "Linux shows a gap of at least 5x between v1.5.1 and v1.4.9 on tiny streaming inputs, and the lean-init fix closes most of it with byte-identical output.",
+   "steps": [
+    "In a throwaway Linux container with network, clone facebook/zstd at tag v1.5.1 (or the pinned commit) and build with cmake, -j4.",
+    "Write a tiny C harness that loops ZSTD_compressStream2 (or ZSTD_compressStream) over 11 to 1547 byte inputs at levels 1, 5, 10, 12 for 50,000 iterations and records median wall time.",
+    "Repeat on v1.4.9 with the same harness to measure the real gap on Linux.",
+    "Apply the PR #2969 lean-init change to v1.5.1 and re-measure; then apply the rowHash init fix and re-measure.",
+    "Check byte-identity of output across all levels between the patched and unpatched builds.",
+    "Record whether the gap is above 5x on Linux and whether the one-line fix closes most of it."
+   ]
+  },
+  "summary": "The source is real and confirmed: issue #2966 reports a Windows-only ~139x slowdown on v1.5.1, PR #2969 is a one-line lean-init fix, and the rowHash part was split into a follow-up PR. The seed fails the scale and long-horizon gates because the reference is far below 150 changed lines and the scope is two levers in a 2 h window, so kill with K10."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 54
+}

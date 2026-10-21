@@ -1,0 +1,233 @@
+{
+ "batch": 1,
+ "card": {
+  "band": "4 h. Many pure functions give dense credit. A frontier agent handles the common scales and fails on edge-case rounding. A weaker model gets only linear ticks.",
+  "cheat": "Installing recharts or d3 from node_modules cache. Closed by pruning the lockfile deps and by hidden inputs.",
+  "grading": "Hidden differential cases generated from the real utility functions over wide random inputs (float edge cases, log, time and band scales), plus the repo's unit suite as a gate. The shipped base fails all graded cases.",
+  "reference": "The upstream implementation at the pinned release. About 1-1.5k lines.",
+  "source": "https://github.com/recharts/recharts @ v3.10.1; MIT",
+  "task": "/app ships a snapshot of recharts with its axis tick generation, nice-domain computation, scale selection, stacking and bar and legend layout utilities removed. The agent rebuilds them to the existing interfaces.",
+  "title": "Rebuild chart tick, domain and layout math in recharts"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T18:58:50Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-20T18:58:50Z",
+   "write",
+   "short",
+   "batch 1"
+  ],
+  [
+   "2026-10-20T18:58:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-002 0.36"
+  ],
+  [
+   "2026-10-20T18:59:57Z",
+   "v1",
+   "killed:K8",
+   "The reference is the upstream recharts source itself, a famous 27.6k-star MIT library whose compiled dist and types are on npm/unpkg and whose tick and layout code is widely recalled; rebuilding it is effectively a famous-port task (K8). Secondary risk: the seal (K11) fails if any recharts copy or t"
+  ]
+ ],
+ "id": "S-im-004",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.364,
+    "S-im-002"
+   ],
+   [
+    0.194,
+    "S-op-002"
+   ],
+   [
+    0.187,
+    "S-op-003"
+   ],
+   [
+    0.171,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.112,
+    "regex-log [archive]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "skipped": "repo over 2 GB, not probed"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "25b3cef87e3b1d095447fbae4d87e220f62c32ef",
+  "kb": 3615607,
+  "lang": "TypeScript",
+  "open_prs": 77,
+  "pushed": "2026-10-20",
+  "release": "v3.10.1",
+  "spdx": "MIT",
+  "stars": 27642,
+  "test_files": 3566,
+  "test_kb": 114146,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/recharts/recharts|recharts-recharts",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: npm test. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/recharts/recharts",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/recharts/recharts/releases/tag/v3.10.1",
+  "facts": [
+   {
+    "claim": "recharts v3.10.1 release/tag exists (tag commit ffb918798051ef040bb7f9922d3850c9c189f39f; release dated 25 Jul, year not shown)",
+    "status": "confirmed",
+    "url": "https://github.com/recharts/recharts/releases/tag/v3.10.1"
+   },
+   {
+    "claim": "Repository licence is MIT (GitHub API spdx_id)",
+    "status": "confirmed",
+    "url": "https://api.github.com/repos/recharts/recharts"
+   },
+   {
+    "claim": "Repository is not archived and not a fork; default branch main; pushed 2026-10-20",
+    "status": "confirmed",
+    "url": "https://api.github.com/repos/recharts/recharts"
+   },
+   {
+    "claim": "Repository size reported as 3,615,607 KB (~3.6 GB), above the 2 GB smoke-probe cap; probe was skipped",
+    "status": "confirmed",
+    "url": "https://api.github.com/repos/recharts/recharts"
+   },
+   {
+    "claim": "Stars about 27.6k (27,643 vs seed 27,642; drift only)",
+    "status": "confirmed",
+    "url": "https://api.github.com/repos/recharts/recharts"
+   },
+   {
+    "claim": "v3.10.1 release notes list no changes to tick, domain, scale, stacking or legend utilities; one bar-layout fix (#7582, barGap with maxBarSize)",
+    "status": "confirmed",
+    "url": "https://github.com/recharts/recharts/releases/tag/v3.10.1"
+   },
+   {
+    "claim": "src/util at v3.10.1 contains scale/ and stacks/ folders and TickUtils.ts; getNiceTickValues is not visible at the top level of src/util",
+    "status": "confirmed",
+    "url": "https://github.com/recharts/recharts/tree/v3.10.1/src/util"
+   },
+   {
+    "claim": "getNiceTickValues lives under src/util/scale (inferred from published d.ts path util/scale/getNiceTickValues.d.ts in recharts 3.9.2)",
+    "status": "confirmed",
+    "url": "https://app.unpkg.com/recharts@3.9.2/files/types/util/scale/getNiceTickValues.d.ts"
+   },
+   {
+    "claim": "recharts 3.10.1 is published on npm/unpkg with type files, so the upstream compiled code for the removed modules is publicly installable",
+    "status": "confirmed",
+    "url": "https://app.unpkg.com/recharts@3.10.1/files/types/state/cartesianAxisSlice.d.ts"
+   },
+   {
+    "claim": "npm package page lists dependencies (d3-*, victory-vendor) and version 3.10.1",
+    "status": "not_found",
+    "url": "https://www.npmjs.com/package/recharts"
+   },
+   {
+    "claim": "Test file count 3566 / test_kb 114146 in the repo at the pinned release",
+    "status": "not_found",
+    "url": "https://github.com/recharts/recharts/tree/v3.10.1/test"
+   },
+   {
+    "claim": "Seed claim that the removed utilities are tick generation, nice-domain, scale selection, stacking, bar and legend layout as listed in src/util",
+    "status": "not_found",
+    "url": "https://github.com/recharts/recharts/tree/v3.10.1/src/util"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier; common scales pass, edge rounding and log/time scales are where credit is lost; a weaker model gets only linear ticks. Recallability of the upstream code is the main band risk.",
+   "build_cost": "Unprobed; smoke skipped because repo exceeds 2 GB; expect a multi-hour npm install and snapshot pruning, est 3-4 days.",
+   "deliverable": "Rebuilt TypeScript utilities matching existing call sites and types; hidden differential tests on random float, log, time and band-scale inputs plus the repo unit suite as gate.",
+   "gates_anticheat": "Prune lockfile and node_modules of recharts and d3-* copies; hidden inputs; no history past base. Cheat path via npm cache not verified.",
+   "grading_surface": "Wide random differential cases generated from the real upstream utilities (sealed oracle) plus unit gate; surface is large and executable.",
+   "local_fit": "TypeScript/npm monorepo, CPU only; fits 8 cores/16 GB in principle, but 3.6 GB repo and unprobed npm install are heavy.",
+   "lookup": "direct: exact upstream code is public on GitHub and npm/unpkg (compiled dist and types); recall of getNiceTickValues not measured.",
+   "provenance": "recharts/recharts @ v3.10.1 (tag ffb9187), MIT, 27.6k stars, not a fork, not archived; GitHub reports 3.6 GB repo size.",
+   "reference": "Upstream recharts v3.10.1 source, the exact code being removed; about 1-1.5k lines per seed.",
+   "ships": "Snapshot of recharts with tick, nice-domain, scale selection, stacking, bar and legend layout utilities removed; must be history-less with no recharts copy in node_modules or npm cache.",
+   "similarity": "Neighbours: S-im-002 0.364 (another seed, not public); S-op-002 0.194; S-op-003 0.187; python-pytest-cases 0.171 (different subject); regex-log 0.112. No public task with the same subject."
+  },
+  "kill_code": "K8",
+  "kill_reason": "The reference is the upstream recharts source itself, a famous 27.6k-star MIT library whose compiled dist and types are on npm/unpkg and whose tick and layout code is widely recalled; rebuilding it is effectively a famous-port task (K8). Secondary risk: the seal (K11) fails if any recharts copy or the d3 nice helpers survive pruning in the image.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "The reference is a famous library's own code that a frontier agent may recall, so the band is not measured; no dated evidence exists."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Smoke build skipped; monorepo of 3.6 GB needs a multi-day build and snapshot pruning."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "TypeScript on CPU is fine, but a 3.6 GB repo and npm install strain the 16 GB and 8-core sandbox."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "A 4 h tier fits about 1-1.5k lines of rebuild, but the test-gate and monorepo setup add cost."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per GitHub API; shipping is permitted."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several independent modules (ticks, domain, scale, stack, bar, legend) give natural partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public task shares the subject; the closest public neighbour is 0.171 (python-pytest-cases), a different subject."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT repo at a published release, confirmed via GitHub release and API."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Reference is the complete permissive upstream implementation at the pinned release."
+   },
+   "Seal": {
+    "v": 1,
+    "why": "The exact answer is installable from npm and recallable from GitHub; pruning the cache does not remove memorised source."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Pure numeric functions give thousands of differential cases from a generator, but the oracle is upstream code that is public."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Recall of upstream code matches most edge cases, or a recharts or d3-scale copy that exposes the algorithm survives pruning.",
+   "pass_if": "Deterministic oracle; recall match on edge cases well below 0.5; no recharts copy left after pruning.",
+   "steps": [
+    "In a throwaway networked container, clone recharts at tag v3.10.1 with depth 1 and record the size; confirm the removed-module list against the seed.",
+    "Run npm ci once and confirm the offline unit suite runs; record time and any failures per test.",
+    "Build the upstream getNiceTickValues and the tick helpers; generate 10k random domains (float edges, log, time, band) and check the outputs are deterministic across two runs.",
+    "Without network, ask a frontier model to write getNiceTickValues from memory; diff its output against the upstream build on the same 10k inputs and record the match rate.",
+    "Check node_modules and the npm cache for any recharts copy and for d3-scale/d3-array nice helpers; list what would remain after pruning.",
+    "Decide: if recall match is high or a recharts copy survives pruning, the seal fails; if recall is low and pruning removes all copies, the seal holds."
+   ]
+  },
+  "summary": "The recharts v3.10.1 release, MIT licence and tag are confirmed, and the removed utilities are the library's own public code available on npm and GitHub. Because the reference is a famous, recallable and installable port, the idea is killed as K8, with K11 as a secondary seal risk and a 3.6 GB repo raising build cost."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 68
+}

@@ -1,0 +1,304 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "8 h. A frontier agent finds the row hash idea and gets part of the speedup, but not the tag-comparison SIMD or the full gain at the highest levels. A weaker model makes micro-tweaks only.",
+  "cheat": "Hardcoding a lower level or weakening the search is caught by the ratio floor. Caching or precomputing is blocked by hidden inputs and fresh processes. The v1.5.0 source is not shipped.",
+  "grading": "Hard gate: every output round-trips through the baseline decoder, and the decoder is byte-exact on a hidden corpus. A compression-ratio floor is set at 1% loss against the baseline. Wall-clock medians are taken on a hidden corpus (text, binaries, logs, over 128 KB) at levels 5-12 and in decode. Reward is 2^u-1 against our measured speedup.",
+  "reference": "The upstream v1.5.0 tree, measured at 1.25x to 2.4x on compression and a few percent on decode.",
+  "source": "https://github.com/facebook/zstd v1.4.9 -> v1.5.0, BSD-3-Clause (dual with GPLv2)",
+  "task": "/app ships a history-less zstd v1.4.9 snapshot with its CLI and library build. The agent makes compression levels 5-12 and decompression faster. The levers are a row-based match finder with tag matching, a restructured decode loop and reduced stack use, while keeping the format valid.",
+  "title": "Zstd 1.4.9 to 1.5.0 row match finder and decode loop speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "compression",
+ "final": 65,
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour zstd-decoder [SWE-Marathon] 0.21"
+  ],
+  [
+   "2026-10-20T21:16:45Z",
+   "v1",
+   "pass",
+   "score 76; dead links []"
+  ],
+  [
+   "2026-10-20T21:18:09Z",
+   "v2",
+   "killed:K8",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-op-006",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.209,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.157,
+    "loop [ProgramBench]"
+   ],
+   [
+    0.156,
+    "zstd [ProgramBench]"
+   ],
+   [
+    0.148,
+    "S-im-018"
+   ],
+   [
+    0.146,
+    "S-im-017"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 4,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 13,
+  "ci_files": 10,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "49cf51799ea051457f57243527aa2058f999f005",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "compress/zstd_lazy.c.o\n[114/124] Linking C static library build/cmake/lib/libzstd.a\n[115/124] Linking C executable build/cmake/tests/datagen\n[116/124] Linking C executable build/cmake/programs/zstd\n[117/124] Linking C executable build/cmake/tests/fullbench\n[118/124] Linking C executable build/cmake/programs/zstd-frugal\n[119/124] Creating zstdcat symlink\n[120/124] Creating unzstd symlink\n[121/124] Creating zstdmt symlink\n[122/124] Linking C executable build/cmake/tests/fuzzer\n[123/124] Linking C executable build/cmake/tests/paramgrill\n[124/124] Linking C executable build/cmake/tests/zstreamtest",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 269,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "49cf51799ea051457f57243527aa2058f999f005",
+  "kb": 40610,
+  "lang": "C",
+  "open_prs": 160,
+  "pushed": "2026-10-06",
+  "release": "v1.5.7",
+  "spdx": "NOASSERTION",
+  "stars": 28061,
+  "test_files": 269,
+  "test_kb": 2156,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/facebook/zstd/releases/tag/v1.5.0|zstd-v1-4-9-inferred-prior-release-page-gives-no-explicit-ba",
+ "source_notes": "Levers: (1) new row-based match finder for greedy/lazy/lazy2 (2) decompression loop refactor (PRs #2614 #2630) (3) reduced stack use in entropy stage (PRs #2522 #2524). INFERRED: compressed bytes likely change with the new match finder, so gate on round-trip and ratio rather than byte-identical compressed output (decompression side is byte-identical). Only SSE2 CPUs get full gain. q:\"The biggest gains are achieved on files typically larger than 128KB.\" Compression-only lever count is small, decode side adds second lever family. Licence stated on repo not on release page.",
+ "source_url": "https://github.com/facebook/zstd/releases/tag/v1.5.0",
+ "source_version": "zstd v1.4.9 (INFERRED: prior release; page gives no explicit baseline tag) -> zstd v1.5.0",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/facebook/zstd/releases/tag/v1.5.0",
+  "facts": [
+   {
+    "claim": "Zstandard v1.5.0 release exists on facebook/zstd (tag v1.5.0, released 14 May)",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.0"
+   },
+   {
+    "claim": "v1.5.0 release notes make a new match finder the default for greedy, lazy and lazy2 strategies",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.0"
+   },
+   {
+    "claim": "v1.5.0 changelog lists decompression loop refactor and reduced stack usage in the entropy stage",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.0"
+   },
+   {
+    "claim": "Full gain only on SSE2-capable CPUs; biggest gains on files typically larger than 128KB; legacy finder used below 16KB",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.0"
+   },
+   {
+    "claim": "Release page itself names the feature 'row-based' or describes row hash / tag matching",
+    "status": "not_found",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.0"
+   },
+   {
+    "claim": "Release-page speedup table (about +25% at level 5 to +110-140% at level 12, i9-9900K)",
+    "status": "not_found",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.0"
+   },
+   {
+    "claim": "LICENSE file at v1.5.0 is BSD (three-clause conditions, no PATENTS grant)",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/blob/v1.5.0/LICENSE"
+   },
+   {
+    "claim": "Dual licence BSD with GPLv2",
+    "status": "not_found",
+    "url": "https://github.com/facebook/zstd/blob/v1.5.0/COPYING"
+   },
+   {
+    "claim": "PR #2614 (decoder long-sequence prefetch) merged 5 May 2021 into dev; decode-side, not match finder",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/2614"
+   },
+   {
+    "claim": "PR #2630 (gcc-9/10 decoding alignment) merged 10 May 2021; decode-side",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/2630"
+   },
+   {
+    "claim": "PR #2522 (reduce stack usage of ZSTD_buildCTable, entropy stage) merged 5 Mar 2021",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/2522"
+   },
+   {
+    "claim": "PR #2524 is a stack-reduction change merged into v1.5.0",
+    "status": "not_found",
+    "url": "https://github.com/facebook/zstd/pull/2522"
+   },
+   {
+    "claim": "Later release v1.5.5 further sped up the row match finder and fixed a corruption bug at levels 16+ (so upstream direction has moved past v1.5.0)",
+    "status": "confirmed",
+    "url": "https://newreleases.io/project/github/facebook/zstd/release/v1.5.5"
+   }
+  ],
+  "full_card": {
+   "band": "8 h. Frontier likely finds row finder and part of speedup; full gain at high levels and tag SIMD are the hard buckets; weaker model micro-tweaks. Unverified by dated public evidence.",
+   "build_cost": "3 days: hidden corpus, fresh-process timing harness, ratio/round-trip gate, building reference, enabling ctest (smoke run_rcs=8 with zero tests means tests not registered; need ZSTD_BUILD_TESTS config).",
+   "deliverable": "Faster compression at levels 5-12 (row-based match finder with tag matching, SSE2 path) and faster decompression (decode loop restructure, lower stack use), output still valid zstd decodable by baseline decoder.",
+   "gates_anticheat": "Hidden inputs and fresh processes block precompute/caching; ratio floor blocks weakened search; v1.5.0 source not shipped. Open gap: system libzstd in base image (not verified; spike must check) could be linked or copied as a faster oracle.",
+   "grading_surface": "Hard gate: round-trip through baseline decoder on every output; byte-exact decode on hidden corpus (text, binaries, logs >128KB); ratio floor 1% loss; wall-clock medians levels 5-12 and decode; reward 2^u-1.",
+   "local_fit": "C, cmake, 8 cores, 16 GB, CPU-only, offline; build 13 s. Timing under gVisor noisy; SSE2 lever x86-only.",
+   "lookup": "partial: row-finder outline and tag design are public and partly recallable; no code in image beyond v1.4.9; later v1.5.5 exists (must stay on snapshot).",
+   "provenance": "facebook/zstd, BSD LICENSE + GPLv2 COPYING at v1.5.0; upstream v1.5.0 tag public (14 May 2021 per release page). Base snapshot v1.4.9 history-less.",
+   "reference": "Upstream v1.5.0 tree; upstream release notes show gains, measured on other hardware (i9-9900K), must be re-measured in sandbox.",
+   "ships": "Zstd v1.4.9 C source snapshot (no git history, no v1.5.x tree) with cmake CLI and library build; ~40 MB repo, 269 test files.",
+   "similarity": "Max l0 neighbour 0.209 (zstd-decoder SWE-Marathon), zstd ProgramBench 0.156. Codec subject is on CROWDED list, but deliverable is speed optimization with timing gates, not a clone; not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed band is plausible, but there is no dated public evidence of agent results on this kind of task, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days: corpus, harness, determinism, tests registration, reference build."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Offline C/cmake fits the sandbox. Timing noise under gVisor and the SSE2 dependency are the risks."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Row finder, tag SIMD, decode loop and stack work across several modules is a sustained 8 h effort."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSD LICENSE confirmed; shipping permitted. The GPLv2 dual claim is not confirmed, but that does not block shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Separate buckets per level (5-12) and decode, plus several independent levers."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour 0.209; zstd is on the CROWDED list but this is an optimization deliverable, not a clone."
+   },
+   "Real": {
+    "v": 5,
+    "why": "facebook/zstd is a real, 28k-star project with tagged v1.4.9 and v1.5.0 releases."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream v1.5.0 is a strong reference, but its speedup was measured on other hardware and must be re-measured here."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public and famous, but a history-less v1.4.9 snapshot keeps the reference out of reach. Drops to 2 if a system libzstd >=1.5 is in the image."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Executable oracle (round-trip plus byte-exact decode) over a hidden corpus at many levels; timing medians add buckets."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "System libzstd >=1.5 cannot be removed or excluded from grading (K11); reference speedup below 1.1x or above 3x on our hardware (K8/K9 recalibration); timings not reproducible within 10% (K4); decode gain indistinguishable from noise (drop decode bucket, not a full kill).",
+   "pass_if": "Reference speedup 1.25x-2.4x at levels 5-12 on our hardware; decode gain measurable; round-trip byte-exact; ratio loss <=1%; timing variance <=5% over repeats; no system libzstd >=1.5 reachable from the snapshot build.",
+   "steps": [
+    "In a throwaway networked Debian container matching the base image, run dpkg -l | grep -i zstd and ldconfig -p | grep zstd; record any libzstd1 version and whether zstd CLI exists. If libzstd >=1.5 is present, plan to remove it or verify the grader ignores it before continuing.",
+    "Clone facebook/zstd, check out the v1.4.9 base commit and the v1.5.0 tag. Build both with cmake (-DZSTD_BUILD_TESTS=ON so ctest registers tests); confirm base tests pass.",
+    "Build a small corpus of 6-8 files over 128KB (text, ELF binaries, logs, mixed) and run zstd -b5 -e12 style timing per level for base and v1.5.0, 3 repetitions each, record medians.",
+    "Check the compression speedup at levels 5-12 falls in roughly 1.25x-2.4x on this hardware, and that decode gain is measurable above noise (a few percent).",
+    "Round-trip: compress each file with v1.5.0 at levels 5-12, decode with the v1.4.9 decoder, confirm byte-exact output and ratio loss <=1% vs v1.4.9.",
+    "Repeat timings on a second run to check medians vary by less than about 5%."
+   ]
+  },
+  "summary": "The upstream v1.5.0 release, the BSD LICENSE, and the decode and stack PRs (#2614, #2630, #2522) are confirmed, so the seed's levers are real, public and sealable as a v1.4.9 snapshot. Not killed, but the spike must confirm the reference speedup on our hardware and rule out a system libzstd in the image, and the smoke run shows zero registered tests, so the build cost is about 3 days."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 76,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-006",
+  "kill_code": "",
+  "note": "Release-note paper trail confirmed, but the speedup table was not found and must be re-measured in gVisor. Most of the gain is one lever, the row match finder, and frontier models know zstd_lazy.c in detail (K8 watch). The decode bucket is only a few percent and may be lost in noise. Debian images usually carry libzstd1 1.5.x, which could be dlopen'd as a faster engine, so the grader must check linkage. zstd is on the CROWDED list as a codec, although here the deliverable is a speedup.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 2,
+   "Nov": 3,
+   "Real": 5,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 65
+}
