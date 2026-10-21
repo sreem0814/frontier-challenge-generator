@@ -21,3 +21,8 @@ Rules for Claude Code sessions in this folder. The manual is README.md. Read it 
 - Keep the root minimal: README.md, CLAUDE.md, capture/, pipeline/, data/, kit/, archive/.
 - No new markdown files. Results go into data files (data/seeds/, data/sources.tsv); findings and decisions go into an existing section of README.md.
 - kit/ is the task-building kit (kit/BUILD.md): validated ideas become bundles in kit/tasks/<task>/. archive/ holds the raw research tables (archive/research/).
+
+## Machines
+- VM1 (this machine): research, the pipeline, probes and spikes. 8 CPUs, 22 GB, no GPU.
+- Trial runners `vm2` and `vm3` (generic names shared across projects; Windows PCs with WSL 2 on Tailscale, fast internet): the bundle kit's trial runners (`CG_RUNNER_HOST=vm2|vm3`, default vm2). Setup and disk care: README section 10. Never start a run on a runner that reports DISK_LOW (~/.runner/DISK_LOW).
+- VM1, VM2 and VM3 are three different PCs. VM3 is the PC tb-ws calls `tb-runner3` (same IP; tb-ws keeps that alias, CG uses `vm3`); it is shared, so tb-ws runs live there in ~/tb-runs beside CG's ~/cg-runs. VM2 is a new PC (not tb-ws's old `tb-runner`).
