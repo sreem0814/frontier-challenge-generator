@@ -449,6 +449,7 @@ def call_spike(s, payload, cfg, boost=1):
         raise RuntimeError(f"missing {envf} (the spike token): run `bash pipeline/setup-token.sh`")
     shutil.copy(stage_prompt_file("spike"), os.path.join(wd, ".cgpipe-system.txt"))
     name = f"cgspike-{s['id'].lower()}"
+    subprocess.run(["docker", "rm", "-f", name], capture_output=True, timeout=120)   # a leftover from a killed attempt
     probe = s.get("smoke") or {}
     vol = probe.get("work_volume")
     mounted = bool(vol) and subprocess.run(["docker", "volume", "inspect", vol], capture_output=True,
