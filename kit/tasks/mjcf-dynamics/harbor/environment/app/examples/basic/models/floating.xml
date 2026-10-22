@@ -1,0 +1,16 @@
+<mujoco model="floating-box">
+  <option timestep="0.002">
+    <flag contact="disable" constraint="disable"/>
+  </option>
+  <worldbody>
+    <body name="box" pos="0.1 -0.2 1.5" euler="10 20 30">
+      <freejoint/>
+      <geom type="box" size="0.1 0.2 0.3" density="500"/>
+      <geom type="sphere" size="0.08" pos="0.1 0 0.3" mass="0.5"/>
+    </body>
+  </worldbody>
+  <sensor>
+    <framequat objtype="xbody" objname="box"/>
+    <subtreelinvel body="box"/>
+  </sensor>
+</mujoco>

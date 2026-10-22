@@ -1,0 +1,26 @@
+<mujoco model="limitchain">
+  <option timestep="0.005" integrator="implicitfast" solver="CG" tolerance="0" iterations="1500">
+    <flag contact="disable"/>
+  </option>
+  <worldbody>
+    <body name="l1" pos="0 0 1">
+      <joint name="h1" type="hinge" axis="0 1 0" range="-30 30" frictionloss="0.05"/>
+      <geom type="capsule" fromto="0 0 0 0.3 0 0" size="0.03"/>
+      <body name="l2" pos="0.3 0 0">
+        <joint name="h2" type="hinge" axis="0 1 0" range="-45 45" damping="0.1"/>
+        <geom type="capsule" fromto="0 0 0 0.3 0 0" size="0.03"/>
+        <site name="tip" pos="0.3 0 0"/>
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <joint joint1="h1" joint2="h2" polycoef="0 0.5 0 0 0"/>
+  </equality>
+  <actuator>
+    <motor joint="h1" gear="2" ctrlrange="-1 1"/>
+  </actuator>
+  <sensor>
+    <jointlimitfrc joint="h1"/>
+    <framepos objtype="site" objname="tip"/>
+  </sensor>
+</mujoco>

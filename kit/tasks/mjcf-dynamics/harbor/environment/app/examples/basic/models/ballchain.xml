@@ -1,0 +1,34 @@
+<mujoco model="ball-chain">
+  <default>
+    <joint damping="0.1" armature="0.01"/>
+    <geom type="capsule" size="0.03"/>
+    <default class="heavy">
+      <geom density="3000"/>
+    </default>
+  </default>
+  <option timestep="0.004">
+    <flag contact="disable" constraint="disable"/>
+  </option>
+  <worldbody>
+    <site name="anchor" pos="0.5 0.5 2"/>
+    <body name="a" pos="0 0 2">
+      <joint name="ball1" type="ball"/>
+      <geom fromto="0 0 0 0.3 0 -0.3"/>
+      <body name="b" pos="0.3 0 -0.3" childclass="heavy">
+        <joint name="ball2" type="ball"/>
+        <geom fromto="0 0 0 0 0.3 -0.3"/>
+        <site name="end" pos="0 0.3 -0.3"/>
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <spatial name="cord" stiffness="10">
+      <site site="end"/>
+      <site site="anchor"/>
+    </spatial>
+  </tendon>
+  <sensor>
+    <ballquat joint="ball2"/>
+    <tendonpos tendon="cord"/>
+  </sensor>
+</mujoco>
