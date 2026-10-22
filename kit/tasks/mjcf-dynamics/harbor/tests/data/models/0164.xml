@@ -1,0 +1,54 @@
+<mujoco model="m7330023">
+  <compiler angle="degree" eulerseq="Xzz" />
+  <option timestep="0.001" integrator="Euler" solver="Newton" tolerance="0" iterations="100" ls_iterations="60">
+    <flag />
+  </option>
+  <default>
+    <geom type="capsule" size="0.071059 0.1827" condim="4" />
+    <motor ctrlrange="-1 1" />
+    <default class="c1">
+      <geom type="capsule" size="0.070359 0.17463" density="571.42" condim="6" />
+      <default class="c2">
+        <geom type="capsule" size="0.024765 0.12915" friction="0.42733 0.024408 0.0036657" />
+      </default>
+    </default>
+    <default class="c3">
+      <joint damping="0.18287" armature="0.018986" solreflimit="0.060012 1.4119" />
+      <site size="0.02" />
+      <motor gear="-1.7102" />
+      <default class="c4">
+        <joint damping="0.20746" solreflimit="0.040006 0.84228" />
+        <geom friction="0.84723 0.039709 0.0031128" />
+        <site size="0.02" />
+        <motor gear="-3.7351" />
+        <default class="c5">
+          <geom type="capsule" size="0.037848 0.058818" solref="0.02911 1.1817" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" solref="0.014626 0.7816" />
+    <site name="ws" pos="0.13705 0.74514 -0.74718" />
+    <frame pos="0.2345 -0.080442 -0.027562">
+      <body name="b1" pos="-0.24017 0.19779 0.093127" quat="-2.003 0.95177 0.50296 -0.71206" childclass="c1">
+        <joint name="j1" type="hinge" pos="0.11684 -0.031937 -0.13052" stiffness="1.5464" damping="0.38825" />
+        <geom type="capsule" name="g1" size="0.063076 0.24961" pos="0.095099 0.04785 0.086335" quat="0.14864 -0.29977 -0.66886 -0.59026" mass="0.89276" solref="0.056689 1.1471" />
+        <site name="s2" pos="0.064272 0.1307 -0.16158" type="capsule" size="0.20166 0.2585" zaxis="-0.36982 -0.78988 -0.86728" />
+      </body>
+    </frame>
+  </worldbody>
+  <tendon>
+    <spatial name="sp0" stiffness="8.1125" damping="1.4163">
+      <site site="ws" />
+      <site site="s2" />
+    </spatial>
+  </tendon>
+  <sensor>
+    <gyro name="sn0" site="s2" />
+    <subtreecom name="sn1" body="b1" />
+    <velocimeter name="sn2" site="s2" cutoff="1.4685" />
+    <e_potential name="sn3" />
+    <tendonpos name="sn4" tendon="sp0" />
+  </sensor>
+</mujoco>

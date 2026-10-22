@@ -1,0 +1,79 @@
+<mujoco model="m7300017">
+  <compiler angle="degree" eulerseq="yYz" />
+  <option timestep="0.002" gravity="-2.9845 -0.34869 -9.9921" integrator="implicit" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic" impratio="4.7926">
+    <flag />
+  </option>
+  <default>
+    <joint damping="0.145" solreflimit="0.028832 0.60765" />
+    <default class="c1">
+      <joint type="slide" />
+      <geom density="2294.5" friction="0.8313 0.025654 0.0049934" />
+      <default class="c2">
+        <motor gear="3.4466" />
+        <default class="c3">
+          <geom friction="0.86642 0.015663 0.00060203" />
+        </default>
+      </default>
+      <default class="c4">
+        <default class="c5">
+          <geom density="2388.7" friction="0.69631 0.037883 0.0033798" />
+        </default>
+        <default class="c6">
+          <joint frictionloss="0.095431" />
+          <motor gear="3.9876" ctrlrange="-1 1" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" condim="3" friction="0.3264 0.0011473 0.0036081" solref="0.062504 0.91731" />
+    <site name="ws" pos="0.40155 0.32678 0.087398" />
+    <body name="b1" pos="0.21447 0.26456 0.20071">
+      <joint name="j1" type="hinge" pos="0.028386 -0.10397 0.074102" axis="0.24153 1.2091 -0.41714" stiffness="1.1156" armature="0.045" />
+      <geom class="c1" type="sphere" size="0.064374" pos="0.062827 -0.053209 -0.076386" xyaxes="0.9732 -0.53963 1.1631 -0.50453 -1.3363 1.0848" mass="0.85671" conaffinity="3" friction="0.28023 0.040309 0.002036" solimp="0.80445 0.93972 0.015908 0.56974 1.1102" margin="0.01803" />
+      <geom type="ellipsoid" name="g1" size="0.083643 0.078703 0.037209" pos="-0.046648 0.16098 0.035199" xyaxes="0.853 1.2392 0.54058 0.32781 0.034591 1.7555" contype="0" conaffinity="0" />
+      <geom type="capsule" name="g2" size="0.042567 0.22378" xyaxes="0.11487 0.57855 0.97143 -0.36814 -0.89282 1.4209" />
+      <site name="s2" pos="-0.15596 -0.11954 -0.081868" type="sphere" size="0.12209" zaxis="-1.4077 -0.46481 -0.29104" />
+      <body name="b2" pos="0.0034429 0.11715 0.285">
+        <joint name="j2" type="hinge" pos="-0.12127 0.014595 -0.14529" ref="-30.158" stiffness="3.697" damping="0.44319" />
+        <geom type="ellipsoid" name="g3" size="0.1336 0.10407 0.067144" pos="-0.079245 0.14221 0.076717" zaxis="0.65134 1.9405 1.2497" mass="0.40239" contype="0" conaffinity="0" />
+        <body name="b3" pos="-0.12831 0.21678 0.043617" euler="-64.368 -53.054 132.69" childclass="c6">
+          <joint name="j3" type="hinge" axis="-1.4954 0.015275 -1.445" damping="0.15594" armature="0.0016657" />
+          <geom type="capsule" size="0.071155 0.1964" rgba="0.62389 0.035444 0.7598 1" friction="0.28438 0.030586 0.00016849" />
+          <geom class="c1" type="box" fromto="-0.1598 0.12905 0.086605 0.058193 0.016768 -0.028994" size="0.053324" solimp="0.73096 0.9289 0.0081335 0.30389 3.4406" margin="0.0020665" gap="0.0085841" solmix="2.1372" />
+          <site name="s3" pos="0.031823 -0.19593 -0.18074" zaxis="-1.2076 -0.8074 -1.1792" />
+          <site name="s4" pos="0.14842 -0.17413 0.02705" />
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <contact>
+    <pair geom1="floor" geom2="g2" />
+  </contact>
+  <tendon>
+    <spatial name="sp0" stiffness="7.2908">
+      <site site="s2" />
+      <site site="s4" />
+    </spatial>
+    <fixed name="t0" stiffness="3.6263" springlength="-0.06686">
+      <joint joint="j3" coef="0.70613" />
+      <joint joint="j1" coef="-0.43799" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <motor tendon="t0" name="a0" gear="-0.65829" class="c3" />
+    <position site="s2" gear="0 0 -0.89731 -0.90958 0 -0.80922" name="a1" kp="1.4173" />
+  </actuator>
+  <sensor>
+    <torque name="sn0" site="s4" />
+    <subtreecom name="sn1" body="b1" />
+    <jointvel name="sn2" joint="j2" />
+    <gyro name="sn3" site="s3" />
+    <framequat name="sn4" objtype="xbody" objname="b1" />
+    <frameyaxis name="sn5" objtype="geom" objname="floor" />
+    <touch name="sn6" site="s2" />
+    <actuatorpos name="sn7" actuator="a1" />
+    <tendonpos name="sn8" tendon="t0" cutoff="3.0542" />
+    <subtreeangmom name="sn9" body="b3" />
+  </sensor>
+</mujoco>

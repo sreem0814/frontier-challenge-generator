@@ -1,0 +1,75 @@
+<mujoco model="m7300042">
+  <compiler angle="radian" />
+  <option timestep="0.004" integrator="Euler" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="pyramidal">
+    <flag filterparent="disable" />
+  </option>
+  <default>
+    <joint stiffness="2.9837" axis="-0.79312 -0.17024 -0.58479" />
+    <geom />
+    <default class="c1">
+      <joint damping="0.48916" />
+      <geom type="ellipsoid" size="0.12073 0.10897 0.038755" />
+      <site size="0.02" />
+      <motor gear="-2.8497" ctrlrange="-1 1" />
+      <default class="c2">
+        <joint type="slide" />
+        <geom density="2764.6" />
+        <default class="c3">
+          <joint damping="0.11538" axis="0.97471 -0.086884 -0.20588" frictionloss="0.021661" />
+          <geom type="ellipsoid" size="0.13368 0.10008 0.084766" />
+        </default>
+        <default class="c4">
+          <joint armature="0.026656" stiffness="0.32902" type="slide" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" solref="0.036266 0.96293" margin="0.0071588" gap="0.0026812" priority="2" />
+    <frame pos="0.091199 0.069119 -0.24643" xyaxes="-0.34805 1.3896 -1.1722 -0.015431 -0.093175 0.093359">
+      <body name="b1" pos="-0.01571 0.089444 0.054545" euler="0.703 2.0622 1.9613">
+        <joint type="free" name="f1" damping="0.15962" stiffness="0.36628" frictionloss="0.075189" />
+        <geom type="ellipsoid" size="0.0972 0.12044 0.061083" euler="-2.2744 2.5127 -2.56" mass="1.9107" contype="0" conaffinity="0" />
+        <body name="b2" pos="0.14589 0.12486 -0.19058" zaxis="0.62802 -0.16517 0.40077" gravcomp="0.49909">
+          <joint name="j2" type="slide" axis="0.40379 0.61808 0.40294" range="-0.091879 0.11535" frictionloss="0.16413" />
+          <geom type="capsule" name="g1" size="0.070163 0.069629" pos="-0.15299 -0.12017 -0.13344" zaxis="0.76536 -1.3658 -0.30884" condim="4" />
+          <inertial pos="0.12663 -0.14211 -0.08798" mass="0.76596" diaginertia="0.074011 0.07457 0.065917" />
+          <site name="s1" pos="-0.12928 -0.15108 0.068494" />
+          <site name="s2" pos="-0.0024361 -0.1917 0.18661" />
+          <body name="b3" pos="0.13367 0.010368 0.15102">
+            <joint name="j3" type="hinge" pos="0.1055 -0.019169 -0.057135" axis="-0.72844 -0.6399 -1.5223" stiffness="3.8027 0.62343 0.41884" springref="0.79572" armature="0.013955" />
+            <joint name="j4" type="hinge" axis="-0.78403 1.3347 0.019327" damping="0.024147" />
+            <geom type="ellipsoid" size="0.1034 0.11135 0.14278" pos="-0.048732 0.18442 -0.0088465" mass="2.8321" contype="0" conaffinity="0" />
+            <geom class="c2" type="sphere" size="0.11841" pos="-0.039979 0.11067 -0.13102" axisangle="-0.44288 -0.077182 0.7846 -2.9783" mass="0.32879" conaffinity="3" margin="0.029789" gap="0.0082636" />
+            <geom type="capsule" size="0.025661 0.065105" mass="2.1133" />
+            <body name="b4" pos="-0.17441 0.28801 0.27315" childclass="c3">
+              <joint name="j5" class="c1" type="hinge" pos="0.011601 0.060655 0.10637" axis="-0.49979 0.014922 0.0151" damping="0.078203" range="-0.56313 0.49498" solreflimit="0.068815 1.0453" />
+              <joint name="j6" type="hinge" pos="0.14321 0.095588 0.06247" axis="-0.53385 -0.3205 -0.82025" />
+              <geom mass="0.90963" contype="0" conaffinity="0" />
+              <site name="s3" pos="0.020514 -0.064736 -0.17442" type="box" size="0.11214 0.18867 0.1292" />
+            </body>
+          </body>
+        </body>
+      </body>
+    </frame>
+  </worldbody>
+  <contact>
+    <exclude body1="b4" body2="b3" />
+  </contact>
+  <tendon>
+    <spatial name="sp0" stiffness="9.9439" damping="0.29231" springlength="0.5947">
+      <site site="s3" />
+      <site site="s1" />
+      <site site="s2" />
+    </spatial>
+    <fixed name="t0" stiffness="0.27688" range="-0.40786 0.77218" margin="0.044097" frictionloss="0.25568">
+      <joint joint="j5" coef="-1.6094" />
+      <joint joint="j3" coef="1.4107" />
+    </fixed>
+    <fixed name="t1" stiffness="2.3474" damping="0.41456" springlength="-0.054618 0.17047">
+      <joint joint="j2" coef="-0.25153" />
+      <joint joint="j5" coef="-0.37981" />
+      <joint joint="j4" coef="0.20054" />
+    </fixed>
+  </tendon>
+</mujoco>

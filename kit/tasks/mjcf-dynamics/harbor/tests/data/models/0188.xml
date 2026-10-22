@@ -1,0 +1,51 @@
+<mujoco model="m7330050">
+  <compiler angle="radian" eulerseq="xyz" inertiafromgeom="true" />
+  <option timestep="0.005" integrator="implicit" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" impratio="4.6522" density="1.2" viscosity="1.3327">
+    <flag filterparent="disable" />
+  </option>
+  <default>
+    <joint damping="0.21936" armature="0.017241" />
+    <default class="c1">
+      <joint stiffness="0.94684" />
+      <geom condim="6" />
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" friction="0.77428 0.044212 0.0030231" />
+    <body name="b1" pos="-0.23767 -0.15991 0.15179">
+      <freejoint name="f1" />
+      <geom class="c1" type="cylinder" name="g1" size="0.036197 0.065286" zaxis="-0.21443 -0.80034 0.013075" contype="2" conaffinity="0" condim="1" friction="1.1557 0.045378 0.004897" solref="0.044742 1.3636" fluidshape="ellipsoid" fluidcoef="0.45107 0.31751 0.95086 0.55903 0.75007" />
+      <geom type="box" fromto="-0.038205 0.034281 -0.11565 -0.13613 0.17073 -0.16441" size="0.055615" density="833.79" />
+      <geom type="capsule" fromto="0.12319 -0.12599 0.11548 0.024876 -0.18424 -0.12496" size="0.047764" rgba="0.79938 0.48586 0.44168 1" />
+      <body name="b2" pos="-0.24452 0.091981 -0.25525" zaxis="1.0654 -0.23124 -0.73168" childclass="c1">
+        <joint name="j2" type="ball" damping="0.29372" armature="0.0039433" range="0 1.1258" />
+        <geom class="c1" type="box" fromto="-0.045689 -0.10579 0.081271 -0.15725 -0.24539 -0.09483" size="0.062242" condim="1" fluidshape="ellipsoid" />
+        <site name="s1" pos="0.073736 0.1192 -0.020209" type="ellipsoid" size="0.15996 0.15524 0.23782" />
+      </body>
+      <body name="b3" pos="0.29278 0.13976 -0.051132" zaxis="0.0035671 -0.060682 0.2548" gravcomp="0.91849">
+        <joint name="j3" type="ball" pos="-0.10573 0.019212 0.0028671" stiffness="1.0403" damping="0.46533" range="0 1.0472" />
+        <joint name="j4" type="slide" />
+        <geom type="capsule" name="g2" size="0.051333 0.08423" quat="0.72407 -0.49189 -1.2327 0.90545" mass="0.48533" shellinertia="true" friction="1.1462 0.036032 0.0027614" priority="1" />
+      </body>
+    </body>
+  </worldbody>
+  <contact>
+    <pair geom1="floor" geom2="g2" solref="0.076191 0.56604" solimp="0.72527 0.97099 0.0027252 0.48546 1" />
+    <exclude body1="b1" body2="b2" />
+  </contact>
+  <equality>
+    <weld body1="b3" body2="b2" anchor="0.099195 -0.17482 -0.017883" name="eq0" />
+  </equality>
+  <actuator>
+    <motor joint="j4" name="a0" />
+    <velocity joint="j4" name="a1" ctrlrange="-0.39357 0.40789" forcerange="-1.3274 0.86979" kv="0.94327" />
+  </actuator>
+  <sensor>
+    <framezaxis name="sn0" objtype="xbody" objname="b3" />
+    <touch name="sn1" site="s1" />
+    <force name="sn2" site="s1" noise="0.047465" />
+    <touch name="sn3" site="s1" />
+    <subtreecom name="sn4" body="b1" />
+    <subtreeangmom name="sn5" body="b1" />
+  </sensor>
+</mujoco>

@@ -1,0 +1,35 @@
+<mujoco model="m7330007">
+  <compiler angle="degree" eulerseq="XYz" inertiafromgeom="true" />
+  <option timestep="0.01" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic" impratio="1.6923">
+    <flag equality="disable" />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" solimp="0.8973 0.93083 0.016758" />
+    <geom name="wg0" type="capsule" size="0.059904 0.17339" pos="0.15756 -0.48396 0.11156" friction="0.52106 0.014685 0.0042374" />
+    <geom name="wg1" type="sphere" size="0.13602" pos="-0.065409 0.35695 0.41883" quat="-1.1695 0.68368 0.3081 0.5866" conaffinity="3" />
+    <body name="b1" pos="-0.048916 -0.25366 0.26627" euler="71.31 140.03 -113.72">
+      <joint name="j1" type="hinge" pos="-0.054126 0.054769 0.01724" damping="0.18991" range="-18.641 63.94" solimplimit="0.55215 0.86383 0.001101" frictionloss="0.20402" />
+      <geom type="capsule" name="g1" size="0.06748 0.18661" mass="0.52632" solref="-2882.9 -28.747" margin="0.0195" />
+      <inertial pos="-0.09156 0.11546 0.081613" mass="0.74616" diaginertia="0.013095 0.078854 0.078769" />
+      <site name="s1" pos="-0.02731 -0.036611 -0.045872" />
+      <site name="s2" pos="-0.027194 0.065903 -0.12836" axisangle="-1.0174 -0.2103 0.38617 -42.448" />
+    </body>
+  </worldbody>
+  <tendon>
+    <spatial name="sp0" springlength="0.33866" range="0.29124 0.67439" margin="0.040382">
+      <site site="s2" />
+      <site site="s1" />
+    </spatial>
+  </tendon>
+  <sensor>
+    <jointlimitpos name="sn0" joint="j1" />
+    <e_kinetic name="sn1" />
+    <velocimeter name="sn2" site="s2" />
+    <framequat name="sn3" objtype="site" objname="s2" />
+    <gyro name="sn4" site="s2" noise="0.080271" />
+    <gyro name="sn5" site="s2" />
+    <torque name="sn6" site="s1" />
+    <framepos name="sn7" objtype="body" objname="b1" />
+    <jointlimitfrc name="sn8" joint="j1" />
+  </sensor>
+</mujoco>

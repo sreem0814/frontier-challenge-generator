@@ -1,0 +1,53 @@
+<mujoco model="m7300045">
+  <compiler angle="degree" eulerseq="yzx" />
+  <option timestep="0.001" integrator="implicitfast" solver="CG" tolerance="0" iterations="1500" ls_iterations="60">
+    <flag contact="disable" damper="disable" />
+  </option>
+  <default>
+    <joint damping="0.38905" armature="0.037533" stiffness="2.8414" />
+    <geom density="1480.9" />
+    <default class="c1">
+      <default class="c2">
+        <joint stiffness="1.1371" />
+        <geom />
+        <default class="c3">
+          <geom />
+          <site size="0.02" />
+        </default>
+      </default>
+    </default>
+    <default class="c4" />
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <frame pos="-0.11413 -0.088664 -0.24098">
+      <body name="b1" pos="0.25386 0.59115 0.66365">
+        <freejoint name="f1" />
+        <geom class="c3" type="sphere" size="0.072954" mass="0.56395" conaffinity="3" />
+        <geom class="c2" type="sphere" size="0.089762" pos="0.1345 0.024617 0.16984" euler="145.1 -169.17 46.286" conaffinity="3" />
+        <geom type="sphere" name="g1" size="0.051327" pos="0.088355 -0.13141 0.12814" mass="1.3878" conaffinity="3" />
+        <body name="b2" pos="-0.075673 -0.027941 -0.10091" zaxis="0.36035 0.94001 1.229">
+          <joint name="j2" type="hinge" axis="-0.40617 0.54991 -1.5216" ref="-5.9705" />
+          <geom type="capsule" fromto="0.058752 -0.042332 -0.029612 -0.046613 0.088734 -0.16988" size="0.063651" mass="2.6278" group="1" />
+          <geom class="c4" type="sphere" size="0.042209" pos="-0.075694 -0.054396 -0.06162" mass="1.5709" group="1" conaffinity="3" />
+          <body name="b3" pos="-0.23197 0.2235 0.034726" xyaxes="-2.0099 0.20555 -0.39133 -1.0566 1.8228 -0.5804">
+            <joint name="j3" type="slide" pos="0.023595 -0.014295 -0.034606" axis="-1.2446 0.2223 1.1777" ref="-0.27106" armature="0.023239" />
+            <geom class="c3" type="capsule" fromto="-0.094054 -0.096071 -0.13947 -0.24455 -0.078354 -0.11165" size="0.049122" />
+            <geom type="capsule" size="0.069665 0.22409" />
+            <geom type="ellipsoid" fromto="0.038585 0.0010239 -0.13986 0.15988 0.0060596 -0.28385" size="0.056803" mass="0.99984" contype="0" conaffinity="0" />
+          </body>
+        </body>
+      </body>
+    </frame>
+  </worldbody>
+  <tendon>
+    <fixed name="t0" stiffness="1.4132" damping="0.95277" range="-0.10744 0.25485">
+      <joint joint="j2" coef="-0.20121" />
+      <joint joint="j3" coef="-1.2052" />
+    </fixed>
+  </tendon>
+  <sensor>
+    <jointvel name="sn0" joint="j3" />
+    <e_potential name="sn1" />
+  </sensor>
+</mujoco>

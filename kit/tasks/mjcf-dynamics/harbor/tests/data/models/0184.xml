@@ -1,0 +1,24 @@
+<mujoco model="m7330046">
+  <compiler angle="degree" eulerseq="XzZ" />
+  <option timestep="0.002" integrator="RK4" solver="CG" tolerance="0" iterations="1500" ls_iterations="60" cone="elliptic">
+    <flag contact="disable" gravity="disable" />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <site name="ws" pos="-0.14435 -0.35008 0.23636" />
+    <body name="b1" pos="0.20626 -0.30221 1.043" gravcomp="0.038321">
+      <freejoint name="f1" />
+      <geom type="box" size="0.091569 0.085104 0.12041" pos="0.070554 -0.080157 -0.064417" xyaxes="-1.3306 0.49277 0.2482 -0.082175 -0.12876 -1.1205" />
+      <geom type="capsule" size="0.028912 0.096476" density="2045" />
+      <geom type="box" fromto="-0.002889 -0.080403 0.15342 0.20153 -0.21764 0.31711" size="0.048002" />
+    </body>
+  </worldbody>
+  <equality>
+    <connect body1="b1" anchor="-0.10848 -0.067082 -0.089177" name="eq0" solref="0.071251 1.2103" />
+  </equality>
+  <sensor>
+    <frameangvel name="sn0" objtype="geom" objname="floor" reftype="xbody" refname="b1" />
+    <framelinacc name="sn1" objtype="geom" objname="floor" />
+    <framepos name="sn2" objtype="geom" objname="floor" reftype="site" refname="ws" />
+  </sensor>
+</mujoco>

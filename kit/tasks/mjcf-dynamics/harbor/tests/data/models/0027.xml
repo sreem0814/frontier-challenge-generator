@@ -1,0 +1,46 @@
+<mujoco model="m7300030">
+  <compiler angle="degree" eulerseq="xyx" />
+  <option timestep="0.005" integrator="implicit">
+    <flag contact="disable" constraint="disable" />
+  </option>
+  <default>
+    <joint axis="0.89622 -0.42404 -0.13031" />
+    <geom />
+    <motor gear="3.692" ctrlrange="-1 1" />
+    <default class="c1" />
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <body name="b1" pos="-0.76158 0.59282 1.9081" euler="118.59 -80.418 151.19">
+      <joint name="j1" type="hinge" damping="0.15124" range="-44.617 24.933" />
+      <joint name="j2" class="c1" type="hinge" axis="-0.062357 -0.22146 1.6112" stiffness="1.0523 0.51609 0.87698" armature="0.049819" range="-16.14 14.558" />
+      <geom class="c1" type="box" size="0.098143 0.093909 0.067696" pos="0.00249 0.12022 -0.17755" />
+      <site name="s1" pos="-0.18628 -0.089511 -0.098056" euler="37.44 84.008 128.8" />
+      <body name="b2" pos="0.18358 -0.11077 -0.13102">
+        <joint name="j3" type="hinge" pos="0.12599 -0.11371 -0.0086526" axis="0.12215 -0.86011 -1.2824" damping="0.51999" armature="0.016792" range="-20.903 36.979" />
+        <geom class="c1" type="ellipsoid" fromto="0.0093224 -0.0071005 -0.12939 -0.054355 -0.12588 0.10778" size="0.022621" rgba="0.57382 0.1842 0.89664 1" group="2" contype="0" conaffinity="0" />
+        <geom class="c1" type="sphere" name="g1" size="0.09082" pos="0.19967 -0.026214 0.07897" euler="76.961 74.355 51.474" conaffinity="3" />
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="t0" damping="0.90443">
+      <joint joint="j1" coef="0.59405" />
+      <joint joint="j3" coef="0.36835" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <velocity joint="j3" name="a0" forcerange="-0.52149 1.9185" kv="1.907" />
+  </actuator>
+  <sensor>
+    <jointactuatorfrc name="sn0" joint="j2" />
+    <frameangacc name="sn1" objtype="site" objname="s1" />
+    <framelinacc name="sn2" objtype="xbody" objname="b2" cutoff="4.1273" />
+    <e_kinetic name="sn3" />
+    <e_kinetic name="sn4" noise="0.068313" />
+    <force name="sn5" site="s1" />
+    <gyro name="sn6" site="s1" />
+    <velocimeter name="sn7" site="s1" noise="0.014034" />
+    <tendonvel name="sn8" tendon="t0" />
+  </sensor>
+</mujoco>

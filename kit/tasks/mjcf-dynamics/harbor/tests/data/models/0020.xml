@@ -1,0 +1,24 @@
+<mujoco model="m7300021">
+  <compiler angle="degree" inertiafromgeom="auto" />
+  <option timestep="0.004" integrator="implicitfast" solver="CG" tolerance="0" iterations="1500" ls_iterations="60" impratio="4.3159">
+    <flag eulerdamp="disable" />
+  </option>
+  <default />
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" condim="3" solmix="0.43951" />
+    <body name="b1" pos="-0.052065 0.24535 0.15896">
+      <joint name="j1" type="hinge" pos="0.031315 0.04048 -0.081543" />
+      <geom type="cylinder" size="0.032357 0.10169" euler="120.73 6.5617 -72.926" contype="2" conaffinity="0" />
+      <geom type="cylinder" size="0.049974 0.21502" pos="-0.03818 0.13211 0.12314" axisangle="0.15752 0.17786 -0.1521 -45.478" mass="1.1529" rgba="0.51777 0.60181 0.67115 1" contype="2" conaffinity="0" solmix="4.5477" />
+      <site name="s1" pos="-0.044712 -0.076458 -0.008229" />
+    </body>
+  </worldbody>
+  <sensor>
+    <force name="sn0" site="s1" />
+    <jointactuatorfrc name="sn1" joint="j1" />
+    <subtreelinvel name="sn2" body="b1" noise="0.056271" />
+    <e_kinetic name="sn3" />
+    <framelinvel name="sn4" objtype="xbody" objname="b1" />
+    <velocimeter name="sn5" site="s1" />
+  </sensor>
+</mujoco>

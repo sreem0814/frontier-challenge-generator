@@ -1,0 +1,57 @@
+<mujoco model="m7300035">
+  <compiler angle="radian" eulerseq="zXz" inertiafromgeom="true" />
+  <option timestep="0.01" integrator="RK4" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic" density="122.41" viscosity="0.24862">
+    <flag />
+  </option>
+  <default>
+    <joint solreflimit="0.040804 0.783" />
+    <geom type="capsule" size="0.06255 0.21952" density="1611.1" />
+    <default class="c1">
+      <joint damping="0.04588" armature="0.008041" />
+      <default class="c2">
+        <joint type="slide" />
+        <geom type="sphere" size="0.083677" density="1496.1" condim="6" />
+        <site size="0.02" />
+      </default>
+    </default>
+    <default class="c3">
+      <joint damping="0.21668" armature="0.030064" frictionloss="0.24221" />
+      <default class="c4">
+        <default class="c5" />
+      </default>
+      <default class="c6">
+        <default class="c7">
+          <joint damping="0.49414" axis="0.1559 -0.23253 0.96001" />
+          <geom type="capsule" size="0.02028 0.07711" density="1236.4" />
+          <motor ctrlrange="-1 1" />
+        </default>
+        <default class="c8">
+          <geom type="cylinder" size="0.040372 0.10397" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" condim="1" solimp="0.65645 0.89476 0.018256 0.71584 3" margin="0.0076782" gap="0.0082486" />
+    <body name="b1" pos="0.19493 0.044381 0.25238" zaxis="1.1249 -0.77495 1.9331">
+      <freejoint name="f1" />
+      <geom class="c1" type="box" name="g1" size="0.13489 0.12575 0.098751" pos="0.0051623 -0.11814 -0.067262" zaxis="1.0117 -0.26593 0.29637" mass="1.5933" friction="0.29085 0.04743 0.00029916" solref="0.033535 0.54831" />
+      <site name="s1" pos="-0.04513 -0.1406 0.14696" />
+      <site name="s2" pos="0.18149 0.030857 -0.098432" class="c1" zaxis="-0.20308 0.099943 1.2838" />
+    </body>
+    <body name="b2" pos="0.28667 -0.18865 0.15485">
+      <joint type="free" name="f2" frictionloss="0.10232" />
+      <geom class="c1" type="capsule" fromto="-0.052801 0.022406 -0.042245 -0.17834 0.21121 -0.016035" size="0.050187" friction="1.4097 0.0012073 0.0043508" fluidshape="ellipsoid" fluidcoef="0.26845 0.39662 0.87279 1.0977 1.2615" />
+      <site name="s3" pos="-0.08603 0.16785 0.1605" class="c8" type="ellipsoid" size="0.16547 0.26891 0.21678" zaxis="-1.9258 -1.3168 0.02394" />
+      <body name="b3" pos="0.075417 -0.003559 0.29292">
+        <joint name="j3" type="hinge" pos="-0.085682 -0.066071 0.13376" axis="-0.11736 -0.65635 -0.52791" frictionloss="0.17594" />
+        <joint name="j4" type="hinge" axis="0.45116 0.2112 0.1886" armature="0.017603" />
+        <geom pos="0.053366 0.16428 -0.13098" xyaxes="0.55457 1.515 0.36559 0.7383 0.19214 -2.2662" rgba="0.076581 0.82222 0.13359 1" friction="1.3361 0.0074437 0.0031132" margin="0.0027179" priority="1" fluidshape="ellipsoid" />
+        <site name="s4" pos="-0.1525 0.034846 0.038028" />
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <connect body1="b1" anchor="-0.17627 -0.18506 -0.0073161" body2="b2" name="eq0" />
+  </equality>
+</mujoco>

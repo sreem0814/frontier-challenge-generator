@@ -1,0 +1,40 @@
+<mujoco model="m7320030">
+  <compiler angle="degree" />
+  <option timestep="0.004" integrator="implicit" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic" density="1.2" viscosity="1.8978">
+    <flag contact="disable" />
+  </option>
+  <default>
+    <site size="0.02" />
+  </default>
+  <worldbody>
+    <site name="ws" pos="0.11899 -0.66195 -0.9049" />
+    <body name="b1" pos="0.68959 0.57958 0.50206">
+      <joint name="j1" type="hinge" pos="0.076918 -0.11649 0.13797" ref="-42.4" stiffness="0.74127 0.40038 0.26913" armature="0.031355" range="-20.033 18.384" solreflimit="-3746.7 -46.773" solimplimit="0.84595 0.9883 0.0181 0.12365 3" />
+      <geom type="cylinder" name="g1" size="0.065673 0.098401" contype="2" conaffinity="0" />
+      <geom type="capsule" name="g2" size="0.07771 0.077988" euler="-38.07 45.131 -80.015" fluidshape="ellipsoid" />
+      <site name="s2" pos="0.078754 -0.0045285 0.069717" quat="1.1547 1.3653 0.15678 0.80853" />
+      <frame pos="0.061207 0.10095 -0.27776" xyaxes="2.0945 1.0737 -0.17902 1.0122 -0.30738 0.27919">
+        <body name="b2" pos="-0.091165 -0.27997 -0.113" axisangle="-1.2256 0.59529 -1.3803 152.46">
+          <joint name="j2" type="slide" axis="-0.35373 -1.5713 0.60733" stiffness="0.68968" damping="0.5477" armature="0.037802" range="-0.28082 0.12269" solreflimit="-2133.5 -49.401" solimplimit="0.92113 0.94621 0.0031529 0.19977 2" />
+          <geom type="sphere" name="g3" size="0.074027" axisangle="1.5527 -0.38526 -1.9645 119.71" conaffinity="3" fluidshape="ellipsoid" fluidcoef="0.75708 0.61863 0.75346 0.5949 1.3785" />
+          <geom type="sphere" name="g4" size="0.031199" pos="-0.038492 0.13958 0.11145" density="1550.7" conaffinity="3" fluidshape="ellipsoid" />
+          <geom type="ellipsoid" name="g5" size="0.14447 0.076529 0.05355" contype="0" conaffinity="0" fluidshape="ellipsoid" fluidcoef="0.83299 0.12958 0.67953 0.95616 1.2532" />
+          <site name="s3" pos="-0.012258 0.094491 0.024946" zaxis="-1.7332 -2.1639 -0.15896" />
+        </body>
+      </frame>
+    </body>
+  </worldbody>
+  <equality>
+    <weld body1="b2" anchor="-0.11066 -0.057721 0.09215" name="eq0" solimp="0.92845 0.96989 0.016715" />
+    <joint joint1="j2" name="eq1" solref="0.01748 1.3188" />
+    <joint joint1="j1" polycoef="-0.18408 -0.83984 0.33369 -0.10035 0.0044026" name="eq2" />
+  </equality>
+  <actuator>
+    <general site="s2" gear="0 0 -1.8001 0 0 0" name="a0" ctrlrange="-0.32423 0.844" dyntype="filter" dynprm="0.23411" gainprm="1.0526" biastype="affine" biasprm="-0.50448 -1.1878 -0.47572" />
+  </actuator>
+  <sensor>
+    <framequat name="sn0" objtype="site" objname="ws" />
+    <framequat name="sn1" objtype="geom" objname="g5" />
+    <jointlimitvel name="sn2" joint="j2" cutoff="1.6142" />
+  </sensor>
+</mujoco>

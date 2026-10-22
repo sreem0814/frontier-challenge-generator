@@ -1,0 +1,25 @@
+<mujoco model="m7300048">
+  <compiler angle="degree" />
+  <option timestep="0.001" solver="CG" tolerance="0" iterations="1500" ls_iterations="60">
+    <flag />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" solmix="3.7585" />
+    <geom name="ramp" type="plane" size="2 2 0.1" pos="0.42275 0.11659 -0.086186" zaxis="0.50096 -0.55568 1" conaffinity="3" condim="1" friction="0.22333 0.020641 0.00115" />
+    <site name="ws" pos="0.43781 0.9744 -0.57639" />
+    <body name="b1" pos="-0.20627 -0.21247 0.20878">
+      <joint type="free" name="f1" damping="0.14858" stiffness="0.53684" armature="0.00044998" />
+      <geom type="cylinder" size="0.034854 0.24523" quat="-1.1965 -2.3156 0.24771 0.51701" mass="2.6652" contype="0" conaffinity="0" />
+      <site name="s2" pos="-0.15356 0.14003 -0.12078" type="cylinder" size="0.12196 0.24341" />
+    </body>
+  </worldbody>
+  <sensor>
+    <frameangacc name="sn0" objtype="geom" objname="floor" />
+    <accelerometer name="sn1" site="s2" />
+    <e_kinetic name="sn2" />
+    <framequat name="sn3" objtype="site" objname="ws" reftype="geom" refname="floor" />
+    <accelerometer name="sn4" site="s2" noise="0.073608" />
+    <framexaxis name="sn5" objtype="site" objname="ws" reftype="geom" refname="floor" />
+    <force name="sn6" site="s2" />
+  </sensor>
+</mujoco>

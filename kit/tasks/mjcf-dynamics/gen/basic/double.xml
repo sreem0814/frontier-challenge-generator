@@ -1,0 +1,28 @@
+<mujoco model="cart-double-pendulum">
+  <compiler angle="radian"/>
+  <option timestep="0.005" integrator="RK4">
+    <flag contact="disable" constraint="disable"/>
+  </option>
+  <worldbody>
+    <body name="cart" pos="0 0 0.5">
+      <joint name="slider" type="slide" axis="1 0 0" damping="0.2"/>
+      <geom type="box" size="0.2 0.1 0.05" mass="2"/>
+      <body name="link1" pos="0 0 0">
+        <joint name="hinge1" axis="0 1 0" stiffness="1" springref="0.3"/>
+        <geom type="capsule" fromto="0 0 0 0 0 0.6" size="0.04"/>
+        <body name="link2" pos="0 0 0.6">
+          <joint name="hinge2" axis="0 1 0"/>
+          <geom type="cylinder" size="0.03 0.25" pos="0 0 0.25"/>
+          <site name="imu" pos="0 0 0.5"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="servo" joint="slider" kp="20" kv="2"/>
+  </actuator>
+  <sensor>
+    <accelerometer site="imu"/>
+    <gyro site="imu"/>
+  </sensor>
+</mujoco>

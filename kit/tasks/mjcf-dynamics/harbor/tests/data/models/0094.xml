@@ -1,0 +1,28 @@
+<mujoco model="m7310053">
+  <compiler angle="degree" eulerseq="zzz" />
+  <option timestep="0.004" integrator="Euler" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic">
+    <flag />
+  </option>
+  <default>
+    <joint damping="0.035005" />
+    <geom type="capsule" size="0.07029 0.059762" solref="0.027186 0.9877" />
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <geom name="wg0" type="capsule" size="0.070424 0.12757" pos="-0.38663 0.23153 0.24117" condim="1" friction="1.4132 0.044848 0.0005082" />
+    <body name="b1" pos="0.22423 -0.16336 0.11972">
+      <joint name="j1" type="hinge" pos="-0.14541 -0.024229 -0.085239" axis="-1.2337 1.3063 0.33274" armature="0.037939" range="-42.939 68.419" solreflimit="0.01957 0.78194" />
+      <geom type="ellipsoid" fromto="-0.050339 -0.10879 -0.14528 0.016767 -0.13828 -0.18795" size="0.067162" group="2" contype="0" conaffinity="0" />
+      <geom type="sphere" name="g1" size="0.10044" pos="0.081502 -0.094939 -0.07241" axisangle="0.39438 1.0966 1.6908 -114.12" conaffinity="3" margin="0.020044" />
+      <site name="s1" pos="-0.19467 0.038139 0.19715" type="sphere" size="0.17266" axisangle="0.25459 1.0436 1.4123 -83.403" />
+    </body>
+  </worldbody>
+  <actuator>
+    <velocity joint="j1" name="a0" ctrlrange="-1.2922 0.8361" kv="1.4551" />
+    <muscle joint="j1" name="a1" lengthrange="-0.31226 0.40205" gear="-1.9741" force="83.635" range="0.6869 1.2481" vmax="1.3726" fvmax="1.5937" fpmax="0.92622" />
+  </actuator>
+  <sensor>
+    <actuatorvel name="sn0" actuator="a1" />
+    <e_kinetic name="sn1" noise="0.030442" />
+  </sensor>
+</mujoco>

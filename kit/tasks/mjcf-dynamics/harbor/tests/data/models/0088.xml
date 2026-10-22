@@ -1,0 +1,68 @@
+<mujoco model="m7310046">
+  <compiler angle="degree" boundinertia="0.0035526" />
+  <option timestep="0.001" integrator="implicitfast" solver="CG" tolerance="0" iterations="1500" ls_iterations="60" cone="elliptic">
+    <flag />
+  </option>
+  <default>
+    <geom density="557.26" friction="1.4423 0.040883 0.0049245" />
+    <motor gear="-3.1596" ctrlrange="-1 1" />
+    <default class="c1">
+      <geom type="box" size="0.1319 0.13389 0.093158" />
+      <site size="0.02" />
+    </default>
+    <default class="c2">
+      <default class="c3">
+        <geom density="2415.9" friction="0.89426 0.042096 0.00083617" />
+        <motor gear="3.9193" ctrlrange="-1 1" />
+        <default class="c4" />
+        <default class="c5">
+          <joint damping="0.19069" armature="0.041948" stiffness="1.3921" frictionloss="0.15074" />
+          <site size="0.02" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" condim="6" />
+    <geom name="ramp" type="plane" size="2 2 0.1" pos="-0.48508 -0.46447 0.064404" zaxis="-0.52794 0.13171 1" conaffinity="3" condim="3" />
+    <geom name="wg0" type="capsule" size="0.074484 0.052059" pos="-0.48351 -0.049204 0.1186" quat="1.1832 0.40309 -0.84331 1.4451" friction="0.80403 0.037569 0.0039019" solmix="2.404" />
+    <frame pos="-0.010875 -0.020962 0.2571" zaxis="-0.040076 0.66331 -0.57349">
+      <body name="b1" pos="-0.21124 0.2768 0.27362" euler="128.48 154.42 -11.482">
+        <freejoint name="f1" />
+        <geom type="box" name="g1" size="0.089841 0.11073 0.10101" zaxis="0.68993 -2.7025 0.56936" rgba="0.12195 0.14642 0.81165 1" solimp="0.83591 0.86025 0.0028787" />
+        <site name="s1" pos="-0.15458 0.041226 0.096958" xyaxes="0.86268 0.079568 0.38946 -0.31747 0.35537 0.24371" />
+        <body name="b2" pos="-0.11631 0.28863 0.082263" childclass="c2">
+          <joint name="j2" type="hinge" stiffness="3.8184" range="-18.057 27.641" solreflimit="0.042303 1.4726" />
+          <geom type="capsule" fromto="0.036369 -0.19559 -0.0604 0.0064412 -0.25079 -0.066659" size="0.043227" shellinertia="true" margin="0.0052818" />
+          <body name="b3" pos="0.20146 0.20998 -0.14058" quat="-0.34646 -1.1846 -0.23471 0.44262" childclass="c3">
+            <joint name="j3" class="c3" type="slide" pos="-0.039035 -0.1022 0.11722" axis="-1.0798 0.45102 -0.85153" />
+            <joint name="j4" type="ball" pos="-0.059525 0.055005 -0.024453" armature="0.043132" />
+            <geom type="capsule" name="g2" size="0.020345 0.13318" quat="-0.6789 1.134 -0.3675 -0.13786" mass="0.83901" margin="0.012024" gap="0.00068552" />
+            <inertial pos="0.032922 0.14189 0.014204" mass="2.0938" fullinertia="0.027293 0.031603 0.031863 0.0085113 0.0069455 -0.011316" />
+          </body>
+        </body>
+      </body>
+    </frame>
+  </worldbody>
+  <contact>
+    <pair geom1="wg0" geom2="g2" condim="1" />
+    <pair geom1="g2" geom2="floor" condim="3" friction="0.50914 0.96632 0.0030087 0.0012631 0.0020813" />
+  </contact>
+  <tendon>
+    <fixed name="t0" frictionloss="0.086477">
+      <joint joint="j3" coef="1.4863" />
+      <joint joint="j2" coef="1.5752" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <muscle joint="j2" name="a0" lengthrange="-0.52917 0.3537" force="82.175" timeconst="0.018752 0.033142" fpmax="1.7957" tausmooth="0.15326" />
+    <motor joint="j3" name="a1" gear="-2.7052" ctrlrange="-0.6806 0.76583" />
+    <velocity joint="j4" gear="1.4504 1.6762 1.5239" name="a2" ctrlrange="-0.75547 0.3918" forcerange="-2.1417 0.5095" kv="2.4465" />
+  </actuator>
+  <sensor>
+    <framexaxis name="sn0" objtype="geom" objname="g2" />
+    <jointvel name="sn1" joint="j2" />
+    <gyro name="sn2" site="s1" />
+    <framexaxis name="sn3" objtype="xbody" objname="b2" />
+  </sensor>
+</mujoco>

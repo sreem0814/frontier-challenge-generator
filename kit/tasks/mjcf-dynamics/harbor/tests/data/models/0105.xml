@@ -1,0 +1,85 @@
+<mujoco model="m7320012">
+  <compiler angle="degree" eulerseq="yxx" boundinertia="0.00031505" />
+  <option timestep="0.01" integrator="implicitfast" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" impratio="2.6115">
+    <flag contact="disable" />
+  </option>
+  <default>
+    <joint damping="0.023376" armature="0.011984" />
+    <geom type="ellipsoid" size="0.10886 0.14989 0.062018" />
+    <motor />
+    <default class="c1">
+      <joint damping="0.46307" axis="-0.062883 -0.99797 0.0095851" solreflimit="0.020335 0.74585" />
+      <geom type="box" size="0.061873 0.032753 0.11725" density="1740.8" />
+      <default class="c2">
+        <geom type="capsule" size="0.022905 0.19214" />
+        <default class="c3">
+          <joint armature="0.022546" stiffness="1.6718" />
+          <geom type="sphere" size="0.082197" density="1128.8" />
+        </default>
+      </default>
+    </default>
+    <default class="c4">
+      <geom />
+      <default class="c5">
+        <joint />
+        <site size="0.02" />
+        <motor gear="2.3656" />
+        <default class="c6">
+          <site size="0.02" />
+        </default>
+        <default class="c7">
+          <joint damping="0.078372" stiffness="0.82702" type="slide" />
+          <geom type="cylinder" size="0.077142 0.18561" />
+          <site size="0.02" />
+          <motor gear="-1.2561" ctrlrange="-1 1" />
+        </default>
+      </default>
+      <default class="c8">
+        <joint stiffness="2.9419" />
+        <motor ctrlrange="-1 1" />
+        <default class="c9">
+          <joint armature="0.043552" type="slide" />
+          <geom density="1641.5" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <body name="b1" pos="0.61533 0.081171 1.7583" xyaxes="-0.48856 0.073405 -0.048482 0.38237 -0.018893 -0.40689">
+      <freejoint name="f1" />
+      <geom type="capsule" size="0.05693 0.23434" pos="0.094844 0.035995 -0.19444" mass="2.5574" />
+      <geom type="sphere" name="g1" size="0.073101" conaffinity="3" />
+      <body name="b2" pos="0.19272 -0.10802 0.25883">
+        <joint name="j2" type="hinge" pos="0.012734 -0.12771 -0.085595" axis="1.3227 0.64389 -0.12498" damping="0.49756" armature="0.033257" range="-14.472 61.085" margin="1.4599" solimplimit="0.90441 0.97933 0.00095403 0.70142 1" frictionloss="0.1051" />
+        <joint name="j3" type="hinge" pos="0.05773 0.056337 0.12467" axis="-0.85351 0.77632 0.59253" ref="38.256" />
+        <geom class="c7" type="sphere" size="0.041016" axisangle="-2.1711 -0.10617 -0.68938 72.885" rgba="0.4578 0.37044 0.71697 1" conaffinity="3" />
+        <geom name="g2" pos="0.081539 0.08404 0.13228" euler="-13.028 132.96 -11.45" density="820.21" contype="0" conaffinity="0" />
+        <site name="s1" pos="0.15507 0.10071 -0.0074386" class="c8" />
+      </body>
+      <body name="b3" pos="-0.10155 0.23809 0.19408" quat="-0.42428 -2.2482 0.63834 1.473" gravcomp="0.33818">
+        <geom class="c9" type="box" size="0.091134 0.047294 0.11551" mass="0.75374" />
+        <site name="s2" pos="-0.018201 -0.14211 -0.069227" euler="101.76 19.08 -179.27" />
+        <site name="s3" pos="0.1346 0.090737 -0.16423" />
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <spatial name="sp0" damping="1.153" springlength="0.73414">
+      <site site="s1" />
+      <site site="s2" />
+    </spatial>
+  </tendon>
+  <actuator>
+    <position site="s2" gear="0 -0.83681 0 0 0 -1.7774" refsite="s3" name="a0" forcerange="-2.4649 1.3964" kp="8.9599" />
+    <motor joint="j2" name="a1" gear="0.32461" ctrlrange="-0.87845 0.68069" />
+    <muscle joint="j3" name="a2" lengthrange="-0.26596 0.95185" force="76.379" timeconst="0.025364 0.024801" lmin="0.31463" lmax="1.4242" />
+    <position tendon="sp0" name="a3" gear="1.4513" kp="1.0612" />
+    <damper tendon="sp0" name="a4" ctrlrange="0 0.86061" kv="2.6055" />
+    <muscle joint="j2" name="a5" lengthrange="-0.65582 0.61041" gear="1.2372" force="51.156" timeconst="0.012659 0.045421" fpmax="1.6171" />
+  </actuator>
+  <sensor>
+    <actuatorpos name="sn0" actuator="a5" />
+    <subtreeangmom name="sn1" body="b3" />
+  </sensor>
+</mujoco>

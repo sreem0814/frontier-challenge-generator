@@ -1,0 +1,17 @@
+<mujoco model="boxdrop">
+  <option timestep="0.002" solver="Newton" tolerance="0" iterations="100"/>
+  <worldbody>
+    <geom name="floor" type="plane" size="2 2 0.1" conaffinity="3"/>
+    <body name="box" pos="0 0 0.12">
+      <freejoint name="root"/>
+      <geom name="boxgeom" type="box" size="0.1 0.08 0.06" density="800"/>
+    </body>
+    <body name="ball" pos="0.3 0 0.08">
+      <freejoint name="root2"/>
+      <geom name="ballgeom" type="sphere" size="0.08" mass="0.5" conaffinity="3"/>
+    </body>
+  </worldbody>
+  <sensor>
+    <framepos objtype="body" objname="box"/>
+  </sensor>
+</mujoco>

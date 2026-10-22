@@ -1,0 +1,53 @@
+<mujoco model="m7320050">
+  <compiler angle="degree" />
+  <option timestep="0.001" integrator="implicitfast" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" density="1.2" viscosity="1.2321" wind="-0.28224 -1.6846 -0.084921">
+    <flag contact="disable" eulerdamp="disable" frictionloss="disable" />
+  </option>
+  <default>
+    <joint />
+  </default>
+  <worldbody>
+    <body name="b1" pos="0.2111 -0.38242 1.5734" quat="-1.1565 -0.48923 -1.2538 -2.0252">
+      <joint name="j1" type="slide" axis="2.6761 0.36279 0.4256" ref="0.26046" damping="0.091527 0.12739 0.16312" armature="0.032447" />
+      <geom type="sphere" name="g1" size="0.051959" pos="0.020137 -0.1785 -0.12403" conaffinity="3" fluidshape="ellipsoid" />
+      <geom type="cylinder" fromto="0.085965 -0.047418 -0.1084 0.070545 -0.25329 0.035401" size="0.052936" group="0" contype="2" conaffinity="0" fluidshape="ellipsoid" />
+      <geom type="capsule" name="g2" size="0.047866 0.0773" pos="-0.0085793 -0.16374 0.075875" euler="-142.14 78.998 132.06" mass="1.3683" />
+      <body name="b2" pos="0.0094773 -0.058364 0.011698">
+        <joint name="j2" type="ball" stiffness="2.4785" />
+        <geom type="capsule" size="0.037112 0.11681" pos="-0.070952 -0.093789 0.024831" euler="-18.858 107.12 77.49" fluidshape="ellipsoid" />
+        <inertial pos="-0.074971 0.093039 -0.044894" mass="0.30998" fullinertia="0.034282 0.030936 0.037131 -0.0071427 0.00096546 0.0017651" />
+        <body name="b3" pos="-0.020023 -0.29139 0.07197">
+          <joint name="j3" pos="0.11079 -0.10166 -0.0074073" />
+          <geom type="capsule" size="0.021797 0.057767" pos="-0.10385 -0.10283 -0.16531" density="1662.5" />
+          <body name="b4" pos="0.26702 -0.089288 -0.19267" xyaxes="-0.50793 0.99902 -0.79397 -0.89725 -0.51073 -1.5422">
+            <joint name="j4" type="hinge" pos="0.12985 -0.12168 -0.073491" armature="0.0097103" range="-13.763 39.031" solimplimit="0.92724 0.98281 0.01454 0.14606 1" />
+            <geom type="box" fromto="-0.010594 0.11816 -0.08061 -0.2151 0.091568 0.15241" size="0.022003" fluidshape="ellipsoid" fluidcoef="0.48939 0.59567 0.61024 1.789 1.7948" />
+            <inertial pos="0.039789 0.095661 -0.0011754" mass="1.2154" diaginertia="0.055067 0.036946 0.046872" />
+            <body name="b5" pos="-0.28929 0.28552 0.11621" euler="-118.43 -0.28354 -137.25">
+              <joint name="j5" type="slide" pos="-0.14367 -0.029286 -0.021537" axis="1.0227 0.69215 0.069907" armature="0.0017026" />
+              <geom type="box" name="g3" size="0.042329 0.12091 0.050744" pos="0.023881 0.11314 0.14653" />
+              <geom type="box" size="0.063813 0.051085 0.09994" pos="0.037901 -0.13093 -0.17002" axisangle="-1.7679 -0.37335 -1.0116 142.13" density="3016.9" shellinertia="true" fluidshape="ellipsoid" />
+              <geom type="sphere" size="0.14627" pos="-0.083305 0.15105 0.1827" conaffinity="3" />
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="t0" stiffness="4.0278" damping="0.72086" springlength="-0.19332 0.11952">
+      <joint joint="j3" coef="-1.6993" />
+      <joint joint="j4" coef="-0.2104" />
+      <joint joint="j1" coef="1.0531" />
+    </fixed>
+    <fixed name="t1" stiffness="2.2666" damping="0.69136">
+      <joint joint="j4" coef="-1.2656" />
+      <joint joint="j3" coef="1.1511" />
+      <joint joint="j5" coef="1.2007" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <motor joint="j4" name="a0" gear="1.0223" ctrlrange="-0.98281 0.20573" />
+    <motor joint="j5" name="a1" />
+  </actuator>
+</mujoco>

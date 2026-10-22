@@ -1,0 +1,45 @@
+<mujoco model="m7310025">
+  <compiler angle="degree" eulerseq="Yxx" inertiafromgeom="false" />
+  <option timestep="0.005" integrator="Euler" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" impratio="3.3437">
+    <flag contact="disable" />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <site name="ws" pos="0.49728 -0.21816 0.50603" />
+    <body name="b1" pos="-0.17024 0.80343 0.7295" zaxis="-0.092621 -0.119 1.6973">
+      <joint name="j1" type="hinge" stiffness="3.4737" damping="0.41338" />
+      <geom type="box" name="g1" size="0.12531 0.060114 0.039967" pos="0.16803 0.011358 0.0039563" xyaxes="0.45758 0.62699 -0.52759 -0.43329 0.83064 -1.2041" />
+      <geom type="capsule" name="g2" size="0.056889 0.10697" mass="2.38" />
+      <inertial pos="-7.2894e-05 -0.12642 -0.042694" mass="1.8747" diaginertia="0.046391 0.016215 0.05074" euler="160.54 -148.64 -2.4835" />
+      <frame pos="-0.14963 -0.0027364 0.069297">
+        <body name="b2" pos="-0.25278 -0.16672 0.11694" zaxis="-0.65251 -0.027854 -0.27406">
+          <joint name="j2" pos="-0.13206 0.0026333 -0.121" stiffness="3.8695" damping="0.30237" />
+          <geom type="capsule" name="g3" size="0.025868 0.2462" pos="0.19419 -0.019382 -0.11061" xyaxes="0.12553 0.23899 0.093594 -0.011941 -0.90212 -0.07812" />
+          <inertial pos="0.14312 -0.093259 0.03646" mass="2.6123" diaginertia="0.030221 0.077909 0.071278" xyaxes="-0.52799 -0.083684 0.76473 0.54614 -0.57637 0.007613" />
+          <site name="s2" pos="-0.10893 -0.02781 0.11968" />
+        </body>
+      </frame>
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="t0" stiffness="1.7318" springlength="0.059826 0.072098" range="-0.36408 0.28423">
+      <joint joint="j1" coef="0.87446" />
+      <joint joint="j2" coef="0.5999" />
+    </fixed>
+    <fixed name="t1" stiffness="1.8382" damping="0.10424" frictionloss="0.042692">
+      <joint joint="j2" coef="-0.93335" />
+      <joint joint="j1" coef="-1.6325" />
+    </fixed>
+  </tendon>
+  <equality>
+    <weld body1="b1" body2="b2" anchor="-0.12838 0.13529 0.18812" name="eq0" solref="0.032076 1.1839" solimp="0.50695 0.62053 0.016513" />
+  </equality>
+  <sensor>
+    <framexaxis name="sn0" objtype="geom" objname="floor" reftype="site" refname="s2" />
+    <tendonlimitvel name="sn1" tendon="t0" />
+    <tendonvel name="sn2" tendon="t0" cutoff="3.3211" />
+    <accelerometer name="sn3" site="s2" />
+    <torque name="sn4" site="s2" />
+    <torque name="sn5" site="s2" />
+  </sensor>
+</mujoco>

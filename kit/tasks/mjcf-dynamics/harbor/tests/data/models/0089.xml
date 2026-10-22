@@ -1,0 +1,69 @@
+<mujoco model="m7310047">
+  <compiler angle="degree" boundmass="0.48161" />
+  <option timestep="0.002" gravity="1.1903 -0.041826 -7.2193" solver="CG" tolerance="0" iterations="1500" ls_iterations="60" cone="elliptic">
+    <flag />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <geom name="wg0" type="sphere" size="0.084274" pos="-0.46182 0.42651 0.49121" zaxis="-0.46502 -0.81908 -0.79734" conaffinity="3" solimp="0.55534 0.66548 0.018371 0.79147 3" margin="0.0077197" gap="0.00024226" />
+    <geom name="wg1" type="capsule" size="0.059257 0.15401" pos="-0.55714 -0.38536 0.21916" condim="6" />
+    <body name="b1" pos="0.03042 -0.091624 0.0090553" xyaxes="2.3358 -1.543 -0.41832 -0.2433 -1.2311 0.40394">
+      <joint name="j1" type="slide" ref="-0.29619" stiffness="2.0288" armature="0.00081645" />
+      <joint name="j2" type="ball" damping="0.36116 0.23702 0.057267" range="0 36.672" solimplimit="0.58124 0.58293 0.013487 0.59368 2.8792" />
+      <geom type="capsule" fromto="-0.0048852 0.051318 -0.073048 0.12401 0.13788 0.142" size="0.069234" />
+      <geom type="cylinder" name="g1" size="0.06062 0.1289" pos="-0.15182 0.14018 0.021252" euler="-128.91 -160.89 -78.267" density="3771.2" contype="2" conaffinity="0" condim="3" />
+      <body name="b2" pos="0.12195 -0.26208 -0.13135" xyaxes="0.38842 -1.7124 0.5597 -0.13592 -0.234 0.74919" gravcomp="0.1138">
+        <joint name="j3" pos="-0.14632 0.012538 0.072127" axis="0.18173 0.21695 0.5143" />
+        <geom type="cylinder" name="g2" size="0.079236 0.15309" density="328.96" contype="2" conaffinity="0" solimp="0.68295 0.96939 0.018498" />
+        <geom type="ellipsoid" size="0.12402 0.058425 0.050786" pos="0.11532 0.095584 0.15452" mass="1.0375" group="1" contype="0" conaffinity="0" />
+        <site name="s1" pos="0.091572 0.16591 0.043591" zaxis="0.39509 1.3965 0.0061781" />
+        <body name="b3" pos="0.1434 -0.07325 -0.21973" gravcomp="0.98565">
+          <joint name="j4" type="hinge" axis="0.21974 -0.66181 -0.60517" damping="0.4578" range="-53.444 24.048" solreflimit="-2693.2 -42.193" solimplimit="0.90377 0.95664 0.010234" />
+          <joint name="j5" pos="0.092458 -0.0093935 -0.07039" axis="-0.79432 0.41255 0.37612" damping="0.48443" armature="0.0090094" />
+          <geom type="sphere" name="g3" size="0.032668" shellinertia="true" rgba="0.79032 0.82023 0.29428 1" conaffinity="3" solimp="0.64187 0.82421 0.0044787" margin="0.029984" />
+          <site name="s2" pos="0.071107 0.034968 -0.077582" />
+          <site name="s3" pos="-0.013013 -0.14234 -0.11978" type="capsule" size="0.20335 0.20121" />
+          <body name="b4" pos="0.25174 0.04049 -0.0084279">
+            <joint name="j6" type="hinge" axis="-0.9132 1.2304 -0.74054" damping="0.040528" armature="0.018117" range="-41.27 17.187" margin="10.778" solreflimit="0.010417 1.1249" frictionloss="0.49831" />
+            <geom type="cylinder" fromto="0.09268 0.072993 0.13292 0.037665 0.17058 0.22524" size="0.033506" mass="2.7465" contype="2" conaffinity="0" solimp="0.6493 0.81464 0.0071559" solmix="3.6316" />
+            <body name="b5" pos="-0.11791 0.11898 -0.010082" euler="98.199 156.44 29.426">
+              <joint name="j7" type="slide" axis="-0.75825 -1.117 -0.125" />
+              <geom type="capsule" fromto="0.15525 0.17292 0.05632 0.058726 -0.045443 -0.10104" size="0.053918" shellinertia="true" condim="6" solmix="4.3344" />
+              <geom type="sphere" size="0.080309" pos="-0.050807 0.074967 0.075242" euler="-69.33 139.77 -34.544" conaffinity="3" />
+              <body name="b6" pos="-0.020193 -0.23413 0.19393" axisangle="-1.9782 1.792 0.95369 49.113" gravcomp="0.96146">
+                <joint name="j8" type="hinge" pos="0.14239 0.068693 0.13686" axis="0.91485 0.63744 0.69104" damping="0.32548 0.020327 0.11666" armature="0.01772" />
+                <geom type="capsule" size="0.060786 0.082331" pos="0.094184 0.048954 0.17355" density="2182.1" rgba="0.37035 0.32545 0.8891 1" friction="0.68171 0.0018644 0.0018092" />
+                <geom type="cylinder" name="g4" size="0.031159 0.17677" pos="0.13457 0.15075 0.15168" axisangle="0.60094 0.82078 -0.74243 -104.81" density="3084.3" contype="2" conaffinity="0" friction="1.4078 0.012189 0.00024727" />
+                <site name="s4" pos="0.06455 -0.10437 -0.038689" />
+                <site name="s5" pos="0.040014 -0.04658 -0.098374" zaxis="-0.19451 -0.71737 -1.5685" />
+              </body>
+            </body>
+            <body name="b7" pos="0.039473 -0.06317 0.28336" euler="-12.075 30.945 163.19">
+              <geom type="capsule" size="0.058442 0.20877" pos="-0.01384 -0.1411 -0.18222" mass="1.8681" friction="1.1267 0.015455 0.00066993" />
+              <geom type="ellipsoid" name="g5" size="0.11144 0.070847 0.045646" pos="-0.13113 -0.18696 0.11975" zaxis="0.94644 -0.75573 -0.66585" contype="0" conaffinity="0" />
+              <inertial pos="-0.0094988 0.05033 0.030615" mass="1.234" diaginertia="0.062856 0.019628 0.050243" euler="145.31 96.018 -176.28" />
+              <site name="s6" pos="0.18406 -0.17655 -0.19461" euler="-103.15 -108.89 -26.944" />
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <spatial name="sp0" stiffness="17.86" springlength="0.45279">
+      <site site="s2" />
+      <site site="s5" />
+    </spatial>
+    <fixed name="t0" stiffness="2.6993" damping="0.17313">
+      <joint joint="j8" coef="1.2267" />
+      <joint joint="j3" coef="0.92958" />
+      <joint joint="j6" coef="1.8527" />
+    </fixed>
+  </tendon>
+  <equality>
+    <joint joint1="j5" joint2="j3" polycoef="-0.1646 -0.25688 0.045104 0.2746 0.075971" name="eq0" solref="0.068543 1.2296" />
+  </equality>
+  <actuator>
+    <motor tendon="sp0" name="a0" gear="-1.9398" forcerange="-2.0001 1.73" />
+  </actuator>
+</mujoco>

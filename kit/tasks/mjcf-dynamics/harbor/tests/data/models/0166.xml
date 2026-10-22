@@ -1,0 +1,49 @@
+<mujoco model="m7330025">
+  <compiler angle="degree" inertiafromgeom="true" />
+  <option timestep="0.001" gravity="0.42091 -1.3671 -11.885" integrator="implicit" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic">
+    <flag equality="disable" />
+  </option>
+  <default>
+    <joint stiffness="0.70979" axis="-0.33717 0.32504 -0.88355" solreflimit="-4638.1 -23.412" />
+    <geom type="box" size="0.081071 0.13881 0.13175" friction="1.2372 0.048942 0.0011667" solref="0.079522 1.1592" condim="4" />
+    <site size="0.02" />
+    <motor gear="-2.5469" />
+    <default class="c1">
+      <geom density="1502.1" friction="0.59868 0.0034016 0.0047426" />
+      <motor gear="3.2488" ctrlrange="-1 1" />
+      <default class="c2">
+        <geom density="1764.2" solref="0.053532 0.64678" />
+        <motor />
+        <default class="c3">
+          <joint />
+          <geom type="ellipsoid" size="0.12173 0.06047 0.074238" solref="0.048525 0.88063" />
+          <motor />
+        </default>
+        <default class="c4" />
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" condim="6" friction="1.2347 0.010775 0.0005242" solimp="0.75204 0.90975 0.011995" />
+    <body name="b1" pos="0.0080631 0.10548 0.25041" euler="36.723 162.86 -85.945">
+      <geom pos="-0.12812 -0.11715 0.1144" condim="4" />
+      <geom type="sphere" name="g1" size="0.046633" pos="-0.086629 -0.012564 0.039881" euler="-65.93 -38.855 -49.133" mass="0.87045" conaffinity="3" condim="4" solimp="0.56843 0.82544 0.012332" margin="0.027339" priority="1" />
+      <body name="b2" pos="0.19558 0.17721 -0.18468" quat="-1.2122 1.2774 -1.4527 -0.77029">
+        <joint name="j1" type="hinge" axis="0.48159 -0.4556 -0.89132" ref="16.949" damping="0.21525" />
+        <geom type="sphere" size="0.10743" mass="2.3184" rgba="0.95119 0.0090477 0.99293 1" conaffinity="3" solref="-3348.5 -49.057" solimp="0.91467 0.91844 0.015388" />
+        <geom type="capsule" size="0.042974 0.12293" pos="-0.009292 0.012289 0.19358" shellinertia="true" />
+        <geom name="g2" pos="0.17942 -0.11552 -0.13907" axisangle="0.37723 -0.046521 1.8003 153.56" mass="0.45904" contype="0" conaffinity="0" />
+        <inertial pos="-0.091595 0.10331 -0.016596" mass="1.7591" diaginertia="0.060082 0.060345 0.026962" xyaxes="1.5303 -1.114 -0.34575 0.81079 -1.9522 0.53558" />
+        <site name="s1" pos="-0.07498 -0.098674 0.057236" quat="-1.6278 0.93056 -1.0143 0.041575" />
+      </body>
+    </body>
+  </worldbody>
+  <contact>
+    <pair geom1="g1" geom2="floor" />
+  </contact>
+  <equality>
+    <joint joint1="j1" polycoef="0.19878 1.1294 -0.063935 -0.10964 0.050137" name="eq0" />
+    <weld body1="b1" body2="b2" anchor="0.077607 -0.050627 0.1599" name="eq1" solimp="0.63888 0.85105 0.016523 0.60981 2.2326" />
+    <joint joint1="j1" polycoef="0.26127 -1.3813 -0.21211 0.2286 -0.14793" name="eq2" solref="0.074526 0.75463" />
+  </equality>
+</mujoco>

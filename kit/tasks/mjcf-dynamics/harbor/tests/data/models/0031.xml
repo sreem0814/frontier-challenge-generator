@@ -1,0 +1,34 @@
+<mujoco model="m7300034">
+  <compiler angle="radian" eulerseq="ZyY" />
+  <option timestep="0.01" solver="CG" tolerance="0" iterations="1500" ls_iterations="60">
+    <flag />
+  </option>
+  <default>
+    <geom solref="0.041056 0.59266" />
+    <site size="0.02" />
+    <default class="c1">
+      <motor gear="3.4184" ctrlrange="-1 1" />
+      <default class="c2">
+        <joint damping="0.016601" armature="0.034882" frictionloss="0.13306" solreflimit="0.027156 1.1213" />
+        <geom type="capsule" size="0.02021 0.11243" density="2188.2" solref="0.012048 1.1487" />
+        <default class="c3">
+          <geom type="cylinder" size="0.044944 0.1014" condim="1" />
+        </default>
+      </default>
+    </default>
+    <default class="c4">
+      <joint armature="0.031926" />
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" condim="1" solmix="1.9391" />
+    <geom name="wg0" type="sphere" size="0.14848" pos="0.24804 -0.27874 0.30283" axisangle="-0.17088 0.20737 1.7251 -2.0579" conaffinity="3" friction="0.72136 0.040778 0.00406" solimp="0.68516 0.87219 0.00073875 0.25981 2" margin="0.0075442" />
+    <geom name="wg1" type="sphere" size="0.12638" pos="-0.15472 -0.48867 0.33008" zaxis="0.73637 1.874 -0.47422" conaffinity="3" condim="6" friction="0.89499 0.045517 0.001409" solimp="0.70284 0.74361 0.013147 0.35218 3" />
+    <body name="b1" pos="0.29983 -0.058202 0.23553" gravcomp="0.15471">
+      <joint type="free" name="f1" />
+      <geom type="ellipsoid" size="0.044107 0.033537 0.14453" contype="0" conaffinity="0" />
+      <geom class="c4" type="sphere" name="g1" size="0.063159" pos="0.12283 0.042236 -0.016312" quat="-0.90975 -1.1487 0.37815 -0.37376" mass="1.4363" shellinertia="true" conaffinity="3" solimp="0.9309 0.98611 0.0025504 0.21778 3" />
+      <site name="s1" pos="0.065166 -0.19738 -0.18043" type="cylinder" size="0.16276 0.25067" euler="2.5179 0.14473 2.0126" />
+    </body>
+  </worldbody>
+</mujoco>

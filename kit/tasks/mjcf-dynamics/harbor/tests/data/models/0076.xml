@@ -1,0 +1,29 @@
+<mujoco model="m7310032">
+  <compiler angle="degree" eulerseq="zzz" inertiafromgeom="false" boundmass="0.35668" />
+  <option timestep="0.005" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic">
+    <flag contact="disable" />
+  </option>
+  <default>
+    <joint damping="0.29318" armature="0.045319" frictionloss="0.23985" />
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <body name="b1" pos="0.9774 0.36351 1.3723">
+      <joint name="j1" type="ball" pos="-0.0259 0.034381 -0.1458" stiffness="2.5468 0.34722 0.64231" damping="0.042058" />
+      <geom type="sphere" size="0.065889" pos="0.020109 -0.096044 -0.051193" zaxis="-1.2306 -1.6648 1.7706" density="569.08" conaffinity="3" />
+      <inertial pos="0.025824 -0.11228 -0.092938" mass="1.7248" diaginertia="0.054937 0.045691 0.024805" />
+      <site name="s1" pos="0.02587 -0.19337 0.06731" axisangle="0.72474 -0.34401 0.85448 71.533" />
+    </body>
+  </worldbody>
+  <sensor>
+    <ballangvel name="sn0" joint="j1" />
+    <subtreecom name="sn1" body="b1" />
+    <accelerometer name="sn2" site="s1" />
+    <subtreelinvel name="sn3" body="b1" />
+    <gyro name="sn4" site="s1" />
+    <e_potential name="sn5" />
+    <velocimeter name="sn6" site="s1" />
+    <gyro name="sn7" site="s1" />
+    <frameyaxis name="sn8" objtype="geom" objname="floor" reftype="xbody" refname="b1" />
+  </sensor>
+</mujoco>

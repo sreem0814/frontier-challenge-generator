@@ -1,0 +1,65 @@
+<mujoco model="m7330000">
+  <compiler angle="radian" eulerseq="Zyx" />
+  <option timestep="0.01" integrator="implicit" solver="CG" tolerance="0" iterations="1500" ls_iterations="60" impratio="2.7616">
+    <flag contact="disable" />
+  </option>
+  <default>
+    <joint damping="0.40611" armature="0.013185" />
+    <geom />
+    <site size="0.02" />
+    <motor gear="-3.5463" ctrlrange="-1 1" />
+  </default>
+  <worldbody>
+    <site name="ws" pos="-0.63795 -0.79305 0.84321" />
+    <body name="b1" pos="-0.5692 -0.60788 0.61385">
+      <joint type="free" name="f1" armature="0.01751" />
+      <geom type="sphere" name="g1" size="0.09957" pos="0.069493 0.046954 -0.036228" conaffinity="3" />
+      <site name="s2" pos="-0.085066 0.1232 -0.099954" />
+      <site name="s3" pos="-0.048624 -0.044249 -0.087004" />
+      <body name="b2" pos="-0.065492 -0.090326 0.018285" zaxis="-0.70794 0.33334 -0.85652">
+        <joint name="j2" pos="-0.0026143 0.11665 0.10243" axis="0.3462 -0.084088 -0.20835" stiffness="0.88369" />
+        <geom type="capsule" size="0.052726 0.19799" />
+        <geom type="ellipsoid" size="0.10988 0.099211 0.14357" mass="1.1687" contype="0" conaffinity="0" />
+        <geom type="cylinder" name="g2" size="0.053744 0.067717" xyaxes="-1.994 -0.73759 1.4925 0.10942 1.6929 0.44255" mass="2.4607" contype="2" conaffinity="0" />
+        <inertial pos="0.14093 -0.10448 -0.070064" mass="1.5022" fullinertia="0.046887 0.048213 0.062757 -0.0015128 -0.0041784 -0.0017786" />
+        <site name="s4" pos="-0.19005 -0.048857 -0.07597" />
+        <body name="b3" pos="-0.11363 -0.27148 -0.006361">
+          <joint name="j3" pos="0.041883 0.060269 0.10128" axis="-1.5528 -0.10073 -0.49476" range="-0.23899 0.86307" />
+          <geom type="ellipsoid" name="g3" size="0.14649 0.13888 0.065811" pos="-0.036805 -0.13579 0.05816" axisangle="0.35381 -0.1392 0.16943 0.1052" mass="2.1651" contype="0" conaffinity="0" />
+          <geom type="capsule" size="0.078812 0.13774" pos="-0.06788 -0.046528 -0.10587" quat="2.007 0.34204 1.4295 -1.1381" density="1948.2" group="2" />
+          <geom type="capsule" size="0.039704 0.054546" pos="0.064641 0.15406 0.10917" zaxis="2.7048 0.96847 -0.85221" density="432.4" rgba="0.11425 0.085151 0.065088 1" />
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="t0" damping="0.05928" frictionloss="0.18171">
+      <joint joint="j3" coef="0.33143" />
+      <joint joint="j2" coef="-0.54048" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <intvelocity tendon="t0" name="a0" gear="1.367" kp="7.0853" actrange="-1.3341 1.0535" />
+    <position joint="j2" name="a1" gear="2.5979" kp="16.434" kv="1.542" timeconst="0.28558" />
+    <general joint="j2" name="a2" ctrlrange="-0.92753 1.4846" dyntype="integrator" gaintype="affine" gainprm="2.2798 0.2072 -0.25286" biastype="affine" biasprm="0.1103 -4.2823 -0.95651" />
+    <motor joint="j2" name="a3" gear="0.73114" ctrlrange="-0.91898 1.2571" />
+    <velocity site="s4" gear="0 1.7594 0 0 0 -0.53364" name="a4" forcerange="-2.6149 2.5705" kv="0.78453" />
+    <general site="s3" gear="0 0 0 -0.58484 0 -1.1662" name="a5" ctrlrange="-0.77586 0.61902" dyntype="integrator" />
+  </actuator>
+  <sensor>
+    <gyro name="sn0" site="s2" />
+    <actuatorvel name="sn1" actuator="a3" noise="0.084657" />
+    <subtreecom name="sn2" body="b3" />
+    <accelerometer name="sn3" site="s2" />
+    <jointactuatorfrc name="sn4" joint="j2" />
+    <jointlimitfrc name="sn5" joint="j3" cutoff="0.71376" />
+    <tendonactuatorfrc name="sn6" tendon="t0" />
+    <tendonvel name="sn7" tendon="t0" cutoff="3.6697" />
+    <jointvel name="sn8" joint="j2" />
+    <actuatorfrc name="sn9" actuator="a1" />
+    <torque name="sn10" site="s2" cutoff="2.0926" />
+    <accelerometer name="sn11" site="s3" />
+    <force name="sn12" site="s3" />
+    <framexaxis name="sn13" objtype="site" objname="s2" noise="0.061883" />
+  </sensor>
+</mujoco>

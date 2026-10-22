@@ -1,0 +1,68 @@
+<mujoco model="m7300012">
+  <compiler angle="radian" boundmass="0.1907" />
+  <option timestep="0.002" integrator="RK4" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" impratio="3.2557">
+    <flag clampctrl="disable" frictionloss="disable" />
+  </option>
+  <default>
+    <joint damping="0.16903" armature="0.0086755" stiffness="1.3919" />
+    <geom type="box" size="0.052018 0.045883 0.11189" density="507.96" friction="0.4505 0.048003 0.0030208" />
+    <motor ctrlrange="-1 1" />
+    <default class="c1">
+      <geom type="box" size="0.1415 0.07465 0.1132" condim="1" />
+      <default class="c2">
+        <geom type="box" size="0.12372 0.099336 0.084716" friction="0.61517 0.0080041 0.00060136" />
+        <motor gear="3.4674" ctrlrange="-1 1" />
+        <default class="c3">
+          <site size="0.02" />
+          <motor />
+        </default>
+      </default>
+    </default>
+    <default class="c4">
+      <joint armature="0.035651" type="slide" />
+      <default class="c5">
+        <default class="c6">
+          <joint armature="0.039319" solreflimit="-3632.5 -27.127" />
+          <site size="0.02" />
+        </default>
+      </default>
+      <default class="c7">
+        <joint damping="0.37038" />
+        <geom friction="0.65721 0.028984 0.0035036" solref="0.079831 1.3798" />
+        <site size="0.02" />
+        <default class="c8">
+          <joint damping="0.43771" stiffness="2.0362" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" solimp="0.83387 0.92549 0.018476 0.72077 1" />
+    <site name="ws" pos="0.42136 -0.21919 0.71143" />
+    <body name="b1" pos="-0.16527 -0.27918 0.23973" axisangle="0.93681 -1.075 0.88262 -3.0677" childclass="c4">
+      <joint type="free" name="f1" damping="0.15741" />
+      <geom class="c1" type="box" fromto="-0.14832 0.01666 0.043471 -0.2915 0.23189 -0.12366" size="0.033712" mass="1.9335" margin="0.0068137" gap="0.0094178" />
+    </body>
+    <body name="b2" pos="0.14818 0.15093 0.079737" childclass="c8">
+      <joint name="j2" type="ball" range="0 1.0714" />
+      <joint name="j3" type="slide" pos="0.11775 0.086767 -0.10054" axis="2.0715 0.20101 -0.066817" stiffness="3.0193" springref="-0.14804" />
+      <geom class="c1" mass="1.9255" friction="1.3787 0.025211 0.0014098" />
+      <inertial pos="-0.096394 0.14691 0.04455" mass="1.6422" diaginertia="0.02805 0.0087378 0.023803" />
+    </body>
+    <body name="b3" pos="-0.010859 -0.24826 0.06712" euler="1.0178 -0.83785 -1.9972">
+      <joint type="free" name="f3" armature="0.018005" />
+      <geom type="cylinder" size="0.059821 0.098611" pos="0.080109 -0.05503 0.17531" zaxis="0.64132 -1.5845 0.88598" mass="2.484" contype="2" conaffinity="0" condim="4" solref="0.056726 0.87781" />
+      <geom pos="0.01359 0.037124 0.088059" mass="0.39821" group="0" />
+    </body>
+  </worldbody>
+  <sensor>
+    <e_kinetic name="sn0" />
+    <framelinvel name="sn1" objtype="xbody" objname="b3" reftype="xbody" refname="b1" />
+    <framequat name="sn2" objtype="site" objname="ws" />
+    <ballquat name="sn3" joint="j2" noise="0.023176" />
+    <subtreecom name="sn4" body="b3" />
+    <subtreelinvel name="sn5" body="b1" cutoff="0.71171" />
+    <jointvel name="sn6" joint="j3" />
+    <ballangvel name="sn7" joint="j2" />
+  </sensor>
+</mujoco>

@@ -1,0 +1,78 @@
+<mujoco model="m7310018">
+  <compiler angle="degree" boundmass="0.37379" />
+  <option timestep="0.005" integrator="implicit" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="pyramidal" impratio="2.9161">
+    <flag contact="disable" gravity="disable" />
+  </option>
+  <default>
+    <site size="0.02" />
+    <default class="c1">
+      <joint armature="0.00023423" solreflimit="0.03682 0.52943" type="slide" />
+      <geom />
+      <default class="c2">
+        <geom density="2653.8" />
+        <default class="c3">
+          <geom type="sphere" size="0.046047" />
+        </default>
+        <default class="c4">
+          <joint axis="-0.35732 0.084333 -0.93017" />
+        </default>
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <body name="b1" pos="0.83117 -0.59191 1.3177">
+      <freejoint name="f1" />
+      <geom type="capsule" fromto="0.071117 -0.039567 0.11085 0.13479 -0.22018 -0.10901" size="0.065857" />
+      <geom type="capsule" name="g1" size="0.035267 0.19424" pos="-0.025203 0.18389 -0.083715" axisangle="0.99957 0.65232 1.0463 -57.222" mass="1.7901" />
+      <geom type="capsule" fromto="-0.012571 0.089258 0.029369 -0.017645 -0.083278 0.22099" size="0.051954" rgba="0.88881 0.13584 0.21527 1" />
+      <site name="s1" pos="0.12585 -0.030494 0.086136" class="c2" />
+      <frame pos="0.16898 0.084612 -0.048524" zaxis="1.1091 1.7521 -1.0154" childclass="c1">
+        <body name="b2" pos="-0.078948 0.27356 0.17135" axisangle="1.4239 1.025 -1.257 77.233">
+          <joint name="j2" ref="15.955" />
+          <joint name="j3" type="slide" axis="0.073751 0.54742 1.0075" ref="0.18" damping="0.10542" range="-0.090484 0.16033" solimplimit="0.58487 0.91248 0.017743 0.39465 1" />
+          <geom type="capsule" name="g2" size="0.058792 0.16677" euler="-60.197 -57.742 -161.74" rgba="0.47773 0.4831 0.95777 1" />
+        </body>
+      </frame>
+    </body>
+    <body name="b3" pos="-0.050062 0.15549 0.70584" gravcomp="0.19853">
+      <joint name="j4" type="slide" axis="-0.86841 1.6377 -0.72058" ref="-0.24908" stiffness="2.8656" springref="-0.222" armature="0.00087291" />
+      <geom type="sphere" name="g3" size="0.067518" density="2653.9" conaffinity="3" />
+      <site name="s2" pos="-0.02019 0.18406 0.040868" />
+      <site name="s3" pos="-0.018544 0.14235 0.12358" />
+      <body name="b4" pos="0.2868 -0.2445 -0.16569" euler="-66.63 23.729 -70.195" gravcomp="0.1931">
+        <joint name="j5" type="hinge" pos="0.095217 0.066716 0.012073" axis="0.21187 0.7461 -0.5115" ref="-43.826" armature="0.0039716" />
+        <geom type="capsule" name="g4" size="0.078925 0.2252" pos="0.17926 0.0018554 -0.14574" zaxis="0.087616 -0.34752 0.58512" mass="2.1481" />
+        <inertial pos="0.10919 0.074215 -0.093129" mass="0.40614" diaginertia="0.056135 0.044857 0.017046" zaxis="0.099257 -2.7079 -0.63346" />
+        <site name="s4" pos="-0.1406 -0.17871 -0.068055" />
+      </body>
+    </body>
+    <body name="b5" pos="-0.9109 0.40496 1.937" zaxis="1.1923 1.4864 0.49587">
+      <joint name="j6" type="hinge" axis="0.41047 0.49003 0.48596" ref="40.506" armature="0.010774" range="-31.021 20.843" />
+      <geom type="box" size="0.11578 0.052197 0.065887" zaxis="-0.53916 -0.84032 0.6954" />
+      <site name="s5" pos="0.077212 0.14901 0.041352" />
+      <site name="s6" pos="0.15781 -0.18274 0.11211" class="c4" zaxis="1.308 -1.1725 -0.6125" />
+      <frame pos="0.16718 -0.056781 -0.12049" xyaxes="0.35045 1.4714 -0.36582 0.92906 -0.094467 -0.59577">
+        <body name="b6" pos="0.01274 -0.060473 0.04067">
+          <joint name="j7" class="c2" type="hinge" pos="0.012858 -0.094654 -0.047331" axis="0.1089 0.31966 2.5636" stiffness="0.66886" range="-65.603 62.154" frictionloss="0.35016" solreffriction="0.031273 0.88348" />
+          <geom type="box" size="0.054369 0.10491 0.1115" />
+          <body name="b7" pos="0.11885 -0.040556 0.27094">
+            <joint name="j8" class="c3" type="slide" pos="-0.015869 -0.103 -0.14779" axis="1.1457 0.29888 -0.89621" ref="-0.22999" frictionloss="0.037663" />
+            <geom type="box" fromto="-0.02589 -0.17935 -0.14182 -0.18525 -0.11935 -0.095734" size="0.031303" />
+            <geom type="box" name="g5" size="0.046874 0.048334 0.1231" mass="1.4008" />
+          </body>
+        </body>
+      </frame>
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="t0" damping="0.78249" range="-0.53871 0.41381" frictionloss="0.37162">
+      <joint joint="j3" coef="0.76416" />
+      <joint joint="j4" coef="-1.2999" />
+    </fixed>
+  </tendon>
+  <sensor>
+    <framelinacc name="sn0" objtype="geom" objname="g5" />
+    <tendonlimitvel name="sn1" tendon="t0" />
+  </sensor>
+</mujoco>

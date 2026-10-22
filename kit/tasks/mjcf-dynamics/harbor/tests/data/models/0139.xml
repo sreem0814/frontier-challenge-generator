@@ -1,0 +1,54 @@
+<mujoco model="m7320052">
+  <compiler angle="degree" />
+  <option timestep="0.01" gravity="0.34968 2.0674 -7.064" integrator="RK4" solver="CG" tolerance="0" iterations="1500" ls_iterations="60" density="1.2" viscosity="1.9799" wind="2.966 2.3872 0.4698">
+    <flag contact="disable" equality="disable" />
+  </option>
+  <default>
+    <joint frictionloss="0.25901" />
+    <site size="0.02" />
+    <default class="c1">
+      <joint type="slide" />
+    </default>
+    <default class="c2">
+      <joint damping="0.31342" solreflimit="0.063282 1.2005" />
+      <geom density="1104.7" />
+      <default class="c3">
+        <geom density="1322.6" />
+        <motor gear="-3.6923" ctrlrange="-1 1" />
+        <default class="c4" />
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <body name="b1" pos="0.62428 -0.52858 1.6002">
+      <freejoint name="f1" />
+      <geom class="c1" type="box" name="g1" size="0.10294 0.11306 0.13937" pos="0.057621 -0.18281 0.083733" fluidshape="ellipsoid" />
+      <geom class="c1" type="cylinder" size="0.034158 0.15425" contype="2" conaffinity="0" fluidshape="ellipsoid" />
+      <site name="s1" pos="0.1475 0.093884 0.054517" zaxis="0.10784 1.0062 -0.26976" />
+      <body name="b2" pos="0.23575 0.29379 -0.058422" zaxis="-0.24203 -0.37071 -1.5386">
+        <joint name="j2" type="hinge" pos="-0.053096 -0.030368 -0.048347" axis="-0.17691 0.22279 0.76198" ref="-57.066" />
+        <geom class="c1" type="box" name="g2" size="0.14002 0.052607 0.11075" pos="-0.12152 0.00066623 0.13252" fluidshape="ellipsoid" fluidcoef="0.99226 0.59736 1.2738 1.8989 0.51774" />
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <connect body1="b1" anchor="0.040889 0.095555 0.063145" name="eq0" active="false" />
+    <connect body1="b2" anchor="-0.0015573 -0.13738 0.062236" body2="b1" name="eq1" />
+    <joint joint1="j2" name="eq2" solref="0.047914 1.2188" />
+  </equality>
+  <actuator>
+    <position joint="j2" name="a0" gear="-1.4624" ctrlrange="-0.44738 1.0666" kp="15.905" />
+    <motor joint="j2" name="a1" gear="-1.0745" class="c1" />
+    <motor joint="j2" name="a2" class="c3" />
+    <position joint="j2" name="a3" ctrlrange="-0.71631 0.81318" forcerange="-1.3871 1.4452" kp="21.748" timeconst="0.22327" />
+  </actuator>
+  <sensor>
+    <velocimeter name="sn0" site="s1" noise="0.043557" />
+    <jointpos name="sn1" joint="j2" />
+    <accelerometer name="sn2" site="s1" />
+    <torque name="sn3" site="s1" />
+    <actuatorpos name="sn4" actuator="a3" />
+    <actuatorpos name="sn5" actuator="a2" />
+    <framepos name="sn6" objtype="geom" objname="g1" />
+  </sensor>
+</mujoco>

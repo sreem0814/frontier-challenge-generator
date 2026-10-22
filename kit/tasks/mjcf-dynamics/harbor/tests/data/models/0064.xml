@@ -1,0 +1,17 @@
+<mujoco model="m7310019">
+  <compiler angle="degree" />
+  <option timestep="0.004" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic">
+    <flag />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" friction="1.3342 0.030663 0.0029752" solref="0.078017 0.84271" />
+    <body name="b1" pos="0.095891 -0.095763 0.19433">
+      <joint name="j1" type="hinge" axis="1.6918 0.10195 0.48469" />
+      <geom type="capsule" name="g1" size="0.075528 0.16261" axisangle="0.86905 0.22021 -0.050192 42.607" contype="0" conaffinity="0" />
+      <geom type="sphere" name="g2" size="0.050439" pos="0.14455 -0.094988 -0.12031" zaxis="-1.2995 0.12868 0.92231" conaffinity="3" friction="0.8735 0.034236 0.0027123" priority="2" />
+    </body>
+  </worldbody>
+  <equality>
+    <joint joint1="j1" name="eq0" active="false" />
+  </equality>
+</mujoco>

@@ -1,0 +1,64 @@
+<mujoco model="m7300016">
+  <compiler angle="degree" eulerseq="zzz" boundinertia="0.00085285" />
+  <option timestep="0.004" integrator="implicitfast" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic">
+    <flag contact="disable" />
+  </option>
+  <default>
+    <geom type="cylinder" size="0.07363 0.2255" density="2126.3" />
+  </default>
+  <worldbody>
+    <site name="ws" pos="-0.62211 -0.48676 0.66845" />
+    <body name="b1" pos="0.012866 0.2699 0.63476" xyaxes="-0.86967 -0.1239 0.92091 -0.45549 -0.60644 1.4909">
+      <joint name="j1" type="hinge" axis="0.652 0.046698 -1.8066" stiffness="3.9928 -0.54804 0.2487" springref="20.4" />
+      <joint name="j2" type="slide" axis="-1.211 0.83237 -0.17685" />
+      <geom type="sphere" size="0.10579" quat="-0.63965 -0.29823 0.63762 -0.65133" mass="0.89745" rgba="0.38739 0.9161 0.86964 1" conaffinity="3" />
+      <geom type="ellipsoid" fromto="-0.089575 0.16228 -0.081131 -0.26271 -0.075947 -0.20307" size="0.050542" shellinertia="true" contype="0" conaffinity="0" />
+      <geom type="box" name="g1" size="0.055469 0.1068 0.12214" pos="0.10912 0.074519 0.050331" mass="2.6053" />
+      <body name="b2" pos="0.017325 0.037184 -0.14395" axisangle="-0.64713 0.23295 -0.46361 98.162">
+        <joint name="j3" type="hinge" pos="-0.044158 -0.036938 0.013113" axis="-1.2533 0.72744 -0.47124" damping="0.21171 0.20789 0.015688" armature="0.031097" />
+        <joint name="j4" axis="-0.96128 1.2794 0.58957" damping="0.28827" />
+        <geom type="box" fromto="-0.016617 0.07404 -0.086965 -0.082973 0.013495 0.15652" size="0.020675" density="3147.9" />
+        <body name="b3" pos="0.049073 0.26734 0.1748" euler="100.72 -82.972 -24.065">
+          <joint name="j5" type="hinge" pos="-0.011279 -0.094736 -0.074874" axis="-2.098 -0.70452 0.88816" stiffness="3.5973" springref="41.422" damping="0.38377" />
+          <geom type="capsule" size="0.048642 0.083021" pos="-0.067867 0.051261 0.15249" zaxis="-1.9197 2.7661 0.58122" density="2949.2" shellinertia="true" group="3" />
+          <geom pos="-0.046396 -0.17333 0.16228" shellinertia="true" contype="2" conaffinity="0" />
+          <inertial pos="0.1217 -0.10286 0.062795" mass="1.9226" diaginertia="0.042112 0.029272 0.01606" />
+          <site name="s2" pos="0.19878 -0.16983 0.07489" euler="-29.408 -175.17 10.97" />
+          <frame pos="0.17905 -0.18708 -0.22445">
+            <body name="b4" pos="-0.10255 -0.043187 0.21892" euler="20.838 -112.3 122.85">
+              <geom pos="0.031483 -0.011753 -0.16154" density="2104.1" contype="2" conaffinity="0" />
+            </body>
+          </frame>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <spatial name="sp0" stiffness="1.4722" damping="1.1464" frictionloss="0.39106">
+      <site site="ws" />
+      <site site="s2" />
+    </spatial>
+    <fixed name="t0" stiffness="0.057877" springlength="0.45313">
+      <joint joint="j1" coef="1.4313" />
+      <joint joint="j2" coef="1.3597" />
+    </fixed>
+    <fixed name="t1">
+      <joint joint="j2" coef="-0.67015" />
+      <joint joint="j4" coef="0.53162" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <position site="s2" gear="0 0 0 -1.0801 0 0" name="a0" ctrlrange="-0.75619 0.73949" forcerange="-1.3153 2.7596" kp="10.791" />
+    <position site="s2" gear="0 0 -0.72648 0 -0.32576 -0.40607" name="a1" kp="14.797" />
+    <cylinder tendon="sp0" name="a2" gear="2.5581" ctrlrange="-0.22978 1.1086" forcerange="-1.4579 0.76888" timeconst="0.27328" area="0.28345" />
+    <position tendon="t0" name="a3" gear="-1.4355" kp="11.066" />
+    <muscle joint="j2" name="a4" lengthrange="-1.0358 -0.34325" scale="257.19" vmax="0.80579" fvmax="1.1417" />
+    <position site="s2" gear="0 -0.3155 0 0 0 0" name="a5" ctrlrange="-0.91607 1.4684" kp="4.7792" />
+  </actuator>
+  <sensor>
+    <force name="sn0" site="s2" />
+    <subtreeangmom name="sn1" body="b3" />
+    <subtreeangmom name="sn2" body="b3" />
+    <jointpos name="sn3" joint="j1" cutoff="1.7511" />
+  </sensor>
+</mujoco>

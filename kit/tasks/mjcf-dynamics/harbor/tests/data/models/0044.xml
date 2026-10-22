@@ -1,0 +1,31 @@
+<mujoco model="m7300049">
+  <compiler angle="radian" eulerseq="xzx" />
+  <option timestep="0.01" integrator="implicit" solver="CG" tolerance="0" iterations="1500" ls_iterations="60" cone="elliptic" impratio="3.2817">
+    <flag eulerdamp="disable" clampctrl="disable" />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" solimp="0.72417 0.76761 0.018576" />
+    <geom name="wg0" type="sphere" size="0.032132" pos="0.02371 -0.44027 0.42807" conaffinity="3" condim="6" solimp="0.55192 0.77228 0.018923" />
+    <body name="b1" pos="0.014134 0.26131 0.22612" gravcomp="0.64284">
+      <joint type="free" name="f1" frictionloss="0.18201" />
+      <geom type="capsule" size="0.029904 0.22614" pos="-0.16889 -0.049133 -0.14966" quat="-0.30743 1.1727 0.69756 0.93843" density="2133.2" solimp="0.76357 0.92308 0.0063998" margin="0.014247" />
+      <geom type="sphere" name="g1" size="0.1312" pos="0.19608 0.003723 0.041324" mass="1.877" conaffinity="3" condim="3" friction="1.1773 0.028242 0.0035148" />
+      <site name="s1" pos="-0.13312 0.0064579 0.010917" type="capsule" size="0.16659 0.21527" />
+      <site name="s2" pos="-0.1675 -0.14165 0.17936" axisangle="-1.4921 -1.2222 0.7058 -2.2057" />
+    </body>
+  </worldbody>
+  <equality>
+    <connect body1="b1" anchor="-0.010138 -0.1342 -0.084492" name="eq0" solimp="0.94758 0.98106 0.0067258" />
+  </equality>
+  <sensor>
+    <e_potential name="sn0" noise="0.026389" />
+    <accelerometer name="sn1" site="s2" noise="0.060228" />
+    <frameangvel name="sn2" objtype="body" objname="b1" />
+    <subtreelinvel name="sn3" body="b1" cutoff="2.8266" />
+    <framezaxis name="sn4" objtype="site" objname="s2" />
+    <subtreecom name="sn5" body="b1" />
+    <gyro name="sn6" site="s2" />
+    <framequat name="sn7" objtype="site" objname="s2" reftype="geom" refname="g1" />
+    <frameyaxis name="sn8" objtype="geom" objname="g1" />
+  </sensor>
+</mujoco>

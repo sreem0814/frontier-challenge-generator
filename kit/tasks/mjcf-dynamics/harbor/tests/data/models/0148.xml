@@ -1,0 +1,67 @@
+<mujoco model="m7330006">
+  <compiler angle="degree" inertiafromgeom="true" />
+  <option timestep="0.01">
+    <flag contact="disable" constraint="disable" />
+  </option>
+  <default>
+    <joint stiffness="0.66501" />
+    <geom density="1104" />
+    <site size="0.02" />
+    <motor gear="-3.9238" ctrlrange="-1 1" />
+    <default class="c1">
+      <joint armature="0.023651" />
+      <default class="c2">
+        <joint damping="0.34228" />
+      </default>
+    </default>
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <body name="b1" pos="0.22753 -0.26708 1.6963" xyaxes="-1.3914 0.78965 0.40081 0.76485 -0.18737 0.11492">
+      <joint name="j1" pos="-0.092142 0.0031407 0.026373" axis="-0.69624 0.95537 1.219" damping="0.27705" armature="0.031611" />
+      <joint name="j2" type="slide" armature="0.031896" />
+      <geom class="c2" type="sphere" name="g1" size="0.094213" pos="0.10605 -0.081442 0.096011" euler="-76.04 -29.087 177.42" mass="1.6153" conaffinity="3" />
+      <geom type="sphere" size="0.11998" pos="-0.1208 -0.07542 -0.19572" zaxis="-1.9548 -0.53715 -0.016057" conaffinity="3" />
+      <geom type="box" name="g2" size="0.13704 0.12064 0.10918" zaxis="-0.50977 -1.2523 0.15842" />
+      <site name="s1" pos="0.10143 -0.12895 -0.012938" class="c1" />
+      <site name="s2" pos="0.092043 0.12893 -0.083836" zaxis="-1.2779 -2.2937 -0.047289" />
+      <frame pos="0.29517 -0.036354 -0.22247" childclass="c1">
+        <body name="b2" pos="-0.15345 0.12342 -0.015889" childclass="c2">
+          <joint name="j3" type="slide" pos="0.012351 -0.017535 0.12891" axis="0.65395 0.21223 -0.14872" stiffness="3.6581" springref="0.26547" armature="0.031873" />
+          <joint name="j4" type="ball" pos="-0.0055741 -0.0588 -0.10449" stiffness="0.88937 0.22871 0.21033" damping="0.51948" />
+          <geom class="c2" type="cylinder" size="0.042189 0.20156" pos="0.048443 -0.14987 -0.14124" xyaxes="0.44199 -0.43798 0.52533 -0.68185 0.027996 -0.92772" contype="2" conaffinity="0" />
+          <geom class="c1" type="capsule" size="0.073326 0.21373" density="3653.7" />
+          <geom type="capsule" name="g3" size="0.040097 0.10113" group="2" />
+          <site name="s3" pos="-0.10651 -0.14817 -0.12786" axisangle="0.24343 -0.55797 -0.75169 5.908" />
+        </body>
+      </frame>
+      <body name="b3" pos="-0.012476 -0.059062 -0.29958" childclass="c1" gravcomp="0.0052159">
+        <joint name="j5" type="slide" pos="-0.04803 -0.037121 -0.054759" axis="-1.7994 1.3613 0.3097" stiffness="0.76859 -0.090499 0.59827" springref="-0.061339" />
+        <geom type="ellipsoid" size="0.064516 0.038829 0.04126" pos="-0.035403 0.037781 -0.030064" zaxis="0.23826 -0.67603 -0.076738" contype="0" conaffinity="0" />
+        <site name="s4" pos="-0.15446 -0.085845 0.077482" xyaxes="-0.5476 0.48994 1.5662 0.52486 -0.078511 0.50249" />
+      </body>
+      <body name="b4" pos="-0.26918 0.17789 0.29036" axisangle="0.21246 0.23852 -0.4182 59.972">
+        <joint name="j6" class="c1" type="hinge" pos="-0.084403 -0.086445 0.048834" axis="1.6525 0.13241 0.43472" />
+        <geom type="ellipsoid" size="0.12504 0.055523 0.12069" zaxis="-0.62984 -0.063062 -0.52355" contype="0" conaffinity="0" />
+        <geom class="c1" type="capsule" size="0.065363 0.20393" zaxis="0.27182 -0.44543 -0.10067" mass="2.1725" />
+        <site name="s5" pos="0.16199 0.17977 0.14512" />
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <general joint="j5" name="a0" gear="-2.9791" gaintype="affine" gainprm="2.0667 0.26019 0.60786" />
+    <motor joint="j5" name="a1" ctrlrange="-0.45351 0.59242" />
+    <motor joint="j4" gear="0.9047 -1.4031 -0.57813" name="a2" />
+    <motor site="s2" gear="0 -0.68463 0 0 1.896 0" name="a3" />
+  </actuator>
+  <sensor>
+    <framepos name="sn0" objtype="body" objname="b4" noise="0.068098" />
+    <framelinacc name="sn1" objtype="site" objname="s4" />
+    <force name="sn2" site="s1" />
+    <framepos name="sn3" objtype="geom" objname="floor" />
+    <framepos name="sn4" objtype="body" objname="b2" />
+    <framelinacc name="sn5" objtype="site" objname="s2" />
+    <framelinvel name="sn6" objtype="site" objname="s3" reftype="site" refname="s2" />
+    <framequat name="sn7" objtype="xbody" objname="b4" />
+  </sensor>
+</mujoco>

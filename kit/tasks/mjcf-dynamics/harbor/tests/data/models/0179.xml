@@ -1,0 +1,39 @@
+<mujoco model="m7330041">
+  <compiler angle="degree" eulerseq="yyy" boundinertia="0.00016886" />
+  <option timestep="0.002" integrator="Euler" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" impratio="4.844">
+    <flag />
+  </option>
+  <default>
+    <joint />
+    <geom friction="0.47292 0.025448 0.0020785" />
+    <site size="0.02" />
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <site name="ws" pos="0.00043245 0.89903 -0.57172" />
+    <body name="b1" pos="0.23842 -0.12186 0.22592" axisangle="0.93556 -1.1345 -0.021811 -156.85">
+      <freejoint name="f1" />
+      <geom type="cylinder" fromto="-0.10365 -0.046987 -0.0030802 -0.32441 -0.24407 0.18505" size="0.03002" mass="0.96672" contype="2" conaffinity="0" priority="1" />
+      <geom type="ellipsoid" fromto="-0.024182 0.12408 -0.11963 0.12404 -0.020998 0.010795" size="0.047278" mass="1.2142" contype="0" conaffinity="0" />
+      <geom type="sphere" name="g1" size="0.03759" pos="-0.0066894 -0.046992 -0.026252" conaffinity="3" friction="1.0407 0.023631 0.0024951" />
+      <site name="s2" pos="0.18498 0.11555 -0.010866" type="cylinder" size="0.15085 0.23366" />
+      <body name="b2" pos="0.27085 0.21752 0.11788">
+        <joint name="j2" axis="-0.056991 1.3098 -0.10475" ref="11.133" range="-54.667 52.728" margin="4.4392" solreflimit="0.011922 0.9446" />
+        <geom type="capsule" size="0.030294 0.19159" zaxis="-2.0532 0.49315 -0.16209" contype="0" conaffinity="0" />
+        <site name="s3" pos="0.16247 -0.11668 0.057374" type="ellipsoid" size="0.20847 0.20831 0.1221" />
+        <body name="b3" pos="-0.25584 0.11364 -0.069769">
+          <joint name="j3" type="ball" pos="-0.055429 -0.029125 0.038549" armature="0.035632" range="0 47.396" solreflimit="0.034353 0.77071" solimplimit="0.53927 0.8561 0.018188 0.26975 1" />
+          <geom type="cylinder" fromto="-0.066287 -0.034327 0.12796 0.052135 0.17274 0.26097" size="0.052653" rgba="0.36381 0.5212 0.91859 1" contype="2" conaffinity="0" solref="0.071483 1.2505" margin="0.013705" />
+          <geom type="sphere" size="0.045864" xyaxes="-0.18721 1.2974 1.3767 1.3616 -1.9658 -0.56384" conaffinity="3" condim="1" solimp="0.6301 0.96024 0.00081675" margin="0.028001" gap="0.0022628" />
+          <site name="s4" pos="-0.10512 -0.065283 -0.0051607" xyaxes="-0.55742 -0.21367 -0.28225 -0.16502 0.53119 -0.73343" />
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <contact>
+    <pair geom1="floor" geom2="g1" condim="6" />
+  </contact>
+  <equality>
+    <connect body1="b2" anchor="0.14525 -0.16569 -0.19839" body2="b1" name="eq0" solimp="0.85765 0.92533 0.010241 0.27115 1.3631" />
+  </equality>
+</mujoco>

@@ -1,0 +1,46 @@
+<mujoco model="m7300037">
+  <compiler angle="degree" inertiafromgeom="true" />
+  <option timestep="0.004" integrator="implicitfast">
+    <flag contact="disable" constraint="disable" clampctrl="disable" />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <site name="ws" pos="0.75636 -0.25059 0.42478" />
+    <body name="b1" pos="-0.92117 -0.17427 1.4395">
+      <joint name="j1" pos="-0.067145 -0.076502 0.0062922" axis="-0.98789 1.8228 0.02391" ref="24.229" stiffness="0.013591" springref="37.703" damping="0.27384" armature="0.049413" />
+      <geom type="sphere" name="g1" size="0.10117" pos="0.032062 0.0044597 0.19353" conaffinity="3" />
+      <geom type="capsule" name="g2" size="0.051913 0.20542" pos="-0.19465 -0.080093 -0.05113" axisangle="-0.14714 0.62389 1.603 -123.26" />
+      <geom type="sphere" name="g3" size="0.11316" pos="0.17635 0.026227 0.14235" mass="1.3291" conaffinity="3" />
+      <body name="b2" pos="-0.043928 0.20849 0.05076" euler="-146.39 11.233 -101.47">
+        <joint name="j2" type="ball" pos="0.020717 0.0074009 0.11691" />
+        <joint name="j3" type="slide" axis="0.13173 -0.32367 0.69671" />
+        <geom type="box" fromto="-0.12251 -0.13518 0.05605 0.092205 -0.23533 0.2199" size="0.067145" />
+        <body name="b3" pos="0.071476 -0.20451 0.05656" xyaxes="-1.3295 0.62253 0.55609 -0.73493 -0.50424 0.18946">
+          <joint name="j4" pos="0.011382 -0.11251 0.055969" axis="0.58465 -1.1421 -0.47187" />
+          <geom type="sphere" name="g4" size="0.036173" pos="-0.1081 -0.066489 0.093831" quat="-2.1445 -1.3329 -1.0954 -0.56814" conaffinity="3" />
+          <geom type="ellipsoid" size="0.04511 0.049025 0.056981" pos="-0.13111 0.0035557 -0.071436" xyaxes="-0.7414 0.082417 1.1905 0.022433 -0.09057 0.16653" mass="2.6487" contype="0" conaffinity="0" />
+          <geom type="box" name="g5" size="0.067315 0.047419 0.046023" pos="0.003143 -0.010758 0.1619" />
+          <site name="s2" pos="0.007404 0.049794 -0.072966" axisangle="-0.15797 0.31851 -0.092894 34.064" />
+          <site name="s3" pos="0.027782 -0.12801 0.10868" axisangle="-0.67469 1.612 0.35687 -14.073" />
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position joint="j4" name="a0" forcerange="-1.91 1.3975" kp="27.065" kv="0.78504" />
+    <velocity joint="j4" name="a1" kv="1.8785" />
+    <general joint="j3" name="a2" gear="-1.7495" ctrlrange="-0.96931 1.4129" />
+    <general joint="j1" name="a3" gear="0.53652" dyntype="integrator" gaintype="affine" gainprm="0.96486 0.0045686 0.73383" />
+  </actuator>
+  <sensor>
+    <framelinacc name="sn0" objtype="body" objname="b1" />
+    <framepos name="sn1" objtype="xbody" objname="b3" reftype="site" refname="s3" />
+    <force name="sn2" site="s3" noise="0.03476" />
+    <gyro name="sn3" site="s2" />
+    <e_potential name="sn4" />
+    <ballquat name="sn5" joint="j2" />
+    <framepos name="sn6" objtype="geom" objname="floor" reftype="geom" refname="floor" />
+    <velocimeter name="sn7" site="s2" />
+    <subtreelinvel name="sn8" body="b3" />
+  </sensor>
+</mujoco>

@@ -1,0 +1,55 @@
+<mujoco model="m7320047">
+  <compiler angle="radian" boundmass="0.086975" />
+  <option timestep="0.004" integrator="implicit" solver="Newton" tolerance="0" iterations="100" ls_iterations="60">
+    <flag />
+  </option>
+  <default>
+    <geom type="box" size="0.082316 0.10619 0.12474" friction="0.75835 0.027998 0.0023618" />
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" solref="0.012502 0.73993" solimp="0.8173 0.90763 0.0093349 0.79576 2" />
+    <geom name="ramp" type="plane" size="2 2 0.1" pos="-0.40164 -0.37084 -0.079941" zaxis="-0.20693 0.28305 1" conaffinity="3" condim="1" friction="0.41496 0.0034255 0.0014919" solimp="0.70385 0.78128 0.0064518" />
+    <site name="ws" pos="-0.083608 0.47249 0.96632" />
+    <body name="b1" pos="-0.20447 -0.18848 0.26183" quat="-1.2758 0.94765 0.96941 -0.97189">
+      <joint name="j1" type="slide" pos="0.094513 0.10229 -0.014308" axis="-0.39277 -1.177 0.67118" ref="-0.10368" armature="0.024628" />
+      <joint name="j2" type="ball" pos="-0.1099 0.027142 -0.085953" stiffness="0.45913" />
+      <geom type="box" fromto="-0.17184 0.12451 -0.11899 -0.26705 0.0093589 -0.17608" size="0.030957" rgba="0.83578 0.50473 0.88529 1" condim="1" />
+      <geom pos="0.19106 0.1316 0.045029" zaxis="-0.70326 0.56846 0.29187" condim="1" />
+      <body name="b2" pos="-0.22914 -0.28429 -0.15742" quat="1.4264 0.24421 -0.05568 -0.44205" gravcomp="0.3327">
+        <joint name="j3" axis="-0.84302 -0.67951 -1.2457" range="-0.41528 0.74194" solreflimit="0.044099 1.2251" />
+        <joint name="j4" pos="-0.051762 0.13111 0.048769" axis="-1.6866 0.93975 0.21082" stiffness="0.43111" />
+        <geom type="box" name="g1" size="0.086226 0.13086 0.12469" axisangle="-0.6101 -0.0788 -0.17178 -1.4389" group="1" contype="0" conaffinity="0" />
+        <geom name="g2" mass="2.6712" />
+      </body>
+    </body>
+    <body name="b3" pos="0.22534 -0.28281 0.23532">
+      <joint name="j5" type="hinge" pos="0.11442 -0.12221 0.0687" axis="1.1086 0.072379 -1.9095" damping="0.40749" />
+      <geom type="box" name="g3" size="0.044363 0.086193 0.1342" pos="-0.1099 0.067111 0.1746" mass="1.4437" />
+      <inertial pos="-0.14342 0.13993 0.002041" mass="2.7794" diaginertia="0.057306 0.023548 0.060208" />
+      <site name="s2" pos="0.013202 0.10758 -0.080672" euler="-2.6554 -1.2666 -3.0763" />
+      <site name="s3" pos="-0.099837 -0.16519 -0.17547" type="box" size="0.11498 0.13674 0.27837" quat="-0.59388 -0.030005 -0.45014 -0.095586" />
+      <frame pos="-0.17561 0.037793 -0.20409">
+        <body name="b4" pos="-0.27229 -0.20114 -0.28067">
+          <joint name="j6" type="hinge" pos="-0.12488 0.1373 -0.12086" axis="-0.27334 1.0237 -0.71619" />
+          <geom type="capsule" size="0.075084 0.14001" pos="-0.0049963 -0.19307 0.19618" euler="1.1298 0.57023 0.41353" mass="1.8795" shellinertia="true" condim="3" solimp="0.75963 0.94281 0.0029468" />
+          <site name="s4" pos="-0.11736 0.058626 0.0044759" quat="0.16883 1.0293 3.3065 0.76627" />
+          <body name="b5" pos="0.016016 -0.063679 0.066158">
+            <geom type="ellipsoid" fromto="-0.09672 -0.18052 -0.087484 -0.25759 -0.38141 -0.22376" size="0.024068" contype="0" conaffinity="0" />
+            <geom pos="0.13059 -0.052144 0.11772" quat="-0.3709 2.7026 0.82523 -0.062545" mass="0.5206" friction="1.0677 0.040714 0.003528" solmix="0.88286" />
+            <geom type="sphere" size="0.092281" pos="0.19391 0.055667 0.18988" mass="2.6737" conaffinity="3" />
+            <site name="s5" pos="0.12819 0.1996 0.03525" euler="0.73357 0.76777 0.17467" />
+            <site name="s6" pos="0.19123 -0.046243 0.072629" zaxis="-1.0163 -0.10305 1.3643" />
+          </body>
+        </body>
+      </frame>
+    </body>
+  </worldbody>
+  <actuator>
+    <position site="s2" gear="0 0 -1.1242 0 0.65203 0" refsite="ws" name="a0" kp="15.912" />
+  </actuator>
+  <sensor>
+    <gyro name="sn0" site="s2" />
+    <actuatorpos name="sn1" actuator="a0" />
+    <gyro name="sn2" site="s4" />
+  </sensor>
+</mujoco>

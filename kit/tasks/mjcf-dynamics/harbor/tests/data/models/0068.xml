@@ -1,0 +1,41 @@
+<mujoco model="m7310023">
+  <compiler angle="degree" inertiafromgeom="false" boundinertia="0.0046495" />
+  <option timestep="0.01" integrator="implicit" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic">
+    <flag filterparent="disable" />
+  </option>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" priority="2" />
+    <geom name="wg0" type="sphere" size="0.11557" pos="0.36918 0.34059 0.26121" xyaxes="0.88423 -0.071703 0.31355 1.068 -1.2711 0.67912" conaffinity="3" margin="0.028356" gap="0.0037344" />
+    <site name="ws" pos="0.57725 -0.33972 -0.1167" />
+    <body name="b1" pos="-0.09885 0.10748 0.2056" quat="-1.3376 -0.95377 0.11626 -0.27325">
+      <joint type="free" name="f1" stiffness="0.76191" frictionloss="0.12787" />
+      <geom type="cylinder" size="0.058512 0.13313" pos="-0.035304 0.099762 0.1136" density="2558.2" group="3" contype="2" conaffinity="0" friction="0.26317 0.0060394 0.0023849" />
+      <inertial pos="-0.07924 0.083637 0.043628" mass="0.94886" fullinertia="0.053262 0.052044 0.062363 -0.0048575 -0.0035148 0.0007966" />
+      <body name="b2" pos="-0.11239 0.096076 0.011704" axisangle="-0.53708 -1.1685 0.94235 -23.059" gravcomp="0.39476">
+        <joint name="j2" type="hinge" axis="0.50375 1.2032 0.64174" stiffness="1.021" damping="0.20272" />
+        <geom type="capsule" name="g1" size="0.051292 0.23294" xyaxes="0.44836 -0.21538 -0.20653 1.535 -0.078752 2.435" solref="-3773.7 -53.488" />
+        <inertial pos="0.11648 0.14775 0.11111" mass="2.3114" diaginertia="0.076027 0.024557 0.063097" xyaxes="1.8745 1.5502 0.86088 -1.0603 -1.2772 -0.34195" />
+        <site name="s2" pos="-0.0055982 0.032766 0.0080839" type="cylinder" size="0.29751 0.29173" xyaxes="-0.65887 0.36419 0.61741 1.2887 0.73441 -1.1459" />
+        <frame pos="-0.16665 -0.19959 0.24626">
+          <body name="b3" pos="0.21938 0.13496 -0.13439">
+            <joint name="j3" type="slide" axis="0.59024 1.1826 0.55065" armature="0.04996" />
+            <geom type="ellipsoid" name="g2" size="0.12402 0.074245 0.055656" pos="-0.12299 -0.18544 0.082627" rgba="0.10543 0.56621 0.50252 1" contype="0" conaffinity="0" />
+            <geom type="capsule" fromto="-0.075379 0.15535 0.063398 -0.15607 0.06122 -0.079197" size="0.042644" margin="0.021581" gap="0.0072996" />
+            <geom type="capsule" size="0.027797 0.16119" axisangle="-1.0941 -1.0678 -0.66308 -109.81" margin="0.022762" gap="0.0043573" />
+            <inertial pos="0.022103 0.1028 -0.076526" mass="2.9113" fullinertia="0.068851 0.067617 0.072639 0.00056837 -0.00074579 0.00034006" />
+            <site name="s3" pos="0.07191 -0.13039 -0.11371" />
+            <site name="s4" pos="-0.015491 0.079693 -0.17372" />
+            <body name="b4" pos="0.014554 -0.12712 -0.028371" xyaxes="-2.173 1.742 0.98781 -1.1419 -1.1231 0.9612">
+              <joint name="j4" type="slide" pos="0.1432 -0.023803 -0.0088269" ref="0.030506" damping="0.18879" />
+              <geom type="ellipsoid" fromto="-0.19951 -0.048906 -0.14027 -0.36597 0.19043 0.016865" size="0.064519" contype="0" conaffinity="0" />
+              <geom type="capsule" name="g3" size="0.070488 0.095998" pos="0.010918 -0.0066413 -0.12271" mass="0.27354" condim="4" friction="0.43201 0.0034996 0.0034312" solmix="2.0842" />
+              <inertial pos="-0.123 -0.14528 0.07346" mass="2.5958" diaginertia="0.040822 0.060531 0.068316" />
+              <site name="s5" pos="-0.15017 0.06375 -0.07932" />
+              <site name="s6" pos="-0.17799 0.13005 -0.051537" type="box" size="0.32562 0.1122 0.30294" quat="-0.13152 -1.6826 -1.4463 -0.88954" />
+            </body>
+          </body>
+        </frame>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

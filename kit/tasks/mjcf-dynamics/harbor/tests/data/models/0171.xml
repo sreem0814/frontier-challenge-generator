@@ -1,0 +1,66 @@
+<mujoco model="m7330030">
+  <compiler angle="radian" inertiafromgeom="false" boundinertia="0.00084143" />
+  <option timestep="0.001" integrator="Euler" solver="Newton" tolerance="0" iterations="100" ls_iterations="60" cone="elliptic" impratio="2.3464">
+    <flag contact="disable" />
+  </option>
+  <default>
+    <joint />
+  </default>
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" conaffinity="3" />
+    <site name="ws" pos="-0.075057 -0.0065258 0.044745" />
+    <frame pos="0.25836 -0.27021 -0.11995">
+      <body name="b1" pos="0.90271 -0.25583 1.6813" zaxis="-1.4852 -0.39933 -0.50546">
+        <joint name="j1" type="ball" pos="0.055853 -0.12796 -0.14708" range="0 1.1555" solreflimit="0.055817 1.1764" solimplimit="0.64758 0.92459 0.011997" />
+        <geom type="capsule" size="0.068364 0.056886" pos="-0.055449 -0.17797 0.11672" quat="-0.71141 1.1219 0.46946 0.68484" mass="1.5155" shellinertia="true" group="3" />
+        <inertial pos="-0.030712 0.029922 0.074807" mass="1.9523" diaginertia="0.05411 0.067784 0.078662" />
+        <site name="s2" pos="-0.11151 -0.10947 0.045047" />
+        <frame pos="-0.15045 -0.097668 -0.080038">
+          <body name="b2" pos="0.05033 -0.26345 0.15958" quat="-0.79275 -1.1713 0.34662 0.77033">
+            <joint name="j2" type="ball" damping="0.2729" />
+            <inertial pos="0.081168 -0.11072 -0.14553" mass="2.402" diaginertia="0.034859 0.037145 0.025996" axisangle="0.30535 -0.35682 0.055868 -0.61387" />
+            <frame pos="-0.23927 -0.10359 0.24395" zaxis="-0.16032 0.98313 0.5719">
+              <body name="b3" pos="-0.045244 -0.16553 0.1672" quat="0.78237 -1.0523 -1.8917 -0.46818">
+                <joint name="j3" type="hinge" pos="0.11802 0.11686 0.04431" axis="0.23506 0.6394 -0.67899" damping="0.27347 0.27645 0.13304" range="-0.50219 0.70256" solreflimit="0.023886 0.60128" limited="false" />
+                <geom type="ellipsoid" size="0.087377 0.099819 0.12098" pos="-0.11638 0.18152 -0.042739" mass="1.0245" rgba="0.89104 0.89526 0.94267 1" contype="0" conaffinity="0" />
+                <inertial pos="0.006203 0.09371 0.027157" mass="1.2921" fullinertia="0.03688 0.055865 0.040123 0.0072205 0.0031514 0.0099418" />
+                <frame pos="0.099837 -0.016081 -0.011744">
+                  <body name="b4" pos="-0.19317 -0.079215 -0.14315" axisangle="0.06576 -1.7255 -0.52027 -1.2663">
+                    <joint name="j4" axis="1.7895 -2.1462 0.19024" damping="0.56326" armature="0.046682" />
+                    <geom type="capsule" size="0.058195 0.10593" shellinertia="true" rgba="0.38623 0.68609 0.38514 1" />
+                    <inertial pos="0.12685 -0.13437 -0.015862" mass="2.1326" diaginertia="0.059355 0.063528 0.021042" />
+                    <site name="s3" pos="-0.030124 0.091584 -0.12283" axisangle="0.59059 -1.1506 1.3883 -2.3132" />
+                    <body name="b5" pos="0.27276 0.29618 -0.040511" euler="3.0289 -0.30892 0.5291">
+                      <geom type="ellipsoid" size="0.031886 0.085905 0.14963" xyaxes="-0.97655 0.066629 -0.43828 -0.92066 -0.42317 0.62333" mass="0.29312" contype="0" conaffinity="0" />
+                      <geom type="capsule" name="g1" size="0.057731 0.072542" pos="-0.18502 0.00073545 0.034634" axisangle="1.1116 0.89923 0.91506 1.2036" density="1681.4" />
+                      <inertial pos="0.039464 0.038187 0.052028" mass="1.6962" diaginertia="0.021843 0.0027447 0.02266" />
+                      <body name="b6" pos="-0.023934 0.16184 -0.053344" quat="0.70194 0.54888 -3.3925 -0.63116" gravcomp="0.21548">
+                        <joint name="j5" type="hinge" damping="0.38629 0.094159 0.041687" />
+                        <geom type="sphere" name="g2" size="0.13269" pos="0.0032538 0.060298 -0.16852" zaxis="0.57237 1.206 -1.1063" mass="1.2633" shellinertia="true" conaffinity="3" />
+                        <inertial pos="-0.086899 0.088735 0.090683" mass="0.37694" fullinertia="0.053972 0.046505 0.056387 -0.011157 0.00879 0.0045017" />
+                        <site name="s4" pos="0.19826 0.13705 0.0022598" />
+                      </body>
+                    </body>
+                  </body>
+                </frame>
+              </body>
+            </frame>
+          </body>
+        </frame>
+      </body>
+    </frame>
+  </worldbody>
+  <tendon>
+    <spatial name="sp0">
+      <site site="s3" />
+      <site site="s2" />
+      <site site="ws" />
+      <site site="s4" />
+    </spatial>
+    <fixed name="t0" damping="0.90706" springlength="0.062071" range="-0.3238 0.7404">
+      <joint joint="j3" coef="-0.53107" />
+      <joint joint="j5" coef="-1.8" />
+      <joint joint="j4" coef="-0.26514" />
+    </fixed>
+  </tendon>
+</mujoco>
