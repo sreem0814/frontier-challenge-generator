@@ -11,7 +11,7 @@ TASK="${1:?usage: make_zip.sh <task>}"
 H="$ROOT/tasks/$TASK/harbor"; [ -d "$H" ] || { echo "make_zip.sh: $H missing" >&2; exit 2; }
 "$HOME/.local/bin/uv" run --no-project --python 3.12 python -I "$SELF_DIR/l0_check.py" "$TASK" >/dev/null \
   || { echo "make_zip.sh: L0 fails; see tasks/$TASK/build/l0-report.md" >&2; exit 1; }
-OUT="$ROOT/tasks/$TASK/build/$TASK.zip"
+OUT="$ROOT/tasks/$TASK/build/$TASK.zip"; mkdir -p "$(dirname "$OUT")"
 python3 -I - "$H" "$OUT" <<'PY'
 import os, sys, zipfile
 src, out = sys.argv[1], sys.argv[2]
