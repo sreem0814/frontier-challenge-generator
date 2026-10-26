@@ -29,6 +29,11 @@ data/dashboard.html
 data/dashboard.pid
 data/dashboard.log
 
+# Kit run logs and build output (make_zip.sh and l0_check.py write to tasks/<task>/build/)
+kit/scripts/.runs.log
+kit/tasks/*/build/
+kit/tasks/*/jobs/
+
 # Editor, OS and local Claude Code settings
 .claude/settings.local.json
 .vscode/
