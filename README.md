@@ -315,3 +315,33 @@ To have Claude look into something, say "check the cgpipe dashboard". Claude run
 | Spikes come back inconclusive | raise `timeouts_sec.spike`, `max_turns.spike` or `call_budget_usd.spike`; add the missing toolchain to the image |
 | Frequent pacing pauses | lower `max_parallel_calls`, move more stages to Haiku, or run after the weekly reset |
 | Too few research seeds | raise `quota.research` |
+
+## 8. Files
+
+```
+README.md  CLAUDE.md
+capture/instructions.md   the spec (read-only on disk; sha256 pinned in config.json)
+pipeline/
+  cgpipe.py          the runner (stdlib Python 3.10+)
+  harvest.py         harvesters, enricher, and the probe's host side: containers, report parsing, verdict (no tokens)
+  probe.sh           the probe inside its containers: clone, fetch, offline build, three test runs
+  config.json        targets, budget, pools, models, caps, pacing, channels and harvest queries
+  prompts.txt        COMMON + one section per stage (scout, write, v1, v2, spike)
+  spike.Dockerfile   image for probes and spikes
+  dashboard.sh       start, stop, restart, status, logs for the web dashboard
+  setup-token.sh     creates and checks the spike token (~/.config/cgpipe/env)
+  watchdog.sh        cron watchdog: restarts a crashed runner or dashboard (install | uninstall)
+  vm/                trial-runner tools: specs.ps1, specs.sh, setup.sh, cleanup.sh (section 10)
+data/
+  sources.tsv        the source pool: one row per real artifact, with status, facts and priority
+  catalog.csv        309 public Terminal-Bench tasks (similarity corpus)
+  corpus-extra.tsv   1,083 tasks from other public benchmarks, including DeepSWE (similarity corpus)
+  seeds/<id>.json    per seed: card, status, kill, facts, probe result (`smoke`), scores, V1 report, V2 scores, spike, history
+  cost.jsonl         one line per model call (stage, key, model, seconds, list-price cost, turns, error)
+  ...                runtime files: channels.json, smoke.json, hints.json, usage.json, state.json, pipeline.log, runs/,
+                     spikes/<id>/, dashboard.html, dashboard.pid, dashboard.log
+kit/                 the task-building kit: BUILD.md, scripts, tasks/<task>/ bundles (section 9)
+archive/             raw research tables, not needed to run anything
+~/.cache/cgpipe/     outside the repo: worker cwd and per-stage system-prompt files
+~/.config/cgpipe/    outside the repo, private: env (spike token), org and denylist.txt (platform identifiers)
+```
