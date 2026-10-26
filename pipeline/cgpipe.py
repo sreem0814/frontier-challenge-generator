@@ -1711,7 +1711,7 @@ def build_status(tdir):
         p, t = os.path.join(h, rel), os.path.join(tpl, rel)
         return os.path.exists(p) and (not os.path.exists(t) or open(p, "rb").read() != open(t, "rb").read())
     notes_p = os.path.join(tdir, "build", "notes.txt")
-    notes = open(notes_p).read() if os.path.exists(notes_p) else ""
+    notes = open(notes_p, errors="replace").read() if os.path.exists(notes_p) else ""
     seed = (re.search(r"S-(?:im|op|rs)-\d{3}", notes) or [""])[0]
     ref = 0
     for p in g.glob(os.path.join(h, "solution", "**", "*"), recursive=True):
