@@ -1679,6 +1679,710 @@ def cmd_status():
         print(f"  {s['status']:<10} {s['id']} final={s.get('final')} {s['card'].get('title', '')[:70]}")
 
 
+def hm(sec):
+    sec = max(0, sec)
+    return f"{int(sec // 3600)}h{int(sec % 3600 // 60):02d}m" if sec >= 3600 else f"{int(sec // 60)}m{int(sec % 60):02d}s"
+
+
+def building_seeds():
+    """Seeds that already have a bundle under kit/tasks/ (their build notes name the seed)."""
+    import glob as g
+    out = set()
+    for p in g.glob(os.path.join(ROOT, "kit", "tasks", "*", "build", "notes.txt")):
+        if "--l3-" not in p:
+            m = re.search(r"S-(?:im|op|rs)-\d{3}", open(p, errors="ignore").read()[:4000])
+            if m:
+                out.add(m.group(0))
+    return out
+
+
+KILL_LABEL = {"K1": "duplicate", "K2": "no real source", "K3": "small or weak grading", "K4": "not deterministic",
+              "K5": "no strong reference", "K6": "licence", "K7": "doesn't fit the sandbox", "K8": "too easy",
+              "K9": "too hard", "K10": "short or one-lever", "K11": "can't be sealed", "K12": "build cost",
+              "K13": "calls failed"}
+
+
+def build_status(tdir):
+    """How far a bundle under kit/tasks/<slug>/ has got, from its own files (no state of its own)."""
+    import glob as g
+    h, tpl = os.path.join(tdir, "harbor"), os.path.join(ROOT, "kit", "tasks", "_template", "harbor")
+
+    def changed(rel):
+        p, t = os.path.join(h, rel), os.path.join(tpl, rel)
+        return os.path.exists(p) and (not os.path.exists(t) or open(p, "rb").read() != open(t, "rb").read())
+    notes_p = os.path.join(tdir, "build", "notes.txt")
+    notes = open(notes_p).read() if os.path.exists(notes_p) else ""
+    seed = (re.search(r"S-(?:im|op|rs)-\d{3}", notes) or [""])[0]
+    ref = 0
+    for p in g.glob(os.path.join(h, "solution", "**", "*"), recursive=True):
+        if os.path.isfile(p) and not p.endswith(".sh") and os.path.getsize(p) < 2_000_000:
+            try:
+                ref += sum(1 for l in open(p, errors="ignore") if l.strip())
+            except OSError:
+                pass
+    ins = os.path.join(h, "instruction.md")
+    words = len(open(ins, errors="ignore").read().split()) if changed("instruction.md") else 0
+    l0p = os.path.join(tdir, "build", "l0-report.md")
+    l0 = (re.search(r"^# L0 \S+: (PASS|FAIL)", open(l0p).read()) or [None, ""])[1] if os.path.exists(l0p) else ""
+    l3s = [p for p in sorted(g.glob(os.path.join(tdir, "runs", "l3-*", "summary.md")))   # a full L3, not a nop or recall run
+           if all(s in (re.search(r"STEPS-RUN: (\S+)", open(p).read()) or [None, ""])[1].split(",")
+                  for s in ("oracle", "nop", "variants", "det"))]
+    l3 = ""
+    if l3s:
+        m = re.search(r"FAILING-STEPS: (\d+)", open(l3s[-1]).read())
+        l3 = "" if not m else ("PASS" if m.group(1) == "0" else f"FAIL ({m.group(1)})")
+        latest = {}                    # step name -> result, later summaries overriding earlier ones
+        for p in sorted(g.glob(os.path.join(tdir, "runs", "l3-2*", "summary.md")))[sorted(g.glob(os.path.join(tdir, "runs", "l3-2*", "summary.md"))).index(l3s[-1]):]:
+            for name, res in re.findall(r"^\| ([^|]+?) \| want [^|]*\| [^|]*\| (PASS|FAIL) \|", open(p).read(), re.M):
+                latest[name.split(" (")[0].split(" x")[0]] = res
+            for name, res in re.findall(r"^\| (det x\d+[^|]*?) \| identical \| [^|]*\| (PASS|FAIL) \|", open(p).read(), re.M):
+                latest["det"] = res
+        if latest and l3.startswith("FAIL"):
+            bad = [k for k, v in latest.items() if v == "FAIL"]
+            l3 = "PASS" if not bad else f"FAIL ({len(bad)})"
+    trials = [p for p in g.glob(os.path.join(tdir, "runs", "*")) if os.path.isdir(p)
+              and not os.path.basename(p).startswith(("l3-", "smoke-")) and "-nop-" not in os.path.basename(p)]
+    mtimes = [os.path.getmtime(os.path.join(dp, f)) for dp, _, fs in os.walk(tdir) for f in fs[:200]]
+    steps = [("environment", changed("environment/Dockerfile")), ("verifier", changed("tests/compute_reward.py")),
+             ("reference", ref >= 150), ("text", words >= 700), ("L0", l0 == "PASS"), ("L3", l3 == "PASS"),
+             ("premortem", "premortem" in notes.lower())]
+    last = next((l.strip() for l in reversed(notes.splitlines()) if l.strip()), "")
+    ready = all(ok for _, ok in steps)
+    cj = load_json(os.path.join(tdir, "build", "core.json"), {})          # BUILD.md step 3, by the build agent
+    core = cj.get("core_share")
+    if cj.get("lever_share") is not None and core is not None:      # optimization: one lever must not earn half either
+        core = max(core, cj["lever_share"])
+    recalls = []                                       # BUILD.md step 3b-1, appended by kit/scripts/recall_check.sh
+    gp = os.path.join(tdir, "build", "gates.jsonl")
+    for line in (open(gp) if os.path.exists(gp) else []):
+        try:
+            j = json.loads(line)
+            if j.get("kind") == "recall" and (j.get("reward") is not None or j.get("skipped")):
+                recalls.append(j)
+        except ValueError:
+            pass
+    tt = os.path.join(h, "task.toml")
+    budget = int((re.search(r"(?m)^\[agent\][^\[]*?timeout_sec\s*=\s*(\d+)", open(tt).read()) or [0, 0])[1]) if os.path.exists(tt) else 0
+    return {"slug": os.path.basename(tdir), "seed": seed, "steps": steps, "done": sum(ok for _, ok in steps), "budget_secs": budget,
+            "ref_lines": ref, "words": words, "l0": l0 or "-", "l3": l3 or "-", "trials": len(trials),
+            "ready": ready, "age": time.time() - max(mtimes) if mtimes else None, "note": last[:160],
+            "core": core, "recalls": recalls}
+
+
+def show_time(ts, fmt="%a %H:%M"):
+    """A time for the dashboard, in the display zone (config.json display_utc_offset_hours, default UTC-4)."""
+    off = load_config().get("display_utc_offset_hours", -4)
+    tz = dt.timezone(dt.timedelta(hours=off))
+    return dt.datetime.fromtimestamp(ts, tz).strftime(fmt) + (f" UTC{off:+d}" if off else " UTC")
+
+
+def glob_first(pattern):
+    import glob as g
+    m = g.glob(pattern)
+    return m[0] if m else ""
+
+
+def dashboard_data():
+    """Everything the dashboard shows, as plain data (rendered as text by `watch`, as HTML by `watch --html`)."""
+    st, seeds, rows = load_json(STATE, {}), all_seeds(), read_sources()
+    cfg, nowt = load_config(), time.time()
+    alive = bool(st) and not st.get("ended") and nowt - st.get("ts", 0) < 30
+    d = {"time": show_time(time.time(), "%Y-%m-%d %H:%M:%S"), "dry_run": bool(st.get("dry_run"))}
+    if alive and st.get("stopping"):
+        d["state"], d["state_kind"] = "STOPPING (finishing in-flight calls)", "warn"
+    elif alive and st.get("paused_until", 0) > nowt:
+        d["state"], d["state_kind"] = f"PAUSED {hm(st['paused_until'] - nowt)} ({st.get('pause_reason') or 'usage limit'})", "warn"
+    elif alive:
+        d["state"], d["state_kind"] = "RUNNING", "ok"
+    else:
+        d["state"] = f"STOPPED ({st.get('ended') or 'no heartbeat'})" if st else "NOT STARTED"
+        d["state_kind"] = "idle"
+    d["uptime"] = hm(nowt - st["run_started"]) if st.get("run_started") else "-"
+    d["spent"] = sum(r.get("cost", 0) or 0 for r in cost_records())
+    d["budget"] = st.get("budget", cfg["budget_usd"])
+    use = load_json(USAGE, {})
+    d["usage"] = {k: v[0] for k, v in use.items() if k in ("five_hour", "seven_day")}
+    d["resets"] = {k: show_time(v[1], "%a %H:%M")
+                   for k, v in use.items() if k in ("five_hour", "seven_day") and v[1]}
+    d["pace"] = cfg.get("pace", {})
+    # every account's two limits: VM1 (pipeline, build agents, this coordinator) from the runner's own calls, the
+    # trial runners from their latest trial transcripts
+    d["accounts"] = [("VM1 login (this coordinator, build agents)", {k: v for k, v in use.items() if k in ("five_hour", "seven_day")},
+                      "rejected" if "rejected" in use else "", None)]
+    tpool = load_json(os.path.expanduser("~/.config/cgpipe/tokens.json"), {})
+    try:
+        d["runner_tokens"] = runner_tokens()
+    except Exception as ex:  # noqa: BLE001 - the dashboard must render without the runners
+        d["runner_tokens"] = {}
+        d.setdefault("trial_error", str(ex)[:120])
+    d["token_usage"] = load_json(os.path.expanduser("~/.config/cgpipe/token-usage.json"), {})
+    if tpool.get("tokens"):             # the token pool (pipeline/tokens.py): names, plans, roles and readings, never values
+        d["accounts"] = []                 # usage.json now reflects the pipeline role's pool token, not VM 1's login
+        tuse = load_json(os.path.expanduser("~/.config/cgpipe/token-usage.json"), {})
+        for n, t in sorted(tpool["tokens"].items()):
+            u = tuse.get(n, {})
+            roles = [r for r, x in tpool.get("roles", {}).items() if x == n]
+            d["accounts"].append((f"{n}" + (f" ({t['plan']})" if t.get("plan") else "") + (f": {', '.join(roles)}" if roles else ": reserved (not given to roles)" if t.get("reserved") else ": idle"),
+                                  {k: tuple(u[k]) for k in ("five_hour", "seven_day") if u.get(k)}, u.get("status") or "",
+                                  u.get("checked")))
+    else:
+        try:
+            for host, a in sorted(runner_accounts().items()):
+                d["accounts"].append((host, {k: tuple(v) for k, v in a.get("windows", {}).items()}, a.get("status") or "", a.get("seen")))
+        except Exception as ex:  # noqa: BLE001 - the dashboard must render without the runners
+            d.setdefault("trial_error", str(ex)[:120])
+    kt = os.path.join(ROOT, "kit", "tasks")
+    d["builds"] = [build_status(os.path.join(kt, t)) for t in sorted(os.listdir(kt))
+                   if t not in ("_template", "smoke-hello") and "--l3-" not in t and not t.endswith("--tmux")
+                   and os.path.isdir(os.path.join(kt, t, "harbor"))] if os.path.isdir(kt) else []
+    d["build_target"] = cfg.get("build_target", 10)
+    try:
+        d["trials"] = trials_status()
+    except Exception as ex:  # noqa: BLE001 (a runner hiccup must not break the dashboard)
+        d["trials"] = []; d.setdefault("trial_error", str(ex)[:120])
+    max_rework = cfg.get("max_rework_rounds", 2)
+    seed_cls = {s["id"]: s.get("class", "implementation") for s in seeds}
+    for b in d["builds"]:            # a cheat that scores sends the bundle back; a high frontier score does not (see gap)
+        mine = [(t, trial_verdict(t)) for t in d["trials"] if t["task"] == b["slug"]]
+        bad = [v[2] for _, v in mine if v[1] == "bad"]
+        lad = dict(LADDER, **cfg.get("probe_ladder", {}))
+        b["above"] = any(v[1] == "above" for _, v in mine) or any(
+            j.get("reward") is not None and j["reward"] >= lad["recall_too_easy"] for j in b["recalls"])
+        # the review gate (capture/instructions.md, How a task reaches review): the band from full-budget frontier
+        # trials, the gap from any frontier solve against the Qwen runs
+        full = [t["reward"] for t, v in mine if v[0] == "full" and t["reward"] is not None and not t.get("infra")]
+        strong = [t["reward"] for t, v in mine if v[0] in ("full", "short probe", "probe") and t["reward"] is not None
+                  and not t.get("infra")]
+        qwen = [t["reward"] for t, v in mine if v[0] == "qwen" and t["reward"] is not None and not t.get("infra")]
+        impl = b["impl"] = seed_cls.get(b["seed"], "implementation") == "implementation"
+        in_band, b["gap"], no_gap, b["qwen_note"] = review_gate(impl, full, strong, qwen, cfg.get("qwen_min_runs", 4))
+        if no_gap:
+            bad.append(f"too easy: {b['qwen_note']}, no capability gap left")
+        b["rework_round"] = len([x for x in bad if not x.startswith("too easy: Qwen")])
+        dec = load_json(os.path.join(ROOT, "kit", "tasks", b["slug"], "build", "decision.json"), {})
+        if dec.get("decision") == "failed" or no_gap or len(bad) > max_rework:
+            b["ready"], b["failed"] = False, (dec.get("reason") if dec.get("decision") == "failed" else
+                                             bad[-1] if no_gap else f"{bad[-1]} after {max_rework} rework rounds")
+        elif bad:
+            done = sorted((t["runid"].split("-")[-1], v) for t, v in mine if t["reward"] is not None)
+            running_now = any(t["state"] == "running" for t, _ in mine)
+            recall_bad = any(j.get("reward") is not None and j["reward"] >= lad["recall_too_easy"] for j in b["recalls"][-1:])
+            if recall_bad or (done and done[-1][1][1] == "bad" and not running_now):
+                b["ready"], b["rework"] = False, bad[-1]
+        b["passed"] = (b["ready"] and not b.get("failed") and (in_band or b["gap"])          # the spec's review gate
+                       and any(v[0] == "cheat" and v[1] == "ok" for _, v in mine))
+    d["passed"] = [b["slug"] for b in d["builds"] if b.get("passed")]
+    lc = cfg.get("ladder", {})
+    path = []
+    for b in d["builds"]:                     # what is left before the bundle counts as passed, cheapest first
+        if b.get("passed") or b.get("failed"):
+            continue
+        mine = [(t, trial_verdict(t)) for t in d["trials"] if t["task"] == b["slug"] and not t.get("infra")]
+        kinds = [v[0] for _, v in mine]
+        qw = [t["reward"] for t, v in mine if v[0] == "qwen" and t["reward"] is not None]
+        if any(r >= 0.9 for r in qw):
+            continue                           # Qwen solved it: no route left worth paying for
+        H = (b.get("budget_secs") or 28800) / 3600
+        steps = []
+        probed = any(v[0] in ("short probe", "probe") and t["reward"] is not None for t, v in mine)
+        if not probed and not b.get("above"):
+            steps.append(("frontier short probe", 0.1 * H, "Claude"))
+        if (b.get("above") or not probed) and lc.get("qwen", {}).get("model"):
+            left = max(0, lc.get("qwen_runs", 2) - len(qw))
+            if left and not b.get("gap"):
+                steps.append((f"Qwen x{left} (stops at a solve)", left * H, "OpenRouter"))
+        if not b.get("ready"):
+            steps.append(("finish the build (reference, text, premortem)", 0, "build agent"))
+        if not b.get("above") and probed and "full" not in kinds:
+            steps.append(("full-budget frontier trial", H, "Claude"))
+        if "cheat" not in kinds:
+            steps.append(("cheat trial", min(1.0, 0.1 * H), "Claude"))
+        path.append({"slug": b["slug"], "hours": round(sum(h for _, h, _ in steps), 1), "steps": steps,
+                     "running": [v[0] for t, v in mine if t["state"] == "running"]})
+    d["path"] = sorted(path, key=lambda p: (not p["slug"] in lc.get("priority", []), p["hours"]))[:8]
+    try:                                       # credit on the Qwen key, read on a runner, cached 10 minutes
+        oc = load_json(os.path.join(DATA, "openrouter-cache.json"), {})
+        if time.time() - oc.get("ts", 0) > 600:
+            oc = {"ts": time.time(), "left": openrouter_left(lc.get("runners", ["vm2"])[0])}
+            atomic_write(os.path.join(DATA, "openrouter-cache.json"), json.dumps(oc))
+        d["openrouter_left"] = oc.get("left")
+    except Exception:  # noqa: BLE001 - the dashboard must render without it
+        d["openrouter_left"] = None
+    pretty = lambda m: (m or "?").split("/")[-1].replace("claude-", "Claude ").replace("-5-5", " 5.5").replace("opus", "Opus")  # noqa: E731
+    for b in d["builds"]:                         # who scored what, in the review gate's terms (capture/instructions.md)
+        mine = [(t, trial_verdict(t)) for t in d["trials"] if t["task"] == b["slug"] and not t.get("infra") and t["reward"] is not None]
+        fr = [(t, v) for t, v in mine if v[0] in ("short probe", "probe", "full")]
+        full = [t["reward"] for t, v in mine if v[0] == "full"]
+        qw = [t["reward"] for t, v in mine if v[0] == "qwen"]
+        si = [t["reward"] for t, v in mine if v[0] == "stand-in"]
+        ch = [t["reward"] for t, v in mine if v[0] == "cheat"]
+        best = max(fr, key=lambda tv: tv[0]["reward"]) if fr else None
+        b["gate"] = {
+            "frontier_model": pretty(lc.get("frontier_model", "anthropic/claude-opus-5-5")),
+            "frontier": (f"{best[0]['reward']:.2f} in a {best[1][0]} ({hm(best[0]['elapsed'])} of {hm(best[0]['budget'])})" if best else "not run"),
+            "full": (f"mean {sum(full) / len(full):.2f} over {len(full)} full trial(s)" if full else "no full-budget trial yet"),
+            "qwen": (f"solved {sum(r >= 0.9 for r in qw)}/{len(qw)}, mean {sum(qw) / len(qw):.2f}" if qw else ("not run yet (" + pretty(lc["qwen"]["model"]) + " via OpenRouter)") if (lc.get("qwen") or {}).get("model") else "not run: no Qwen provider key configured"),
+            "stand_in_model": pretty((lc.get("stand_in") or {}).get("model")),
+            "stand_in": (f"{max(si):.2f} ({'solved' if max(si) >= 0.9 else 'did not solve'})" if si else "not run"),
+            "cheat": (f"{max(ch):.2f} ({'BLOCKER' if max(ch) > 0 else 'ok'})" if ch else "not run"),
+            "verdict": ("PASSED: in the band" if b.get("passed") and not b.get("gap") else "PASSED: capability gap against Qwen" if b.get("passed")
+                        else "failed: " + str(b.get("failed"))[:80] if b.get("failed")
+                        else "frontier above the band: passes only with a gap against Qwen" if b.get("above")
+                        else "frontier in the band so far" if best and best[0]["reward"] < 0.85 else "frontier not measured yet"),
+        }
+    for b in d["builds"]:
+        mine = [(t, trial_verdict(t)) for t in d["trials"] if t["task"] == b["slug"]]
+        running = [v[0] for t, v in mine if t["state"] == "running"]
+        probe_ok = any(v[0] in ("probe", "short probe") and v[1] == "ok" for _, v in mine)
+        border = any(v[0] == "short probe" and v[1] == "warn" for _, v in mine)
+        probed = any(v[0] in ("probe", "short probe") for _, v in mine)
+        core_hi = b["core"] is not None and b["core"] >= lad["core_share_max"]
+        early = all(ok for n, ok in b["steps"] if n in ("environment", "verifier"))   # enough for the probe (BUILD.md 3b)
+        upto_l3 = all(ok for n, ok in b["steps"] if n in ("environment", "verifier", "reference", "L0", "L3"))
+        qwen_runs = [t for t, v in mine if v[0] == "qwen" and t["reward"] is not None]
+        b["stage"] = ("passed" if b.get("passed") else "failed" if b.get("failed")
+                      else f"needs rework (round {b['rework_round']} of {max_rework})" if b.get("rework")
+                      else f"{running[0]} trial running" if running
+                      else "Qwen solved it: a gap is unlikely (too easy)" if any(t["reward"] >= 0.9 for t in qwen_runs)
+                      else "above the band: strengthen the reference or raise S (BUILD 7d)" if b["above"] and not b.get("impl", True) and not qwen_runs
+                      else "above the band: Qwen gap check next" if b["above"] and not qwen_runs
+                      else f"{b['qwen_note']}: more Qwen runs" if b["above"] and not b["gap"]
+                      else ("gap shown (" + b["qwen_note"] + "): " + ("ready for full trial" if b["ready"] else "finish the build"))
+                      if b["above"] and b["gap"]
+                      else "ready for full trial" if b["ready"] and probe_ok
+                      else "phase 2 (text, premortem)" if probe_ok and upto_l3
+                      else f"phase 1b ({next((n for n, ok in b['steps'] if not ok), 'checks')})" if probe_ok
+                      else "ready for quarter probe" if border
+                      else "probe ladder started" if probed
+                      else f"phase 1a (core share {b['core']:.2f}: widen)" if early and core_hi
+                      else "phase 1a (core share)" if early and b["core"] is None
+                      else "ready for recall check" if early and not b["recalls"]
+                      else "ready for short probe" if early
+                      else f"phase 1a ({next((n for n, ok in b['steps'] if not ok), 'checks')})")
+    queue = []
+    for b in d["builds"]:
+        stg = b.get("stage", "")
+        a = None if b.get("passed") or b.get("failed") else ladder_next(b, d, lc)
+        if b.get("passed"):
+            b["next"] = ("you", "submit it (make_zip.sh)")
+        elif b.get("failed"):
+            b["next"] = ("-", "decided")
+        elif "running" in stg:
+            b["next"] = ("runner", "wait for the running trial")
+        elif a:
+            b["next"] = ("ladder", f"{a['label']}: {a['why']}"); queue.append((b["slug"], a["label"], a["why"]))
+        elif stg.startswith("Qwen solved"):
+            b["next"] = ("-", "stop: a gap is unlikely")
+        elif stg.startswith(("phase", "ready for recall")) or (b.get("gap") and not b.get("ready")):
+            b["next"] = ("build agent", "finish the build (reference, text, premortem)" if b.get("gap") else stg)
+        else:
+            b["next"] = ("-", "waiting")
+    pri = lc.get("priority", [])
+    queue.sort(key=lambda q: pri.index(q[0]) if q[0] in pri else len(pri))
+    d["ladder"] = {"auto": bool(lc.get("auto")), "queue": queue,
+                   "recent": [re.sub(r"^\[(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ)\] ladder: ",
+                                     lambda m: show_time(dt.datetime.strptime(m.group(1), "%Y-%m-%dT%H:%M:%SZ").replace(
+                                         tzinfo=dt.timezone.utc).timestamp(), "%a %H:%M") + "  ", l.strip())
+                              for l in (open(LOG).readlines()[-400:] if os.path.exists(LOG) else []) if "ladder:" in l][-5:]}
+    by_id = {s["id"]: s for s in seeds}
+    cal = []
+    for b in d["builds"]:
+        s = by_id.get(b["seed"]) or {}
+        b["title"], b["method"] = (s.get("card") or {}).get("title", ""), s.get("method", "")
+        base = {"idea": (s.get("card") or {}).get("title", b["slug"]), "estimated_frontier_hours": (s.get("v1") or {}).get("frontier_hours"),
+                "tier_hours": (s.get("v1") or {}).get("tier_hours")}
+        cal += [dict(base, check="recall (one tool-less model call per file writing the code in one shot)", reward=round(j["reward"], 3),
+                     **({"note": "inconclusive: the one-shot code did not build"} if j.get("inconclusive") else {}))
+                for j in b["recalls"] if j.get("reward") is not None]
+        cal += [dict(base, check=f"{trial_verdict(t)[0]} trial", budget_hours=round(t["budget"] / 3600, 2),
+                     minutes=round(t["elapsed"] / 60), reward=round(t["reward"], 3), output_tokens=t.get("out_tokens"))
+                for t in d["trials"] if t["task"] == b["slug"] and t["reward"] is not None]
+    if cal != load_json(os.path.join(DATA, "calibration.json"), None):
+        atomic_write(os.path.join(DATA, "calibration.json"), json.dumps(cal, indent=1))
+    taken = {b["seed"] for b in d["builds"] if b["seed"]}
+    nxt = [s for s in seeds if s["status"] == "validated" and s["id"] not in taken]
+    mrank = cfg.get("build_method_rank", {})     # methods that trials showed too easy go last (config.json)
+    nxt.sort(key=lambda s: (mrank.get(s.get("method"), 2),
+                            -(((s.get("v1") or {}).get("frontier_hours") or 0) / ((s.get("v1") or {}).get("tier_hours") or 8)),
+                            -s.get("final", 0)))
+    d["next_build"] = [(s["id"], s.get("final", ""), (s.get("v1") or {}).get("frontier_hours"),
+                        (s.get("v1") or {}).get("tier_hours"), f'{s.get("method", "?")}: ' + s["card"].get("title", "")[:80]) for s in nxt[:8]]
+    by = collections.Counter(s["status"] for s in seeds)
+    smoked = sum(1 for s in seeds if s["status"] == "l0-pass" and "smoke" in s)
+    src = collections.Counter(r["status"] for r in rows)
+    verdicts = collections.Counter((row_facts(r).get("probe") or {}).get("verdict") or "skipped"
+                                   for r in rows if "probe" in row_facts(r))
+    d["sources"] = {"total": len(rows), "unused": src["unused"], "used": src["used"], "blocked": src["blocked"],
+                    "stale": src["stale"], "enriched": sum(1 for r in rows if enriched(r)),
+                    "probed": sum(verdicts.values()), "green": verdicts["green"], "amber": verdicts["amber"],
+                    "red": verdicts["red"]}
+    killed = sum(v for k, v in by.items() if k.startswith("killed"))
+    d["probe_backlog"] = by["l0-pass"] - smoked        # probes run in the background; they never gate V1
+    d["funnel"] = [("written", len(seeds)), ("awaiting V1", by["l0-pass"]),
+                   ("awaiting V2", by["v1-pass"]), ("awaiting spike", by["v2-pass"]), ("validated", by["validated"]),
+                   ("killed", killed)]
+    infl = st.get("inflight", []) if alive else []
+    d["running"] = []
+    for j in sorted(infl, key=lambda j: j["since"]):
+        sd = load_json(seed_path(j["key"]), {}) if j["key"].startswith("S-") else {}
+        d["running"].append((j["stage"], j["key"], hm(nowt - j["since"]), (sd.get("card") or {}).get("title", "")[:80]))
+    secs = collections.defaultdict(list)
+    recent = []
+    for r in cost_records():
+        recent.append(r)
+        if not r.get("error"):
+            secs[r["stage"]].append(r.get("secs") or 0)
+    recent = recent[-60:]
+    avg = {k: sum(v) / len(v) for k, v in secs.items() if v}
+    d["avg"] = {k: hm(v) for k, v in sorted(avg.items())}
+    pools = st.get("pools") or cfg["pools"]
+    run_by = collections.Counter(j["stage"] for j in infl)
+    blocked_b = {s["batch"] for s in seeds if s["status"] in ("short", "l0-pass")}
+    ready_v2 = sum(1 for s in seeds if s["status"] == "v1-pass" and not s.get("v2_done") and s["batch"] not in blocked_b)
+    queues = {"v1": by["l0-pass"], "v2": ready_v2, "spike": by["v2-pass"]}   # the stages that gate progress
+    waits = {k: q * avg.get(k, 600) / max(1, pools.get(k, 1)) for k, q in queues.items() if q}
+    d["bottleneck"] = ""
+    if waits:
+        b = max(waits, key=waits.get)
+        d["bottleneck"] = (f"{b}: {queues[b]} waiting, {run_by[b]}/{pools.get(b, 1)} slots busy, about {hm(waits[b])} of queued work"
+                           + (f" (raise pools.{b} if CPU and plan usage allow)" if run_by[b] >= pools.get(b, 1) else ""))
+    target, done = st.get("target", cfg.get("target_validated") or None), by["validated"]
+    t_first = min((dt.datetime.strptime(s["created"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc).timestamp()
+                   for s in seeds if s.get("created")), default=nowt)
+    if done:
+        rate = done / max(0.01, (nowt - t_first) / 3600)
+        d["eta"] = f"{rate:.2f} validated/h" + (f"; target {target} in about {hm((target - done) / rate * 3600)}"
+                                                 if target and target > done else "")
+    else:
+        lead = sum(avg.get(k, dflt) for k, dflt in (("write", 120), ("v1", 400), ("v2", 300), ("spike", 3600))) + 600
+        d["eta"] = f"none validated yet; a first one typically needs about {hm(lead)} from writing (V1, V2, spike)"
+    d["validated"], d["target"] = done, target
+    building = {b["seed"] for b in d["builds"] if b["seed"]}
+    d["unbuilt"] = [s["id"] for s in seeds if s["status"] == "validated" and s["id"] not in building]
+    spiked = [s for s in seeds if s.get("spike")]
+    d["eff"] = {"cost per validated": f"${d['spent'] / done:.2f}" if done else "-",
+                "spike pass rate": f"{sum(s['status'] == 'validated' for s in spiked)}/{len(spiked)}" if spiked else "-",
+                "ideas per validated": f"{len(seeds) / done:.0f}" if done else "-"}
+    best = sorted([s for s in seeds if s["status"] in ("validated", "v2-pass")],
+                  key=lambda s: (s["status"] != "validated", -s.get("final", 0)))
+    slug_of = {b["seed"]: b["slug"] for b in d["builds"] if b["seed"]}
+    d["ideas"] = [("validated" if s["status"] == "validated" else "awaiting spike", s["id"], s.get("final", ""),
+                   s["card"].get("title", "")[:90], s["card"].get("source", "")[:120], slug_of.get(s["id"], ""))
+                  for s in best[:30]]
+    issues = []
+    if st and not alive and by["l0-pass"] + by["v1-pass"] + by["v2-pass"] and not st.get("stopping"):
+        issues.append("The runner isn't running but work is queued. Start it again (`run`), or ask Claude to read the end of data/pipeline.log.")
+    for k, n in (st.get("failing") or {}).items():
+        if n >= 2:
+            issues.append(f"{k} failed {n} times in a row. Ask Claude: 'check the {k} errors in data/pipeline.log and data/runs/'.")
+    for stage in {r["stage"] for r in recent}:
+        rs = [r for r in recent if r["stage"] == stage]
+        bad = sum(bool(r.get("error")) for r in rs)
+        if len(rs) >= 4 and bad / len(rs) > 0.3:
+            issues.append(f"{stage}: {bad}/{len(rs)} recent calls failed. Ask Claude to diagnose the {stage} stage.")
+    if st.get("write_disabled"):
+        issues.append("The writer is disabled after 3 failures. Ask Claude to check the write errors, then restart the run.")
+    if st.get("spikes_off"):
+        issues.append(f"Spikes are stopped: {st['spikes_off']}. Renew it (bash pipeline/setup-token.sh --force), then restart the run.")
+    parked = [s["id"] for s in seeds if s["status"] == "v2-pass" and s.get("spike_parked")]
+    if parked:
+        issues.append(f"{len(parked)} seed(s) parked after 3 failed spikes ({', '.join(parked[:5])}). Ask Claude to read "
+                      "data/pipeline.log, fix the cause, then `requeue <id> spike`.")
+    if src["unused"] < cfg["batch_size"]:
+        issues.append("Fewer than 10 unused sources. Ask Claude to add harvest queries or channels.")
+    judged = [s for s in seeds if s.get("v2_done")]
+    kept = sum(1 for s in judged if s["status"] in ("v2-pass", "validated"))
+    if len(judged) >= 10 and kept / len(judged) < 0.15:   # a judge that kills a lot is doing its job; flag only extremes
+        issues.append(f"The V2 judge keeps only {kept}/{len(judged)} V1 passes. If its kill reasons point at facts V1 "
+                      "should have caught, ask Claude to tighten the V1 prompt (cheaper than switching V1 to sonnet).")
+    kills = collections.Counter(s.get("kill") for s in seeds if s.get("kill"))
+    if killed >= 10:
+        k, n = kills.most_common(1)[0]
+        if n / killed > 0.5:
+            issues.append(f"{n}/{killed} kills are {k}. Ask Claude to retune the writer or channels for {k}.")
+    spikes = [s for s in seeds if s.get("spike")]
+    if len(spikes) >= 3 and sum(1 for s in spikes if s["status"] == "validated") / len(spikes) < 0.3:
+        issues.append("Most spikes fail. Ask Claude to read the SPIKE.md files and adjust the spike prompt or image.")
+    d["issues"] = issues
+    d["kills"] = [(f"{k} {KILL_LABEL.get(k, '')}".strip(), n) for k, n in kills.most_common()]
+    # account and plan limits stay on the accounts card, never in Issues (the owner's call)
+    stale = [b["slug"] for b in d["builds"] if b.get("stage", "").startswith("phase ") and b["age"] and b["age"] > 5400]
+    if stale:
+        issues.append(f"Build(s) with no file changes for over 90 minutes: {', '.join(stale)}. Ask Claude to check them.")
+    d["log"] = [l.rstrip()[:200] for l in open(LOG).readlines()[-12:]] if os.path.exists(LOG) else []
+    return d
+
+
+def render_text(d):
+    L = [f"cgpipe  {d['state']}  {'[dry run] ' if d['dry_run'] else ''}up {d['uptime']}   spent ${d['spent']:.2f} of ${d['budget']}"
+         f"   plan usage: {'  '.join(f'{k} {v:.0%}' for k, v in d['usage'].items()) or 'n/a'}   {d['time']}"]
+    ready = sum(b["ready"] for b in d["builds"])
+    L.append(f"passed    {len(d['passed'])} fully built tasks passed their trials (goal {d['build_target']})"
+             + (f": {', '.join(d['passed'])}" if d["passed"] else ""))
+    nfail = sum(1 for b in d["builds"] if b.get("failed"))
+    L.append(f"tasks     {ready} ready for trials, {len(d['builds']) - nfail} building, {nfail} failed; "
+             f"validated ideas not yet building: {len(d['unbuilt'])}")
+    for b in d["builds"]:
+        L.append(f"  {b['slug']:<22} {b['seed']:<9} {b.get('stage', ''):<28} ref {b['ref_lines']} lines, "
+                 f"text {b['words']} words, L0 {b['l0']}, L3 {b['l3']}, core {b['core'] if b['core'] is not None else '-'}, "
+                 f"recall {('skipped' if b['recalls'][-1].get('skipped') else str(b['recalls'][-1]['reward']) + (' (no build)' if b['recalls'][-1].get('inconclusive') else '')) if b['recalls'] else '-'}, trials {b['trials']}, "
+                 f"active {hm(b['age']) + ' ago' if b['age'] is not None else '-'}")
+        g = b.get("gate") or {}
+        if g:
+            L.append(f"    gate: {g['verdict']} | frontier {g['frontier']}; {g['full']} | Qwen {g['qwen']} | "
+                     f"stand-in {g['stand_in_model']} {g['stand_in']} | cheat {g['cheat']}")
+        if b.get("failed") or b.get("rework"):
+            L.append(f"    {'failed' if b.get('failed') else 'rework'}: {b.get('failed') or b['rework']}")
+        elif b["note"]:
+            L.append(f"    {b['note'][:120]}")
+    for host, (name, plan, _) in sorted(d.get("runner_tokens", {}).items()):
+        L.append(f"runner    {host}: account {name}" + (f" ({plan})" if plan else ""))
+    if d.get("trials"):
+        L.append(f"trials    {len(d['trials'])}")
+        for t in d["trials"]:
+            eta = show_time(t["eta"], "%H:%M") if t["eta"] else "-"
+            pct = f"{min(1, t['elapsed'] / t['budget']):.0%}" if t["budget"] else "-"
+            L.append(f"  {t['task']:<22} {t['runid'][:28]:<28} {t['host']:<4} {t['state']:<9} {pct:>4} of {hm(t['budget'])}"
+                     f"  ETA {eta}  reward {t['reward'] if t['reward'] is not None else '-'}  ({trial_verdict(t)[2]})"
+                     + (f"  transcript {t['kb']} KB, updated {hm(time.time() - t['updated'])} ago" if t["updated"] else ""))
+        L.append("  reward: 0 = untouched start or a failed gate, 1 = our reference; short probe (1/10 budget): < 0.15 go to full, "
+                 "0.15-0.35 run the quarter probe, 0.35+ too easy; probe (1/4 budget) wants < 0.5; "
+                 "cheat wants exactly 0; full wants 0.05-0.85 and a pass (0.9) in some trial")
+    for p in d.get("path", [])[:4]:
+        L.append(f"path      {p['slug']}: " + " -> ".join(n for n, _, _ in p["steps"]) + f"  (at most {p['hours']} h)")
+    if d.get("next_build"):
+        L.append("next      " + "; ".join(f"{i} ({sc}, {fh or '?'}h of {th or '?'}h)" for i, sc, fh, th, _ in d["next_build"][:5]))
+    L.append("sources   " + ", ".join(f"{k} {v}" for k, v in d["sources"].items()))
+    L.append("funnel    " + " -> ".join(f"{k} {v}" for k, v in d["funnel"][:-1]) + f"   (killed {d['funnel'][-1][1]})")
+    L.append(f"running   {len(d['running'])} job(s)")
+    L += [f"  {st:<8} {k:<24} {age:>7}  {t[:60]}" for st, k, age, t in d["running"]]
+    if d["bottleneck"]:
+        L.append("bottleneck " + d["bottleneck"])
+    if d.get("probe_backlog"):
+        L.append(f"probes    {d['probe_backlog']} seed(s) not yet probed (background: adds build facts, never holds up V1)")
+    L.append(f"progress  validated {d['validated']}   {d['eta']}")
+    L.append("cost      " + "  ".join(f"{k} {v}" for k, v in d["eff"].items()))
+    if d["avg"]:
+        L.append("avg time  " + "  ".join(f"{k} {v}" for k, v in d["avg"].items()))
+    if d["ideas"]:
+        L.append("ideas")
+        L += [f"  {kind:<14} {sid} {score!s:>3}  {title[:64]}" + (f"  [building: {slug}]" if slug else "")
+              for kind, sid, score, title, _, slug in d["ideas"][:12]]
+    L.append("issues    " + ("none" if not d["issues"] else ""))
+    L += [f"  ! {i}" for i in d["issues"]]
+    if d["log"]:
+        L.append("recent")
+        L += ["  " + l[:150] for l in d["log"][-8:]]
+    return "\n".join(L)
+
+
+def render_html(d, refresh):
+    import html
+    e = html.escape
+    pct = lambda v: f"{v:.0%}"
+    usage = " &middot; ".join(f"{e(k.replace('_', ' '))} <b>{pct(v)}</b>" + (f" (resets {e(d['resets'][k])}, pauses at "
+                              f"{pct(d['pace'].get(k, 1))})" if k in d.get("resets", {}) else "")
+                              for k, v in d["usage"].items()) or "n/a"
+    ready = sum(b["ready"] for b in d["builds"])
+    order = lambda b: (0 if b.get("stage") == "passed" else 1 if "running" in b.get("stage", "")       # noqa: E731
+                       else 2 if b.get("stage", "").startswith(("ready for", "probe ladder")) else 3 if b.get("rework") else 4)
+    active = sorted((b for b in d["builds"] if not b.get("failed")), key=order)
+    failed = [b for b in d["builds"] if b.get("failed")]
+
+    def tline(t):
+        kind, cls, verdict = trial_verdict(t)
+        rw = f'{t["reward"]:.2f}' if t["reward"] is not None else "-"
+        live = ""
+        if t["state"] == "running":
+            pct = min(1, t["elapsed"] / t["budget"]) if t["budget"] else 0
+            eta = show_time(t["eta"], "%H:%M") if t["eta"] else "-"
+            live = (f' <span class="bar" style="display:inline-block;width:90px;vertical-align:middle"><span style="width:{100 * pct:.0f}%">'
+                    f'</span></span> ETA {e(eta)}')
+        out = f' &middot; output {t["out_tokens"] / 1000:.0f}k tokens' if t.get("out_tokens") else ""
+        return (f'<div><span class="pill {cls or "idle"}">{e(kind)}</span> <b>{rw}</b> <span class=muted>{hm(t["elapsed"])} of '
+                f'{hm(t["budget"])} on {e(t["host"])}{out}</span>{live}<div class=muted>{e(verdict)}</div></div>')
+
+    def checks(b):
+        rc = b["recalls"][-1] if b["recalls"] else None
+        rtxt = ("-" if not rc else "skipped" if rc.get("skipped") else f'{rc["reward"]:.2f}' + (" (no build)" if rc.get("inconclusive") else ""))
+        dots = "".join(f'<span class="dot {"on" if ok else ""}" title="{e(n)}"></span>' for n, ok in b["steps"])
+        return (f'<div class=muted style="margin-top:3px"><span title="environment, verifier, reference, text, L0, L3, premortem">{dots}</span> '
+                f'core {b["core"] if b["core"] is not None else "-"} &middot; recall {e(rtxt)} &middot; L0 {e(b["l0"])} &middot; L3 {e(b["l3"])}</div>')
+
+    def gate_cell(b):
+        g = b.get("gate") or {}
+        if not g:
+            return ""
+        vcls = "ok" if g["verdict"].startswith("PASSED") else "bad" if g["verdict"].startswith("failed") else "above" if "above" in g["verdict"] else "idle"
+        return (f'<div><span class="pill {vcls}">{e(g["verdict"])}</span></div>'
+                f'<div><b>Frontier</b> <span class=muted>({e(g["frontier_model"])})</span>: {e(g["frontier"])}; {e(g["full"])}</div>'
+                f'<div><b>Weaker, Qwen</b>: {e(g["qwen"])}</div>'
+                + (f'<div><b>Stand-in</b> <span class=muted>({e(g["stand_in_model"])}, a hint only)</span>: {e(g["stand_in"])}</div>' if g["stand_in"] != "not run" else "")
+                + f'<div><b>Cheat trial</b>: {e(g["cheat"])}</div>')
+
+    def brow(b):
+        mine = [t for t in d.get("trials", []) if t["task"] == b["slug"]]
+        why = b.get("failed") or b.get("rework") or ""
+        stage_cls = "ok" if b.get("stage") == "passed" else "bad" if why else "warn" if "running" in b.get("stage", "") else "idle"
+        act = (hm(b["age"]) + " ago") if b["age"] is not None else "-"
+        who, what = b.get("next", ("-", ""))
+        live = [t for t in mine if t["state"] == "running"]
+        done = [t for t in mine if t["state"] != "running"]
+        trials = ("".join(tline(t) for t in live) + (f'<details><summary class=muted>{len(done)} finished</summary>{"".join(tline(t) for t in done)}</details>' if done else "")) \
+            or "<span class=muted>none yet</span>"
+        return (f'<tr><td><code>{e(b["slug"])}</code> <span class=muted>{e(b["seed"])} &middot; {e(b.get("method", ""))}</span>'
+                f'<div>{e(b.get("title", ""))}</div>{checks(b)}</td>'
+                f'<td><span class="pill {stage_cls}">{e(b.get("stage", ""))}</span>'
+                f'<div style="margin-top:4px"><b>Next</b> <span class="pill idle">{e(who)}</span> {e(what)}</div>'
+                + (f'<div class=muted>{e(why)}</div>' if why else "") + f'<div class=muted>last change {e(act)}</div></td>'
+                f'<td>{gate_cell(b)}</td><td>{trials}</td></tr>')
+    builds = "".join(brow(b) for b in active) or '<tr><td colspan=4 class="muted">no bundles in progress</td></tr>'
+    failed_rows = "".join(f'<tr><td><code>{e(b["slug"])}</code><div class=muted>{e(b["seed"])} &middot; {e(b.get("method", ""))}</div></td>'
+                          f'<td>{e(b.get("title", ""))}</td><td class=muted>{e(b["failed"])}</td>'
+                          f'<td>{"".join(tline(t) for t in d.get("trials", []) if t["task"] == b["slug"])}</td></tr>' for b in failed)
+    nbuild = sum(1 for b in active if b.get("stage", "").startswith("phase"))
+    nladder = sum(1 for b in active if b.get("stage") != "passed" and not b.get("stage", "").startswith("phase"))
+    def upct(name, win):
+        w = d.get("token_usage", {}).get(name, {}).get(win)
+        if not w or w[0] is None:
+            return "-"
+        if w[1] and w[1] < time.time():
+            return "reset"
+        cls = "bad" if w[0] >= 0.95 else "warn" if w[0] >= 0.8 else "ok"
+        return f'<span class="pill {cls}">{w[0]:.0%}</span>'
+    runners = ""
+    for host in ("vm2", "vm3"):
+        now = [t for t in d.get("trials", []) if t["host"] == host and t["state"] == "running"]
+        name, plan, _ = d.get("runner_tokens", {}).get(host, ("unknown", "", ""))
+        runners += (f'<div style="margin:6px 0;padding-bottom:6px;border-bottom:1px solid var(--line)"><b style="font-size:15px">{host}</b> '
+                    f'<span class=muted>Claude account</span> <b>{e(name)}</b> <span class=muted>{e(plan)} &middot; session</span> {upct(name, "five_hour")}'
+                    f' <span class=muted>weekly</span> {upct(name, "seven_day")}<div>' + ("".join(
+                        f'<code>{e(t["task"])}</code> {tline(t)}' for t in now) if now else '<span class=muted>no model trial running</span>') + '</div></div>')
+    nextb = "".join(f"<tr><td><code>{e(i)}</code></td><td class=num>{e(str(sc))}</td><td class=num>{e(str(fh or '?'))} h of {e(str(th or '?'))} h</td><td>{e(t)}</td></tr>"
+                    for i, sc, fh, th, t in d.get("next_build", [])) or '<tr><td colspan=4 class="muted">none waiting</td></tr>'
+
+    def wcell(w, status):
+        if not w or w[0] is None:
+            return '<td class=muted>-</td>'
+        u, reset = w
+        when = show_time(reset, "%a %H:%M") if reset else ""
+        if reset and reset < time.time():
+            return f'<td class=muted>{u:.0%} before its reset at {e(when)}</td>'
+        cls = "bad" if u >= 0.95 else "warn" if u >= 0.8 else "ok"
+        return f'<td><span class="pill {cls}">{u:.0%}</span> <span class=muted>resets {e(when)}</span></td>'
+    accounts = "".join(f'<tr><td><b>{e(n)}</b>' + (f'<div class=muted>as of {hm(time.time() - seen)} ago</div>' if seen else '')
+                       + f'</td>{wcell(w.get("five_hour"), st_)}{wcell(w.get("seven_day"), st_)}</tr>'
+                       for n, w, st_, seen in d.get("accounts", []))
+    eff = " &middot; ".join(f"{e(k)} <b>{e(v)}</b>" for k, v in d["eff"].items())
+    pathrows = "".join(
+        f'<tr><td><code>{e(p["slug"])}</code>' + (f'<div class=muted>running: {e(", ".join(p["running"]))}</div>' if p["running"] else "")
+        + '</td><td>' + " &rarr; ".join(f'{e(n)} <span class=muted>({h:.1f} h, {e(who)})</span>' if h else f'{e(n)} <span class=muted>({e(who)})</span>'
+                                        for n, h, who in p["steps"]) + f'</td><td class=num><b>{p["hours"]:.1f}</b></td></tr>'
+        for p in d.get("path", [])) or '<tr><td colspan=3 class="muted">nothing on the way</td></tr>'
+    fmax = max([v for _, v in d["funnel"][:-1]] + [1])
+    funnel = "".join(
+        f'<div class="frow"><span class="fl">{e(k)}</span><span class="bar"><span style="width:{100 * v / fmax:.1f}%"></span></span>'
+        f'<span class="fv">{v}</span></div>' for k, v in d["funnel"])
+    run = "".join(f"<tr><td>{e(a)}</td><td><code>{e(b)}</code></td><td class=num>{e(c)}</td><td>{e(t)}</td></tr>"
+                  for a, b, c, t in d["running"]) or '<tr><td colspan=4 class="muted">nothing running</td></tr>'
+    ideas = "".join(f'<tr class="{"v" if kind == "validated" else ""}"><td>{e(kind)}</td><td><code>{e(sid)}</code></td>'
+                    f"<td class=num>{e(str(sc))}</td><td>{e(t)}<div class=muted>{e(src)}</div></td>"
+                    f"<td>{('<code>' + e(slug) + '</code>') if slug else ('<span class=muted>not yet</span>' if kind == 'validated' else '')}</td></tr>"
+                    for kind, sid, sc, t, src, slug in d["ideas"]) or '<tr><td colspan=5 class="muted">none yet</td></tr>'
+    issues = "".join(f"<li>{e(i)}</li>" for i in d["issues"]) or '<li class="ok">none</li>'
+    avg = " &middot; ".join(f"{e(k)} <b>{e(v)}</b>" for k, v in d["avg"].items()) or "no completed calls yet"
+    kills = " &middot; ".join(f"{e(k)} <b>{v}</b>" for k, v in d["kills"]) or "none"
+    src = " &middot; ".join(f"{e(k)} <b>{v}</b>" for k, v in d["sources"].items())
+    log = e("\n".join(d["log"]))
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="{refresh}"><title>cgpipe dashboard</title><style>
+:root{{--bg:#f7f7f5;--card:#fff;--fg:#1d1d1b;--muted:#6b6b66;--line:#e3e2dc;--ok:#1f7a4d;--warn:#a15c00;--bad:#b3261e;--bar:#3d6fb4}}
+@media (prefers-color-scheme:dark){{:root{{--bg:#151514;--card:#1f1f1d;--fg:#ecebe6;--muted:#9a9990;--line:#33332f;--ok:#57c08b;--warn:#e0a24a;--bad:#ef7a72;--bar:#6c9be0}}}}
+*{{box-sizing:border-box}}body{{margin:0;padding:16px;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}}
+h1{{font-size:18px;margin:0}}h2{{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:0 0 8px}}
+.top{{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;margin-bottom:14px}}.pill{{padding:2px 10px;border-radius:99px;font-weight:600;font-size:12px}}
+.ok .pill,.pill.ok{{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}}.pill.warn{{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}}
+.pill.idle{{background:var(--line);color:var(--muted)}}.pill.above{{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}}.pill.solve{{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}}.pill.bad{{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:12px}}
+.card{{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}}.wide{{grid-column:1/-1}}
+.big{{font-size:28px;font-weight:700}}.muted{{color:var(--muted);font-size:12px}}table{{width:100%;border-collapse:collapse}}
+td{{border-top:1px solid var(--line);padding:5px 6px;vertical-align:top;overflow-wrap:anywhere}}tr.v td:first-child{{color:var(--ok);font-weight:600}}
+.num{{text-align:right;white-space:nowrap}}.dot{{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--line);margin-right:3px}}.dot.on{{background:var(--ok)}}th{{text-align:left;font-weight:600;color:var(--muted);font-size:12px;padding:4px 6px}}code{{font-size:12px}}.frow{{display:flex;align-items:center;gap:8px;margin:3px 0}}.fl{{width:120px;color:var(--muted)}}
+.bar{{flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}}.bar span{{display:block;height:100%;background:var(--bar)}}.fv{{width:40px;text-align:right;font-weight:600}}
+ul{{margin:0;padding-left:18px}}li{{margin:3px 0;color:var(--warn)}}li.ok{{color:var(--ok)}}pre{{margin:0;white-space:pre-wrap;font-size:12px;color:var(--muted);overflow-x:auto}}
+</style></head><body>
+<div class="top"><h1>CG tasks</h1><span class="pill {'ok' if d['passed'] else 'idle'}">{len(d['passed'])} passed (goal {d['build_target']})</span>
+<span class="pill {'ok' if d['ladder']['auto'] else 'idle'}">trial ladder {'on' if d['ladder']['auto'] else 'off'}</span>{'<span class="pill idle">dry run</span>' if d['dry_run'] else ''}
+<span class="muted">updated {e(d['time'])}, refreshes every {refresh}s</span></div>
+<div class="grid">
+<div class="card"><h2>Goal: tasks passed</h2><div class="big">{len(d['passed'])} <span class="muted" style="font-size:14px">of {d['build_target']}</span></div>
+<div>{nladder} on the trial ladder &middot; {nbuild} being built &middot; {len(failed)} failed</div>
+<div class="muted" style="margin-top:4px">Passed = fully built, the frontier in the 0.05-0.85 band <b>or</b> a capability gap against Qwen (the requirements' review gate), and the cheat trial at 0{(': ' + e(', '.join(d['passed']))) if d['passed'] else ''}.</div></div>
+<div class="card"><h2>Runners</h2>{runners}<div class="muted" style="margin-top:4px">A Claude trial takes a runner alone; up to two Qwen trials may share one. L3 checks are not listed.</div></div>
+<div class="card"><h2>Trial ladder {'(automatic, every 10 minutes)' if d['ladder']['auto'] else '(off)'}</h2>
+<div><b>Next up</b></div>{''.join(f'<div><code>{e(s)}</code> <span class="pill idle">{e(l)}</span> <span class=muted>{e(w)}</span></div>' for s, l, w in d['ladder']['queue'][:5]) or '<div class=muted>nothing queued</div>'}
+<div style="margin-top:6px"><b>Recent starts</b></div><pre>{e(chr(10).join(x[:120] for x in d['ladder']['recent'])) or 'none yet'}</pre>
+<div class="muted" style="margin-top:4px">Qwen credit left on OpenRouter: <b>{'$%.0f' % d['openrouter_left'] if d.get('openrouter_left') is not None else 'unknown'}</b> &middot; hold a runner with <code>touch data/HOLD-vm2</code></div></div>
+<div class="card"><h2>Issues</h2><ul>{issues}</ul></div>
+<div class="card wide"><h2>Path to a passed task <span style="text-transform:none;letter-spacing:0">(upper-bound hours; most runs end sooner)</span></h2><table><tr><th>task</th><th>steps left, in order</th><th class=num>hours at most</th></tr>{pathrows}</table>
+<div class="muted" style="margin-top:6px">Qwen first (a solve ends the task before Claude allowance is spent), then the frontier probe; above the band a probe solve counts for the gap, so no full frontier trial; build work only after a gap shows; the cheat trial last.</div></div>
+<div class="card wide"><h2>Tasks ({len(active)} in progress)</h2><table><tr><th>task</th><th>stage and next step</th><th>review gate: frontier vs weaker model</th><th>trials</th></tr>{builds}</table>
+<details style="margin-top:8px"><summary class="muted">How to read rewards and checks</summary><div class="muted" style="margin-top:6px"><b>Reward</b> is the task's own sealed grader score, 0 to 1: <b>0</b> = the untouched start (or a failed hard gate), <b>1</b> = our reference; in between is partial credit.
+<b>core</b> share: the reward a narrow first-hour solution would earn, below <b>0.5</b>. <b>recall</b>: one tool-less Sonnet call per file (interpreted languages only), below <b>0.3</b>. <b>short probe</b> (frontier, a tenth of the budget): below <b>0.15</b> is in the band, <b>0.35</b> or more is above it. <b>Qwen</b>: the requirements' second model, at the full budget; a solve is <b>0.9</b>. <b>cheat</b>: the frontier told to game the grader, must score exactly <b>0</b>. <b>full</b>: the whole budget, in the band between <b>0.05 and 0.85</b>. Runs that crashed, were invalid or hit an account limit are not evidence.</div></details>
+{('<details style="margin-top:8px"><summary><b>Failed (' + str(len(failed)) + ')</b> <span class=muted>decided bundles and why</span></summary><table><tr><th>task</th><th>idea</th><th>why</th><th>trials</th></tr>' + failed_rows + '</table></details>') if failed else ''}</div>
+<div class="card wide"><details><summary><b>Accounts</b> <span class=muted>(Claude token pool: session and weekly limits)</span></summary><table><tr><th>account: used by</th><th>session (5 h)</th><th>weekly</th></tr>{accounts}</table><div class="muted" style="margin-top:4px">Roles: pipeline (VM1's spikes and calls), vm2 and vm3 (Claude trials); the reserved token is VM1's own login. Manage with <code>python3 -I pipeline/tokens.py list | add | remove | use | auto</code>.</div></details></div>
+<div class="card wide"><details><summary><b>Next to build</b> <span class=muted>({len(d.get('next_build', []))} validated ideas without a bundle; new builds start only when a gap or band result justifies them)</span></summary><table><tr><th>seed</th><th class=num>score</th><th class=num>est. frontier hours</th><th>method: idea</th></tr>{nextb}</table><div class="muted" style="margin-top:6px">Methods that trials showed too easy (rebuild, port, conformance) go last.</div></details></div>
+<div class="card wide"><h2>Idea pipeline <span class="pill {d['state_kind']}" style="text-transform:none;letter-spacing:0">{e(d['state'])}</span></h2>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div><div class="muted">validated ideas</div><div class="big">{d['validated']}</div><div class=muted>{e(d['eta'])}</div></div>
+<div><div class="muted">bottleneck</div><div>{e(d['bottleneck'] or 'none: nothing is queued')}</div><div class="muted" style="margin-top:4px">avg: {avg}</div></div>
+<div><div class="muted">funnel</div>{funnel}</div>
+<div><div class="muted">cost</div><div>${d['spent']:.2f} of ${e(str(d['budget']))} &middot; up {e(d['uptime'])}</div><div class="muted" style="margin-top:4px">{eff}</div></div>
+</div>
+<details style="margin-top:8px"><summary><b>Jobs running now ({len(d['running'])})</b></summary><table>{run}</table></details>
+<details><summary><b>Ideas: validated and awaiting spike</b></summary><table><tr><th>status</th><th>seed</th><th class=num>score</th><th>idea</th><th>build</th></tr>{ideas}</table></details>
+<details><summary><b>Kills, sources and recent log</b></summary><div class=muted style="margin:6px 0">kills: {kills}</div><div style="margin:6px 0">{src}</div><pre>{log}</pre></details></div>
+</div></body></html>"""
+
+
+def cmd_watch(interval, once, html_path=None, port=None):
+    if html_path:
+        html_path = os.path.abspath(html_path)
+        if port:   # serve only this one file, on localhost
+            import http.server
+            import functools
+
+            class One(http.server.SimpleHTTPRequestHandler):
+                def do_GET(self):
+                    self.path = "/" + os.path.basename(html_path)
+                    return super().do_GET()
+
+                def log_message(self, *a):
+                    pass
+            srv = http.server.ThreadingHTTPServer(("127.0.0.1", port),
+                                                  functools.partial(One, directory=os.path.dirname(html_path)))
+            threading.Thread(target=srv.serve_forever, daemon=True).start()
+            print(f"serving the dashboard at http://127.0.0.1:{port}/", flush=True)
+        print(f"writing {html_path} every {interval}s (open it in a browser; Ctrl-C or kill to stop)", flush=True)
+        while True:
+            try:
+                atomic_write(html_path, render_html(dashboard_data(), interval))
+            except Exception as ex:  # noqa: BLE001 (a bad read mid-write must not stop the dashboard)
+                print(f"dashboard: {type(ex).__name__}: {ex}", flush=True)
+            if once:
+                return
+            time.sleep(interval)
+    if once:
+        print(render_text(dashboard_data())); return
+    try:
+        while True:
+            sys.stdout.write("\033[H\033[2J" + render_text(dashboard_data()) +
+                             f"\n\n(refreshes every {interval}s; Ctrl-C to quit; the pipeline keeps running)\n")
+            sys.stdout.flush()
+            time.sleep(interval)
+    except KeyboardInterrupt:
+        print()
+
+
 def cmd_try_prompts(n_rows, n_v1):
     """Test the real write and V1 stages on a few real source rows, in data-dry/ (data/ is never touched).
     Costs real tokens (a few cents to under a dollar); prints the cards, V1 verdicts, scores and cost per call."""
