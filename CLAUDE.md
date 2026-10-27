@@ -26,3 +26,10 @@ Rules for Claude Code sessions in this folder. The manual is README.md. Read it 
 - VM1 (this machine): research, the pipeline, probes and spikes. 8 CPUs, 22 GB, no GPU.
 - Trial runners `vm2` and `vm3` (generic names shared across projects; Windows PCs with WSL 2 on Tailscale, fast internet): the bundle kit's trial runners (`CG_RUNNER_HOST=vm2|vm3`, default vm2). Setup and disk care: README section 10. Never start a run on a runner that reports DISK_LOW (~/.runner/DISK_LOW).
 - VM1, VM2 and VM3 are three different PCs. VM3 is the PC tb-ws calls `tb-runner3` (same IP; tb-ws keeps that alias, CG uses `vm3`); it is shared, so tb-ws runs live there in ~/tb-runs beside CG's ~/cg-runs. VM2 is a new PC (not tb-ws's old `tb-runner`).
+
+## Working style
+- When the user says "check the dashboard" (or similar), run `python3 -I pipeline/cgpipe.py watch --once`, read its issues, bottleneck and the end of data/pipeline.log, then propose or apply the fix the issue suggests.
+- Before changing cgpipe.py, run `python3 -I pipeline/cgpipe.py selftest` (zero tokens) and run it again after; all scenarios must pass.
+- Subagent tiers in .claude/agents/: collector (haiku), analyst (sonnet), judge (opus); each returns 10 lines or fewer plus file paths.
+- Keep facts, inferences (marked INFERRED) and recommendations apart. Record versions and access dates.
+- Commits are local only, made when the user asks: a single-line message, no body and no Co-Authored-By or other attribution trailer.
