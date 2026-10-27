@@ -1,0 +1,284 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "8 h. It cuts across pyproject parsing, schema, lock format, resolver and the add/remove editors, and the build is slow. A frontier agent gets the basic resolution path but misses the editor commands and the marker/extra merges. A weaker model cannot build the tree.",
+  "cheat": "There is no upstream implementation to copy, and the issue is open. The hidden snapshots cover combinations not described in the issue text.",
+  "grading": "Hidden CLI tests with offline fixture indexes and local wheels: lockfile snapshots and exit codes for about 300 scenarios. The existing uv suite is a regression gate. Credit is the fraction of cases passed.",
+  "reference": "Our own implementation, estimated at 1500-2500 changed lines across the workspace, schema, resolver and CLI crates.",
+  "source": "https://github.com/astral-sh/uv issue #8949 @ 0.13.4 (head 2b50cbc0), Apache-2.0",
+  "task": "/app ships a history-less uv snapshot. The agent implements shared workspace dependency tables: a members' `{ workspace = true }` dependency reference resolved from the root table. It covers extras, markers, optional and dev groups, `uv add`, `uv lock`, `uv sync`, `uv remove`, lockfile output and clear errors.",
+  "title": "Workspace-wide shared dependency versions in uv"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "build-system",
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-008 0.30"
+  ],
+  [
+   "2026-10-20T21:15:15Z",
+   "v1",
+   "killed:K4",
+   "Acceptance gate fails as written: hidden lockfile snapshots cover combinations the task text does not describe, and the root table key and merge rules are unspecified, so a different valid implementation cannot be expected to pass. Curable by pinning the syntax and merge rules and listing the tested"
+  ]
+ ],
+ "id": "S-im-017",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.301,
+    "S-im-008"
+   ],
+   [
+    0.236,
+    "S-im-006"
+   ],
+   [
+    0.177,
+    "S-im-014"
+   ],
+   [
+    0.118,
+    "package_resolver [SpecBench]"
+   ],
+   [
+    0.103,
+    "arktype-json-schema-refs-dependencies [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 249,
+  "ci_files": 47,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "deterministic": false,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 25,
+  "flaky_names": [
+   "uv::python::python_install::python_install_compile_bytecode",
+   "uv::python::python_install::python_install_compile_bytecode_existing",
+   "uv::python::python_install::python_install_compile_bytecode_graalpy",
+   "uv::python::python_install::python_install_compile_bytecode_multiple",
+   "uv::python::python_install::python_install_compile_bytecode_pyodide",
+   "uv::python::python_install::python_install_compile_bytecode_pypy",
+   "uv::python::python_install::python_install_compile_bytecode_upgrade",
+   "uv::python::python_install::python_install_debug",
+   "uv::python::python_install::python_install_debug_freethreaded",
+   "uv::python::python_install::python_install_default",
+   "uv::python::python_install::python_install_default_from_env",
+   "uv::python::python_install::python_install_default_prerelease",
+   "uv::python::python_install::python_install_default_preview"
+  ],
+  "flaky_tests": 13,
+  "log": "3627ebc7a85)\n  Executable unittests src/lib.rs (target/debug/deps/uv_unix-d0fd4ddcd1b71724)\n  Executable unittests src/lib.rs (target/debug/deps/uv_version-c180a16d1cce1d9c)\n  Executable unittests src/lib.rs (target/debug/deps/uv_virtualenv-b763e54cd6c7fd55)\n  Executable unittests src/lib.rs (target/debug/deps/uv_warnings-d840a01cf32e99e5)\n  Executable unittests src/lib.rs (target/debug/deps/uv_windows-6e96d78af1668aaa)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace-7bec8dae11ca73fe)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace_commands-d67361e3f4ec2108)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   124,
+   124,
+   124
+  ],
+  "runs_without_report": 1,
+  "stable_failure_names": [
+   "uv::build::audit::audit_best_id_selection",
+   "uv::build::audit::audit_dependency_groups",
+   "uv::build::audit::audit_extras",
+   "uv::build::audit::audit_ignore_by_alias",
+   "uv::build::audit::audit_ignore_by_id",
+   "uv::build::audit::audit_ignore_config",
+   "uv::build::audit::audit_ignore_mixed_matched_unmatched",
+   "uv::build::audit::audit_ignore_partial",
+   "uv::build::audit::audit_ignore_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed",
+   "uv::build::audit::audit_ignore_until_fixed_config",
+   "uv::build::audit::audit_ignore_until_fixed_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix_for_other_package",
+   "uv::build::audit::audit_invalid_service_url",
+   "uv::build::audit::audit_json_no_vulnerabilities",
+   "uv::build::audit::audit_json_preview_warning",
+   "uv::build::audit::audit_json_vulnerability_and_project_status",
+   "uv::build::audit::audit_malformed_vulnerability_record",
+   "uv::build::audit::audit_multiple_vulnerabilities_same_package"
+  ],
+  "stable_failures": 2959,
+  "subdir": "",
+  "suite_s": 600,
+  "test_files": 607,
+  "tests_fail": 2972,
+  "tests_listed": 5579,
+  "tests_pass": 102,
+  "tests_skip": 0,
+  "tests_total": 3074,
+  "timeouts": [
+   "run1",
+   "run2",
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "kb": 222999,
+  "lang": "Rust",
+  "open_prs": 626,
+  "pushed": "2026-10-20",
+  "release": "0.13.4",
+  "spdx": "Apache-2.0",
+  "stars": 90935,
+  "test_files": 607,
+  "test_kb": 21370,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/astral-sh/uv/issues/8949|astral-sh-uv-8949-add-uv-workspace-dependencies-to-share-dep",
+ "source_notes": "repo https://github.com/astral-sh/uv; opened 2024-11-08",
+ "source_url": "https://github.com/astral-sh/uv/issues/8949",
+ "source_version": "",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/astral-sh/uv/issues/8949",
+  "facts": [
+   {
+    "claim": "uv issue #8949 exists, is open, opened 2024-11-08, requests cargo-like workspace.dependencies (shared dependency versions for members)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/8949"
+   },
+   {
+    "claim": "A maintainer states uv does not support this yet and that standards compliance for project.dependencies is the blocker",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/8949"
+   },
+   {
+    "claim": "Issue #15808 was marked as a duplicate of #8949",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/8949"
+   },
+   {
+    "claim": "No merged or open PR, branch or commit implementing shared workspace dependency version inheritance was found in uv",
+    "status": "not_found",
+    "url": "https://github.com/astral-sh/uv/issues/8949"
+   },
+   {
+    "claim": "uv licence is Apache License 2.0 (LICENSE-APACHE)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/blob/main/LICENSE-APACHE"
+   },
+   {
+    "claim": "Members can declare { workspace = true } under [tool.uv.sources] to resolve from the local workspace; root sources are inherited by members; a single uv.lock at the root; member version constraints are still declared per member (no version inheritance mechanism in docs)",
+    "status": "confirmed",
+    "url": "https://docs.astral.sh/uv/concepts/projects/workspaces"
+   },
+   {
+    "claim": "Grading surface of about 300 hidden CLI scenarios with snapshots",
+    "status": "not_found",
+    "url": "https://github.com/astral-sh/uv/issues/8949"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Buckets: parse/schema, basic lock/sync, add/remove editors, extras, markers, dev groups, errors. Frontier likely gets basic resolve, misses editor and marker/extra merges; weaker model stalls at build. No dated public evidence",
+   "build_cost": "3-5 days estimated: spec pinning, 1500-2500 line reference across 4 crates, 300-scenario fixture harness with offline indexes and local wheels",
+   "deliverable": "Root-level shared dependency table; member { workspace = true } references resolved from it; covers extras, markers, optional/dev groups, uv add/lock/sync/remove, lockfile output, clear errors",
+   "gates_anticheat": "Hidden snapshots outside image; regression suite edits detectable by re-running hidden set; no vendoring path for uv itself since agent builds from snapshot. Acceptance gap: exact lockfile snapshots on combinations not described in the task text",
+   "grading_surface": "~300 hidden CLI scenarios comparing lockfile snapshots and exit codes; existing uv suite as regression gate; fraction-of-cases credit",
+   "local_fit": "Smoke build green-ish: cargo build 249 s; test run hit 600 s timeout in all 3 runs, 5579 tests listed, 13 flaky, not deterministic on full suite. Needs subset-based gating; 16 GB and 8 cores is tight for full uv test binary",
+   "lookup": "none: no implementation found in uv history or PRs; maintainers say unsupported; search coverage limited",
+   "provenance": "astral-sh/uv (Apache-2.0, 90.9k stars, Rust), pinned head 2b50cbc0; issue #8949 open since 2024-11-08 requests workspace-level shared dependency versions",
+   "reference": "Own implementation, estimated 1500-2500 changed lines across workspace, schema, resolver, CLI crates; not yet written, no completeness evidence",
+   "ships": "history-less uv snapshot at 2b50cbc0 with existing suite; reference and hidden 300-scenario harness kept out of image",
+   "similarity": "Neighbours S-im-008 (0.301) and S-im-006 (0.236) are internal seeds, not public tasks; package_resolver 0.118 and DeepSWE arktype 0.103 are distinct. uv not on CROWDED list"
+  },
+  "kill_code": "K4",
+  "kill_reason": "Acceptance gate fails as written: hidden lockfile snapshots cover combinations the task text does not describe, and the root table key and merge rules are unspecified, so a different valid implementation cannot be expected to pass. Curable by pinning the syntax and merge rules and listing the tested combinations; reopen after that. Also: maintainers have declined this for standards-compliance reasons, which is a realism risk.",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; difficulty window plausible for 8 h but unverified"
+   },
+   "Build": {
+    "v": 2,
+    "why": "Reference plus 300-scenario harness likely 3-5 days"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Build 249 s fits 8 cores and 16 GB, but full test run timed out at 600 s in all 3 probes"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Cross-crate work across schema, resolver and CLI fits an 8 h tier"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at LICENSE-APACHE"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several buckets: resolve, lock, sync, add, remove, extras, markers, dev groups, errors"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest public neighbour 0.118; closest 0.301 is an internal sibling seed, not public"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real Apache-2.0 repo, open issue #8949 from 2024-11-08 with a maintainer comment"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is not written yet; 1500-2500 lines is an estimate with no completeness evidence"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "No upstream code to copy and hidden snapshots stay out of image; undisclosed combos blur what is sealed"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 300 snapshot scenarios with exit codes, but undisclosed combinations weaken the surface"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Subset run is not deterministic; spec cannot be pinned without leaving combinations open; or a single-dependency path takes more than a day to get passing.",
+   "pass_if": "Baseline fails deterministically on head; subset run is identical across 3 reps; spec pins syntax and merge rules for every combination the hidden set will test; basic path produces a stable lock snapshot.",
+   "steps": [
+    "In a networked throwaway container, clone astral-sh/uv at 2b50cbc0 and run cargo build --locked -p uv; time it (smoke build was 249 s).",
+    "Run a subset of the existing lock/sync/add test binary (not the full suite) three times to check determinism and per-test results; drop tests that are flaky or time out.",
+    "Create a 3-member workspace fixture with a root dependency table and a member { workspace = true } reference; run uv lock on head to confirm it fails, establishing the baseline.",
+    "Write a one-page spec pinning the root table key, the member reference syntax, and how extras, markers and dev groups merge; list the combinations the hidden cases will test.",
+    "Implement only the basic resolve path for one plain dependency (about 150 lines) and check one lock snapshot against the spec.",
+    "Record build time, subset flakiness, and whether the spec can be pinned without leaving combinations undefined."
+   ]
+  },
+  "summary": "Issue #8949 is real, open since 2024-11-08, Apache-2.0, and no implementation or open PR was found, so lookup is none and the seed is not a copy of public work. It is killed (K4) because the hidden snapshots test undisclosed combinations and the root table syntax is unspecified; fix the spec and the smoke build (amber: 249 s build, full test run timed out at 600 s, 13 flaky) before a spike."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75
+}

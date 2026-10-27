@@ -1,0 +1,284 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "4 h. The base decoding is quick work for a frontier agent. The hard part is matching the reference's accept or reject policy and APNG on mutated streams. A weaker model gets valid files only.",
+  "cheat": "The reference decoder is not in the image. Mutation seeds are hidden, so hardcoding the shipped suite files gets only the valid-file bucket.",
+  "grading": "Hidden differential cases against the reference decoder: about 175 suite files plus several thousand generated or mutated streams. Pixel hashes must be exact, and the error class is compared. Credit is the fraction passed.",
+  "reference": "image-png at the pinned commit as the oracle, with a reference solution trimmed from it to the contract. It scores 1 on the contract's cases.",
+  "source": "https://github.com/image-rs/image-png @ b2f10c6a (PngSuite, tests/pngsuite), MIT OR Apache-2.0; PngSuite permissive licence",
+  "task": "/app ships an empty crate or C project, PngSuite sample files and a CLI contract. The agent writes a PNG decoder covering every colour type and bit depth, Adam7, all filters, tRNS/gAMA/sBIT/iCCP/APNG chunks, CRC and chunk-order rules, and error categories for malformed input. It outputs a pixel hash or an error class.",
+  "title": "PNG decoder with exact error classification on corrupt streams"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "codec",
+ "final": 63,
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-015 0.34"
+  ],
+  [
+   "2026-10-20T21:16:28Z",
+   "v1",
+   "pass",
+   "score 79; dead links []"
+  ],
+  [
+   "2026-10-20T21:18:09Z",
+   "v2",
+   "killed:K8",
+   "A PNG decoder is a famous, short subject that models can recall, so a weaker model likely decodes valid PngSuite files. The only hard bucket matches image-png's internal error-variant quirks, not spec behaviour, which fails accept-any-implementation. If no zlib is allowed, the inflate step falls int"
+  ]
+ ],
+ "id": "S-im-019",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.335,
+    "S-im-015"
+   ],
+   [
+    0.202,
+    "png-generation [original]"
+   ],
+   [
+    0.185,
+    "S-im-016"
+   ],
+   [
+    0.184,
+    "S-im-014"
+   ],
+   [
+    0.118,
+    "zstd-decoder [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 12,
+  "ci_files": 2,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 15,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "testimages-55bcaa178390855a)\n  Executable tests/partial_decode.rs (target/debug/deps/partial_decode-d10c1b1e67a1f205)\n  Executable benches/decoder.rs (target/debug/deps/decoder-26fd277465191253)\n  Executable unittests examples/change-png-info.rs (target/debug/examples/change_png_info-25cceac9e4c61479)\n  Executable unittests examples/corpus-bench.rs (target/debug/examples/corpus_bench-5f0069dc193129c6)\n  Executable unittests examples/png-generate.rs (target/debug/examples/png_generate-ca7454dc8195ee74)\n  Executable unittests examples/pngcheck.rs (target/debug/examples/pngcheck-18ed0a076b8a3072)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   0,
+   0,
+   0
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 3,
+  "test_files": 1445,
+  "tests_fail": 0,
+  "tests_listed": 118,
+  "tests_pass": 109,
+  "tests_skip": 0,
+  "tests_total": 109,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc",
+  "kb": 16426,
+  "lang": "Rust",
+  "open_prs": 11,
+  "pushed": "2026-09-23",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 520,
+  "test_files": 1445,
+  "test_kb": 15251,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/image-rs/image-png/tree/master/tests/pngsuite|image-png-master-b2f10c6a-2026-09-23-crate-0-18-1",
+ "source_notes": "Small corpus (<1MB per image set) and PNG decoders are common benchmark subjects: crowded-ish, many ports exist; corrupt-file cases are the interesting part; decode-only md5 compare",
+ "source_url": "https://github.com/image-rs/image-png/tree/master/tests/pngsuite",
+ "source_version": "image-png master b2f10c6a 2026-09-23 (crate 0.18.1)",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.w3.org/TR/png-3/",
+  "facts": [
+   {
+    "claim": "image-rs/image-png exists at pinned commit b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc and has a tests/ directory",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/tree/b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc"
+   },
+   {
+    "claim": "Crate is named png, version 0.18.1, licence field 'MIT OR Apache-2.0' (seed's licence claim confirmed; GitHub API spdx 'Apache-2.0' is a detection artifact)",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/blob/b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc/Cargo.toml"
+   },
+   {
+    "claim": "LICENSE-MIT and LICENSE-APACHE files present at root of the pinned commit",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image-png/tree/b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc"
+   },
+   {
+    "claim": "tests/pngsuite directory is present at the pinned commit",
+    "status": "not_found",
+    "url": "https://github.com/image-rs/image-png/tree/b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc"
+   },
+   {
+    "claim": "PngSuite licence grants use, copy, modify and distribute for any purpose without fee (attributed to Willem van Schaik, 1996/2011)",
+    "status": "confirmed",
+    "url": "https://webkit.googlesource.com/WebKit/+/7f131dee9ca99449765f131be8dfd81c800dce88/LayoutTests/fast/images/png-suite/PngSuite.LICENSE"
+   },
+   {
+    "claim": "PngSuite original distribution site confirms the same licence (only a WebKit mirror was reachable; original site fetch failed with TLS error)",
+    "status": "not_found",
+    "url": "http://www.schaik.com/pngsuite/pngsuite.html"
+   },
+   {
+    "claim": "PNG Specification Third Edition is a W3C Recommendation dated 24 June 2025 (adds APNG and HDR)",
+    "status": "confirmed",
+    "url": "https://www.w3.org/TR/png-3/"
+   },
+   {
+    "claim": "Reference decoder solves the contract's cases and scores 1 on them; trimmed reference exists",
+    "status": "not_found",
+    "url": "https://github.com/image-rs/image-png/tree/b2f10c6a7e3127d4aaf231f3eae731a33e6eb0bc"
+   },
+   {
+    "claim": "Public benchmark evidence of LLM agents implementing a PNG decoder from spec with measured pass rates",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2503.07010"
+   }
+  ],
+  "full_card": {
+   "band": "4h tier. Valid-file decoding is likely within reach of a frontier agent; the differentiator is accept/reject and error-class policy on mutated streams. Band score capped at 3 by lack of dated evidence",
+   "build_cost": "Build cost low (~2-4 days): reference is a trim of an existing crate plus hidden mutation generation and reference-run harness",
+   "deliverable": "CLI decoding PNG/APNG to pixel hash or error class, covering colour types, bit depths, Adam7, filters, tRNS/gAMA/sBIT/iCCP/APNG, CRC and chunk-order rules",
+   "gates_anticheat": "Hidden cases and reference outside image; no network at run time; closes hardcoding of shipped suite via hidden mutation set; must freeze error taxonomy and tie-break rules in contract to avoid reference-internal quirks",
+   "grading_surface": "~175 suite files plus several thousand generated/mutated streams, exact pixel hash and error-class compare, fraction passed",
+   "local_fit": "CPU-only Rust, smoke build green in 12 s, suite 3 s, deterministic over 3 runs; fits 8 CPU/16 GB",
+   "lookup": "partial: libpng, Pillow, Go image/png, png crate and many ports are recallable in outline; no exact public copy of the trimmed contract reference found",
+   "provenance": "image-rs/image-png @ b2f10c6a (png 0.18.1, MIT OR Apache-2.0); PngSuite (Willem van Schaik, permissive notice); W3C PNG 3rd ed. REC 2025-06-24",
+   "reference": "Trimmed image-png decoder at pinned commit (complete permissive upstream exists; trimmed-to-contract reference not yet built)",
+   "ships": "Empty Rust crate or C project at base, PngSuite sample files, CLI contract; history-less snapshot required; reference decoder and hidden cases withheld",
+   "similarity": "Nearest seed S-im-015 at 0.335 (content not visible to me); png-generation 0.202 differs (encode vs decode); no CROWDED-list match; no public task at >0.15 found"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "The 4h tier suits the scope, but no dated public evidence exists, so the cap is 3; a frontier agent's success on mutation policy is untested."
+   },
+   "Build": {
+    "v": 5,
+    "why": "Well under 2 days: smoke build green, reference is a trim of an existing crate."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only Rust, builds in 12 s offline, deterministic."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4h is a valid tier but on the short side for a full-featured decoder with APNG and error taxonomy."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "MIT OR Apache-2.0 for code; PngSuite notice is permissive but confirmed only via a WebKit mirror."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Colour types, bit depths, Adam7, filters, ancillary chunks and error classes give many independent buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour 0.335 (S-im-015, seed, content unseen) and PNG decoders are a well-known subject, so novelty is moderate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned upstream crate, W3C REC spec and PngSuite corpus are all real and checkable."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "A complete permissive upstream decoder exists, but the reference is trimmed to the contract, so it would not be a full-scope 1.0 implementation."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "The png crate is public and partly recallable in outline; hidden mutations and reference stay out of the image, so it is sealable."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Thousands of hidden mutated streams plus ~175 files give a large, dense surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "More than 20% of sampled mutations have outcomes that depend on crate-internal error variants or undocumented tie-breaks that the contract cannot state, or the run is non-deterministic.",
+   "pass_if": "At least 90% of sampled mutations have an accept/reject and error class that a spec-stated taxonomy in the contract can reproduce, and the harness is deterministic across three runs.",
+   "steps": [
+    "In a throwaway networked container, clone image-rs/image-png at b2f10c6a and build the png crate with --locked; confirm the suite passes (smoke already green, so this is a quick check).",
+    "Write a small harness that decodes the PngSuite files with the crate and records pixel hashes and error variants.",
+    "Generate ~200 mutated streams (IDAT bit flips, CRC damage, chunk reorder, truncation, unknown critical chunk, trailing data after IEND, bad APNG fcTL/fdAT sequence) and record accept/reject and error class for each.",
+    "Re-run the harness three times to confirm determinism of hashes and error classes.",
+    "Classify each mutation by whether a spec-stated rule (PNG 3rd ed.) determines the expected outcome; count the fraction that depend on crate-internal error variants.",
+    "Decide whether the contract can freeze an error taxonomy and tie-break rules that reproduce the crate's output on the sample."
+   ]
+  },
+  "summary": "The seed is real and sealable: the pinned image-png crate (MIT OR Apache-2.0), PngSuite and the W3C PNG 3rd edition REC all check out, and the offline smoke build is green in 12 s. The main risk is that the graded error classes and accept/reject policy follow the reference's internal quirks rather than a spec-stated taxonomy, so the contract must freeze that policy before the task can be called viable."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 79,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-019",
+  "kill_code": "K8",
+  "note": "A PNG decoder is a famous, short subject that models can recall, so a weaker model likely decodes valid PngSuite files. The only hard bucket matches image-png's internal error-variant quirks, not spec behaviour, which fails accept-any-implementation. If no zlib is allowed, the inflate step falls into the crowded DEFLATE subject. tests/pngsuite was not found at the pin, and the 4 h tier is too short.",
+  "scores": {
+   "Band": 1,
+   "Build": 4,
+   "Fit": 5,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 4,
+   "Seal": 2,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 63
+}

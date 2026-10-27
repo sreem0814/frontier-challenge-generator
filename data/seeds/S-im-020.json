@@ -1,0 +1,327 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "20h. Many interacting resolution modes and the exact trace format. A frontier agent gets the classic and node10 paths but averages well below 1 on exports/imports conditions and nodenext. A weaker model stops at relative paths. Buckets per resolution mode.",
+  "cheat": "Upstream is public and the model knows the approach. Ship no git history, delete the baselines for hidden cases, and keep hidden layouts and expected traces out of the image.",
+  "grading": "Hidden subset of the repo's compiler/module baseline cases (several thousand, resolution traces and emitted diagnostics) compared exactly to stored baselines, plus unseen generated node_modules layouts. Score is the fraction passed over the reference's pass count. Build failure scores 0.",
+  "reference": "Upstream implementation at the pinned commit with the subsystem removed. It scores 1 and is roughly 6-10k lines.",
+  "source": "https://github.com/microsoft/TypeScript @ 28534d76 (tsgo, v7.0.2), Apache-2.0",
+  "task": "/app ships a history-less snapshot of the Go compiler with the module-resolution subsystem (node16/nodenext/bundler, paths, exports/imports maps, package.json lookup, type-reference directives, trace output) removed behind stubs. The agent rebuilds it so the compiler builds and resolves modules identically.",
+  "title": "Rebuild module resolution in the TypeScript Go compiler"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "compiler-toolchain",
+ "final": 74,
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-012 0.26"
+  ],
+  [
+   "2026-10-20T21:19:22Z",
+   "v1",
+   "pass",
+   "score 75; dead links ['https://github.com/microsoft/TypeScript/blob/main/src/compiler/moduleNameResolver.ts', 'https://github.com/microsoft/TypeScript/tree/28534d7609062699a68b1b66e2367f8d95dbf290/internal/module', 'https://github.com/microsoft/TypeScript/tree/main/tests/baselines/reference']"
+  ],
+  [
+   "2026-10-20T21:22:21Z",
+   "v2",
+   "pass",
+   "final 74"
+  ],
+  [
+   "2026-10-20T21:50:54Z",
+   "spike",
+   "error",
+   "success: API Error: Can't reach the API server \u2014 check your internet or DNS (EAI_AGAIN)"
+  ],
+  [
+   "2026-10-21T00:41:59Z",
+   "spike",
+   "killed:K3",
+   "Reference is ~2,840 non-blank non-comment non-test lines in internal/module (resolver.go 2300), not 6-10k as the seed claims. Adding modulespecifiers would not reach 6k.; Go 1.27 is required (go.work and go.mod say 1.27) but the container has Go 1.23.4. The 1.27.0 toolchain was auto-downloaded, so t"
+  ]
+ ],
+ "id": "S-im-020",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.262,
+    "S-im-012"
+   ],
+   [
+    0.244,
+    "S-im-016"
+   ],
+   [
+    0.204,
+    "S-im-014"
+   ],
+   [
+    0.142,
+    "c_compiler [SpecBench]"
+   ],
+   [
+    0.107,
+    "abs-module-cache-flags [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 1,
+ "smoke": {
+  "skipped": "repo over 2 GB, not probed"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "28534d7609062699a68b1b66e2367f8d95dbf290",
+  "kb": 2926520,
+  "lang": "Go",
+  "open_prs": 235,
+  "pushed": "2026-10-20",
+  "release": "v7.0.2",
+  "spdx": "Apache-2.0",
+  "stars": 111550,
+  "test_files": 50098,
+  "test_kb": 140236,
+  "tree_truncated": true
+ },
+ "source_key": "github.com/microsoft/typescript|microsoft-typescript",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: npx hereby runtests-parallel --light=true --reporter=spec. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/microsoft/TypeScript",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Reference is ~2,840 non-blank non-comment non-test lines in internal/module (resolver.go 2300), not 6-10k as the seed claims. Adding modulespecifiers would not reach 6k.",
+   "Go 1.27 is required (go.work and go.mod say 1.27) but the container has Go 1.23.4. The 1.27.0 toolchain was auto-downloaded, so the image must preinstall it.",
+   "Pinned SHA 28534d76 is a TypeScript monorepo checkout: the Go compiler is under tsc/ and the binary is ./cmd/tsc (there is no ./cmd/tsgo). Its version is 7.1.0-dev, not v7.0.2.",
+   "Under the stub, 3671 of the module-related subtests still pass, so the graded set must be restricted to cases the stub fails.",
+   "Public upstream (the merged TypeScript monorepo and the typescript-go history) contains the reference, and a Go model knows the resolver in outline."
+  ],
+  "build_minutes": 4,
+  "cases_sampled": 5280,
+  "commands_log": "git init; git fetch --depth 1 origin 28534d76 (the SHA resolves); cd tsc; GOTOOLCHAIN=go1.27.0 go build ./cmd/tsc (3.6 min cold); go test ./internal/testrunner -run 'TestLocal/.*(node16|nodenext|moduleResolution|bundler|packageJson|typeReferenceDirective|nodeModules|paths).*' -v -count=1 (3 runs, identical per-test results, 5219 PASS); stubbed resolveNodeLike and resolveTypeReferenceDirective, which gave 3671 PASS and 1548 FAIL; GOWORK=off go mod vendor (15 MB), then GOFLAGS=-mod=vendor GOPROXY=off go build (OK, but cached, so not a cold offline build).",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Stubbing the two resolver workers (resolveNodeLike, resolveTypeReferenceDirective) to return unresolved makes 1548 of 5280 sampled subtests fail. The other 3671 pass because they don't depend on resolution, so the task would have to grade only cases the stub fails (or treat the stub's pass set as the zero baseline). The sample ran 5219 PASS, 0 FAIL and 61 SKIP on the reference.",
+  "headroom_ok": true,
+  "image_gb_estimate": 2.5,
+  "kill_code": "",
+  "notes": "The SHA resolves and internal/module is at tsc/internal/module. The Go test harness (testrunner TestLocal, filtered by test-file name) compares output against 24k compiler and 22k conformance baselines; no Node or tsc is needed. About 592 test cases mention moduleResolution, node_modules or module-resolution error codes, and 156 baselines contain traces, so the 'several thousand' graded subcases is plausible only when counting each test's several baseline subtests (the sample ran 5280). Repo checkout is 416 MB and baselines are 295 MB, so image size is manageable. The 'start scores 0' point is not strictly met and needs a graded subset chosen from the stub's failures. The vendored build was checked only with warm caches, so a cold offline build is not proven. Reference size is the main weakness: ~2.8k lines against the 6-10k claimed. This is above the 150-line floor but small for a 20h tier. Band risk is K8, since a frontier agent can recall the resolver algorithm. The verdict is pass on feasibility only.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 5219,
+  "reference_lines": 2840,
+  "start_scores_zero": false,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/microsoft/typescript-go/blob/main/internal/module/resolver.go",
+  "facts": [
+   {
+    "claim": "microsoft/TypeScript release tag v7.0.2 exists (titled 'TypeScript 7.0.2', marked Latest)",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/TypeScript/releases/tag/v7.0.2"
+   },
+   {
+    "claim": "Tag v7.0.2 points to commit 1e4744d68260a7cb91b62b12edc3f6a2187faaf1, not the seed's pinned 28534d76",
+    "status": "contradicted",
+    "url": "https://github.com/microsoft/TypeScript/releases/tag/v7.0.2"
+   },
+   {
+    "claim": "Commit 28534d76 is browsable as internal/module on microsoft/TypeScript (tree URL at the pinned SHA)",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/TypeScript/tree/28534d7609062699a68b1b66e2367f8d95dbf290/internal/module"
+   },
+   {
+    "claim": "Repository licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/TypeScript/blob/main/LICENSE.txt"
+   },
+   {
+    "claim": "Go module resolver exists in microsoft/typescript-go at internal/module/resolver.go (with cache.go, types.go, util.go)",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/typescript-go/tree/main/internal/module"
+   },
+   {
+    "claim": "internal/module/resolver.go is about 2,384 lines (95 KB), so the whole removed subsystem is likely well under the seed's stated 6-10k lines",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/typescript-go/blob/main/internal/module/resolver.go"
+   },
+   {
+    "claim": "resolver.go implements node16, nodenext and bundler resolution, exports/imports handling and trace output",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/typescript-go/blob/main/internal/module/resolver.go"
+   },
+   {
+    "claim": "paths mapping is implemented in resolver.go (only partly visible in the fetched view)",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/typescript-go/blob/main/internal/module/resolver.go"
+   },
+   {
+    "claim": "typescript-go repo is archived (read-only since Sep 1 2026)",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/typescript-go/tree/main/internal/module"
+   },
+   {
+    "claim": "typescript-go README says the repo will be merged into microsoft/TypeScript and its tracker closed",
+    "status": "confirmed",
+    "url": "https://github.com/microsoft/typescript-go"
+   },
+   {
+    "claim": "Aggregator says the port is merged into microsoft/TypeScript and the staging repo is retired",
+    "status": "not_found",
+    "url": "https://openapps.pro/packages/typescript-native-preview"
+   },
+   {
+    "claim": "Trace baselines exist as tests/baselines/reference/*.trace.json and cover conditional exports resolution (PR #62310)",
+    "status": "confirmed",
+    "url": "https://gh.nn.ci/microsoft/TypeScript/pull/62310"
+   },
+   {
+    "claim": "Number of module-resolution trace baselines in the repo (basis for several thousand hidden cases)",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/TypeScript/tree/main/tests/baselines/reference"
+   },
+   {
+    "claim": "JS compiler resolver at src/compiler/moduleNameResolver.ts (~181 KB) exists on main",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/TypeScript/blob/main/src/compiler/moduleNameResolver.ts"
+   },
+   {
+    "claim": "Seed band claim: frontier agents pass classic and node10 but average well below 1 on exports/imports and nodenext",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/typescript-go/blob/main/internal/module/resolver.go"
+   },
+   {
+    "claim": "Seed test command npx hereby runtests-parallel applies to the Go port's grading harness",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/typescript-go"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier. Expect classic/node10 and basic node16 cases to pass; exports/imports conditions, nodenext and trace-exact formatting are the long tail. Band evidence is the seed's own claim, not public, so Band is capped at 3.",
+   "build_cost": "About 3 to 4 days: trim the snapshot, stub the resolver, write a baseline-compare grader, and verify the offline Go build. Smoke probe was skipped (repo over 2 GB), so the build is unverified.",
+   "deliverable": "Go resolver rebuilt (node10/classic, node16, nodenext, bundler, paths, exports/imports, package.json lookup, type-reference directives, --traceResolution output) so tsgo builds and matches hidden baselines exactly.",
+   "gates_anticheat": "No git history; delete baselines for hidden cases; keep hidden layouts and expected traces out of the image; no Node/tsc in image (an oracle); grader runs go build and compares baselines itself; no editing of tests or baseline files counted.",
+   "grading_surface": "Hidden subset of tests/baselines/reference module and trace cases (several thousand), exact text compare of resolution traces and diagnostics, plus unseen generated node_modules layouts; per-case partial credit over reference pass count. Count of baseline files not verified.",
+   "local_fit": "Go toolchain, offline build needs vendored modules; repo is 2.9 GB, so the trimmed snapshot must be measured; gVisor-safe; CPU only.",
+   "lookup": "Partial: the algorithm mirrors the public JS moduleNameResolver and the public typescript-go source, so a model knows the approach in outline; exact trace text cannot be recalled for thousands of cases.",
+   "provenance": "microsoft/TypeScript and microsoft/typescript-go (archived Sep 2026, merging into microsoft/TypeScript); Apache-2.0; v7.0.2 tag exists but targets 1e4744d6, not the seed SHA 28534d76, which is unverified on the web.",
+   "reference": "Upstream typescript-go internal/module (resolver.go alone ~2,384 lines; cache/types/util add more) at the pinned commit with subsystem removed; reference size of 6-10k lines is unverified.",
+   "ships": "history-less snapshot of the Go compiler at the pinned commit with internal/module resolution removed behind stubs; hidden baseline traces and generated node_modules layouts kept out of the image; no Node or typescript npm package in the image.",
+   "similarity": "Top l0 neighbours are sister seeds S-im-012 (0.262), S-im-016 (0.244), S-im-014 (0.204), all in compiler-toolchain; public neighbours c_compiler (0.142) and abs-module-cache-flags (0.107) are below 0.15. Not a near-duplicate, but scope must differ from the sister seeds."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence that frontier agents average well below 1 on this; the seed's band claim is unsupported."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days: snapshot trim, stubs, baseline grader, and an unverified offline Go build."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Go CPU build fits gVisor and 16 GB, but the 2.9 GB repo must be trimmed and vendored modules checked offline."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Resolver plus tracing, cache and type-reference paths is a multi-module surface that fits a 20h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed; permits shipping the snapshot and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-mode buckets (classic, node10, node16, nodenext, bundler, paths, exports/imports, trace) give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public-task neighbour above 0.15; sister seeds at 0.20-0.26 are same-family and need scope separation."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real Apache-2.0 repo and a real release with a Go resolver, but the pinned SHA is unverified and the tag points to a different commit."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete upstream resolver exists, but reference size (6-10k lines) and its pass count on hidden cases are unmeasured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public and the approach is recallable in outline; exact traces and hidden layouts stay out of the image if baselines are deleted and no Node/tsc is shipped."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Exact compare over several thousand baseline traces plus generated layouts; count of baseline files not verified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Pinned SHA does not contain the subsystem or does not match the release; the reference fails a meaningful share of baseline cases; the grader needs Node or npm packages; or the trimmed snapshot cannot build offline.",
+   "pass_if": "Pinned SHA resolves and contains internal/module; full build works offline with vendored modules; sampled baselines are deterministic across two runs; stubbed snapshot builds and fails the sampled cases; baseline count is at least several thousand.",
+   "steps": [
+    "In a throwaway container with network, clone microsoft/TypeScript and check out 28534d76; if the SHA does not resolve, fall back to microsoft/typescript-go at the commit matching v7.0.2.",
+    "Confirm the internal/module subsystem exists at the pinned commit and measure its line count (resolver, cache, types, util, and tracing call sites).",
+    "Run go build ./cmd/tsgo on the full repo and record time and disk use; then run vendoring so the build works with GOFLAGS=-mod=vendor and no network.",
+    "Run the Go test suite for the baseline harness on a sample of about 200 module and trace cases; record per-case pass/fail and rerun twice to check determinism.",
+    "Create a stub version with the resolver removed and confirm it builds and fails the sampled baseline cases (start must score 0).",
+    "Count tests/baselines/reference module and trace files and estimate the hidden subset size; check that no Node or typescript npm package is required by the grader.",
+    "Check whether the stubbed build still compiles the whole compiler; note the cost to trim the snapshot to fit the image size."
+   ]
+  },
+  "summary": "The Apache-2.0 TypeScript repo and its Go module resolver (internal/module/resolver.go, about 2,384 lines) are real and cover the requested modes, but the seed's pinned SHA is unverified (the v7.0.2 tag points to 1e4744d6 and the SHA tree returned 404). The idea is not killed; it is conditional on resolving the pinned commit, confirming the reference passes the baselines, and checking that no Node or npm oracle sits in the image."
+ },
+ "v1_links": {
+  "checked": 10,
+  "dead": [
+   "https://github.com/microsoft/TypeScript/blob/main/src/compiler/moduleNameResolver.ts",
+   "https://github.com/microsoft/TypeScript/tree/28534d7609062699a68b1b66e2367f8d95dbf290/internal/module",
+   "https://github.com/microsoft/TypeScript/tree/main/tests/baselines/reference"
+  ],
+  "ratio": 0.3
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-020",
+  "kill_code": "",
+  "note": "Kept, with conditions. Confirmed: the Go resolver exists in internal/module (resolver.go is about 2.4k lines, plus cache/types/util), the licence is Apache-2.0, and the trace baselines exist. Problems: the pinned SHA 28534d76 was not found, and the v7.0.2 tag points to 1e4744d6, so re-pin first. The 6-10k reference size is overstated; the real figure is probably 3-4k. The baseline count is unverified (the reference dir link is dead). Seal risks: (1) the JS moduleNameResolver.ts or a _submodules/TypeScript copy must not ship, otherwise the job is a line-by-line port (K8); (2) the trace message text sits in the shipped diagnostics catalog, which makes exact traces easier. That is fine, but remove the JS original. Grading reuses upstream baselines, so any correct resolver passes, and the change is realistic. Infra risk: the 2.9 GB repo, an unprobed offline Go build, and baseline-harness runtime. The 20h tier fits the per-mode buckets. Band is capped at 3 because there is no public evidence.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 74
+}

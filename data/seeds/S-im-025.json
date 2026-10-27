@@ -1,0 +1,275 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "20h. The surface is large: axis scale and ticks, label layout, legend and series. A frontier agent matches simple line and bar charts but not pie label layout or legend wrapping. A weaker model only gets structure.",
+  "cheat": "The model cannot recall exact SVG output. The Node oracle and the generated corpus are kept out of the image.",
+  "grading": "Differential. SVG outputs from a sealed Node ECharts run over a few thousand generated options are compared structurally, with element attributes at 0.01 tolerance and exact text. Score is the fraction of options matching, with per-chart-type buckets.",
+  "reference": "Our reference is a Python port of the layout and zrender SVG path, estimated at 5-8k lines. It is validated against the upstream output.",
+  "source": "https://github.com/apache/echarts @ 34f4d927 (6.1.0), Apache-2.0",
+  "task": "/app ships the ECharts TypeScript source as specification, with no Node SSR binary. The agent writes a Python library that turns an option JSON for line, bar, scatter and pie charts with axes, legend, title and grid into the SVG string that ECharts' SSR renderer produces.",
+  "title": "Port ECharts SVG server-side rendering to Python"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-015 0.21"
+  ],
+  [
+   "2026-10-20T21:20:11Z",
+   "v1",
+   "killed:K9",
+   "As written (line, bar, scatter, pie with axes, legend, title and grid; 5-8k-line reference), no frontier trial is likely to reach 0.9 of the reference in 20h: the seed itself says pie label layout and legend wrapping fail. Revival: cut scope to line and bar with axes, title and grid, dropping pie an"
+  ]
+ ],
+ "id": "S-im-025",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.206,
+    "S-im-015"
+   ],
+   [
+    0.205,
+    "S-im-021"
+   ],
+   [
+    0.192,
+    "S-im-020"
+   ],
+   [
+    0.104,
+    "MiniJinja port to Go [Armin Ronacher]"
+   ],
+   [
+    0.09,
+    "JustHTML Python to JavaScript port [Simon Willison]"
+   ]
+  ]
+ },
+ "method": "port",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 332,
+  "ci_files": 6,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && npm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "npm ci --no-audit --no-fund",
+  "cmd_test": "npx jest --ci --json --outputFile=$OUT/run$i.json",
+  "commit": "34f4d927eafe251f26f63afd3aeefa30f2feba30",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": true,
+  "fetch_s": 531,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": " bmap ts -> js-esm]: compiling ... done \n[extension bmap ts -> js-esm]: transforming ... done \nAll done.\nhusky - Git hooks installed\n\nadded 987 packages in 9m\nBundling  /p/src/index.common.js\nCreated  /p/src/dist/echarts.common.js  successfully.\nCreated  /p/src/dist/echarts.common.min.js  successfully.\nrollup build: 1:36.395 (m:ss.mmm)\nCheck code: correct.\nCheck code: correct.\nBundling  /p/src/index.simple.js\nCreated  /p/src/dist/echarts.simple.js  successfully.\nCreated  /p/src/dist/echarts.simple.min.js  successfully.\nrollup build: 1:08.072 (m:ss.mmm)\nCheck code: correct.\nCheck code: correct.",
+  "oom": false,
+  "ref": "default",
+  "report_format": "json",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "BrushController.test.ts::<file>",
+   "Global.test.ts::<file>",
+   "SeriesData.test.ts::<file>",
+   "aria-columns-exclude.test.ts::<file>",
+   "bar.test.ts::<file>",
+   "componentDependency.test.ts::<file>",
+   "componentMissing.test.ts::<file>",
+   "containPixel.test.ts::<file>",
+   "converter.test.ts::<file>",
+   "createDimensions.test.ts::<file>",
+   "custom.test.ts::<file>",
+   "dataTransform.test.ts::<file>",
+   "dataValueHelper.test.ts::<file>",
+   "event.test.ts::<file>",
+   "getVisual.test.ts::<file>",
+   "graphic.test.ts::<file>",
+   "helper.test.ts::<file>",
+   "interval.test.ts::<file>",
+   "layout.test.ts::<file>",
+   "model.test.ts::<file>"
+  ],
+  "stable_failures": 25,
+  "subdir": "",
+  "suite_s": 33,
+  "test_files": 1374,
+  "tests_fail": 25,
+  "tests_listed": 26,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 25,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "34f4d927eafe251f26f63afd3aeefa30f2feba30",
+  "kb": 271263,
+  "lang": "TypeScript",
+  "open_prs": 208,
+  "pushed": "2026-10-13",
+  "release": "6.1.0",
+  "spdx": "Apache-2.0",
+  "stars": 67559,
+  "test_files": 1374,
+  "test_kb": 36694,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/apache/echarts|apache-echarts",
+ "source_notes": "SWE-smith profile (javascript): its suite runs in a container; test command: npm run test -- --verbose. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/apache/echarts",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://echarts.apache.org/handbook/en/how-to/cross-platform/server",
+  "facts": [
+   {
+    "claim": "apache/echarts has a 6.1.0 release (tag 6.1.0, marked Latest)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/echarts/releases/tag/6.1.0"
+   },
+   {
+    "claim": "The 6.1.0 tag points to commit c5a48f5f97d23e5379720870b8444cd05b50ffb4, not 34f4d927",
+    "status": "confirmed",
+    "url": "https://github.com/apache/echarts/releases/tag/6.1.0"
+   },
+   {
+    "claim": "Seed pins 34f4d927 as 6.1.0; that commit is a Dependabot merge (PR #21777, bump brace-expansion) on the development branch, not the release",
+    "status": "contradicted",
+    "url": "https://github.com/apache/echarts/commit/34f4d927eafe251f26f63afd3aeefa30f2feba30"
+   },
+   {
+    "claim": "Repository licence is Apache License 2.0 (bundled d3.js under BSD-3-Clause)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/echarts/blob/master/LICENSE"
+   },
+   {
+    "claim": "ECharts has a zero-dependency, string-based server-side SVG renderer (renderer: 'svg', ssr: true, renderToSVGString()), introduced in 5.3.0, needing no DOM container",
+    "status": "confirmed",
+    "url": "https://echarts.apache.org/handbook/en/how-to/cross-platform/server"
+   },
+   {
+    "claim": "Full SSR renderer does not support legend click toggling or hover tooltips; pie is specially optimised for SSR; pie label layout is not specifically documented",
+    "status": "confirmed",
+    "url": "https://echarts.apache.org/handbook/en/how-to/cross-platform/server"
+   },
+   {
+    "claim": "A Python library ports ECharts SVG SSR output without JavaScript (lookup for a complete Python implementation)",
+    "status": "not_found",
+    "url": "https://tessl.io/registry/tessl/pypi-pyecharts/files/docs/rendering.md"
+   },
+   {
+    "claim": "Seed band claim that a frontier agent matches simple line and bar charts but not pie label layout or legend wrapping, with dated public evidence",
+    "status": "not_found",
+    "url": "https://echarts.apache.org/handbook/en/how-to/cross-platform/server"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier. Frontier likely covers line and bar with axes and title; pie label placement and legend wrapping likely fail. No dated public evidence, so Band capped at 3.",
+   "build_cost": "Reference 5-8k lines plus Node oracle harness and validation across chart types: estimated more than 5 days for us. Smoke build: npm build 332 s, suite amber (25 stable failures, 0 pass) so upstream jest is not a usable local check.",
+   "deliverable": "Python library: option JSON (line, bar, scatter, pie; axes, legend, title, grid) to SVG string matching ECharts 6.1.0 SSR output.",
+   "gates_anticheat": "Remove node and npm caches from image; no network at run time; oracle and corpus sealed; agent cannot call upstream renderer. Hidden corpus must be generated from a seed not in the image. Check for prebuilt dist or node_modules leaking the renderer.",
+   "grading_surface": "Few thousand generated options run through sealed Node ECharts SSR; structural SVG compare, attributes at 0.01 tolerance, exact text; per-chart-type buckets.",
+   "local_fit": "Pure Python at run time; Node only in sealed oracle; CPU-only; fits 8 cores / 16 GB.",
+   "lookup": "partial: upstream TS SSR code is public and shipped as spec, which is the task's own guide; no Python port found; no complete Python implementation found.",
+   "provenance": "apache/echarts, Apache-2.0, 67.5k stars; SSR SVG renderer public since 5.3.0. Seed pin 34f4d927 is a development merge; the 6.1.0 tag is c5a48f5. Re-pin to c5a48f5 before use.",
+   "reference": "Python port of the layout and zrender SVG path, est. 5-8k lines, not yet written; validated against upstream output.",
+   "ships": "ECharts TypeScript source as specification (history-less snapshot at the pinned tag). No Node binary, no node_modules, no built dist, no npm cache. Python-only toolchain for the agent.",
+   "similarity": "Nearest l0 neighbours are internal seeds S-im-015 (0.206), S-im-021 (0.205), S-im-020 (0.192); none is a public task; not on CROWDED list; differs in subject (SVG chart rendering)."
+  },
+  "kill_code": "K9",
+  "kill_reason": "As written (line, bar, scatter, pie with axes, legend, title and grid; 5-8k-line reference), no frontier trial is likely to reach 0.9 of the reference in 20h: the seed itself says pie label layout and legend wrapping fail. Revival: cut scope to line and bar with axes, title and grid, dropping pie and legend wrapping, then re-validate. Also flagged: the seed pin 34f4d927 is contradicted and must become c5a48f5; Build 2 risks K12 for full scope.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; seed's own claim implies frontier partial on pie and legend; capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Full 5-8k-line port plus oracle validation is likely over 5 days for us."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Pure Python at run time, CPU only; Node only in sealed oracle."
+   },
+   "Hor": {
+    "v": 5,
+    "why": "Large surface across four chart types, axes, legend, title, grid; 20h tier fits."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed; bundled d3 BSD-3 is also permissive."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-chart-type buckets plus axis, legend, title and grid sub-buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbours are internal seeds at 0.19-0.21; no public SVG-SSR task or CROWDED match."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real Apache-2.0 repo with public SSR feature; seed pin contradicted (34f4d927 is a dev merge, tag is c5a48f5)."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is an unwritten Python port; upstream is strong ground truth but no complete permissive Python implementation exists yet."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and corpus sealable, but the TS source is shipped and upstream is public; node must be stripped to prevent direct execution."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Thousands of generated options with an executable Node oracle and unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Output is non-deterministic across runs, SSR cannot run offline, or pie and legend SVG cannot be reproduced without the DOM.",
+   "pass_if": "Deterministic byte-identical SVG across two runs for all four chart types; SSR renders offline after npm ci; at least one pie and one legend case render without error.",
+   "steps": [
+    "Re-pin: clone apache/echarts, checkout tag 6.1.0 (c5a48f5), confirm HEAD matches and record the commit used.",
+    "npm ci at the tag; run the SSR build; confirm renderToSVGString works offline after install with renderer svg and ssr true.",
+    "Generate 10 options each for line, bar, scatter, pie with axes, legend, title and grid; render with Node; save SVG.",
+    "Run each option twice and diff bytes to confirm determinism.",
+    "Inspect the SSR source to see whether the zero-dependency string renderer is pure string output with no DOM dependency.",
+    "Check the jest SSR tests individually (the probe showed 25 stable failures); note which pass so the agent has a local check.",
+    "Measure the time to render 1000 options to size the oracle run.",
+    "Check that a Python-only image can run the spec without node; confirm the grader can run without the upstream toolchain."
+   ]
+  },
+  "summary": "The idea is real and licence-clean, but the seed pins a development commit (34f4d927) instead of the 6.1.0 tag (c5a48f5), and the full four-chart-type scope with 5-8k-line reference is likely unreachable for frontier agents in 20h (K9). A narrowed line-and-bar scope with axes, title and grid, re-pinned to c5a48f5, is the version to spike."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [
+   "https://tessl.io/registry/tessl/pypi-pyecharts/files/docs/rendering.md"
+  ],
+  "ratio": 0.2
+ },
+ "v1_score": 77
+}

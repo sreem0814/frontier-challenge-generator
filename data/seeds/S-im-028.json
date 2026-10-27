@@ -1,0 +1,247 @@
+{
+ "batch": 5,
+ "card": {
+  "band": "4h. The operators share scheduler and subscription teardown semantics, with many per-operator edge cases such as config objects, completion and error ordering, and unsubscribe timing. Frontier agents get the basic operators, but the config-heavy ones (throttle, timeout, windowTime) are where they average lower. A weaker model gets only the simple operators.",
+  "cheat": "Recalling upstream source from memory is possible but allowed. The hidden tests use new marble diagrams, not the public ones, and the snapshot has no git history or node_modules copy of rxjs.",
+  "grading": "Hidden marble-test files for the removed operators (hundreds of cases through TestScheduler) plus the existing suite as a regression gate. The shipped base fails every graded case. Reward is the fraction passed.",
+  "reference": "The removed upstream code, about 2-3k lines of TypeScript. It passes every hidden case.",
+  "source": "https://github.com/ReactiveX/rxjs @ 54796b38, Apache-2.0",
+  "task": "/app ships a history-less snapshot of rxjs with the scheduler layer (asap, async, queue, animationFrame, VirtualTime) and the time operators (debounceTime, throttle, auditTime, bufferTime, windowTime, timeout, delay, sampleTime, timestamp and related) removed and stubbed. The agent rebuilds them against the public API.",
+  "title": "Rebuild RxJS scheduling and time-based operators"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:21:22Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-20T21:21:22Z",
+   "write",
+   "short",
+   "batch 5"
+  ],
+  [
+   "2026-10-20T21:21:22Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-012 0.32"
+  ],
+  [
+   "2026-10-20T21:22:27Z",
+   "v1",
+   "killed:K8",
+   "The removed operators and scheduler are complete, famous, public rxjs code (npm and public git history). A frontier agent can recall them nearly verbatim, so it would likely reach the reference, and the rule treats this as too easy (Band and Seal both score low). Also the smoke probe gave no per-tes"
+  ]
+ ],
+ "id": "S-im-028",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.322,
+    "S-im-012"
+   ],
+   [
+    0.278,
+    "S-im-016"
+   ],
+   [
+    0.246,
+    "S-im-020"
+   ],
+   [
+    0.091,
+    "family (G and T channels) [TritonBench]"
+   ],
+   [
+    0.085,
+    "test-time-model-adaptation [PaperBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "g++ git make python3",
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 11,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "npx vitest run --reporter=json --outputFile=$OUT/run$i.json",
+  "commit": "54796b38a57e6309f9861e174737479bb3f63f61",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 5,
+  "log": "usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21553:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21672:14)\n    at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22292:23)\n    at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 73,
+  "test_files": 514,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "54796b38a57e6309f9861e174737479bb3f63f61",
+  "kb": 53335,
+  "lang": "TypeScript",
+  "open_prs": 69,
+  "pushed": "2026-08-08",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 31699,
+  "test_files": 514,
+  "test_kb": 16192,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/reactivex/rxjs|reactivex-rxjs",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: yarn nx run rxjs:test --reporter spec. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/ReactiveX/rxjs",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ReactiveX/rxjs/commit/54796b38a57e6309f9861e174737479bb3f63f61",
+  "facts": [
+   {
+    "claim": "ReactiveX/rxjs commit 54796b38a57e6309f9861e174737479bb3f63f61 exists (short 54796b3, title 'docs: Update thisArg pattern documentation', touches only packages/rxjs/MIGRATION.md)",
+    "status": "confirmed",
+    "url": "https://github.com/ReactiveX/rxjs/commit/54796b38a57e6309f9861e174737479bb3f63f61"
+   },
+   {
+    "claim": "The repo is licensed Apache License 2.0, which permits redistribution and modification with notice retention",
+    "status": "confirmed",
+    "url": "https://github.com/ReactiveX/rxjs/blob/master/LICENSE.txt"
+   },
+   {
+    "claim": "throttleTime emits a value then ignores source values for a duration, default config { leading: true, trailing: false }",
+    "status": "confirmed",
+    "url": "https://www.learnrxjs.io/learn-rxjs/operators/filtering/throttle"
+   },
+   {
+    "claim": "The rxjs npm package source is Apache-2.0 (npm package page itself not found; docs mirror only)",
+    "status": "not_found",
+    "url": "https://www.mintlify.com/ReactiveX/rxjs/api/operators/throttleTime"
+   },
+   {
+    "claim": "Public rxjs.dev API page for throttle exposes signature and config options (page fetch returned only the title)",
+    "status": "not_found",
+    "url": "https://rxjs.dev/api/index/function/throttle"
+   },
+   {
+    "claim": "windowTime and timeout source files exist in the RxJS source tree",
+    "status": "confirmed",
+    "url": "https://www.st-andrews.ac.uk/~cdn/dpl/sta-pattern-library/node_modules/rxjs/src/internal/operators/?C=S&O=D"
+   },
+   {
+    "claim": "Source facts: 514 test files, Apache-2.0, TypeScript, 31,699 stars, head 54796b38, pushed 2026-08-08 (from GitHub API, taken as given)",
+    "status": "confirmed",
+    "url": "https://github.com/ReactiveX/rxjs"
+   },
+   {
+    "claim": "Smoke probe: build ok but all 3 test runs exited 1 with no report, tests_listed 0 (verdict amber)",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Seed source_notes say test command is yarn nx run rxjs:test; smoke cmd_test is npx vitest run with JSON report; the two disagree",
+    "status": "contradicted",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "4h tier proposed; frontier likely recalls upstream operators, so average likely near reference; weaker model should lag; no dated public evidence",
+   "build_cost": "about 3 days: write per-test reporter from vitest, marble test harness, sealing, and reference check; under K12 limit",
+   "deliverable": "rebuilt asap/async/queue/animationFrame/VirtualTime schedulers and ~15 time operators against public API",
+   "gates_anticheat": "hidden tests and reference outside image; need to close editing tests, editing vitest config, and copying from any leftover node_modules or dist; not verified",
+   "grading_surface": "hidden marble-test files through TestScheduler, hundreds of cases, plus existing suite as regression gate; binary per-case, fraction passed",
+   "local_fit": "node/TypeScript, 514 test files, suite ~73s, 8 CPU fine; smoke amber with no per-test output",
+   "lookup": "direct: complete upstream implementations of all named operators are public and famous (rxjs npm, rxjs.dev docs)",
+   "provenance": "ReactiveX/rxjs @ 54796b38 (Apache-2.0, public upstream, operators and scheduler present in public history)",
+   "reference": "removed upstream code, about 2-3k lines TypeScript, passes all hidden cases",
+   "ships": "history-less snapshot of rxjs with scheduler layer and time operators removed/stubbed; upstream npm and git history are public so recall or reconstruction from public sources is the main risk",
+   "similarity": "neighbours S-im-012 (0.322), S-im-016 (0.278), S-im-020 (0.246) are other seeds, not checked; no public benchmark task on rxjs found; Nov not killed by K1 on available evidence"
+  },
+  "kill_code": "K8",
+  "kill_reason": "The removed operators and scheduler are complete, famous, public rxjs code (npm and public git history). A frontier agent can recall them nearly verbatim, so it would likely reach the reference, and the rule treats this as too easy (Band and Seal both score low). Also the smoke probe gave no per-test report (amber), so grading would need custom parsing.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Recall of famous upstream operators likely puts frontier agents near reference; no dated evidence"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days, mainly the per-test reporter and sealing work"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Node/TypeScript fits gVisor; smoke amber so runner needs custom reporting"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "2-3k lines in a 4h tier is plausible, but short of the sustained-work bar given recall shortcut"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the code and reference"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Many operators and scheduler pieces give steady partial-credit buckets"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public benchmark task found; close near-seed neighbours (0.322) from the same family"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real, pinned upstream commit with Apache-2.0 licence and public history"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Reference is the complete upstream code and passes all cases, so it would score 1"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Reference is public code that a frontier model can reproduce from memory, per the rule for famous code"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hundreds of marble cases through TestScheduler, a large grading surface"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Recalled code passes at least 85% of fresh marble cases, confirming K8 (too easy because the operators are recalled)",
+   "pass_if": "Recalled code fails at least 40% of fresh marble cases, showing that recall does not reach the reference",
+   "steps": [
+    "In a networked throwaway container, clone ReactiveX/rxjs and check out 54796b38; confirm the scheduler and time-operator source files exist at that commit.",
+    "Run the existing vitest suite with a JSON or spec reporter and record per-test results, since the smoke probe produced no report.",
+    "Without network or repo access, prompt a model to write throttleTime and timeout from memory against the public API, then run 20 fresh marble diagrams through TestScheduler.",
+    "Measure the pass rate on those fresh diagrams; compare against the upstream code, which should pass all of them.",
+    "Check whether the rebuilt code passes all fresh cases on the first try, which would confirm recall shortcut."
+   ]
+  },
+  "summary": "Seed S-im-028 is a real, licensed (Apache-2.0) pinned rxjs commit whose removed scheduler and time operators are public, famous upstream code, so frontier agents could recall them near-verbatim and reach the reference, making it too easy (K8) and weakly sealed. Smoke probe was amber (build ok, all three test runs exited 1 with no report), so any rebuild would need custom per-test grading."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

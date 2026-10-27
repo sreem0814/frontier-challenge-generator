@@ -1,0 +1,322 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "8h. Rust builds are slow and the surface spans many crates. A frontier agent lands the listing but misses edge semantics of cleaning and size accounting. A weaker model builds only part.",
+  "cheat": "The output format is only given in prose plus visible examples, and hidden environments vary. No upstream implementation exists to recall.",
+  "grading": "Hidden CLI behaviour tests, in the snapshot's snapshot-test style, run on temp dirs with fake installed tools and Pythons. They check output text, JSON, exit codes and filesystem effects. Score is the fraction passed. The probe was nondeterministic, so the sealed suite is restricted to stable tests.",
+  "reference": "Written by us, about 1800 added lines across several crates, with the CLI definition, docs and tests.",
+  "source": "https://github.com/astral-sh/uv/issues/11360 @ 2b50cbc0 (0.13.4), Apache-2.0",
+  "task": "/app ships a history-less uv snapshot. The agent implements unified management of every uv directory (cache, python installs, tool dir, tool bin, state and credentials). That means a `uv dirs` listing with JSON output, size accounting, selective `uv clean` targets with dry-run, and consistent env and config overrides.",
+  "title": "uv self dirs and uv clean unified directory management"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "build-system",
+ "final": 57,
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-022 0.30"
+  ],
+  [
+   "2026-10-20T21:18:49Z",
+   "v1",
+   "pass",
+   "score 67; dead links []"
+  ],
+  [
+   "2026-10-20T21:22:21Z",
+   "v2",
+   "killed:K8",
+   "Killed (K8). uv already has per-kind dir commands (cache/python/tool/auth dir, cache size), so `uv dirs` mostly combines existing helpers. Issue #11360 contradicts the claimed scope: size accounting, clean targets and dry-run are our own additions, and the output format is prose-only, so hidden test"
+  ]
+ ],
+ "id": "S-im-023",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.302,
+    "S-im-022"
+   ],
+   [
+    0.233,
+    "S-im-008"
+   ],
+   [
+    0.202,
+    "S-im-018"
+   ],
+   [
+    0.129,
+    "filesystem_spec [Commit0]"
+   ],
+   [
+    0.105,
+    "helm-unified-manifest-stream [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 249,
+  "ci_files": 47,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "deterministic": false,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 25,
+  "flaky_names": [
+   "uv::python::python_install::python_install_compile_bytecode",
+   "uv::python::python_install::python_install_compile_bytecode_existing",
+   "uv::python::python_install::python_install_compile_bytecode_graalpy",
+   "uv::python::python_install::python_install_compile_bytecode_multiple",
+   "uv::python::python_install::python_install_compile_bytecode_pyodide",
+   "uv::python::python_install::python_install_compile_bytecode_pypy",
+   "uv::python::python_install::python_install_compile_bytecode_upgrade",
+   "uv::python::python_install::python_install_debug",
+   "uv::python::python_install::python_install_debug_freethreaded",
+   "uv::python::python_install::python_install_default",
+   "uv::python::python_install::python_install_default_from_env",
+   "uv::python::python_install::python_install_default_prerelease",
+   "uv::python::python_install::python_install_default_preview"
+  ],
+  "flaky_tests": 13,
+  "log": "3627ebc7a85)\n  Executable unittests src/lib.rs (target/debug/deps/uv_unix-d0fd4ddcd1b71724)\n  Executable unittests src/lib.rs (target/debug/deps/uv_version-c180a16d1cce1d9c)\n  Executable unittests src/lib.rs (target/debug/deps/uv_virtualenv-b763e54cd6c7fd55)\n  Executable unittests src/lib.rs (target/debug/deps/uv_warnings-d840a01cf32e99e5)\n  Executable unittests src/lib.rs (target/debug/deps/uv_windows-6e96d78af1668aaa)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace-7bec8dae11ca73fe)\n  Executable unittests src/lib.rs (target/debug/deps/uv_workspace_commands-d67361e3f4ec2108)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   124,
+   124,
+   124
+  ],
+  "runs_without_report": 1,
+  "stable_failure_names": [
+   "uv::build::audit::audit_best_id_selection",
+   "uv::build::audit::audit_dependency_groups",
+   "uv::build::audit::audit_extras",
+   "uv::build::audit::audit_ignore_by_alias",
+   "uv::build::audit::audit_ignore_by_id",
+   "uv::build::audit::audit_ignore_config",
+   "uv::build::audit::audit_ignore_mixed_matched_unmatched",
+   "uv::build::audit::audit_ignore_partial",
+   "uv::build::audit::audit_ignore_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed",
+   "uv::build::audit::audit_ignore_until_fixed_config",
+   "uv::build::audit::audit_ignore_until_fixed_unmatched",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix",
+   "uv::build::audit::audit_ignore_until_fixed_with_fix_for_other_package",
+   "uv::build::audit::audit_invalid_service_url",
+   "uv::build::audit::audit_json_no_vulnerabilities",
+   "uv::build::audit::audit_json_preview_warning",
+   "uv::build::audit::audit_json_vulnerability_and_project_status",
+   "uv::build::audit::audit_malformed_vulnerability_record",
+   "uv::build::audit::audit_multiple_vulnerabilities_same_package"
+  ],
+  "stable_failures": 2959,
+  "subdir": "",
+  "suite_s": 600,
+  "test_files": 607,
+  "tests_fail": 2972,
+  "tests_listed": 5579,
+  "tests_pass": 102,
+  "tests_skip": 0,
+  "tests_total": 3074,
+  "timeouts": [
+   "run1",
+   "run2",
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "2b50cbc05bc99393dd5fe26aa2166fdfe3f2d8e4",
+  "kb": 222999,
+  "lang": "Rust",
+  "open_prs": 626,
+  "pushed": "2026-10-20",
+  "release": "0.13.4",
+  "spdx": "Apache-2.0",
+  "stars": 90935,
+  "test_files": 607,
+  "test_kb": 21370,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/astral-sh/uv/issues/11360|astral-sh-uv-11360-manage-all-uv-related-directories",
+ "source_notes": "repo https://github.com/astral-sh/uv; opened 2025-02-09",
+ "source_url": "https://github.com/astral-sh/uv/issues/11360",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/astral-sh/uv/issues/11360",
+  "facts": [
+   {
+    "claim": "Issue astral-sh/uv #11360 exists, is open, opened 2025-02-09, and requests a command listing all uv directories plus config-file entries for the Python install, Python bin and tool bin dirs",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/11360"
+   },
+   {
+    "claim": "Issue #11360 requests size accounting, uv clean changes or dry-run behaviour (as the seed's scope does)",
+    "status": "contradicted",
+    "url": "https://github.com/astral-sh/uv/issues/11360"
+   },
+   {
+    "claim": "Issue #11360 was split: #15834 (UV_TOOL_DIR), #15838 (tool/python bin dirs), #6506 (UV_PYTHON_INSTALL_DIR)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/issues/11360"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (LICENSE-APACHE text)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/blob/main/LICENSE-APACHE"
+   },
+   {
+    "claim": "Release 0.13.4 exists and is the newest release listed (20 Oct 2026); no release note up to 0.13.4 mentions uv dirs, uv clean, dry-run or a combined directory command (page text truncated after 0.12.21, so only the top portion was checked)",
+    "status": "confirmed",
+    "url": "https://github.com/astral-sh/uv/releases"
+   },
+   {
+    "claim": "A upstream 'uv dirs' or 'uv self dirs' command exists",
+    "status": "not_found",
+    "url": "https://docs.astral.sh/uv/reference/cli/"
+   },
+   {
+    "claim": "A top-level 'uv clean' command exists upstream (the seed's name for the cache cleaner)",
+    "status": "not_found",
+    "url": "https://docs.astral.sh/uv/reference/cli/"
+   },
+   {
+    "claim": "'uv cache clean' supports --dry-run upstream (only a third-party Tessl mirror says so)",
+    "status": "not_found",
+    "url": "https://docs.astral.sh/uv/reference/cli/"
+   },
+   {
+    "claim": "Per-kind directory commands exist upstream: uv cache dir, uv python dir, uv tool dir, uv auth dir, uv workspace dir; and uv cache size exists",
+    "status": "confirmed",
+    "url": "https://docs.astral.sh/uv/reference/cli/"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. A frontier agent may land the listing and JSON but miss clean/size edge semantics; a weaker model builds part. Expected average well below reference; no dated public evidence.",
+   "build_cost": "About 3-5 days: specify output formats, build the reference across crates, write stable CLI snapshot tests, and verify determinism on fake tools.",
+   "deliverable": "A unified directory command (uv dirs, JSON output, size accounting), selective cache/clean targets with dry-run, and consistent env/config overrides across cache, python installs, tool dir, tool bin, state and credentials.",
+   "gates_anticheat": "Hidden tests and reference sealed out of the image; agent cannot edit grader or build config (must confirm the image excludes the test harness). Probe showed the upstream suite is unusable as a local self-check (timeouts, 2972 failures), so the image needs a targeted local test set. Prose-only output format is an acceptance risk.",
+   "grading_surface": "Hidden CLI snapshot-style tests on temp dirs with fake tools and Pythons; checks text, JSON, exit codes, filesystem effects. Stable subset only. Size of the sealed suite not stated.",
+   "local_fit": "Rust on 8 cores/16 GB fits; cargo --offline build succeeds in probe, but the image must carry vendored crates; full upstream test suite exceeds 600 s and cannot be a grader or self-check.",
+   "lookup": "partial: per-kind dir commands exist upstream (cache dir, python dir, tool dir, cache size) and issue #11360 is open; no combined implementation found in releases through 0.13.4; nothing to recall as a full solution.",
+   "provenance": "Repo astral-sh/uv at 2b50cbc0 (0.13.4), Apache-2.0; issue #11360 is real and open but asks only for a directory listing plus config entries. Size accounting, clean changes and dry-run are our extension.",
+   "reference": "Ours, about 1800 added lines across several crates with CLI, docs and tests. Not public.",
+   "ships": "history-less Rust workspace snapshot at 2b50cbc0; probe clone and offline cargo build succeeded (249 s).",
+   "similarity": "Nearest seeds S-im-022 (0.302) and S-im-008 (0.233) are unseen here; likely same-repo overlap with S-im-022 needs checking. Public neighbours are below 0.15."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier partial credit is plausible in 8 h, but no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 3-5 days for reference, sealed tests and determinism checks."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Offline cargo build succeeds in probe; vendored crates and the 600 s test timeout need handling."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several crates and a large CLI surface support an 8 h run."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed by the LICENSE-APACHE text."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Listing, JSON, sizes, clean targets, dry-run and env/config overrides give separate buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public task neighbour above 0.15, but nearest seed S-im-022 is at 0.302 and may be a same-repo overlap."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real repo and open real issue #11360, but the requested scope is a narrower listing; clean, size and dry-run are ours."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Our reference is complete for our spec (about 1800 lines) and would score 1 by construction, but it is not an upstream or measured reference."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and reference stay sealed, but the spec is prose-based and the upstream repo is public history, so the snapshot must be history-less."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "CLI snapshot tests give tens to low hundreds of cases; not an executable oracle with an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Offline build fails with the vendored set, or the sheet varies between runs, or the spec cannot be fixed to a stable output format.",
+   "pass_if": "Build finishes offline within about 30 min; the CLI baseline matches the spec; the 20-case sheet is identical across three runs.",
+   "steps": [
+    "In a throwaway networked Linux container, clone astral-sh/uv at 2b50cbc0 and run cargo build --release --locked for the uv binary; time it and record the vendored-crate situation for --offline.",
+    "Run uv cache dir, uv python dir, uv tool dir, uv cache size, uv cache clean --help and uv cache prune --help to confirm the per-kind commands and whether --dry-run exists; record the output as the baseline.",
+    "Confirm whether a top-level uv clean command exists in this build; if not, fix the spec name to uv cache clean.",
+    "Write a 20-case spec sheet (listing text, JSON keys, exit codes, dry-run no-op, size totals) on temp dirs with fake tool and Python directories; run each case three times to check determinism.",
+    "Check that the reference-free image can run a targeted local test set in under 10 minutes, so agents do not rely on the full suite."
+   ]
+  },
+  "summary": "The repo, Apache-2.0 licence and open issue #11360 are real, but the issue only asks for a directory listing and config entries, while size accounting, uv clean and dry-run are our extension and the seed's `uv clean` and `uv self dirs` names do not appear upstream. No kill, but the title should be corrected to `uv cache clean` and the output format should be pinned in the spec before any build."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 67,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-023",
+  "kill_code": "K8",
+  "note": "Killed (K8). uv already has per-kind dir commands (cache/python/tool/auth dir, cache size), so `uv dirs` mostly combines existing helpers. Issue #11360 contradicts the claimed scope: size accounting, clean targets and dry-run are our own additions, and the output format is prose-only, so hidden tests would reject reasonable alternatives (K3 risk as well). The upstream suite timed out three times and was nondeterministic (2972 failures, 13 flaky), so it cannot serve as a regression gate or self-check without major build work.",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 57
+}

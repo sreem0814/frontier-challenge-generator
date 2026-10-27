@@ -1,0 +1,271 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "8h. The scope is wide and the paths are scattered through the crates. A frontier agent covers the main config and misses sessions, logs, skills and migration. A weaker model changes only config.",
+  "cheat": "Hardcoding the config path alone is not enough, because tests probe every file kind. Hidden tests are not shipped.",
+  "grading": "Hidden Rust integration tests drive public APIs and the CLI under temporary HOME and XDG_* environments, covering path resolution tables, precedence, migration and permissions. The existing suite is the regression gate. Score is the fraction of hidden cases passed.",
+  "reference": "Written by us, at least 1500 added lines across about 8 crates plus tests. The issue is a long-standing upstream request with 135 upvotes.",
+  "source": "https://github.com/openai/codex/issues/1980 @ cb00a675 (rust-v0.163.0), Apache-2.0",
+  "task": "/app ships a history-less Rust workspace snapshot. The agent adds XDG Base Directory support on Linux: config, data, state and cache locations for config.toml, auth, sessions, history, logs, skills and plugins. It adds env override precedence, a legacy ~/.codex fallback, a migration command and doctor output, across the crates that touch paths.",
+  "title": "XDG base directory support in the Codex CLI"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "other",
+ "final": 57,
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-006 0.35"
+  ],
+  [
+   "2026-10-20T21:18:36Z",
+   "v1",
+   "pass",
+   "score 70; dead links []"
+  ],
+  [
+   "2026-10-20T21:22:21Z",
+   "v2",
+   "killed:K3",
+   "Killed (K3). The grading surface is hand-rolled: hidden tests check our own invented path tables, migration command and doctor output. The maintainer declined the XDG default in issue #1980, so a maintainer would not accept the change, and a different valid design (different precedence, command name"
+  ]
+ ],
+ "id": "S-im-022",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.349,
+    "S-im-006"
+   ],
+   [
+    0.237,
+    "S-im-018"
+   ],
+   [
+    0.221,
+    "S-im-008"
+   ],
+   [
+    0.115,
+    "cliffy-config-file-parsing [DeepSWE]"
+   ],
+   [
+    0.096,
+    "family (Java, TS, JS, Go, Rust, C, C++) [Multi-SWE-bench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 31,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "false",
+  "commit": "2f5e242d9f869b0553bf37e007b85b2cbd9b31ef",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21553:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21672:14)\n    at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22292:23)\n    at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 1331,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cb00a67569450aea2fdb1b1f31fc042fc0b5416f",
+  "kb": 688333,
+  "lang": "Rust",
+  "open_prs": 163,
+  "pushed": "2026-10-20",
+  "release": "rust-v0.163.0",
+  "spdx": "Apache-2.0",
+  "stars": 130298,
+  "test_files": 1331,
+  "test_kb": 20632,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/openai/codex/issues/1980|openai-codex-1980-adhere-to-xdg-base-desktop-specification-o",
+ "source_notes": "repo https://github.com/openai/codex; opened 2025-08-08",
+ "source_url": "https://github.com/openai/codex/issues/1980",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/openai/codex/issues/1980",
+  "facts": [
+   {
+    "claim": "openai/codex issue #1980 exists, is open, and was opened 2025-08-08 requesting XDG Base Directory support on Linux",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/1980"
+   },
+   {
+    "claim": "Issue has 135 upvotes",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/issues/1980"
+   },
+   {
+    "claim": "Maintainer (bolinfest) declined changing the Linux default to $XDG_CONFIG_HOME/codex; ~/.codex stays default and CODEX_HOME is honored",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/1980"
+   },
+   {
+    "claim": "No merged or open PR in openai/codex implements XDG support (no linked PRs)",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/1980"
+   },
+   {
+    "claim": "Release rust-v0.163.0 exists (labelled Latest, published 15 Oct) and its notes do not mention XDG or path changes",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/blob/main/LICENSE"
+   },
+   {
+    "claim": "Source pinned at commit cb00a675 (source_facts head); smoke_build used commit 2f5e242d, so the pin is inconsistent",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0"
+   },
+   {
+    "claim": "No public complete XDG implementation for Codex found via search; no fork or package found",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/issues/1980"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Claimed: frontier covers config, misses sessions/logs/skills/migration; weaker model changes config only. No dated public evidence; unverified.",
+   "build_cost": "Unverified. Cold cargo build of a codex-scale workspace plus reference work estimated at 2-5 days; needs spike.",
+   "deliverable": "XDG paths on Linux for config.toml, auth, sessions, history, logs, skills, plugins; env precedence; ~/.codex legacy fallback; migration command; doctor output; across ~8 crates.",
+   "gates_anticheat": "Hidden tests not shipped; cheat paths (hardcoding config path only) are caught by per-file-kind tests. Need explicit CLI/command names and path tables in the task text, otherwise acceptance is unfair.",
+   "grading_surface": "Hidden Rust integration tests under temp HOME/XDG_* covering path tables, precedence, migration, permissions; fraction-of-cases score. Count not yet known; estimate hundreds of cases.",
+   "local_fit": "Rust workspace cold build on 8 cores/16 GB unverified; smoke probe was a Node check (no package.json at Rust root), so it proves nothing about cargo.",
+   "lookup": "none: no upstream PR, no later release, no package implements it. Maintainer declined the Linux default change, so the reference is our own design.",
+   "provenance": "Real issue openai/codex #1980 (open, Aug 2025, Apache-2.0); pinned to rust-v0.163.0 (Oct 2026). Commit pin inconsistent: cb00a675 in source vs 2f5e242d in smoke probe.",
+   "reference": "Written by us, 1500+ added lines across ~8 crates plus tests. No upstream implementation exists to match.",
+   "ships": "History-less Rust workspace snapshot at base; no XDG code. Must be re-pinned to one commit before spike.",
+   "similarity": "Nearest seed S-im-006 cosine 0.349 (different subject family); S-im-018 0.237; S-im-008 0.221; cliffy-config-file-parsing 0.115. No public task above 0.15 and not CROWDED. K1 not triggered."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Scope is wide, but no dated evidence; the 8h claim and weaker-model lag are unverified."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference of 1500+ lines across 8 crates plus cold build, estimated 2-5 days; unverified."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust workspace on 8 cores/16 GB is plausible but unbuilt; the Node probe does not show cargo works."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-crate work across many path kinds fits an 8h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed on LICENSE; shipping permitted."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Separate file kinds (config, auth, sessions, history, logs, skills, plugins) and migration/doctor give natural partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest seed neighbour is 0.349 (above 0.15), though not a public benchmark task and not CROWDED."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real issue and Apache-2.0 repo at a tagged release; but upstream maintainer declined the exact default-change request, and the commit pin is inconsistent."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Our own reference, no upstream code to be strong; quality and completeness unproven."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and hidden tests are ours and unshipped; the upstream codex code is public but the XDG design is not."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden integration tests over path tables, precedence, migration, permissions; size not yet counted, plausibly hundreds of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build OOMs or exceeds 4h; path logic lives in one helper (one-lever); or the spec cannot give unambiguous path tables and command names.",
+   "pass_if": "Build finishes within about 2h on 8 cores/16 GB, existing tests run deterministically, and path use spans at least 5 file kinds across several crates.",
+   "steps": [
+    "In a throwaway networked Linux container, clone openai/codex at one pinned commit (resolve cb00a675 vs 2f5e242d first) and record the commit.",
+    "Install the pinned Rust toolchain and run cargo build --release for the path-touching crates; time it and note peak RSS on 8 cores/16 GB.",
+    "Run the existing test suite (cargo test) on the path-touching crates; record pass/fail per test and check it is deterministic over 2 runs.",
+    "Grep for path sources (~/.codex, CODEX_HOME, dirs/home_dir, XDG) and count distinct call sites per file kind (config, auth, sessions, history, logs, skills, plugins).",
+    "Prototype one XDG resolver and wire it into two file kinds (config and sessions); time the change to estimate the per-kind work.",
+    "Decide whether call sites cluster into 5+ kinds (multi-bucket, keep) or one helper (one-lever, kill K10)."
+   ]
+  },
+  "summary": "The issue, repo, release and Apache-2.0 licence check out, but the upstream maintainer declined the Linux default-path change, so realism is weak and the spec must name every path table and command. The smoke probe is a Node check that never built the Rust workspace, so build cost and the 8h band are unverified; conditional pass pending the spike."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 70,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-022",
+  "kill_code": "K3",
+  "note": "Killed (K3). The grading surface is hand-rolled: hidden tests check our own invented path tables, migration command and doctor output. The maintainer declined the XDG default in issue #1980, so a maintainer would not accept the change, and a different valid design (different precedence, command names or table) would fail. The 135 upvotes were not found. The smoke probe ran a Node build on a Rust workspace and proves nothing, and the commit pin is inconsistent (cb00a675 vs 2f5e242d). The work is mostly rerouting path call sites, so it also risks being too easy (K8).",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 57
+}

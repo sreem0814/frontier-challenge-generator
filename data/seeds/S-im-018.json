@@ -1,0 +1,315 @@
+{
+ "batch": 3,
+ "card": {
+  "band": "4 h. A mid-size surface with many options. A frontier agent covers the download path and misses the restore-key semantics, safe path handling and range retries. A weaker model stops at a single-key download.",
+  "cheat": "The feature is not in upstream, so there is nothing to copy. The mock service's behaviours are hidden and probed with unseen keys and archives.",
+  "grading": "Hidden Go tests through the cobra command tree, with httpmock-style fixtures and generated tarballs (about 250 scenarios). The existing suite is a regression gate. Credit is the fraction passed.",
+  "reference": "Our implementation, estimated at 1200-1800 lines including cmd packages, API client changes and tests.",
+  "source": "https://github.com/cli/cli issue #9125 @ v2.102.0 (head 5cfe3062), MIT",
+  "task": "/app ships a pinned gh snapshot and a mock Actions cache HTTP service. The agent adds `gh cache download` and `gh cache restore`: key and ref selection, restore-key prefix matching, chunked download, zstd/tar unpack, checksum verification, `--json` output and a cross-ref filter, with help and error handling. It adds tests, and also covers listing filters and pagination as needed.",
+  "title": "gh cache download and restore with a local mock cache service"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:14:01Z",
+ "family": "protocol",
+ "final": 57,
+ "history": [
+  [
+   "2026-10-20T21:14:01Z",
+   "write",
+   "short",
+   "batch 3"
+  ],
+  [
+   "2026-10-20T21:14:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-017 0.29"
+  ],
+  [
+   "2026-10-20T21:15:15Z",
+   "v1",
+   "pass",
+   "score 69; dead links []"
+  ],
+  [
+   "2026-10-20T21:18:09Z",
+   "v2",
+   "killed:K2",
+   "Maintainers confirm no public API exists for downloading caches, so the mock wire format and restore semantics would be our invention. That leaves no real artifact to test against, and a hand-written scenario suite would encode our own design choices. Infrastructure is also shaky: the smoke build ti"
+  ]
+ ],
+ "id": "S-im-018",
+ "kill": "K2",
+ "l0": {
+  "neighbours": [
+   [
+    0.294,
+    "S-im-017"
+   ],
+   [
+    0.24,
+    "S-im-006"
+   ],
+   [
+    0.224,
+    "S-im-008"
+   ],
+   [
+    0.123,
+    "bandit-incremental-cache-control [DeepSWE]"
+   ],
+   [
+    0.122,
+    "hf-model-inference [archive]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 600,
+  "ci_files": 19,
+  "clone_ok": true,
+  "cmd_build": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -run '^$' ./... >/dev/null",
+  "cmd_fetch": "go mod download all",
+  "cmd_test": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -json -p 4 ./...",
+  "commit": "ad27e286ab6eb101f192176defdfea7475e2a267",
+  "deterministic": false,
+  "eco": "go",
+  "fetch_ok": false,
+  "fetch_s": 600,
+  "flaky_names": [
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/classic_personal_access_token",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/empty_token",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/fine-grained_personal_access_token_with_internal_underscore",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/oauth_token",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/refresh_token",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/server-to-server_token",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/token_equal_to_known_prefix_has_nothing_to_mask",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/token_with_multiple_internal_underscores_masks_everything_after_prefix",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/token_without_underscore_is_fully_masked",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/unknown_prefix_is_fully_masked",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::TestMaskToken/user-to-server_token",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun/json,_all_valid_tokens",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun/json,_all_valid_tokens_with_active",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun/json,_all_valid_tokens_with_hostname",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun/json,_bad_token",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun/json,_bad_token_from_env",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun/json,_timeout_error",
+   "github.com/cli/cli/v2/pkg/cmd/auth/status::Test_statusRun/json,_token_from_env"
+  ],
+  "flaky_tests": 3004,
+  "log": "go: downloading go1.27.3 (linux/amd64)",
+  "oom": false,
+  "ref": "default",
+  "report_format": "go-json",
+  "run_rcs": [
+   124,
+   124,
+   124
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "github.com/cli/cli/v2/internal/config::<package>",
+   "github.com/cli/cli/v2/internal/config::TestMigrationWriteErrors",
+   "github.com/cli/cli/v2/internal/config::TestMigrationWriteErrors/failure_to_write_config",
+   "github.com/cli/cli/v2/internal/config::TestMigrationWriteErrors/failure_to_write_hosts"
+  ],
+  "stable_failures": 4,
+  "subdir": "",
+  "suite_s": 300,
+  "test_files": 279,
+  "tests_fail": 8,
+  "tests_listed": null,
+  "tests_pass": 4961,
+  "tests_skip": 7,
+  "tests_total": 4976,
+  "timeouts": [
+   "fetch",
+   "build",
+   "run1",
+   "run2",
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "5cfe30624ffccf88c319f1e6528a033657b00c99",
+  "kb": 82533,
+  "lang": "Go",
+  "open_prs": 73,
+  "pushed": "2026-10-20",
+  "release": "v2.102.0",
+  "spdx": "MIT",
+  "stars": 46703,
+  "test_files": 279,
+  "test_kb": 12355,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/cli/cli/issues/9125|cli-cli-9125-add-a-way-to-download-github-actions-caches",
+ "source_notes": "repo https://github.com/cli/cli; opened 2024-05-24",
+ "source_url": "https://github.com/cli/cli/issues/9125",
+ "source_version": "",
+ "status": "killed:K2",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/cli/cli/issues/9125",
+  "facts": [
+   {
+    "claim": "cli/cli issue #9125 exists, is open, opened 2024-05-24, and requests a `gh cache download` subcommand for Actions caches",
+    "status": "confirmed",
+    "url": "https://github.com/cli/cli/issues/9125"
+   },
+   {
+    "claim": "Issue #9125 has no linked branches or pull requests; comments describe only workarounds, not a CLI implementation",
+    "status": "confirmed",
+    "url": "https://github.com/cli/cli/issues/9125"
+   },
+   {
+    "claim": "Maintainers say the Actions cache REST APIs only support list, view and delete, with no GraphQL objects, and the request was escalated to the Actions team (blocked label)",
+    "status": "confirmed",
+    "url": "https://github.com/cli/cli/issues/9125"
+   },
+   {
+    "claim": "pkg/cmd/cache on trunk contains only delete, list, shared and cache.go, with no download or restore subcommand",
+    "status": "confirmed",
+    "url": "https://github.com/cli/cli/tree/trunk/pkg/cmd/cache"
+   },
+   {
+    "claim": "gh release v2.102.0 exists (released 30 Sep; year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/cli/cli/releases/tag/v2.102.0"
+   },
+   {
+    "claim": "The v2.102.0 changelog has no entry mentioning gh cache, download or restore",
+    "status": "confirmed",
+    "url": "https://github.com/cli/cli/releases/tag/v2.102.0"
+   },
+   {
+    "claim": "The cli/cli repository is licensed under the MIT License (Copyright (c) 2019 GitHub Inc.)",
+    "status": "confirmed",
+    "url": "https://github.com/cli/cli/blob/trunk/LICENSE"
+   },
+   {
+    "claim": "The public GitHub REST Actions cache API has no endpoint that downloads a cache archive (only list, get, delete, usage and limits)",
+    "status": "confirmed",
+    "url": "https://docs.github.com/en/rest/actions/cache"
+   },
+   {
+    "claim": "The pinned head 5cfe3062 is the commit the smoke build ran on",
+    "status": "contradicted",
+    "url": "https://github.com/cli/cli"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier. Frontier covers download path, likely misses restore-key semantics, safe paths, range retries. Weaker model stops at single-key download. No dated public evidence yet",
+   "build_cost": "Estimated 3-4 days (not measured): smoke amber/red, 600 s build and fetch timeouts, 3004 flaky tests, rc 124 runs; mock service plus reference plus hidden tests adds time",
+   "deliverable": "`gh cache download` and `gh cache restore` with key/ref selection, restore-key prefix matching, chunked/ranged download, zstd/tar unpack with safe paths, checksum verification, --json output, cross-ref filter, help and errors, tests, optional list filters and pagination",
+   "gates_anticheat": "Grader runs its own mock instance with unseen keys/archives, so shipped mock behaviour is not the graded one; hidden tests replace test files; build config and vendoring are reset from snapshot; existing suite must stay green. Open question: a shipped mock is readable, so it must be a separate build from the graded one",
+   "grading_surface": "About 250 hidden Go scenarios through the cobra command tree with httpmock-style fixtures and generated tarballs; existing suite as regression gate; fraction passed",
+   "local_fit": "Go on 8 cores and 16 GB is fine, but the offline build needs a pre-filled module cache (GOPROXY=off); the smoke probe timed out at build, fetch and every run",
+   "lookup": "none: no upstream implementation, no PR, no later release; ghx only downloads the gh binary; the actions/cache npm protocol is a recall risk for the mock's wire format",
+   "provenance": "cli/cli issue #9125 (open since 2024-05-24, 'Add a way to download github actions caches'), MIT, Go, release v2.102.0",
+   "reference": "Own implementation, estimated 1200-1800 lines including cmd packages, API client and tests; not yet written or measured",
+   "ships": "History-less gh snapshot pinned at v2.102.0 (head 5cfe3062; smoke used ad27e286, must be re-pinned) plus a mock Actions cache HTTP service with hidden behaviours",
+   "similarity": "Nearest l0 neighbour S-im-017 at 0.294, then S-im-006 at 0.24; no CROWDED overlap; differs in protocol-level download and restore semantics"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "4 h tier fits a mid-size surface, but no dated public evidence, so capped at 3; weaker model stopping at single-key is a real gap"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days; smoke probe red/amber with timeouts"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Go on 8 cores is fine, but offline build and suite timing were not proven by the probe"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4 h is fitting for the scope, but the surface is closer to a few-thousand-line sweep than a deep multi-week task"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, confirmed at LICENSE"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Many independent buckets: key/ref, restore-keys, chunking, unpack, checksum, json, filter, pagination"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.294 (below 0.3, above 0.15); not crowded"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real open gh issue #9125 and MIT repo; the download protocol itself is a mock, not a real API, since public REST has no archive download"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Own reference not written yet; complete permissive gh implementation is plausible but will be tied to an invented mock protocol"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden mock instance and cases are sealable, but a shipped mock is readable and the actions/cache wire format is recallable"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 250 hidden scenarios through cobra with generated tarballs and mock behaviours"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "The offline build cannot be made to succeed with a pre-filled module cache, or the existing suite cannot be pruned to a stable regression gate (failures vary between runs without a clear cause).",
+   "pass_if": "Offline build of ./cmd/gh succeeds with a pre-filled module cache in under about 15 min; the cache-package tests are stable across 3 runs; the stub download works end-to-end against the local mock.",
+   "steps": [
+    "In a throwaway networked Linux container, clone cli/cli and check out v2.102.0 (confirm the head is 5cfe3062; the smoke probe ran ad27e286, so re-pin).",
+    "Run `go mod download`, then time `go build ./cmd/gh` and record the module cache size. This tests whether the offline GOPROXY=off build fits the budget.",
+    "Run `go test -json ./pkg/cmd/cache/...` and then `go test -json -p 4 ./...` twice. Compare failures with the probe's 3004 flaky count and the 8 stable failures to see if the existing suite can serve as a regression gate.",
+    "Write a 60-line throwaway mock cache server (list and download routes, one archive) and a stub `gh cache download <key>` that calls it. Check one end-to-end run with GOPROXY=off after the module cache is filled.",
+    "Run one fixed new test three times to check determinism, and confirm the mock wire format is independent of the public actions/cache npm protocol."
+   ]
+  },
+  "summary": "The seed is real and not in upstream: cli/cli #9125 is open with no PR, and the v2.102.0 release and MIT licence check out. It is not killed, but it is conditional: the smoke probe was amber/red at a different commit (ad27e286 vs 5cfe3062), the public REST API has no archive download so the protocol is a mock, and the build is unproven offline, so the spike must confirm the offline build and a stable regression gate before the 4 h tier is trusted."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 69,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-018",
+  "kill_code": "K2",
+  "note": "Maintainers confirm no public API exists for downloading caches, so the mock wire format and restore semantics would be our invention. That leaves no real artifact to test against, and a hand-written scenario suite would encode our own design choices. Infrastructure is also shaky: the smoke build timed out on every step, it reported 3004 flaky tests, and the pinned head contradicts the commit that was probed.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 2,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 57
+}

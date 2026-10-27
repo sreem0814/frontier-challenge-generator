@@ -1,0 +1,236 @@
+{
+ "batch": 5,
+ "card": {
+  "band": "8h. The levers are independent (SpMV layout, ordering, supernodes, threading) and give steady credit. Frontier agents get SpMV and threading but not supernodal Cholesky. A weaker model stops at -O3 and OpenMP.",
+  "cheat": "Precomputing results keyed by matrix name. The hidden matrices are new and values are perturbed per run.",
+  "grading": "A gate checks results against a reference implementation in the grader (residual norm and exact structure for SpGEMM) on hidden matrices. The score is median wall-clock speedup against our reference, as 2^u-1.",
+  "reference": "Our own optimized implementation, about 3k lines, with measured speedups on the same matrices. Use only matrices whose collection licence allows redistribution.",
+  "source": "https://sparse.tamu.edu/about, CC-BY 4.0 (matrices only)",
+  "task": "/app ships a baseline C++ CSR library with a naive SpMV, SpGEMM and sparse Cholesky, plus a Matrix Market loader and a driver. The agent makes them faster through reordering (AMD/RCM), blocking, SIMD, threading on 8 cores and a supernodal factorization, keeping the API.",
+  "title": "Sparse matrix kernels on SuiteSparse matrices"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:21:22Z",
+ "family": "numeric-scientific",
+ "final": 64,
+ "history": [
+  [
+   "2026-10-20T21:21:22Z",
+   "write",
+   "short",
+   "batch 5"
+  ],
+  [
+   "2026-10-20T21:21:22Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-011 0.20"
+  ],
+  [
+   "2026-10-20T21:24:01Z",
+   "v1",
+   "pass",
+   "score 71; dead links ['https://tracker.debian.org/media/packages/s/suitesparse/copyright-17.14.0dfsg-1']"
+  ],
+  [
+   "2026-10-20T21:25:53Z",
+   "v2",
+   "killed:K5",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-op-012",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.197,
+    "S-op-011"
+   ],
+   [
+    0.158,
+    "cholesky_factorization [AlgoTune]"
+   ],
+   [
+    0.153,
+    "matrix_exponential_sparse [AlgoTune]"
+   ],
+   [
+    0.15,
+    "S-im-031"
+   ],
+   [
+    0.149,
+    "S-im-029"
+   ]
+  ]
+ },
+ "method": "mutate",
+ "rank": 3,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "sparse.tamu.edu/about|n-a-input-set-pairing-older-sparse-solver-library-release-su",
+ "source_notes": "q:\"The matrices themselves are under the CC-BY 4.0 License.\" and \"this license asks you to cite the source of the matrices.\" Ship Matrix Market files with citations. Good for data-layout/SIMD/blocking levers.",
+ "source_url": "https://sparse.tamu.edu/about",
+ "source_version": "n/a (input set); pairing = older sparse solver/library release (SuiteSparse, Eigen, SciPy sparse)",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://sparse.tamu.edu/about",
+  "facts": [
+   {
+    "claim": "SuiteSparse About page states the matrices are under CC-BY 4.0",
+    "status": "confirmed",
+    "url": "https://sparse.tamu.edu/about"
+   },
+   {
+    "claim": "SuiteSparse About page says the CC-BY 4.0 licence asks users to cite the source of the matrices (and cite Davis and Hu 2011 when using the collection as a data set)",
+    "status": "confirmed",
+    "url": "https://sparse.tamu.edu/about"
+   },
+   {
+    "claim": "Matrices are offered in MATLAB .mat, Rutherford-Boeing and Matrix Market formats",
+    "status": "confirmed",
+    "url": "https://sparse.tamu.edu/about"
+   },
+   {
+    "claim": "Number of matrices in the collection (seed does not state it, but a surface count is needed)",
+    "status": "not_found",
+    "url": "https://sparse.tamu.edu/about"
+   },
+   {
+    "claim": "Per-matrix licences are uniformly CC-BY 4.0 (no exceptions); some matrices carry their own citation text in metadata (e.g. LAW set)",
+    "status": "not_found",
+    "url": "https://sparse.tamu.edu/about"
+   },
+   {
+    "claim": "Matrix Market exchange format is a NIST-documented ASCII format with coordinate and array sub-formats (NISTIR 5935)",
+    "status": "confirmed",
+    "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir5935.pdf"
+   },
+   {
+    "claim": "Public supernodal sparse Cholesky exists (SuiteSparse CHOLMOD) and its licence is mixed per module, not a single LGPL block; this is a lookup risk, not a seed claim",
+    "status": "confirmed",
+    "url": "https://tracker.debian.org/media/packages/s/suitesparse/copyright-17.14.0dfsg-1"
+   },
+   {
+    "claim": "Reference implementation (~3k lines, optimized, supernodal Cholesky) exists and is complete",
+    "status": "not_found",
+    "url": "https://sparse.tamu.edu/about"
+   },
+   {
+    "claim": "Measured reference speedups on the same matrices",
+    "status": "not_found",
+    "url": "https://sparse.tamu.edu/about"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Frontier likely gets SpMV and threading; supernodal Cholesky is hard. Weaker model stops at -O3/OpenMP. No dated evidence (E0), so Band capped at 3.",
+   "build_cost": "Build cost 4-5 days estimated for ~3k-line reference incl. supernodal Cholesky and oracle; borderline against K12 (>5 days). smoke_build skipped (no git source), so no build verified.",
+   "deliverable": "Faster SpMV, SpGEMM, sparse Cholesky with reordering (AMD/RCM), blocking, SIMD, 8-thread threading, supernodal factorization; API kept.",
+   "gates_anticheat": "Correctness gate on hidden matrices with per-run perturbed values defeats precomputed-by-name results. Forbid editing tests/build config; disallow vendoring a system solver (CHOLMOD/Eigen) since licence mixed and not installable offline.",
+   "grading_surface": "Hidden matrices (count not stated) x three kernels; correctness gate on residual norm and exact SpGEMM structure; score = median wall-clock speedup vs our reference, 2^u-1. Count unknown until spec'd.",
+   "local_fit": "CPU, 8 cores, 16 GB, offline; fits. Threading wall-clock noise under gVisor is a risk to median-speedup measurement.",
+   "lookup": "Public supernodal solvers (CHOLMOD, SuperLU, Eigen) and public SpMV/SpGEMM techniques known in outline; not installable offline; no code in image. Verdict partial.",
+   "provenance": "SuiteSparse Matrix Collection (Davis and Hu 2011; Kolodziej et al. 2019 JOSS). Matrices CC-BY 4.0 with citation. Baseline C++ library is synthetic/ours (no upstream code).",
+   "reference": "Our own ~3k-line optimized implementation (not public, not verified). Speedups claimed but unmeasured in the seed.",
+   "ships": "Baseline CSR library (naive SpMV, SpGEMM, sparse Cholesky), Matrix Market loader, driver, visible Matrix Market sample files with citations. Hidden matrices not shipped.",
+   "similarity": "Max l0 neighbour 0.197 (S-op-011, our seed). AlgoTune cholesky_factorization 0.158 and matrix_exponential_sparse 0.153 are Python single-function tasks, different deliverable. Not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Band 4-5 needs dated evidence; none found (E0), so capped at 3 by rule."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Est. 4-5 days to build the ~3k-line reference with supernodal Cholesky and oracle."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, 8 cores, 16 GB, offline; threaded timing noise under gVisor is a risk."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8h tier with several independent levers (layout, ordering, SpGEMM, supernodal, threading)."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "CC-BY 4.0 allows redistribution with citation; CHOLMOD licence mixed so do not vendor it."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Multiple independent kernels and levers give steady partial-credit buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour cosine 0.197; AlgoTune tasks are Python single-function, different deliverable."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real SuiteSparse collection and NIST Matrix Market format; baseline and reference are ours, not an upstream project."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference planned at ~3k lines with speedups claimed but not measured; strength depends on spike."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public collection and public solver outlines; hidden matrices and reference stay out of image, but supernodal approach is recallable."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden matrices across three kernels with correctness gate; count not stated, so 4 not 5."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Median timings vary by more than about 30% between repeats (K4), or the proxy gives no headroom above -O3 + OpenMP so the reference cannot be shown to be meaningfully faster (K5/K8).",
+   "pass_if": "Baseline and proxy pass the correctness gate deterministically, and median speedup repeats within about 10% across runs; the proxy reaches a clear gain over the baseline, with headroom above -O3 + OpenMP.",
+   "steps": [
+    "In a throwaway networked Linux container, fetch ~8 small-to-medium SuiteSparse matrices in Matrix Market format (sparse.tamu.edu) and record their citations.",
+    "Build the naive baseline library with -O2 and check it passes the residual/structure checks on those matrices.",
+    "Write a quick proxy for the reference: RCM ordering plus -O3 CSR SpMV with OpenMP at 8 threads, and a simple SpGEMM; check the residual and structure gate.",
+    "Run each kernel 5 times per matrix and record the median wall-clock time; compute the speedup over the baseline and the spread between repeats.",
+    "Repeat with perturbed values per run to confirm the results are not cached by matrix name and the gate still holds.",
+    "Estimate the speedup ceiling from the proxy to check that the reference is well above what -O3 and OpenMP reach.",
+    "Stop after 60 minutes of work and record which kernel gave the largest gap and how noisy the medians were."
+   ]
+  },
+  "summary": "The seed is a plausible 8h multi-lever optimization task on public SuiteSparse matrices, with the CC-BY 4.0 licence and citation requirement confirmed and the Matrix Market format confirmed. The main risks are unmeasured reference speedups, timing noise under gVisor, the recallable supernodal approach, and a reference build cost near the 5-day limit, so it passes validation pending the spike."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [
+   "https://tracker.debian.org/media/packages/s/suitesparse/copyright-17.14.0dfsg-1"
+  ],
+  "ratio": 0.3333333333333333
+ },
+ "v1_score": 71,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-012",
+  "kill_code": "",
+  "note": "The matrices are real (CC-BY 4.0, cite on use), but the baseline library is ours and the ~3k-line reference with supernodal Cholesky is unwritten and unmeasured (Build 4-5 days, close to K12). A linear u on raw speedup is distorted by fill-reducing ordering, which alone gives orders-of-magnitude Cholesky gains: score per kernel on a log or geomean basis, or ship a baseline that already uses AMD so the levers stay balanced. The 8-thread wall-clock noise under gVisor stub cgroups needs measuring. The per-matrix licence/citation exceptions were not checked.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 64
+}

@@ -1,0 +1,234 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "8h. Eval takes a few minutes. Frontier agents should beat popularity; a weaker model stops at it. Drift across months is the main trap.",
+  "cheat": "The hidden window is excluded from the shipped data and the user ids are hashed.",
+  "grading": "NDCG@k and Recall@k on hidden later-month listens, with cold-start users and new items as the OOD split. Normalised between the popularity baseline and our tuned reference. No published baselines were found (not found).",
+  "reference": "A tuned iALS/ItemKNN blend that we train. The ceiling comes from our run.",
+  "source": "https://metabrainz.org/datasets/postgres-dumps, CC0 (check pseudonymisation)",
+  "task": "/app ships a pseudonymised sample of listens (tens of millions of events) with a time-split loader. The agent trains a CPU recommender (item-kNN, iALS, sequence) and delivers a predict script.",
+  "title": "Next-month listen recommendation on ListenBrainz dumps"
+ },
+ "class": "research",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "other",
+ "final": 69,
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-006 0.19"
+  ],
+  [
+   "2026-10-20T21:28:43Z",
+   "v1",
+   "pass",
+   "score 71; dead links []"
+  ],
+  [
+   "2026-10-20T23:19:25Z",
+   "v2",
+   "killed:K8",
+   "final 69 below line"
+  ]
+ ],
+ "id": "S-rs-007",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.195,
+    "S-rs-006"
+   ],
+   [
+    0.115,
+    "S-op-012"
+   ],
+   [
+    0.093,
+    "S-im-031"
+   ],
+   [
+    0.067,
+    "fastapi-users [NL2Repo-Bench]"
+   ],
+   [
+    0.064,
+    "payments-pipeline-fix [tasks]"
+   ]
+  ]
+ },
+ "method": "research",
+ "rank": 5,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "metabrainz.org/datasets/postgres-dumps|baseline-popularity-item-knn-on-earlier-time-window-referenc",
+ "source_notes": "Not a ready benchmark: needs our own preprocessing and split. OOD split: train on months 1-N, hidden next month(s); or hold out whole users (cold start) and items (new releases). Levers: same as Yambda. Single-source (metabrainz.org); listen schema not inspected. INFERRED: 5-15 min per eval on a 20-50M-event sample. Chosen as CC0 alternative to Last.fm (403 on UPF page, NOT OPENED, so no row).",
+ "source_url": "https://metabrainz.org/datasets/postgres-dumps",
+ "source_version": "Baseline: popularity / item-kNN on earlier time window. -> Reference: tuned iALS/ItemKNN/sequence model (we would produce); NO published baselines found on pages opened.",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://metabrainz.org/datasets/postgres-dumps",
+  "facts": [
+   {
+    "claim": "ListenBrainz PostgreSQL data dumps are released under CC0 (CC0 1.0 deed linked from the dumps page)",
+    "status": "confirmed",
+    "url": "https://metabrainz.org/datasets/postgres-dumps"
+   },
+   {
+    "claim": "Public dumps contain hundreds of millions of listens, XZ-compressed PostgreSQL table dumps, full dumps twice a month plus daily incrementals",
+    "status": "confirmed",
+    "url": "https://metabrainz.org/datasets/postgres-dumps"
+   },
+   {
+    "claim": "User ids in the public dumps are pseudonymised or hashed (seed says the sample hashes user ids; the source page does not say this about the raw dumps)",
+    "status": "not_found",
+    "url": "https://metabrainz.org/datasets/postgres-dumps"
+   },
+   {
+    "claim": "Listen-level fields (user id, recording, timestamp) are listed in the public dump schema; the dump page does not enumerate them",
+    "status": "not_found",
+    "url": "https://metabrainz.org/datasets/postgres-dumps"
+   },
+   {
+    "claim": "Listening history is published under CC0 for users who sign up, with profile private information excluded (secondary listing, not the primary terms page)",
+    "status": "confirmed",
+    "url": "https://alternativeto.net/software/listenbrainz/about"
+   },
+   {
+    "claim": "A ListenBrainz listens dataset paper/poster exists (ISMIR 2024), describing a growing collection passing 800 million entries",
+    "status": "confirmed",
+    "url": "https://ismir2024program.ismir.net/poster_317.html"
+   },
+   {
+    "claim": "A published ListenBrainz next-month recommendation benchmark reporting NDCG/Recall exists",
+    "status": "not_found",
+    "url": "https://ismir2024program.ismir.net/poster_317.html"
+   },
+   {
+    "claim": "Yambda-5B is a public music listen dataset for ranking/retrieval reporting NDCG@k, Recall@k and Coverage@k (the closest neighbour, same subject and levers)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2505.22238"
+   },
+   {
+    "claim": "Published popularity, iALS or ItemKNN baseline numbers on a ListenBrainz hidden-month split",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2505.22238"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Popularity is the floor; frontier should beat it via kNN/iALS and drift handling. Weaker model expected to stop at popularity. Unverified.",
+   "build_cost": "about 3-4 days: streaming XZ dump parse, pseudonymisation, time split, OOD slices, popularity baseline, tuned reference, anti-cheat, hidden-set generation.",
+   "deliverable": "Trained CPU recommender (item-kNN, iALS, sequence or blend) plus a predict script producing top-k per user.",
+   "gates_anticheat": "Hidden window and reference absent from image; no network at run time; hashed user ids; predict script must run offline; must not read hidden file path or ship precomputed scores.",
+   "grading_surface": "NDCG@k and Recall@k on hidden later-month listens; OOD slices: cold-start users and new items; thousands of users.",
+   "local_fit": "CPU only, 8 cores, 16 GB: iALS and ItemKNN on tens of millions of events fit; needs a sample sized to fit in the image and in RAM at train time.",
+   "lookup": "partial: iALS and ItemKNN are public in the implicit library and textbook; the drift-aware split, cold-start and new-item handling and the ListenBrainz data are not published as a task. No ListenBrainz rec benchmark found.",
+   "provenance": "MetaBrainz ListenBrainz PostgreSQL listen dumps, CC0; real public user listening data; no git source (dumps only).",
+   "reference": "Our tuned iALS/ItemKNN blend, trained by us; ceiling from our run; normalised between popularity baseline and reference. No published baselines found.",
+   "ships": "Pseudonymised sample of tens of millions of listens with a time-split loader; hidden later-month window removed; user ids hashed (our step, unverified against raw dump).",
+   "similarity": "Nearest S-rs-006 at 0.195 (above the 0.15 novelty line) and S-op-012 at 0.115. Same subject and levers as Yambda-5B; differs in dataset (ListenBrainz vs Yambda), split and OOD slices. Must be differentiated from S-rs-006 or merged."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausible 8h band but no dated public evidence of agent results on this kind of work; weaker-model claim unverified."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-4 days of preprocessing, split, baselines and reference work."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only recommender training fits 8 cores and 16 GB on a sized sample."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Preprocessing, drift-aware split, several model families and tuning fit an 8h budget."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "CC0 confirmed for the dumps; pseudonymisation of user ids unconfirmed and must be checked before shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several buckets: NDCG, Recall, cold-start users, new items, drift; popularity gives a floor."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour S-rs-006 at 0.195 is above the 0.15 line and shares levers with Yambda; differs on dataset and split."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real public CC0 ListenBrainz dumps with a published dataset paper trail; schema and pseudonymisation not yet inspected."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is our own tuned blend, not an upstream implementation; ceiling depends on our run."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden window and reference stay out of the image, but the raw data is public so hidden months can be rebuilt by anyone with network; sealed only at run time."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of hidden users and items with NDCG/Recall over OOD slices; an executable oracle over a large hidden window."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "No timestamp or user field in the dump; pseudonymisation cannot be done without leaking identity; tuned models do not beat popularity by a meaningful margin on the held-out month (then K8 or K9); or evaluation is non-deterministic.",
+   "pass_if": "Listens table has user, item and timestamp fields; hashed ids keep joins intact; popularity NDCG is non-zero; iALS or ItemKNN beats popularity by a clear margin on the held-out month; eval repeats identically and runs in under 15 minutes.",
+   "steps": [
+    "In a throwaway Linux container with network, list the ListenBrainz postgres dump directory and pick the smallest recent full dump chunk that contains the listens table.",
+    "Stream-decompress the XZ table (no full extraction) and record the exact column names and types; confirm user id, recording identifier and listened_at timestamp exist.",
+    "Check whether user ids are already pseudonymous or raw integers; apply a salted hash to a 1-month slice and confirm joins still work.",
+    "Cut a 2-month sample of about 20M events, do a time split (train months 1..N-1, hold out month N) and a cold-start user slice.",
+    "Implement a popularity baseline and a basic ItemKNN; compute NDCG@10 and Recall@10 on the held-out month.",
+    "Run a quick implicit-library iALS on the same split and compare against popularity to check the lift is real.",
+    "Run the whole evaluation twice with the same seed to check determinism and time a single eval."
+   ]
+  },
+  "summary": "The ListenBrainz dumps are confirmed CC0 and real, but user-id pseudonymisation, the listen schema and any published ListenBrainz benchmark are not confirmed. The idea is not killed; it passes to a 60-minute spike, with a risk that its levers duplicate S-rs-006 (Yambda-style) and must be differentiated."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-rs-007",
+  "kill_code": "",
+  "note": "The CC0 dumps and the ISMIR 2024 dataset paper are confirmed. The listen schema and the pseudonymisation of raw user names are unverified (dumps carry public usernames, so we must hash them). No published baselines; the ceiling is our own tuned iALS/kNN, so Ref and Band are weak. Overlaps S-rs-006 (Yambda-like) and is close to crowded Kaggle-style recsys training. Must merge or differentiate it through the OOD slices for cold-start users and new items.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 4,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 69
+}

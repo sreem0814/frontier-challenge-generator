@@ -1,0 +1,271 @@
+{
+ "batch": 5,
+ "card": {
+  "band": "4h. The scope is narrow, but the grouping rules, cursor restore and interaction with placeholders and history give many edge buckets. Frontier agents get plain typing and miss coalescing and attachment cases. A weaker model breaks the build.",
+  "cheat": "Snapshotting the whole text on each keypress would fail the grouping and cursor cases. The hidden sequences check cursor and element state, not just the text.",
+  "grading": "Hidden Rust tests through the composer public API and rendered-buffer checks (several hundred scripted edit sequences), plus the existing TUI suite as a regression gate. The shipped base fails every graded case.",
+  "reference": "Our own implementation, about 900-1200 added lines, with tests.",
+  "source": "https://github.com/openai/codex issue #2379 @ cb00a675, Apache-2.0",
+  "task": "/app ships a pinned codex-rs snapshot. The agent adds an edit history to the TUI composer: undo/redo with grouped typing, paste, deletion, word-wise edits, attachment placeholders and history recall. Keybindings are configurable and the history survives mode changes and submitted-message recall.",
+  "title": "Undo and redo for the Codex TUI composer"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:21:22Z",
+ "family": "other",
+ "final": 59,
+ "history": [
+  [
+   "2026-10-20T21:21:22Z",
+   "write",
+   "short",
+   "batch 5"
+  ],
+  [
+   "2026-10-20T21:21:22Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-022 0.34"
+  ],
+  [
+   "2026-10-20T21:24:13Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-20T21:25:53Z",
+   "v2",
+   "killed:K8",
+   "About 1k added lines in a single TUI component sits close to the DeepSWE calibration (~600 lines, ~74% solve), so it is too easy for the tier. Undo grouping and cursor-restore rules are design choices, so hidden key sequences would reject reasonable alternatives. A near-complete public fork PR (astr"
+  ]
+ ],
+ "id": "S-im-031",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.343,
+    "S-im-022"
+   ],
+   [
+    0.324,
+    "S-im-006"
+   ],
+   [
+    0.304,
+    "S-im-029"
+   ],
+   [
+    0.163,
+    "json-tui [ProgramBench]"
+   ],
+   [
+    0.141,
+    "tui-journal [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 5,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 31,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "false",
+  "commit": "2f5e242d9f869b0553bf37e007b85b2cbd9b31ef",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21553:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21672:14)\n    at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22292:23)\n    at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 1331,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cb00a67569450aea2fdb1b1f31fc042fc0b5416f",
+  "kb": 688333,
+  "lang": "Rust",
+  "open_prs": 163,
+  "pushed": "2026-10-20",
+  "release": "rust-v0.163.0",
+  "spdx": "Apache-2.0",
+  "stars": 130298,
+  "test_files": 1331,
+  "test_kb": 20632,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/openai/codex/issues/2379|openai-codex-2379-undo-redo-typing",
+ "source_notes": "repo https://github.com/openai/codex; opened 2025-08-16",
+ "source_url": "https://github.com/openai/codex/issues/2379",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/openai/codex/issues/2379",
+  "facts": [
+   {
+    "claim": "openai/codex issue #2379 'Undo / redo typing' exists, is open, opened 2025-08-16, asks for Cmd-Z/Shift-Cmd-Z undo/redo of prompt text",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/2379"
+   },
+   {
+    "claim": "Upstream undo/redo in the composer exists only for Vim mode (vim_normal); non-modal undo is not in upstream as of the issue's latest comments",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/2379"
+   },
+   {
+    "claim": "Release rust-v0.153.0 added Vim-mode composer undo (u) and redo (Ctrl+R) that keep full drafts including paste and attachments",
+    "status": "confirmed",
+    "url": "https://newreleases.io/project/github/openai/codex/release/rust-v0.153.0"
+   },
+   {
+    "claim": "Fork PR astral303/codex#10 'Add non-Vim composer undo and unify history across modes' is open, unmerged, based on 0.163.0, covers paste bursts, history recall, attachments, configurable keybindings and reports 439 passing codex-tui tests (self-reported, earlier branch state)",
+    "status": "confirmed",
+    "url": "https://github.com/astral303/codex/pull/10"
+   },
+   {
+    "claim": "rust-v0.163.0 release exists (released 15 Oct, tag commit 8308618) and its notes do not mention undo, redo or composer",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0"
+   },
+   {
+    "claim": "Source is Apache-2.0, Rust, 130k stars, not archived, not a fork (GitHub API fields supplied in seed)",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex"
+   },
+   {
+    "claim": "Smoke probe verified an offline Rust (codex-rs) build and a deterministic test suite",
+    "status": "contradicted",
+    "url": "https://github.com/openai/codex"
+   },
+   {
+    "claim": "Hidden grading of several hundred scripted edit sequences exists and is sealed",
+    "status": "not_found",
+    "url": "https://github.com/openai/codex/issues/2379"
+   }
+  ],
+  "full_card": {
+   "band": "3 at 4h without dated agent-trial evidence; recommend 8h tier. Partial buckets: plain typing, grouping, paste, word edits, placeholders, history recall, keybindings, mode survival.",
+   "build_cost": "Reference plus vendored Rust workspace and build-time verification est. 3-5 days; highest unknown is cargo build time and link memory.",
+   "deliverable": "Non-modal undo/redo in the TUI composer: grouped typing, paste bursts, deletion, word-wise edits, attachment placeholders, history recall, configurable keybindings, survives mode changes.",
+   "gates_anticheat": "Freeze tests and Cargo/config; hidden tests drive key events and read rendered TestBackend buffer only; no network; reject vendoring newer codex-tui; exclude Vim-undo cases the base already passes.",
+   "grading_surface": "Claimed several hundred scripted key/edit sequences checked by rendered buffer and cursor state, plus existing codex-tui suite as regression gate. Not yet counted; must be restricted to observable behaviour.",
+   "local_fit": "Rust workspace in gVisor, 8 cores, 16GB; cargo build of codex-tui and linking unverified; smoke probe was node-only and does not validate Rust.",
+   "lookup": "partial-to-direct: upstream Vim-only undo in release; non-modal full version public only as unmerged fork PR at same base; not in any package; post-cutoff so not recallable.",
+   "provenance": "openai/codex issue #2379 (open, 2025-08-16), follow-ups from Mar, Sep, Oct 2026; base pinned at cb00a675, near release rust-v0.163.0. Apache-2.0.",
+   "reference": "Own implementation ~900-1200 added lines with tests (not yet written). Public fork patch astral303/codex#10 is an unmerged near-complete alternative at the same base; must not ship in /app.",
+   "ships": "history-less codex-rs snapshot at cb00a675 (contains upstream Vim-mode undo from 0.153+), vendored cargo deps needed for offline build.",
+   "similarity": "l0 neighbours: S-im-022 0.343, S-im-006 0.324, S-im-029 0.304 (sibling seeds, not public tasks); json-tui 0.163 and tui-journal 0.141 are ProgramBench. Nov high since no public task has this subject."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public agent-trial evidence, so capped at 3; 4h tier looks tight for this breadth."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Est 3-5 days for vendored codex-rs build plus reference; not verified."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust workspace under gVisor; compile time and link memory unverified."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Scope is multi-part but 4h is short given Rust build times; 8h would fit better."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping snapshot and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Clear independent buckets: grouping, paste, word edits, placeholders, recall, keybindings, mode survival."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Neighbours at 0.34 or lower are sibling seeds; no public benchmark task on composer undo."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real issue #2379 open upstream with follow-up requests; real repo at a release tag."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Own reference planned at 900-1200 lines; a public fork patch exists but is not ours and not measured; must be confirmed by building it."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public fork PR is a near-solution, but offline and not shipped in image; sealable only with snapshot discipline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Several hundred scripted sequences claimed; can be executable rendered-buffer oracle, but count not yet verified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build needs over 16 GB or fails offline; or base already passes most planned non-Vim undo cases; or the buffer oracle cannot be made deterministic.",
+   "pass_if": "codex-tui builds offline with vendored deps in under about 60 min and 16 GB; suite deterministic; base fails non-Vim undo driver cases and Vim cases are excludable.",
+   "steps": [
+    "In a networked throwaway Linux container, clone openai/codex at cb00a675 and check out the Rust workspace (codex-rs); do not rely on the node smoke probe result.",
+    "Run cargo fetch and cargo build -p codex-tui with timing and peak memory; note whether it links within 16 GB.",
+    "Run the existing codex-tui test suite once and record per-test pass/fail and runtime; confirm it is deterministic over 2 runs.",
+    "Write a 20-line driver test that feeds key events into the composer and checks the rendered TestBackend buffer after typing 'abc' then Ctrl-Z; confirm the base does not undo non-Vim edits.",
+    "Check whether the base's Vim undo cases already pass on the base; if they do, remove them from the hidden set or mark them regression-only.",
+    "Optionally apply fork PR astral303/codex#10 on a scratch branch only to measure how many planned buckets it passes; do not ship it."
+   ]
+  },
+  "summary": "S-im-031 is a real, open upstream request (openai/codex #2379) on a Rust codex-rs base with Apache-2.0 licence, but the public picture is weaker than the seed says: upstream only ships Vim-mode undo, the base probably already contains that, and an unmerged fork PR (astral303/codex#10) implements the full non-modal scope at the same 0.163.0 base. The smoke probe verified nothing for Rust (node-only, no tests listed), so the build cost and the 4h tier are unverified; I recommend 8h and a spike to confirm build time and that the base fails the non-Vim cases before any reference work."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-031",
+  "kill_code": "K8",
+  "note": "About 1k added lines in a single TUI component sits close to the DeepSWE calibration (~600 lines, ~74% solve), so it is too easy for the tier. Undo grouping and cursor-restore rules are design choices, so hidden key sequences would reject reasonable alternatives. A near-complete public fork PR (astral303/codex#10) exists at the same base. The Rust build was never probed (the smoke run was node-only, cmd_test=false).",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 59
+}

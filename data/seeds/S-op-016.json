@@ -1,0 +1,208 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "8 h. Levers are the ufunc loops, GEOS version, memory handling, and spatial index. Frontier agents get partial gains in Cython or numpy; weaker models stop at the equivalence gate. Risk: later Shapely is public, so the base is history-less and without a newer copy.",
+  "cheat": "Installing Shapely 2 is impossible offline and the image carries only the old version. Calling numpy tricks on a fixed input fails because the arrays are hidden.",
+  "grading": "Hidden equivalence on generated geometry arrays (exact for predicates, tolerance for floating values), then wall-clock median speedup on array benchmarks. The release notes claim 4x-100x, so our reference is measured on our hardware.",
+  "reference": "Shapely 2.0.0 backport or our own reduction of it; measured speedup. It is a large rewrite, so the scope is limited to a chosen operation subset.",
+  "source": "https://shapely.readthedocs.io/en/stable/release/2.x.html, Shapely 1.8.x to 2.0.0, BSD-3-Clause (GEOS is LGPL-2.1, so check shipping as a system library)",
+  "task": "/app ships a snapshot of Shapely 1.8 and its test suite, built against a GEOS lib. The agent adds array-wide operations (contains, intersects, distance, area, buffer, STRtree queries) with a compiled C loop in place of per-geometry ctypes calls, with the same results.",
+  "title": "Shapely 1.8 to 2.0 vectorised geometry predicates speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T23:19:05Z",
+ "family": "geo",
+ "history": [
+  [
+   "2026-10-20T23:19:05Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:05Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-011 0.19"
+  ],
+  [
+   "2026-10-21T00:10:44Z",
+   "v1",
+   "killed:K8",
+   "The reference is the public Shapely 2.0.0 release (GitHub tag, BSD-3, on PyPI) and its vectorised ufunc design is widely known, so a frontier agent can recall the upstream direction and approach the reference, while a history-less base cannot hide that design. The band claim (frontier partial gains,"
+  ]
+ ],
+ "id": "S-op-016",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.191,
+    "S-op-011"
+   ],
+   [
+    0.19,
+    "S-op-015"
+   ],
+   [
+    0.163,
+    "S-op-014"
+   ],
+   [
+    0.104,
+    "loop [ProgramBench]"
+   ],
+   [
+    0.096,
+    "geopandas [Commit0]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "shapely.readthedocs.io/en/stable/release/2.x.html|shapely-1-8-x-per-geometry-python-ctypes-calls-shapely-2-0-0",
+ "source_notes": "Levers: array-wide NumPy ufuncs with loops in C, ctypes replaced by compiled C extension (less call overhead), GEOS 3.9+ overlay rewrite. Greatest gains on lightweight ops such as contains. 1.8 baseline is a Python-level (not C) codebase so the task is Python/C hybrid; reference is a big rewrite so backport is large. Release page did not state licence; licence from GitHub API. Shapely 1.x vs pygeos history is related. single-source for numbers",
+ "source_url": "https://shapely.readthedocs.io/en/stable/release/2.x.html",
+ "source_version": "Shapely 1.8.x (per-geometry Python/ctypes calls) -> Shapely 2.0.0",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://shapely.readthedocs.io/en/stable/release/2.x.html",
+  "facts": [
+   {
+    "claim": "Shapely 2.0.0 release notes exist, dated 2022-12-12, and describe vectorised NumPy ufunc-based GEOS operations (contains example, STRtree index-returning queries)",
+    "status": "confirmed",
+    "url": "https://shapely.readthedocs.io/en/stable/release/2.x.html"
+   },
+   {
+    "claim": "Release notes give a speedup range of 4x to 100x, stated by maintainers as depending on the operation, with largest gains for lightweight GEOS ops such as contains; no measured numbers given",
+    "status": "confirmed",
+    "url": "https://shapely.readthedocs.io/en/stable/release/2.x.html"
+   },
+   {
+    "claim": "Release notes name distance, area and buffer as vectorised in the 2.0.0 section",
+    "status": "not_found",
+    "url": "https://shapely.readthedocs.io/en/stable/release/2.x.html"
+   },
+   {
+    "claim": "Release page states a licence (seed said it did not)",
+    "status": "confirmed",
+    "url": "https://shapely.readthedocs.io/en/stable/release/2.x.html"
+   },
+   {
+    "claim": "Shapely repository is BSD-3-Clause",
+    "status": "confirmed",
+    "url": "https://github.com/shapely/shapely"
+   },
+   {
+    "claim": "Shapely 2.0.0 tag exists as a GitHub release (public git history past 1.8)",
+    "status": "confirmed",
+    "url": "https://github.com/shapely/shapely/releases/tag/2.0.0"
+   },
+   {
+    "claim": "Shapely 2.x is published on PyPI (2.0.5 listing found via search; PyPI page fetch itself returned 404)",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/shapely/2.0.5"
+   },
+   {
+    "claim": "GEOS is licensed LGPL-2.1 (secondary packager metadata; upstream COPYING not fetched)",
+    "status": "confirmed",
+    "url": "https://gpo.zugaina.org/sci-libs/geos"
+   },
+   {
+    "claim": "Shapely 1.8.x snapshot and its test suite size in the /app image",
+    "status": "not_found",
+    "url": "https://github.com/shapely/shapely"
+   },
+   {
+    "claim": "Hidden equivalence case count and measured reference speedup on our hardware",
+    "status": "not_found",
+    "url": "https://shapely.readthedocs.io/en/stable/release/2.x.html"
+   }
+  ],
+  "full_card": {
+   "band": "No dated public evidence; the 8 h tier is plausible for a subset but frontier agents likely recall the upstream ufunc design and get close to reference",
+   "build_cost": "Unknown: no smoke build (no git source); reference backport is a large rewrite, est. 3-5 days for a subset",
+   "deliverable": "C extension giving array-wide contains/intersects/distance/area/buffer/STRtree query loops with identical results, plus wall-clock speedup",
+   "gates_anticheat": "Equivalence gate hard; cannot install Shapely 2 offline; fixed-input numpy tricks blocked by hidden arrays; must check tests/build config not edited",
+   "grading_surface": "Hidden generated geometry arrays: exact for predicates, tolerance for floats; median speedup on array benchmarks",
+   "local_fit": "CPU only, Python plus C compiler, needs GEOS shared lib and Python headers in image; not verified",
+   "lookup": "direct: the complete 2.0.0 vectorised layer is public on GitHub and PyPI and widely known",
+   "provenance": "Shapely BSD-3 project; 2.0.0 tag and release notes public (2022-12-12); design descends from PyGEOS per RFC 0001",
+   "reference": "Shapely 2.0.0 backport or reduction; no measured speedup yet on our hardware; claimed 4x-100x is maintainer characterisation",
+   "ships": "Shapely 1.8.x Python codebase with ctypes GEOS bindings, test suite, system libgeos_c; history-less snapshot required",
+   "similarity": "Max l0 neighbour 0.191 (S-op-011), same family as S-op-014/015; geopandas [Commit0] 0.096; not crowded"
+  },
+  "kill_code": "K8",
+  "kill_reason": "The reference is the public Shapely 2.0.0 release (GitHub tag, BSD-3, on PyPI) and its vectorised ufunc design is widely known, so a frontier agent can recall the upstream direction and approach the reference, while a history-less base cannot hide that design. The band claim (frontier partial gains, weaker models stop at the gate) has no dated evidence. Redirect option: a non-upstream array API and a different operation set would reduce recall, but that would be a new seed, not this one. K11 (cannot seal) is an alternative reading.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Frontier agents likely recall the upstream direction and reach near reference; no dated evidence; capped at 3 without evidence"
+   },
+   "Build": {
+    "v": 2,
+    "why": "Large rewrite backport estimated at 3-5 days with no smoke build"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and small footprint, but needs GEOS shared lib and Python headers present offline"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8 h tier could hold a subset but the scope may finish quickly once the upstream design is recalled"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "BSD-3 ships fine; GEOS LGPL-2.1 is acceptable as a dynamically linked system library"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several operations give buckets, but levers overlap (same ufunc/GEOS path)"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Sibling S-op seeds at 0.19 cosine and a geopandas task at 0.10; not crowded but same family"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real BSD-3 project with tagged 2.0.0 release and release notes"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream 2.0.0 is a complete implementation, but measured speedup on our hardware is not yet obtained and a subset reduction is needed"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Reference is a public later release on GitHub and PyPI; history-less snapshot cannot hide the upstream design"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated arrays and array benchmarks can scale to thousands of cases"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Speedups under 2x on all operations, or outputs non-deterministic; or the frontier-style C loop over 1.8 already reaches most of the 2.0.0 gain, which signals K8",
+   "pass_if": "Median 2.0.0 speedup over 1.8 loop of at least 4x on contains, with deterministic outputs",
+   "steps": [
+    "In a throwaway networked container, pip install shapely==1.8.x and shapely==2.0.0 into separate venvs, confirming the GEOS versions each links against",
+    "Generate fixed seeded arrays (e.g. 1e5 polygons vs 1e5 points for contains, and polygon pairs for intersects/distance/area/buffer)",
+    "Time the vectorised 2.0.0 call and the 1.8 per-geometry loop with median of 7 runs each, recording speedup per operation",
+    "Check determinism: repeat runs and compare outputs bit-for-bit for predicates and within 1e-9 for floats",
+    "Estimate how much of the gain comes from removing Python loop overhead versus GEOS version changes, by timing 1.8 against a C loop over the same GEOS calls if time permits"
+   ]
+  },
+  "summary": "The seed's source, licence (BSD-3), and 2.0.0 release date (2022-12-12) are confirmed, but the reference is the public upstream Shapely 2.0.0 whose vectorised design a frontier agent can recall, so it is too easy to hold a band and cannot be sealed. Killed as K8 with a redirect to a non-upstream array API if the owner wants to rework it."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 66
+}

@@ -1,0 +1,219 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "8h. Photo-tuned predictors fail on the other split, so the agent must generalise. A frontier agent beats the baseline but averages below the reference. A weaker model matches only the baseline.",
+  "cheat": "Overfitting to the shipped photos is caught by the other-type hidden split. A time-limit gate blocks coders too slow for the budget.",
+  "grading": "Lossless round-trip is a hard gate. Score is total compressed bytes on a hidden split of other image types (screenshots, scans, satellite, medical), normalised between the baseline and the reference. Eight cores, a fixed time limit per set.",
+  "reference": "Our own multi-predictor mixing coder, in the FLIC to GraLIC class (about 1.04 to 0.97 billion bytes against PNG at 1.47 billion on the page's set). Estimated at 2-3k lines.",
+  "source": "https://imagecompression.info/gralic/LPCB.html (benchmark method, not data). The data is images the bundle collects from CC0/PD sources, and the page's own images are not redistributed.",
+  "task": "/app ships a baseline MED/LOCO-I plus adaptive Golomb coder and a training set of CC0/public-domain photos. The agent builds a better lossless coder (multi-predictor with context mixing, bias cancellation, arithmetic coding) within a CPU time budget per image set. The CLI is compress/decompress.",
+  "title": "Lossless photo coder on out-of-distribution images"
+ },
+ "class": "research",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-003 0.20"
+  ],
+  [
+   "2026-10-20T21:21:22Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 3, 'Surf': 4, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 3, 'Seal': 4, 'Nov': 3, 'Lic': 4, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-rs-004",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.203,
+    "S-rs-003"
+   ],
+   [
+    0.144,
+    "S-im-006"
+   ],
+   [
+    0.141,
+    "S-im-026"
+   ],
+   [
+    0.094,
+    "png-generation [original]"
+   ],
+   [
+    0.091,
+    "set_cover [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "imagecompression.info/gralic/lpcb.html|baseline-png-style-predictor-deflate-or-a-simple-loco-i-med-",
+ "source_notes": "Set: q:\"Six sets with 107 images totalling 3.5 gigabytes\"; table GraLIC 1.11 971,986,179 B in 1734 s comp, FLIC 2.1 1,038,434,818 B in 210 s, PNG 1,471,885,647 B, PAQ8im -7 1,024,282,375 B in 34,390 s on i7-930 2.8 GHz (old, 2013 page). Single-source. Dataset to ship must be CC0/PD/CC-BY images we collect ourselves (Kodak has no formal licence, see CompressAI row). OOD hidden split: ship photos, hide screenshots/medical/satellite/scan images so photo-tuned predictors fail. INFERRED run time on 8 CPUs: per 3.5 GB set a FLIC-class coder ~3.5 min single core, a paq8im-class one ~9.5 h; with 100 MB hidden set and files processed in parallel across 8 cores a mixing coder takes ~1-5 min per eval. Levers: predictor set, context quantization, bias cancellation, mixing, SIMD, arithmetic coder precision. Mild overlap with write-compressor domain.",
+ "source_url": "https://imagecompression.info/gralic/LPCB.html",
+ "source_version": "Baseline: PNG-style predictor + deflate or a simple LOCO-I/MED predictor + adaptive Golomb coder (we write); regular PNG row = 1,471,885,647 B on the set -> Reference: a context-mixing predictive coder (e.g. GraLIC/FLIC class, 971,986,179 B / 1,038,434,818 B on the set) approximated by our own multi-predictor+mixing coder",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://imagecompression.info/gralic/LPCB.html",
+  "facts": [
+   {
+    "claim": "LPCB page reports GraLIC 1.11 compressed total 971,986,179 bytes (100%) with compress 1734.48 s and decompress 1897.09 s",
+    "status": "confirmed",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "FLIC 2.1 total 1,038,434,818 bytes, compress 209.85 s, decompress 231.50 s",
+    "status": "confirmed",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "Regular PNG (NConvert) total 1,471,885,647 bytes",
+    "status": "confirmed",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "PAQ8im -7 total 1,024,282,375 bytes, compress 34390.37 s, decompress 34125.79 s; PAQ8im has no version number on the page",
+    "status": "confirmed",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "Test data is six sets, 107 images, 3.5 GB: 62 images (2254 MB) from photographyblog.com and 45 images (1208 MB) from photojournal.jpl.nasa.gov",
+    "status": "confirmed",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "Benchmark page dated 29-Sep-2013, machine Intel Core i7-930 2.8 GHz, 3 GB RAM, Windows XP; times partly approximate for some entries",
+    "status": "confirmed",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "GraLIC, FLIC and QLIC are distributed as 'demo' downloads; no source code and no licence text for these codecs is given; the free-use statement covers the benchmark results only",
+    "status": "confirmed",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "GraLIC source licence or redistributable terms found",
+    "status": "not_found",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "paq8px is GPL-2.0-or-later (hxim/paq8px)",
+    "status": "confirmed",
+    "url": "https://github.com/hxim/paq8px"
+   },
+   {
+    "claim": "paq8px has im8/im24-style image models (named as 1/8/24/32-bit and JPEG image models in its timeline)",
+    "status": "confirmed",
+    "url": "https://github.com/hxim/paq8px"
+   },
+   {
+    "claim": "Our reference coder is estimated at 2-3k lines and is a multi-predictor mixing coder",
+    "status": "not_found",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   },
+   {
+    "claim": "CC0/PD sourcing of screenshot, medical, satellite and scan images for the hidden split is feasible and licence-clean",
+    "status": "not_found",
+    "url": "https://imagecompression.info/gralic/LPCB.html"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier; baseline is MED+Golomb; a frontier agent can plausibly build a multi-predictor mixing coder that beats the baseline; reaching 0.9 of reference is uncertain; weaker model likely stops near baseline. No dated public evidence (E0).",
+   "build_cost": "About 3-5 days: write 2-3k line reference coder plus collect and licence-check a multi-type hidden corpus.",
+   "deliverable": "A lossless CLI compress/decompress coder that round-trips bit-exactly and minimises total compressed bytes on hidden OOD images within a CPU time gate.",
+   "gates_anticheat": "Round-trip hard gate scores 0; hidden OOD split catches photo-tuned overfit; time gate blocks slow coders; hidden images and reference not in image; agent cannot edit grader or time gate (verifier sealed).",
+   "grading_surface": "Hidden split of other image types (~100 MB) with round-trip hard gate; score = total bytes normalised between baseline and reference; wall-clock time gate on 8 cores.",
+   "local_fit": "CPU-only, 8 cores, 16 GB fits; 3.5 GB benchmark-scale data is large but the hidden set is ~100 MB; timing on gVisor is noisy, so medians and generous time gates are needed.",
+   "lookup": "partial: GraLIC/FLIC are closed demos; paq8px (GPL-2.0-or-later) has public image models and the general mixing approach is recallable in outline, but no exact public implementation of the reference design.",
+   "provenance": "Benchmark page by Alex Rhatushnyak (updated 29 Sep 2013) with measured totals for 83 codecs on 107 images (3.5 GB); no codec source shipped; GraLIC/FLIC are closed demo binaries.",
+   "reference": "Our own multi-predictor logistic-mixing coder (FLIC-to-GraLIC class: 1.04 to 0.97 GB vs PNG 1.47 GB on the page set); not yet written, estimated 2-3k lines.",
+   "ships": "/app: baseline MED/LOCO-I + adaptive Golomb CLI (compress/decompress) and a CC0/PD photo training set; hidden set of other image types (screenshots, scans, satellite, medical) kept out of the image; our reference coder not shipped.",
+   "similarity": "Nearest l0 neighbour S-rs-003 at cosine 0.203 (above 0.15) and S-im-006 at 0.144; not on CROWDED list; mild overlap with write-compressor domain; dedupe check against S-rs-003 needed; no public task found."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausible for a frontier agent to beat baseline in 8h, but 0.9 of reference is uncertain; no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-5 days of work to write the reference and curate the multi-type corpus."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits CPU, 8 cores and 16 GB; timing noise on gVisor is a risk for the time gate."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several interacting levers (predictors, contexts, mixing, bias cancellation, coder precision) over 8h of sustained work."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Reference is ours and paq8px is GPL-2.0-or-later; data must be CC0/PD, which is feasible but unverified for screenshot, medical and scan classes."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Multiple levers and hidden image-type buckets give partial credit, but the score is one aggregate byte total."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour S-rs-003 at 0.203 is above 0.15, so novelty is reduced; no public task found."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real domain with a dated measured benchmark page (confirmed numbers), but no codebase or reference source to pin."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No permissive reference exists (GraLIC is a closed demo); our reference is unwritten and estimated only."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and hidden corpus are unpublished; paq8px is public only in outline, so the oracle cannot be fetched offline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden OOD split of ~100 MB with byte totals and round-trip gate; large, continuous, deterministic scoring."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Gain over baseline on other-type images is under 3%, round-trip fails, or timing noise exceeds 25% (time gate unreliable).",
+   "pass_if": "Mixing prototype beats baseline by at least 8% on the other-type split, round-trips every file, and median time stays within a plausible 8h-tier budget with run-to-run noise under 15%.",
+   "steps": [
+    "In a throwaway Linux container with network, collect ~20 CC0/PD photos and ~10 each of screenshots, scans and satellite images, recording licence per file.",
+    "Build the baseline MED+adaptive Golomb CLI and check round-trip on all files.",
+    "Write a quick 3-predictor logistic-mixing binary arithmetic coder (about 300 lines) with bias cancellation and round-trip check.",
+    "Compare total bytes of baseline, mixing prototype and PNG on a photo-only split and on the other-type split.",
+    "Run each coder three times on 8 cores to measure median wall-clock and noise; confirm byte-identical output across runs.",
+    "Record whether the gain on other-type images is larger than on photos (the OOD signal the task depends on)."
+   ]
+  },
+  "summary": "The benchmark numbers and dataset shape are confirmed on the LPCB page, but GraLIC has no redistributable licence or source, so the reference must be written from scratch and Ref stays low. The idea survives validation (no kill code), conditional on the spike showing a real gain on other image types over the baseline and a stable time gate."
+ },
+ "v1_links": {
+  "checked": 2,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 66
+}

@@ -1,0 +1,277 @@
+{
+ "batch": 5,
+ "card": {
+  "band": "20h. Regex-engine work is a big surface. Frontier agents get a literal prefilter and perhaps a lazy DFA, so they land well under 1.5x on average. A weaker model gets only memchr-style tricks, or breaks correctness.",
+  "cheat": "Caching results by haystack. The hidden benchmarks use fresh patterns and haystacks and the timing runs are cold per process. Dependency vendoring is restricted to the shipped crates.",
+  "grading": "A hard gate checks match spans and capture groups against the 1.7.3 oracle on thousands of generated pattern/haystack pairs. Then the median wall-clock speedup on hidden benchmarks is scored as 2^u-1 against our measured speedup.",
+  "reference": "regex 1.9.0, a measured ~1.5x average on 242 benchmarks (single-source figure), with per-benchmark speedups far higher.",
+  "source": "https://github.com/rust-lang/regex 1.7.3 -> 1.9.0 (burntsushi.net/regex-internals), MIT OR Apache-2.0",
+  "task": "/app ships regex 1.7.3 as a history-less crate with a benchmark harness over a rebar-style set of patterns and haystacks. The agent speeds up search without changing semantics, through prefilters, inner literals, a lazy DFA, one-pass DFA captures or a bounded backtracker. The public API is unchanged.",
+  "title": "Rust regex 1.7 to 1.9 search speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:21:22Z",
+ "family": "other",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-20T21:21:22Z",
+   "write",
+   "short",
+   "batch 5"
+  ],
+  [
+   "2026-10-20T21:21:22Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-010 0.21"
+  ],
+  [
+   "2026-10-20T21:24:26Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-20T21:25:53Z",
+   "v2",
+   "pass",
+   "final 75"
+  ],
+  [
+   "2026-10-21T00:56:29Z",
+   "spike",
+   "killed:K4",
+   "Reference median speedup is about 1.13-1.17x, below the 1.3x pass bar, so a median-based score has almost no headroom; Differential oracle disagrees between 1.7.3 and 1.9.0 on nested empty-loop patterns: 119 span mismatches and 3936 span-or-capture mismatches of 32000 pairs (564 patterns); needs fil"
+  ]
+ ],
+ "id": "S-op-011",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.207,
+    "S-op-010"
+   ],
+   [
+    0.164,
+    "S-im-031"
+   ],
+   [
+    0.157,
+    "S-im-028"
+   ],
+   [
+    0.144,
+    "add-benchmark-lm-eval-harness [original]"
+   ],
+   [
+    0.135,
+    "regex_engine [SpecBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 2,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "burntsushi.net/regex-internals|regex-1-7-3-rebar-entry-rust-regexold-regex-1-9-0-2023-07-05",
+ "source_notes": "q:\"Across 242 benchmarks, regex 1.9 is on average 1.5 times faster than regex 1.7.3 for search times.\" (read via WebFetch summariser; single-source for the 1.5x, verify against page). Levers: literal prefilters incl. inner literals (memchr/memmem, Teddy, aho-corasick), lazy DFA, one-pass DFA for captures, bounded backtracker, minimal-UTF8 NFA, meta-engine strategy selection. Changelog 1.9.0 lists PERF #68 one-pass DFA, #510 inner literals. Independent correctness gate easy (match spans vs old version). rebar harness is Unlicense (github.com/BurntSushi/rebar).",
+ "source_url": "https://burntsushi.net/regex-internals/",
+ "source_version": "regex 1.7.3 (rebar entry rust/regexold) -> regex 1.9.0 (2023-07-05; blog tables measured 1.8.4)",
+ "spike": {
+  "blockers": [
+   "Reference median speedup is about 1.13-1.17x, below the 1.3x pass bar, so a median-based score has almost no headroom",
+   "Differential oracle disagrees between 1.7.3 and 1.9.0 on nested empty-loop patterns: 119 span mismatches and 3936 span-or-capture mismatches of 32000 pairs (564 patterns); needs filtering",
+   "Timing noise is high: only 27% of same-engine benchmark pairs agree within 10% between two runs, though aggregate medians agree",
+   "rebar measures a warm in-process loop, not cold processes as the seed specifies; cold-process timing not tested",
+   "Speedups are concentrated in a few outlier benchmarks, so the score would depend on which hidden benchmarks are chosen"
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 242,
+  "commands_log": "git clone BurntSushi/rebar; cargo build --release; copied engines/rust/regex-old to regex-new pinned regex =1.9.0; added rust/regexnew to engine lists; rebar measure -e 'rust/regex(old|new)$' -M compile --max-time 200ms --max-warmup-time 80ms x3; /work/diff random generator built per pinned version, outputs compared",
+  "deterministic": false,
+  "gvisor_concerns": [],
+  "headroom_note": "Median 1.9.0 speedup over 1.7.3 is about 1.13-1.17x across 3 runs (1.129, 1.129, 1.169), below the 1.3x pass bar. Geomean about 2.0-2.3x is inflated by outliers up to ~1e5x. 45-61 of ~240 benchmarks are slower in 1.9.0.",
+  "headroom_ok": false,
+  "image_gb_estimate": 2.5,
+  "kill_code": "K5",
+  "notes": "Both versions built. 236-251 comparable benchmarks per run, compile excluded. Median speedup 1.129, 1.129, 1.169; geomean 1.96, 2.12, 2.29. Differential: 4000 random patterns x 8 haystacks, 3936 of 32000 lines differ (119 in spans), all nested empty-repeat patterns. Memchr-prefilter patch and cold-process timing not run. Notes in /work/SPIKE.md.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": false,
+  "reference_built": true,
+  "reference_cases_passed": 242,
+  "reference_lines": 5000,
+  "start_scores_zero": true,
+  "verdict": "fail",
+  "verifier_minutes_estimate": 20
+ },
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://blog.rust-lang.org/2023/07/05/regex-1.9/",
+  "facts": [
+   {
+    "claim": "regex 1.7.3 release tag exists (commit 9582040)",
+    "status": "confirmed",
+    "url": "https://github.com/rust-lang/regex/releases/tag/1.7.3"
+   },
+   {
+    "claim": "regex 1.9.0 released 2023-07-05 with a changelog entry",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/rust-lang/regex/1.9.0/CHANGELOG.md"
+   },
+   {
+    "claim": "1.9.0 PERF #68: one-pass DFA engine for faster capture group matching",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/rust-lang/regex/1.9.0/CHANGELOG.md"
+   },
+   {
+    "claim": "1.9.0 PERF #510: inner literals accelerate searches (e.g. \\w+@\\w+ scans for @)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/rust-lang/regex/1.9.0/CHANGELOG.md"
+   },
+   {
+    "claim": "regex 1.9 internals were largely rewritten; main expected change is faster search",
+    "status": "confirmed",
+    "url": "https://blog.rust-lang.org/2023/07/05/regex-1.9/"
+   },
+   {
+    "claim": "Internals post describes a lazy DFA built during search and a one-pass DFA faster than PikeVM/backtracker",
+    "status": "confirmed",
+    "url": "https://burntsushi.net/regex-internals/"
+   },
+   {
+    "claim": "regex 1.9 is on average 1.5x faster than 1.7.3 across 242 benchmarks",
+    "status": "not_found",
+    "url": "https://blog.rust-lang.org/2023/07/05/regex-1.9/"
+   },
+   {
+    "claim": "Same 1.5x / 242-benchmark figure in changelog or internals post",
+    "status": "not_found",
+    "url": "https://raw.githubusercontent.com/rust-lang/regex/1.9.0/CHANGELOG.md"
+   },
+   {
+    "claim": "regex repository licence is MIT OR Apache-2.0 (LICENSE-MIT and LICENSE-APACHE present; page shows no SPDX expression)",
+    "status": "confirmed",
+    "url": "https://github.com/rust-lang/regex"
+   },
+   {
+    "claim": "rebar benchmark harness is Unlicense and is a cross-engine regex benchmark suite with patterns and haystacks",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/rebar"
+   },
+   {
+    "claim": "Frontier agents land well under 1.5x on this task",
+    "status": "not_found",
+    "url": "https://github.com/rust-lang/regex"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier proposed. Frontier likely reaches part of the inner-literal and one-pass levers; full 1.9-scope finish not evidenced. No dated public agent evidence.",
+   "build_cost": "About 3-5 days: crate snapshot, rebar harness wiring, differential generator, cold-process timing protocol, and a measured reference speedup.",
+   "deliverable": "Faster search in the regex 1.7.3 crate with unchanged public API and identical match spans and capture groups.",
+   "gates_anticheat": "Cold per-process timing; hidden patterns and haystacks fresh; no haystack-result caching; vendoring limited to shipped crates; no cargo registry copy of regex-automata 0.3 or 1.9 in the image; no network at run time.",
+   "grading_surface": "Hard gate: match spans and captures vs 1.7.3 on thousands of generated pattern/haystack pairs. Score: median cold-process wall-clock speedup on hidden rebar-style benchmarks, mapped to 2^u-1.",
+   "local_fit": "Rust toolchain must be in the image and build offline with shipped crates only; CPU-only, fits 8 cores / 16 GB; no gVisor-incompatible features expected.",
+   "lookup": "partial: 1.9 design is public in the release notes, blog and internals post; code is in a later public release not installable offline and must be excluded from /app.",
+   "provenance": "rust-lang/regex 1.7.3 tag (commit 9582040) to 1.9.0 release (2023-07-05); MIT OR Apache-2.0; rebar harness Unlicense.",
+   "reference": "regex 1.9.0 (public, permissive). Claimed ~1.5x average over 242 benchmarks is UNVERIFIED; must be measured in the spike.",
+   "ships": "History-less regex 1.7.3 crate, rebar-style benchmark harness with a visible subset of patterns and haystacks, and the 1.7.3 oracle for differential checks.",
+   "similarity": "l0 max 0.207 (S-op-010); no near-duplicate seen. Subject is a regex engine, which is on the CROWDED list, but deliverable is optimisation of an existing engine graded against an upstream speedup, so it is not the same task."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausible frontier difficulty, but no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-5 days for snapshot, harness, differential gate and measured reference."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and within limits; needs a Rust toolchain and offline vendoring."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several levers over a large engine; sustained work of a multi-hour scale."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT OR Apache-2.0 for the crate and Unlicense for rebar, both confirmed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Prefilters, inner literals, one-pass DFA, backtracker and lazy DFA are separate buckets by benchmark family."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Regex engines are a CROWDED subject, but the optimisation deliverable differs; max l0 neighbour 0.207."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real crate with confirmed 1.7.3 tag and 1.9.0 changelog; the 1.5x claim is unverified."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "1.9.0 is a complete permissive public release, but its speedup is unmeasured and the 1.5x/242 figure is not found in any source."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "1.9.0 is public; the snapshot must exclude it and the cargo registry, and recall is only partial at design level."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Executable oracle (1.7.3 shipped) with an unlimited generator plus a rebar benchmark set."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The median 1.9.0 speedup is at most 1.1x (too little headroom), or the differential check shows mismatches between versions (oracle unusable), or variance exceeds about 25% (no stable score).",
+   "pass_if": "1.9.0 median speedup over 1.7.3 is at least 1.3x on the rebar set, run-to-run variance is within about 10%, and the differential generator shows zero span or capture mismatches between 1.7.3 and 1.9.0.",
+   "steps": [
+    "In a throwaway networked container, fetch regex 1.7.3 and 1.9.0 from crates.io and build both with a Rust toolchain.",
+    "Clone BurntSushi/rebar, build it, and run its regex benchmark set against both versions in cold processes, 3 runs each.",
+    "Compute per-benchmark speedups (1.7.3 time / 1.9.0 time), then the median and geometric mean across benchmarks, and count how many benchmarks there are (to test the 242 and 1.5x claims).",
+    "Run a differential generator (several thousand random pattern/haystack pairs) comparing match spans and capture groups between 1.7.3 and 1.9.0; record any mismatches.",
+    "Measure a minimal literal-prefilter (memchr) patch on 1.7.3 to see how much headroom the cheap lever gives.",
+    "Check run-to-run variance of the medians; if above roughly 10%, note the noise floor for grading."
+   ]
+  },
+  "summary": "The seed is a real, permissively licensed regex 1.7.3 to 1.9.0 optimisation with a confirmed 1.9.0 changelog (PERF #68 one-pass DFA, PERF #510 inner literals) and a confirmed Unlicense rebar harness, but the headline 1.5x average over 242 benchmarks is not found in any source checked and must be measured. Viability is unconfirmed pending a 60-minute spike that measures the reference speedup on the rebar set, checks differential correctness between 1.7.3 and 1.9.0, and confirms run-to-run stability."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-011",
+  "kill_code": "",
+  "note": "The upstream perf series is real and permissively licensed, and the span/capture differential gate is generator-backed. The 1.5x/242-benchmark figure is unverified. The card overstates the levers: 1.7.3 already has a lazy DFA and memchr/aho-corasick/Teddy prefilters, so the real headroom is inner literals, the one-pass DFA, reverse-suffix/inner strategies and meta-engine selection. The median speedup could therefore be small; the spike must measure it under gVisor timing. 1.9 changed some semantics (e.g. empty matches in the bytes API), so the gate must use only 1.7.3-identical behaviour. The image must not contain regex-automata 0.3 or regex 1.9 in ~/.cargo. The regex subject is crowded, but the optimisation deliverable differs.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 3,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 76
+}

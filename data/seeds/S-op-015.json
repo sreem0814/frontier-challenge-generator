@@ -1,0 +1,238 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "8 h. Several independent levers (CSR, heap, bidirectional, CH, parallel), so partial credit rises steadily. Frontier agents get bidirectional and CSR and some reach CH; a weaker model stops at a minor constant-factor gain. Data has known errors, noted.",
+  "cheat": "Caching answers is closed because queries are hidden and the graphs differ from the visible one. Distances must match exactly and the preprocessing time counts.",
+  "grading": "Hard gate: exact distances against a Dijkstra reference on hidden random query pairs and on hidden larger graphs. Wall-clock medians of total preprocess plus query batch. Reward 2^u-1 against our reference speedup.",
+  "reference": "Our own contraction hierarchies implementation with a measured speedup on the hidden graphs; speedup is measured at grading, not quoted.",
+  "source": "https://www.diag.uniroma1.it/challenge9/download.shtml, public-domain data (USA road graphs; PTV Europe excluded)",
+  "task": "/app ships a plain Dijkstra baseline in C++ or Rust, a loader for the .gr format, and a mid-size graph (such as NY/BAY, about 0.3M nodes) for local checks. The agent makes point-to-point queries and a one-to-all mode faster using layout, heaps, bidirectional search, preprocessing (contraction hierarchies, ALT) and parallelism.",
+  "title": "Road network shortest-path query and preprocessing speedup on DIMACS graphs"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T23:19:05Z",
+ "family": "solver",
+ "final": 65,
+ "history": [
+  [
+   "2026-10-20T23:19:05Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:05Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-011 0.22"
+  ],
+  [
+   "2026-10-21T00:10:13Z",
+   "v1",
+   "pass",
+   "score 74; dead links []"
+  ],
+  [
+   "2026-10-21T00:12:22Z",
+   "v2",
+   "killed:K8",
+   "final 65 below line"
+  ]
+ ],
+ "id": "S-op-015",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.222,
+    "S-op-011"
+   ],
+   [
+    0.201,
+    "shortest_path_dijkstra [AlgoTune]"
+   ],
+   [
+    0.156,
+    "S-im-038"
+   ],
+   [
+    0.145,
+    "S-op-014"
+   ],
+   [
+    0.123,
+    "dijkstra_from_indices [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 2,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "diag.uniroma1.it/challenge9/download.shtml|n-a-input-set-pairing-plain-dijkstra-baseline-vs-later-ch-de",
+ "source_notes": "q:\"the files available at this page contain data/software in the public domain\". Page also warns q:\"the data has numerous errors, in particular gaps in major highways and bridges.\" Good for multi-lever graph work (CSR layout, heap, bidirectional, preprocessing, parallel). Overlap: none with excluded list (networkx VF2 is different). Travel-time variant files of similar size.",
+ "source_url": "https://www.diag.uniroma1.it/challenge9/download.shtml",
+ "source_version": "n/a (input set); pairing = plain Dijkstra baseline vs later CH/delta-stepping code",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.diag.uniroma1.it/challenge9/download.shtml",
+  "facts": [
+   {
+    "claim": "DIMACS 9th challenge download page lists USA road graphs with distance and travel-time .gr files, including NY (264,346 nodes, 733,846 arcs) and BAY (321,270 nodes, 800,172 arcs)",
+    "status": "confirmed",
+    "url": "https://www.diag.uniroma1.it/challenge9/download.shtml"
+   },
+   {
+    "claim": "Page states the files are in the public domain ('the files available at this page contain data/software in the public domain'); no specific licence named",
+    "status": "confirmed",
+    "url": "https://www.diag.uniroma1.it/challenge9/download.shtml"
+   },
+   {
+    "claim": "Page warns the data has numerous errors, in particular gaps in major highways and bridges",
+    "status": "confirmed",
+    "url": "https://www.diag.uniroma1.it/challenge9/download.shtml"
+   },
+   {
+    "claim": ".gr format: problem line 'p sp n m' first, arc lines 'a U V W' with signed integer weights, node IDs 1..n, c comment lines; .co coordinate files 'p aux sp co n' and 'v id X Y'",
+    "status": "confirmed",
+    "url": "https://www.diag.uniroma1.it/challenge9/format.shtml"
+   },
+   {
+    "claim": "Customizable CH paper reports NY (264k vertices) plain Dijkstra about 16,303 us per query versus about 34 us for CH queries (search-snippet level, not fetched in full)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/1402.0402"
+   },
+   {
+    "claim": "A published CH timing for the DIMACS BAY graph",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/1402.0402"
+   },
+   {
+    "claim": "RoutingKit (public C++ CCH library, KIT) is BSD-2-Clause licensed",
+    "status": "not_found",
+    "url": "https://github.com/GIScience/RoutingKit"
+   },
+   {
+    "claim": "Our own CH reference implementation exists and has a measured speedup on the hidden graphs",
+    "status": "not_found",
+    "url": "https://www.diag.uniroma1.it/challenge9/download.shtml"
+   },
+   {
+    "claim": "Frontier agents reach bidirectional, CSR and some CH on this kind of task (dated public evidence)",
+    "status": "not_found",
+    "url": "https://www.diag.uniroma1.it/challenge9/download.shtml"
+   },
+   {
+    "claim": "Hidden larger graphs and query sets are sealed from the agent's image",
+    "status": "not_found",
+    "url": "https://www.diag.uniroma1.it/challenge9/download.shtml"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Frontier agents plausibly reach CSR, heap, bidirectional and some CH inside 8 h. Weaker model likely stops at constant-factor gains. Convex 2^u-1 reward means low-speedup buckets earn little, so 'steady' credit is doubtful. No dated agent evidence found.",
+   "build_cost": "About 3-5 days: write the baseline, loader, CH reference and harness, then calibrate speedup. Smoke build skipped (no git source), so nothing is pre-verified.",
+   "deliverable": "Faster point-to-point query path plus one-to-all mode, plus any preprocessing (CSR layout, heap, bidirectional, CH/ALT, threads). Output must give exact distances.",
+   "gates_anticheat": "Exact distances vs Dijkstra gate (hard, scores 0). Preprocessing time counted, so per-query caching cannot pay off on hidden queries. Hidden graphs differ from the visible one, so tuning to the sample graph does not transfer. Still to specify: block reading of hidden data and editing of the grader or build config.",
+   "grading_surface": "Hidden random s-t pairs and one-to-all runs on hidden USA-derived graphs; exact-match hard gate; wall-clock medians of preprocessing plus query batch. Count of hidden graphs and queries not yet fixed.",
+   "local_fit": "Fits 8 cores and 16 GB for NY/BAY-size work. Full-USA-size hidden graphs (up to 24M nodes) may stress memory under CH preprocessing; hidden graph sizes must be capped.",
+   "lookup": "CH and CCH are published and well known; public implementations exist (RoutingKit, OSRM) but none is installable offline. A model could recall the algorithm in outline, not the reference code. Verdict partial.",
+   "provenance": "DIMACS 9th Implementation Challenge USA road networks (public domain per page); NY and BAY are real DIMACS instances; PTV Europe excluded. Real paper trail: Dibbelt/Strasser/Wagner CCH (arXiv 1402.0402) reports NY timings.",
+   "reference": "Our own CH implementation, not yet written; speedup measured at grading. No public permissive reference shipped. Public CH code exists elsewhere (RoutingKit, OSRM) but is not in the image.",
+   "ships": "Plain Dijkstra C++ or Rust baseline, .gr/.co loader, NY or BAY graph for local checks, history-less snapshot. Hidden larger USA graphs and query sets are not shipped.",
+   "similarity": "Nearest neighbours: S-op-011 0.222, shortest_path_dijkstra (AlgoTune) 0.201, S-im-038 0.156, S-op-014 0.145. Above 0.15 and same subject as AlgoTune Dijkstra, but a different deliverable. Not on the CROWDED list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier agents plausibly reach CH inside 8 h, but there is no dated public agent evidence, so the score is capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Roughly 3-5 days to write the baseline, loader, CH reference and harness."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and within 8 cores / 16 GB for NY/BAY; the largest hidden graphs need a size cap."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several levers in sequence (layout, heap, bidirectional, CH, threads) suit an 8 h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Public-domain data statement confirmed, though no specific licence is named; our own code is shippable."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Levers are independent, but the convex 2^u-1 reward makes early credit small, so partial credit is less steady than claimed."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours above 0.15 exist (0.222, 0.201, 0.156); the AlgoTune Dijkstra task shares the subject but not the deliverable."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Official DIMACS challenge data with the page and format spec confirmed; NY/BAY sizes match."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Our own CH reference is not built yet, so the measured speedup is unknown; upstream CH timings are published for NY only."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden graphs are public DIMACS files but the agent has no network at run time; CH code is public but not in the image, and recall is a Band question."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden random pairs, one-to-all runs and larger graphs give a deep surface; the count of hidden graphs is not fixed yet."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "CH over bidirectional is under 10x on BAY, or distances mismatch, or timing noise exceeds 10% across repeats.",
+   "pass_if": "CH matches Dijkstra on all sampled pairs; CH over bidirectional gives at least 10x median per-query speedup on BAY; run-to-run noise under 10%.",
+   "steps": [
+    "In a throwaway networked container, download NY.gr.gz, NY.co.gz and the BAY distance files from the DIMACS page; confirm they parse with the .gr format (p sp n m).",
+    "Write a plain Dijkstra baseline and a bidirectional Dijkstra in C++; check both agree on 1000 random pairs.",
+    "Write a minimal CH (node ordering by edge difference, witness search, bidirectional upward query); check exact distance match with Dijkstra on 1000 pairs.",
+    "Time median per-query and per-batch (preprocessing included) for Dijkstra, bidirectional and CH on NY and BAY at batch sizes 100, 10k, 1M; record the speedup ratios.",
+    "Repeat each timing 5 times to measure noise; then rerun the CH batch inside a gVisor-like setting if available, or note the gap.",
+    "Check that the speedup is determined by the algorithm, not the machine: compare CH vs bidirectional ratio across two runs."
+   ]
+  },
+  "summary": "The DIMACS source, public-domain data statement, data-error warning, .gr format and NY/BAY sizes are confirmed, and no near-duplicate kill applies (top neighbour 0.222, not crowded). Main risks are that the reference is unbuilt, the convex 2^u-1 reward makes partial credit less steady than claimed, and Band has no dated agent evidence (E0), so the 8 h tier and 3-5 day build need the spike before acceptance."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-015",
+  "kill_code": "",
+  "note": "Real public-domain DIMACS data, and the .gr format is confirmed. The equivalence gate is sound. Risk: contraction hierarchies are one dominant, well-known lever. A frontier agent that writes a solid CH may match our reference (K8), and one that does not gets little under the convex 2^u-1 reward, so credit is not steady. Set the reference ceiling above textbook CH (tuned ordering, PHAST for one-to-all, parallel preprocessing) so a band exists. Fix the hidden graph sizes and query counts, and cap memory at full-USA scale. gVisor wall-clock noise is unmeasured, so run the spike's 10% noise check under gVisor. It sits next to AlgoTune's Dijkstra task (0.201), but the deliverable differs. The reference is not written yet.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 4,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 65
+}

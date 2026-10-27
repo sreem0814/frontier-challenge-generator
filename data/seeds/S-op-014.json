@@ -1,0 +1,269 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "20h. Large Rust build and many levers (StringView, skipping partial aggregation, columnar group values, pushdown). A frontier agent gets some but not all; a weaker model cannot build or break results. The gap to the reference is wide.",
+  "cheat": "Only result-equivalence on hidden queries and measured time count. The 43 source is absent and the pinned vendor dir lacks it.",
+  "grading": "Hard gate: results equal to those of the reference on hidden queries and data. Score is the speedup in median wall clock time relative to that of 43.0.0 (the blog says over 30% on ClickBench; per-version numbers not in the text: not found).",
+  "reference": "DataFusion 43.0.0, built and measured by us on the same harness.",
+  "source": "https://github.com/apache/datafusion (34.0.0 -> 43.0.0; blog 2024-11-18), Apache-2.0",
+  "task": "/app ships DataFusion 34.0.0 scaled to the core, physical-plan, and parquet crates, with a ClickBench-style query runner over generated Parquet. The agent speeds up grouped aggregation, string handling and scan pushdown with identical results.",
+  "title": "DataFusion group-by and Parquet scan speedup 34 to 43"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "database-query",
+ "final": 73,
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-013 0.29"
+  ],
+  [
+   "2026-10-20T21:29:04Z",
+   "v1",
+   "pass",
+   "score 73; dead links ['https://datafusion.apache.org/blog/2024/11/18/datafusion-43.0.0/']"
+  ],
+  [
+   "2026-10-20T23:19:25Z",
+   "v2",
+   "pass",
+   "final 73"
+  ],
+  [
+   "2026-10-21T00:51:33Z",
+   "spike",
+   "killed:K4",
+   "Arrow 49 (34.0.0) has no StringViewArray. Arrow 53.2 (43.0.0) is a breaking upgrade across all crates, so the StringView lever is not an offline-feasible port.; 34.0.0 ships no Cargo.lock. A fresh resolve breaks arrow-arith 49 against the latest chrono, so a vendored lock pinned to chrono 0.4.39 is "
+  ]
+ ],
+ "id": "S-op-014",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.292,
+    "S-op-013"
+   ],
+   [
+    0.234,
+    "S-op-011"
+   ],
+   [
+    0.162,
+    "csv-to-parquet [original]"
+   ],
+   [
+    0.155,
+    "S-im-029"
+   ],
+   [
+    0.128,
+    "predicate-pushdown-bench [original]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 4,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "datafusion.apache.org/blog/2024/11/18/datafusion-fastest-single-node-parquet-clickbench|datafusion-34-0-0-dec-2023-datafusion-43-0-0-nov-2024",
+ "source_notes": "Levers: Arrow StringView, Parquet reader pushdown + parallel reads, dynamic skip of partial aggregation for high-cardinality GROUP BY (PR 11627), columnar multi-column group values (43.0.0), vectorized append/compare for groups (PR 12996, slated for 44). Rust engine so huge build; equivalence = identical query results. Per-lever speedups not given.",
+ "source_url": "https://datafusion.apache.org/blog/2024/11/18/datafusion-fastest-single-node-parquet-clickbench/",
+ "source_version": "DataFusion 34.0.0 (Dec 2023) -> DataFusion 43.0.0 (Nov 2024)",
+ "spike": {
+  "blockers": [
+   "Arrow 49 (34.0.0) has no StringViewArray. Arrow 53.2 (43.0.0) is a breaking upgrade across all crates, so the StringView lever is not an offline-feasible port.",
+   "34.0.0 ships no Cargo.lock. A fresh resolve breaks arrow-arith 49 against the latest chrono, so a vendored lock pinned to chrono 0.4.39 is needed.",
+   "Run-to-run variation is above 10% on several queries (Q3 0.74-1.05 s, Q4 0.49-0.68 s on 43). Measured gain on the 10-query sample is only 1.0-1.1x geomean.",
+   "The 43 reference over a scaled subset is a different dependency graph (arrow 53) and would have to be re-measured. Its reference lines are not a patch applied to 34."
+  ],
+  "build_minutes": 35,
+  "cases_sampled": 10,
+  "commands_log": "curl github archive 34.0.0 and 43.0.0 tarballs; cargo update chrono --precise 0.4.39 in r34; cargo build --release for the runner crates r34 and r43 (datafusion core path dep, parquet feature); v/bin/python gen.py (5M rows, lowercase columns); r34/target/release/r34 34 and r43/target/release/r43 43 (10 queries x3); cmp out_34_q*.txt out_43_q*.txt",
+  "deterministic": false,
+  "gvisor_concerns": [],
+  "headroom_note": "43 vs 34 on a 5M-row, 6-column synthetic parquet, 10 queries, best of 3: roughly 1.0-1.1x geomean. Q1 about 1.4x, Q8 1.7x, Q9 1.4x faster. Q3 and Q4 were about equal or slower on 43 (Q4 1.0-2.2x slower; best-of-3 and medians differ). Below the 1.2x pass bar and noisy.",
+  "headroom_ok": false,
+  "headroom_ok_note": "",
+  "image_gb_estimate": 6,
+  "kill_code": "K4",
+  "notes": "Both versions build from source (34 needs the chrono pin). Result values are identical on all 10 queries; the only difference is the aggregate column header case (COUNT(*) vs count(*)). Wall-clock ran on a 3 CPU container, with default target partitions. Offline mode was not tested. Details in /work/SPIKE.md. Kill reasoning: noisy timing plus low, uneven headroom on the sample; the dominant StringView lever is unavailable at 34's arrow version.",
+  "offline_ok": false,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 10,
+  "reference_lines": 0,
+  "start_scores_zero": true,
+  "verdict": "fail",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://datafusion.apache.org/blog/2024/11/18/datafusion-fastest-single-node-parquet-clickbench/",
+  "facts": [
+   {
+    "claim": "apache/datafusion release 43.0.0 exists (tag 88f58bf, tagged 05 Nov; year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/datafusion/releases/tag/43.0.0"
+   },
+   {
+    "claim": "apache/datafusion release 34.0.0 exists (tagged 14 Dec; year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/datafusion/releases/tag/34.0.0"
+   },
+   {
+    "claim": "ClickBench performance improved over 30% between DataFusion 34 and 43",
+    "status": "confirmed",
+    "url": "https://datafusion.apache.org/blog/2024/11/18/datafusion-fastest-single-node-parquet-clickbench/"
+   },
+   {
+    "claim": "Seed blog URL (datafusion.apache.org/blog/2024/11/18/datafusion-43.0.0/) exists",
+    "status": "contradicted",
+    "url": "https://datafusion.apache.org/blog/2024/11/18/datafusion-43.0.0/"
+   },
+   {
+    "claim": "Per-optimization speedup numbers (StringView, partial-aggregation skip, multi-column groups, Parquet pushdown) are published",
+    "status": "not_found",
+    "url": "https://datafusion.apache.org/blog/2024/11/18/datafusion-fastest-single-node-parquet-clickbench/"
+   },
+   {
+    "claim": "Licence is Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/apache/datafusion/blob/main/LICENSE.txt"
+   },
+   {
+    "claim": "PR 11627 (skip partial aggregation for high-cardinality GROUP BY) is merged, merged 5 Aug 2024",
+    "status": "confirmed",
+    "url": "https://github.com/apache/datafusion/pull/11627"
+   },
+   {
+    "claim": "PR 12996 (vectorized append/compare for multi-column group by) is merged after the 43.0.0 tag, merged 6 Nov 2024, so not in 43.0.0",
+    "status": "confirmed",
+    "url": "https://github.com/apache/datafusion/pull/12996"
+   },
+   {
+    "claim": "Multi-column group values (columnar) are in 43.0.0 and StringView support is part of the 43 changes",
+    "status": "confirmed",
+    "url": "https://datafusion.apache.org/blog/2024/11/18/datafusion-fastest-single-node-parquet-clickbench/"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier. Public ClickBench gain is ~30% total with no lever split, so the realistic agent target is 1.1x to 1.3x. Partial credit comes per lever (partial-aggregation skip, group-by path, scan pushdown, string handling). Weaker model likely cannot build or verify.",
+   "build_cost": "Two to three days: cold Rust release build of the 34 and 43 subsets, harness, and oracle. Smoke build was skipped (no git source), so nothing is verified.",
+   "deliverable": "Patched snapshot that returns identical query results and runs faster in median wall-clock on hidden queries and data, measured against the untouched start.",
+   "gates_anticheat": "Equivalence gate on hidden queries and data; harness and hidden data sealed, not in the image; no network at run time. Cheat paths: editing the runner or test config, caching results, special-casing query text. Close by hashing the runner and checking results on fresh data.",
+   "grading_surface": "Hidden ClickBench-style queries over generated Parquet; result equality is a hard gate; speedup is the score. Surface is executable with an unlimited data generator.",
+   "local_fit": "Rust workspace build of core, physical-plan and parquet on 8 cores, 16 GB, gVisor. Cargo must work offline from a vendored tree. No GPU or kernel features needed.",
+   "lookup": "partial: 43 code and PR 11627 are public in git history; PR 12996 is public but post-43. Snapshot must strip history; the agent may recall the outline of partial-agg skip and StringView.",
+   "provenance": "apache/datafusion, Apache-2.0; 34.0.0 and 43.0.0 release tags confirmed; official blog (2024-11-18) gives the >30% ClickBench claim with no per-lever numbers. Seed's blog link is wrong; correct page is datafusion-fastest-single-node-parquet-clickbench.",
+   "reference": "DataFusion 43.0.0 (Apache-2.0), built and timed by us on the same harness. Full release, so the reference's speedup over 34 covers many crates; the scaled subset's reference must be re-measured.",
+   "ships": "Snapshot of DataFusion 34.0.0 scaled to core, physical-plan and parquet crates, with ClickBench-style runner over generated Parquet. No 43 source, no git history; vendor dir lacks the 43 code. Unverified: whether the 34-era arrow-rs in the vendor dir has StringViewArray.",
+   "similarity": "Nearest l0 neighbours S-op-013 (0.292) and S-op-011 (0.234) are not shown in detail; all are below 0.5. DataFusion query-engine tuning is not on the CROWDED list (SQL database clones are)."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task, so capped at 3 by rule; the scope is plausibly finishable for some trials."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Cold Rust builds of two versions plus harness take roughly 2-3 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust build fits 8 cores and 16 GB, but offline cargo vendoring is needed."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several levers over a Rust engine fit a 20h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at the licence file."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Separate levers (partial-agg skip, group path, pushdown, strings) and query buckets give steady credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour S-op-013 at 0.292, above the 0.15 bar; query-engine tuning is not on the CROWDED list."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Apache-2.0 repo with confirmed release tags and merged PRs; blog claim confirmed at its correct URL."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Full 43.0.0 release is a complete permissive reference, but it covers many crates beyond the scaled subset, so the subset reference must be re-measured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public large implementation shipped as a history-less snapshot; the agent may partially recall StringView and partial-agg skip."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden queries over generated data with an executable oracle; thousands of cases possible."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "StringView unavailable and not upgradable offline (drops a key lever), or the scaled subset cannot be built offline, or CV above 10% makes timing unusable.",
+   "pass_if": "StringView is available in the 34-era arrow or upgradable offline; 43 vs 34 shows at least 1.2x median on group-by queries; results are identical; CV under 10%.",
+   "steps": [
+    "In a networked throwaway container, check out apache/datafusion at tags 34.0.0 and 43.0.0 (tarballs, not git history) and read the 34 Cargo.lock for the arrow-rs version.",
+    "Grep the 34-era arrow-array source for StringViewArray. If it is absent, the StringView lever needs an arrow-rs upgrade; record whether that is possible offline from a vendored tree.",
+    "Build only the core, physical-plan and parquet crates for 34 and 43 in release mode. Time the cold build and record it; it will likely exceed the 60-minute cap, so stop after the first crate graph compiles and extrapolate.",
+    "Generate a small ClickBench-like Parquet file (a few million rows) and run about 10 group-by and string queries on both builds, 3 runs each.",
+    "Diff the result sets for equality and compute median wall-clock per query.",
+    "Check run-to-run variation (CV) on the same binary."
+   ]
+  },
+  "summary": "The seed is real and sealable: Apache-2.0 DataFusion with confirmed 34.0.0 and 43.0.0 tags and the >30% ClickBench claim at the correct official blog URL, though no per-lever numbers exist. The main risk is that the StringView lever may need an arrow-rs upgrade that the 34-era vendor tree cannot provide offline, and the smoke build was skipped, so the spike must check that first."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [
+   "https://datafusion.apache.org/blog/2024/11/18/datafusion-43.0.0/"
+  ],
+  "ratio": 0.14285714285714285
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-014",
+  "kill_code": "",
+  "note": "Confirmed: a ClickBench gain of over 30% between 34 and 43, and PR 11627 is in range (12996 is post-43). Risks: the 'scale to three crates' plan is unrealistic for the DataFusion workspace. StringView probably needs an arrow-rs major upgrade, which is not feasible offline. Release rebuilds are slow and cut the number of agent iterations. Result equivalence between 34 and 43 may break on float aggregation order and bug fixes, so the gate must be tolerance-aware or chosen by query. The reference speedup on the shipped harness is unmeasured. The seed's blog link is dead.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 76
+}

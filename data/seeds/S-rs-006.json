@@ -1,0 +1,224 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "8h. The levers are clear but each evaluation takes minutes; overfitting to the train families hurts on the hidden set. A frontier agent improves; a weaker model breaks correctness or overfits.",
+  "cheat": "Wrong answers score zero because a SAT model is checked. Hidden families are not in /app, so tuning to the train set alone does not help.",
+  "grading": "The solver is built and run on hidden instances from other families at a 10-60s cutoff, scored by PAR-2 and solved count. Reward is normalised between the baseline and the reference. UNSAT/SAT answers are checked (model verified; DRAT-free).",
+  "reference": "Our tuned EasySAT. The paper reports PAR2 gains, for example 503 to 215 on ascon and 10,000 to 1,178 on register allocation, that guide the ceiling; Kissat is for context only.",
+  "source": "https://arxiv.org/abs/2402.10705 (AutoSAT); https://github.com/shaowei-cai-group/EasySAT, MIT",
+  "task": "/app ships EasySAT unmodified, as a small C++ solver with modular restart, reduce, rephase and bump heuristics, plus a train set of CNF instances (generated families and SAT-competition-style ones, licence of competition files not found, so regenerated families are used). The agent improves the solver over iterations and delivers the source.",
+  "title": "CDCL heuristic tuning on EasySAT for unseen families"
+ },
+ "class": "research",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-014 0.12"
+  ],
+  [
+   "2026-10-20T21:29:19Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 2, 'Band': 3, 'Hor': 3, 'Multi': 3, 'Seal': 3, 'Nov': 4, 'Lic': 5, 'Fit': 5, 'Build': 3}"
+  ]
+ ],
+ "id": "S-rs-006",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.124,
+    "S-op-014"
+   ],
+   [
+    0.117,
+    "S-op-011"
+   ],
+   [
+    0.113,
+    "weighted-max-sat-solver [original]"
+   ],
+   [
+    0.113,
+    "S-im-036"
+   ],
+   [
+    0.085,
+    "group_lasso [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "arxiv.org/abs/2402.10705|baseline-easysat-unmodified-9-modular-heuristic-functions-re",
+ "source_notes": "Paper settings: timeout q:\"is 5000s for each SAT instance\", 12 datasets (7 from SC2023 families, 5 Picat), tests on 3 AMD EPYC 7763 servers: far too heavy, scale to 10-60 s cutoffs and instances EasySAT solves in seconds. OOD split: tune on some families (e.g. SC2023), hidden on others (Picat Zamkeller, KnightTour). Levers: restart policy, clause DB reduction, VSIDS/bump scheme, rephasing, plus data-structure/inprocessing work. Paper reports MiniSat beaten on 9 of 12 datasets, Kissat on 4. INFERRED: 100 instances x 30 s cutoff / 8 cores about 6-10 min per eval worst case. Single-source (paper); numbers read from PDF tables.",
+ "source_url": "https://arxiv.org/abs/2402.10705",
+ "source_version": "Baseline: EasySAT unmodified (9 modular heuristic functions: restart, restart condition(+update), reduce(+condition), rephase(+condition), bump var, bump var heuristic). -> Reference: AutoSAT (GPT-4o, budget B=60 LLM rewrites, greedy hill climber or (1+1) EA) and, for context, Kissat. Paper Table 2 PAR2 (solved): cryptography-ascon EasySAT 503 (20) -> 215 (20), Kissat 146 (20); register-allocation 10,000 (0) -> 1,178 (18), Kissat 8,554 (5); Zamkeller 3,668 (54) -> 2,053 (66).",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/html/2402.10705v3",
+  "facts": [
+   {
+    "claim": "EasySAT repo exists at shaowei-cai-group/EasySAT with MIT licence (README states MIT; no SPDX shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/shaowei-cai-group/EasySAT"
+   },
+   {
+    "claim": "EasySAT is a small C++ CDCL solver ('A Simple CDCL Solver'), 3 commits, no releases or tags",
+    "status": "confirmed",
+    "url": "https://github.com/shaowei-cai-group/EasySAT"
+   },
+   {
+    "claim": "EasySAT is structured as modular restart, reduce, rephase and bump heuristics",
+    "status": "not_found",
+    "url": "https://github.com/shaowei-cai-group/EasySAT"
+   },
+   {
+    "claim": "AutoSAT paper exists: arXiv 2402.10705, Sun, Ye, Zhang, Huang, Zhang, Wei, Cai, 2024; later published in JAIR vol. 86",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2402.10705"
+   },
+   {
+    "claim": "Table 2 reports ascon PAR2-style figure 503 (EasySAT) vs 215 (AutoSAT_EA)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2402.10705v3"
+   },
+   {
+    "claim": "Table 2 reports register-allocation 10,000 (EasySAT, 0 solved) vs 1,178 (AutoSAT_EA, 18 solved)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2402.10705v3"
+   },
+   {
+    "claim": "Paper timeout is 5000 s per SAT instance",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2402.10705v3"
+   },
+   {
+    "claim": "Experiments use 12 datasets (7 SAT Competition 2023, 5 Picat)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2402.10705v3"
+   },
+   {
+    "claim": "Only the 7+5 split of the 12 datasets is confirmed; the family names are not verified",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2402.10705v3"
+   },
+   {
+    "claim": "AutoSAT beats MiniSat on 9 of 12 datasets and Kissat on 4 (arXiv abstract)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2402.10705"
+   },
+   {
+    "claim": "JAIR version reports AutoSAT beats MiniSat on 12 of 19 test datasets, so the dataset count differs by version",
+    "status": "contradicted",
+    "url": "https://jair.org/index.php/jair/article/view/20499"
+   },
+   {
+    "claim": "Tuned AutoSAT or EasySAT source code is publicly released with a link",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2402.10705v3"
+   },
+   {
+    "claim": "Licence of SAT competition instance files",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2402.10705v3"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; several levers (restart, reduce, rephase, bump); evals take minutes. Frontier agent likely improves; weaker model breaks correctness or overfits.",
+   "build_cost": "About 3 weeks-equivalent for our reference (rerun tuning on scaled families) is uncertain; estimated 3-5 days. Smoke build skipped (no git source snapshot).",
+   "deliverable": "Improved EasySAT source, scored on hidden CNF families under 10-60 s cutoff by PAR-2 and solved count.",
+   "gates_anticheat": "Wrong SAT answers score 0 via model check; UNSAT answers unchecked (no DRAT), so a solver that claims UNSAT falsely could cheat. Need a sanity cross-check against baseline verdicts. Hidden families are not in /app.",
+   "grading_surface": "Hidden CNF instances from other families, model-verified SAT answers; size not yet fixed (roughly 100 instances per eval).",
+   "local_fit": "C++ solver, 8 cores, under 16 GB, no network at run time. Fits.",
+   "lookup": "partial: the approach and table results are public; the tuned code is not found in any public repo.",
+   "provenance": "Single-source paper (AutoSAT, arXiv 2402.10705, JAIR 2026) built on public MIT EasySAT (3-commit C++ CDCL). Tuned code not released as far as found.",
+   "reference": "Our own tuned EasySAT; not public. Paper gains (ascon 503->215, regalloc 10000->1178 at 5000 s) do not yet transfer to 10-60 s cutoffs.",
+   "ships": "Unmodified EasySAT C++ source, train CNF set (regenerated families), grader that checks SAT models.",
+   "similarity": "Nearest neighbours cosine 0.124 (S-op-014), 0.117, 0.113; no CROWDED overlap. Not a SAT-solver public task."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task; at most 3 without it."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference tuning and eval harness take several days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "C++ CPU solver within 8 cores and 16 GB, no network needed."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8 h with minutes per eval supports sustained iteration, but the scope may fit in fewer hours."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT for EasySAT; the regenerated families avoid the unclear competition-file licence."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers and family buckets give partial credit, though the levers interact."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbour is 0.124 and not crowded."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Public MIT repo and a peer-reviewed paper with tables; the tuned solver itself is not public."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No public tuned reference; we must produce it, and its strength on the hidden split is unmeasured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden families are regenerated and absent from /app; the tuned reference is not in the paper's text."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden CNF families with model checks give hundreds of instances, but the grader is still small compared with an executable oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Verdicts or timing are too noisy to rank changes (K4), or no lever beats noise on the held-out family, so the reference gap cannot be shown (K5/K8).",
+   "pass_if": "Build succeeds, verdicts are deterministic, run-to-run PAR2 variance is under about 5%, and at least one lever gives a gain beyond noise on the held-out family.",
+   "steps": [
+    "In a throwaway networked Linux container, clone shaowei-cai-group/EasySAT and build with g++ -O2; record build time and that it produces a binary.",
+    "Generate about 30 instances from two families: random 3-SAT near threshold and one structured family (e.g. a small pigeonhole or encoded scheduling set). Keep each solvable in 10-60 s by the baseline.",
+    "Write a grader: run the solver with a 30 s cutoff over 8 parallel jobs, check SAT models with an independent checker, and compute PAR2 and solved count.",
+    "Run the baseline twice to measure run-to-run PAR2 variance and check that SAT/UNSAT verdicts are identical across runs.",
+    "Change one lever (e.g. restart interval or clause-DB reduce schedule) and measure PAR2 on the same set plus a held-out family. Compare the gain against the run-to-run noise.",
+    "Time one full eval cycle to confirm it fits in minutes."
+   ]
+  },
+  "summary": "The seed's source, licence and paper results check out: EasySAT is MIT C++ and the paper's Table 2 reports the 503\u2192215 and 10,000\u21921,178 figures at a 5000 s timeout, though the tuned code is not public and the JAIR version reports a different dataset count. The idea passes the gates on paper with no kill, but Ref (2) and timing noise at 10-60 s are open risks, so the spike must confirm that levers beat run-to-run noise on held-out families before building the reference."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 66
+}

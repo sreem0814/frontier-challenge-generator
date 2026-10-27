@@ -1,0 +1,264 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "8h. Expression semantics and the circuit-breaker state machine are the hard parts. A frontier agent gets routing but misses breaker timing edge cases. A weaker model gets only simple routing.",
+  "cheat": "Hardcoding the visible cases fails against the generated differential set. Keep the Go binary and hidden corpus out of /app.",
+  "grading": "Differential: the Go reference binary (kept out of the image) is run on thousands of generated rule sets, events and failure sequences. The Go unit-test cases are converted to JSON and a hidden half is held back. Exact output match, and score is the fraction passed.",
+  "reference": "Go reference at the pinned commit, wrapped as a CLI. The port is estimated at 3-5k Rust lines.",
+  "source": "https://github.com/dapr/dapr @ c8402369 (v1.18.7), Apache-2.0",
+  "task": "Port the pub/sub routing-rule evaluation (CEL-style match expressions, default routes, metadata filters) and the resiliency policy engine (retry, timeout, circuit breaker with targets) into a Rust library with a JSON-in/JSON-out CLI. /app ships the Go sources and its tests as specification. The repo's probe build failed, so the base must be pinned and vendored offline first.",
+  "title": "Port Dapr pub/sub routing and resiliency policies to Rust"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-008 0.20"
+  ],
+  [
+   "2026-10-20T21:19:08Z",
+   "v1",
+   "killed:K11",
+   "The Go reference is shipped inside the image: /app ships the full Go sources and tests, and the vendored, offline-buildable base would let an agent build the Go oracle and run differential tests itself. Hidden corpus stays sealed, but the reference is not kept out of the image as the sealing rule re"
+  ]
+ ],
+ "id": "S-im-021",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.201,
+    "S-im-008"
+   ],
+   [
+    0.194,
+    "S-im-006"
+   ],
+   [
+    0.186,
+    "S-im-018"
+   ],
+   [
+    0.143,
+    "ruby-rust-port [SWE-Marathon]"
+   ],
+   [
+    0.142,
+    "Zig to Rust port [Bun]"
+   ]
+  ]
+ },
+ "method": "port",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 25,
+  "ci_files": 24,
+  "clone_ok": true,
+  "cmd_build": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -run '^$' ./... >/dev/null",
+  "cmd_fetch": "go mod download all",
+  "cmd_test": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -json -p 4 ./...",
+  "commit": "7faabe830ac15c0aea1c3c833702d7bc3c7781b2",
+  "deterministic": true,
+  "eco": "go",
+  "fetch_ok": false,
+  "fetch_s": 900,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": " by GOPROXY=off\n# github.com/dapr/dapr/tests/runner/summary\n/root/go/pkg/mod/github.com/dapr/kit@v0.19.0/logger/dapr_logger.go:20:2: module lookup disabled by GOPROXY=off\n# github.com/dapr/dapr/utils\n/root/go/pkg/mod/github.com/dapr/kit@v0.19.0/streams/uppercase_transformer.go:23:2: module lookup disabled by GOPROXY=off\n# github.com/dapr/dapr/utils\nutils/kubernetes.go:20:2: module lookup disabled by GOPROXY=off\n# github.com/dapr/dapr/utils\nutils/kubernetes.go:21:2: module lookup disabled by GOPROXY=off\n# github.com/dapr/dapr/utils\nutils/kubernetes.go:22:2: module lookup disabled by GOPROXY=off",
+  "oom": false,
+  "ref": "default",
+  "report_format": "meson-json",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "?"
+  ],
+  "stable_failures": 1,
+  "subdir": "",
+  "suite_s": 3,
+  "test_files": 3142,
+  "tests_fail": 1,
+  "tests_listed": 69,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 1,
+  "timeouts": [
+   "fetch"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "c840236916cc86a63bb647d904e5b005893e929f",
+  "kb": 211471,
+  "lang": "Go",
+  "open_prs": 130,
+  "pushed": "2026-10-20",
+  "release": "v1.18.7",
+  "spdx": "Apache-2.0",
+  "stars": 26158,
+  "test_files": 3140,
+  "test_kb": 23013,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/dapr/dapr|oss-fuzz-dapr",
+ "source_notes": "OSS-Fuzz project, language go",
+ "source_url": "https://github.com/dapr/dapr",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "",
+  "facts": [
+   {
+    "claim": "Tag v1.18.7 points to commit b32a815fa2260983e181b95272ea555fe17d3895, not c8402369 as the seed pins",
+    "status": "contradicted",
+    "url": "https://api.github.com/repos/dapr/dapr/git/refs/tags/v1.18.7"
+   },
+   {
+    "claim": "Commit c840236916cc86a63bb647d904e5b005893e929f exists on main (\"update docs to match behavior (#10871)\", charts only) and is not shown to be in v1.18.7",
+    "status": "contradicted",
+    "url": "https://github.com/dapr/dapr/commit/c840236916cc86a63bb647d904e5b005893e929f"
+   },
+   {
+    "claim": "Smoke-build commit 7faabe830ac15c0aea1c3c833702d7bc3c7781b2 is the same source as the pin",
+    "status": "not_found",
+    "url": "https://github.com/dapr/dapr"
+   },
+   {
+    "claim": "go.mod at v1.18.7 requires github.com/google/cel-go v0.20.1 and github.com/sony/gobreaker v0.5.0 (CEL match semantics and breaker library are external deps to port)",
+    "status": "confirmed",
+    "url": "https://github.com/dapr/dapr/blob/v1.18.7/go.mod"
+   },
+   {
+    "claim": "pkg/resiliency at v1.18.7 contains noop.go, policy.go, resiliency.go, retry.go and a breaker/circuitbreaker.go with tests",
+    "status": "confirmed",
+    "url": "https://github.com/dapr/dapr/tree/v1.18.7/pkg/resiliency"
+   },
+   {
+    "claim": "Pub/sub routing with CEL match expressions and an optional default route is a documented Dapr feature",
+    "status": "confirmed",
+    "url": "https://docs.dapr.io/developing-applications/building-blocks/pubsub/howto-route-messages/"
+   },
+   {
+    "claim": "Routing implementation lives under pkg/runtime/pubsub/routing at v1.18.7",
+    "status": "not_found",
+    "url": "https://github.com/dapr/dapr/tree/v1.18.7/pkg/runtime/pubsub"
+   },
+   {
+    "claim": "A Rust port of Dapr pub/sub routing or resiliency exists publicly",
+    "status": "not_found",
+    "url": "https://www.google.com/search?q=dapr+rust+port+routing+resiliency"
+   },
+   {
+    "claim": "cel-interpreter crate has a licence and repository listed on crates.io",
+    "status": "not_found",
+    "url": "https://crates.io/crates/cel-interpreter"
+   },
+   {
+    "claim": "Public Rust CEL implementations exist (zystem-io/cel-rust, rscel, cellang) with confirmed licences",
+    "status": "not_found",
+    "url": "https://github.com/zystem-io/cel-rust"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Breaker timing edges and CEL semantics are hard; routing alone is an easy partial bucket. Scope size unverified: routing source location not found under pkg/runtime/pubsub.",
+   "build_cost": "About 3-4 days: pin resolution, Go vendoring, CLI wrapper, and a CEL dependency decision (under the 5-day K12 limit).",
+   "deliverable": "Rust library plus JSON-in/JSON-out CLI for routing rules (CEL-style match, default route, metadata filters) and resiliency (retry, timeout, circuit breaker with targets).",
+   "gates_anticheat": "Hidden corpus and Go binary kept out of image (seed intent). Gap: Go source in image is buildable offline once vendored, so the oracle is reproducible. Cheats to close: Rust CLI shelling out to a Go binary, editing tests or build config, hardcoding visible vectors.",
+   "grading_surface": "Differential vs Go reference on generated rule sets, events and failure sequences; visible half of Go unit tests as JSON, hidden half held back. Exact-match output, fraction passed.",
+   "local_fit": "gVisor fine, CPU-only, 8 cores/16 GB enough. Requires vendored Go modules and vendored Rust CEL crate for offline builds.",
+   "lookup": "No Rust port found. Go source public upstream; a model knows routing and breaker in outline only. CEL needs a Rust crate that is not vendored, licences unverified.",
+   "provenance": "dapr/dapr, Apache-2.0 (spdx from GitHub API), 26k stars, pushed 2026-10-20. Pin is unresolved: v1.18.7 tag = b32a815f; seed commit c8402369 is a main-branch docs commit; smoke commit 7faabe83 is a third value.",
+   "reference": "Go reference at pinned commit wrapped as CLI, est. 3-5k Rust lines. Not built. Go module needs vendoring offline (fetch timed out in probe).",
+   "ships": "Go sources and tests of the pinned subset, plus converted visible JSON vectors. Current seed ships the whole Go reference, which is the problem.",
+   "similarity": "Nearest l0 neighbour S-im-008 at 0.201, no public-task duplicate found. Not crowded; differs from a generic port by CEL plus resiliency."
+  },
+  "kill_code": "K11",
+  "kill_reason": "The Go reference is shipped inside the image: /app ships the full Go sources and tests, and the vendored, offline-buildable base would let an agent build the Go oracle and run differential tests itself. Hidden corpus stays sealed, but the reference is not kept out of the image as the sealing rule requires. Re-seed option: withhold the Go sources and ship only the converted visible JSON vectors plus public docs (routing docs confirmed at docs.dapr.io), keeping the Go binary out of /app.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this kind of port; expected band placed at 3 without it."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Pin resolution, Go vendoring, CLI wrapper and CEL dependency choice make it about 3-4 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Fits gVisor and CPU limits, but Go and Rust crates must be vendored for offline builds."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Routing, CEL and breaker semantics plus vendoring fit an 8h budget."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Apache-2.0 per API; the Rust CEL crate licence is unverified."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Routing, default route, metadata filter, retry, timeout and breaker give several buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top l0 neighbour 0.201 (S-im-008) is above the 0.15 threshold, so not a clean 5."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real public repo and release tag exist, but the pinned commit is contradicted by the tag and the smoke build uses a third commit."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Apache-2.0 Go reference exists at the tag, but the CLI wrapper is unbuilt and the pin is unresolved."
+   },
+   "Seal": {
+    "v": 1,
+    "why": "Go source and tests are in the image and the Go module is buildable offline once vendored, so the reference is reproducible in /app."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 3140 test files and an executable oracle allow thousands of differential cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Pin cannot be resolved, or the Go subset cannot be built offline, or no permissive Rust CEL implementation can be vendored.",
+   "pass_if": "Pin resolved to one commit, Go subset builds offline after vendoring, routing code located with a line count, and a Rust CEL crate with a permissive licence identified.",
+   "steps": [
+    "Resolve the pin: clone dapr/dapr, check out c8402369 and v1.18.7, and confirm which commit the release uses; record both.",
+    "Run GOFLAGS=-mod=vendor go build on pkg/resiliency and pkg/runtime/pubsub after go mod vendor; note any missing modules.",
+    "Locate the routing code (grep for CEL match and default route under pkg/ at the pinned commit) and count non-blank Go lines in routing plus resiliency.",
+    "Check licences of two Rust CEL crates (cel-interpreter and one alternative) from their LICENSE files and Cargo.toml.",
+    "Run the pinned package tests with -json and confirm per-test results are deterministic across three runs.",
+    "Decide: if the Go source must stay out of the image, re-seed with only JSON vectors and public docs before any further build."
+   ]
+  },
+  "summary": "The seed is killed under K11 because it ships the full Go reference source in /app, so an agent could build the oracle itself once the modules are vendored. Its pin is also contradicted: tag v1.18.7 resolves to b32a815f, not the seed's c8402369, and the smoke build used a third commit."
+ },
+ "v1_links": {
+  "checked": 10,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 67
+}

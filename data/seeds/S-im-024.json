@@ -1,0 +1,238 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "4h. Many plumbing layers. A frontier agent wires the core request but skips protocol schema, resume and TUI. A weaker model fails to compile across crates.",
+  "cheat": "Faking the mock server responses is useless because requests are compared in hidden tests. The tests are not shipped.",
+  "grading": "Hidden Rust integration tests against a mock server assert exact request bodies and headers, protocol JSON schemas, config precedence and resume behaviour. The existing suite is the regression gate. Score is the fraction passed.",
+  "reference": "Written by us, at least 1200 added lines across the core, protocol, app-server and TUI crates and tests.",
+  "source": "https://github.com/openai/codex/issues/2916 @ cb00a675 (rust-v0.163.0), Apache-2.0",
+  "task": "/app ships a history-less Rust snapshot. The agent adds service tier support: a config key and CLI flag, per-profile and per-session override, an app-server protocol field, request serialization to the Responses API, and display and persistence in the session rollout. A local mock model server is provided.",
+  "title": "Service tier selection across Codex CLI and app-server"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-022 0.50"
+  ],
+  [
+   "2026-10-20T21:19:34Z",
+   "v1",
+   "killed:K11",
+   "Cannot be sealed: the same feature (service tier/fast mode across config, app-server and request plumbing) is merged in public upstream history (#13212 and #13334, March 2026, mirrored on forge.lthn.ai), so a history-less snapshot at cb00a675 would still leave a recallable reference. The seed's prem"
+  ]
+ ],
+ "id": "S-im-024",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.501,
+    "S-im-022"
+   ],
+   [
+    0.32,
+    "S-im-018"
+   ],
+   [
+    0.311,
+    "S-im-006"
+   ],
+   [
+    0.124,
+    "json-tui [ProgramBench]"
+   ],
+   [
+    0.122,
+    "rust-java-lsp [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 31,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "false",
+  "commit": "2f5e242d9f869b0553bf37e007b85b2cbd9b31ef",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21553:5)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async fetchLatestStableVersion2 (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:21672:14)\n    at async Engine.getDefaultVersion (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22292:23)\n    at async Engine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 1331,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cb00a67569450aea2fdb1b1f31fc042fc0b5416f",
+  "kb": 688333,
+  "lang": "Rust",
+  "open_prs": 163,
+  "pushed": "2026-10-20",
+  "release": "rust-v0.163.0",
+  "spdx": "Apache-2.0",
+  "stars": 130298,
+  "test_files": 1331,
+  "test_kb": 20632,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/openai/codex/issues/2916|openai-codex-2916-openai-service-tier-support",
+ "source_notes": "repo https://github.com/openai/codex; opened 2025-08-29",
+ "source_url": "https://github.com/openai/codex/issues/2916",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/openai/codex/issues/2916",
+  "facts": [
+   {
+    "claim": "Issue openai/codex#2916 exists, is open, and asks for a service_tier config key (auto/flex/priority) and a --service-tier CLI flag",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/issues/2916"
+   },
+   {
+    "claim": "Release rust-v0.163.0 exists (released 15 Oct) and its notes list no service tier, service_tier, priority or fast-mode item",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0"
+   },
+   {
+    "claim": "Upstream already has service-tier/fast-mode work in codex-core: a local Fast setting that sends service_tier=priority, plus a /fast TUI command behind a feature flag (PR #13212)",
+    "status": "confirmed",
+    "url": "https://codex.danielvaughan.com/2026/04/30/codex-cli-service-tiers-flex-fast-cost-speed-optimisation/"
+   },
+   {
+    "claim": "Commit 'app-server service tier plumbing (plus some cleanup) (#13334)' exposes the tier in app-server thread, turn, config and session surfaces; merged 2026-03-03 per commit text (mirror copy)",
+    "status": "confirmed",
+    "url": "https://forge.lthn.ai/core/core-agent-ide/commit/07e532dcb927b08b0174bd8d0cdf7d0632eea14f"
+   },
+   {
+    "claim": "The base commit cb00a675 tree contains protocol, app-server, core and config crates (tui directory not seen because the listing was truncated)",
+    "status": "confirmed",
+    "url": "https://github.com/openai/codex/tree/cb00a67569450aea2fdb1b1f31fc042fc0b5416f/codex-rs"
+   },
+   {
+    "claim": "Official Codex docs document a service_tier key, --service-tier flag or fast_mode feature flag",
+    "status": "not_found",
+    "url": "https://developers.openai.com/codex/config-basic"
+   },
+   {
+    "claim": "Seed smoke_build commit 2f5e242 is the same tree as the pinned source head cb00a675",
+    "status": "contradicted",
+    "url": "https://github.com/openai/codex/tree/cb00a67569450aea2fdb1b1f31fc042fc0b5416f/codex-rs"
+   }
+  ],
+  "full_card": {
+   "band": "4h tier claimed; not evidenced; the base-already-has-feature issue makes the delta unknown",
+   "build_cost": "unknown; likely more than 1 day for a large Rust workspace; smoke build amber (build_s 0, cmd_test 'false', 0 tests listed, 3 non-zero exits)",
+   "deliverable": "config key + CLI flag, per-profile and per-session override, app-server protocol field, Responses API serialization, rollout persistence/display",
+   "gates_anticheat": "tests hidden; edits to tests/build config not closed by the seed text; upstream history must be stripped",
+   "grading_surface": "hidden Rust integration tests vs mock server (exact request bodies/headers, protocol JSON schema, config precedence, resume); exists only in the seed, not verified",
+   "local_fit": "Rust workspace, 8 cores/16 GB; cargo build time unmeasured; smoke probe ran a node build, not cargo, so it proves nothing about Rust",
+   "lookup": "direct: upstream merged commits for the same feature (#13212, #13334) on public mirrors and a forge fork; a frontier model may recall the design",
+   "provenance": "openai/codex issue #2916 (opened 2025-08-29, still open); pinned at cb00a675 = rust-v0.163.0 (2026-10-15), Apache-2.0, 130k stars",
+   "reference": "written by the seed authors, >=1200 lines; not verified; upstream PRs #13212/#13334 are public and would serve as an implicit reference",
+   "ships": "history-less Rust workspace snapshot (codex-rs) at cb00a675 \u2014 but the base is likely already partly or fully featured (upstream service-tier plumbing merged 2026-03 per PRs #13212/#13334)",
+   "similarity": "l0_neighbours S-im-022 at 0.501 (above the 0.15 bar); S-im-018 0.32; S-im-006 0.311; not crowded; the seed does not say what differs"
+  },
+  "kill_code": "K11",
+  "kill_reason": "Cannot be sealed: the same feature (service tier/fast mode across config, app-server and request plumbing) is merged in public upstream history (#13212 and #13334, March 2026, mirrored on forge.lthn.ai), so a history-less snapshot at cb00a675 would still leave a recallable reference. The seed's premise also conflicts with that history, since the base may already contain the feature. Separately, the smoke probe ran a node build rather than cargo and reported no tests, so build cost and the base delta are unverified.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "no dated evidence; the feature may already exist at base, so the delta and the frontier success rate are unknown"
+   },
+   "Build": {
+    "v": 2,
+    "why": "no real Rust build verified; likely over 1 day for a workspace this size"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust workspace is large; 8 cores and 16 GB may be tight for a full cargo build and test cycle"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "plumbing across several crates could fill 4h, but the scope is one feature, not a multi-part programme"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 per source_facts"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "config, CLI, protocol, serialization, persistence and TUI give some buckets, but the seed names no partial-credit curve"
+   },
+   "Nov": {
+    "v": 2,
+    "why": "l0 neighbour S-im-022 at 0.501 and the subject closely matches public upstream work"
+   },
+   "Real": {
+    "v": 4,
+    "why": "real, popular Apache-2.0 repo at a pinned release; issue #2916 exists"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "reference is an unpublished seed-authored patch; the upstream feature is merged but would be the wrong reference if the base already contains it"
+   },
+   "Seal": {
+    "v": 1,
+    "why": "the same feature is merged in public upstream history and forks, so the reference is recallable and reachable"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Rust integration tests with exact-body checks could be large, but the count is unknown and the seed gives no numbers"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "base already has service_tier plumbing (upstream #13212/#13334 present), or the feature is public in a later commit that a history-less snapshot cannot hide",
+   "pass_if": "base lacks service_tier support end to end, cargo build finishes in under 60 min on 8 cores, and the existing suite runs deterministically",
+   "steps": [
+    "In a throwaway networked Linux container, clone openai/codex at cb00a675 (not 2f5e242) and confirm the commit matches rust-v0.163.0.",
+    "Grep codex-rs for service_tier, service-tier and fast_mode in protocol, app-server-protocol, config and core to see what the base already has.",
+    "Check whether the base already carries the upstream #13212/#13334 plumbing; if it does, the task premise fails and the start is non-zero.",
+    "Run cargo build of the codex-rs workspace (or the cli and app-server crates) with a timer, offline after fetch, to measure real build cost and RAM.",
+    "Run the existing workspace tests for config and app-server protocol to see whether they pass and how long they take.",
+    "Ask whether an upstream commit with the feature exists after cb00a675 (later release or PR) and record its SHA.",
+    "Do not write a reference; if steps 2 and 3 show the feature is already present, stop and kill."
+   ]
+  },
+  "summary": "The seed asks for service tier support in Codex CLI and app-server at cb00a675, but public upstream commits (#13212, #13334) from March 2026 already implement the feature, so the base may not start from zero and the reference is recallable (K11). The smoke build is amber, ran a node build instead of cargo, and listed no tests, and its commit (2f5e242) does not match the pinned head (cb00a675); the spike should first check whether the base already contains the feature."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 54
+}

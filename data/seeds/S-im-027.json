@@ -1,0 +1,258 @@
+{
+ "batch": 5,
+ "card": {
+  "band": "8h. Prefix, VEX/EVEX and mask-register handling are broad and each opcode map is its own bucket, so frontier agents usually finish legacy and VEX but not EVEX or formatter edge cases. A weaker model stops at the 32-bit one-byte opcode map.",
+  "cheat": "Memorizing or embedding the table files. The bundle ships only a 2% sample, never the full tables, and the hidden set mixes random byte streams from the reference, so a lookup table cannot cover it.",
+  "grading": "Hidden slices of DecoderTest16/32/64 (about 79k lines) plus formatter option-set tables (e.g. Test64_MemDefault, ~13k lines) and random-byte streams checked against the reference build; exact string and length match. Score is the fraction of cases passed, bucketed per mode and per instruction family.",
+  "reference": "The upstream iced decoder/formatter (MIT), reduced to the Intel formatter and decoder, about 6-10k lines. It passes every case, so the ceiling is 1.",
+  "source": "https://github.com/icedland/iced @ v1.21.0, MIT",
+  "task": "/app ships an empty Rust (or C) crate with a CLI and library API: bytes + mode (16/32/64) + IP in, instruction length, mnemonic, operands and Intel-syntax text out. The agent builds the full decoder (legacy, VEX, EVEX, XOP, 3DNow) and one formatter from the format docs and a small sample of the text tables.",
+  "title": "x86 decoder and Intel-syntax formatter from instruction tables"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:21:22Z",
+ "family": "compiler-toolchain",
+ "history": [
+  [
+   "2026-10-20T21:21:22Z",
+   "write",
+   "short",
+   "batch 5"
+  ],
+  [
+   "2026-10-20T21:21:22Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-015 0.21"
+  ],
+  [
+   "2026-10-20T21:23:07Z",
+   "v1",
+   "killed:K9",
+   "Full scope (legacy, VEX, EVEX, XOP, 3DNow across 16/32/64 plus exact Intel formatter) is too big for any 8h trial to reach 0.9 of reference: the seed itself says frontier agents usually finish only legacy and VEX. Fix: re-seed at the 20h tier, or cut to a 64-bit legacy+VEX decoder with one Intel for"
+  ]
+ ],
+ "id": "S-im-027",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.21,
+    "S-im-015"
+   ],
+   [
+    0.183,
+    "S-im-014"
+   ],
+   [
+    0.183,
+    "S-im-006"
+   ],
+   [
+    0.155,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.13,
+    "sql-formatter-bigquery-pipe-formatting [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 2,
+  "clone_ok": true,
+  "cmd_build": "false",
+  "cmd_fetch": "true",
+  "cmd_test": "false",
+  "commit": "8cfc5f57c08fd2e80a4cec9d3d9d36f642b2de31",
+  "deterministic": true,
+  "eco": "unknown",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "log": "",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 391,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "none",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "8cfc5f57c08fd2e80a4cec9d3d9d36f642b2de31",
+  "kb": 82184,
+  "lang": "Rust",
+  "open_prs": 23,
+  "pushed": "2026-10-13",
+  "release": "v1.21.0",
+  "spdx": "MIT",
+  "stars": 3600,
+  "test_files": 391,
+  "test_kb": 23088,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/icedland/iced|v1-21-0-2024-01-20-master-8cfc5f57-2026-07-14",
+ "source_notes": "Plain-text test tables with bytes, mnemonic, operands and flags; very large deterministic surface; also usable for instruction-info and encoder differential tests; pick one formatter syntax to keep scope sane; lowest memorization risk of the x86 options",
+ "source_url": "https://github.com/icedland/iced",
+ "source_version": "v1.21.0 (2024-01-20); master 8cfc5f57 2026-07-14",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://mattkeeter.com/blog/2026-03-15-uxn",
+  "facts": [
+   {
+    "claim": "icedland/iced release v1.21.0 exists and is marked Latest, tag points to commit c50f29b (publish date shown as 20 Jan, year not shown)",
+    "status": "confirmed",
+    "url": "https://github.com/icedland/iced/releases/tag/v1.21.0"
+   },
+   {
+    "claim": "Repository licence is MIT (LICENSE.txt described as MIT)",
+    "status": "confirmed",
+    "url": "https://github.com/icedland/iced/tree/v1.21.0"
+   },
+   {
+    "claim": "Rust crate iced-x86 at 1.21.0 is published, MIT-licensed, covers 16/32/64-bit x86 with Intel (XED-style) and other formatters, pure Rust with lazy_static as its only listed dependency",
+    "status": "confirmed",
+    "url": "https://docs.rs/iced-x86/latest/"
+   },
+   {
+    "claim": "iced-x86 crate is also distributed on PyPI and npm (public complete implementation, installable outside the sandbox)",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/iced-x86"
+   },
+   {
+    "claim": "Crate lives at src/rust/iced-x86 with a Cargo.toml at src/rust (workspace-level)",
+    "status": "confirmed",
+    "url": "https://github.com/icedland/iced/tree/v1.21.0/src/rust"
+   },
+   {
+    "claim": "Test tables of about 79k lines (DecoderTest16/32/64) exist in the repo",
+    "status": "not_found",
+    "url": "https://github.com/icedland/iced/tree/v1.21.0/src/rust"
+   },
+   {
+    "claim": "Formatter option-set tables (e.g. Test64_MemDefault, about 13k lines) exist",
+    "status": "not_found",
+    "url": "https://github.com/icedland/iced/tree/v1.21.0/src/rust"
+   },
+   {
+    "claim": "Reduced Intel formatter plus decoder is about 6-10k lines",
+    "status": "not_found",
+    "url": "https://github.com/icedland/iced/tree/v1.21.0/src/rust/iced-x86"
+   },
+   {
+    "claim": "Source file count of 391 test files and 23 MB test tree (from API facts)",
+    "status": "not_found",
+    "url": "https://github.com/icedland/iced/tree/v1.21.0"
+   },
+   {
+    "claim": "Adjacent dated evidence: a Claude Code agent wrote a working x86-64 backend (not a decoder) that passed unit tests and a fuzzer after many iterations, quality called middling, one memory bug needed a stronger model",
+    "status": "confirmed",
+    "url": "https://mattkeeter.com/blog/2026-03-15-uxn"
+   },
+   {
+    "claim": "No public benchmark result found for AI agents writing an x86 decoder/formatter against iced-style reference",
+    "status": "not_found",
+    "url": "https://ar5iv.labs.arxiv.org/html/2012.09155"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier claimed. Seed's own note: frontier usually finishes legacy and VEX, not EVEX or formatter edge cases, so 0.9 of reference is unlikely in 8h; no dated evidence of agents on this scope",
+   "build_cost": "About 3-4 days to reduce upstream crate to Intel formatter plus decoder, generate oracle, and wire grading; smoke probe did not build (probe looked for root build system, crate sits under src/rust), so the build cost is unverified and the spike must confirm",
+   "deliverable": "Decoder (16/32/64; legacy, VEX, EVEX, XOP, 3DNow) plus one Intel-syntax formatter; CLI and library API returning length, mnemonic, operands, text",
+   "gates_anticheat": "Hidden tables and reference binary not in image; agent cannot edit grader; cheat path of embedding tables is closed by random-byte streams; a vendored copy of iced must be blocked by history-less snapshot and checking for iced crate in Cargo cache",
+   "grading_surface": "Hidden slices of decoder test tables (~79k lines claimed, not verified), formatter option tables, and random-byte streams checked against reference build; exact string and length match; bucketed per mode and family",
+   "local_fit": "CPU-only, offline cargo build needs vendored lazy_static; no kernel features needed; fits sandbox",
+   "lookup": "Direct: complete MIT implementation of this exact subject is public on crates.io, PyPI, npm and GitHub, and famous enough to be recalled in outline; not installable at run time; full history past the base must not ship",
+   "provenance": "icedland/iced v1.21.0 (MIT), release tag c50f29b; master head 8cfc5f5 is later (pushed 2026-10-13); crate at src/rust/iced-x86",
+   "reference": "Upstream iced-x86 1.21.0 reduced to Intel formatter and decoder (claimed 6-10k lines, unverified); passes all cases; ceiling 1",
+   "ships": "Empty Rust crate and CLI/library stub in /app; no decoder code, no test tables beyond a ~2% sample; history-less snapshot required",
+   "similarity": "Max l0 neighbour cosine 0.21 (S-im-015); not on the CROWDED list; no public x86 decoder task found"
+  },
+  "kill_code": "K9",
+  "kill_reason": "Full scope (legacy, VEX, EVEX, XOP, 3DNow across 16/32/64 plus exact Intel formatter) is too big for any 8h trial to reach 0.9 of reference: the seed itself says frontier agents usually finish only legacy and VEX. Fix: re-seed at the 20h tier, or cut to a 64-bit legacy+VEX decoder with one Intel formatter (a smaller real scope with clear buckets). Lookup is direct (public MIT crate), which is a second risk for K8 if the scope shrinks too far.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed says frontier finishes legacy/VEX only; no dated public evidence for this scope; could be a good band only if the scope shrinks"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reduction of the upstream crate plus oracle wiring is several days; probe gave no build signal"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only Rust build fits sandbox; offline cargo needs vendoring"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Eight hours of sustained decoder/formatter work across many opcode maps and modes"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT permits shipping the reduced reference and data"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Many independent buckets: modes, opcode maps, instruction families, formatter option sets"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour cosine 0.21, not crowded; iced is a known library but no public x86 decoder benchmark task found"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public MIT repo, tagged release 1.21.0, published crate on crates.io and docs.rs"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation at this exact version; ceiling is exact"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and hidden tables stay out of the image, but upstream is public and the approach is well known, so recall risk is real"
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Executable oracle (reference binary) with unlimited random-byte generator plus thousands of table lines"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Build needs network after vendoring, outputs differ between runs, or the table counts are far below the claim.",
+   "pass_if": "Offline build passes, 16/32/64 random-stream driver is deterministic across two runs, and the test-table line counts are within 20% of the claimed 79k and 13k.",
+   "steps": [
+    "In a throwaway Linux container with network, clone icedland/iced at tag v1.21.0 and record the commit (expect c50f29b).",
+    "Count lines in src/rust/iced-x86 test data and any decoder/formatter table files to check the 79k and 13k claims.",
+    "Run cargo build and cargo test for the iced-x86 crate offline after vendoring; record whether the build passes and how long it takes.",
+    "Write a small driver that feeds 1,000 random byte streams in 16/32/64 modes to the library and formatter, and save the outputs (length, mnemonic, text).",
+    "Run the driver twice and diff the outputs to check determinism.",
+    "Check the Cargo.lock / vendored set to confirm lazy_static is the only dependency, and that no network fetch is needed after vendoring.",
+    "Decide whether the reduced scope (legacy plus VEX only, or 64-bit only) can be built from the same source with a clear grading split."
+   ]
+  },
+  "summary": "The seed is real and well sourced (iced v1.21.0, MIT, public crate on crates.io), with a deterministic executable oracle and strong reference, but lookup is direct because a complete MIT Rust implementation of this exact subject is public. The full scope (all opcode maps, all modes, exact formatter) is too large for an 8h trial to reach 0.9 of reference, so I kill it as K9 with a suggested re-scope."
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 85
+}

@@ -1,0 +1,256 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "8h. The decoder rewrite is a known approach for a frontier agent, and it must stay correct across the corpora. The agent gets a fraction of the speedup. A weaker model gets a negative or flat result.",
+  "cheat": "Dropping the checks or caching outputs is blocked by the byte-identical gate on unseen data. Compiler flags are fixed by the bundle's build.",
+  "grading": "Hard gate: decompressed bytes identical, and compressed output decodes with the reference decoder, on hidden corpora. Score is by median wall-time speedup on hidden files, with a decode-heavy bucket and a small-data bucket. Reward is 2^u - 1.",
+  "reference": "zstd v1.4.4 measured at about +10% decode (1440 to 1600 MB/s on silesia) and about +3% small-data compression. S is small, so the reference should be widened to a range up to 1.5.x.",
+  "source": "https://github.com/facebook/zstd/releases/tag/v1.4.4, BSD-3 (dual GPLv2; the repo SPDX shows NOASSERTION)",
+  "task": "/app ships zstd v1.4.3 as a history-less snapshot with a benchmark harness. The agent makes decompression and small-input compression with context reuse faster without changing the format or the API, targeting the 1.4.4 improvements. A broader multi-release range can extend the headroom.",
+  "title": "Zstd 1.4.3 to 1.4.4 decoder and context reuse speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "compression",
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-006 0.43"
+  ],
+  [
+   "2026-10-20T21:21:09Z",
+   "v1",
+   "killed:K4",
+   "Headroom is about 10% on decode and about 3% on small-data (upstream-reported; 1.5.x adds little on silesia), which is at or near the wall-time noise floor of a shared 8-core gVisor sandbox. Hidden median wall-time grading at this effect size is too noisy to be a sound signal. Spike step 3 can overt"
+  ]
+ ],
+ "id": "S-op-009",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.425,
+    "S-op-006"
+   ],
+   [
+    0.237,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.201,
+    "S-im-026"
+   ],
+   [
+    0.184,
+    "zstd [ProgramBench]"
+   ],
+   [
+    0.145,
+    "S-im-024"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 13,
+  "ci_files": 10,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "49cf51799ea051457f57243527aa2058f999f005",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "compress/zstd_lazy.c.o\n[114/124] Linking C static library build/cmake/lib/libzstd.a\n[115/124] Linking C executable build/cmake/tests/datagen\n[116/124] Linking C executable build/cmake/programs/zstd\n[117/124] Linking C executable build/cmake/tests/fullbench\n[118/124] Linking C executable build/cmake/programs/zstd-frugal\n[119/124] Creating zstdcat symlink\n[120/124] Creating unzstd symlink\n[121/124] Creating zstdmt symlink\n[122/124] Linking C executable build/cmake/tests/fuzzer\n[123/124] Linking C executable build/cmake/tests/paramgrill\n[124/124] Linking C executable build/cmake/tests/zstreamtest",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 269,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "49cf51799ea051457f57243527aa2058f999f005",
+  "kb": 40610,
+  "lang": "C",
+  "open_prs": 160,
+  "pushed": "2026-10-06",
+  "release": "v1.5.7",
+  "spdx": "NOASSERTION",
+  "stars": 28061,
+  "test_files": 269,
+  "test_kb": 2156,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/facebook/zstd/releases/tag/v1.4.4|zstd-v1-4-3-named-on-page-zstd-v1-4-4",
+ "source_notes": "Levers: decoder rewrite (terrelln), CCtx reuse no longer needs matching params, RLE block fast path in encoder, minor generic tweaks. q:\"the general expectation is a bump of about +10%.\" Small total speedup so poor S headroom alone; best combined into a multi-release range (1.4.3 -> 1.5.7). Single-source.",
+ "source_url": "https://github.com/facebook/zstd/releases/tag/v1.4.4",
+ "source_version": "zstd v1.4.3 (named on page) -> zstd v1.4.4",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/facebook/zstd/releases/tag/v1.4.4",
+  "facts": [
+   {
+    "claim": "facebook/zstd release v1.4.4 exists (released 05 Nov, year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.4.4"
+   },
+   {
+    "claim": "v1.4.4 states decompression speed improved by about +10% (\"> 10%\") and small-data compression with context reuse about +3% in practical workloads",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.4.4"
+   },
+   {
+    "claim": "v1.4.4 release table gives silesia.tar decompression 1440 -> 1600 MB/s (enwik8 1225 -> 1390; calgary.tar 1360 -> 1530); these are upstream-reported, not independently measured",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.4.4"
+   },
+   {
+    "claim": "v1.4.4 release notes say CCtx reuse no longer needs matching parameters",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.4.4"
+   },
+   {
+    "claim": "facebook/zstd release v1.4.3 exists (19 Aug) and has no quantified performance claims; its changes are dictionary ratio fix, overflow fix, IAR and NULL-check fixes",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.4.3"
+   },
+   {
+    "claim": "LICENSE at v1.4.4 is the BSD license (three conditions, Facebook copyright 2016-present) i.e. BSD-3-Clause",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/blob/v1.4.4/LICENSE"
+   },
+   {
+    "claim": "Seed says 'dual GPLv2': COPYING at v1.4.4 is GPLv2 text, but the file does not itself state a dual BSD/GPLv2 option; both licences are shipped in repo",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/blob/v1.4.4/COPYING"
+   },
+   {
+    "claim": "A broader 1.5.x range adds decode headroom: 1.5.0 release claims mostly +1% to +9% on normal payloads (average ~+4%) and gains only on large-window --long/--ultra; a user report shows silesia 1.4.9 1622.8 vs 1.5.1 1633.0 MB/s (flat)",
+    "status": "contradicted",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.0"
+   },
+   {
+    "claim": "Debian bookworm source package zstd is 1.5.4, i.e. the base image may carry a newer system libzstd that could be linked instead of the shipped 1.4.3 (binary package version in this image not verified)",
+    "status": "not_found",
+    "url": "https://security-tracker.debian.org/tracker/libzstd"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Frontier agent can plausibly land a few percent; the reward curve is 2^u-1 on a ~10% headroom, so most trials likely sit inside timing noise. Weaker model expected flat or negative. No dated agent evidence (E0).",
+   "build_cost": "Reference build is about 13 s (smoke). Harness, corpora handling, byte-identity gate and junit parsing: estimated 3-5 days (my estimate, not measured).",
+   "deliverable": "Patch decoder and CCtx-reuse paths in C so decode and small-input compression are faster, with the format and public API unchanged.",
+   "gates_anticheat": "Byte-identical output gate on unseen data blocks dropping checks or caching; compiler flags fixed by bundle. Must block linking a system libzstd (Debian base may ship 1.5.x) and vendored zstd copies (e.g. pip zstandard wheels) by building only from /app sources and checking the linked objects.",
+   "grading_surface": "Hidden corpora: byte-identical decode and reference-decoder check as a hard gate; median wall-time speedup in a decode-heavy bucket and a small-data bucket.",
+   "local_fit": "CPU only, 8 cores, 16 GB, cmake build about 13 s. Wall-time medians on a gVisor sandbox are noisy relative to a 3-10% effect; fit is OK only if noise is measured and small.",
+   "lookup": "partial: 1.4.4 and later decoder changes are public upstream (git history and tags) and zstd is widely copied; a 1.4.3 history-less snapshot blocks direct reads, but outline recall of the 1.5 decoder structure is plausible.",
+   "provenance": "Upstream facebook/zstd tags v1.4.3 and v1.4.4 exist; v1.4.4 claims about +10% decode and +3% small-data; licence BSD-3 (LICENSE) plus GPLv2 text (COPYING).",
+   "reference": "Upstream v1.4.4 (upstream-reported ~+10% decode, ~+3% small-data); 1.5.x adds little on silesia, so the range extension does not add headroom. Reference speedup S is about 1.1 at most.",
+   "ships": "History-less v1.4.3 snapshot with a benchmark harness; hidden corpora and reference decoder kept out of the image.",
+   "similarity": "l0 neighbours: S-op-006 0.425 (content not inspected here, must be checked for overlap), zstd-decoder [SWE-Marathon] 0.237, zstd [ProgramBench] 0.184 (implementation, not speedup). Codec family is on the CROWDED list but deliverable is a speedup against measured wall-time."
+  },
+  "kill_code": "K4",
+  "kill_reason": "Headroom is about 10% on decode and about 3% on small-data (upstream-reported; 1.5.x adds little on silesia), which is at or near the wall-time noise floor of a shared 8-core gVisor sandbox. Hidden median wall-time grading at this effect size is too noisy to be a sound signal. Spike step 3 can overturn this if measured run-to-run noise is at most 1-2% and the gain reproduces.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Expected difficulty plausible but no dated evidence; headroom is near the noise floor so a frontier agent's mean may look flat."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Reference builds in 13 s; the harness and noise control are the main cost, estimated at 3-5 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only and within 8 cores/16 GB, but wall-time timing in gVisor is noisy against a 3-10% effect."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Work concentrates in the decoder hot loop and CCtx reuse; 8h is generous for the measured gain."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "BSD-3 LICENSE permits shipping; COPYING is GPLv2 and the repo SPDX shows NOASSERTION, which is a metadata gap."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Two buckets, but both depend on the same decoder path and a single dominant lever; small-data gain is tiny."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbour S-op-006 at 0.425 is unverified and zstd codecs are crowded, but this is a speedup deliverable against wall-time rather than an implementation task."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned upstream tags v1.4.3 and v1.4.4 confirmed; large, long-lived C codec project."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream v1.4.4 is a complete permissive implementation, but its measured headroom is about 10% decode and 3% small-data, which is small."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "1.4.3 history-less snapshot blocks direct reads of 1.4.4; outline recall is a Band question, not a seal failure."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden corpora with byte-identity and two wall-time buckets; oracle is the reference decoder, but the file set is modest."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Noise exceeds about 2% so that the small-data bucket is indistinguishable from baseline, or the decode gain is within noise (K4).",
+   "pass_if": "Decode gain of at least 5% from 1.4.3 to 1.4.4 reproduces, run-to-run noise is at most 1-2%, and the small-data bucket is distinguishable from noise.",
+   "steps": [
+    "In a throwaway networked Linux container, clone facebook/zstd at v1.4.3, v1.4.4 and v1.5.7 and build each with identical flags (cmake, -O3, same compiler).",
+    "Obtain the silesia corpus (confirm its licence) and a small-file set of 1-16 KB inputs; run zstd -b style decode and small-input compression with context reuse for each build.",
+    "Interleave runs (at least 30 per build per bucket) and record median MB/s and run-to-run coefficient of variation on the target machine type, ideally inside gVisor.",
+    "Compute measured speedup S = median(1.4.4)/median(1.4.3) for decode and small-data separately, and the noise floor from repeated 1.4.3 runs.",
+    "Check that the suite's ctest rc=8 on the 1.4.3 baseline is real failures or a config issue, and whether the junit output yields per-test results.",
+    "Check the image's system libzstd and any bundled zstd copies (pip wheels, other packages) to confirm the linking cheat path can be closed.",
+    "Verify that the 1.4.3 baseline decodes the 1.4.4 output and vice versa for byte-identity."
+   ]
+  },
+  "summary": "The 1.4.3 and 1.4.4 tags, the BSD-3 LICENSE and the upstream speedup figures (about +10% decode, +3% small-data, silesia 1440 to 1600 MB/s) are confirmed, but the reference headroom is small. Widening the reference to 1.5.x does not add decode headroom on silesia, and the smoke suite is amber (zero parsed tests, ctest rc 8 each run), so the card is killed as K4 (too noisy) pending a spike that measures wall-time noise."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 67
+}

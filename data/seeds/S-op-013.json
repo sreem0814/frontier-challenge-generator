@@ -1,0 +1,198 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "4h. The scalar levers (histograms, predictors, filter loops, bit reader) are well known. The gain is moderate, so partial credit is dense but small. A weaker model breaks equivalence. Licence of the images needs separate checking, so generated images are used.",
+  "cheat": "Hidden image set gives exact-byte output checks; precomputed outputs are not possible. The 0.4.1 source is not in the image.",
+  "grading": "Hard gate: encoded bytes identical to those of the reference, and decoded pixels identical, on hidden images. Score is the median wall-clock speedup relative to the 0.4.1 speedup (NEWS claims about 25% on lossy and about 10% on lossless decode; no further detail: not found).",
+  "reference": "Official libwebp 0.4.1, built and measured by us. The speedup is that measurement.",
+  "source": "https://github.com/webmproject/libwebp (NEWS: 0.4.0 -> 0.4.1), BSD-3-Clause",
+  "task": "/app ships libwebp at 0.4.0 as a history-less snapshot with a cwebp/dwebp-style benchmark harness and image set. The agent speeds up the lossy and lossless encoder and decoder without changing the output.",
+  "title": "libwebp 0.4.0 to 0.4.1 lossy and lossless speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-011 0.26"
+  ],
+  [
+   "2026-10-20T21:27:44Z",
+   "v1",
+   "killed:K8",
+   "Too easy and reference scale unreliable. The 0.4.1 gains are documented as ARM/MIPS NEON and AArch64 work, so the x86 reference speedup is undocumented and may be near 1. A frontier agent can recall modern byte-identical libwebp SIMD code, which would exceed the reference. Also a K5 concern: no stro"
+  ]
+ ],
+ "id": "S-op-013",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.26,
+    "S-op-011"
+   ],
+   [
+    0.161,
+    "S-im-036"
+   ],
+   [
+    0.16,
+    "S-im-034"
+   ],
+   [
+    0.114,
+    "add-benchmark-lm-eval-harness [original]"
+   ],
+   [
+    0.099,
+    "zstd-decoder [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "raw.githubusercontent.com/webmproject/libwebp/main/news|libwebp-0-4-0-inferred-prior-release-libwebp-0-4-1",
+ "source_notes": "Weak: NEWS gives one-line claims, no lever detail (not found). Also 0.6.1 ARM +15-20% with clang. Listed as fallback only; images need separate licence check. Single-source.",
+ "source_url": "https://raw.githubusercontent.com/webmproject/libwebp/main/NEWS",
+ "source_version": "libwebp 0.4.0 (INFERRED: prior release) -> libwebp 0.4.1",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://raw.githubusercontent.com/webmproject/libwebp/main/NEWS",
+  "facts": [
+   {
+    "claim": "libwebp is a real public project at github.com/webmproject/libwebp with a NEWS file",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/webmproject/libwebp/main/NEWS"
+   },
+   {
+    "claim": "0.4.1 NEWS entry is dated 7/24/14 and claims '~25% faster lossy decode / encode (-m 4)' and '~10% faster lossless decode' (also '~5-10% faster lossless encode (-m 3/4)')",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/webmproject/libwebp/main/NEWS"
+   },
+   {
+    "claim": "0.4.1 speedup claims are not tied to x86: the same release notes list 'AArch64 (arm64) & MIPS support/optimizations' and the release page lists 'NEON assembly additions', so the x86 speedup of 0.4.1 over 0.4.0 is not documented",
+    "status": "not_found",
+    "url": "https://github.com/webmproject/libwebp/releases/tag/v0.4.1"
+   },
+   {
+    "claim": "Git tag v0.4.1 exists (commit 8af2771), so the 0.4.1 source is public in upstream history",
+    "status": "confirmed",
+    "url": "https://github.com/webmproject/libwebp/releases/tag/v0.4.1"
+   },
+   {
+    "claim": "0.4.0 was released 12/19/13 with only a generic 'numerous fixes, compression improvement and speed-up' line, no measured figure",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/webmproject/libwebp/main/NEWS"
+   },
+   {
+    "claim": "Licence is BSD 3-Clause (Copyright 2010 Google Inc.)",
+    "status": "confirmed",
+    "url": "https://github.com/webmproject/libwebp/blob/main/COPYING"
+   },
+   {
+    "claim": "Benchmark methodology, hardware and image set behind the 25%/10% figures",
+    "status": "not_found",
+    "url": "https://github.com/webmproject/libwebp/releases/tag/v0.4.1"
+   },
+   {
+    "claim": "Licence of the generated image set the task would ship",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "Tier 2-4h if it were kept; a frontier agent can recall modern libwebp SIMD paths that far exceed the 0.4.1 gain.",
+   "build_cost": "Around 1-2 days: build 0.4.0 and 0.4.1, write harness, measure medians on x86.",
+   "deliverable": "Faster lossy and lossless encode/decode in C with byte-identical bitstreams and decoded pixels.",
+   "gates_anticheat": "Byte-identical encoder output and pixel-identical decode on hidden images; precomputed outputs impossible; reference source absent from image.",
+   "grading_surface": "Hidden generated images; exact-byte encoder output and exact decoded pixels. Count not found.",
+   "local_fit": "Pure C, CPU only, fits 8 cores and gVisor.",
+   "lookup": "direct: the 0.4.1 changes sit in public upstream git, and modern libwebp (much faster, same bitstream) is widely memorised.",
+   "provenance": "Upstream libwebp tag v0.4.1 (commit 8af2771), public on GitHub; base 0.4.0 (12/19/13). Single-source: NEWS and release page one-liners, no per-lever detail.",
+   "reference": "Official 0.4.1 build measured by the pipeline; x86 speedup over 0.4.0 unknown, claimed gains are for ARM/MIPS-era code paths.",
+   "ships": "history-less libwebp 0.4.0 snapshot, cwebp/dwebp-style harness, generated image set (licence to be checked).",
+   "similarity": "Max l0 neighbour S-op-011 at 0.26; no CROWDED overlap, but the codec subject is well known."
+  },
+  "kill_code": "K8",
+  "kill_reason": "Too easy and reference scale unreliable. The 0.4.1 gains are documented as ARM/MIPS NEON and AArch64 work, so the x86 reference speedup is undocumented and may be near 1. A frontier agent can recall modern byte-identical libwebp SIMD code, which would exceed the reference. Also a K5 concern: no strong, measured x86 reference is obtainable from the sources. Seal is weak because the 0.4.1 diff is public in git.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Modern libwebp recall would beat the reference easily, so the band is too easy for a frontier model; no dated public evidence."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Two builds and a timing harness, about 1-2 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure C, CPU only, fits 8 cores and 16 GB under gVisor."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Scope is a set of small diffs against a 0.4.0 base, not a long multi-hour job."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Upstream code is BSD-3 and shippable; the image licence is unchecked."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several encoder and decoder paths give buckets, but each lever is small and the gain per lever is tiny."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Best L0 neighbour is 0.26 (S-op-011); no CROWDED overlap, though the codec subject is common."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real upstream project, tag and licence confirmed; the speedup claim is a one-line NEWS entry."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "The reference is a measured 0.4.1 build, but its gain is ARM/MIPS-specific and unmeasured on x86, so the scale S-1-d is unreliable."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The 0.4.1 change set is public in git and modern libwebp is recallable, so the approach cannot be sealed from the agent."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Exact-byte checks over hidden images can scale, but the lever count is small and the grading is dominated by timing."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "x86 median speedup under 1.05 (reference scale degenerate), or a modern-libwebp-style SIMD recall path beats 0.4.1 by more than the claimed gain (too easy), or outputs differ between tags.",
+   "pass_if": "Byte-identical outputs between tags on every case, and a repeatable x86 median speedup of at least 1.15 on lossy encode or decode with the variance under 5%.",
+   "steps": [
+    "In a throwaway Linux container with network, fetch the v0.4.0 and v0.4.1 tags of webmproject/libwebp and build both with default flags on x86 (cmake or make).",
+    "Generate or pick 20 varied PNG/RGB images and run cwebp -m 4 (lossy) and -lossless with both builds; record encoded bytes and md5.",
+    "Run dwebp decode for lossy and lossless outputs with both builds; record pixel md5s.",
+    "Time 10 repeats per case per build with taskset pinned to one core; compute median speedup 0.4.0 -> 0.4.1 on x86.",
+    "Check whether any x86 code path changed between the tags (diff src/dsp for SSE2 files) to explain the result."
+   ]
+  },
+  "summary": "The 0.4.0 to 0.4.1 libwebp speedup is real but documented only as one-line NEWS claims that point at ARM/MIPS NEON work, so there is no evidence of an x86 gain to score against. A frontier agent can recall far faster modern libwebp, so the task is killed as too easy (K8), with a weak reference scale as a second concern."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 60
+}

@@ -1,0 +1,289 @@
+{
+ "batch": 4,
+ "card": {
+  "band": "8h. The patch-from lever is large and distinct, which gives dense credit. A frontier agent finds a part of the match-finder gain but not all. A weaker model gets only compiler-level tweaks.",
+  "cheat": "Lowering the level or the ratio is caught by the size gate. Hidden inputs differ from the visible ones.",
+  "grading": "Gate: round-trip exact, output decodable by the stock decoder, compressed size not exceeding the baseline by more than 1%. Score is by median wall-time speedup on hidden tar pairs (patch-from) and small-block sets. Reward is 2^u - 1, with S taken from the reference.",
+  "reference": "zstd v1.5.7 measured at 4.9x for --patch-from lvl18 (210s to 42.7s) and 280 to 310 MB/s at 4KB blocks.",
+  "source": "https://github.com/facebook/zstd/releases/tag/v1.5.7, BSD-3 (dual GPLv2)",
+  "task": "/app ships zstd v1.5.6 as a history-less snapshot. The agent speeds up --patch-from at high levels (18-21) and level-1 small-block compression and dictionary compression, as the 1.5.7 PRs did, and keeps the format and API valid.",
+  "title": "Zstd 1.5.6 to 1.5.7 patch-from and small-block speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-20T21:17:28Z",
+ "family": "compression",
+ "final": 61,
+ "history": [
+  [
+   "2026-10-20T21:17:28Z",
+   "write",
+   "short",
+   "batch 4"
+  ],
+  [
+   "2026-10-20T21:17:28Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-009 0.47"
+  ],
+  [
+   "2026-10-20T21:20:57Z",
+   "v1",
+   "pass",
+   "score 73; dead links []"
+  ],
+  [
+   "2026-10-20T21:22:21Z",
+   "v2",
+   "killed:K10",
+   "Killed (K10). The facts are well confirmed (the 1.5.7 table, PR #4276, the BSD licence). But almost all of S comes from one small PR (#4276: skip the duplicate CDict and drop the wait on the first-job dictionary). An agent that profiles patch-from finds it quickly, and the PR's approach is public. T"
+  ]
+ ],
+ "id": "S-op-010",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.473,
+    "S-op-009"
+   ],
+   [
+    0.448,
+    "S-op-006"
+   ],
+   [
+    0.197,
+    "zstd [ProgramBench]"
+   ],
+   [
+    0.191,
+    "S-im-026"
+   ],
+   [
+    0.188,
+    "zstd-decoder [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 13,
+  "ci_files": 10,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "49cf51799ea051457f57243527aa2058f999f005",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "compress/zstd_lazy.c.o\n[114/124] Linking C static library build/cmake/lib/libzstd.a\n[115/124] Linking C executable build/cmake/tests/datagen\n[116/124] Linking C executable build/cmake/programs/zstd\n[117/124] Linking C executable build/cmake/tests/fullbench\n[118/124] Linking C executable build/cmake/programs/zstd-frugal\n[119/124] Creating zstdcat symlink\n[120/124] Creating unzstd symlink\n[121/124] Creating zstdmt symlink\n[122/124] Linking C executable build/cmake/tests/fuzzer\n[123/124] Linking C executable build/cmake/tests/paramgrill\n[124/124] Linking C executable build/cmake/tests/zstreamtest",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 269,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "49cf51799ea051457f57243527aa2058f999f005",
+  "kb": 40610,
+  "lang": "C",
+  "open_prs": 160,
+  "pushed": "2026-10-06",
+  "release": "v1.5.7",
+  "spdx": "NOASSERTION",
+  "stars": 28061,
+  "test_files": 269,
+  "test_kb": 2156,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/facebook/zstd/releases/tag/v1.5.7|zstd-v1-5-6-page-title-compares-1-5-6-vs-1-5-7-zstd-v1-5-7",
+ "source_notes": "Levers: PRs #4144 #4165 (small-data compression), #4170 (dictionary ~+5%), #4276 (faster --patch-from high levels), #4288 (ratio), #4136/#4176/#4178 (block boundaries). Headline claim \"up to +30%\" not backed by the table (max +20%). --patch-from 3-5x is the large, distinct lever. Equivalence: compressed bytes change by design (ratio PRs), so gate on round-trip + size not exceeding baseline.",
+ "source_url": "https://github.com/facebook/zstd/releases/tag/v1.5.7",
+ "source_version": "zstd v1.5.6 (page title compares 1.5.6 vs 1.5.7) -> zstd v1.5.7",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/facebook/zstd/releases/tag/v1.5.7",
+  "facts": [
+   {
+    "claim": "zstd v1.5.7 release exists (tag page; released 19 Feb, 2025 per search results)",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.7"
+   },
+   {
+    "claim": "Licence is BSD (Meta copyright, 'BSD License for Zstandard software'); the three BSD conditions match BSD-3-Clause",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/blob/dev/LICENSE"
+   },
+   {
+    "claim": "Dual GPLv2 licence option",
+    "status": "not_found",
+    "url": "https://github.com/facebook/zstd/blob/dev/LICENSE"
+   },
+   {
+    "claim": "--patch-from level 18: 210 s to 42.7 s (x4.9), linux-6.13 vs 6.12, 6 threads; level 19 x4.4, 20 x3.8, 21 x3.1",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.7"
+   },
+   {
+    "claim": "Small-block level 1 on Silesia, 4 KB: 280 to 310 MB/s (+10%); 32 KB is the largest gain at +20%",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.7"
+   },
+   {
+    "claim": "Release notes headline 'up to +30%' small-data wording exists, but the table's maximum is +20%",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.7"
+   },
+   {
+    "claim": "--patch-from size at level 18 changed 5,584,219 to 5,075,507 bytes (about 10% smaller), so the size gate has headroom in the reference's favour",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.7"
+   },
+   {
+    "claim": "PR #4276 'fix speed of --patch-from mode at high compression levels' merged into dev on Feb 6 2025 and touches lib/compress/zstdmt_compress.c and zstd_compress_internal.h; it skips an internal CDict duplicating reference content and removes the wait on first-job dictionary loading",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/4276"
+   },
+   {
+    "claim": "PR #4276 benchmark on i7-9700K, 6 threads: level 18 208 s to 34 s (about 6.1x); the release table's 4.9x is a different pair and machine",
+    "status": "confirmed",
+    "url": "https://github.com/facebook/zstd/pull/4276"
+   },
+   {
+    "claim": "ProgramBench zstd task exists in a public benchmark",
+    "status": "not_found",
+    "url": "https://github.com/facebook/zstd/releases/tag/v1.5.7"
+   }
+  ],
+  "full_card": {
+   "band": "8h. Frontier agent likely recovers part of the patch-from gain (PR text names the approach), with partial credit per level and per block size. Full 4.9x is hard. Weaker model gets compiler-level tweaks only.",
+   "build_cost": "about 3-4 days: grader needs hidden tar pair corpus (linux 6.12/6.13 or sized-down substitute), small-block sets, timing harness, and a test runner. Smoke build is green, but its test step parsed 0 tests (tests_total 0), so the suite is not wired up and the grader must be written by hand.",
+   "deliverable": "Patched zstd library/CLI in /app that speeds up --patch-from at levels 18-21 and level-1 small-block and dictionary compression, keeps format and API valid.",
+   "gates_anticheat": "Size gate blocks lowering level or ratio (lvl15 patch output is about 14% larger than lvl18). Stock decoder gate blocks format changes. Hidden tar pairs block input-specific caching. Grader must build from /app source only, to block wrapping a system zstd (Debian zstd is not 1.5.7). Lock test edits and CMake flags in the grader's own build.",
+   "grading_surface": "Hidden tar pairs for patch-from (wall-time median), hidden small-block sets, round-trip exactness, stock-decoder decodability, size <= baseline +1%. Executable oracle; hidden inputs differ from visible ones.",
+   "local_fit": "C/cmake, 13 s build, 8 cores and 16 GB fit. Watch for 1.4 GB tar pairs at level 21 and noisy timing under gVisor.",
+   "lookup": "partial. PR #4276 diff and description are public, naming the files and the CDict-skip idea. Approach is recallable in outline, not verbatim. No package-installable 1.5.7 offline.",
+   "provenance": "facebook/zstd, v1.5.7 tag (BSD licence, repo pushed 2026-10-06, NOASSERTION spdx). Base is v1.5.6 as a history-less snapshot. Levers: PR #4276 (patch-from high levels), #4144/#4165 (small data), #4170 (dictionary), #4288 (ratio, changes bytes).",
+   "reference": "zstd v1.5.7 upstream: patch-from lvl18 4.9x (210 s to 42.7 s on linux-6.13 vs 6.12, 6 threads); level-1 4 KB 280 to 310 MB/s. Public, BSD, C. Reward S=4.9 is our measurement, not the upstream one.",
+   "ships": "Full zstd v1.5.6 C source snapshot, cmake, BSD licence. No git history past the base. Reference (1.5.7 source) is not shipped.",
+   "similarity": "Neighbours: S-op-009 0.473 and S-op-006 0.448 (other seeds, likely overlapping zstd levers, check dedupe); zstd [ProgramBench] 0.197 (unverifiable, not found); zstd-decoder [SWE-Marathon] 0.188. Deliverable differs from both, so no K1 on this evidence."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents attempting this; the expected band is inferred from PR text, so it is capped at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Build is 13 s, but the grader needs a hand-built tar corpus and a test wiring that the probe did not produce; about 3-4 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "C and cmake fit; 1.4 GB tar pairs and timing noise under gVisor are a risk."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "The 8h tier is justified, but patch-from is largely one PR's worth of change; the rest is smaller levers."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "BSD licence confirmed on LICENSE; the dual GPLv2 claim is not confirmed and spdx is NOASSERTION."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Three levers and several level and block-size buckets, but patch-from likely dominates the reward and the aggregation is unspecified."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "zstd ProgramBench neighbour at 0.197 is above 0.15 and cannot be verified; deliverable differs from both public neighbours."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Upstream zstd v1.5.7 release with public PRs (#4276, #4144 etc.) and measured numbers."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete BSD upstream reference with measured speedups; the 4.9x was measured on upstream's machine, not ours, so it is not fully calibrated."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Snapshot is history-less and the oracle is held out, but the public PR text and a famous codebase make recall of the approach plausible."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Executable oracle with hidden tar pairs and small-block sets, but the hidden set size is unconfirmed; not thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Level-18 ratio is under 1.5x or the run-to-run spread exceeds 10%, or the 1.5.7 output fails the stock decoder.",
+   "pass_if": "The v1.5.7 vs v1.5.6 time ratio at level 18 is at least 2x on the smaller pair (within the expected range of the 4.9x), sizes are within 1%, round-trips pass, and the ctest suite reports nonzero tests.",
+   "steps": [
+    "In a throwaway container with network, clone facebook/zstd at tags v1.5.6 and v1.5.7 and build both with cmake Release (ZSTD_BUILD_TESTS=ON for the v1.5.6 check).",
+    "Build a patch-from pair from two versions of a mid-size tree (about 200-400 MB tar, e.g. two adjacent kernel or project releases). Time `zstd --patch-from=old -18 -T6` for v1.5.6 and v1.5.7 three times each.",
+    "Record ratio of times and compressed sizes; check the v1.5.7 output decodes with the v1.5.6 stock decoder and round-trips.",
+    "Repeat with level 1 on 4 KB blocks drawn from a Silesia-like set (benchmark mode) to check the 280 to 310 MB/s figure.",
+    "Run the v1.5.6 test suite via ctest with the tests built; confirm it reports nonzero tests, which closes the amber smoke result.",
+    "Check run-to-run spread; kill if it exceeds 10%."
+   ]
+  },
+  "summary": "The seed is real and public: zstd v1.5.7 is a BSD-licensed release with verified 4.9x patch-from and 280 to 310 MB/s small-block figures, and PR #4276 names the approach, so lookup is partial. It passes the gates with conditions: the grader needs a hand-built hidden corpus and working test wiring, and the reward's aggregation across levers must be spelled out so patch-from does not make it one-lever."
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-010",
+  "kill_code": "K10",
+  "note": "Killed (K10). The facts are well confirmed (the 1.5.7 table, PR #4276, the BSD licence). But almost all of S comes from one small PR (#4276: skip the duplicate CDict and drop the wait on the first-job dictionary). An agent that profiles patch-from finds it quickly, and the PR's approach is public. The other levers (+10-20% small-block, ~5% dictionary) are within gVisor timing noise, so the reward collapses to one trick. zstd is on the CROWDED list, and sister seeds S-op-009/S-op-006 overlap (0.47/0.45). The reference diff is small, and measuring 200 s+ level-18 runs adds grading cost.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 2,
+   "Nov": 2,
+   "Real": 5,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 61
+}

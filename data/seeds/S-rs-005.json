@@ -1,0 +1,226 @@
+{
+ "batch": 5,
+ "card": {
+  "band": "8h. Frontier agents add higher orders and a mixer and get most of the gain. Gains from word models and SSE on unseen domains are small and need careful runs. A weaker model gets only order-N counts.",
+  "cheat": "Embedding a dictionary of the public slices. The decoder size is counted in the output and the hidden domain differs from the shipped one.",
+  "grading": "Compressed size is measured on a hidden slice from another text domain. The round-trip check is a hard gate and a time cap per slice applies. The score is normalised between the baseline and our reference.",
+  "reference": "A paq8hp-class mixer we tune, whose bytes we measure. The paq8hp12 enwik8 figure of 16.2 MB is only an anchor.",
+  "source": "http://mattmahoney.net/dc/text.html (reference rows, author-reported); data swapped for openly licensed text, since the enwik licence was not found",
+  "task": "/app ships a baseline order-2 context-mixing compressor in C++ with a trainable-parameter interface and open-licence text slices (1-10 MB). The agent adds models, mixers, SSE stages and tuned hyperparameters under a fixed time budget on 8 CPU cores, with a lossless decoder that must round-trip.",
+  "title": "Context-mixing text compressor tuned on unseen domains"
+ },
+ "class": "research",
+ "created": "2026-10-20T21:21:22Z",
+ "family": "compression",
+ "history": [
+  [
+   "2026-10-20T21:21:22Z",
+   "write",
+   "short",
+   "batch 5"
+  ],
+  [
+   "2026-10-20T21:21:22Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-012 0.16"
+  ],
+  [
+   "2026-10-20T21:24:50Z",
+   "v1",
+   "killed:K3",
+   "gate on scores {'Real': 3, 'Surf': 2, 'Ref': 3, 'Band': 3, 'Hor': 4, 'Multi': 3, 'Seal': 3, 'Nov': 3, 'Lic': 3, 'Fit': 4, 'Build': 3}; dead cited links ['https://tensorflow.org/datasets/community_catalog/huggingface/enwik8']"
+  ]
+ ],
+ "id": "S-rs-005",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.159,
+    "S-op-012"
+   ],
+   [
+    0.152,
+    "S-op-010"
+   ],
+   [
+    0.107,
+    "S-op-011"
+   ],
+   [
+    0.092,
+    "speech-to-text [original]"
+   ],
+   [
+    0.091,
+    "write-compressor [archive]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "mattmahoney.net/dc/text.html; http://mattmahoney.net/dc/textdata.html|baseline-zlib-xz-bzip2-or-order-2-cm-on-the-same-slice-our-o",
+ "source_notes": "Same overlap warning with 'write-compressor'. q:\"cmix v21 (-t) | 14,623,723 | 107,963,380 | 622,949 | 638,442 | 30,950\" (ns/byte, MB). paq8hp12any: 37,660 ns/B, 1,850 MB, i7 930 (8 core); lstm-compress v3: 92,342 ns/B, 9 MB; nncp v3.2 on Xeon E3 + RTX 3090 (GPU). Page: times author-reported, may vary widely; page says it has not verified results submitted by others. Single-source for the table (page text partially read, 100k of 696k chars). INFERRED timings on 8 CPUs, one thread each: enwik8 (1e8 B) = ~63 min paq8hp, ~2.6 h lstm-compress, ~8 h paq8px, ~17 h cmix; so only 1-10 MB slices fit an eval loop (10 MB: ~6 min paq8hp). cmix is GPL-3 (cmix repo page): do not ship in a permissive bundle without care. OOD: hidden slice from a different text domain than enwik.",
+ "source_url": "http://mattmahoney.net/dc/text.html; http://mattmahoney.net/dc/textdata.html",
+ "source_version": "Baseline: zlib/xz/bzip2 or order-2 CM on the same slice (our own run); LTCB has lstm-compress and paq8hp rows to anchor -> Reference rows from page: paq8hp12any -8 enwik8 16,230,028 B; lstm-compress v3 enwik8 20,318,653 B; cmix v21 enwik8 14,623,723 B; nncp v3.2 enwik8 14,915,298 B (GPU)",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "http://mattmahoney.net/dc/text.html",
+  "facts": [
+   {
+    "claim": "Matt Mahoney's text benchmark page lists paq8hp12any enwik8 = 16,230,028 bytes, 37,660 ns/byte compress, 1,850 MB memory (author-reported)",
+    "status": "confirmed",
+    "url": "http://mattmahoney.net/dc/text.html"
+   },
+   {
+    "claim": "Same page: cmix v21 enwik8 = 14,623,723 bytes, 622,949 ns/byte, 30,950 MB; lstm-compress v3 = 20,318,653 bytes, 92,342 ns/byte, 9 MB; nncp v3.2 = 14,915,298 bytes (GPU-era figures)",
+    "status": "confirmed",
+    "url": "http://mattmahoney.net/dc/text.html"
+   },
+   {
+    "claim": "Page states it has not verified results submitted by others; paq8hp12 decompression verified for enwik8 only",
+    "status": "confirmed",
+    "url": "http://mattmahoney.net/dc/text.html"
+   },
+   {
+    "claim": "Page says all software listed is open source under GPL except as noted; paq8hp12any listed as an English-text-tuned Hutter Prize version, and the author no longer maintains it",
+    "status": "confirmed",
+    "url": "https://www.mattmahoney.net/dc/"
+   },
+   {
+    "claim": "paq8hp12 licence is GPL specifically (not only the page-wide statement)",
+    "status": "not_found",
+    "url": "https://www.mattmahoney.net/dc/"
+   },
+   {
+    "claim": "cmix is GPL-3.0-only (upstream github.com/byronknoll/cmix)",
+    "status": "confirmed",
+    "url": "https://aur.archlinux.org/packages/cmix-git"
+   },
+   {
+    "claim": "Enwik8 dataset licence is CC BY-SA or GFDL",
+    "status": "contradicted",
+    "url": "https://tensorflow.org/datasets/community_catalog/huggingface/enwik8"
+   },
+   {
+    "claim": "Enwik8 dataset carries 'No known license' in the HF/TFDS catalogue",
+    "status": "confirmed",
+    "url": "https://tensorflow.org/datasets/community_catalog/huggingface/enwik8"
+   },
+   {
+    "claim": "Project Gutenberg texts are US public domain and copyable without restriction for US readers; trademark notice and format rules apply; non-US use must check local law",
+    "status": "confirmed",
+    "url": "https://www.gutenberg.org/policy/license.html"
+   },
+   {
+    "claim": "/app baseline order-2 CM compressor in C++ with trainable-parameter interface exists as a public repo",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Hidden slices are from a distinct open-licence text domain with a named source corpus",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "8-core timing for paq8hp12 (one thread per core) as stated in source_notes",
+    "status": "not_found",
+    "url": "http://mattmahoney.net/dc/text.html"
+   },
+   {
+    "claim": "Dated public evidence of agents partially succeeding or failing at lossless text-compressor tuning",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Frontier agent should add higher orders, a word model, a mixer and SSE and capture most of the gain; weaker model gets order-N counts only. No dated public evidence found, so Band capped at 3",
+   "build_cost": "About 3 days: baseline, round-trip harness, OOD slice sourcing and licence check, paq8hp-class reference build and tuning on the OOD domain",
+   "deliverable": "Modified compressor and decoder in C++ that round-trips losslessly; decoder size counted in output; per-slice time cap; 8 CPU cores, 16 GB",
+   "gates_anticheat": "Round-trip hard gate; time cap; decoder size counted so embedded dictionaries of public slices cost bytes; hidden slices kept out of /app; grader and time harness sealed",
+   "grading_surface": "Hidden slices from a different text domain than the shipped ones; compressed size normalised between baseline and our reference; round-trip is a hard gate; few slices, so Surf is low",
+   "local_fit": "Fits CPU-only and 16 GB: paq8hp12 uses 1.85 GB. cmix at ~30 GB would not fit, so do not use it as reference. 10 MB at ~37 us/B is ~6 min single-thread, inside a per-slice cap",
+   "lookup": "partial: paq8 family source is public (GPL) and well known in outline; the tuned reference variant is not public",
+   "provenance": "Hutter Prize / PAQ lineage; Mahoney benchmark page with author-reported enwik8 rows; no git source, source_facts empty; baseline and hidden OOD slices not yet sourced",
+   "reference": "paq8hp12any: enwik8 16,230,028 B at 37.7 us/B and 1.85 GB (anchor only, English-tuned). Our tuned paq8hp-class reference is not yet built or measured on OOD slices",
+   "ships": "/app: a self-written order-2 CM baseline in C++ with a trainable-parameter interface, plus openly licensed text slices of 1-10 MB (corpus not named). Reference is a paq8hp-class mixer (GPL lineage) that we tune",
+   "similarity": "Max l0 neighbour 0.159 (S-op-012) and 0.152 (S-op-010), both just above the 0.15 novelty line, from the write-compressor family overlap; CROWDED list has codecs (DEFLATE, zstd, brotli, xz, lz4) but not context-mixing text models"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausibly a frontier agent gets most of the gain in 8h, but no dated evidence; capped at 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days of build, including OOD slice sourcing"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "paq8hp12 fits 16 GB and the time cap; cmix does not fit"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8h of sustained tune-and-measure cycles on 1-10 MB slices"
+   },
+   "Lic": {
+    "v": 3,
+    "why": "paq8/cmix are GPL; shippable under GPL but not permissive; Gutenberg text is PD only for US readers"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Orders, word model, mixer, SSE and hyperparameters give several levers and partial credit per slice"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top neighbour 0.159, just above the 0.15 line; codec-adjacent but not in the CROWDED list"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Hutter Prize / paq8 lineage with a public benchmark page; the baseline is not a real repo, so not 5"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "A public paq8hp lineage exists but is English-tuned; our OOD-tuned reference is unmeasured"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden slices and grader can be kept out; paq8 outline is recallable, which is Band's concern"
+   },
+   "Surf": {
+    "v": 2,
+    "why": "Few hidden OOD slices, each scored on compressed size; not thousands of cases"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Build fails, round-trip or determinism fails, the OOD gain over order-2 is marginal, or the slice ranking is noisy.",
+   "pass_if": "paq8hp12 builds, round-trips, is deterministic, and beats order-2 by a clear margin on both OOD slices, with 10 MB inside the time cap.",
+   "steps": [
+    "In a throwaway networked Linux container, fetch paq8hp12any source from the Mahoney page and read its licence header.",
+    "Build paq8hp12 offline with -O2; confirm binary runs.",
+    "Pick 2 OOD candidate slices from openly licensed text (e.g. US public-domain Gutenberg books, 1 MB and 10 MB), kept out of the image.",
+    "Run paq8hp12 -8 and a self-written order-2 CM on each slice; record size, compress and decompress time, and check the round trip.",
+    "Run paq8hp12 twice on one slice to check determinism.",
+    "Estimate the gap: order-2 vs paq8hp12 on the OOD slices. Kill if the gap is small or the ranking flips between slices."
+   ]
+  },
+  "summary": "The seed's anchor numbers (paq8hp12 enwik8 at 16,230,028 B, cmix at 14.6 MB) check out on the Mahoney page, and the GPL lineage of paq8 and cmix is confirmed, though paq8hp12's own licence header is not. The main risks are the unnamed OOD corpus, the GPL reference in a bundle, and an unmeasured reference on OOD slices, so it passes the gates as E0 and is worth the spike."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [
+   "https://tensorflow.org/datasets/community_catalog/huggingface/enwik8"
+  ],
+  "ratio": 0.2
+ },
+ "v1_score": 60
+}

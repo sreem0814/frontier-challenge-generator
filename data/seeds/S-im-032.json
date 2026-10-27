@@ -1,0 +1,332 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "8h. Interleaved RLE and planar are quick; RFX/progressive tiles with RLGR, DWT and quantisation are long, and bit-exactness on corrupt input is hard. A frontier agent should finish 3 of 4 codecs on average; a weaker model stops after RLE and planar.",
+  "cheat": "Linking or shelling out to an installed FreeRDP or libfreerdp is closed because none is in the image and there is no network. Hidden streams are generated at grading time, so a lookup table is not possible.",
+  "grading": "Hidden generated and mutated streams (valid, truncated, corrupt) from an encoder run on the grader side. Output is compared byte for byte with the real FreeRDP decoders, including error or success status. Thousands of cases split by codec; score is the pass fraction per codec bucket.",
+  "reference": "Upstream codec sources, the same code with the stubs removed (several thousand lines across the codecs), so exact 1.0 is reachable. A pinned build of the real decoder is the oracle and is kept out of the image.",
+  "source": "https://github.com/FreeRDP/FreeRDP @ 3.32.2 (head d44d5012), Apache-2.0",
+  "task": "/app ships a history-less FreeRDP snapshot at the base with libfreerdp/codec (interleaved RLE, planar, NSCodec, RemoteFX/RFX progressive, color conversion) stripped to stubs. The agent writes a standalone C library with a C ABI and a CLI that decodes bitmap streams to raw BGRA for the same message formats.",
+  "title": "RDP bitmap codec decoders matched to FreeRDP"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "codec",
+ "final": 83,
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-020 0.22"
+  ],
+  [
+   "2026-10-20T21:26:44Z",
+   "v1",
+   "pass",
+   "score 83; dead links []"
+  ],
+  [
+   "2026-10-20T23:19:25Z",
+   "v2",
+   "pass",
+   "final 83"
+  ],
+  [
+   "2026-10-21T00:11:05Z",
+   "spike",
+   "validated",
+   "The codec subset builds from tag 3.32.2 (commit 97eff6d) in about 51 s with a reduced cmake config. The shared libfreerdp3 exports the encoder and decoder APIs, so a grader-side generator is easy. Harness covered interleaved at 24/16/15 bpp, planar and NSC, each with 8 variants per image: valid, tru"
+  ]
+ ],
+ "id": "S-im-032",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.22,
+    "S-im-020"
+   ],
+   [
+    0.184,
+    "S-im-012"
+   ],
+   [
+    0.169,
+    "S-im-016"
+   ],
+   [
+    0.096,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.076,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 2,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 16,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DCTEST_OUTPUT_ON_FAILURE=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "d44d5012b3bc5e514c151e74d5fd6ed09f8ad3eb",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": false,
+  "fetch_s": 1,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "  /usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake:600 (_FPHSA_FAILURE_MESSAGE)\n  /usr/share/cmake-3.25/Modules/FindZLIB.cmake:166 (FIND_PACKAGE_HANDLE_STANDARD_ARGS)\n  CMakeLists.txt:142 (find_package)\n\n\n-- Configuring incomplete, errors occurred!\nSee also \"/p/src/build/CMakeFiles/CMakeOutput.log\".\nSee also \"/p/src/build/CMakeFiles/CMakeError.log\".\nninja: error: loading 'build.ninja': No such file or directory",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 512,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "d44d5012b3bc5e514c151e74d5fd6ed09f8ad3eb",
+  "kb": 95959,
+  "lang": "C",
+  "open_prs": 34,
+  "pushed": "2026-10-20",
+  "release": "3.32.2",
+  "spdx": "Apache-2.0",
+  "stars": 13862,
+  "test_files": 512,
+  "test_kb": 43049,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/freerdp/freerdp|oss-fuzz-freerdp",
+ "source_notes": "OSS-Fuzz project, language c",
+ "source_url": "https://github.com/FreeRDP/FreeRDP",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Reduced-config cmake needed -DWITH_KRB5=OFF plus zlib, openssl and icu dev packages (offline apt in the image).",
+   "TestFreeRDPCodecInterleaved fails deterministically with rc 255 in this config, so keep it out of the regression gate.",
+   "RFX and progressive streams were not generated in the spike; only the upstream test binaries cover them (both pass).",
+   "Interleaved and NSC mutants need an explicit, deterministic spec for corrupt-input status."
+  ],
+  "build_minutes": 1.5,
+  "cases_sampled": 1048,
+  "commands_log": "git clone --branch 3.32.2; apt install ninja-build zlib1g-dev libssl-dev libicu-dev; cmake -G Ninja -DWITH_SERVER=OFF -DWITH_CLIENT=OFF -DWITH_KRB5=OFF -DWITH_CHANNELS=OFF -DBUILD_TESTING=ON; ninja TestFreeRDPCodec (51s); ctest -R Codec x3 (10/11 pass); /work/h/h.c harness ran 3 times with identical output (md5 equal), 1048 cases",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Stubbed start decodes nothing, so ceiling 1.0 versus 0. The upstream decoders define the oracle output and status for every sampled case.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "The codec subset builds from tag 3.32.2 (commit 97eff6d) in about 51 s with a reduced cmake config. The shared libfreerdp3 exports the encoder and decoder APIs, so a grader-side generator is easy. Harness covered interleaved at 24/16/15 bpp, planar and NSC, each with 8 variants per image: valid, truncated, and bit-flipped. Of 1048 cases, 653 decode OK and 395 return an error status. All valid streams decoded OK (17 per interleaved depth, 40 each for planar and NSC). Hashes and statuses were identical across three runs, so every case has a defined status. Pass rate counts decoder success, not error rate, so the 653/395 split is fine. Reference size is about 14.7k lines across the codec files (rfx.c 2553, progressive.c 2721, planar.c 1867, color.c 2002, and others). The idea's pin should be the 3.32.2 tag commit 97eff6d, not the later head. Per-codec test data was not checked for licence. The probe's red verdict was only missing zlib, and the build works once the dev packages are installed.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 1048,
+  "reference_lines": 14000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/FreeRDP/FreeRDP/releases/tag/3.32.2",
+  "facts": [
+   {
+    "claim": "FreeRDP release tag 3.32.2 exists on GitHub",
+    "status": "confirmed",
+    "url": "https://github.com/FreeRDP/FreeRDP/releases/tag/3.32.2"
+   },
+   {
+    "claim": "The 3.32.2 tag resolves to commit 97eff6d, not the seed's pin d44d5012 (which is a later default-branch head)",
+    "status": "contradicted",
+    "url": "https://github.com/FreeRDP/FreeRDP/releases/tag/3.32.2"
+   },
+   {
+    "claim": "Repository licence at 3.32.2 is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/FreeRDP/FreeRDP/blob/3.32.2/LICENSE"
+   },
+   {
+    "claim": "libfreerdp/codec at 3.32.2 contains interleaved.c, planar.c, nsc.c, rfx*.c (incl. rfx_rlgr.c, rfx_dwt.c, rfx_quantization.c), progressive.c and color.c",
+    "status": "confirmed",
+    "url": "https://github.com/FreeRDP/FreeRDP/tree/3.32.2/libfreerdp/codec"
+   },
+   {
+    "claim": "rfx_rlgr.c carries an Apache-2.0 header and defines public rfx_rlgr_decode and rfx_rlgr_encode, about 600 lines",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/FreeRDP/FreeRDP/3.32.2/libfreerdp/codec/rfx_rlgr.c"
+   },
+   {
+    "claim": "interleaved.c carries an Apache-2.0 header, about 850 lines, public interleaved_decompress/interleaved_compress",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/FreeRDP/FreeRDP/3.32.2/libfreerdp/codec/interleaved.c"
+   },
+   {
+    "claim": "libfreerdp/codec/test has per-codec test sources for Interleaved, Planar, RemoteFX, Progressive, Color, plus TestFuzzNSCodec.c; no dedicated RLGR test file",
+    "status": "confirmed",
+    "url": "https://github.com/FreeRDP/FreeRDP/tree/3.32.2/libfreerdp/codec/test"
+   },
+   {
+    "claim": "Seed says the reference is several thousand lines across the codecs",
+    "status": "not_found",
+    "url": "https://github.com/FreeRDP/FreeRDP/tree/3.32.2/libfreerdp/codec"
+   },
+   {
+    "claim": "3.32.2 release notes list recent codec fixes (planar allocator #13555, RFX reachable-assertion fix #13600), so the reference includes post-3.32.0 error-path changes",
+    "status": "confirmed",
+    "url": "https://github.com/FreeRDP/FreeRDP/releases/tag/3.32.2"
+   },
+   {
+    "claim": "Web search index returns a 3.32.2 announcement",
+    "status": "not_found",
+    "url": "https://www.freerdp.com"
+   },
+   {
+    "claim": "NSCodec, progressive, RLE and RLGR are listed in 3.32.2 release notes",
+    "status": "not_found",
+    "url": "https://github.com/FreeRDP/FreeRDP/releases/tag/3.32.2"
+   },
+   {
+    "claim": "Dated public evidence of agents attempting RDP bitmap codec work",
+    "status": "not_found",
+    "url": "https://github.com/FreeRDP/FreeRDP"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Interleaved and planar quick; RFX/progressive/RLGR long; corrupt-input bit-exactness hard. Seed claim of 3-of-4 codecs by frontier is undated and unverified.",
+   "build_cost": "3: reference needs stub removal and a pinned oracle build; smoke probe red (no build, no tests), so cmake build of the codec subset must be proven first.",
+   "deliverable": "Standalone C library with C ABI plus CLI decoding RDP bitmap streams to raw BGRA, matching FreeRDP decoders byte-for-byte including success/error status.",
+   "gates_anticheat": "No linking to installed FreeRDP (none in image, no network). Streams generated at grading time, so no lookup table. Need explicit spec for status on corrupt input and a check that edits to tests/build config do not count.",
+   "grading_surface": "Thousands of generated and mutated (valid, truncated, corrupt) streams per codec bucket, compared with a pinned real FreeRDP decoder kept out of the image. Pass fraction per bucket.",
+   "local_fit": "C, CPU only, small memory; fits 8 cores / 16 GB under gVisor. No kernel features needed.",
+   "lookup": "direct: complete C source of all codecs is public upstream (this is the reference). Not in image; no offline package install checked; not installable at run time.",
+   "provenance": "Upstream FreeRDP 3.32.2 (tag exists; tag commit 97eff6d per release page, seed pins later head d44d5012). Apache-2.0. Pin must be corrected to the tag commit.",
+   "reference": "Upstream codec sources with stubs removed; exact 1.0 reachable. Reference file sizes sampled: interleaved.c ~850 lines, rfx_rlgr.c ~600 lines; total not verified.",
+   "ships": "Stubbed history-less snapshot of libfreerdp/codec (interleaved RLE, planar, NSCodec, RFX/progressive incl. RLGR, DWT, quantisation, color) plus the upstream per-codec test sources.",
+   "similarity": "l0 neighbours: S-im-020 0.22, S-im-012 0.184, S-im-016 0.169 are internal seeds whose content I could not inspect (overlap check pending); zstd-decoder 0.096 public. Not on CROWDED list. Not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed's 3-of-4 claim is undated; no dated public evidence found, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Stub removal plus pinned oracle build; smoke probe red, so build cost is moderate (about 3 days)."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only C library; no network or kernel features needed."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Four codec families with RFX/RLGR/DWT/quant chains; fits an 8h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Apache-2.0 confirmed on LICENSE and sampled codec headers; other files not sampled."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four codec buckets with natural partial credit by codec."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task neighbour above 0.15; top neighbours are internal seeds whose overlap is unchecked."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real Apache-2.0 upstream FreeRDP tag with OSS-Fuzz history; codec sources confirmed."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation; exact 1.0 reachable."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public and not in image or offline; frontier recall of RLE/planar is a Band question, not Seal."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Thousands of generated and mutated streams with an executable oracle and generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The codec subset cannot be built without the full FreeRDP dependency tree, or oracle output or status changes across runs, or corrupt-input status cannot be specified deterministically.",
+   "pass_if": "Codec subset builds offline from the tag in under 60 min; oracle output and status are identical across three runs; at least 95% of sampled streams decode with a well-defined status; and the spec for corrupt-input status is written down.",
+   "steps": [
+    "In a throwaway networked Linux container, clone FreeRDP at tag 3.32.2 and check out commit 97eff6d (not d44d5012).",
+    "Configure CMake with client, server, FFmpeg, and hardware codecs off; build only the codec target and its winpr dependencies. Record the first error if the build fails.",
+    "Build the upstream codec test binaries (TestFreeRDPCodecInterleaved, Planar, RemoteFX, Progressive, Color, TestFuzzNSCodec) and run ctest -R Codec three times; check the results are identical.",
+    "Write a small generator using upstream encoders (interleaved_compress, planar encode, nsc_encode, rfx_encode, progressive) to produce about 50 valid streams per codec, plus truncated and byte-flipped mutants.",
+    "Decode each stream with the built oracle; store output hashes and success/failure status. Run twice to confirm determinism.",
+    "Check that the stub-stripping approach (replacing codec bodies with stubs) still compiles against the snapshot headers; record the line count of the reference codec sources."
+   ]
+  },
+  "summary": "The seed's upstream FreeRDP 3.32.2 tag is real, Apache-2.0, and its codec sources and per-codec tests are confirmed, but the seed's pin d44d5012 is a later head, not the tag commit 97eff6d, so the pin must be corrected. No kill gate fails; the red smoke build leaves reference buildability unproven, and byte-exact status on corrupt input needs an explicit spec before the spike passes."
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 83,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-032",
+  "kill_code": "",
+  "note": "Strong diffref: real Apache-2.0 codecs, an executable oracle with a stream generator, and natural buckets per codec. Fixes needed: pin the tag commit 97eff6d, not d44d5012. Strip the encoders too (interleaved_compress, rfx_encode etc. would leak the decoders' inverse logic). Decide whether this is an in-tree rebuild or a standalone library. Specify what output and status mean on corrupt input; error-path matching beyond accept/reject tests FreeRDP quirks, not the spec. The probe was red and the reference line count is unverified. Band is capped at 3 with no dated evidence.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 84
+}
