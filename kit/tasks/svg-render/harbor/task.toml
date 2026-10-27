@@ -1,0 +1,27 @@
+[task]
+name = "cg/svg-render"
+description = "Write an SVG renderer in Rust (no crates) that reproduces resvg 0.48's output for SVG structure, shapes, painting, paint servers, clipping, masking and filters; scored on 822 frozen renderings with an anti-aliasing allowance."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["rust"]
+category = "graphics"
+difficulty = "frontier"
+tags = ["svg", "rasterization", "vector-graphics", "png", "rust", "conformance"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 72000
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "72000"

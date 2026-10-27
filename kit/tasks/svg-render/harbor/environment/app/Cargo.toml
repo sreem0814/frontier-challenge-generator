@@ -1,0 +1,14 @@
+[package]
+name = "svgrender"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "svgrender"
+path = "src/main.rs"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+debug = false
