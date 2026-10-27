@@ -59,3 +59,22 @@ Write per-task decisions as dated lines in README.md, not in a new file.
 - sandbox warnings (Landlock, kill-process seccomp, valgrind, execute-only files, message queues, perf counters, nproc)
 - deny-list phrases (scripts/leak-denylist.txt) and leftover TODO/REPLACE markers.
 The report goes to tasks/<task>/build/l0-report.md.
+
+## 5. L3: Docker checks (no model, no keys)
+`bash scripts/l3_run.sh <task> [--local] [--only oracle,nop,variants,det] [--det-n 50]`. It runs on VM 3 unless `--local`, through remote_run.sh (leak guard first).
+
+| # | Check | Pass rule |
+|---|---|---|
+| 1 | Build succeeds (every oracle trial builds) | every trial produces a reward |
+| 2 | Reference reaches its ceiling, twice (`-a oracle -k 2 -n 1`) | every trial ≥ `oracle_reward_threshold` (default 1) and trials within 0.05 |
+| 3 | Untouched state (`-a nop`) | exactly 0 with valid = 1 |
+| 4 | near-miss-* | 0, for the intended reason (read details.json) |
+| 5 | partial-* | strictly between 0 and the ceiling |
+| 6 | alt-solution-* | reaches the ceiling |
+| 7 | edge-inside-* / edge-outside-* | inside reaches the ceiling, outside fails that case |
+| 8 | Verifier determinism: solve.sh once, test.sh N times at 1 and `cpus` CPUs | one verdict across all runs |
+
+Near-misses that always apply: a native-code or system-tool shortcut, output in the wrong format, a tampered input, a leftover background process, a write to /logs/verifier. Partial: the reference with whole features stubbed out. Output: tasks/<task>/runs/l3-<stamp>/summary.md; wall times go to data/l3-runs.tsv.
+
+## 6. L4: model trials on VM 3
+`bash scripts/remote_run.sh run <task> --keys claude -- -a claude-code -m <model> -k 1 -n 1 --allow-agent-host api.anthropic.com` (add `--cheat` for the adversarial trial with the public hack prompt). Our tasks set `allow_internet = false`, which Harbor 0.24 enforces with an egress-control sidecar that would also block the agent's model API; `--allow-agent-host` opens only that host for the agent phase (Harbor src/harbor/cli/jobs.py, checked 2026-10-20). Confirm on the first trial that the agent reached the API and the task container still had no other network. Default plan: one full-budget trial plus one cheat trial. A judge subagent reads both trajectories with the task, the verifier output and the reference: was the failure caused by the hard part (strong), the environment (noise), or a fork in the spec? Did the verifier misjudge the run (a false positive or a false negative)? DeepSWE's audit of 735 rollouts found 1.4 % verifier disagreement on its benchmark against 32 % on SWE-bench Pro, so any false verdict is a verifier bug to fix before submitting. Any reward from the cheat trial is a blocker. For a local stand-in of the platform's weaker model, Harbor's `qwen-coder`, `terminus-2` and `openhands` agents take an OpenAI-compatible endpoint.
