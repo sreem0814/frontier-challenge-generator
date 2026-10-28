@@ -430,5 +430,31 @@
   "spike_green": {
     "call_budget_usd": 3.0,
     "timeout_sec": 3600
+  },
+  "build_target": 10,
+  "validated_buffer": 30,
+  "max_rework_rounds": 2,
+  "probe_ladder": {
+    "core_share_max": 0.5,
+    "recall_too_easy": 0.3,
+    "short_too_easy": 0.35,
+    "short_clear": 0.15,
+    "probe_too_easy": 0.5
+  },
+  "build_method_rank": {
+    "perfseries": 0,
+    "research": 0,
+    "incident": 0,
+    "feature": 1,
+    "mutate": 1,
+    "diffref": 2,
+    "conform": 3,
+    "port": 3,
+    "rebuild": 3
+  },
+  "spike_quick_share_max": 0.25,
+  "class_priority_bonus": {
+    "optimization": 30,
+    "research": 30
   }
 }
