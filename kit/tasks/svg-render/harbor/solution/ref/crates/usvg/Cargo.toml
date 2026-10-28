@@ -1,0 +1,35 @@
+[package]
+name = "usvg"
+version = "0.48.1"
+keywords = ["svg"]
+license.workspace = true
+edition = "2024"
+rust-version = "1.85.0"
+description = "An SVG simplification library."
+categories = ["multimedia::images"]
+repository = "https://github.com/linebender/resvg"
+documentation = "https://docs.rs/usvg/"
+exclude = ["tests"]
+autobins = false
+workspace = "../.."
+
+[dependencies]
+log = "0.4"
+pico-args = { version = "0.5", features = ["eq-separator"] }
+strict-num = "0.1.1"
+svgtypes = "0.16.1"
+tiny-skia-path = "0.12.0"
+
+# parser
+data-url = "0.3" # for href parsing
+imagesize = "0.15.0" # raster images size detection
+kurbo = "0.13.0" # Bezier curves utils
+roxmltree = "0.21.1"
+simplecss = "0.2"
+siphasher = "1.0" # perfect hash implementation
+
+
+[lints.rust]
+# The text, raster-image, SVGZ and writer features of upstream are not built here: their
+# optional dependencies are not vendored. Keep the cfg names known to the compiler.
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(feature, values("text", "raster-images", "svgz", "system-fonts", "memmap-fonts", "writer"))'] }

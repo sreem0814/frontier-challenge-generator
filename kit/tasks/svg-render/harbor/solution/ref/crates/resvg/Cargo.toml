@@ -1,0 +1,26 @@
+[package]
+name = "resvg"
+version = "0.48.1"
+keywords = ["svg", "render", "raster"]
+license.workspace = true
+edition = "2024"
+rust-version = "1.85.0"
+description = "An SVG rendering library."
+repository = "https://github.com/linebender/resvg"
+exclude = ["tests"]
+autobins = false
+workspace = "../.."
+
+[dependencies]
+bytemuck = "1.16"
+log = "0.4"
+pico-args = { version = "0.5", features = ["eq-separator"] }
+rgb = "0.8"
+svgtypes = "0.16.1"
+tiny-skia = { version = "0.12.0", default-features = false, features = ["std", "simd"] }
+usvg = { path = "../usvg", version = "0.48.1", default-features = false }
+
+[lints.rust]
+# The text, raster-image, SVGZ and writer features of upstream are not built here: their
+# optional dependencies are not vendored. Keep the cfg names known to the compiler.
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(feature, values("text", "raster-images", "svgz", "system-fonts", "memmap-fonts", "writer"))'] }

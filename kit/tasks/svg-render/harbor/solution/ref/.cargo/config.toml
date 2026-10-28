@@ -1,0 +1,6 @@
+# The reference vendors its crates.io dependencies as source; nothing is fetched.
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor"

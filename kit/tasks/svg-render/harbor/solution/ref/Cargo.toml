@@ -1,0 +1,22 @@
+[workspace]
+members = [".", "crates/resvg", "crates/usvg"]
+resolver = "2"
+
+[workspace.package]
+license = "Apache-2.0 OR MIT"
+
+[package]
+name = "svgrender"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "svgrender"
+path = "src/main.rs"
+
+[dependencies]
+resvg = { path = "crates/resvg", default-features = false }
+
+[profile.release]
+opt-level = 3
+debug = false
