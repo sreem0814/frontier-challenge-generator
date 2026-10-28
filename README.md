@@ -345,3 +345,8 @@ archive/             raw research tables, not needed to run anything
 ~/.cache/cgpipe/     outside the repo: worker cwd and per-stage system-prompt files
 ~/.config/cgpipe/    outside the repo, private: env (spike token), org and denylist.txt (platform identifiers)
 ```
+
+## 9. After validation
+
+Each `validated` seed has its card, facts, probe result, V1 report, judge scores and spike notes in data/seeds/<id>.json and data/spikes/<id>/. To turn one into a task bundle, follow kit/BUILD.md.
+
