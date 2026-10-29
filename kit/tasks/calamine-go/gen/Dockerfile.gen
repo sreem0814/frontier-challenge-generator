@@ -1,0 +1,7 @@
+# Throwaway generator image (runs on the trial runner, never shipped): LibreOffice + Python writers.
+FROM debian:bookworm-slim
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      libreoffice-calc-nogui python3 python3-pip fonts-dejavu-core \
+ && rm -rf /var/lib/apt/lists/*
+RUN pip3 install --break-system-packages --no-cache-dir XlsxWriter==3.2.0 xlwt==1.3.0 openpyxl==3.1.5 Pillow==10.4.0
