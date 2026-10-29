@@ -1,0 +1,1 @@
+{"format":"xls","sheets":[{"name":"Sheet1","type":"worksheet","visible":"visible","dims":[0,0,1,2],"cells":[[0,0,"s","Row Merge"],[0,2,"s","Not Merged"],[1,0,"s","Column Merge"],[1,1,"s","Chunk Merged"]],"formulas":[],"merged":[[0,0,0,1],[1,0,3,0],[1,1,3,3]],"hyperlinks":null}],"names":[],"properties":null,"vba":null,"pictures":[],"tables":null,"pivots":null}

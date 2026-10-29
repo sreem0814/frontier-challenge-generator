@@ -1,0 +1,28 @@
+[task]
+name = "cg/calamine-go"
+description = "Port the spreadsheet readers of the calamine 0.37.0 Rust crate (xls/BIFF5-8 in CFB, xlsx, xlsb, ods) to Go behind a CLI that dumps a workbook as JSON; scored on hidden workbooks against the crate's own output."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["go"]
+category = "parsers"
+difficulty = "frontier"
+tags = ["spreadsheet", "xlsx", "xls", "xlsb", "ods", "biff", "porting", "rust-to-go", "binary-formats"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+user = "agent"
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"
