@@ -1769,11 +1769,256 @@ def build_status(tdir):
             "core": core, "recalls": recalls}
 
 
+TRIAL_PROBE = r"""
+import glob, json, os, sys
+out = []
+for item in sys.argv[1:]:
+    task, hsh, rid = item.split("|")
+    d = os.path.expanduser(f"~/cg-runs/{task}/{hsh}/runs/{rid}")
+    if not os.path.isdir(d):
+        continue
+    r = {"runid": rid, "done": os.path.exists(d + "/DONE"), "rc": None, "reward": None, "bytes": 0, "updated": None}
+    try:
+        r["rc"] = open(d + "/exit-code").read().strip()
+    except OSError:
+        pass
+    for p in glob.glob(d + "/jobs/*/*/result.json"):
+        try:
+            j = json.load(open(p))
+            r["reward"] = ((j.get("verifier_result") or {}).get("rewards") or {}).get("reward", r["reward"])
+            r["started_at"], r["finished_at"] = j.get("started_at"), j.get("finished_at")
+            r["out_tokens"] = (j.get("agent_result") or {}).get("n_output_tokens")
+            r["valid"] = ((j.get("verifier_result") or {}).get("rewards") or {}).get("valid")
+            r["exception"] = ((j.get("exception_info") or {}).get("exception_type") or "") if isinstance(j.get("exception_info"), dict) else ""
+        except (OSError, ValueError):
+            pass
+    for p in glob.glob(d + "/jobs/*/*/verifier/reward.txt"):
+        try:
+            r["reward"] = float(open(p).read().split()[0]) if r["reward"] is None else r["reward"]
+        except (OSError, ValueError, IndexError):
+            pass
+    for p in glob.glob(d + "/jobs/*/*/agent/sessions/projects/*/*.jsonl"):
+        st = os.stat(p)
+        r["bytes"] += st.st_size
+        r["updated"] = max(r["updated"] or 0, st.st_mtime)
+    out.append(r)
+print(json.dumps(out))
+"""
+
+
+ACCOUNT_PROBE = r"""
+import glob, json, os
+fs = sorted(glob.glob(os.path.expanduser("~/cg-runs/*/*/runs/*/jobs/*/*/agent/claude-code.txt")), key=os.path.getmtime)
+out = {}
+for f in reversed(fs[-6:]):
+    last = None
+    for line in open(f, errors="replace"):
+        if '"rate_limit_event"' in line:
+            last = line
+    if last:
+        try:
+            e = json.loads(last[last.index("{"):])
+        except ValueError:
+            continue
+        info = e.get("rate_limit_info") or {}
+        out = {"windows": {k: [v.get("utilization"), v.get("resetsAt")] for k, v in (info.get("unifiedWindows") or {}).items()},
+               "status": info.get("status"), "seen": os.path.getmtime(f)}
+        break
+print(json.dumps(out))
+"""
+
+
+RUNNER_TOKEN_FP = r"""
+import hashlib, os, re
+t = open(os.path.expanduser("~/cg.env")).read() if os.path.exists(os.path.expanduser("~/cg.env")) else ""
+m = re.search(r"^CLAUDE_CODE_OAUTH_TOKEN=(\S+)", t, re.M)
+print(hashlib.sha256(m.group(1).encode()).hexdigest()[:8] if m else "")
+"""
+
+
 def show_time(ts, fmt="%a %H:%M"):
     """A time for the dashboard, in the display zone (config.json display_utc_offset_hours, default UTC-4)."""
     off = load_config().get("display_utc_offset_hours", -4)
     tz = dt.timezone(dt.timedelta(hours=off))
     return dt.datetime.fromtimestamp(ts, tz).strftime(fmt) + (f" UTC{off:+d}" if off else " UTC")
+
+
+def runner_tokens():
+    """Pool name of the token installed on each runner (matched by fingerprint), cached 5 minutes."""
+    import hashlib
+    cache_p = os.path.join(DATA, "runner-tokens-cache.json")
+    cache = load_json(cache_p, {})
+    if time.time() - cache.get("ts", 0) > 300:
+        fps = dict(cache.get("fps", {}))
+        for host in ("vm2", "vm3"):
+            try:
+                p = subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", host, "python3 -"],
+                                   input=RUNNER_TOKEN_FP, capture_output=True, text=True, timeout=30)
+                if p.returncode == 0:
+                    fps[host] = p.stdout.strip()
+            except (subprocess.TimeoutExpired, OSError):
+                pass
+        cache = {"ts": time.time(), "fps": fps}
+        atomic_write(cache_p, json.dumps(cache))
+    tp = load_json(os.path.expanduser("~/.config/cgpipe/tokens.json"), {}).get("tokens", {})
+    by_fp = {hashlib.sha256(t["token"].encode()).hexdigest()[:8]: (n, t.get("plan", "")) for n, t in tp.items()}
+    return {h: (by_fp.get(f, ("not in the pool" if f else "no token", "")) + (f,)) for h, f in cache.get("fps", {}).items()}
+
+
+def runner_accounts():
+    """Plan usage of each runner's own account (its ~/cg.env token), read at zero tokens from the rate_limit_event lines
+    in its latest trial transcripts; one ssh per runner, cached 5 minutes. A reading is only as fresh as the last trial."""
+    cache_p = os.path.join(DATA, "accounts-cache.json")
+    cache = load_json(cache_p, {})
+    if time.time() - cache.get("ts", 0) > 300:
+        acc = dict(cache.get("accounts", {}))
+        for host in ("vm2", "vm3"):
+            try:
+                p = subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", host, "python3 -"],
+                                   input=ACCOUNT_PROBE, capture_output=True, text=True, timeout=40)
+                got = json.loads(p.stdout or "{}")
+                if got:
+                    acc[host] = got
+            except (subprocess.TimeoutExpired, ValueError, OSError):
+                pass                                       # an unreachable runner keeps its last reading
+        cache = {"ts": time.time(), "accounts": acc}
+        atomic_write(cache_p, json.dumps(cache))
+    return cache.get("accounts", {})
+
+
+def trials_status():
+    """Model trials (not L3 checks) from kit/scripts/.runs.log, with live state from the runners (cached 5 min)."""
+    log = os.path.join(ROOT, "kit", "scripts", ".runs.log")
+    if not os.path.exists(log):
+        return []
+    runs = []
+    for line in open(log):
+        f = line.split()
+        if len(f) >= 3 and not f[2].startswith(("l3-", "smoke-")) and "--l3-" not in f[0] and f[0] != "smoke-hello":
+            runs.append({"task": f[0].removesuffix("--tmux"), "rtask": f[0], "hash": f[1], "runid": f[2],
+                         "host": f[4] if len(f) > 4 else ""})
+    if not runs:
+        return []
+    cache_p = os.path.join(DATA, "trials-cache.json")
+    cache = load_json(cache_p, {})
+    if time.time() - cache.get("ts", 0) > 300:          # one ssh per runner, at most every 5 minutes
+        live = {}
+        for host in sorted({r["host"] for r in runs if r["host"] not in ("", "local")} | ({"vm2", "vm3"} if any(not r["host"] for r in runs) else set())):
+            args = [f"{r['rtask']}|{r['hash']}|{r['runid']}" for r in runs if r["host"] in (host, "")]
+            try:
+                import shlex          # the remote shell would read "|" in the arguments as a pipe
+                p = subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", host,
+                                    "python3 - " + " ".join(shlex.quote(a) for a in args)],
+                                   input=TRIAL_PROBE, capture_output=True, text=True, timeout=40)
+                for r in json.loads(p.stdout or "[]"):
+                    live[r["runid"]] = dict(r, host=host)
+            except (subprocess.TimeoutExpired, ValueError, OSError):
+                pass
+        cache = {"ts": time.time(), "live": dict(cache.get("live", {}), **live)}   # an unreachable runner keeps old values
+        atomic_write(cache_p, json.dumps(cache))
+    out = []
+    for r in runs:
+        lv = cache.get("live", {}).get(r["runid"], {})
+        tt = os.path.join(ROOT, "kit", "tasks", r["task"], "harbor", "task.toml")
+        budget = int((re.search(r"(?m)^\[agent\][^\[]*?timeout_sec\s*=\s*(\d+)", open(tt).read()) or [0, 0])[1]) if os.path.exists(tt) else 0
+        budget = int(budget * (0.1 if r["runid"].startswith(("probe10", "cheat")) else 0.25 if r["runid"].startswith(("probe", "weak25")) else 1))
+        m = re.search(r"(\d{8}T\d{6}Z)", r["runid"])
+        start = dt.datetime.strptime(m.group(1), "%Y%m%dT%H%M%SZ").replace(tzinfo=dt.timezone.utc).timestamp() if m else None
+        local = glob_first(os.path.join(ROOT, "kit", "tasks", r["rtask"], "runs", r["runid"], "jobs", "*", "*", "result.json"))
+        reward, t0, t1, otok = lv.get("reward"), lv.get("started_at"), lv.get("finished_at"), lv.get("out_tokens")
+        valid, exc = lv.get("valid"), lv.get("exception", "")
+        if local:
+            try:
+                j = json.load(open(local))
+                reward = ((j.get("verifier_result") or {}).get("rewards") or {}).get("reward", reward)
+                t0, t1 = j.get("started_at") or t0, j.get("finished_at") or t1
+                otok = (j.get("agent_result") or {}).get("n_output_tokens") or otok
+                valid = ((j.get("verifier_result") or {}).get("rewards") or {}).get("valid", valid)
+                ei = j.get("exception_info")
+                exc = (ei.get("exception_type") or "") if isinstance(ei, dict) else exc
+            except (OSError, ValueError):
+                pass
+        state = "pulled" if local else "finished" if lv.get("done") else "running" if lv else "unknown (runner unreachable?)"
+        iso = lambda s: dt.datetime.fromisoformat(str(s).replace("Z", "+00:00")).timestamp()  # noqa: E731
+        if t0 and t1:                                    # a finished trial shows how long it actually ran
+            elapsed = iso(t1) - iso(t0)
+        else:
+            end = lv.get("updated") if state in ("finished", "pulled") and lv.get("updated") else time.time()
+            elapsed = end - start if start else 0
+        out.append({"task": r["task"], "runid": r["runid"], "host": lv.get("host") or r["host"] or "?", "state": state,
+                    "budget": budget, "elapsed": elapsed, "reward": reward, "cheat": "cheat" in r["runid"], "out_tokens": otok,
+                    "valid": valid, "exception": exc, "infra": r["runid"] in INFRA_RUNS or valid == 0 or (bool(exc) and reward is None and state in ("finished", "pulled")),
+                    "eta": (start + budget + 1200) if (start and budget and state == "running") else None,
+                    "kb": round((lv.get("bytes") or 0) / 1024), "updated": lv.get("updated")})
+    return out
+
+
+LADDER = {"core_share_max": 0.5, "recall_too_easy": 0.3, "short_too_easy": 0.35, "short_clear": 0.15,
+          "probe_too_easy": 0.5}       # kit/BUILD.md step 3b; overridden by config.json probe_ladder
+
+
+# runs that are not evidence (spec: a trial that crashes, runs on the wrong model or is marked invalid is an infra
+# failure, never a verdict): valid = 0 automatically, plus runs the coordinator records in config.json infra_runs
+INFRA_RUNS = set(load_json(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"), {}).get("infra_runs", []))
+
+
+def review_gate(impl, full, strong, qwen, min_runs=4):
+    """The requirements' review gate on local evidence. full: frontier full-budget rewards (the band is their mean);
+    strong: every frontier reward that shows a solve (full trials and probes); qwen: second-model rewards.
+    Returns in_band, gap, no_gap (the second model already does too well) and a note."""
+    if impl:
+        in_band = bool(full) and 0.05 <= sum(full) / len(full) <= 0.85 and any(r >= 0.9 for r in full)
+        qs, ss = sum(r >= 0.9 for r in qwen), sum(r >= 0.9 for r in strong)
+        gap = bool(qwen) and bool(strong) and qs <= len(qwen) / 2 and ss >= 1 and ss / len(strong) - qs / len(qwen) >= 0.2
+        no_gap = len(qwen) >= min_runs and qs > len(qwen) / 2
+        note = f"Qwen solved {qs}/{len(qwen)}" if qwen else ""
+    else:
+        in_band = bool(full) and 0.05 <= sum(full) / len(full) <= 0.85 and any(r > 0 for r in full)
+        sm = sum(strong) / len(strong) if strong else 0
+        qm = sum(qwen) / len(qwen) if qwen else 0
+        gap = bool(qwen) and any(r > 0 for r in strong) and sm - qm >= 0.2
+        no_gap = len(qwen) >= min_runs and qm > 0.8
+        note = f"Qwen mean {qm:.2f} over {len(qwen)}" if qwen else ""
+    return in_band, gap, no_gap, note
+
+
+def trial_verdict(t):
+    """What a trial's reward means for the task, by trial kind (kit/BUILD.md steps 3b and 7)."""
+    r = t.get("reward")
+    kind = ("short probe" if t["runid"].startswith("probe10") else "probe" if t["runid"].startswith("probe")
+            else "qwen" if t["runid"].startswith("qwen") else "stand-in" if t["runid"].startswith("weak")
+            else "cheat" if t["cheat"] else "full")
+    lad = dict(LADDER, **load_config().get("probe_ladder", {}))
+    if t.get("infra"):
+        return kind, "idle", "not evidence: infra failure (crash, invalid run, or the account's limit stopped the agent); rerun it"
+    if r is None:
+        return kind, "", "waiting for the verifier" if t["state"] in ("finished", "pulled") else "running"
+    if kind == "cheat":
+        return kind, "bad" if r > 0 else "ok", "BLOCKER: a shortcut beat the grader" if r > 0 else "ok: no shortcut scored"
+    if kind == "stand-in":  # a weaker non-Qwen model (e.g. GPT-4.1): a hint about the gap, never the spec's check
+        return kind, "solve" if r >= 0.9 else "ok", (f"stand-in solved it ({r:.2f}): Qwen, which gets more time, likely does too"
+                                                     if r >= 0.9 else f"stand-in did not solve it ({r:.2f}) in its budget: "
+                                                     "a gap is possible (Qwen gets more time than the task's budget)")
+    if kind == "qwen":     # the spec's second model: a solve is 0.9 or more
+        return kind, "solve" if r >= 0.9 else "ok", "Qwen solved it" if r >= 0.9 else f"Qwen did not solve it ({r:.2f})"
+    if kind == "short probe":
+        if r >= lad["short_too_easy"]:
+            return kind, "above", (f"above the band for the frontier ({r:.2f} in a tenth of the budget): the Qwen gap check "
+                                   "decides; finishing fast is a long-horizon risk")
+        if r < lad["short_clear"]:
+            return kind, "ok", "ok: go to the full trial"
+        return kind, "warn", "borderline: run the quarter probe"
+    if kind == "probe":
+        if r >= lad["probe_too_easy"]:
+            return kind, "above", "above the band for the frontier: the Qwen gap check decides"
+        return kind, "ok", "ok: run the full trial"
+    quick = t["budget"] and t["elapsed"] < 0.25 * t["budget"]
+    if r > 0.85:
+        return kind, "above", ("above the 0.85 band: passes only with a gap against Qwen" +
+                                (f"; finished in {hm(t['elapsed'])}, a long-horizon risk" if quick else ""))
+    if r < 0.05:
+        return kind, "warn", "too hard: below the 0.05 floor"
+    return kind, "ok", "in the 0.05-0.85 band" + ("; a pass (0.9) in some trial is still needed" if r < 0.9 else "")
 
 
 def glob_first(pattern):

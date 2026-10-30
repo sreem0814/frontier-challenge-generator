@@ -452,9 +452,15 @@
     "port": 3,
     "rebuild": 3
   },
+  "display_utc_offset_hours": -4,
   "spike_quick_share_max": 0.25,
   "class_priority_bonus": {
     "optimization": 30,
     "research": 30
-  }
+  },
+  "infra_runs": [
+    "probe10-20261021T065004Z",
+    "qwen-20261021T093917Z",
+    "qwen-20261021T110340Z"
+  ]
 }
