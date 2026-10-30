@@ -1,0 +1,328 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "8h. The core merge is straightforward, but list ordering directives and three-way conflict detection are intricate. A frontier agent should reach the middle of the range and a weaker model fails the directives.",
+  "cheat": "The module cache is cleaned of the upstream package and there is no network. Hidden cases are generated from random object trees.",
+  "grading": "Upstream table-driven testdata (hundreds of YAML cases) plus hidden generated cases checked against the real implementation as a differential oracle, on both the patch bytes and the result. Score is the fraction of cases passed.",
+  "reference": "The upstream package, about 3-4k lines of Go, which the baseline passes at 1.0. It is held out of the image.",
+  "source": "https://github.com/kubernetes/kubernetes @ v1.37.1 (head a0788855), Apache-2.0",
+  "task": "/app ships a history-less snapshot of the staging apimachinery module with the strategicpatch package, JSON merge patch helpers and patch-meta lookup removed. The agent rebuilds them to the public Go API: creating a two-way and three-way patch and applying one, with merge keys, directives ($patch, $retainKeys, $setElementOrder, $deleteFromPrimitiveList) and struct-tag metadata.",
+  "title": "Rebuild strategic merge patch in Kubernetes apimachinery"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "data-format",
+ "final": 80,
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-020 0.30"
+  ],
+  [
+   "2026-10-20T21:28:28Z",
+   "v1",
+   "pass",
+   "score 80; dead links []"
+  ],
+  [
+   "2026-10-20T23:19:25Z",
+   "v2",
+   "pass",
+   "final 80"
+  ],
+  [
+   "2026-10-21T00:11:25Z",
+   "spike",
+   "validated",
+   "The patch_test.go size matches the seed: 7061 lines, 217 `name:` lines (table cases), and 6 top-level Test functions. strategicpatch is 2253 lines in patch.go, plus meta.go 283, types.go 193 and errors.go 49. Nothing outside the two packages imports them, so stripping is clean. The module is 130k Go"
+  ]
+ ],
+ "id": "S-im-037",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.303,
+    "S-im-020"
+   ],
+   [
+    0.245,
+    "S-im-012"
+   ],
+   [
+    0.241,
+    "S-im-035"
+   ],
+   [
+    0.184,
+    "etree-xml-diff-patch [DeepSWE]"
+   ],
+   [
+    0.154,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 1,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 0,
+  "clone_ok": true,
+  "cmd_build": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -run '^$' ./... >/dev/null",
+  "cmd_fetch": "go mod download all",
+  "cmd_test": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -json -p 4 ./...",
+  "commit": "f9408fbfca0576dafad7595c98c0abbe66423558",
+  "deterministic": true,
+  "eco": "go",
+  "fetch_ok": true,
+  "fetch_s": 64,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "go: -mod may only be set to readonly or vendor when in workspace mode, but it is set to \"mod\"\n\tRemove the -mod flag to use the default readonly value, \n\tor set GOWORK=off to disable workspace mode.",
+  "oom": false,
+  "ref": "default",
+  "report_format": "meson-json",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 12595,
+  "tests_fail": 0,
+  "tests_listed": null,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "a0788855ed86ec13c7941d7f3a4deaa0473bd57d",
+  "kb": 1534094,
+  "lang": "Go",
+  "open_prs": 1334,
+  "pushed": "2026-10-20",
+  "release": "v1.37.1",
+  "spdx": "Apache-2.0",
+  "stars": 128504,
+  "test_files": 12595,
+  "test_kb": 53750,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/kubernetes/kubernetes|oss-fuzz-kubernetes",
+ "source_notes": "OSS-Fuzz project, language go",
+ "source_url": "https://github.com/kubernetes/kubernetes",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Go 1.26 toolchain is needed (module says go 1.26.0), so the image must ship it.",
+   "Error and conflict message text in the 3-way output varied between runs (map ordering), so the grader must compare patch JSON and a conflict boolean, not message text.",
+   "Upstream subtest names for Kind([...]) vary between runs, so the grader needs its own stable case IDs."
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 20,
+  "commands_log": "The upstream tag v1.37.1^{} resolves to f78e722, as the plan says. I used the proxy zip k8s.io/apimachinery@v0.37.1 instead of cloning, with Go 1.26.0 fetched through GOTOOLCHAIN.\n- Reference: `go test -count=1 -json ./pkg/util/strategicpatch/... ./pkg/util/jsonmergepatch/...`, run 3 times. All three exited 0 with 5960 passing test results, and the same set of results each time apart from the Kind([...]) subtest names.\n- Stripped start: I removed pkg/util/strategicpatch and pkg/util/jsonmergepatch, ran `go mod download`, then `GOPROXY=off GOFLAGS=-mod=mod go build ./...`, which built offline. The start has no vendor directory, and the module cache holds only klog, kube-openapi, streaming and utils. A grep of the module cache for CreateTwoWayMergePatch found nothing.\n- Start score: a test that imports the strategicpatch package fails with a setup error, so every case fails.\n- Golden generation: a Go program (/work/am/gold/main.go) builds 20 random object trees, and runs CreateTwoWayMergePatch, CreateThreeWayMergePatch and StrategicMergePatch on them with the reference. I ran it 3 times. The patch and result lines matched in all three runs. One run's three-way conflict error text differed from the other two, which I traced to map-order text in the error message; I did not check whether the conflict outcome itself changed.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Start has no strategicpatch/jsonmergepatch package, so any import fails to build. The reference passes its own 5960 test results.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "The patch_test.go size matches the seed: 7061 lines, 217 `name:` lines (table cases), and 6 top-level Test functions. strategicpatch is 2253 lines in patch.go, plus meta.go 283, types.go 193 and errors.go 49. Nothing outside the two packages imports them, so stripping is clean. The module is 130k Go lines, 6 MB without the module cache, and 415 MB with it. Seal risk: the upstream apimachinery zip is public. The task must ship a history-less snapshot without the vendored package. A model that knows the code can recall it in outline; that is a Band question (K8), not Seal. The v1.37.1 code has no other users of the stripped packages in the module.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 5960,
+  "reference_lines": 2800,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_grade_note": "E0",
+  "evidence_url": "https://github.com/kubernetes/kubernetes/tree/v1.37.1/staging/src/k8s.io/apimachinery/pkg/util/strategicpatch",
+  "facts": [
+   {
+    "claim": "kubernetes v1.37.1 release tag exists",
+    "status": "confirmed",
+    "url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.37.1"
+   },
+   {
+    "claim": "Seed pins v1.37.1 at commit a0788855; the v1.37.1 release page shows commit f78e722 (full f78e722310e50bcaca9276be22276d9e91d91308). The seed's a0788855 is the default-branch head at fetch time, so the pin must be the tag commit",
+    "status": "contradicted",
+    "url": "https://github.com/kubernetes/kubernetes/releases/tag/v1.37.1"
+   },
+   {
+    "claim": "staging/src/k8s.io/apimachinery/pkg/util/strategicpatch exists at v1.37.1 with patch.go, meta.go, types.go, errors.go, patch_test.go, testdata/, testing/",
+    "status": "confirmed",
+    "url": "https://github.com/kubernetes/kubernetes/tree/v1.37.1/staging/src/k8s.io/apimachinery/pkg/util/strategicpatch"
+   },
+   {
+    "claim": "patch.go is about 2253 lines (2041 code lines) and contains the $patch, $retainKeys, $setElementOrder and $deleteFromPrimitiveList directives",
+    "status": "confirmed",
+    "url": "https://github.com/kubernetes/kubernetes/blob/v1.37.1/staging/src/k8s.io/apimachinery/pkg/util/strategicpatch/patch.go"
+   },
+   {
+    "claim": "patch_test.go is 7061 lines and holds the upstream table-driven cases as YAML inside Go raw string literals",
+    "status": "confirmed",
+    "url": "https://github.com/kubernetes/kubernetes/blob/v1.37.1/staging/src/k8s.io/apimachinery/pkg/util/strategicpatch/patch_test.go"
+   },
+   {
+    "claim": "Upstream testdata/ holds YAML case files",
+    "status": "contradicted",
+    "url": "https://github.com/kubernetes/kubernetes/tree/v1.37.1/staging/src/k8s.io/apimachinery/pkg/util/strategicpatch/testdata"
+   },
+   {
+    "claim": "Count of hundreds of upstream YAML cases",
+    "status": "not_found",
+    "url": "https://github.com/kubernetes/kubernetes/blob/v1.37.1/staging/src/k8s.io/apimachinery/pkg/util/strategicpatch/patch_test.go"
+   },
+   {
+    "claim": "Licence of k8s.io/apimachinery/pkg/util/strategicpatch is Apache-2.0",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/k8s.io/apimachinery/pkg/util/strategicpatch"
+   },
+   {
+    "claim": "Package is public on pkg.go.dev with 2,871 importers (so the reference is public and recallable in outline)",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/k8s.io/apimachinery/pkg/util/strategicpatch"
+   },
+   {
+    "claim": "Exported API matches the seed: CreateTwoWayMergePatch, CreateThreeWayMergePatch, StrategicMergePatch, and lookup-patch-meta functions",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/k8s.io/apimachinery/pkg/util/strategicpatch"
+   },
+   {
+    "claim": "staging jsonmergepatch package exists at v1.37.1 (seed's 'JSON merge patch helpers' is a separate package)",
+    "status": "confirmed",
+    "url": "https://github.com/kubernetes/kubernetes/tree/v1.37.1/staging/src/k8s.io/apimachinery/pkg/util/jsonmergepatch"
+   }
+  ],
+  "full_card": {
+   "band": "8h. Rebuilding about 3k lines of tightly coupled merge logic. A frontier agent that recalls upstream may reach a middle band; a weaker model likely fails the directives and three-way conflict logic. No dated public evidence of agent results on this exact task.",
+   "build_cost": "About 2-3 days: strip snapshot and vendor copies, rebuild a warmed module cache for the staging module's deps, write oracle harness, golden corpus, and generator. The smoke probe was run against the root monorepo, not the staging module, so its red verdict is a probe-scope problem and does not show the task is unbuildable.",
+   "deliverable": "Go package strategicpatch rebuilt to the public API: CreateTwoWayMergePatch, CreateThreeWayMergePatch, StrategicMergePatch and the LookupPatchMeta variants, with merge keys, the four directives, and struct-tag and OpenAPI metadata.",
+   "gates_anticheat": "Grader-only oracle and generated cases are not in the image. Close the vendor/ and GOMODCACHE copy paths by stripping them, and forbid edits to test files and go.mod. The real package is the differential oracle, so the grader must hold it and it must not be in /app.",
+   "grading_surface": "Upstream-derived table cases (YAML inside patch_test.go, count not yet taken) plus hidden generated random object trees, scored as fraction passed on patch bytes and result, with a differential oracle run offline by the grader.",
+   "local_fit": "Go, CPU only, offline. Module build and tests fit 8 cores and 16 GB. No kernel features needed.",
+   "lookup": "Complete public implementation exists (upstream Go module and tag, 2,871 importers). Recall in outline is likely; byte-exact recall of about 2k lines is unlikely. Git history is removed by the history-less snapshot.",
+   "provenance": "kubernetes/kubernetes v1.37.1 (tag commit f78e722), staging/src/k8s.io/apimachinery/pkg/util/strategicpatch (patch.go 2253 lines, patch_test.go 7061 lines), Apache-2.0, published on pkg.go.dev with 2,871 importers.",
+   "reference": "Upstream strategicpatch package at the tag commit (about 2k code lines in patch.go plus meta, types and errors). Scores 1.0 by definition; held out of the image.",
+   "ships": "History-less snapshot of staging/src/k8s.io/apimachinery with strategicpatch (and jsonmergepatch) removed, plus every vendor/ copy and the Go module cache stripped of any strategicpatch code. No network at run time.",
+   "similarity": "Nearest seeds S-im-020 (0.303), S-im-012 (0.245), S-im-035 (0.241) are other seeds, not public tasks; they are not near-duplicates, so K1 does not fire. Public neighbours etree-xml-diff-patch (0.184) and python-pytest-cases (0.154) differ in language and deliverable. Not on CROWDED list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this task; recall risk for frontier agents and the band is only estimated."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Estimated 2-3 days for snapshot stripping, warmed cache, oracle, golden corpus; well under the 5-day limit."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Go, CPU only, offline; fits 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several thousand lines of coupled merge logic fit an 8h tier, but the budget is tight for a three-way conflict core."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed on pkg.go.dev, permits shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Separate buckets per directive, per API entry point, and per merge-key or struct-tag feature give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours above 0.15 exist (0.303, 0.245, 0.241 are seeds; 0.184 etree-xml-diff-patch is public), so novelty is moderate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned upstream tag and package confirmed at v1.37.1 with Apache-2.0 and 2,871 importers."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation that scores 1.0 by definition."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public reference recallable only in outline; sealing depends on stripping vendor/ and module-cache copies, which are reachable in the source tree."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hundreds of upstream table cases plus generated trees, but case count not yet verified and the YAML sits in a Go test file rather than testdata."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "A copy of strategicpatch survives in vendor trees or the module cache and cannot be stripped without breaking the rest of the module; or the reference's own tests are nondeterministic or fail offline.",
+   "pass_if": "Reference passes its own strategicpatch tests three times with identical results; the stripped module builds offline; no copy of strategicpatch survives in the snapshot, vendor trees or module cache; golden outputs are stable across reruns.",
+   "steps": [
+    "In a throwaway networked container, fetch kubernetes at tag v1.37.1 and confirm it resolves to f78e722; record the pin.",
+    "Extract staging/src/k8s.io/apimachinery into a scratch module, keep strategicpatch and jsonmergepatch intact, and run go test on strategicpatch with network to warm the module cache.",
+    "Run the upstream strategicpatch tests three times; confirm pass counts and per-test results are identical each run (determinism).",
+    "Count the YAML cases embedded in patch_test.go to size the grading surface.",
+    "Strip strategicpatch and jsonmergepatch from the snapshot, every vendor/ tree, and the module cache; then grep the stripped snapshot and cache for CreateTwoWayMergePatch and StrategicMergePatch. Any hit is a cheat path to close.",
+    "Rebuild the stripped module offline with GOPROXY=off and GOFLAGS=-mod=mod; confirm it builds and that the untouched start fails every case (score 0).",
+    "Generate 20 random object trees, record reference outputs as golden files, and rerun to confirm byte-identical output."
+   ]
+  },
+  "summary": "The upstream strategicpatch package is real and confirmed at the v1.37.1 tag (pinned commit f78e722, not the seed's a0788855 head), Apache-2.0, and public with 2,871 importers, so it has a strong paper trail but is also recallable in outline. The task is not killed, but it needs a spike to confirm that vendor and module-cache copies can be stripped and that a frontier agent lands mid-range, since no dated evidence exists for Band."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 80,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-037",
+  "kill_code": "",
+  "note": "Best of the batch. Confirmed: patch.go is about 2k code lines with the four directives, and patch_test.go is 7k lines of table cases (a good local self-check). The upstream package works as a differential oracle with a generator over typed and OpenAPI-meta object trees. Pin f78e722. Strip strategicpatch and mergepatch from GOMODCACHE and vendor trees. The generator needs struct types with patchMergeKey/patchStrategy tags. The jsonmergepatch scope is small, so buckets come from directives, two-way vs three-way, and meta sources. The red probe was run at monorepo scope and does not show the task is unbuildable.",
+  "scores": {
+   "Band": 3,
+   "Build": 4,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 83
+}

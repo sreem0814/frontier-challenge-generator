@@ -1,0 +1,292 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "8h. Each sub-feature is separable and gives credit by bucket. Interplay between the cascade and transforms and the exact export format are where frontier agents drop points. A weaker model finishes only the simple parts.",
+  "cheat": "Hidden assertions test generated SVG inputs, not a fixed list. A hard-coded output for known samples does not generalise.",
+  "grading": "Hidden vitest behavioural suites (hundreds of assertions) on parsed object trees and the exported SVG, plus the existing vitest suite as a regression gate. Score is the pass fraction per sub-feature.",
+  "reference": "Written by us. About 1200-2000 lines. Upstream issues for these gaps are expected but not verified (not found).",
+  "source": "https://github.com/fabricjs/fabric.js @ v740 (head 47484957), MIT",
+  "task": "/app ships a history-less snapshot at the base. The agent implements a multi-part feature in the SVG pipeline: CSS cascade and selector support for imported SVG, use/symbol/clipPath/mask/pattern handling and round-trip-stable export of gradients, filters and text-on-path. The public API is loadSVGFromString and toSVG.",
+  "title": "SVG import and export fidelity layer for fabric.js"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "data-format",
+ "final": 59,
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-034 0.32"
+  ],
+  [
+   "2026-10-20T21:27:44Z",
+   "v1",
+   "pass",
+   "score 69; dead links []"
+  ],
+  [
+   "2026-10-20T23:19:25Z",
+   "v2",
+   "killed:K3",
+   "Pipeline-invented feature with no upstream issue, PR or spec trail. The grading is hundreds of hand-written vitest assertions against our own export format, so a different valid round-trip format fails. fabric already has partial use/clipPath/pattern and <style> CSS handling, so the untouched base w"
+  ]
+ ],
+ "id": "S-im-036",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.318,
+    "S-im-034"
+   ],
+   [
+    0.286,
+    "S-im-015"
+   ],
+   [
+    0.218,
+    "S-im-016"
+   ],
+   [
+    0.143,
+    "fabric [Commit0]"
+   ],
+   [
+    0.134,
+    "vitest-duration-sharding [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 6,
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential git libcairo2-dev libgif-dev libjpeg-dev libpango1.0-dev librsvg2-dev",
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 11,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "npx vitest run --reporter=json --outputFile=$OUT/run$i.json",
+  "commit": "47484957f95fb8c817a6ce66c78e8191be771d35",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 5,
+  "log": "gine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0\n      at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5) {\n    [cause]: Error: getaddrinfo EAI_AGAIN registry.npmjs.org\n        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {\n      errno: -3001,\n      code: 'EAI_AGAIN',\n      syscall: 'getaddrinfo',\n      hostname: 'registry.npmjs.org'\n    }\n  }\n}\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 70,
+  "test_files": 769,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "47484957f95fb8c817a6ce66c78e8191be771d35",
+  "kb": 261549,
+  "lang": "TypeScript",
+  "open_prs": 40,
+  "pushed": "2026-10-20",
+  "release": "v740",
+  "spdx": "MIT",
+  "stars": 31506,
+  "test_files": 769,
+  "test_kb": 24531,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/fabricjs/fabric.js|fabricjs-fabric-js",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: npm run test:vitest. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/fabricjs/fabric.js",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/fabricjs/fabric.js/releases/tag/v740",
+  "facts": [
+   {
+    "claim": "fabric.js release tag v740 exists on GitHub (page shows 7.4.0, mid-May release)",
+    "status": "confirmed",
+    "url": "https://github.com/fabricjs/fabric.js/releases/tag/v740"
+   },
+   {
+    "claim": "Repository licence is MIT (copyright 2016-present Andrea Bogazzi, Shachar Nen and Fabric.js contributors)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/fabricjs/fabric.js/v740/LICENSE"
+   },
+   {
+    "claim": "package.json build script is 'npm run cli -- build'; packageManager field is absent, so the probe's 'corepack pnpm run build' has no pinned manager to resolve",
+    "status": "contradicted",
+    "url": "https://raw.githubusercontent.com/fabricjs/fabric.js/v740/package.json"
+   },
+   {
+    "claim": "Test script is 'test:vitest' = 'vitest --run --project unit-node'; there is no plain 'test' script. The probe ran 'npx vitest run --reporter=json' without the project flag and with an $OUT variable, which explains the exit-code-only report and tests_listed 0 as a probe-harness mismatch (inferred, not run)",
+    "status": "contradicted",
+    "url": "https://raw.githubusercontent.com/fabricjs/fabric.js/v740/package.json"
+   },
+   {
+    "claim": "engines.node >= 20.0.0",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/fabricjs/fabric.js/v740/package.json"
+   },
+   {
+    "claim": "769 test files and 24.5 MB of tests in the repo (from GitHub API source_facts; not counted independently)",
+    "status": "not_found",
+    "url": "https://github.com/fabricjs/fabric.js"
+   },
+   {
+    "claim": "Reference implementation of 1200-2000 lines exists (written by the pipeline; no public artifact)",
+    "status": "not_found",
+    "url": "https://github.com/fabricjs/fabric.js"
+   },
+   {
+    "claim": "Upstream issues or PRs for the stated gaps (use/symbol/mask/pattern import, CSS cascade, round-trip of gradients/filters/textPath)",
+    "status": "not_found",
+    "url": "https://fabricjs.com/api/functions/loadsvgfromstring/"
+   },
+   {
+    "claim": "Fabric 6.x fixed SVG export of text on a path (PR #10284); this covers part of the textPath export scope only",
+    "status": "confirmed",
+    "url": "https://unpkg.com/fabric@6.7.1/CHANGELOG.md"
+   },
+   {
+    "claim": "Fabric 4.5.0 fixed SVG export of paths with gradients (PR #6654) and transformed gradient compatibility (PR #6669)",
+    "status": "confirmed",
+    "url": "https://cdn.jsdelivr.net/npm/fabric@2.7.0/CHANGELOG.md"
+   },
+   {
+    "claim": "fabric.js supports <use>, <symbol>, <mask> or <pattern> during SVG import",
+    "status": "not_found",
+    "url": "https://fabricjs.com/api/functions/loadsvgfromstring/"
+   },
+   {
+    "claim": "No merged or open PR and no later release implements the combined CSS cascade plus use/symbol/clipPath/mask/pattern plus round-trip export feature",
+    "status": "not_found",
+    "url": "https://github.com/fabricjs/fabric.js/releases/tag/v740"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Each sub-feature gives separate credit. Frontier agents likely drop points on cascade-transform interplay and exact export format. Weaker model likely finishes only the simple parts. Not verified by any trial.",
+   "build_cost": "Probe is red: build_ok false, build_s 0, all three test runs rc 1 with no report. Likely a harness mismatch (no pinned package manager, no --project unit-node, $OUT unset) but unproven. Estimate 3 days including reference, harness repair and hidden suites.",
+   "deliverable": "Extend SVG import (loadSVGFromString) with CSS cascade/selector support plus use/symbol/clipPath/mask/pattern handling, and round-trip-stable toSVG export of gradients, filters and text-on-path.",
+   "gates_anticheat": "Hidden inputs are generated, not a fixed list, so hard-coded outputs fail. Must close: editing or deleting tests and vitest config, editing package.json scripts, vendoring a newer fabric copy (none exists in the snapshot), and reading the hidden suites. Mitigation not yet specified for these.",
+   "grading_surface": "Hidden vitest behavioural suites (hundreds of assertions) on parsed object trees and exported SVG, over generated SVG inputs; per-sub-feature pass fraction; existing vitest suite as regression gate. Hand-written, not an unlimited generator.",
+   "local_fit": "Node >=20 with vitest, no GPU, no network at run time. Probe lists apt libs (cairo, pango, librsvg) that node-canvas may need; offline install must be confirmed.",
+   "lookup": "partial: fabric 6.x fixed textPath export (PR #10284) and 4.5 fixed gradient export (PR #6654); no feature PR covers the combined scope; no SVG-import support for use/symbol/mask/pattern found.",
+   "provenance": "fabricjs/fabric.js v740 (head 47484957), MIT, 31.5k stars, not archived, not a fork; release tag and licence confirmed.",
+   "reference": "Pipeline-written reference, claimed 1200-2000 lines; no public artifact; completeness unverified.",
+   "ships": "History-less snapshot of the fabric.js TypeScript source at the base commit, with existing vitest suite (unit-node project); reference and hidden vitest suites withheld.",
+   "similarity": "Nearest neighbours in the pipeline: S-im-034 at 0.318 and S-im-015 at 0.286, both above 0.15, so not a near-duplicate by the stated rule but not novel by the Nov rule. Not a public benchmark task. Fabric [Commit0] at 0.143 is the same repo family."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence and no trial data; the 8h scope may be too large for full credit, so band is a guess."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Red probe and an unwritten 1200-2000 line reference imply roughly 3 days; the harness must be repaired first."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Node and vitest fit gVisor, but native canvas deps may need apt and offline install is unproven."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-part feature across parser, cascade and export clearly fits an 8h run."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT licence confirmed; shipping a snapshot is allowed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Sub-features (cascade, use, symbol, clipPath, mask, pattern, gradients, filters, textPath) give bucketed credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top neighbours at 0.318 and 0.286 are above 0.15, so not 5; no public task with the same deliverable found."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MIT repo at a published release with 31.5k stars; the upstream gaps themselves are not verified."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Pipeline reference of 1200-2000 lines, unverified and not public; export format is underspecified for a different valid solution."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Hidden suites and reference stay out of the image; fabric's public features are only partly recallable."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hand-written hidden vitest suites with hundreds of assertions; generated inputs help but no unlimited oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "The unit suite cannot run offline or is nondeterministic, or all five probes already round-trip correctly (K8 risk).",
+   "pass_if": "Build succeeds offline in under 10 minutes, the unit-node suite runs green with per-test JSON output identical across three runs, and at least two of the five SVG probes show a real gap.",
+   "steps": [
+    "In a throwaway networked Linux container, clone fabricjs/fabric.js at 47484957 and install Node 20+. Run npm ci, not corepack pnpm, and record any failure.",
+    "Install the apt packages from the probe hint (libcairo2-dev, libpango1.0-dev, libjpeg-dev, libgif-dev, librsvg2-dev) if node-canvas needs them, and record whether install works offline afterwards.",
+    "Run npm run build and record exit code and time.",
+    "Run npx vitest --run --project unit-node --reporter=json --outputFile=<path> three times. Confirm per-test results are emitted and the pass/fail set is identical across runs.",
+    "Write 5 small SVG inputs covering a <use> referencing a <symbol>, a clipPath, a mask, a pattern, and a linearGradient with a transform. Run loadSVGFromString then toSVG and record whether the output is stable after a second round trip.",
+    "Check that the current loader ignores or mishandles each of those inputs, to confirm the gap exists before writing any reference."
+   ]
+  },
+  "summary": "The seed's repo, release and MIT licence check out, but the smoke probe is red and its commands do not match the repo's declared scripts, so the regression gate is unproven. Upstream partly covers the export gaps (textPath, gradients) and the import gaps are unverified, so the card is not killed and goes to the spike, with build cost rated 3 days."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 69,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-036",
+  "kill_code": "K3",
+  "note": "Pipeline-invented feature with no upstream issue, PR or spec trail. The grading is hundreds of hand-written vitest assertions against our own export format, so a different valid round-trip format fails. fabric already has partial use/clipPath/pattern and <style> CSS handling, so the untouched base would not score 0 on every bucket. Neighbours: fabric [Commit0] 0.143, S-im-034 0.318. The probe was red from a harness mismatch.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 3,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 59
+}

@@ -1,0 +1,243 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "8 h. Rewriting the runtime is deep and the iteration semantics are subtle. A frontier agent finishes a working fast variant in some trials. The average is low since the full iteration and growth semantics are intricate. A weaker model fails the gate.",
+  "cheat": "The map benchmark inputs cannot be special-cased because they are drawn from hidden key distributions. Using Go 1.24 is impossible because only the 1.23 toolchain is shipped.",
+  "grading": "The correctness gate is the runtime map test suite plus generated operation sequences against a model map. Wall-clock medians over a hidden mix of key types and sizes. Reward 2^u - 1 against the reference.",
+  "reference": "Go 1.24 swiss map (up to 60% faster map operations). Measured on the same workloads by us.",
+  "source": "https://go.dev/blog/swisstable @ Go 1.23 to 1.24, BSD-3-Clause",
+  "task": "/app ships a history-less snapshot of the Go 1.23 runtime map implementation with its toolchain and a set of map microbenchmarks and application workloads. Agent rebuilds the map internals (hash groups, control bytes, incremental growth) so that results are faster while map semantics (iteration rules, growth, deletes during iteration) stay unchanged.",
+  "title": "Swiss-table map for a Go runtime map-benchmark suite"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "other",
+ "final": 69,
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-019 0.23"
+  ],
+  [
+   "2026-10-21T01:04:14Z",
+   "v1",
+   "pass",
+   "score 73; dead links []"
+  ],
+  [
+   "2026-10-21T01:06:07Z",
+   "v2",
+   "killed:K12",
+   "The design and speedup claims are confirmed: up to 60% on microbenchmarks and about 1.5% geomean on applications. But no reference exists as a patch to 1.23. The Go 1.24 swiss map is tied to compiler changes (map type descriptors, hmap and iterator layout in cmd/compile and internal/abi). Backportin"
+  ]
+ ],
+ "id": "S-op-022",
+ "kill": "K12",
+ "l0": {
+  "neighbours": [
+   [
+    0.229,
+    "S-op-019"
+   ],
+   [
+    0.219,
+    "S-op-021"
+   ],
+   [
+    0.179,
+    "yjs-map-conflict-detection [DeepSWE]"
+   ],
+   [
+    0.141,
+    "S-im-037"
+   ],
+   [
+    0.113,
+    "joblib [Commit0]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": null,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "go.dev/blog/swisstable|go-1-23-go-1-24",
+ "source_notes": "Levers: 7-bit hash tag control words probed like SIMD (portable arithmetic or 8-byte SIMD amd64), groups of 8 slots, extendible hashing with tables of at most 1024 entries, incremental per-table growth; plus separate allocator and mutex changes. Page says some edge cases regress. Reference = runtime internals rewrite, so a user-level proxy task (own hash map in Go vs built-in 1.23) fits better than backport. Go 1.24 notes do not split percentages per change",
+ "source_url": "https://go.dev/blog/swisstable",
+ "source_version": "Go 1.23 -> Go 1.24",
+ "status": "killed:K12",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://go.dev/blog/swisstable",
+  "facts": [
+   {
+    "claim": "Go 1.24 ships a new builtin map implementation based on Swiss Tables",
+    "status": "confirmed",
+    "url": "https://go.dev/doc/go1.24"
+   },
+   {
+    "claim": "Go 1.24 release notes give a 2-3% average CPU overhead reduction across a benchmark suite for runtime changes (Swiss maps, small-object allocation, new mutex) combined; no per-change split",
+    "status": "confirmed",
+    "url": "https://go.dev/doc/go1.24"
+   },
+   {
+    "claim": "Blog: map operations up to 60% faster than Go 1.23 (microbenchmarks only)",
+    "status": "confirmed",
+    "url": "https://go.dev/blog/swisstable"
+   },
+   {
+    "claim": "Blog: full application benchmarks show about 1.5% geometric-mean CPU time improvement",
+    "status": "confirmed",
+    "url": "https://go.dev/blog/swisstable"
+   },
+   {
+    "claim": "Blog: some edge cases regress compared with Go 1.23",
+    "status": "confirmed",
+    "url": "https://go.dev/blog/swisstable"
+   },
+   {
+    "claim": "Design: groups of 8 slots, 64-bit control word, 7-bit h2 hash tags, extendible hashing over upper hash bits, max 1024 entries per table, incremental growth",
+    "status": "confirmed",
+    "url": "https://go.dev/blog/swisstable"
+   },
+   {
+    "claim": "Go 1.24 map source exists at src/internal/runtime/maps/map.go on go.googlesource.com (seen in search snippet only, file not opened)",
+    "status": "confirmed",
+    "url": "https://go.googlesource.com/go/+/HEAD/src/internal/runtime/maps/map.go"
+   },
+   {
+    "claim": "Go source licence is BSD-3-Clause (Copyright The Go Authors)",
+    "status": "confirmed",
+    "url": "https://github.com/golang/go/blob/master/LICENSE"
+   },
+   {
+    "claim": "Image ships only the Go 1.23 toolchain and a 1.23 runtime snapshot with map microbenchmarks and application workloads",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Size of the grading surface (runtime map test suite plus generated op sequences) and hidden key-type/size mix",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Measured speedup of Go 1.24 over 1.23 on the hidden mix as the task reference (S)",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Full runtime rewrite with iteration/growth/delete-during-iteration semantics is deep; frontier agent may reach a correct variant but speedup over 1.23 on a mixed workload is uncertain; weaker model likely fails the correctness gate.",
+   "build_cost": "Toolchain rebuild several minutes; harness for hidden mix and model-map fuzzer is 1-2 weeks; estimated 2-4 days.",
+   "deliverable": "Rewritten runtime map internals (control-byte groups, 7-bit tags, extendible tables of <=1024 slots, incremental growth) keeping Go map semantics; allocator and mutex changes optional.",
+   "gates_anticheat": "Hidden key distributions block special-casing; Go 1.24 not in image; editing tests/build config must be blocked by regenerating the grader outside /app and rebuilding the toolchain from a pinned snapshot; map iteration order is randomized so the checker must test set semantics, not order.",
+   "grading_surface": "Runtime map test suite plus generated operation sequences vs model map (correctness gate); wall-clock medians over hidden key types and sizes (speed). Reward 2^u-1 vs reference.",
+   "local_fit": "CPU-only Go toolchain build fits 8 cores/16 GB. Timing medians under gVisor are the main risk for small gains.",
+   "lookup": "Design is public (Go blog, Abseil Swiss tables, cockroachdb/swiss); a frontier model knows the outline, not the exact runtime code. Reference is in public git history past base, so ship history-less snapshot.",
+   "provenance": "Go 1.23 runtime map (BSD-3-Clause, Go Authors); reference is the upstream Go 1.24 Swiss-table map, public on go.googlesource.com and GitHub mirror.",
+   "reference": "Go 1.24 swiss map. Upstream speedup: up to 60% on microbenchmarks, ~1.5% geomean on application workloads, 2-3% for the combined runtime changes. Mixed-workload S likely small; unmeasured.",
+   "ships": "Go 1.23 toolchain plus runtime map snapshot, history-less, with map microbenchmarks and application workloads. Toolchain rebuild needed after runtime edits.",
+   "similarity": "Nearest l0 neighbour S-op-019 at 0.229, S-op-021 at 0.219, yjs-map-conflict-detection (DeepSWE) at 0.179. No CROWDED match for a runtime map rewrite; not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task; frontier success on a full runtime map rewrite is unproven."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Toolchain rebuild and harness fit in 2-4 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only Go fits; gVisor wall-clock timing noise threatens small speedups."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Rewriting groups, growth, iteration and allocator is sustained work for 8h."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSD-3-Clause allows shipping the code and reference."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers (groups, tags, growth, allocator, mutex) and workload buckets, but the speed score is mostly driven by the map core."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours peak at 0.229 (above the 0.15 bar); no CROWDED match, so not a duplicate but not clean."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Go 1.23 source is real and BSD-3; Go 1.24 Swiss map is a documented upstream release with blog and release notes."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Public permissive reference exists, but measured speedup on the hidden mix is unknown and upstream gains are small outside microbenchmarks (2-3% runtime aggregate)."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is public upstream and the design is well known, so it is sealable only by snapshot; recall is handled under Band."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Map test suite plus generated op sequences and hidden key/size mix allow thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Geomean gain is under about 1.05x or within noise (K4/K9), or the 1.24 tests are not deterministic under the harness.",
+   "pass_if": "Geomean speedup of 1.24 over 1.23 on the mix is at least about 1.2x with CV under 5% in medians, and the test suite passes deterministically.",
+   "steps": [
+    "In a throwaway networked Linux container, fetch Go 1.23 and Go 1.24 source trees and build both toolchains (1.23 bootstrap via GOROOT_BOOTSTRAP).",
+    "Write a benchmark set covering the likely hidden mix: int64, string, struct and interface keys at sizes 8, 1k, 100k, plus insert, lookup, delete, and iterate.",
+    "Run each benchmark 8 times per toolchain on the 8-core box; take medians and record the coefficient of variation.",
+    "Compute the per-workload and geomean speedup of 1.24 over 1.23 (this is the reference S) and check whether gains exceed the noise.",
+    "Run the Go map test suite and a small generated op-sequence fuzzer against the 1.24 build to confirm determinism and the correctness gate.",
+    "Check whether the 1.24 table layout can be ported to 1.23 with the same semantics (only a go/runtime source diff, not a full port)."
+   ]
+  },
+  "summary": "The seed's sourcing holds up: Go 1.23 is BSD-3 and the Go 1.24 Swiss-table map is a real, public upstream release, but the \"up to 60%\" figure is a microbenchmark result and the upstream application gain is about 1.5%, so the reference speedup on a hidden mix is probably small and unmeasured. The task is not killed yet, but the spike must show a clear measured gain over 1.23 before any build."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-022",
+  "kill_code": "K12",
+  "note": "The design and speedup claims are confirmed: up to 60% on microbenchmarks and about 1.5% geomean on applications. But no reference exists as a patch to 1.23. The Go 1.24 swiss map is tied to compiler changes (map type descriptors, hmap and iterator layout in cmd/compile and internal/abi). Backporting it into the 1.23 toolchain to make a reference would take well over 5 days. Using the 1.24 toolchain as S instead would mix in the allocator and mutex changes. The agent faces the same compiler coupling, so many trials would likely fail the gate (K9 risk). gVisor timing noise on small gains is unmeasured.",
+  "scores": {
+   "Band": 2,
+   "Build": 1,
+   "Fit": 3,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 69
+}

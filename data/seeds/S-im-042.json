@@ -1,0 +1,257 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "8 h. Frontier agents handle common paths but miss canonicalisation and corner cases. Weaker model stops at build errors. Risk: bazel-free build must be proven.",
+  "cheat": "The original is not in the image and no bazel cache is kept. Hidden inputs are generated.",
+  "grading": "Hidden unit tests for the library (the repo ships many in test/common/http and test/common/router; counts not found) plus a generated differential on header and path inputs against the original built into the grader. Reward is the fraction of cases passed; the shipped base fails all.",
+  "reference": "The original subsystem, removed from /app. Expected 1,000-2,000 lines. Build feasibility is unproven (probe red).",
+  "source": "https://github.com/envoyproxy/envoy @ v1.40.0 (2f6040e4), Apache-2.0",
+  "task": "/app ships a history-less trimmed snapshot of the C++ source with the matcher and header utility libraries removed. The agent re-implements them to the existing headers and interfaces. Exact subsystem to be fixed at pin time (not found yet); full Envoy build is too heavy so only the library and its unit tests are retained.",
+  "title": "Rebuild an Envoy HTTP utility subsystem (header map, path and route matching)"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T23:19:04Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-20T23:19:04Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:05Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-040 0.41"
+  ],
+  [
+   "2026-10-21T00:09:42Z",
+   "v1",
+   "killed:K7",
+   "Envoy is Bazel-only per its docs and fetches its dependency closure at build time (about 2 GB RAM per core). A bazel-free, offline build of the subsystem and of the grader's original is unproven, and the exact subsystem is not yet fixed. The smoke probe was red only because it ran cargo commands on "
+  ]
+ ],
+ "id": "S-im-042",
+ "kill": "K7",
+ "l0": {
+  "neighbours": [
+   [
+    0.411,
+    "S-im-040"
+   ],
+   [
+    0.275,
+    "S-im-020"
+   ],
+   [
+    0.274,
+    "S-im-039"
+   ],
+   [
+    0.115,
+    "family (56 libraries) [Commit0]"
+   ],
+   [
+    0.097,
+    "http_server [SpecBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 159,
+  "ci_files": 68,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "b0d0be846da5afe92d46a82706bff6074dff9dbb",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 15,
+  "log": "anged=/p/src/source/extensions/dynamic_modules/sdk/rust/abi/abi.h\n\n  --- stderr\n\n  thread 'main' (1178) panicked at /root/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bindgen-0.73.2/lib.rs:618:27:\n  Unable to find libclang: \"couldn't find any valid shared libraries matching: ['libclang.so', 'libclang-*.so', 'libclang.so.*', 'libclang-*.so.*'], set the `LIBCLANG_PATH` environment variable to a path where one of these files can be found (invalid: [])\"\n  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\nwarning: build failed, waiting for other jobs to finish...",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   101,
+   101,
+   101
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 5,
+  "test_files": 6161,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "2f6040e45b2b4d54ed6726a92c4688cc16cb84b9",
+  "kb": 355947,
+  "lang": "C++",
+  "open_prs": 247,
+  "pushed": "2026-10-20",
+  "release": "v1.40.0",
+  "spdx": "Apache-2.0",
+  "stars": 29099,
+  "test_files": 6161,
+  "test_kb": 91811,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/envoyproxy/envoy|oss-fuzz-envoy",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/envoyproxy/envoy",
+ "source_version": "",
+ "status": "killed:K7",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/envoyproxy/envoy/releases/tag/v1.40.0",
+  "facts": [
+   {
+    "claim": "Envoy release v1.40.0 exists (tagged Latest, released 13 Oct, 2026 per page footer)",
+    "status": "confirmed",
+    "url": "https://github.com/envoyproxy/envoy/releases/tag/v1.40.0"
+   },
+   {
+    "claim": "Envoy v1.40.0 LICENSE is Apache License, Version 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/envoyproxy/envoy/blob/v1.40.0/LICENSE"
+   },
+   {
+    "claim": "test/common/http at v1.40.0 holds 53 .cc/.h test and support files (test files only; hidden case count not found)",
+    "status": "confirmed",
+    "url": "https://github.com/envoyproxy/envoy/tree/v1.40.0/test/common/http"
+   },
+   {
+    "claim": "test/common/router at v1.40.0 holds 32 .cc/.h test and support files (test files only; case count not found)",
+    "status": "confirmed",
+    "url": "https://github.com/envoyproxy/envoy/tree/v1.40.0/test/common/router"
+   },
+   {
+    "claim": "Envoy's official build system is Bazel; docs do not describe a supported non-Bazel (CMake or other) build",
+    "status": "confirmed",
+    "url": "https://www.envoyproxy.io/docs/envoy/latest/start/building"
+   },
+   {
+    "claim": "A bazel-free build of Envoy, or of a header/path/route library from it, is documented or proven offline",
+    "status": "not_found",
+    "url": "https://www.envoyproxy.io/docs/envoy/latest/start/building"
+   },
+   {
+    "claim": "Envoy build needs about 2 GB RAM per core, with deps declared in MODULE.bazel (fetched at build time)",
+    "status": "confirmed",
+    "url": "https://www.envoyproxy.io/docs/envoy/latest/start/building"
+   },
+   {
+    "claim": "Offline Bazel builds of Envoy need a pre-generated repository cache; newer versions have pip deps that Bazel does not cache",
+    "status": "confirmed",
+    "url": "https://forums.opensuse.org/t/need-to-access-network-during-build/144542"
+   },
+   {
+    "claim": "The exact subsystem to re-implement (header map, path, or route matching) is fixed at pin time",
+    "status": "not_found",
+    "url": "https://github.com/envoyproxy/envoy/tree/v1.40.0"
+   },
+   {
+    "claim": "smoke_build probe ran cargo commands against this C++ repo, so its red verdict says nothing about a Bazel or CMake build",
+    "status": "confirmed",
+    "url": "https://github.com/envoyproxy/envoy"
+   },
+   {
+    "claim": "No public port or reimplementation of Envoy HeaderMapImpl in another language was found",
+    "status": "not_found",
+    "url": "https://issues.apache.org/jira/browse/CAMEL-11149"
+   }
+  ],
+  "full_card": {
+   "band": "Budget 8 h. Frontier agents likely handle common paths and miss canonicalisation edge cases; weaker model stops at build errors. Not evidenced publicly.",
+   "build_cost": "Unknown, likely more than 5 days: bazel-free build unproven, dependency closure must be vendored offline, grader must build the original.",
+   "deliverable": "Re-implemented C++ header map, path utility and route matching libraries that compile against existing Envoy headers and pass hidden unit and differential tests.",
+   "gates_anticheat": "Original not in image; no Bazel cache kept; hidden inputs generated. Still needed: grader-side build of the original, and a check that tests and BUILD files cannot be edited to bypass.",
+   "grading_surface": "Hidden unit tests from test/common/http (53 files) and test/common/router (32 files), plus generated differential inputs for headers and paths. Case count not found.",
+   "local_fit": "Bazel-only build with about 2 GB RAM per core, fetched deps; does not fit offline gVisor without a prebuilt cache. Poor fit.",
+   "lookup": "partial: Envoy source is public and well known in outline (inline vs non-inline header semantics, CVE-2020-25017 pitfalls). No verbatim port found.",
+   "provenance": "envoyproxy/envoy v1.40.0 (commit 2f6040e4), Apache-2.0, OSS-Fuzz project, 29k stars; release page confirmed.",
+   "reference": "The removed original Envoy subsystem. Its size is expected at 1,000-2,000 lines but is not confirmed. Not yet built offline.",
+   "ships": "History-less trimmed C++ snapshot of Envoy with the header-map and path/route matching libraries removed, plus their unit tests. Not yet specified which subsystem.",
+   "similarity": "l0 neighbour S-im-040 at 0.411 (another seed, not a public task); S-im-020 at 0.275 and S-im-039 at 0.274. Overlap with S-im-040 needs a check against its scope."
+  },
+  "kill_code": "K7",
+  "kill_reason": "Envoy is Bazel-only per its docs and fetches its dependency closure at build time (about 2 GB RAM per core). A bazel-free, offline build of the subsystem and of the grader's original is unproven, and the exact subsystem is not yet fixed. The smoke probe was red only because it ran cargo commands on a C++ repo, so it is not evidence either way. Revive only if the spike passes.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausible 8 h band, but no dated public evidence and the scope is unfixed."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Offline Bazel closure plus grader-side original build is likely well over 5 days."
+   },
+   "Fit": {
+    "v": 1,
+    "why": "Bazel-only build with about 2 GB per core and fetched deps does not fit offline gVisor."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Re-implementing several header and route pieces fits 8 h."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the trimmed snapshot and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Header map, path and route matching give several buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "S-im-040 at 0.411 is above 0.15, so it is not novel to the seed set; no public task found at that similarity."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real Apache-2.0 Envoy v1.40.0 release with a large test tree."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "The original code is a strong reference, but it has not been shown buildable offline."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Envoy is public and recallable in outline; the snapshot can hide the code but not the approach."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "85 test files plus generated differential inputs; case count unknown but deep."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build needs network at run time, peaks above 16 GB, or exceeds about 2 hours of build time, or no non-Bazel path exists for the library.",
+   "pass_if": "Offline build and one test binary from header-map and router tests complete within 16 GB and 8 cores, and results are identical across three runs.",
+   "steps": [
+    "In a throwaway networked Linux container with at least 8 cores and 16 GB, check out envoy v1.40.0 at 2f6040e4 and install the Bazel version pinned in bazel/README.md.",
+    "Run bazel fetch for the header-map and router test targets only; record download size, wall time, and any pip or non-Bazel fetches.",
+    "Run bazel build of the header_map_impl_test and router header-formatter test targets on the cached repo; record peak RAM and time.",
+    "Disconnect the network (or use a fresh container with only the cache) and rerun the same build and one test binary; check that it still succeeds offline.",
+    "Check whether a non-Bazel build of the header/path library is possible (for example compiling source/common/http/header_map_impl.cc and path_utility.cc against abseil and protobuf headers) and whether it links.",
+    "Pick a small reproducible target (for example one test file) and confirm its output is deterministic over three runs."
+   ]
+  },
+  "summary": "Envoy v1.40.0 is a real, Apache-2.0 source with 85 relevant test files, so the paper trail is strong. The seed is killed as K7 because the Bazel-only build cannot yet be shown to run offline in the sandbox, and the subsystem to remove is still unspecified."
+ },
+ "v1_links": {
+  "checked": 9,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

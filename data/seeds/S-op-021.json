@@ -1,0 +1,200 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "4 h. The decode-loop restructuring is documented only in outline, so a frontier agent gets part of the speedup and rarely all of it. A weaker model gets micro-gains or breaks edge cases. Single-lever risk: widen with the CRC/Adler SIMD from 1.12.",
+  "cheat": "Calling zlib or a newer libdeflate is blocked because neither is installed and the build runs offline. Skipping validation fails the corrupt-stream gate.",
+  "grading": "A correctness gate decodes thousands of generated and corpus streams (including corrupt streams with exact error codes), and a wall-clock median speedup is measured on a hidden corpus set. Reward 2^u - 1 against our reference speedup.",
+  "reference": "libdeflate v1.14 (NEWS: 1.29x on x86_64 gcc, 1.44x clang for decompression). Builds the same API, so the measured speedup is the S value.",
+  "source": "https://github.com/ebiggers/libdeflate @ v1.13 base, target v1.14 (NEWS.md), MIT",
+  "task": "/app ships a history-less snapshot of v1.13 with its build and a decompress/CRC/Adler benchmark driver. Agent speeds up deflate/zlib/gzip decompression, plus the checksums on x86_64, keeping the API and output bit-identical.",
+  "title": "libdeflate 1.13 to 1.14 decompressor and checksum speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "compression",
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-019 0.28"
+  ],
+  [
+   "2026-10-21T01:04:19Z",
+   "v1",
+   "killed:K10",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 4, 'Band': 3, 'Hor': 3, 'Multi': 2, 'Seal': 3, 'Nov': 3, 'Lic': 5, 'Fit': 5, 'Build': 4}"
+  ]
+ ],
+ "id": "S-op-021",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.279,
+    "S-op-019"
+   ],
+   [
+    0.217,
+    "S-im-032"
+   ],
+   [
+    0.167,
+    "S-im-006"
+   ],
+   [
+    0.13,
+    "deflate_compression [SpecBench]"
+   ],
+   [
+    0.083,
+    "gzip_compression [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "raw.githubusercontent.com/ebiggers/libdeflate/master/news.md|libdeflate-v1-13-libdeflate-v1-14",
+ "source_notes": "Same file also lists v1.12 checksum work: CRC-32 on M1 8 -> 67 GB/s (ARM PMULL), Adler-32 Zen1 19 -> 30 GB/s, and v1.16 levels 11-12 about 5-20% slower (a tradeoff). Levers in 1.14: decode loop restructuring, branch/bit-buffer changes (mechanism not stated on page, not found). Possible range baseline v1.11 -> v1.20 gives CRC/Adler SIMD plus decode rewrite. q:\"1.287x\" is table value, not prose. Fetched via raw NEWS.md.",
+ "source_url": "https://raw.githubusercontent.com/ebiggers/libdeflate/master/NEWS.md",
+ "source_version": "libdeflate v1.13 -> libdeflate v1.14",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ebiggers/libdeflate/releases/tag/v1.14",
+  "facts": [
+   {
+    "claim": "libdeflate v1.14 release exists (tag v1.14, release commit 0d1779a071bcc636e5156ddb7538434da7acad22)",
+    "status": "confirmed",
+    "url": "https://github.com/ebiggers/libdeflate/releases/tag/v1.14"
+   },
+   {
+    "claim": "NEWS v1.14 says 'Significantly improved decompression performance on all platforms' with DEFLATE-only speedup table over v1.13; x86_64 Comet Lake gcc 1.287x and clang 1.437x (seed's 1.29x and 1.44x are rounded forms of these)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/ebiggers/libdeflate/master/NEWS.md"
+   },
+   {
+    "claim": "v1.14 NEWS describes the decode-loop restructuring or bit-buffer changes as the mechanism",
+    "status": "not_found",
+    "url": "https://raw.githubusercontent.com/ebiggers/libdeflate/master/NEWS.md"
+   },
+   {
+    "claim": "v1.12 release contains CRC-32 work (M1 about 8 to 67 GB/s via 12-way pmull) and Adler-32 AVX-2 work (Zen 1 19 to 30 GB/s)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/ebiggers/libdeflate/master/NEWS.md"
+   },
+   {
+    "claim": "v1.13 base contains the checksum SIMD work from v1.12, so the checksum lever is already in the base; v1.13 NEWS has no checksum changes and v1.14 NEWS lists no checksum changes either",
+    "status": "contradicted",
+    "url": "https://raw.githubusercontent.com/ebiggers/libdeflate/master/NEWS.md"
+   },
+   {
+    "claim": "Licence is MIT (COPYING, Copyright Eric Biggers and Google LLC)",
+    "status": "confirmed",
+    "url": "https://github.com/ebiggers/libdeflate/blob/master/COPYING"
+   },
+   {
+    "claim": "v1.13 to v1.14 diff is 29 commits across 18 files; line counts not retrievable (compare view timed out)",
+    "status": "confirmed",
+    "url": "https://github.com/ebiggers/libdeflate/compare/v1.13...v1.14"
+   },
+   {
+    "claim": "v1.14 reference is a complete permissive upstream implementation that a grader can measure against v1.13 base on the same machine",
+    "status": "confirmed",
+    "url": "https://github.com/ebiggers/libdeflate/releases/tag/v1.14"
+   }
+  ],
+  "full_card": {
+   "band": "4h tier; frontier expected to land part of the 1.29x; weaker model gets micro-gains or breaks edges; no dated public agent evidence found",
+   "build_cost": "About 1 to 2 days: C library build, benchmark driver, corpus generation, S measurement, correctness harness",
+   "deliverable": "Faster deflate/zlib/gzip decompression (and checksums if kept) with bit-identical output and identical error codes on corrupt streams",
+   "gates_anticheat": "No zlib or newer libdeflate installed; offline build; validation skipping fails corrupt-stream gate; editing tests or build config must be blocked by sealed verifier",
+   "grading_surface": "Correctness over thousands of generated and corpus streams including corrupt streams with exact error codes; wall-clock median speedup on hidden corpus; reward 2^u-1 vs reference speedup",
+   "local_fit": "CPU-only C build, 8 cores, fits sandbox; wall-clock timing under gVisor is the main noise source",
+   "lookup": "partial: v1.14 code is public in git history and packages; mechanism is not in NEWS; history-less snapshot required",
+   "provenance": "ebiggers/libdeflate, MIT; base v1.13 history-less snapshot, reference v1.14 (commit 0d1779a), public upstream tags",
+   "reference": "libdeflate v1.14: NEWS table gives 1.287x gcc / 1.437x clang on Comet Lake, DEFLATE only; S must be re-measured locally",
+   "ships": "v1.13 source snapshot with build and decompress/CRC/Adler benchmark driver; no git history; no v1.14 code",
+   "similarity": "Nearest l0 neighbour S-op-019 at 0.279 (not checked further); DEFLATE codecs are a crowded subject but deliverable is a speedup of an existing library, not a codec from scratch"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausibly partial for frontier agents, but no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Small C library with a reference build; the benchmark and correctness harness add a day or two."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "C, CPU-only, small build; fits 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "18 files and 29 commits suggest a 4h tier fits, though the lines changed are unverified."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT confirmed in COPYING."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Effectively one decode-loop lever; the checksum widening has no v1.14 reference ceiling because the 1.12 work is already in the base."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.279 and DEFLATE is a crowded subject, but this is a speedup of an existing library, not a new codec."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real upstream MIT project with tagged v1.13 and v1.14 releases and NEWS evidence."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete permissive upstream reference with published DEFLATE-only speedups; S still needs local measurement."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream code is public, so a history-less snapshot is required; recall in outline is a difficulty question under Band."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Stream-based correctness corpus plus timing gives a sizeable surface, but speed credit is one median per corpus, not many buckets."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Speedup below 1.1x on the corpus, nondeterministic outputs or error codes, or diff under 150 non-blank code lines.",
+   "pass_if": "Diff of at least 150 non-blank code lines; v1.14 median speedup at least 1.2x on the gcc build; output and error codes identical across trees; run-to-run spread under 5%.",
+   "steps": [
+    "In a networked throwaway Linux container, clone ebiggers/libdeflate and check out tags v1.13 and v1.14 into separate directories.",
+    "Run git diff --stat v1.13 v1.14 and count non-blank changed code lines; confirm the reference is at least 150 lines and see which files carry the decode-loop change.",
+    "Build both trees with the default Makefile (gcc -O2), then build the gzip benchmark driver against each.",
+    "Generate a corpus: a few hundred MB across text, binary and already-compressed inputs at several levels, plus a corrupt-stream set with truncation and bit-flips.",
+    "Run decompression on each corpus 7 times per tree and record the median wall-clock time; compute the v1.14/v1.13 speedup per corpus class.",
+    "Diff outputs and error codes between the two trees on the full corrupt set; any difference means the gate is not deterministic enough to grade on.",
+    "Repeat the timing on two separate days or machines to estimate noise; a run-to-run spread above about 5% needs a longer or larger corpus."
+   ]
+  },
+  "summary": "Viable as an optimization seed: the upstream v1.13 to v1.14 decode speedup is real (NEWS table 1.287x gcc and 1.437x clang, MIT licence, public tags), but the seed's checksum widening is contradicted because the 1.12 SIMD work is already in the v1.13 base, and the decode-loop mechanism is not documented. Proceed only after the spike confirms at least 150 changed code lines and a reproducible speedup, and drop the checksum clause or give it its own measured reference."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 67
+}

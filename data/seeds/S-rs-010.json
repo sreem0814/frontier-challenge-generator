@@ -1,0 +1,234 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "4 h. The headroom comes from shift-aware validation and ensembling; a weaker model barely beats the baseline, a frontier agent captures part of the gap. Risk is that the reference is only modestly above the baseline.",
+  "cheat": "Looking up the datasets with an OpenML client: there is no network and the hidden datasets are not shipped. Training on the hidden split is impossible as the labels are held in the verifier.",
+  "grading": "Hidden evaluation datasets and an out-of-distribution split built by a covariate-shift partition (e.g. extreme quantiles of a key feature). Metric is mean normalised RMSE, scored between the shipped baseline and our reference.",
+  "reference": "A reference ensemble tuned on the shift-aware split by us; the score is not yet measured.",
+  "source": "https://www.openml.org/s/353 (OpenML suite 353, 35 datasets); licence per dataset, not found at suite level. Needs a per-dataset check before shipping, and it overlaps a known tabular benchmark.",
+  "task": "/app ships a train/eval harness and a baseline gradient-boosting regressor on a subset of datasets. The agent trains and tunes models (features, ensembles, target transforms, shift-robust validation) within a CPU budget to predict on a hidden split.",
+  "title": "Regression under covariate shift on OpenML-CTR23 datasets"
+ },
+ "class": "research",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour shift_2d [AlgoTune] 0.20"
+  ],
+  [
+   "2026-10-21T01:01:53Z",
+   "v1",
+   "killed:K3",
+   "gate on scores {'Real': 4, 'Surf': 2, 'Ref': 2, 'Band': 3, 'Hor': 2, 'Multi': 4, 'Seal': 3, 'Nov': 3, 'Lic': 3, 'Fit': 5, 'Build': 3}"
+  ]
+ ],
+ "id": "S-rs-010",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.198,
+    "shift_2d [AlgoTune]"
+   ],
+   [
+    0.194,
+    "S-op-018"
+   ],
+   [
+    0.16,
+    "huggingface__datasets-5994036 [GSO]"
+   ],
+   [
+    0.149,
+    "add-benchmark-lm-eval-harness [original]"
+   ],
+   [
+    0.139,
+    "huggingface__datasets-ef3b5dd [GSO]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "openml.org/s/353|openml-suite-353-openml-ctr23-automl-2023-workshop",
+ "source_notes": "Overlaps the Grinsztajn tabular benchmark already on the known list, so K1 near-duplicate risk is high. Suite page was redirected and not fetched; counts come from search only. Not verified. Use only if the design differs from Grinsztajn, e.g. a distribution-shift split over regression targets.",
+ "source_url": "https://www.openml.org/s/353",
+ "source_version": "OpenML suite 353 (OpenML-CTR23, AutoML 2023 workshop)",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://api.openml.org/s/353",
+  "facts": [
+   {
+    "claim": "OpenML suite 353 is OpenML-CTR23, a curated set of 35 tabular regression problems",
+    "status": "confirmed",
+    "url": "https://api.openml.org/s/353"
+   },
+   {
+    "claim": "Suite created 31 May 2023 by Sebastian Fischer; described in the AutoML 2023 workshop paper by Fischer, Harutyunyan, Feurer and Bischl",
+    "status": "confirmed",
+    "url": "https://api.openml.org/s/353"
+   },
+   {
+    "claim": "Selection criteria: 500 to 100,000 observations, under 5,000 features after one-hot encoding, i.i.d. observations, numeric target with at least 5 distinct values, target not solved by a linear model (train R2 below 1)",
+    "status": "confirmed",
+    "url": "https://api.openml.org/s/353"
+   },
+   {
+    "claim": "Suite resampling: repeated 10-fold CV under 1,000 rows, 33% holdout above 10,000 rows, 10-fold CV in between",
+    "status": "confirmed",
+    "url": "https://api.openml.org/s/353"
+   },
+   {
+    "claim": "Later papers use 34 or 33 of the 35 datasets (one removed for column count, another for near-constant target)",
+    "status": "confirmed",
+    "url": "https://api.openml.org/s/353"
+   },
+   {
+    "claim": "Suite-level licence statement exists",
+    "status": "not_found",
+    "url": "https://www.openml.org/s/353"
+   },
+   {
+    "claim": "Per-dataset licences (CC-BY 4.0 or CC0) for the 35 datasets are checked",
+    "status": "not_found",
+    "url": "https://beta.openml.org/terms"
+   },
+   {
+    "claim": "OpenML terms say each dataset carries its own licence, with CC-BY 4.0 and CC0 listed for datasets",
+    "status": "confirmed",
+    "url": "https://beta.openml.org/terms"
+   },
+   {
+    "claim": "Grinsztajn et al. benchmark of 45 tabular datasets, NeurIPS 2022 (arXiv 2207.08815)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2207.08815"
+   },
+   {
+    "claim": "LeoGrin/tabular-benchmark repo declares a licence",
+    "status": "contradicted",
+    "url": "https://github.com/LeoGrin/tabular-benchmark"
+   },
+   {
+    "claim": "Seed claim that the suite overlaps a known tabular benchmark at dataset level",
+    "status": "not_found",
+    "url": "https://github.com/LeoGrin/tabular-benchmark"
+   },
+   {
+    "claim": "Wild-Tab is an OOD tabular regression benchmark built from three industrial datasets, evaluating 10 OOD methods (arXiv 2312.01792)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2312.01792"
+   },
+   {
+    "claim": "A published OpenML regression benchmark uses an extreme-quantile covariate-shift split",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2312.01792"
+   },
+   {
+    "claim": "Dated public evidence that frontier agents or weaker models partly succeed at this shift-aware regression task (seed band evidence)",
+    "status": "not_found",
+    "url": "https://api.openml.org/s/353"
+   },
+   {
+    "claim": "Reference ensemble on the shift-aware split beats the baseline by a measured margin",
+    "status": "not_found",
+    "url": "https://api.openml.org/s/353"
+   }
+  ],
+  "full_card": {
+   "band": "Budget 4 h. Band evidence is not dated and public; per rule Band max is 3. Headroom over baseline is unknown and the seed flags it may be small.",
+   "build_cost": "About 3 days: harness, data cache with licence filter, shift generator, baseline, reference ensemble, measured headroom.",
+   "deliverable": "Predictor code and tuned ensemble that outputs predictions on the hidden OOD split within a CPU budget.",
+   "gates_anticheat": "Labels are in the verifier; no network at run time. Cheat risks: fetching OpenML at run time (blocked), editing the grader (sealed), hard-coding predictions for known test covariates (needs a covariate-only split to close). Pre-shipped datasets are readable, so the shift split must be hidden.",
+   "grading_surface": "35 datasets (or the subset actually shipped) times one OOD split each, mean normalised RMSE between baseline and reference. Roughly tens of cases, not thousands.",
+   "local_fit": "Tabular, CPU only, 8 cores and 16 GB fit if the subset is capped in size (CTR23 allows up to 100k rows and 5k features).",
+   "lookup": "No public complete solution for this shift protocol found. Method-level pieces (GBDT ensembles, target transforms) are standard, so lookup partial.",
+   "provenance": "OpenML suite 353 (OpenML-CTR23, 35 regression datasets, Fischer et al. 2023). Seed adds a covariate-shift split. Per-dataset licences unchecked.",
+   "reference": "Not built. Seed says a tuned ensemble will be written by us, score unmeasured.",
+   "ships": "Train/eval harness, GBDT baseline, cached subset of datasets (only after per-dataset licence check), shift-split generator. Hidden datasets and labels stay in the verifier.",
+   "similarity": "Nearest l0 neighbours are at most 0.198 (shift_2d, S-op-018, GSO items). Differs from Grinsztajn (i.i.d. CV, classification and regression) by the quantile covariate-shift split. Wild-Tab is OOD tabular regression on industrial data, not OpenML. Crowded risk: Kaggle-style tabular model tuning is on the CROWDED list, so the deliverable must stay the shift-robust predictor, not a leaderboard."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of frontier or weak-model results on this task, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days to build harness, cache, shift generator, baseline and reference."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Tabular, CPU-only, fits 8 cores and 16 GB when sizes are capped."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "A 4 h tabular tuning loop is sustained work but not clearly long-horizon; the seed itself gives 4 h."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "OpenML terms list CC-BY 4.0 and CC0 per dataset, which can ship with attribution, but each dataset must be checked; Grinsztajn repo declares no licence."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "35 independent datasets give steady per-dataset credit and natural buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest l0 neighbour is 0.198; the Grinsztajn overlap and the MLE-bench-like tuning risk lower it."
+   },
+   "Real": {
+    "v": 4,
+    "why": "OpenML suite 353 exists with 35 regression tasks and a 2023 AutoML paper; per-dataset licences not yet checked."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference built; seed says score unmeasured and likely only modestly above the baseline."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Labels and hidden split stay in the verifier, but the source datasets are public on OpenML, so the split must be kept secret."
+   },
+   "Surf": {
+    "v": 2,
+    "why": "About 35 datasets times one shift split: tens of cases, not thousands, and the metric is per-dataset aggregate."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Average gain under about 3%, or the sign flips across seeds, or fewer than 5 datasets have a clean licence and shippable size.",
+   "pass_if": "Ensemble beats baseline by at least about 10% relative normalised RMSE on average across the 5 datasets, with the sign stable across seeds and runs finishing within budget.",
+   "steps": [
+    "In a throwaway networked container, install openml and lightgbm/sklearn; fetch suite 353 and record each dataset's licence field and row/feature counts.",
+    "Keep only datasets with CC0 or CC-BY licence, 500 to 100k rows, under 5k features; pick 5 for the spike.",
+    "Write a covariate-shift split: train on the central 60% of the top-variance feature, test on the top and bottom 20% tails.",
+    "Fit the shipped-style GBDT baseline and a quick ensemble (GBDT, random forest, ridge stack, log-target option) with shift-aware validation; time each within a 1 h CPU budget.",
+    "Compute normalised RMSE per dataset for baseline and ensemble; repeat with three seeds to check spread and determinism.",
+    "Estimate headroom: mean relative gain of ensemble over baseline and the gap between a weaker and a stronger configuration."
+   ]
+  },
+  "summary": "The OpenML-CTR23 suite (35 regression tasks) exists, but the covariate-shift split and reference are unbuilt, per-dataset licences are unchecked, and the seed's band evidence is undated, so Band is capped at 3. Headroom over baseline is the main unknown, so run the spike before committing to build."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 60
+}

@@ -1,0 +1,210 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "8 h. Well-formedness is easy; the long tail (entity recursion, external entities, validity constraints, XML 1.1 edge rules, edition-specific name chars) separates runs. Buckets: not-wf, valid, invalid, namespace, canonical output. A weaker model stops at a well-formedness-only parser.",
+  "cheat": "Wrapping a system libxml2/expat or a bundled XML library: the image has no XML parser libraries beyond the language stdlib and the build blocks the dependency. Hidden mutated inputs defeat catalogue memorisation.",
+  "grading": "Hidden slice of the 2586 catalogue entries (not-wf, invalid, valid, error) plus several thousand mutated documents compared against libxml2 verdicts, run on the verifier only. Exact verdict match and byte-exact canonical output; a visible sample of about 150 cases is shipped for self-checking.",
+  "reference": "Own reference written in Rust, with libxml2 (MIT) and expat (MIT) used to cross-check verdicts. Reference size about 3-5k lines. It would pass all but the cases where the parsers legitimately differ, which are excluded.",
+  "source": "https://www.w3.org/XML/Test/xmlts20130923.tar.gz @ xmlts20130923; licence mixed (James Clark part: unmodified redistribution only; Sun/OASIS/IBM parts separate notices), no single SPDX. Licence must be cleared before shipping; fallback is to ship only the W3C/OASIS-noticed subsets.",
+  "task": "/app ships an empty C or Rust crate with a CLI that reads an XML file and reports well-formed/not-well-formed/valid/invalid, then emits Canonical XML. The agent builds a non-validating-plus-validating parser covering DTD internal/external subsets, parameter/general entities, attribute normalisation, XML 1.1 name/char rules and namespaces.",
+  "title": "Validating XML 1.0 and 1.1 parser with DTD and entities"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-044 0.23"
+  ],
+  [
+   "2026-10-21T01:00:05Z",
+   "v1",
+   "killed:K1",
+   "gate on scores {'Real': 4, 'Surf': 5, 'Ref': 3, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 2, 'Lic': 2, 'Fit': 5, 'Build': 2}"
+  ]
+ ],
+ "id": "S-im-049",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.228,
+    "S-im-044"
+   ],
+   [
+    0.213,
+    "S-im-038"
+   ],
+   [
+    0.161,
+    "S-im-045"
+   ],
+   [
+    0.09,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.087,
+    "sqlparse [Commit0]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "w3.org/xml/test/xmlts20130923.tar.gz|xmlts20130923-latest-tarball-listed-on-w3-org-xml-test",
+ "source_notes": "XML 1.0 parser with DTD + entities + validity is a big, rule-dense job with crisp pass/fail; licence mix is the blocker (James Clark clause); moderate crowding because XML parsers are a classic exercise",
+ "source_url": "https://www.w3.org/XML/Test/xmlts20130923.tar.gz",
+ "source_version": "xmlts20130923 (latest tarball listed on w3.org/XML/Test)",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.w3.org/XML/Test/",
+  "facts": [
+   {
+    "claim": "W3C XML conformance suite release xmlts20130923 exists and is offered as a tar.gz from the W3C test page",
+    "status": "confirmed",
+    "url": "https://www.w3.org/XML/Test/"
+   },
+   {
+    "claim": "The suite contains over 2000 test files",
+    "status": "confirmed",
+    "url": "https://www.oasis-open.org/committees/xml-conformance/xml-test-suite.shtml"
+   },
+   {
+    "claim": "Exactly 2586 catalogue entries in xmlconf.xml",
+    "status": "not_found",
+    "url": "https://www.w3.org/XML/Test/xmlts20130923.tar.gz"
+   },
+   {
+    "claim": "W3C test-suite page or FAQ states a licence for the test cases; FAQ says contributed materials are governed by the W3C Software License (19980720)",
+    "status": "confirmed",
+    "url": "https://www.w3.org/XML/Test/faq.html"
+   },
+   {
+    "claim": "James Clark part is 'unmodified redistribution only'; Sun/OASIS/IBM separate notices exist",
+    "status": "not_found",
+    "url": "https://www.w3.org/XML/Test/"
+   },
+   {
+    "claim": "libxml2 is MIT-licensed",
+    "status": "confirmed",
+    "url": "https://github.com/GNOME/libxml2/blob/master/Copyright"
+   },
+   {
+    "claim": "expat (libexpat) is MIT-licensed",
+    "status": "confirmed",
+    "url": "https://github.com/libexpat/libexpat/blob/master/expat/COPYING"
+   },
+   {
+    "claim": "A public pure-Rust XML crate (rusty_xml) describes itself as a remake of libxml2 with DTD internal subset support and xmlValidateDocument",
+    "status": "confirmed",
+    "url": "https://docs.rs/rusty_xml"
+   },
+   {
+    "claim": "libxml2 verdicts are a sound oracle for XML 1.1 edge rules",
+    "status": "not_found",
+    "url": "https://github.com/GNOME/libxml2/blob/master/Copyright"
+   },
+   {
+    "claim": "Reference implementation of about 3-5k lines in Rust exists",
+    "status": "not_found",
+    "url": "https://www.w3.org/XML/Test/"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Well-formedness is the easy floor; DTD validity, entity recursion, XML 1.1 rules and byte-exact C14N form the long tail. Buckets: not-wf, valid, invalid, namespace, canonical. Weaker model likely stops at well-formedness only. No dated public evidence of agent results.",
+   "build_cost": "About 3-5k lines of reference plus a libxml2/expat differential harness and mutation generator: roughly 4-5 days for us (score 2).",
+   "deliverable": "CLI binary plus parser crate covering DTD internal/external subsets, parameter/general entities, attribute normalisation, XML 1.1 name/char rules, namespaces, canonical output.",
+   "gates_anticheat": "Verifier-only oracle and mutated set; cheat paths: wrapping a system libxml2/expat (spike must confirm absent in image via ldconfig/find), vendoring a Rust XML crate (block offline build and check Cargo.lock), editing tests or build config (verifier uses own copy).",
+   "grading_surface": "Hidden slice of catalogue entries (not-wf, invalid, valid, error) plus several thousand mutated documents, compared to libxml2 verdicts with byte-exact canonical output; about 150 visible cases shipped. Exact count 2586 unverified; 'over 2000' confirmed.",
+   "local_fit": "Rust or C, CPU only, offline build; fits 8 cores, 16 GB, gVisor; no kernel features needed.",
+   "lookup": "Partial: libxml2 and expat are famous C implementations a frontier model knows in outline; rusty_xml is a public pure-Rust libxml2 remake with DTD validation, not installable offline; no direct solution found.",
+   "provenance": "W3C XML Conformance Test Suite xmlts20130923 (OASIS-origin XML 1.0 2nd ed. suite plus IBM/Sun/James Clark contributions); real spec and suite; no git history, smoke probe skipped (no git source).",
+   "reference": "Own Rust reference, about 3-5k lines, not yet written; libxml2 and expat (both MIT) as cross-check oracles; legitimately differing cases excluded.",
+   "ships": "Empty C or Rust crate with a CLI for well-formed/not-well-formed/valid/invalid verdicts and Canonical XML output; no XML parser library in the image (to verify in spike).",
+   "similarity": "Nearest l0 neighbours S-im-044 (0.228), S-im-038 (0.213), S-im-045 (0.161) are above the 0.15 novelty line. libexpat is on the CROWDED list, and XML parsing is adjacent to crowded JSON/YAML parser work."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier 8 h plausibly reaches well-formed plus part of validity, but no dated public evidence; capped at 3 without it."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Reference of 3-5k lines plus differential harness is about 4-5 days for us."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only Rust or C with offline build; no special kernel features."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier justified by several interacting modules (DTD, entities, namespaces, C14N, XML 1.1)."
+   },
+   "Lic": {
+    "v": 2,
+    "why": "No single SPDX; James Clark clause (unmodified redistribution only) unverified and blocks shipping derived mutated tests until cleared."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five named buckets (not-wf, valid, invalid, namespace, canonical) give steady partial credit."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Neighbour 0.228 above the 0.15 line and libexpat is on the CROWDED list."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real W3C suite release and spec; reference and suite licensing still unresolved so not 5."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Own reference not yet written; libxml2 verdicts disagree with the spec on some cases, so the oracle is not a clean spec reference."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Suite is public but offline; hidden slice and mutated set stay verifier-side; libxml2 oracle is public but not in the image."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Thousands of mutated documents with an executable libxml2 oracle give an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "The James Clark clause forbids derived or mutated redistribution and the noticed subset is under 500 cases (K6/K3); libxml2 disagrees with labels on more than 10% of XML 1.1 cases so the oracle is unsound there (K4); or a usable XML library is present in the image and cannot be removed (K11).",
+   "pass_if": "Licence notices allow shipping unmodified tests and a derived mutated set, or the noticed subset still gives at least 1000 cases; libxml2 agrees with suite labels on at least 95% of non-excluded cases; the image has no XML library; two runs are identical.",
+   "steps": [
+    "In a fresh empty directory under the scratchpad, download and extract xmlts20130923.tar.gz with tar; do not run any script inside it.",
+    "List every per-directory README/notice file; record the James Clark, Sun, OASIS and IBM licence wording verbatim and decide which subsets may be shipped unmodified and whether mutated derivatives are allowed.",
+    "Count TEST elements in xmlconf.xml by TYPE (not-wf, invalid, valid, error) to test the 2586 figure and the per-bucket sizes.",
+    "In a base Debian container matching the /app image, run ldconfig -p and find for expat and xml2 libraries and headers, and check that no Rust XML crate is in the offline cargo cache.",
+    "Run xmllint --noout --valid (or --noout) over the valid/invalid/not-wf sets twice and compare outputs for determinism.",
+    "Measure libxml2 agreement with the suite TYPE labels per subset, separately for XML 1.0 and XML 1.1 cases.",
+    "Decide the exclusion list from the disagreement set and check that each bucket keeps at least about 200 cases."
+   ]
+  },
+  "summary": "The XML conformance suite is real and public, but the licence (James Clark clause and the 2586-entry count) is unverified, so shipping and count claims are open. No gate fails outright, so the idea stays alive with licence and oracle soundness as the spike's first checks."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 70
+}

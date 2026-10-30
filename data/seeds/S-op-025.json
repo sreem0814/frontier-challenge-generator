@@ -1,0 +1,224 @@
+{
+ "batch": 11,
+ "card": {
+  "band": "8h. Frontier agents get easy wins in some trials such as the hash chain and the copy loops, but not the SIMD multiversioning, so they average well below the reference. A weaker model breaks round-trips or finds nothing. Levers: match finder, chunked copy, CRC/adler, inflate fast loop.",
+  "cheat": "Dropping compression strength or caching outputs: a ratio floor and fresh hidden inputs close this. Linking system zlib: the harness checks that the Rust code path is used and no libz is installed.",
+  "grading": "A correctness gate runs inflate round-trips on a generated and a real corpus (hidden), plus decoding by an independent inflater. Wall-clock medians on hidden files give the speedup. Reward is 2^u - 1 against reference speedup S.",
+  "reference": "The reference is the zlib-rs 0.4.2 diff; the measured speedup is single-digit to roughly 13% per the vendor blog, so S is small and must be re-measured. The base should be chosen further back to give headroom.",
+  "source": "https://github.com/trifectatechfoundation/zlib-rs, 0.4.2 as the target and an earlier tag as the base (tags not found), Zlib licence",
+  "task": "/app ships a history-less snapshot of the zlib-rs base with libz-rs-sys and a benchmark harness. The agent speeds up compression at levels 6 to 9 and inflate on 1 KB to 64 KB chunks, using runtime SIMD multiversioning and match-finder and loop changes. The output must stay a valid stream.",
+  "title": "zlib-rs 0.4.x deflate level 6-9 and inflate small-chunk speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:04:51Z",
+ "family": "compression",
+ "history": [
+  [
+   "2026-10-21T01:04:51Z",
+   "write",
+   "short",
+   "batch 11"
+  ],
+  [
+   "2026-10-21T01:04:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-023 0.27"
+  ],
+  [
+   "2026-10-21T01:06:17Z",
+   "v1",
+   "killed:K4",
+   "Headroom is single-digit percent (vendor figures are vs zlib-ng, not an earlier zlib-rs base), so wall-clock medians on a shared 8-core sandbox cannot separate a partial solution from noise. Without a found base tag, S and the reward curve are undefined too (K5 risk). Revisit only if a base tag and "
+  ]
+ ],
+ "id": "S-op-025",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.268,
+    "S-op-023"
+   ],
+   [
+    0.236,
+    "S-op-022"
+   ],
+   [
+    0.153,
+    "S-im-012"
+   ],
+   [
+    0.105,
+    "deflate_compression [SpecBench]"
+   ],
+   [
+    0.104,
+    "add-benchmark-lm-eval-harness [original]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "trifectatech.org/blog/zlib-rs-is-faster-than-c|zlib-ng-version-not-stated-on-page-blog-says-only-latest-as-",
+ "source_notes": "Levers: runtime SIMD multiversioning, LLVM -enable-dfa-jump-thread flag recovering small-chunk performance, compression PRs by Brian Pane (not detailed on page). q:\"about 6% at the default level of 6, and over 10% at the \\\"best compression\\\" level 9.\" Gains are single-digit percent so poor headroom; pair with a zlib 1.3 baseline for larger S (INFERRED, not on page). Output of deflate need not be byte-identical across impls, gate on inflate(roundtrip).",
+ "source_url": "https://trifectatech.org/blog/zlib-rs-is-faster-than-c/",
+ "source_version": "zlib-ng (version not stated on page; blog says only latest) as C reference; or earlier zlib-rs -> zlib-rs 0.4.2 (libz-rs-sys)",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://trifectatech.org/blog/zlib-rs-is-faster-than-c/",
+  "facts": [
+   {
+    "claim": "zlib-rs repository exists at github.com/trifectatechfoundation/zlib-rs",
+    "status": "confirmed",
+    "url": "https://github.com/trifectatechfoundation/zlib-rs"
+   },
+   {
+    "claim": "Repository licence is Zlib (About sidebar shows 'Zlib license'; single LICENSE file; no SPDX id stated on page)",
+    "status": "confirmed",
+    "url": "https://github.com/trifectatechfoundation/zlib-rs"
+   },
+   {
+    "claim": "Release v0.4.2 exists (libz-rs-sys 0.4.2, announced 2025-02-25)",
+    "status": "confirmed",
+    "url": "https://trifectatech.org/blog/zlib-rs-is-faster-than-c/"
+   },
+   {
+    "claim": "v0.4.2 appears as a tag/release on the GitHub releases page (page shows only v0.5.5 to v0.6.8 on page 1)",
+    "status": "not_found",
+    "url": "https://github.com/trifectatechfoundation/zlib-rs/releases"
+   },
+   {
+    "claim": "An earlier zlib-rs tag usable as the base snapshot exists",
+    "status": "not_found",
+    "url": "https://github.com/trifectatechfoundation/zlib-rs/releases"
+   },
+   {
+    "claim": "Vendor figures: deflate level 6 about 6.19% faster and level 9 about 13.64% faster, measured vs zlib-ng (not vs a zlib-rs base)",
+    "status": "confirmed",
+    "url": "https://trifectatech.org/blog/zlib-rs-is-faster-than-c/"
+   },
+   {
+    "claim": "Inflate small-chunk gains (2^5 to 2^8 bytes, 6.7% to 13.3%) are vs zlib-ng; vs zlib-chromium zlib-rs is slower at 16-64 bytes",
+    "status": "confirmed",
+    "url": "https://trifectatech.org/blog/zlib-rs-is-faster-than-c/"
+   },
+   {
+    "claim": "The 0.4.2 diff's own speedup over an earlier base (the seed's S) is measured and published",
+    "status": "not_found",
+    "url": "https://trifectatech.org/blog/zlib-rs-is-faster-than-c/"
+   },
+   {
+    "claim": "Runtime SIMD multiversioning was hand-implemented in zlib-rs (not compiler-provided)",
+    "status": "confirmed",
+    "url": "https://trifectatech.org/blog/zlib-rs-is-faster-than-c/"
+   },
+   {
+    "claim": "Brian Pane contributed compression PRs; PR numbers and merge status found",
+    "status": "not_found",
+    "url": "https://tweedegolf.nl/en/blog/149/zlib-rs-is-faster-than-c"
+   },
+   {
+    "claim": "Later releases exist (v0.5.5 through v0.6.8, latest 15 Sep), so the reference lives in public upstream history",
+    "status": "confirmed",
+    "url": "https://github.com/trifectatechfoundation/zlib-rs/releases"
+   },
+   {
+    "claim": "libz-rs-sys 0.4.2 is published on crates.io with Zlib licence",
+    "status": "not_found",
+    "url": "https://crates.io/crates/libz-rs-sys/versions"
+   },
+   {
+    "claim": "Phoronix 0.4.2 coverage with performance numbers",
+    "status": "not_found",
+    "url": "https://phoronix.com/news/Zlib-rs-0.4.2"
+   }
+  ],
+  "full_card": {
+   "band": "8h claimed; no dated evidence that frontier agents partly succeed on this work; headroom is single-digit percent",
+   "build_cost": "Rust offline build with vendored crates, unknown base; smoke_build skipped (no git source); est 3-5 days including harness",
+   "deliverable": "Rust changes to deflate levels 6-9 and inflate for 1-64 KB chunks, runtime SIMD multiversioning, valid zlib streams",
+   "gates_anticheat": "Ratio floor and fresh hidden inputs block trading compression strength or caching; harness must confirm Rust path and no system libz",
+   "grading_surface": "Hidden roundtrip inputs (generated + real corpus) plus independent inflater check; wall-clock medians give speedup; reward 2^u-1 vs reference speedup S",
+   "local_fit": "Rust toolchain, CPU-only, SIMD runtime detection works under gVisor; wall-clock noise on 8 shared cores is the main concern",
+   "lookup": "Reference diff is in public upstream git history and in later releases (to v0.6.8); must be history-less snapshot",
+   "provenance": "zlib-rs upstream (Trifecta Tech), Zlib licence; 0.4.2 described in vendor blog 2025-02-25; later releases to v0.6.8 public",
+   "reference": "0.4.2 diff, public upstream; its speedup over the base is unmeasured; vendor numbers are vs zlib-ng (about 6% L6, about 13.6% L9)",
+   "ships": "history-less snapshot of an earlier zlib-rs base (tag not found) plus libz-rs-sys and benchmark harness; not yet built",
+   "similarity": "Nearest L0 neighbours S-op-023 (0.268) and S-op-022 (0.236) are internal seeds not verified as public; deflate_compression SpecBench 0.105; no public task on zlib-rs"
+  },
+  "kill_code": "K4",
+  "kill_reason": "Headroom is single-digit percent (vendor figures are vs zlib-ng, not an earlier zlib-rs base), so wall-clock medians on a shared 8-core sandbox cannot separate a partial solution from noise. Without a found base tag, S and the reward curve are undefined too (K5 risk). Revisit only if a base tag and a larger measured gap are found.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "No dated public evidence of agent outcomes on this work; with single-digit headroom a frontier agent likely lands near zero reward."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-5 days; offline Rust vendoring and base selection unknown; smoke_build skipped."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only Rust; SIMD runtime detection should work under gVisor; noise is the risk, not kernel features."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8h is plausible for several levers, but the gains are small and do not fill the tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Zlib licence permits shipping source, data and reference."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Levers (match finder, copy, CRC/adler, inflate loop) are separable, but partial credit is compressed into a few percent of speedup."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Highest L0 neighbours are internal seeds; the public neighbour is 0.105, below 0.15, and not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real upstream project with releases through v0.6.8 and a vendor blog; 0.4.2 confirmed via blog."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "The reference speedup over any base is unmeasured; vendor numbers are vs zlib-ng, and the base tag was not found."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is public in git history and later crates; closable only by a history-less snapshot of an unidentified base."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Roundtrip plus independent inflater over generated and corpus inputs is a few thousand checks at most, not an unlimited oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "No earlier base tag can be found, or CV exceeds the gap, or the speedup is under 3%.",
+   "pass_if": "Measured speedup of 0.4.2 over the chosen base is at least 5% with run-to-run CV below half that gap, and a base exists that is not the reference.",
+   "steps": [
+    "In a throwaway networked Linux container, clone zlib-rs and check out the v0.4.2 tag; if absent, locate the 0.4.2 commit by its release date in the history.",
+    "Identify candidate earlier base tags/commits and record which one the seed's base would be.",
+    "Build libz-rs-sys offline-capable (vendor crates) and confirm it runs the inflate and deflate benchmarks.",
+    "Run deflate at levels 6 and 9 and inflate on 1 KB and 64 KB chunks: 20 runs each, base vs 0.4.2, record wall-clock medians.",
+    "Compute run-to-run coefficient of variation on the 8-core gVisor-like setup; compare to the expected 6-13% gap.",
+    "Check that roundtrip through an independent inflater passes on the same corpus."
+   ]
+  },
+  "summary": "The zlib-rs project, v0.4.2 and the Zlib licence check out, but the earlier base tag was not found and the published speedups are vs zlib-ng, so the reference's own gain over any base is unmeasured. Headroom is single-digit percent on wall-clock medians, which is too noisy to grade, so the seed is killed with K4 unless a base and a larger measured gap are found."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

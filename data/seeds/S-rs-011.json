@@ -1,0 +1,215 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "4 h. The window is real: a frontier agent improves on the baseline in some trials but does not reach the tuned reference on average. A weaker model overfits to the training families. Scope may need sizing up, and the 150-line floor holds only if the heuristic is a full build.",
+  "cheat": "The famous published optima are useless since the hidden instances are transformed. Per-instance seeds and time limits stop precomputed answers from being embedded.",
+  "grading": "Hidden: instances of unseen families, regenerated from permuted and rescaled variants so that famous best-known values do not apply. Metric is the mean relative gap to a sealed best found by long runs, normalized between baseline (0) and reference (1).",
+  "reference": "Our reference is a robust tabu search with tuned restarts, run offline; licence of any external code is not found, so it is written from the literature.",
+  "source": "https://datashare.ed.ac.uk/handle/10283/4390 (QAPLIB, DOI 10.7488/ds/3428), CC BY 4.0 per the record",
+  "task": "/app ships QAPLIB instances for the random, grid and real-life families with best-known values for a training subset, and a baseline local search. Agent designs and tunes a QAP heuristic (tabu, iterated local search, restart policy, parameters) under a fixed CPU time per instance.",
+  "title": "Quadratic assignment heuristic design with an instance-family split"
+ },
+ "class": "research",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-010 0.25"
+  ],
+  [
+   "2026-10-21T01:05:03Z",
+   "v1",
+   "killed:K6",
+   "The seed's CC BY 4.0 licence is contradicted by the DataShare record, which names only an unverified 'End-user Licence' and 'Depositor Agreement'. The QAPLIB site states no licence. Shipping the instances inside a bundle is therefore not confirmed allowed. Revive only if the End-user Licence text pe"
+  ]
+ ],
+ "id": "S-rs-011",
+ "kill": "K6",
+ "l0": {
+  "neighbours": [
+   [
+    0.246,
+    "S-rs-010"
+   ],
+   [
+    0.127,
+    "STP [FrontierCO]"
+   ],
+   [
+    0.124,
+    "CPMP [FrontierCO]"
+   ],
+   [
+    0.121,
+    "MDS [FrontierCO]"
+   ],
+   [
+    0.121,
+    "MIS [FrontierCO]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "datashare.ed.ac.uk/handle/10283/4390|qaplib-as-deposited-at-edinburgh-datashare-doi-10-7488-ds-34",
+ "source_notes": "Small files, CPU-only, fits offline and 8 cores. Not in already_known. Memorization risk is real: the best-known objective values are famous and widely published, so a grader would need hidden target values or held-out instance transformations. Likely a configurator-tuning or heuristic-design task rather than a standalone solver build, so scope needs to be sized to reach 150+ lines and a long horizon. Worth checking against the existing AClib and SMAC rows to avoid overlap.",
+ "source_url": "https://datashare.ed.ac.uk/handle/10283/4390",
+ "source_version": "QAPLIB as deposited at Edinburgh DataShare (DOI 10.7488/ds/3428); the record does not state a version number",
+ "status": "killed:K6",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://datashare.ed.ac.uk/handle/10283/4390",
+  "facts": [
+   {
+    "claim": "QAPLIB dataset record exists on Edinburgh DataShare, DOI 10.7488/ds/3428, dated 2022-03-31, with README, qapdata and qapsoln archives",
+    "status": "confirmed",
+    "url": "https://datashare.ed.ac.uk/handle/10283/4390"
+   },
+   {
+    "claim": "Dataset licence is CC BY 4.0 per the record",
+    "status": "contradicted",
+    "url": "https://datashare.ed.ac.uk/handle/10283/4390"
+   },
+   {
+    "claim": "The record links an 'End-user Licence' and a 'Depositor Agreement' whose wording is not reproduced; no Creative Commons licence is named anywhere on the record",
+    "status": "confirmed",
+    "url": "https://datashare.ed.ac.uk/handle/10283/4390"
+   },
+   {
+    "claim": "Licence or terms-of-use statement on the QAPLIB site (Lehigh mirror): none in the page content; Acknowledgments section not readable",
+    "status": "not_found",
+    "url": "https://coral.ise.lehigh.edu/data-sets/qaplib/qaplib-problem-instances-and-solutions/"
+   },
+   {
+    "claim": "Library contains 136 instances and 111 solution files",
+    "status": "confirmed",
+    "url": "https://coral.ise.lehigh.edu/data-sets/qaplib/qaplib-problem-instances-and-solutions/"
+   },
+   {
+    "claim": "Each instance has a best-known value labelled OPT or heuristic (e.g. Ro-TS, GEN, ITS), with lower bounds for non-optimal entries",
+    "status": "confirmed",
+    "url": "https://coral.ise.lehigh.edu/data-sets/qaplib/qaplib-problem-instances-and-solutions/"
+   },
+   {
+    "claim": "Instances are grouped into random, grid and real-life families as named in the seed",
+    "status": "not_found",
+    "url": "https://coral.ise.lehigh.edu/data-sets/qaplib/qaplib-problem-instances-and-solutions/"
+   },
+   {
+    "claim": "Taillard's Robust Tabu Search for QAP, Parallel Computing 17 (1991) pp. 443-455, is the basis of the reference",
+    "status": "confirmed",
+    "url": "https://dev.heuristiclab.com/wiki/Documentation/Reference/Robust Taboo Search"
+   },
+   {
+    "claim": "Taillard published C++ and C implementations of RoTS on his academic page, so public reference code exists",
+    "status": "confirmed",
+    "url": "https://dev.heuristiclab.com/trac.fcgi/wiki/Documentation/Reference/Robust%20Taboo%20Search?version=6"
+   },
+   {
+    "claim": "Licence of the Taillard RoTS code is stated",
+    "status": "not_found",
+    "url": "https://dev.heuristiclab.com/trac.fcgi/wiki/Documentation/Reference/Robust%20Taboo%20Search?version=6"
+   },
+   {
+    "claim": "Seed neighbour S-rs-010 (cosine 0.246) is distinct from this seed",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "Budget tier 4 h. Not evidenced: no dated public result for frontier agents on this task. Seed claim of a window is unsupported (E0). Band 3 at most.",
+   "build_cost": "About 3-4 days: RoTS port, instance transformer, sealed long-run reference values, grader and per-family buckets (K12 threshold is 5 days, so not triggered).",
+   "deliverable": "A QAP metaheuristic (robust tabu search with restart policy and tuned parameters) that runs offline under a fixed CPU time per instance.",
+   "gates_anticheat": "Per-instance seeds and time limits; hidden derivatives mean famous values do not apply. The raw QAPLIB data and public RoTS code are in the image or public, so the transformation is the only seal.",
+   "grading_surface": "Hidden unseen-family instances regenerated by permutation and rescaling; mean relative gap to a sealed best from long runs; normalised between baseline (0) and reference (1). Hidden count not stated.",
+   "local_fit": "CPU-only, small files, 8 cores, 16 GB: fits.",
+   "lookup": "partial: RoTS (Taillard 1991) is public and widely reproduced (C++, C, HeuristicLab C#); a frontier agent can recall the core, so the reference is close to the default approach.",
+   "provenance": "QAPLIB (Burkard, Karisch, Rendl, Cela; mirrors at Lehigh and Montreal), DataShare DOI 10.7488/ds/3428, dated 2022-03-31. Licence not verified as CC BY.",
+   "reference": "Own robust tabu search with tuned restarts, written from Taillard 1991. Not yet built.",
+   "ships": "136 QAP instances and 111 solution files (archives qapdata.tar.gz 417 KB, qapsoln.tar.gz 14 KB). Best-known values with OPT/heuristic labels.",
+   "similarity": "Seed neighbour S-rs-010 at 0.246 is unverified (not checked here); other neighbours 0.12-0.13 are FrontierCO tasks on different problems. AClib/SMAC overlap not checked."
+  },
+  "kill_code": "K6",
+  "kill_reason": "The seed's CC BY 4.0 licence is contradicted by the DataShare record, which names only an unverified 'End-user Licence' and 'Depositor Agreement'. The QAPLIB site states no licence. Shipping the instances inside a bundle is therefore not confirmed allowed. Revive only if the End-user Licence text permits redistribution. Separate risk (K8): Taillard's public RoTS means the reference is close to a recallable default approach.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence for frontier or weak-model results on this task, so capped at 3; RoTS recall may make the reference easy."
+   },
+   "Build": {
+    "v": 4,
+    "why": "About 3-4 days of work to build the reference, harness and sealed values."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Small CPU-only data, offline, within 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4 h tuning plus implementation is plausible long horizon but not clearly 8 h."
+   },
+   "Lic": {
+    "v": 1,
+    "why": "CC BY 4.0 claim contradicted; licence wording not verified, so shipping is not confirmed allowed."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Per-family and per-instance buckets give partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Public benchmark subject; S-rs-010 neighbour unverified, so novelty is uncertain."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real, published, widely cited library with a DOI; 136 instances across many authors."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is RoTS from literature, which is strong but not a complete permissive implementation with proven upstream speedup."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden transformed instances and sealed long-run values keep the oracle out of reach; raw QAPLIB and RoTS are public."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "136 instances give a moderate surface; hidden count unknown and derived by transformation."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Licence forbids redistribution (K6), or RoTS already reaches near best-known on all sampled transformed instances in under 10 s (K8).",
+   "pass_if": "Licence text allows redistribution of the data and a derived benchmark; RoTS reaches within a few percent of best-known on sampled instances; runs are deterministic per seed.",
+   "steps": [
+    "In a throwaway container with network, fetch the DataShare End-user Licence and Depositor Agreement and the README PDF; record the exact redistribution terms.",
+    "Download qapdata.tar.gz and qapsoln.tar.gz into a fresh empty directory and confirm 136 instances and the OPT/heuristic labels.",
+    "Write a minimal RoTS (about 150 lines, C++ or Python) with fixed seeds and a time limit.",
+    "Run it on 10 instances across random, grid and real-life families with 10 s per run; compare gap to best-known.",
+    "Repeat each run 3 times with the same seed to check determinism.",
+    "Apply one permutation and one rescaling to two instances and check the gap computed against a fresh long-run best.",
+    "Decide: if the licence forbids redistribution, kill K6; otherwise continue to the band check."
+   ]
+  },
+  "summary": "The QAPLIB source is real and well-documented (136 instances, best-known values, DataShare DOI), but its licence is not CC BY 4.0 as claimed and the terms wording was not found, so it is killed as K6 pending a licence check. The reference, RoTS, is public and recallable, which also threatens the difficulty window (K8)."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 64
+}

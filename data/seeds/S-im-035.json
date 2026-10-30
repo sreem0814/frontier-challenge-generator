@@ -1,0 +1,275 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "20h. Deep dependency chain: signals, scopes, closures, serialisation, resume. Partial credit starts with static and then dynamic text, then control flow and then tags and hydration. A frontier agent reaches about half and a weaker model only static output.",
+  "cheat": "Snapshots of emitted code are normalised and the checks are behavioural, so a copy-paste of expected output cannot work across hidden fixtures. The upstream package is deleted from node_modules and the npm cache.",
+  "grading": "The repo's fixture snapshots (thousands of fixture dirs) are the tests. Hidden fixtures are held back and compared on rendered HTML, hydration results and normalised emitted code. The shipped base fails all cases. Score is the fraction of fixtures passed, bucketed by feature.",
+  "reference": "The upstream translator, which is not in the image and is large (several thousand lines). Solution diffs in the fixtures are the oracle.",
+  "source": "https://github.com/marko-js/marko @ head 4e6f8564 (runtime-tags 6.4.6), MIT",
+  "task": "/app ships a history-less snapshot of the monorepo with the runtime-tags translator, which turns the analysed template tree into server and browser output, removed. The agent rebuilds it behind the existing plugin interface, so that templates compile and render in SSR and hydrate.",
+  "title": "Rebuild the Marko template compiler's translator"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "compiler-toolchain",
+ "final": 67,
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-020 0.27"
+  ],
+  [
+   "2026-10-20T21:27:25Z",
+   "v1",
+   "pass",
+   "score 80; dead links ['https://github.com/marko-js/marko/tree/main/packages/translator']"
+  ],
+  [
+   "2026-10-20T23:19:25Z",
+   "v2",
+   "killed:K9",
+   "Translator location misidentified: the packages/translator link is dead, and translator-default is the Marko 5 translator. The runtime-tags translator must emit calls that exactly match an internal, fast-moving runtime contract (signals, walks, resume serialisation). Its size is unverified but large"
+  ]
+ ],
+ "id": "S-im-035",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.274,
+    "S-im-020"
+   ],
+   [
+    0.235,
+    "S-im-012"
+   ],
+   [
+    0.226,
+    "S-im-016"
+   ],
+   [
+    0.084,
+    "c_compiler [SpecBench]"
+   ],
+   [
+    0.08,
+    "pytest [Commit0]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 7,
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential git python3",
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 1,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "corepack pnpm test",
+  "commit": "4e6f856466a51c807f36ed263b1e4f2497054b59",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "gine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0\n      at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5) {\n    [cause]: Error: getaddrinfo EAI_AGAIN registry.npmjs.org\n        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {\n      errno: -3001,\n      code: 'EAI_AGAIN',\n      syscall: 'getaddrinfo',\n      hostname: 'registry.npmjs.org'\n    }\n  }\n}\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 20313,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "4e6f856466a51c807f36ed263b1e4f2497054b59",
+  "kb": 104744,
+  "lang": "JavaScript",
+  "open_prs": 25,
+  "pushed": "2026-10-20",
+  "release": "@marko/runtime-tags@6.4.6",
+  "spdx": "MIT",
+  "stars": 14456,
+  "test_files": 20313,
+  "test_kb": 9996,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/marko-js/marko|marko-js-marko",
+ "source_notes": "SWE-smith profile (javascript): its suite runs in a container; test command: env MARKO_DEBUG=1 ./node_modules/.bin/mocha --reporter spec. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/marko-js/marko",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/marko-js/marko/releases",
+  "facts": [
+   {
+    "claim": "Repository marko-js/marko exists on GitHub and is MIT licensed",
+    "status": "confirmed",
+    "url": "https://github.com/marko-js/marko"
+   },
+   {
+    "claim": "@marko/runtime-tags 6.4.6 exists and is the latest release (15 Oct)",
+    "status": "confirmed",
+    "url": "https://github.com/marko-js/marko/releases"
+   },
+   {
+    "claim": "The translator is published as a separate package @marko/translator-default (release tag 6.0.1 exists), not as a runtime-tags translator as the seed states",
+    "status": "confirmed",
+    "url": "https://github.com/marko-js/marko/releases/tag/%40marko%2Ftranslator-default%406.0.1"
+   },
+   {
+    "claim": "A translator directory at packages/translator exists on the main branch",
+    "status": "not_found",
+    "url": "https://github.com/marko-js/marko/tree/main/packages/translator"
+   },
+   {
+    "claim": "@marko/translator-default npm listing gives licence and version",
+    "status": "not_found",
+    "url": "https://www.npmjs.com/package/@marko/translator-default"
+   },
+   {
+    "claim": "The repo has about 20k test files and thousands of fixture directories usable as the grading surface",
+    "status": "not_found",
+    "url": "https://github.com/marko-js/marko"
+   },
+   {
+    "claim": "@marko/compiler 5.42.11 changed how getRuntimeEntryFiles, getRuntimeVersion and taglib.buildLookup follow configure(), so the translator contract moves between releases",
+    "status": "confirmed",
+    "url": "https://github.com/marko-js/marko/releases"
+   },
+   {
+    "claim": "Translator changes between 6.3.x releases record client template and walk data per section and drop or guard resume code at compile time",
+    "status": "confirmed",
+    "url": "https://newreleases.io/project/github/marko-js/marko/release/@marko%2Fruntime-tags@6.3.49"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier. Seed claims a frontier agent reaches about half and a weaker model only static output; no dated public evidence found, so Band is capped at 3.",
+   "build_cost": "3-4 days: red probe means the offline install and build must be fixed first, then a fixture harness with per-test results and a reference that passes the hidden buckets.",
+   "deliverable": "A translator behind the existing plugin interface that emits server and browser output so templates compile, SSR-render and hydrate.",
+   "gates_anticheat": "Behavioural checks on rendered HTML and hydration are hard to cheat. Emitted-code equality is not: it is only closed if the normalisation is structural, otherwise it rejects valid alternatives. Also remove the published translator copies from node_modules, the pnpm store and the npm cache, and strip git history.",
+   "grading_surface": "Repo fixture snapshot dirs (thousands; probe counted 20313 test files) plus hidden fixtures scored on rendered HTML, hydration results and normalised emitted code, bucketed static, dynamic, control flow, tags, hydration.",
+   "local_fit": "Node and pnpm on 8 cores and 16 GB CPU-only; no network needed at run time. Fit is fine if the build is made offline.",
+   "lookup": "partial: the full translator is public on GitHub and npm, but not recallable verbatim; history must be stripped and published dist copies removed from the image.",
+   "provenance": "marko-js/marko at head 4e6f8564 (runtime-tags 6.4.6 released 15 Oct 2026); MIT; 14.5k stars; not archived or a fork; translator is in the public git history and on npm as @marko/translator-default.",
+   "reference": "Upstream @marko/translator-default and runtime-tags translator at the pinned commit, MIT, JavaScript, complete; the fixture diffs are the oracle. Not confirmed: full size and test pass rate.",
+   "ships": "History-less monorepo snapshot at the base with the translator removed; the plugin interface and parser/analyser left in place. Probe verdict red: build_ok false and the stock suite exits 1 on all three runs with no per-test report, so the stock test command cannot grade.",
+   "similarity": "Nearest seeds S-im-020 (0.274), S-im-012 (0.235), S-im-016 (0.226); none are public tasks and none is a CROWDED subject. Max cosine is above 0.15 so not a near-duplicate kill."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "20h tier with a deep chain, but no dated public evidence for the claimed frontier half-score."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Red probe; offline install, harness and reference validation put it at 3-4 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Node monorepo fits 8 CPU / 16 GB offline once the install is fixed."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several-thousand-line translator across static, dynamic, control, tags and hydration needs sustained work over 20h."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT confirmed on GitHub; allows shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five feature buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbour cosine 0.274 to a seed, not a public task; not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT repo with 14.5k stars and published releases through 6.4.6."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "The upstream translator is a complete permissive implementation that scores 1 on its own fixtures."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Large public implementation shipped as history-less snapshot; published copies must be purged from node_modules, pnpm store and npm cache."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of fixture dirs with hidden fixtures and bucketed credit; drops to 3 if emitted-code equality is kept as a bucket."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The fixture harness cannot produce per-test results after fixing the install, or emitted-code equality rejects a semantically equivalent rewrite and the grader cannot drop that bucket.",
+   "pass_if": "Offline install and build succeed or are fixable within 30 minutes; the fixture subset runs with per-test results; the reference is deterministic across two runs; the stripped base fails the subset; an equivalent rewrite passes the behavioural checks.",
+   "steps": [
+    "In a throwaway networked Linux container, clone marko-js/marko at 4e6f8564 and run corepack pnpm install; record the first error, since the probe was red with exit 1.",
+    "Run the probe's test command (MARKO_DEBUG=1 mocha) on one fixture subtree and capture whether it produces per-test results; confirm that the stock suite cannot grade.",
+    "Count fixture directories under the translator test area (not the 20313 test-file total) and report the number.",
+    "Fetch the @marko/translator-default tarball from npm at the version matching head and check its licence field and that its dist matches the monorepo source.",
+    "Strip the translator source from a copy, rerun the fixture subset, and confirm the failures are the expected ones (fixtures fail on the stripped base).",
+    "Run the reference twice on the same fixtures and diff the output to check determinism.",
+    "Check whether emitted-code comparison survives a semantically equivalent rewrite of one small fixture, to test the acceptance-breadth risk."
+   ]
+  },
+  "summary": "The Marko translator rebuild is real, MIT-licensed, and has a complete public reference, so it is not killed, but it is conditional on three fixes: rescope the grading to behavioural buckets (drop normalised emitted-code equality, which rejects valid alternatives), purge all published translator copies, and fix the red offline build before any spike. The seed's \"runtime-tags translator\" is actually the separate @marko/translator-default package, and its claimed packages/translator path returned 404, so the seed's paths need correcting before a spike."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [
+   "https://github.com/marko-js/marko/tree/main/packages/translator"
+  ],
+  "ratio": 0.16666666666666666
+ },
+ "v1_score": 80,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-035",
+  "kill_code": "K9",
+  "note": "Translator location misidentified: the packages/translator link is dead, and translator-default is the Marko 5 translator. The runtime-tags translator must emit calls that exactly match an internal, fast-moving runtime contract (signals, walks, resume serialisation). Its size is unverified but large, and models know Marko 6 internals poorly, so no trial plausibly reaches 0.9 even at 20h. Normalised emitted-code equality also rejects valid alternative translations. The probe was red and the stock suite cannot grade.",
+  "scores": {
+   "Band": 1,
+   "Build": 2,
+   "Fit": 4,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 67
+}

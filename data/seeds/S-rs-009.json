@@ -1,0 +1,213 @@
+{
+ "batch": 8,
+ "card": {
+  "band": "4h. The loop is quick, so many iterations fit and a frontier agent beats the baseline in most trials. The reference gain from tuning is small, so the headroom over a weaker model may be under 0.2, which is the main risk. The model buckets are domains.",
+  "cheat": "Hidden domains are not shipped, and the predict script runs offline on unseen series, so memorizing the training data does not help.",
+  "grading": "The hidden split holds whole other domains (for example hospital, NN5, traffic) or later windows. The metric is MASE by code. The score is normalized between the shipped baseline and the reference, and clamped to [0,1].",
+  "reference": "A tuned LightGBM-style or pooled-regression global model with ensembling, which we write; its MASE on the hidden split defines 1.",
+  "source": "https://forecastingdata.org/ and https://zenodo.org/records/4656222; licences are per record (M3 CC BY 4.0, others not found), so check before shipping",
+  "task": "/app ships training series from several datasets (tourism, M3, M1) with statistical baselines (seasonal naive, ETS, Theta) and a harness. The agent trains a global forecasting model on CPU in 8 cores and delivers a predict script that outputs forecasts for any series given its horizon and frequency.",
+  "title": "Global forecasting model for unseen domains in the Monash archive"
+ },
+ "class": "research",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-008 0.21"
+  ],
+  [
+   "2026-10-21T00:57:45Z",
+   "v1",
+   "killed:K6",
+   "Licence gate not cleared. Only M3 yearly (Zenodo 4656222) is confirmed CC BY 4.0. forecastingdata.org states research-use only with no SPDX licence, and no licence was found for the Monash primary records, the TSForecasting repo, or the tourism Zenodo record. The bundle cannot ship tourism, M1, hosp"
+  ]
+ ],
+ "id": "S-rs-009",
+ "kill": "K6",
+ "l0": {
+  "neighbours": [
+   [
+    0.206,
+    "S-rs-008"
+   ],
+   [
+    0.197,
+    "S-op-018"
+   ],
+   [
+    0.115,
+    "S-im-047"
+   ],
+   [
+    0.114,
+    "graph_global_efficiency [AlgoTune]"
+   ],
+   [
+    0.11,
+    "global_routing [HeuriGym]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "forecastingdata.org/; https://zenodo.org/records/4656222|baseline-seasonal-naive-ses-theta-ets-statistical-from-the-a",
+ "source_notes": "q:\"Our repository contains 30 datasets\" (58 counting variants). 13 baselines: SES, Theta, ETS, ARIMA, TBATS, DHR-ARIMA + 7 global (Pooled Regression, CatBoost, FFNN, DeepAR, N-BEATS, WaveNet, Transformer). Example sizes: M3 yearly 645 series, 50.2 kB zip. OOD split: train on several datasets (tourism, M3, M1), hide entire other domains (hospital, NN5, traffic) or a later time window. INFERRED run time on 8 CPUs: a global LightGBM-style model on M3 monthly (1428 series) ~1-5 min per fit/eval; ETS over 1-5k series ~1-5 min with 8 processes. Levers: feature set, window/lags, loss, ensembling, normalization. Overlap: none known.",
+ "source_url": "https://forecastingdata.org/; https://zenodo.org/records/4656222",
+ "source_version": "Baseline: seasonal naive / SES / Theta / ETS (statistical, from the archive baselines) -> Reference: global models from the archive paper (CatBoost, N-BEATS, DeepAR, FFNN, pooled regression) or tuned LightGBM-style global model",
+ "status": "killed:K6",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/abs/2105.06643v1",
+  "facts": [
+   {
+    "claim": "Zenodo record 4656222 is 'M3 Yearly Dataset' (v3, June 2020), one file m3_yearly_dataset.zip, 50.2 kB, covering 645 series; it does not contain M1, tourism or hospital",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/4656222"
+   },
+   {
+    "claim": "Zenodo record 4656222 is licensed CC BY 4.0",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/4656222"
+   },
+   {
+    "claim": "forecastingdata.org lists 30 datasets (58 with variants), including tourism, M1, M3, hospital, NN5 and San Francisco traffic",
+    "status": "confirmed",
+    "url": "https://forecastingdata.org/"
+   },
+   {
+    "claim": "forecastingdata.org states a licence for the datasets",
+    "status": "contradicted",
+    "url": "https://forecastingdata.org/"
+   },
+   {
+    "claim": "forecastingdata.org says the datasets are 'intended to use only for research purpose' (no SPDX licence, so redistribution inside a bundle is not granted)",
+    "status": "confirmed",
+    "url": "https://forecastingdata.org/"
+   },
+   {
+    "claim": "The Monash Time Series Forecasting Archive is a NeurIPS 2021 Datasets and Benchmarks paper by Godahewa, Bergmeir, Webb, Hyndman and Montero-Manso (25 public datasets in the proceedings version)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2105.06643v1"
+   },
+   {
+    "claim": "The Monash archive or its datasets are CC BY 4.0 (primary source)",
+    "status": "not_found",
+    "url": "https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/hash/eddea82ad2755b24c4e168c5fc2ebd40-Abstract-round2.html"
+   },
+   {
+    "claim": "A Hugging Face mirror of the Monash repository README lists cc-by-4.0 (secondary, not the primary record)",
+    "status": "not_found",
+    "url": "https://huggingface.co/datasets/adgtest/monash_tsf/blob/main/README.md"
+   },
+   {
+    "claim": "The rakshitha123/TSForecasting GitHub repo declares a licence",
+    "status": "not_found",
+    "url": "https://github.com/rakshitha123/TSForecasting"
+   },
+   {
+    "claim": "The Zenodo tourism monthly record has a CC or other licence field",
+    "status": "not_found",
+    "url": "https://zenodo.org/records/3898465"
+   },
+   {
+    "claim": "The archive paper benchmarks LightGBM or N-BEATS global baselines as described in source_notes (13 baselines incl. 7 global models)",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2105.06643"
+   }
+  ],
+  "full_card": {
+   "band": "4h tier. Frontier agent likely beats baseline; risk that a weaker model (Qwen class) with a pooled regression gets within 0.2 of the reference, so the research headroom test may fail.",
+   "build_cost": "Roughly 3-4 days: pull and normalise .tsf datasets, write windowing, global LightGBM, ensemble, MASE harness, tuned reference and hidden-domain split.",
+   "deliverable": "A trained global forecasting model on CPU plus a predict script that forecasts any series given horizon and frequency; graded by MASE on hidden domains.",
+   "gates_anticheat": "Hidden domains not shipped; predict runs offline on unseen series; memorisation of training data does not help. Cheat paths to close: editing grader or baseline files, hardcoding per-series outputs, reading hidden data from the image.",
+   "grading_surface": "Hidden series from unseen domains and time windows; MASE computed by code; score normalised between shipped baseline and reference, clamped to [0,1].",
+   "local_fit": "CPU-only, 8 cores; LightGBM global fits 1-5 min on M3 monthly per seed inference; fits the 8 CPU, 16 GB box. No GPU needed.",
+   "lookup": "partial: global pooled regression and LightGBM forecasting are standard approaches (Montero-Manso and Hyndman global-model work; Monash paper motivates global models). No complete solution for this exact task is public.",
+   "provenance": "Monash archive: Godahewa et al., NeurIPS 2021 D&B (arXiv 2105.06643). Datasets from forecastingdata.org (30 datasets, 58 variants) and Zenodo community; the Zenodo record 4656222 is M3 yearly only (CC BY 4.0).",
+   "reference": "Self-written tuned LightGBM-style or pooled-regression global model with ensembling; no upstream implementation. Headroom from tuning is small per seed.",
+   "ships": "Training series from tourism, M3, M1 plus statistical baselines and a harness; hidden domains (hospital, NN5, traffic) or later windows held out by the grader.",
+   "similarity": "Nearest l0 neighbours: S-rs-008 at 0.206 (sibling seed, not a public task), S-op-018 at 0.197, S-im-047 at 0.115. None above 0.15 from CROWDED public tasks; no K1."
+  },
+  "kill_code": "K6",
+  "kill_reason": "Licence gate not cleared. Only M3 yearly (Zenodo 4656222) is confirmed CC BY 4.0. forecastingdata.org states research-use only with no SPDX licence, and no licence was found for the Monash primary records, the TSForecasting repo, or the tourism Zenodo record. The bundle cannot ship tourism, M1, hospital, NN5 or traffic on current evidence. A re-scope to M3 only could pass if each M3 frequency record is confirmed CC BY 4.0, but that also needs the headroom test (K8 risk) to be checked.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; the seed admits headroom over a weaker model may be under 0.2, so the band test is at risk."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Several days to normalise the .tsf data, write the global model, harness and reference."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU, 8 cores, 16 GB, offline; LightGBM fits fit comfortably."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "4h tier with a fast loop; sustained work exists but the scope is closer to a medium-length research task."
+   },
+   "Lic": {
+    "v": 1,
+    "why": "Only M3 yearly is confirmed CC BY 4.0; forecastingdata.org says research use only, and no licence is found for tourism, M1, hospital, NN5 or traffic."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Domain buckets (tourism, M3, M1 hidden domains) give partial credit, but levers are narrow (features, lags, loss, ensemble)."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour S-rs-008 at 0.206 is a sibling seed, not a public task; no CROWDED match."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Monash archive is a real NeurIPS 2021 paper with public datasets; the seed's source and licence trail is partly checked."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is written by us, not an upstream implementation; tuning headroom is small per seed, so the reference is weak evidence of the ceiling."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden domains are not shipped and predict runs offline; grader code and hidden data still sit in the bundle, so sealing relies on the verifier staying sealed."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Many series across several domains and windows, scored by MASE code; hidden split can be large."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Any shipped dataset lacks a redistribution licence (as the current state of tourism, M1, hospital, NN5 and traffic), or the pooled linear model reaches within 0.2 of the tuned LightGBM reference.",
+   "pass_if": "Every shipped dataset has a redistribution licence that permits bundling, and the global model beats seasonal naive by a clear MASE margin with a stable domain hold-out result in under 30 min run time.",
+   "steps": [
+    "In a throwaway networked Linux container, download the Zenodo M3 yearly record (4656222) and the tourism monthly record; open each Zenodo Rights/Licence field and the forecastingdata.org terms, and record the licence for each dataset.",
+    "Parse the .tsf files with the TSForecasting loader and count series per dataset.",
+    "Train a seasonal-naive baseline and a pooled LightGBM global model on M3 yearly with a time-based hold-out; compute MASE for each and record run time.",
+    "Repeat with a simple pooled linear regression to estimate the gap a weak model would reach; if the gap to tuned LightGBM is under 0.2 relative to baseline-to-reference range, flag K8 risk.",
+    "Hold out one whole domain of M3 and check MASE stability across two seeds to test determinism."
+   ]
+  },
+  "summary": "The seed is a research task on the Monash archive with a self-written tuned LightGBM reference; the only confirmed licence is CC BY 4.0 for the M3 yearly record, while forecastingdata.org states research-use only and no licence was found for the other domains. It is killed under K6 for now, with a possible M3-only re-scope pending licence checks and a headroom test against a pooled linear model."
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 62
+}

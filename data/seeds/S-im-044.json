@@ -1,0 +1,252 @@
+{
+ "batch": 8,
+ "card": {
+  "band": "8h. Frontier gets mapping and punycode quickly, then stalls on Bidi, ContextJ and error-code exactness. The buckets are toUnicode, toAsciiN, toAsciiT, each by status code, so credit is dense. A weaker model stops at the ASCII and punycode paths. The public test file is recallable, which caps the band.",
+  "cheat": "Embedding the public test file is useless because the hidden domains are regenerated and differ. The oracle crate is not in the image, and the build is offline.",
+  "grading": "Hidden cases are about 6.4k IdnaTestV2 lines plus several thousand generated domains. The oracle is the idna crate, run in the verifier only, compared on output string and error-code set. Exact match; score is the fraction passed.",
+  "reference": "We write a Rust or Python implementation from the spec; the idna crate ensures it scores 1. Expected size about 1500 lines.",
+  "source": "https://www.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt @ Unicode/IDNA 18.0.0; Unicode-3.0 (reference idna crate MIT OR Apache-2.0)",
+  "task": "/app ships the UCD data files (IdnaMappingTable, DerivedJoiningType, bidi classes, normalization data) and a CLI plus library skeleton. The agent builds toUnicode/toAsciiN/toAsciiT with mapping, NFC, label validity, CheckHyphens, ContextJ/ContextO, the Bidi rule, punycode and DNS length checks. It reads one domain per line and prints result and error codes as JSON.",
+  "title": "UTS #46 IDNA processing library with punycode"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "protocol",
+ "final": 63,
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-038 0.26"
+  ],
+  [
+   "2026-10-21T00:12:52Z",
+   "v1",
+   "pass",
+   "score 83; dead links ['https://utcstage.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt', 'https://www.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt']"
+  ],
+  [
+   "2026-10-21T01:00:00Z",
+   "v2",
+   "killed:K8",
+   "UTS #46 is a real standard, but the seed's 18.0.0 test-file URL returns 404 and the directory listing stops at 16.0.0. Nobody has checked that the idna crate's Unicode tables match the data version. Grading problem: the Rust idna crate does not return the per-rule UTS #46 status codes (P1, V*, B*, C"
+  ]
+ ],
+ "id": "S-im-044",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.261,
+    "S-im-038"
+   ],
+   [
+    0.192,
+    "S-im-020"
+   ],
+   [
+    0.187,
+    "S-im-014"
+   ],
+   [
+    0.08,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.068,
+    "deterministic-tarball [original]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "rank": null,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "unicode.org/public/idna/18.0.0/idnatestv2.txt|unicode-idna-18-0-0-file-dated-2026-02-04",
+ "source_notes": "agent must build mapping/validity tables from UCD data files shipped in the task; 6.4k cases is decent; WPT copy is smaller because it drops removed cases; low crowding; link: also in WPT as url/resources/IdnaTestV2.json",
+ "source_url": "https://www.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt",
+ "source_version": "Unicode/IDNA 18.0.0, file dated 2026-02-04",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.unicode.org/Public/idna/",
+  "facts": [
+   {
+    "claim": "Unicode 18.0.0 was released (Sept 2026), and UTS #46 IDNA data is versioned with it",
+    "status": "confirmed",
+    "url": "https://www.ietf.org/archive/id/draft-faltstrom-unicode-18-04.html"
+   },
+   {
+    "claim": "IdnaTestV2.txt exists at https://www.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt (the seed source URL)",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt"
+   },
+   {
+    "claim": "The same 18.0.0 IdnaTestV2.txt path exists on the utcstage mirror",
+    "status": "not_found",
+    "url": "https://utcstage.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt"
+   },
+   {
+    "claim": "The unicode.org/Public/idna/ directory lists a 18.0.0 folder (listing shows versions up to 16.0.0 only, plus latest/ and ReadMe.txt; 17.0.0 also absent, so the listing may be stale)",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/idna/"
+   },
+   {
+    "claim": "Unicode License v3 (SPDX Unicode-3.0) permits redistribution and modification of data files and software with notice; the page itself does not print the SPDX id",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/license.txt"
+   },
+   {
+    "claim": "The idna Rust crate (servo/rust-url) is MIT OR Apache-2.0 for code and is a UTS #46 implementation; its README says IdnaTestV2.txt test data is under Unicode-3.0",
+    "status": "confirmed",
+    "url": "https://github.com/servo/rust-url/tree/main/idna"
+   },
+   {
+    "claim": "Latest idna crate version and its Cargo.toml license field on crates.io",
+    "status": "not_found",
+    "url": "https://crates.io/crates/idna"
+   },
+   {
+    "claim": "Python idna 3.20 (released 2026-09-17) is BSD-3-Clause and documents UTS #46 support, a widely installed public UTS #46 implementation",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/idna/"
+   },
+   {
+    "claim": "WPT carries a copy of the test data as url/resources/IdnaTestV2.json",
+    "status": "confirmed",
+    "url": "https://github.com/web-platform-tests/wpt/tree/master/url/resources"
+   },
+   {
+    "claim": "IdnaTestV2 has about 6.4k data rows (Elixir unicode_idna reports 6,389 rows per operation for Unicode 17.0; the 18.0 count is not verified)",
+    "status": "confirmed",
+    "url": "https://readme.hex.pm/unicode_idna/0.2.0"
+   },
+   {
+    "claim": "Go x/net/idna has a conformance test that reads IdnaTestV2.txt (public copy of the suite, another implementation)",
+    "status": "confirmed",
+    "url": "https://go.googlesource.com/text/+/master/internal/export/idna/conformancev2_test.go"
+   },
+   {
+    "claim": "The reference idna crate scores exactly 1 on the hidden set for Unicode 18.0 data (version pinned to 18.0 not verified)",
+    "status": "not_found",
+    "url": "https://github.com/servo/rust-url/tree/main/idna"
+   }
+  ],
+  "full_card": {
+   "band": "8h. Frontier likely reaches mapping, punycode and most labels; Bidi, ContextJ and exact error-code sets are the stall. Weaker model stops at ASCII and punycode. No dated public evidence found, so Band is capped at 3.",
+   "build_cost": "3-4 days: pin oracle version to the Unicode release, write generator and verifier harness, write ~1500-line reference, and check the crate matches the data file. Under the 5-day K12 cap.",
+   "deliverable": "toUnicode / toAsciiN / toAsciiT library and CLI: one domain per line in, JSON with result and error codes out. Mapping, NFC, label validity, CheckHyphens, ContextJ/ContextO, Bidi rule, punycode, DNS length.",
+   "gates_anticheat": "Oracle not in image (verifier only). Close: remove or hide system libidn2/idn2 CLI, ICU, Python idna and any Rust crates in the image; no test-file copies; hidden domains are generated, not the public rows. Editing tests/config is moot since grading is out of tree. Vendoring a crate is a cheat only if it passes the hidden set; closed by pinning and removing the crates from the image.",
+   "grading_surface": "About 6.4k IdnaTestV2 rows (x3 operations, per-status buckets) plus several thousand generated domains. Executable oracle (idna crate) run in verifier only; exact match on output string and error-code set.",
+   "local_fit": "CPU-only, offline, pure Rust or Python, small data. Fits 8 CPU / 16 GB easily.",
+   "lookup": "partial. Public UTS #46 implementations exist (idna crate, Python idna 3.20, Go x/net/idna, libidn2 likely in image). Algorithm is recallable in outline; the tables are shipped, so the recall risk is the logic, not the data.",
+   "provenance": "Unicode/IDNA UTS #46 test data (IdnaTestV2.txt) plus UTS #46 spec; Unicode 18.0.0 released Sept 2026. The exact 18.0.0 test-file URL in the seed returns 404; the newest confirmed folder is 16.0.0 on the listing.",
+   "reference": "idna crate (MIT OR Apache-2.0, UTS #46) as oracle; seed says it scores 1 but this is unverified for 18.0 data. Writing our own ~1500-line reference adds build cost. Python idna 3.20 (BSD-3) is a second public implementation.",
+   "ships": "UCD data files (IdnaMappingTable, DerivedJoiningType, bidi classes, normalization data), CLI and library skeleton. Shipped data is public Unicode data (Unicode-3.0).",
+   "similarity": "Nearest seed neighbour S-im-038 at 0.261 (another seed, not a public task); S-im-020 at 0.192; none crowded. Not a K1 near-duplicate of a public task. Check S-im-038 overlap in spike."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8h tier with dense buckets; no dated public evidence of agent results on this task, so capped at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "About 3-4 days to pin the oracle, write the harness and a ~1500-line reference."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Offline, CPU-only, small data; fits the sandbox."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several interacting modules (mapping, NFC, labels, Bidi, ContextJ, punycode, DNS) over 8h of real work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Unicode License v3 (Unicode-3.0) permits shipping data; idna crate is MIT OR Apache-2.0."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "toUnicode, toAsciiN, toAsciiT each by status code: many independent buckets with steady credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbour S-im-038 at 0.261 (above 0.15) and S-im-020 at 0.192; no public-task neighbour found, not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Unicode UTS #46 standard and official test data; idna crate and Python idna are real projects with README evidence."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete permissive implementation exists (idna crate), but its match to Unicode 18.0 data is unverified and needs pinning."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle is public (crates.io) and the IdnaTestV2 rows are public in WPT and other mirrors; sealing depends on keeping crates, libidn2 and copies out of the image."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Executable oracle (idna crate) with an unlimited domain generator; thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "No published data version matches the crate's Unicode tables, the crate disagrees with the file on more than about 1% of rows, or the image ships a usable UTS #46 implementation that cannot be removed.",
+   "pass_if": "Row count matches the published data version; pinned crate matches the file on at least 99.9% of rows; the oracle is deterministic on repeat runs; no public implementation in the base image.",
+   "steps": [
+    "In a throwaway networked Linux container, find the newest UTS #46 test data (IdnaTestV2.txt) that is actually published: check unicode.org/Public/idna/latest/ and utcstage mirrors. Record the Unicode version; the 18.0.0 path in the seed is not confirmed.",
+    "Count rows in that file: expect about 6.4k per operation (17.0 reported 6,389).",
+    "Pin an idna crate version whose Unicode tables match that data version. Run it over every row of IdnaTestV2.txt for toUnicode, toAsciiN and toAsciiT, and compare to the file's expected output and status columns. Record mismatch count.",
+    "Cross-check the same rows against Python idna 3.20 with uts46=True to see whether two public implementations agree; disagreements show where the oracle is fragile.",
+    "Generate 2000 random domains (mixed scripts, Bidi, ContextJ, long labels) and run the oracle twice to confirm determinism.",
+    "Check the image candidate: list whether python3-idna, libidn2 (idn2 CLI), ICU, or cargo crates are present in the base Debian image; these must be removed to close the wrap-a-system-tool cheat.",
+    "Check S-im-038 description to confirm it is not the same subject."
+   ]
+  },
+  "summary": "The task is a real and well-licensed UTS #46 implementation with a large executable oracle (idna crate, plus Python idna as a second public implementation), so Surf, Multi and Lic score high. The 18.0.0 test-file URL in the seed returns 404 and the crate's Unicode pin is unverified, so the spike must confirm which published data version matches the oracle before any build; Band is capped at 3 with no dated evidence."
+ },
+ "v1_links": {
+  "checked": 11,
+  "dead": [
+   "https://utcstage.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt",
+   "https://www.unicode.org/Public/idna/18.0.0/IdnaTestV2.txt"
+  ],
+  "ratio": 0.18181818181818182
+ },
+ "v1_score": 83,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-044",
+  "kill_code": "K8",
+  "note": "UTS #46 is a real standard, but the seed's 18.0.0 test-file URL returns 404 and the directory listing stops at 16.0.0. Nobody has checked that the idna crate's Unicode tables match the data version. Grading problem: the Rust idna crate does not return the per-rule UTS #46 status codes (P1, V*, B*, C*, A4_*). Generated domains therefore cannot be graded on the exact error-code set, so the dense hidden surface falls back to roughly 6.4k public rows. Scope problem: about 1500 lines, with the tables shipped as data, against a precise spec that frontier models know well (Python idna, Go x/net/idna). A strong agent likely averages above 0.85 in 4-8 h, which makes it a short ask.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 63
+}

@@ -1,0 +1,219 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "8 h. The decode and layout levers are independent and give steady credit; a weaker model finds only the threading lever. Road routing already exists as a DIMACS task, so the distinct work is PBF decode and graph build.",
+  "cheat": "Caching decoded output or hardcoding extracts: the hidden regions are not in the image and the verifier clears the cache dirs and runs each input freshly.",
+  "grading": "Hard gate: the graph checksum and the query distances must exactly equal the baseline on hidden extracts. Score from the wall-clock median speedup on hidden regions of different sizes and shapes, reward 2^u-1.",
+  "reference": "An optimised pipeline we write, about 2k changed lines. The measured speedup is to be determined; the baseline is the unoptimised version.",
+  "source": "https://download.geofabrik.de/ regional .osm.pbf extracts, ODbL 1.0 (attribution and share-alike noted); small country extracts only",
+  "task": "/app ships a correct but slow Rust or C++ pipeline that decodes a .osm.pbf file, filters the road network, builds a compact routing graph and answers a batch of point-to-point queries. The agent makes it faster with parallel block decode, zero-copy tables and a better graph layout.",
+  "title": "OSM PBF decoding and routing graph build speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "geo",
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-019 0.18"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 4, 'Nov': 3, 'Lic': 3, 'Fit': 4, 'Build': 2}"
+  ]
+ ],
+ "id": "S-op-020",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.177,
+    "S-op-019"
+   ],
+   [
+    0.114,
+    "vehicle_routing [AlgoTune]"
+   ],
+   [
+    0.11,
+    "S-op-018"
+   ],
+   [
+    0.101,
+    "S-im-016"
+   ],
+   [
+    0.091,
+    "git-graph [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "mutate",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "download.geofabrik.de|n-a-input-set-pairing-older-osmium-osrm-routing-graph-builde",
+ "source_notes": "q:\"License: ODbL 1.0\" (page footer, credits OpenStreetMap Contributors, processed by Geofabrik GmbH). ODbL share-alike applies to a Derived Database, not to program output in general -- legal note, INFERRED, not on page. Good source for PBF decode + graph build + CH levers.",
+ "source_url": "https://download.geofabrik.de/",
+ "source_version": "n/a (input set); pairing = older osmium/OSRM/routing graph builder",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://download.geofabrik.de/",
+  "facts": [
+   {
+    "claim": "Geofabrik hosts regional .osm.pbf extracts at download.geofabrik.de",
+    "status": "confirmed",
+    "url": "https://download.geofabrik.de/"
+   },
+   {
+    "claim": "Geofabrik footer states data licence ODbL 1.0, credits OpenStreetMap Contributors, processed by Geofabrik GmbH",
+    "status": "confirmed",
+    "url": "https://download.geofabrik.de/"
+   },
+   {
+    "claim": "Small country extracts (Luxembourg, Liechtenstein, Monaco) are listed on the top-level page",
+    "status": "not_found",
+    "url": "https://download.geofabrik.de/"
+   },
+   {
+    "claim": "Smallest extract on the top-level page is Antarctica at 31.6 MB; continent extracts range 31.6 MB to 32.9 GB",
+    "status": "confirmed",
+    "url": "https://download.geofabrik.de/"
+   },
+   {
+    "claim": "OSM data is licensed under ODbL; full legal code linked points to version 1.0",
+    "status": "confirmed",
+    "url": "https://www.openstreetmap.org/copyright"
+   },
+   {
+    "claim": "ODbL requires attribution and share-alike of altered or built-upon data (no Derived Database / Produced Work distinction on the page)",
+    "status": "confirmed",
+    "url": "https://www.openstreetmap.org/copyright"
+   },
+   {
+    "claim": "PBF format: BlobHeader/Blob container, zlib-compressed blocks, PrimitiveBlock with DenseNodes delta encoding, granularity and offsets",
+    "status": "confirmed",
+    "url": "https://wiki.openstreetmap.org/wiki/PBF_Format"
+   },
+   {
+    "claim": "PBF format spec is a free-to-implement standard with a version number",
+    "status": "not_found",
+    "url": "https://wiki.openstreetmap.org/wiki/PBF_Format"
+   },
+   {
+    "claim": "osmpbf Rust crate provides parallel decoding (ElementReader::par_map_reduce) and is on crates.io/docs.rs",
+    "status": "confirmed",
+    "url": "https://docs.rs/crate/osmpbf/latest"
+   },
+   {
+    "claim": "pyosmium is BSD-2-Clause; libosmium is BSL; osmium-tool is GPL-3.0-or-later",
+    "status": "confirmed",
+    "url": "https://osmcode.org/pyosmium/"
+   },
+   {
+    "claim": "The DIMACS road routing task is a public benchmark task (seed band text)",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "A reference pipeline exists with a measured speedup over the baseline",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Decode and layout levers are independent. Weaker model is expected to find only threading. No dated public evidence of frontier results on this scope.",
+   "build_cost": "About 3-5 days: write the ~2k-line reference, the baseline, the canonical checksum definition, and a timing harness with several hidden extracts.",
+   "deliverable": "Faster pipeline (parallel block decode, zero-copy tables, better graph layout) with identical graph checksum and query distances on hidden regions.",
+   "gates_anticheat": "Hard gate: exact checksum and distance equality. Verifier clears cache dirs, runs each input fresh, hidden inputs absent from image, no network at run time.",
+   "grading_surface": "Hidden regions of varied size and shape (small country extracts), each with a graph checksum and a query batch; wall-clock median speedup scored as 2^u-1. Roughly a dozen timed cases, not thousands.",
+   "local_fit": "CPU only, 8 cores, 16 GB, gVisor; country-size extracts fit comfortably. Wall-clock timing noise under gVisor is a risk.",
+   "lookup": "partial: osmpbf (Rust, parallel decode) and libosmium/pyosmium (C++/Python) cover the PBF decode lever publicly; graph build, CH-style layout and the query batch are custom.",
+   "provenance": "Geofabrik regional OSM extracts (ODbL 1.0), OSM PBF format spec on the OSM wiki; no upstream code repo (source_facts empty, smoke_build skipped: no git source).",
+   "reference": "None exists yet. We must write a ~2k-line optimised pipeline; its speedup S is unmeasured.",
+   "ships": "/app: slow correct Rust or C++ baseline decode/filter/graph/query pipeline and a visible small extract; hidden extracts held by the verifier.",
+   "similarity": "Nearest l0 neighbour S-op-019 at 0.177 (above 0.15 threshold); vehicle_routing 0.114; not a CROWDED subject. Seed says a DIMACS road-routing task already exists (not verified)."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence, so capped at 3; decode lever is well known."
+   },
+   "Build": {
+    "v": 2,
+    "why": "About 3-5 days for the reference, canonical checksum, baseline and harness."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, fits 8 cores and 16 GB; timing noise under gVisor is a concern."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier with several independent levers (decode, layout, queries)."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "ODbL data needs attribution and share-alike notice when shipped; code licence not yet chosen."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Decode, filter, layout and query buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour S-op-019 at 0.177 is above 0.15; routing neighbour at 0.114."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real OSM extracts and published PBF format; no upstream code repo, so the pipeline is ours."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference exists and its speedup is undetermined; we must build and measure it."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Hidden extracts and reference stay out of the image; public PBF readers are recallable, which is scored under Band."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "About a dozen timed hidden regions with checksum and distances; executable oracle but not thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Decode speedup is under 1.5x on 8 cores (I/O or parse bound), or the checksum or distances vary between runs.",
+   "pass_if": "Parallel decode gives at least 2x median speedup on 8 cores, and canonical checksum plus query distances are identical across all runs and variants.",
+   "steps": [
+    "In a throwaway container with network, download one small Geofabrik country extract (Luxembourg or Liechtenstein) and record its size and sha256.",
+    "Write a minimal Rust baseline with the osmpbf crate: single-thread decode of road ways and nodes, then a simple adjacency graph.",
+    "Add a parallel variant with ElementReader::par_map_reduce and measure median wall-clock over 5 runs on 8 cores.",
+    "Define a layout-independent canonical graph checksum (sorted edge list with integer costs) and confirm it matches across baseline and parallel variants.",
+    "Run a 20-query point-to-point batch and check that integer distances are identical across runs.",
+    "Repeat the run in a second process to confirm determinism of checksum and distances."
+   ]
+  },
+  "summary": "The seed is real: Geofabrik extracts and the OSM PBF spec are public and the data is ODbL 1.0, but no upstream code, reference or measured speedup exists, so the pipeline and its reference must be built from scratch. The gate as written conflicts with the layout lever: an exact graph checksum would reject a better layout unless it is defined over a canonical, layout-independent form, and that must be fixed before the spike."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 66
+}

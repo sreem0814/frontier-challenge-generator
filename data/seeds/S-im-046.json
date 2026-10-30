@@ -1,0 +1,228 @@
+{
+ "batch": 8,
+ "card": {
+  "band": "4h. The spec is deep but compact, so a strong agent can finish it in some trials. Typical agents reach about 95% and stall on N0 bracket pairing and isolate edge cases. A weaker model fails on isolates. The surface is large with a fine score curve, but the approach is well known, so the band is at most 3.",
+  "cheat": "Hidden strings are regenerated with fresh seeds and a random sample is shipped as the visible set. No oracle in the image.",
+  "grading": "The hidden set holds about 770k BidiTest cases and 92k BidiCharacterTest lines plus generated random strings. Differential against the unicode-bidi or ICU4X oracle in the verifier. Exact level array and visual order match; score is the fraction passed per bucket.",
+  "reference": "We write a Rust implementation (about 1200 lines), verified against the oracle on every case.",
+  "source": "https://www.unicode.org/Public/18.0.0/ucd/BidiTest.txt and BidiCharacterTest.txt @ UCD 18.0.0; Unicode-3.0",
+  "task": "/app ships UCD property files (Bidi_Class, Bidi_Mirroring, Bidi_Paired_Bracket) and a library skeleton. The agent implements the full UAX #9 pipeline: paragraph level, explicit embeddings and isolates, weak and neutral resolution, N0 bracket pairs, implicit levels, L1 whitespace reset and L2 reordering. It exposes a CLI for class-sequence and character-string input.",
+  "title": "UAX #9 bidirectional algorithm with isolates and bracket pairs"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "font-text",
+ "final": 72,
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-044 0.37"
+  ],
+  [
+   "2026-10-21T00:13:37Z",
+   "v1",
+   "pass",
+   "score 80; dead links []"
+  ],
+  [
+   "2026-10-21T01:00:00Z",
+   "v2",
+   "killed:K8",
+   "Source files and UAX #9 rev 52 are confirmed, and the unicode-bidi crate (MIT/Apache-2.0) is a strong oracle. The seed itself says typical agents reach about 95% and only stall on N0 and isolate edge cases. Fraction-of-cases scoring then puts the frontier average well above 0.85 of the reference. Th"
+  ]
+ ],
+ "id": "S-im-046",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.367,
+    "S-im-044"
+   ],
+   [
+    0.353,
+    "S-im-045"
+   ],
+   [
+    0.172,
+    "S-im-037"
+   ],
+   [
+    0.086,
+    "pest-character-class-coalescing [DeepSWE]"
+   ],
+   [
+    0.066,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "rank": null,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "unicode.org/public/18.0.0/ucd/biditest.txt|ucd-18-0-0-2026",
+ "source_notes": "enormous but highly regular surface; UAX #9 algorithm (isolates, brackets, N0, L1-L2 reordering) is a deep spec with unambiguous oracle; low crowding; agents often get 95% fast and stall on bracket pairs",
+ "source_url": "https://www.unicode.org/Public/18.0.0/ucd/BidiTest.txt",
+ "source_version": "UCD 18.0.0 (2026)",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.unicode.org/reports/tr9/",
+  "facts": [
+   {
+    "claim": "BidiTest-18.0.0.txt exists at the UCD 18.0.0 path and is the UBA conformance test data (header: 'conformance test for UBA implementations')",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/BidiTest.txt"
+   },
+   {
+    "claim": "BidiCharacterTest-18.0.0.txt exists at the UCD 18.0.0 path with Unicode copyright and terms-of-use header",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/BidiCharacterTest.txt"
+   },
+   {
+    "claim": "UAX #9 is revision 52 for Unicode 18.0.0, dated 2026-09-01",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/reports/tr9/"
+   },
+   {
+    "claim": "The Unicode data files are licensed under Unicode-3.0 (seed licence claim)",
+    "status": "not_found",
+    "url": "https://www.unicode.org/terms_of_use.html"
+   },
+   {
+    "claim": "The full BidiTest file holds about 770k cases (seed count)",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/BidiTest.txt"
+   },
+   {
+    "claim": "A complete permissive Rust UAX #9 implementation exists (unicode-bidi crate, MIT or Apache-2.0)",
+    "status": "confirmed",
+    "url": "https://github.com/servo/unicode-bidi"
+   },
+   {
+    "claim": "Smoke build of the reference source",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "ICU4X oracle available for differential grading",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "3 at most. Frontier agents know UAX #9 well; seed claims ~95% typical with stalls on N0 and isolates, but no dated public evidence. Expected full-scope finish is possible for a strong agent in an 8h tier.",
+   "build_cost": "About 2-4 days: reference of ~1200 lines plus oracle wiring, sample generation, and per-bucket scorer.",
+   "deliverable": "Rust library implementing UAX #9 (paragraph level, explicit embeddings and isolates, W/N rules, N0 brackets, I rules, L1, L2) plus CLI for class-sequence and character-string input.",
+   "gates_anticheat": "Verifier-only oracle and hidden cases; hidden set regenerated with fresh random strings. Risk: the BidiTest and BidiCharacterTest files are public, so any copy inside the image (e.g. a vendored crate with tests/ data) would let the agent read expected outputs. Must confirm none is shipped. Block editing of tests and build config.",
+   "grading_surface": "Hidden BidiTest cases (seed claims ~770k, not counted), BidiCharacterTest lines (seed claims ~92k, not counted), plus fresh random strings; differential against an oracle in the verifier; exact level array and visual order; per-bucket fraction.",
+   "local_fit": "CPU only, Rust toolchain needed offline with vendored crates; fits 8 CPU and 16 GB; no kernel features needed.",
+   "lookup": "partial: complete permissive implementation is public (unicode-bidi crate, MIT/Apache-2.0; Unicode BidiReference code also public) but not in the image and not verbatim recallable; the algorithm itself is well known.",
+   "provenance": "Unicode UCD 18.0.0 BidiTest and BidiCharacterTest files, UAX #9 revision 52 (2026-09-01); real published standard with conformance data.",
+   "reference": "Not yet written. Planned ~1200-line Rust implementation verified against the oracle on every case. Public permissive Rust implementation exists (unicode-bidi crate), so reference strength depends on the verifier oracle being the same class of code.",
+   "ships": "UCD property files (Bidi_Class, Bidi_Mirroring, Bidi_Paired_Bracket) and a Rust library skeleton with CLI stub; no BidiTest or BidiCharacterTest content assumed in image.",
+   "similarity": "l0 neighbours S-im-044 (0.367) and S-im-045 (0.353) are internal seeds whose content was not inspected; S-im-037 0.172; pest-character-class-coalescing 0.086 and python-pytest-cases 0.066 are below 0.15. No CROWDED match and no public task above 0.15. Check for overlap with S-im-044 and S-im-045 before building."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed band 4 exceeds the cap without dated public evidence; well-known algorithm; frontier may average near the reference, so the window is narrow."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Roughly 2-4 days to write a 1200-line reference, oracle wiring and scorer."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only Rust, no network at run time; needs vendored crates for the verifier oracle."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-stage pipeline plus CLI and exact-output conformance; 8h tier fits better than 4h for finishing all stages."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Unicode data terms and unicode-bidi MIT/Apache-2.0 permit shipping; exact Unicode-3.0 SPDX text not verified."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Many buckets: BidiTest by class sequence and level, BidiCharacterTest, random strings, L1 and L2 stages, CLI modes; steady credit per stage."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task above 0.15; two internal seed neighbours at 0.35-0.37 unverified for overlap."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Published UAX #9 rev 52 and UCD 18.0.0 conformance files confirmed at unicode.org; a real standard with a paper trail."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference is planned as a complete ~1200-line Rust implementation verified against an oracle on every case; a permissive public port (unicode-bidi) exists to check against."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden files are public UCD data; sealing depends on keeping any copy out of the image (vendored crate tests) and on regenerated random strings."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Hidden set is thousands of conformance cases plus an unlimited random generator with an oracle, per seed claim; file presence confirmed, counts not verified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Conformance files or their expected outputs are present in a package the image would ship (K11), or the partial baseline already scores above roughly 0.9 on every bucket (K8 risk).",
+   "pass_if": "Oracle reproduces the conformance files; the partial baseline shows a spread of per-bucket scores (isolates and N0 fail while basic cases pass); outputs are deterministic; no copy of the hidden files is found in a vendored crate.",
+   "steps": [
+    "Download BidiTest-18.0.0.txt and BidiCharacterTest-18.0.0.txt from unicode.org into a scratch directory; count data lines per section and confirm the seed's case counts (770k, 92k).",
+    "Fetch the unicode-bidi crate source (crates.io or github.com/servo/unicode-bidi) into a separate scratch directory; check whether it ships tests/ data with BidiTest or BidiCharacterTest. If it does, record a seal failure for any image that vendors the crate.",
+    "Build the unicode-bidi crate as an oracle in the throwaway container; run it over a 2000-case sample of BidiTest and 500 BidiCharacterTest lines and confirm it passes its own files (oracle sanity).",
+    "Write a deliberately partial baseline (explicit embeddings, weak rules, no N0 brackets, no isolates) and score it per bucket to see the partial-credit curve and where it falls off.",
+    "Run the oracle twice over the same random-string seed to confirm determinism of level and visual-order output.",
+    "Confirm the Unicode-3.0 licence text on the terms page and record the SPDX mapping."
+   ]
+  },
+  "summary": "UAX #9 with BidiTest and BidiCharacterTest is a real, sealable-but-tight implementation task: the UCD 18.0.0 conformance files and UAX #9 rev 52 are confirmed, and a permissive Rust port (unicode-bidi) exists. Main risks are that the public conformance files may be copied into the image and that a frontier agent may already reach about 95%, so the band should be 3 with an 8h tier, not 4h."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 80,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-046",
+  "kill_code": "K8",
+  "note": "Source files and UAX #9 rev 52 are confirmed, and the unicode-bidi crate (MIT/Apache-2.0) is a strong oracle. The seed itself says typical agents reach about 95% and only stall on N0 and isolate edge cases. Fraction-of-cases scoring then puts the frontier average well above 0.85 of the reference. The algorithm is about 1200 lines and well known, and the seed's own 4 h estimate confirms a short horizon. It also overlaps the other Unicode-algorithm seeds in this batch.",
+  "scores": {
+   "Band": 1,
+   "Build": 4,
+   "Fit": 5,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 72
+}

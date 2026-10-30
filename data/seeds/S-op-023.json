@@ -1,0 +1,281 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "8 h. There are several levers (a new index class layout, overlay rewrites, allocation). A frontier agent gets the index fairly quickly and the overlay with difficulty. The weaker model breaks topology robustness. Note LGPL licence needs a reviewer decision.",
+  "cheat": "Trivial caching of results is blocked because inputs are generated fresh at grading time. The gate on exact geometry output blocks approximations.",
+  "grading": "The correctness gate is the GEOS test suite plus differential WKT comparison of overlay/index results on generated geometries against the sealed 3.8 build. Wall-clock medians on hidden datasets. Reward 2^u - 1 against the 3.9 speedup.",
+  "reference": "GEOS 3.9.0: published gains of 86% on STRtree envelope query, 85% on nearest neighbour, 36% on unary union.",
+  "source": "https://github.com/libgeos/geos @ 3.8.0 base, 3.9.0 target (blog: crunchydata.com/blog/performance-improvements-in-geos), LGPL-2.1 (flag for reviewer)",
+  "task": "/app ships a history-less snapshot of GEOS 3.8.0 with its CMake build and benchmark drivers (STRtree query, nearest neighbour, unary union, overlay). Agent speeds up the spatial index and overlay paths while results stay identical.",
+  "title": "GEOS 3.8 to 3.9 overlay and STRtree speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "geo",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-021 0.24"
+  ],
+  [
+   "2026-10-21T01:04:35Z",
+   "v1",
+   "pass",
+   "score 76; dead links []"
+  ],
+  [
+   "2026-10-21T01:06:07Z",
+   "v2",
+   "pass",
+   "final 75"
+  ],
+  [
+   "2026-10-21T01:40:41Z",
+   "spike",
+   "killed:K5",
+   "Raw WKT differs between 3.8 and 3.9 on about 2/3 of polygon overlay results (ring start/order); equal only after GEOSNormalize, so the gate must compare normalized geometry.; 103 of 3000 nearest-neighbour results differ between 3.8 and 3.9; cause not analyzed.; Binary overlay shows no 3.9 speedup; g"
+  ]
+ ],
+ "id": "S-op-023",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.245,
+    "S-op-021"
+   ],
+   [
+    0.232,
+    "S-op-022"
+   ],
+   [
+    0.183,
+    "S-op-019"
+   ],
+   [
+    0.084,
+    "pandas-dev__pandas-c34da50 [GSO]"
+   ],
+   [
+    0.073,
+    "tty-clock [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 2,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "crunchydata.com/blog/performance-improvements-in-geos|geos-3-8-0-release-tarball-or-3-9-0-for-the-main-step-geos-3",
+ "source_notes": "Levers: rewritten overlay (intersection/union/difference) in 3.9, STRtree reimplemented with concrete C++ classes (less abstraction), profiling-driven C++ hotspot fixes (3.8), smaller objects/better locality/stack allocation (post-3.9). Author says buffer and prepared code unchanged, gains come from underlying structures. Absolute timings are unitless; 2021-era blog, dataset not given here. NEWS.md (libgeos/geos main) also lists later perf items with no numbers: 3.10 TemplateSTRtree, 3.12 prepared polygon intersection GH-690, distance GH-693, coverage union GH-681, 3.13 distance/convex hull, 3.14 RelateNG prepared A/L GH-1201, 3.15 overlay GH-1353. Only one numeric claim on NEWS: 3.2.0 buffer q:\"20x for a case in testsuite\". single-source for the table. Overlap: none known",
+ "source_url": "https://crunchydata.com/blog/performance-improvements-in-geos",
+ "source_version": "GEOS 3.8.0 release tarball (or 3.9.0 for the main step) -> GEOS 3.9.0 (or later main/3.10)",
+ "spike": {
+  "blockers": [
+   "Raw WKT differs between 3.8 and 3.9 on about 2/3 of polygon overlay results (ring start/order); equal only after GEOSNormalize, so the gate must compare normalized geometry.",
+   "103 of 3000 nearest-neighbour results differ between 3.8 and 3.9; cause not analyzed.",
+   "Binary overlay shows no 3.9 speedup; gains are STRtree and unary union.",
+   "Unit tests and offline grading run not done."
+  ],
+  "build_minutes": 12,
+  "cases_sampled": 3100,
+  "commands_log": "git clone --branch 3.8.0/3.9.0 libgeos/geos; cmake -DCMAKE_BUILD_TYPE=Release; make geos_c; gcc d.c driver on both libs; GEOSNormalize+EqualsExact compare (c.c)",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "3.9 vs 3.8: STRtree query ~10-25x, NN ~15-50x (noisy), unary union ~2x, binary overlay ~1.0x (no gain in 3.9 C API). Timings noisy on first run.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "Both builds work and the oracle runs. 3.9 is at least 1.5x faster on three operations, and its output is deterministic across three runs. Polygon geometry is identical after normalization but raw WKT differs, so the gate needs normalization. LGPL licence needs a reviewer decision. Details in /work/SPIKE.md.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": false,
+  "reference_built": true,
+  "reference_cases_passed": 3100,
+  "reference_lines": 3000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.crunchydata.com/blog/performance-improvements-in-geos",
+  "facts": [
+   {
+    "claim": "GEOS 3.9.0 release tag exists in libgeos/geos (commit c8e3fe8)",
+    "status": "confirmed",
+    "url": "https://github.com/libgeos/geos/releases/tag/3.9.0"
+   },
+   {
+    "claim": "GEOS 3.9.0 dated 2020-12-09 and 3.8.0 dated 2019-10-10 in NEWS.md",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/libgeos/geos/main/NEWS.md"
+   },
+   {
+    "claim": "3.9.0 made OverlayNG (from JTS) the default overlay engine",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/libgeos/geos/main/NEWS.md"
+   },
+   {
+    "claim": "3.9.0 NEWS says overlay output (vertex order, noding) may differ from 3.8; so 'results stay identical' against 3.8 is plausible but unproven",
+    "status": "not_found",
+    "url": "https://raw.githubusercontent.com/libgeos/geos/main/NEWS.md"
+   },
+   {
+    "claim": "Licence is LGPL-2.1 (no 'or later' notice found for the library)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/libgeos/geos/main/COPYING"
+   },
+   {
+    "claim": "STRtree envelope query gain 3.8 to 3.9 is 86% (10k points vs 10k circles)",
+    "status": "confirmed",
+    "url": "https://www.crunchydata.com/blog/performance-improvements-in-geos"
+   },
+   {
+    "claim": "STRtree nearest-neighbour gain 3.8 to 3.9 is 85%",
+    "status": "confirmed",
+    "url": "https://www.crunchydata.com/blog/performance-improvements-in-geos"
+   },
+   {
+    "claim": "Unary union gain 3.8 to 3.9 is 36% (1384 Vancouver Island watersheds)",
+    "status": "confirmed",
+    "url": "https://www.crunchydata.com/blog/performance-improvements-in-geos"
+   },
+   {
+    "claim": "Blog gives an overlay figure of 36.9% for 3.9 vs 3.8, on a watershed intersection test, with some cases slower in 3.9",
+    "status": "confirmed",
+    "url": "https://www.crunchydata.com/blog/performance-improvements-in-geos"
+   },
+   {
+    "claim": "Blog numbers are a single post, one machine, a single dataset; output equivalence not stated",
+    "status": "confirmed",
+    "url": "https://www.crunchydata.com/blog/performance-improvements-in-geos"
+   },
+   {
+    "claim": "3.10 TemplateSTRtree and SimpleSTRtree lineage in later releases",
+    "status": "not_found",
+    "url": "https://lists.osgeo.org/pipermail/geos-devel/2020-November/009875.html"
+   },
+   {
+    "claim": "Seed says buffer and prepared code unchanged 3.8 to 3.9",
+    "status": "not_found",
+    "url": "https://www.crunchydata.com/blog/performance-improvements-in-geos"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; several levers. Frontier agent likely gets STRtree gains early; overlay (OverlayNG-style port) is the hard part; weaker model fails topology robustness",
+   "build_cost": "about 3 to 4 days: sealed 3.8 and 3.9 builds, differential harness, hidden dataset generator",
+   "deliverable": "Speedups in STRtree, union and overlay code paths with identical WKT output on generated geometries",
+   "gates_anticheat": "Fresh generated inputs block result caching; exact-WKT gate blocks approximations; tests and build config are sealed",
+   "grading_surface": "GEOS unit tests plus differential WKT on generated geometries (effectively unbounded generator) plus wall-clock medians on hidden datasets",
+   "local_fit": "CMake C++ on CPU, 8 cores, 16 GB; no network at run time; fits; timing noise under gVisor to be measured",
+   "lookup": "partial: OverlayNG is public in JTS and GEOS main; 3.9.0 is a public release tag; a model may recall the design in outline",
+   "provenance": "libgeos/geos GitHub; 3.8.0 (2019-10-10) base, 3.9.0 (2020-12-09) reference; LGPL-2.1; Crunchy Data 2021 blog table is the only performance source",
+   "reference": "GEOS 3.9.0 upstream release (public git history, OverlayNG from JTS); blog gains 86/85/36 percent on one synthetic and one watershed dataset, no overlay headline number",
+   "ships": "History-less snapshot of GEOS 3.8.0 with CMake build and benchmark drivers (STRtree envelope, NN, unary union, overlay); sealed 3.8 build for differential WKT",
+   "similarity": "l0 neighbours max 0.245 (S-op-021), none is a public benchmark task; GEOS not in CROWDED list"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this task; blog is 2021 and single-source"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Several days of work for both builds, the harness and dataset generator"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU C++ with CMake fits the sandbox; timing noise under gVisor must be checked"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-lever work fits an 8 h tier"
+   },
+   "Lic": {
+    "v": 3,
+    "why": "LGPL-2.1 allows shipping with notices but no 'or later'; reviewer decision needed"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Index, union, nearest neighbour, overlay buckets give steady partial credit"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public benchmark neighbour above 0.15 and GEOS is not crowded"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public GEOS repo, 3.8.0 and 3.9.0 both in NEWS, 3.9.0 tag confirmed"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream release is a complete permissive-ish reference, but speedups measured on one blog dataset only"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is a public release and OverlayNG is in public JTS; agent is offline so recall is a difficulty question, not a seal breach"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generator-driven differential WKT plus GEOS unit suite; not counted exactly"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "3.9 diverges from 3.8 WKT on a broad class of inputs (then K5 or K4: the reference cannot pass the identical-output gate) OR the speedup is under 1.2x on overlay and union.",
+   "pass_if": "3.9 WKT matches 3.8 on 99.9% or more of cases (or a pre-agreed tolerance) AND 3.9 is at least 1.5x faster than 3.8 on at least two operations.",
+   "steps": [
+    "In a throwaway networked Linux container, clone libgeos/geos at tags 3.8.0 and 3.9.0 and build both with CMake (Release, same flags).",
+    "Write a driver that generates random point/circle sets (STRtree envelope and NN) and watershed-like polygon sets (union, intersection, difference) with fixed seeds.",
+    "Run both builds on the same inputs; diff WKT outputs over at least 10k cases including near-degenerate polygons.",
+    "Measure medians of 5 runs per operation for 3.8 and 3.9; record the speedup per operation.",
+    "Run the GEOS unit tests on 3.9 and count the test cases.",
+    "Repeat the timing run 3 times to check determinism."
+   ]
+  },
+  "summary": "GEOS 3.8.0 to 3.9.0 is a real, public, pinned pair with a confirmed tag and changelog, and the blog's 86/85/36 percent figures are confirmed as single-source numbers from one dataset, with no overlay headline figure. The main open risk is that the 3.9 reference replaced the overlay engine with OverlayNG and may not reproduce 3.8 WKT, so the spike must first test whether the reference passes the identical-output gate; the LGPL-2.1 licence needs a reviewer decision."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 76,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-023",
+  "kill_code": "",
+  "note": "Real release pair: 3.8.0 to 3.9.0 is confirmed, and the 86% / 85% / 36% blog gains are confirmed but come from one post. Several separate levers: STRtree query, nearest neighbour, unary union, overlay. Main flaw: OverlayNG changes vertex order and noding, so a gate requiring identical WKT against 3.8 would likely fail the reference itself. The gate must be normalized or topological equality, computed by a sealed GEOS. STRtree results must be compared as sets. LGPL-2.1 allows shipping with source (Lic 4). Speedups must be re-measured on the hidden datasets under gVisor, since the blog numbers are for one machine. Porting OverlayNG without JTS offline is large, so the expected trial path is STRtree gains plus partial union and overlay gains.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 75
+}

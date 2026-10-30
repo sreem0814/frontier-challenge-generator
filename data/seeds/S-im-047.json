@@ -1,0 +1,188 @@
+{
+ "batch": 8,
+ "card": {
+  "band": "2h. Table-driven and known, so the base cases pass fast. The streaming split and quick-check on adversarial inputs are where it varies. The band is at most 2-3 and this is the easiest idea in the batch.",
+  "cheat": "Using the language's own normalization library is blocked: the bundle ships a runtime with unicodedata and ICU removed or disabled, and the tests check a data-version mismatch.",
+  "grading": "Hidden set: 20k NormalizationTest lines plus generated random and adversarial strings (long combining runs, chunk splits). The oracle is ICU or Python unicodedata in the verifier. Exact output match, and quick-check agreement; score is the fraction passed per form.",
+  "reference": "We write a Python or Rust implementation (about 700 lines) that matches the oracle on all cases.",
+  "source": "https://www.unicode.org/Public/UCD/latest/ucd/NormalizationTest.txt @ Unicode 18.0.0; Unicode-3.0",
+  "task": "/app ships raw UCD files (UnicodeData, CompositionExclusions, DerivedNormalizationProps) and a skeleton. The agent builds NFC, NFD, NFKC and NFKD with table generation, Hangul algorithmic handling and canonical reordering. It adds is-normalized quick-check and a streaming chunked API that must give the same result for any chunk split. The CLI takes a mode and a string.",
+  "title": "Unicode normalization library with streaming and quick-check"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "font-text",
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-046 0.37"
+  ],
+  [
+   "2026-10-21T00:57:30Z",
+   "v1",
+   "killed:K8",
+   "Too easy for the 2h tier: the algorithm is fully specified in UAX #15, public full implementations exist (CPython unicodedata, ICU, Go x/text, the Rust unicode-normalization crate under Apache-2.0 OR MIT), and a frontier agent is likely to pass most of the base cases quickly. The seed itself calls i"
+  ]
+ ],
+ "id": "S-im-047",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.371,
+    "S-im-046"
+   ],
+   [
+    0.364,
+    "S-im-045"
+   ],
+   [
+    0.348,
+    "S-im-044"
+   ],
+   [
+    0.092,
+    "regex-log [archive]"
+   ],
+   [
+    0.082,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "unicode.org/public/ucd/latest/ucd/normalizationtest.txt|unicode-18-0-0-readme-txt",
+ "source_notes": "table-driven; memorized; good as one bucket of a larger i18n task",
+ "source_url": "https://www.unicode.org/Public/UCD/latest/ucd/NormalizationTest.txt",
+ "source_version": "Unicode 18.0.0 (ReadMe.txt)",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.unicode.org/reports/tr15/",
+  "facts": [
+   {
+    "claim": "NormalizationTest.txt exists at the Unicode 'latest' UCD path and its header states Unicode 18.0.0 (header date 2026-06-24)",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/UCD/latest/ucd/NormalizationTest.txt"
+   },
+   {
+    "claim": "NormalizationTest.txt has @Part0 'Specific cases' and @Part1 'Character by character test'; total data-row count is in the several-thousands-or-more range but not exactly counted (fetch truncated)",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/UCD/latest/ucd/NormalizationTest.txt"
+   },
+   {
+    "claim": "UAX #15 Unicode Normalization Forms is at revision 58 for Unicode 18.0.0 (dated 2026-08-12) and covers NFC/NFD/NFKC/NFKD, canonical ordering, Hangul algorithmic handling and quick-check (Section 9, Table 9)",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/reports/tr15/"
+   },
+   {
+    "claim": "Unicode 18.0.0 is final/released (planned 2026-09-15 or 16 per alpha/beta pages; release page still shown as draft in results)",
+    "status": "not_found",
+    "url": "https://unicode.org/versions/beta-18.0.0.html"
+   },
+   {
+    "claim": "Licence of the UCD data: seed says Unicode-3.0; UAX #15 page gives only 'Unicode Terms of Use' and no literal 'Unicode-3.0' string",
+    "status": "not_found",
+    "url": "https://www.unicode.org/reports/tr15/"
+   },
+   {
+    "claim": "unicode-normalization Rust crate (a complete public normalization implementation) is dual-licensed Apache-2.0 OR MIT",
+    "status": "confirmed",
+    "url": "https://licenses.dev/cargo/unicode-normalization/0.1.23"
+   }
+  ],
+  "full_card": {
+   "band": "2h tier; frontier agent likely finishes base forms in well under 2h; streaming and quick-check edge cases are the only variance",
+   "build_cost": "about 1-2 days for the reference plus skeleton and test harness",
+   "deliverable": "Python or Rust NFC/NFD/NFKC/NFKD library with is-normalized quick-check, streaming chunked API, CLI taking mode and string",
+   "gates_anticheat": "Blocks unicodedata/ICU in the runtime; data-version check in tests; agent can still generate tables from shipped UCD files, which is the intended path",
+   "grading_surface": "NormalizationTest lines (several thousand+) plus generated random and adversarial strings; exact-match per form; oracle = ICU or Python unicodedata",
+   "local_fit": "CPU-only, pure Python/Rust, small tables; fits sandbox easily",
+   "lookup": "direct: UAX15 specifies every step; CPython unicodedata, ICU, Go x/text and the Rust unicode-normalization crate are all public and well known",
+   "provenance": "UAX #15 rev 58 and UCD 18.0.0 NormalizationTest.txt at unicode.org; no git source (smoke_build skipped)",
+   "reference": "Team-written ~700-line Python or Rust implementation; no measured upstream, but a public full implementation exists (unicode-normalization crate, Apache-2.0 OR MIT)",
+   "ships": "Raw UCD files (UnicodeData, CompositionExclusions, DerivedNormalizationProps) plus skeleton; oracle and hidden cases sealed in verifier",
+   "similarity": "l0 neighbours S-im-044/045/046 at 0.348-0.371 are batch siblings, not public tasks; regex-log 0.092 and pytest-cases 0.082 are below 0.15; no CROWDED overlap"
+  },
+  "kill_code": "K8",
+  "kill_reason": "Too easy for the 2h tier: the algorithm is fully specified in UAX #15, public full implementations exist (CPython unicodedata, ICU, Go x/text, the Rust unicode-normalization crate under Apache-2.0 OR MIT), and a frontier agent is likely to pass most of the base cases quickly. The seed itself calls it the easiest idea in the batch, and it works best as one bucket of a larger i18n task rather than as a standalone task.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Algorithm is fully specified and famous; a frontier agent is likely to pass most or all cases at 2h, so it sits at the easy end"
+   },
+   "Build": {
+    "v": 4,
+    "why": "Reference of about 700 lines plus harness is 1-2 days of work"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure CPU Python or Rust with small tables; no network needed"
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Table-driven and short-horizon; 2h tier only, not a sustained multi-day engineering scope"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Unicode-3.0 / Unicode Terms of Use permit shipping data with notice; literal SPDX string not confirmed on the source page"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Four forms plus quick-check and streaming give several buckets, but they share one core algorithm"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task neighbour above 0.15; batch siblings at 0.35-0.37 are not public tasks"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Official UCD file and UAX #15 at Unicode 18.0.0; real paper trail"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference is team-written and matches an oracle; public full implementations exist, so strength is high but not measured upstream"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and hidden cases are sealed; the algorithm is recallable, which is scored under Band not Seal"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of fixed rows plus unlimited generated strings against an executable oracle; sized well"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The minimal NFD/NFC passes the NormalizationTest rows and most generated checks within about 60 minutes, so the scope is too easy for the 2h tier.",
+   "pass_if": "Only if the minimal NFD/NFC plus streaming misses meaningful cases after 60 minutes, showing a real gap for agents in the adversarial and streaming cases.",
+   "steps": [
+    "In a throwaway networked container, download the Unicode 18.0.0 UCD files and NormalizationTest.txt into an empty directory.",
+    "Write a minimal NFD/NFC from UnicodeData.txt and CompositionExclusions.txt in Python, including Hangul, canonical reordering and composition, with no unicodedata import.",
+    "Run it against NormalizationTest Part1 and Part0; record pass rate and time taken.",
+    "Check determinism over three runs and confirm the streaming split only matters for combining runs longer than the buffer.",
+    "If Part1 passes near 100% within about 60 minutes, record that as K8 confirmed; the frontier agent is likely to finish the base scope too fast."
+   ]
+  },
+  "summary": "The source is real and current: NormalizationTest.txt at the Unicode 18.0.0 UCD path and UAX #15 rev 58 both exist, but the final Unicode 18.0.0 release is not confirmed. Scope is killed as K8 (too easy): the algorithm is fully specified, several complete public implementations exist, and a 2h frontier run would likely pass most cases, so it should only be used as a sub-bucket of a larger i18n task."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

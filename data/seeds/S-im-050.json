@@ -1,0 +1,188 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "8 h. The parser alone gives about 40% of the credit; attribute inheritance quirks and ranking tie-breaks are the long tail that a frontier agent only gets partly right. A weaker model stalls on subgraph and default-attribute semantics.",
+  "cheat": "Calling a installed dot: no graphviz in the image, and the hidden graphs are mutated so stored outputs do not transfer.",
+  "grading": "Hidden graphs: the tests/graphs corpus (265 files) plus generated and mutated DOT files, compared with the real graphviz binary run on the verifier only. Canonical output is compared byte-exact; ranks as exact integers. Floating-point coordinates are not graded, which avoids platform noise.",
+  "reference": "Reference solution in Rust, about 3k lines, matching Graphviz on the graded outputs. Graphviz itself is EPL-2.0 C, the oracle on the verifier.",
+  "source": "https://gitlab.com/graphviz/graphviz @ main 644fa57 (a release tag should be pinned before build), EPL-2.0",
+  "task": "/app ships a CLI skeleton. The agent implements the DOT language (subgraphs, ports, HTML-like labels, default attribute scoping, edge-chain expansion, strict/undirected rules), the -Tcanon and -Tdot text output, and network-simplex rank assignment with integer rank output for dot layouts.",
+  "title": "Graphviz DOT parser, canonical output and rank assignment"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-049 0.20"
+  ],
+  [
+   "2026-10-21T00:59:34Z",
+   "v1",
+   "killed:K4",
+   "Exact integer ranks are not deterministically gradable against a fair spec: network-simplex optima are non-unique, so the graphviz binary's pivot order and tie-breaks decide the output. A different valid optimal ranking would fail, which violates the acceptance-breadth rule. Fix options: restrict ra"
+  ]
+ ],
+ "id": "S-im-050",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.199,
+    "S-im-049"
+   ],
+   [
+    0.174,
+    "S-im-014"
+   ],
+   [
+    0.161,
+    "S-im-045"
+   ],
+   [
+    0.117,
+    "edge_expansion [AlgoTune]"
+   ],
+   [
+    0.109,
+    "task-task-graph-export [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "gitlab.com/graphviz/graphviz/-/tree/main/tests|gitlab-main-644fa57-2026-10-19-cloned-release-tag-not-determ",
+ "source_notes": "Layout algorithms (dot/neato/fdp) yield floating-point coordinates sensitive to platform, so exact comparison is brittle; parsing DOT only (-Tcanon/-Tdot round trip) is a feasible sub-task. Low crowding. Weak candidate",
+ "source_url": "https://gitlab.com/graphviz/graphviz/-/tree/main/tests",
+ "source_version": "gitlab main 644fa57 2026-10-19 (cloned; release tag not determined)",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://gitlab.com/graphviz/graphviz",
+  "facts": [
+   {
+    "claim": "Graphviz source repository exists at gitlab.com/graphviz/graphviz, licence Eclipse Public License 2.0",
+    "status": "confirmed",
+    "url": "https://gitlab.com/graphviz/graphviz"
+   },
+   {
+    "claim": "Pinned commit 644fa57 is on main",
+    "status": "not_found",
+    "url": "https://gitlab.com/graphviz/graphviz"
+   },
+   {
+    "claim": "Stable release 16.1.0 dated 4 September 2026 (use as the pin instead of a bare commit)",
+    "status": "confirmed",
+    "url": "https://en.wikipedia.org/wiki/Graphviz"
+   },
+   {
+    "claim": "tests/graphs corpus contains 265 files",
+    "status": "not_found",
+    "url": "https://gitlab.com/graphviz/graphviz/-/tree/main/tests/graphs"
+   },
+   {
+    "claim": "A Rust reference solution of about 3k lines matching Graphviz exists as a public artifact",
+    "status": "not_found",
+    "url": "https://gitlab.com/graphviz/graphviz"
+   },
+   {
+    "claim": "Public Rust DOT parsers exist (graphviz-rust parse; dot-parser 0.6.1) that cover the parser sub-task but not -Tcanon, -Tdot or rank output",
+    "status": "confirmed",
+    "url": "https://docs.rs/graphviz-rust/^0.7.0"
+   }
+  ],
+  "full_card": {
+   "band": "8 h claimed. Parser and canonical output plausibly reach about 40% for a frontier agent; ranks and HTML-like labels are a long tail. No dated evidence of agent results on this task.",
+   "build_cost": "About 4-5 days: 3k-line reference, byte-exact canonicalisation, rank semantics probing, oracle harness.",
+   "deliverable": "Rust CLI: DOT parser (subgraphs, ports, HTML-like labels, default attribute scoping, edge chains, strict/undirected), -Tcanon and -Tdot byte-exact output, integer ranks for dot layout.",
+   "gates_anticheat": "Graphviz not in the image; mutated graphs stop stored-output replay; the verifier runs the real dot. Vendored crates must be pre-shipped because the run is offline.",
+   "grading_surface": "265-file corpus (count not verified) plus generated and mutated DOT files, byte-exact against the graphviz binary; ranks as integers. Could be thousands of cases via generator.",
+   "local_fit": "CPU only, small; Rust build offline needs vendored crates; verifier needs Debian graphviz package (fine).",
+   "lookup": "partial: graphviz-rust and dot-parser crates parse DOT; graphviz C source is public and partly recallable; no complete Rust port of -Tcanon/-Tdot/rank is public.",
+   "provenance": "GitLab graphviz/graphviz, EPL-2.0, 31,146 commits, 127 releases; 16.1.0 (4 Sep 2026) is the latest release per Wikipedia. Pin 16.1.0, not 644fa57 (unverified).",
+   "reference": "No public reference exists. Our own ~3k-line Rust reference would have to be written; the graphviz binary is the oracle.",
+   "ships": "CLI skeleton in /app with no graphviz binary, no history; the oracle (dot binary) stays on the verifier only.",
+   "similarity": "Max l0 neighbour 0.199 (S-im-049, a same-pipeline seed), so no K1. Not on the CROWDED list."
+  },
+  "kill_code": "K4",
+  "kill_reason": "Exact integer ranks are not deterministically gradable against a fair spec: network-simplex optima are non-unique, so the graphviz binary's pivot order and tie-breaks decide the output. A different valid optimal ranking would fail, which violates the acceptance-breadth rule. Fix options: restrict rank grading to uniquely-optimal graphs or drop ranks, then resubmit. The parser and -Tcanon/-Tdot buckets are the viable core.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of frontier results, so capped at 3; the parser share is plausible but ranks are unproven."
+   },
+   "Build": {
+    "v": 2,
+    "why": "A 3k-line reference plus byte-exact harness and rank probing is roughly 4-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits the CPU-only offline sandbox if crates are vendored."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-module DOT, canonical output and layout phases fit an 8 h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "EPL-2.0 permits shipping; the oracle stays verifier-side."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Parser, attributes, HTML labels, two output formats and ranks give natural buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour 0.199 is above 0.15 and not crowded, so novelty is good but not top."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real, widely used repo and EPL-2.0 release history; the reference artifact does not yet exist."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Strong oracle (the graphviz binary) but no complete permissive reference exists; we must write one."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Graphviz is famous and recallable in outline; the verifier-only oracle and mutated graphs keep hidden cases out of reach."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Corpus plus generator with byte-exact compare gives a large surface; the 265 count is unverified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Ranks change under equivalent statement reordering for a meaningful share of graphs, or -Tcanon/-Tdot output is non-deterministic across runs.",
+   "pass_if": "Output is deterministic across runs and the parser/canonical buckets are byte-stable under statement reordering, while any rank variation is confined to a small, identifiable set of graphs.",
+   "steps": [
+    "In a throwaway networked Debian container, clone gitlab.com/graphviz/graphviz at tag 16.1.0 (not 644fa57) and build dot; confirm the built binary matches apt graphviz output.",
+    "Run dot -Tcanon and dot -Tdot over the tests/graphs corpus three times; confirm byte-identical output (determinism) and count the files (checks the 265 claim).",
+    "Take 30 corpus graphs that have rank ties and shuffle statement order (keeping semantics); rerun dot -Tdot and compare ranks. Any rank change means graphviz ranks are not a unique function of the graph.",
+    "Hand-write ten small DOT cases that exercise default attribute scoping inside subgraphs and edge-chain expansion; check -Tcanon output by hand against the binary.",
+    "Record which of the parser, canonical output and rank buckets are deterministic on the oracle side."
+   ]
+  },
+  "summary": "Graphviz is real (EPL-2.0, 16.1.0 released 4 Sep 2026, commit 644fa57 unverified) with a strong byte-exact oracle, and public Rust DOT parsers cover only the parsing slice. The card is killed under K4 because exact integer ranks depend on graphviz's non-unique network-simplex tie-breaks, so a valid alternative ranking would fail; a resubmission restricted to parser and canonical output, or to uniquely-optimal ranks, would be worth re-validating."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

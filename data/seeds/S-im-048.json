@@ -1,0 +1,288 @@
+{
+ "attempts": {
+  "spike": 1
+ },
+ "batch": 8,
+ "card": {
+  "band": "8h. Frontier gets POSIX core fast and fails on strnum comparison, getline corner cases, printf and uninitialized variable rules, and the gawk extensions. A weaker model stops at the basic pattern-action loop. Interpreter subjects are medium-crowded, so the band is at most 3.",
+  "cheat": "There is no awk binary in the image, and a wrapper around busybox is blocked by removing it. Hidden programs are not in the image, and many differ from the public tests.",
+  "grading": "Hidden set: the remaining few hundred gawk test programs with expected stdout, plus generated programs diffed against real gawk run in the verifier only. Exact stdout and exit code; score is the fraction of cases passed.",
+  "reference": "We take the goawk (MIT) base and extend it with the gawk features, about 3000 added lines. It passes the subset of cases that is graded.",
+  "source": "https://git.savannah.gnu.org/cgit/gawk.git/tree/test @ savannah master 070138f; GPL-3.0-or-later (tests redistributable with source)",
+  "task": "/app ships a sample of the test programs with .ok outputs and a build skeleton in Go or Rust. The agent builds an awk interpreter: the full POSIX grammar, getline forms, printf, regex, user functions, uninitialized and strnum semantics, plus gawk core extensions (gensub, patsplit, asort, PROCINFO sorted_in, BEGINFILE, length of arrays). It is run as `awk -f prog.awk input`.",
+  "title": "POSIX awk plus gawk core extensions interpreter"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "compiler-toolchain",
+ "final": 72,
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-044 0.21"
+  ],
+  [
+   "2026-10-21T00:58:58Z",
+   "v1",
+   "pass",
+   "score 74; dead links []"
+  ],
+  [
+   "2026-10-21T01:00:00Z",
+   "v2",
+   "pass",
+   "final 72"
+  ],
+  [
+   "2026-10-21T01:03:37Z",
+   "spike",
+   "retry",
+   "Oracle works and the test tree is large: 640 .awk and 690 .ok files at 070138f. Debian gawk is deterministic on the sample. goawk is the reference base, and the kill condition (goawk passes nearly all) did not trigger: it passes 57% of gawk-passable cases. Not done: removing mawk, scoring a real ske"
+  ],
+  [
+   "2026-10-21T01:03:57Z",
+   "spike",
+   "killed:K5",
+   "The reference (goawk plus ~3000 lines of gawk extensions) does not exist and was not built, so it cannot be scored.; Unmodified goawk passes 57% of gawk-passable cases. The shipped skeleton was never built or scored, so the start-scores-zero check is untested.; goawk differed between two runs on the"
+  ]
+ ],
+ "id": "S-im-048",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.21,
+    "S-im-044"
+   ],
+   [
+    0.178,
+    "S-im-038"
+   ],
+   [
+    0.159,
+    "S-im-030"
+   ],
+   [
+    0.13,
+    "git-to-zig [FrontierSWE]"
+   ],
+   [
+    0.114,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 1,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "git.savannah.gnu.org/cgit/gawk.git/tree/test|savannah-master-070138f-2026-10-15-cloned-release-tag-not-de",
+ "source_notes": "Each test = awk program + input + .ok expected stdout/stderr. gawk-specific extensions (gensub, PROCINFO, @include, BEGINFILE, array sorting, bignum) make full compat hard; POSIX-awk subset is a valid scoped task. Medium crowding (awk/Lua-style interpreters are commonly assigned). GPL test data redistributable with source",
+ "source_url": "https://git.savannah.gnu.org/cgit/gawk.git/tree/test",
+ "source_version": "savannah master 070138f 2026-10-15 (cloned; release tag not determined)",
+ "spike": {
+  "blockers": [
+   "The reference (goawk plus ~3000 lines of gawk extensions) does not exist and was not built, so it cannot be scored.",
+   "Unmodified goawk passes 57% of gawk-passable cases. The shipped skeleton was never built or scored, so the start-scores-zero check is untested.",
+   "goawk differed between two runs on the sample, and the cause was not investigated.",
+   "Many gawk tests need special flags or environment from test/Makefile.am. A naive harness passes only 210/385 even on real gawk.",
+   "The base image ships mawk via /etc/alternatives/awk. Removing it was not tested.",
+   "gawk could not be built from the savannah commit (configure failed on the missing gt_LC_MESSAGES macro). The Debian 5.2.1 package was the oracle instead.",
+   "The 3x reference sweep and the offline run were not done."
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 385,
+  "commands_log": "git clone savannah gawk; checkout 070138f; apt install gawk 5.2.1; git clone benhoyt/goawk; go build; /work/run.sh runs `AWK -f t.awk t.in` over test/*.awk and cmp against .ok, two runs per binary. Counts: 640 .awk, 690 .ok. gawk 210/385, goawk 120/210.",
+  "deterministic": false,
+  "gvisor_concerns": [],
+  "headroom_note": "Unmodified goawk passes 120 of the 210 cases gawk passes (57%), so there is headroom to a reference that extends it. The extended reference was never built or measured.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "The oracle works. The gawk test tree is large (640 .awk, 690 .ok) and the Debian gawk 5.2.1 oracle is deterministic on the sample. The kill condition did not trigger: goawk passes 57% of gawk-passable cases, not nearly all. Not done: building the reference, the 3x reference sweep, scoring a real skeleton, removing mawk, the offline run, and the cause of goawk's run-to-run variation. Building the reference is roughly 2-4 days of work, within the K12 limit of 5. Interpreters are medium-crowded and a frontier model may know goawk's structure. Per the seed's own band note, Band is at most 3.",
+  "offline_ok": false,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": false,
+  "reference_cases_passed": 0,
+  "reference_lines": 3000,
+  "start_scores_zero": false,
+  "verdict": "inconclusive",
+  "verifier_minutes_estimate": 10
+ },
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/benhoyt/goawk",
+  "facts": [
+   {
+    "claim": "gawk test/ directory exists on Savannah cgit (URL returns a 301 to cgit.git.savannah.gnu.org)",
+    "status": "confirmed",
+    "url": "https://git.savannah.gnu.org/cgit/gawk.git/tree/test"
+   },
+   {
+    "claim": "The savannah tree is pinned at commit 070138f on master, as the seed states",
+    "status": "not_found",
+    "url": "https://git.savannah.gnu.org/cgit/gawk.git/tree/test"
+   },
+   {
+    "claim": "Debian gawk 5.3.2 test/ listing shows about 310 .awk and about 342 .ok files through the 'm' entries (listing truncated; total not confirmed)",
+    "status": "confirmed",
+    "url": "https://sources.debian.org/src/gawk/latest/test/"
+   },
+   {
+    "claim": "Total hidden-set size of 'a few hundred' test programs in the gawk test suite",
+    "status": "not_found",
+    "url": "https://sources.debian.org/src/gawk/latest/test/"
+   },
+   {
+    "claim": "GNU Awk source is licensed GPL version 3 (COPYING is GPLv3, 29 June 2007)",
+    "status": "confirmed",
+    "url": "https://sources.debian.org/src/gawk/latest/COPYING/"
+   },
+   {
+    "claim": "GPL-3.0-or-later for gawk sources (the 'or any later version' notice appears in the GPLv3 template text; per-file gawk notices not checked)",
+    "status": "confirmed",
+    "url": "https://sources.debian.org/src/gawk/latest/COPYING/"
+   },
+   {
+    "claim": "goawk is an MIT-licensed, POSIX-compatible AWK interpreter written in Go, with CSV support",
+    "status": "confirmed",
+    "url": "https://github.com/benhoyt/goawk"
+   },
+   {
+    "claim": "goawk supports gawk extensions (gensub, asort, PROCINFO, BEGINFILE)",
+    "status": "not_found",
+    "url": "https://github.com/benhoyt/goawk"
+   },
+   {
+    "claim": "Debian mawk is Priority: required but not tagged Essential",
+    "status": "confirmed",
+    "url": "https://lwn.net/Articles/1019898"
+   },
+   {
+    "claim": "Debian container images include minbase packages (essential or required), so mawk is expected in the base image",
+    "status": "confirmed",
+    "url": "https://lwn.net/Articles/1019898"
+   },
+   {
+    "claim": "There is no awk binary in the image (seed cheat claim)",
+    "status": "contradicted",
+    "url": "https://lwn.net/Articles/1019898"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier; frontier clears POSIX core quickly, gawk-specific semantics (strnum, getline corners, printf, extensions) separate trials; weaker model stops at pattern-action loop; E0, no dated public evidence (band at most 3)",
+   "build_cost": "About 3000 added lines on goawk plus a differential harness against gawk 5.3.x; roughly 2-4 days, score 2",
+   "deliverable": "Standalone awk interpreter run as `awk -f prog.awk input`: POSIX grammar, getline forms, printf, regex, user functions, strnum/uninitialized semantics, plus gawk core extensions",
+   "gates_anticheat": "Must remove mawk, original-awk, busybox awk and all /etc/alternatives/awk entries; hidden programs and gawk binary stay verifier-only; wrapping mawk would pass only POSIX-core cases, but still a cheat path to close",
+   "grading_surface": "Several hundred hidden gawk test programs with exact stdout and exit code, plus generated programs diffed against real gawk in the verifier only (unlimited generator)",
+   "local_fit": "Go or Rust, CPU only, a few minutes per test run; fits gVisor and 8 cores/16 GB",
+   "lookup": "partial: goawk is public (MIT) and a frontier model may know its structure in outline; gawk extensions not in goawk per the page; no installable package offline",
+   "provenance": "gawk 'test/' tree (savannah, pinned commit 070138f not verified; Debian gawk 5.3.2 listing used as proxy) plus goawk (MIT, Go) as the reference base",
+   "reference": "goawk base plus about 3000 added lines of gawk features; passes the graded subset only, not the full gawk suite",
+   "ships": "A sample of gawk .awk/.ok test pairs, a Go or Rust build skeleton, and no awk binary (not yet true: Debian base images carry mawk, Priority required)",
+   "similarity": "Max l0 neighbour S-im-044 at 0.21 (above 0.15 threshold, not a public task); no CROWDED list match, but interpreters are medium-crowded; not K1"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed band claim is unverified (E0); a frontier agent likely finishes POSIX core but gawk-specific corners are the hard part; capped at 3 for medium-crowded interpreters without dated evidence."
+   },
+   "Build": {
+    "v": 2,
+    "why": "About 3000 lines of added Go or Rust plus a gawk differential harness; estimated 2-4 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Go or Rust CPU-only interpreter with short per-test runtime fits the sandbox."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several thousand lines of interpreter work across parser, runtime, I/O, regex and extensions fits an 8h budget."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "GPL-3.0-or-later test data is redistributable and MIT goawk base permits shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Test-file buckets by feature (getline, printf, regex, functions, extensions) give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.21 (S-im-044) above 0.15; no CROWDED task matches exactly, but interpreters are medium-crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real gawk test suite (savannah) and real goawk (MIT, public GitHub); pinned commit not verified."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is a self-built goawk extension passing only the graded subset, not a complete gawk-equivalent implementation."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden tests and reference stay out of the image, but mawk is shipped in Debian base and gawk itself is well known; closing the mawk path is required."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Several hundred hidden programs plus unlimited generated differential cases against real gawk."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Removing awk alternatives breaks the image or cannot be sealed, or goawk unmodified already passes nearly all sampled gawk tests (frontier then reaches the reference trivially).",
+   "pass_if": "Base image ships a usable awk that the image build can remove cleanly; goawk passes a substantial POSIX-core share but fails a clear gawk-extension share; outputs are deterministic across two runs.",
+   "steps": [
+    "In a throwaway Debian trixie/bookworm container with network, run `ls -l /usr/bin/awk /etc/alternatives/awk` and `dpkg -l mawk original-awk gawk`; record what the base image really ships (confirms or kills the 'no awk in image' claim).",
+    "Clone gawk at commit 070138f from savannah; count test/*.awk and matching .ok files; confirm the total is in the 'few hundred' range.",
+    "Build gawk 5.3.x from source (or use the Debian package in the container) to generate reference outputs for a 50-test sample.",
+    "Build unmodified goawk at its current release; run it on the same 50-test sample against gawk .ok files to measure the POSIX-core pass rate and the gawk-extension pass rate.",
+    "Run the sample twice to check determinism (stdout and exit code).",
+    "Remove mawk and original-awk in the container and confirm no awk remains; verify the skeleton build still compiles without them."
+   ]
+  },
+  "summary": "The gawk test tree, GPL-3 licence and MIT goawk base check out, but the seed's claim that the image has no awk binary is contradicted: Debian's mawk is Priority required and is carried by minbase-style base images, so mawk must be removed and the wrapper path closed before acceptance. Not killed: the grading surface is large and sealable, the reference is a sizeable Go extension, and band 3 holds at E0 with a 60-minute spike to confirm the base image and goawk's pass rate."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-048",
+  "kill_code": "",
+  "note": "The gawk test/ tree and the goawk MIT base are confirmed; the pinned commit 070138f is not. The seed's 'no awk in image' claim is contradicted: Debian base images carry mawk (Priority required), so the image build must remove mawk, original-awk, busybox awk and the alternatives. The test set needs curation: exclude locale, --lint, debugger, bignum and stderr-wording tests so the grade covers only the stated scope. Generated programs diffed against gawk in the verifier give an open-ended surface. Buckets fall out naturally (POSIX core, getline, printf, strnum, each extension), and the horizon is long. Reference cost is the weak point: about 3000 added lines on goawk in 2-4 days is optimistic (K12 risk). Interpreters are medium-crowded, but awk is not on the crowded list.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 4,
+   "Hor": 5,
+   "Lic": 4,
+   "Multi": 4,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 72
+}

@@ -1,0 +1,238 @@
+{
+ "batch": 8,
+ "card": {
+  "band": "8h. The levers are clear but the gain needs profiling work and care about correctness; frontier may get part of S, and the weaker model gets only flag changes. Many families allow dense credit.",
+  "cheat": "Caching of known costs is closed because instances are hidden and renamed, and the cost is verified through a model check. The newer release is not in the image.",
+  "grading": "The gate is the optimal cost, which must equal the known best on every hidden instance that the base solves. The score is the total time (median over repeated runs) with timeouts counted against a fixed cap, against the reference speedup S, as 2^u - 1.",
+  "reference": "We use a later release of the same engine, or our own tuned build, measured on the hidden families. The speedup is measured on the instance set and the size is not found yet.",
+  "source": "https://zenodo.org/records/21283148 (MaxSAT Evaluation collection); CC-BY-4.0, instance-level licences not found; engine such as RC2 or Open-WBO (licence not found)",
+  "task": "/app ships a history-less snapshot of an older open MaxSAT engine, built offline with a CLI that reads WCNF files, plus a visible instance sample (the 2017 year subset only, which is small). The agent speeds it up through propagation data layout, clause database management, preprocessing and use of 8 cores, while it still returns the optimal cost.",
+  "title": "Weighted MaxSAT core-guided engine speedup on evaluation families"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "solver",
+ "final": 57,
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-014 0.19"
+  ],
+  [
+   "2026-10-21T00:57:45Z",
+   "v1",
+   "pass",
+   "score 71; dead links []"
+  ],
+  [
+   "2026-10-21T01:00:00Z",
+   "v2",
+   "killed:K5",
+   "There is no reference. No later Open-WBO release or fork was verified, no speedup S was measured, and the 'own tuned build' is hypothetical. Several facts are unconfirmed: the engine licence (Open-WBO wording not found), the instance-level licences, and the instance count. Multi-minute solver runs u"
+  ]
+ ],
+ "id": "S-op-018",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.195,
+    "S-op-014"
+   ],
+   [
+    0.179,
+    "S-op-015"
+   ],
+   [
+    0.175,
+    "S-im-012"
+   ],
+   [
+    0.141,
+    "database_engine [SpecBench]"
+   ],
+   [
+    0.126,
+    "css_layout_engine [SpecBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": null,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "zenodo.org/records/21283148 ; https://maxsat-evaluations.github.io/benchmark-collection|n-a-input-set-pairing-older-open-maxsat-solver-e-g-rc2-open-",
+ "source_notes": "Zenodo API: q:\"The complete MaxSAT Evaluation benchmark collection, normalized with std_wcnf and metadata tracked with gbd.\" maxsat-evaluations page itself gives no instance count or licence (single page fetch, count not found). 2020.zip alone ~18.7 GB, 2017.zip ~1.5 GB (usable). Levers on a solver: propagation data layout, clause DB, preprocessing, parallel cores.",
+ "source_url": "https://zenodo.org/records/21283148 ; https://maxsat-evaluations.github.io/benchmark-collection",
+ "source_version": "n/a (input set); pairing = older open MaxSAT solver (e.g. RC2/Open-WBO) vs newer release",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://zenodo.org/records/21283148",
+  "facts": [
+   {
+    "claim": "Zenodo record 21283148 'MaxSAT Evaluation: Complete Benchmark Collection' exists (version 2026, published July 9, 2026) and is normalized with std_wcnf and tracked with gbd",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/21283148"
+   },
+   {
+    "claim": "Record licence is 'Creative Commons Attribution 4.0 International' (no SPDX shown); instance-level licences not stated",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/21283148"
+   },
+   {
+    "claim": "2017.zip is 1.5 GB and the record totals 58.9 GB; the instance count is not stated on the page, so 'the 2017 subset is small' is unverified (small in bytes is not small in instances)",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/21283148"
+   },
+   {
+    "claim": "2017 weighted track combines industrial and crafted weighted and weighted-partial categories; all benchmarks have distinct soft-clause weights; no per-category counts or WCNF/time limits stated on the track page",
+    "status": "confirmed",
+    "url": "https://mse17.cs.helsinki.fi/tracks.html"
+   },
+   {
+    "claim": "Open-WBO source repo sat-group/open-wbo exists; README says Version 2.1 (September 2018); licence file exists but its name/wording was not visible on the page; no releases listed",
+    "status": "confirmed",
+    "url": "https://github.com/sat-group/open-wbo"
+   },
+   {
+    "claim": "Open-WBO licence is MiniSAT-style (permissive, MIT-like) per the project page",
+    "status": "not_found",
+    "url": "https://sat.inesc-id.pt/open-wbo/index.html"
+   },
+   {
+    "claim": "PySAT (pysathq/pysat) is MIT licensed and bundles/exposes the RC2 MaxSAT algorithm; installable as python-sat via pip (not offline at run time)",
+    "status": "confirmed",
+    "url": "https://github.com/pysathq/pysat"
+   },
+   {
+    "claim": "RC2 is a Python core-guided MaxSAT solver that won weighted and unweighted categories of MaxSAT Evaluation 2018 main track",
+    "status": "confirmed",
+    "url": "https://content.iospress.com/articles/journal-on-satisfiability-boolean-modeling-and-computation/sat190116"
+   },
+   {
+    "claim": "A later release of Open-WBO (e.g. an Open-WBO-Inc fork) exists and implements newer features",
+    "status": "not_found",
+    "url": "https://github.com/sat-group/open-wbo"
+   },
+   {
+    "claim": "Exact instance count of MSE 2017 weighted benchmarks",
+    "status": "not_found",
+    "url": "https://mse17.cs.helsinki.fi/tracks.html"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier; frontier likely reaches part of S; no dated public evidence of agents on this work, so Band capped at 3",
+   "build_cost": "Likely 2-4 days: Makefile C++ build plus harness and sample prep; smoke build skipped so not measured",
+   "deliverable": "Faster engine binary/source returning the optimal cost on hidden WCNF instances; score = total median wall time vs timeouts, against reference speedup S, 2^u-1",
+   "gates_anticheat": "Hidden renamed instances; cost verified by model check so cached answers fail; oracle and reference kept out of image; need to close editing of timers/tests and wrapping of system tools",
+   "grading_surface": "Hidden instances from MSE families (count not found); gate = optimal cost equal to known best on every instance the base solves",
+   "local_fit": "C++ engine, 8 cores, 16 GB, CPU only; the 2017 sample (1.5 GB zip) fits; gVisor timing noise is the main risk",
+   "lookup": "partial: Open-WBO and RC2 are public; a later Open-WBO release/fork not yet verified; the tuned reference is not public",
+   "provenance": "Zenodo MSE complete collection (CC-BY-4.0, 2017.zip 1.5 GB) plus Open-WBO (sat-group, v2.1 2018) or RC2/PySAT (MIT) as engine candidates; no git source probed",
+   "reference": "Later release of same engine (not verified public) or own tuned build; speedup S not measured",
+   "ships": "History-less snapshot of an older C++ core-guided MaxSAT engine (Open-WBO class), offline build, WCNF CLI, visible 2017 sample",
+   "similarity": "Max l0 neighbour 0.195 (S-op-014), other seeds only; not on CROWDED list; no public task found"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent performance on this work; capped at 3 by rule."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Makefile C++ engine plus harness is likely under 5 days; no smoke build was run, so the estimate is unverified."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU C++ engine within 8 cores and 16 GB; a 1.5 GB sample fits, but the full data (58.9 GB) must not ship."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Propagation layout, clause DB, preprocessing and parallelism need sustained profiling over 8h."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "Zenodo CC-BY-4.0 is confirmed, but the Open-WBO licence wording is unverified and instance-level licences are not found."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers and families, but total time is dominated by a few long instances, so credit is less dense than the seed claims."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbour 0.195 (S-op-014) is above 0.15 so it is not a 5; MaxSAT is not on the CROWDED list."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MSE collection and real sat-group repo; the exact later-release reference is not yet confirmed."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "A later release or tuned build could reach a meaningful S, but it is unmeasured and the public later release is unverified."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden renamed instances plus model-checked costs close caching; a history-less snapshot is needed if the later release is public."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden instance families across years could be thousands with an executable model-check oracle; the count is not verified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Base solves almost none of the sample; no later or tuned reference reaches S above 1.1; repeat CV above 20% so timing cannot be graded; or costs cannot be checked against a known best.",
+   "pass_if": "Build green; base solves a meaningful share of sample instances; costs match best-known; repeat CV under 10%; a reference or tuned build gives S of at least 1.3 with matching costs.",
+   "steps": [
+    "In a throwaway networked container, clone sat-group/open-wbo at a pinned commit and build it with make; record the build result and time.",
+    "Obtain the 2017 weighted sample from Zenodo 2017.zip, count instances, and record best-known costs from the MSE 2017 results.",
+    "Run the base binary on about 10 sample instances with a fixed timeout, 5 repeats each; record per-instance median wall time and whether each cost matches the best-known value.",
+    "Check run-to-run variance (coefficient of variation) of total time across repeats under gVisor-like conditions if available, or in the container.",
+    "Obtain a later release (verify whether an Open-WBO-Inc fork is public) or a quick tuned build (-O3, LTO, clause-DB reduction flag) and measure the speedup S on the same sample.",
+    "Decide: if S is above 1.3 with matching costs and CV under 10%, pass; otherwise record the headroom and the cause."
+   ]
+  },
+  "summary": "The Zenodo MSE collection (CC-BY-4.0) and the Open-WBO and RC2/PySAT engines are real and public, so the seed passes the real-source gate, but the instance count, Open-WBO licence wording and later-release reference are not yet verified. No kill gate fails on current evidence, so the idea passes to a spike focused on reference S, timing noise and cost agreement, with E0 evidence and a Band capped at 3."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-018",
+  "kill_code": "K5",
+  "note": "There is no reference. No later Open-WBO release or fork was verified, no speedup S was measured, and the 'own tuned build' is hypothetical. Several facts are unconfirmed: the engine licence (Open-WBO wording not found), the instance-level licences, and the instance count. Multi-minute solver runs under gVisor make wall-clock timing noisy (K4 risk). The base must also be chosen so it solves a meaningful share of instances while leaving headroom. Revisit only with a measured S of at least 1.3 and a confirmed permissive engine.",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 2,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 1,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 57
+}

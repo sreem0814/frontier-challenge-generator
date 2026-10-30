@@ -1,0 +1,220 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "8 h. There are several levers (prefilter, traversal, contention), so partial credit is steady. A frontier agent gets one or two of them. A weaker model breaks output order or correctness.",
+  "cheat": "Calling a newer regex crate is not possible because the vendored copy is pinned and the build is offline. Output-gated differential tests catch dropped matches.",
+  "grading": "The correctness gate is the existing test suite plus generated pattern/corpus differential output against the sealed 13.0.0 binary (set-equal results and match text). Wall-clock medians on hidden corpora. Reward 2^u - 1 against the reference.",
+  "reference": "ripgrep 14.0.0 (speedups not published, measured by us on the same corpora). Overlap with the existing regex speedup card is noted: the traversal and prefilter levers are the new ones.",
+  "source": "https://github.com/BurntSushi/ripgrep @ 13.0.0 base, 14.0.0 target (CHANGELOG), Unlicense/MIT",
+  "task": "/app ships a history-less snapshot of ripgrep 13.0.0 with its vendored crates and a benchmark harness over large trees. Agent speeds up searches with word-boundary and look-around patterns, the literal prefilter, and parallel directory traversal.",
+  "title": "ripgrep 13 to 14 look-around prefilter and traversal speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-021 0.32"
+  ],
+  [
+   "2026-10-21T01:04:45Z",
+   "v1",
+   "killed:K1",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 3, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 2, 'Lic': 5, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-op-024",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.319,
+    "S-op-021"
+   ],
+   [
+    0.289,
+    "S-op-023"
+   ],
+   [
+    0.238,
+    "S-op-022"
+   ],
+   [
+    0.221,
+    "ripgrep [ProgramBench]"
+   ],
+   [
+    0.113,
+    "two_eigenvalues_around_0 [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "raw.githubusercontent.com/burntsushi/ripgrep/master/changelog.md|ripgrep-13-0-0-ripgrep-14-0-0",
+ "source_notes": "q:\"Make most searches with `\\b` look-arounds (among others) much faster.\" Levers: inner-literal prefilter (#1746), look-around handling (#1760), work-stealing parallel directory traversal (#2591), reduced contention (#2642). 13.0.0: vectorised memmem, stat-call ordering. Multi-lever incl. parallelism and I/O. Speedups would need own measurement: INFERRED, not on page. 14.0.0 also depends on regex 1.9 rewrite (overlap with regex rows).",
+ "source_url": "https://raw.githubusercontent.com/BurntSushi/ripgrep/master/CHANGELOG.md",
+ "source_version": "ripgrep 13.0.0 -> ripgrep 14.0.0",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/BurntSushi/ripgrep/blob/master/CHANGELOG.md",
+  "facts": [
+   {
+    "claim": "ripgrep 14.0.0 release exists, dated 2023-11-26",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/releases/tag/14.0.0"
+   },
+   {
+    "claim": "ripgrep 13.0.0 release exists, dated 2021-06-12, listed in CHANGELOG",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/blob/master/CHANGELOG.md"
+   },
+   {
+    "claim": "13.0.0 tag is present (tree view selector shows 13.0.0; no commit or date shown on that page)",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/tree/13.0.0"
+   },
+   {
+    "claim": "14.0.0 changelog contains PERF #1746 (inner literal), #1760 (\\b look-arounds much faster), #2591 (work-stealing traversal), #2642 (reduced contention)",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/blob/master/CHANGELOG.md"
+   },
+   {
+    "claim": "13.0.0 changelog has PERF #1657 (stat ordering) and memchr#82 vectorized memmem",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/blob/master/CHANGELOG.md"
+   },
+   {
+    "claim": "14.0.0 release lists a regex engine rewrite as a headline change, 'some searches may get faster'",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/releases/tag/14.0.0"
+   },
+   {
+    "claim": "The 14.0.0 regex engine rewrite is tied to regex crate 1.9 (the seed's claim that 14.0.0 depends on it)",
+    "status": "not_found",
+    "url": "https://github.com/BurntSushi/ripgrep/releases/tag/14.0.0"
+   },
+   {
+    "claim": "Upstream publishes speedup multipliers for 13.0.0 to 14.0.0",
+    "status": "not_found",
+    "url": "https://github.com/BurntSushi/ripgrep/blob/master/CHANGELOG.md"
+   },
+   {
+    "claim": "Licence is Unlicense OR MIT (LICENSE-MIT and UNLICENSE present at 13.0.0 root)",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/blob/master/Cargo.toml"
+   },
+   {
+    "claim": "13.0.0 root has no vendor directory (vendored crates must be assembled by us)",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/tree/13.0.0"
+   },
+   {
+    "claim": "Repo has a benchsuite directory at 13.0.0 root (no 'benchmarks' directory)",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/tree/13.0.0"
+   },
+   {
+    "claim": "Upstream master Cargo.toml is at version 15.2.0 with workspace crates grep, ignore, globset, printer, searcher, regex, pcre2 (so later public versions exist)",
+    "status": "confirmed",
+    "url": "https://github.com/BurntSushi/ripgrep/blob/master/Cargo.toml"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Several levers (prefilter, traversal, contention, look-around). Frontier likely gets 1-2 levers; weaker model breaks output order or correctness. No dated public evidence: E0.",
+   "build_cost": "Assemble offline vendored crates for 13.0.0, build, write harness and corpora, differential oracle: about 3-5 days.",
+   "deliverable": "Faster search for \\b and look-around patterns, literal inner-prefilter, parallel traversal work-stealing and contention reduction; output must be set-equal to the 13.0.0 binary.",
+   "gates_anticheat": "Gate on existing tests and differential output. Cheats closed: no newer regex crate (vendored copy pinned, offline), no system rg binary, no fetching the 14.x tree at run time, edits to tests/build config reverted by verifier.",
+   "grading_surface": "Existing test suite plus generated pattern/corpus differential output vs sealed 13.0.0 (set-equal, match text) and wall-clock medians on hidden corpora.",
+   "local_fit": "CPU only, 8 cores, 16 GB; gVisor fits. Parallel timings and stat-heavy traversal may be noisy in the sandbox.",
+   "lookup": "partial: 14.0.0 is public on GitHub history and crates.io; ripgrep is widely known, so architecture is recallable in outline. Snapshot must be history-less.",
+   "provenance": "BurntSushi/ripgrep, tags 13.0.0 (2021-06-12) and 14.0.0 (2023-11-26); Unlicense OR MIT; PR-numbered changelog entries confirmed.",
+   "reference": "ripgrep 14.0.0 full tag (not published speedups; our own measurement needed). Caveat: much of the \\b gain may come from the regex-crate rewrite, which the agent cannot vendor.",
+   "ships": "History-less snapshot of 13.0.0 with vendored crates assembled by us (no vendor dir upstream), plus benchmark harness over large trees. Remove any system rg binary from the image.",
+   "similarity": "Neighbours S-op-021 (0.319), S-op-023 (0.289), S-op-022 (0.238) are regex-speedup seeds; ripgrep [ProgramBench] (0.221). Not on CROWDED list. Distinct subject (CLI search tool traversal) but \\b lever overlaps regex card."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; capped at 3 by the rule. Plausibly 1-2 levers for a frontier agent in 8 h."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Offline vendoring of 13.0.0 crates, harness and corpora: about 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU and memory fit; parallel wall-clock timings may be noisy under gVisor."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h with several levers and a benchmark harness over large trees."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Unlicense OR MIT, both files present in 13.0.0."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four levers (prefilter, look-around, traversal, contention) give steady partial credit."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Same-subject neighbours at cosine 0.22-0.32 and overlap with the regex speedup card on \\b look-arounds."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real upstream repo, tags, PR-numbered changelog, permissive licence."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "14.0.0 is a complete permissive reference, but its \\b gain is partly from the regex rewrite the agent cannot reach; S needs our own measurement."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "14.x source is public and recallable in outline; hidden corpora and reference build sealed; history-less snapshot needed."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Executable differential oracle with generated patterns and corpora plus test suite; many cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Traversal-only gain under 1.05x and essentially all of the gain comes from the regex rewrite (reference not reachable by the agent); or run-to-run noise above about 25% so wall-clock medians cannot be graded.",
+   "pass_if": "14.0.0 is at least 1.3x faster than 13.0.0 on the traversal-only run and at least 1.5x on the \\b or look-around runs; outputs are set-equal; IQR under about 15% across 5 runs.",
+   "steps": [
+    "In a throwaway networked Linux container, fetch the 13.0.0 and 14.0.0 tags, run cargo vendor for each, and build both release binaries offline (smoke_build was skipped, so this build is the first evidence).",
+    "Build a synthetic corpus of about 100k files with mixed sizes, plus a large real tree (e.g. kernel-like source), and record the file count.",
+    "Pick patterns: a \\b word pattern, a look-around pattern (?<=x)y and (?=...), a plain literal with an inner literal, and a no-match literal for traversal-only timing.",
+    "Time 5 runs each of 13.0.0 and 14.0.0 per pattern and per corpus, using wall-clock medians. Check run-to-run spread (IQR).",
+    "Check output set-equality with --sort path (and without sort for set comparison) between the two binaries for all patterns.",
+    "Isolate the traversal gain: time the no-match literal and file listing only; compare to the \\b gain. If most of the \\b gain disappears when regex-engine code is excluded, note that the reference is not agent-reachable.",
+    "Confirm the Debian image has no system rg binary that the agent could copy."
+   ]
+  },
+  "summary": "The ripgrep 13.0.0 to 14.0.0 idea is real and licensed (Unlicense OR MIT), with confirmed PR-numbered levers, but the 14.0.0 reference speedup is unpublished and the \\b gain appears to depend on the regex-engine rewrite that the agent cannot vendor. Validation passes with caveats (Ref 3, Band 3, E0, lookup partial); the spike must measure how much gain comes from traversal and prefilter alone before the reference S is trusted."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73
+}

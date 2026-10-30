@@ -1,0 +1,218 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "8 h. Many levers (similarity, shrinkage, iALS, recency, ensembling), so partial credit is dense. Frontier agents beat the baseline in most trials but do not reach the reference on average; weaker models only tune ItemKNN. CPU time limits SASRec.",
+  "cheat": "The hidden later days are not in the image and no test events are in the training files. Item IDs are remapped.",
+  "grading": "NDCG@100 and Recall@100 on hidden later days with a global temporal split, normalised between the shipped ItemKNN baseline and our reference. Evaluation is deterministic code.",
+  "reference": "Best of ItemKNN/iALS/SASRec tuned by us; paper reports ItemKNN NDCG@100 0.0934 on 50M. Closely resembles an existing ListenBrainz task, so novelty is partial.",
+  "source": "https://huggingface.co/datasets/yandex/yambda, Apache-2.0 (card says scientific/research use only; legal check needed); paper arXiv 2505.22238",
+  "task": "/app ships the Yambda-50M Listen+ events, the baseline ItemKNN code and an evaluator. The agent trains and tunes a recommender on CPU (ItemKNN/iALS/sequence models or popularity/recency features) and ships a model that produces top-100 lists.",
+  "title": "Next-day listen recommendation on Yambda with a temporal OOD split"
+ },
+ "class": "research",
+ "created": "2026-10-20T23:19:05Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-20T23:19:05Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:05Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-007 0.46"
+  ],
+  [
+   "2026-10-21T00:11:41Z",
+   "v1",
+   "killed:K1",
+   "Near-duplicate by cosine: S-rs-007 is another seed at 0.46, far above the 0.15 novelty threshold, and the seed says it closely resembles a ListenBrainz task. The seed-level K1 applies unless the pipeline owner confirms S-rs-007 has a different deliverable. Separately, the research-only dataset restr"
+  ]
+ ],
+ "id": "S-rs-008",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.46,
+    "S-rs-007"
+   ],
+   [
+    0.108,
+    "S-im-042"
+   ],
+   [
+    0.098,
+    "S-im-039"
+   ],
+   [
+    0.094,
+    "family (7 competitions) [MLRC-Bench]"
+   ],
+   [
+    0.093,
+    "seti-breakthrough-listen [MLE-bench]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "huggingface.co/datasets/yandex/yambda|baseline-itemknn-or-popularity-on-listen-events-global-tempo",
+ "source_notes": "Protocol (arXiv 2505.22238v2): 300-day train window, 30-minute gap, 1-day test, users with empty history dropped, frozen model state. Natural OOD = future day(s) (temporal shift); extra shift idea: hold out last N days or cold-start users/items. Timestamps are global and binned in 5 s units. Formats: flat, multi_event, sequential parquet, plus audio embeddings (7.72M tracks). Levers: ItemKNN similarity/shrinkage, iALS regularisation and confidence, sequence models, popularity/recency features, ANN retrieval. Paper gives no hardware/training times. INFERRED: ItemKNN/iALS on 50M about 5-20 min per eval on 8 CPUs; SASRec on CPU is slow (hours). Overlap: none known.",
+ "source_url": "https://huggingface.co/datasets/yandex/yambda",
+ "source_version": "Baseline: ItemKNN or popularity on Listen+ events, global temporal split. Paper Table 6 (Yambda-50M, Listen+): ItemKNN NDCG@100 0.0934, iALS 0.0642, SASRec 0.0764, SANSA 0.0095. -> Reference: best of ItemKNN/iALS/SASRec/SANSA, or agent-tuned model; baseline code in benchmarks/ dir of the dataset.",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/html/2505.22238v2",
+  "facts": [
+   {
+    "claim": "HF dataset yandex/yambda exists with metadata licence apache-2.0",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/yandex/yambda"
+   },
+   {
+    "claim": "Yambda dataset card states it is published exclusively for scientific and research purposes (use restriction on top of Apache-2.0 metadata; legal check still needed for shipping in a bundle)",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/yandex/yambda"
+   },
+   {
+    "claim": "Yambda-50M has 10,000 users, 934,057 items, 46,467,212 listens",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/yandex/yambda"
+   },
+   {
+    "claim": "Timestamps are uint32 delta times binned into 5 s units; files sorted by (uid, timestamp); flat and sequential formats exist",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/yandex/yambda"
+   },
+   {
+    "claim": "arXiv 2505.22238 is 'Yambda-5B: A Large-Scale Multi-modal Dataset for Ranking And Retrieval' (v1 28 May 2025, v2 1 June 2025)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2505.22238v2"
+   },
+   {
+    "claim": "Table 6 (Listen+), 50M: ItemKNN NDCG@100 0.0934, Recall@100 0.1297; iALS 0.0642 / 0.0808; SANSA 0.0095 / 0.0137; SASRec 0.0764 / 0.1026",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2505.22238v2"
+   },
+   {
+    "claim": "Global Temporal Split protocol: 300-day train window, 30-minute gap, 1-day test, users with empty histories at test start discarded, all parameters and user states frozen at test start",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2505.22238v2"
+   },
+   {
+    "claim": "Official benchmark baseline code (ItemKNN, iALS, SANSA, SASRec) is in the HF dataset repo benchmarks/ folder with a Docker guide mentioning GPU access; seen only via a proxy mirror of the README, official URL not re-fetched",
+    "status": "confirmed",
+    "url": "https://https-huggingface_co.proxy.bugsmash.io/datasets/yandex/yambda/blob/main/benchmarks/README.md"
+   },
+   {
+    "claim": "GitHub repo github.com/yandex-research/yambda exists and holds baseline code",
+    "status": "not_found",
+    "url": "https://github.com/yandex-research/yambda"
+   },
+   {
+    "claim": "Reference (best of tuned ItemKNN/iALS/SASRec) exists and beats the 0.0934 baseline by a measured margin",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2505.22238v2"
+   },
+   {
+    "claim": "Closely resembles an existing ListenBrainz public task",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2505.22238v2"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Dense levers, but the tuned reference's margin over 0.0934 is unmeasured; no dated evidence for frontier success rates (E0).",
+   "build_cost": "About 3-5 days: data pipeline, the GTS evaluator clone, baseline reproduction, and a reference tuned across three model families.",
+   "deliverable": "A CPU recommender that outputs top-100 lists per user for hidden later days, scored by NDCG@100 and Recall@100, normalised between shipped ItemKNN and our reference.",
+   "gates_anticheat": "Hidden days absent from image; offline run; item IDs remapped; evaluator and reference outside /app; reject edits to evaluator or config; no test-event leakage in training files.",
+   "grading_surface": "About 10k users on hidden day(s), two metrics, deterministic evaluator; thousands of per-user scores, but one held-out day gives limited variance.",
+   "local_fit": "CPU with 16 GB: 934k items x 10k users is feasible with sparse top-K ItemKNN; SASRec on CPU is slow; iALS needs careful memory; the public baseline README mentions GPU, so the CPU path must be checked.",
+   "lookup": "partial: ItemKNN/iALS/SASRec baseline code is public on HF; paper gives the full protocol; the tuned reference is not public.",
+   "provenance": "Yambda (Yandex) public dataset, arXiv 2505.22238 v2; Table 6 gives the 50M ItemKNN baseline NDCG@100 0.0934, and the protocol (300-day train, 30-min gap, 1-day test, frozen state) is published.",
+   "reference": "Not built. Planned best-of ItemKNN (similarity, shrinkage, recency) / iALS / SASRec tuned by us; paper ItemKNN 0.0934 is the public floor.",
+   "ships": "Yambda-50M listen events (flat/sequential parquet), the official ItemKNN baseline code (from the HF benchmarks folder, to be re-verified), and an evaluator; hidden later days withheld.",
+   "similarity": "l0 neighbour S-rs-007 at cosine 0.46 (another seed in the same family); S-im-042 0.108 and S-im-039 0.098 are below threshold. ListenBrainz overlap per seed is unverified."
+  },
+  "kill_code": "K1",
+  "kill_reason": "Near-duplicate by cosine: S-rs-007 is another seed at 0.46, far above the 0.15 novelty threshold, and the seed says it closely resembles a ListenBrainz task. The seed-level K1 applies unless the pipeline owner confirms S-rs-007 has a different deliverable. Separately, the research-only dataset restriction needs a legal check (K6 risk, not a kill yet).",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Expected band is plausible but has no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Roughly 3-5 days of build work."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits 8 CPU / 16 GB with sparse ItemKNN; SASRec on CPU is slow and the baseline README mentions GPU."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Sustained tuning and ensembling across several families fits 8 h."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "Apache-2.0 metadata, but the card restricts use to scientific/research purposes; bundle shipment needs legal review."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Similarity, shrinkage, iALS, recency and ensembling give dense NDCG buckets."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Cosine 0.46 to seed S-rs-007, and the seed itself says it closely resembles a ListenBrainz task."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public HF dataset, arXiv paper, and official benchmark code."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "No complete permissive reference yet; the paper baseline is a floor, not a ceiling."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden days are withheld and the runtime is offline, but the public dataset and baseline code are readable upstream."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 10k users on a hidden day with two metrics; a deterministic evaluator, but one test day is a limited surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Baseline reproduction is off by more than 10%, the best tuned gain is under 0.005 (normalisation range too narrow), or the CPU path is infeasible.",
+   "pass_if": "Baseline reproduces within about 5% of 0.0934, tuned ItemKNN gains at least 0.01 NDCG@100, RAM stays under 16 GB, and results are bit-identical across two runs.",
+   "steps": [
+    "In a throwaway networked container, download Yambda-50M flat listens and multi_event parquet from HF (not into /app).",
+    "Rebuild the paper's GTS split: 300-day train window, 30-min gap, 1-day test, drop users with empty history, freeze state.",
+    "Run the public ItemKNN baseline (or a minimal sparse top-K cosine ItemKNN) on that split and check NDCG@100 is near 0.0934 (within about 5%).",
+    "Run a quick tuning sweep on ItemKNN (K neighbours, shrinkage, recency decay) and check the best NDCG@100 gain over 0.0934.",
+    "Time one full ItemKNN fit-and-score on 8 CPUs and record peak RAM against the 16 GB limit.",
+    "Re-run the same split twice to confirm deterministic NDCG@100.",
+    "Check whether the public benchmark code needs GPU and whether a CPU path exists.",
+    "Write the outcome and the licence question (research-only card versus bundle shipment) to the spike notes."
+   ]
+  },
+  "summary": "The 0.0934 ItemKNN NDCG@100 baseline and the 300-day / 30-min / 1-day GTS protocol are confirmed in the Yambda paper, and the dataset is public on HF with Apache-2.0 metadata plus a research-only restriction. The card is killed K1 because the l0 neighbour S-rs-007 is another seed at cosine 0.46, and the reference margin over the baseline is still unmeasured, so the spike must measure it."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [
+   "https://github.com/yandex-research/yambda"
+  ],
+  "ratio": 0.25
+ },
+ "v1_score": 72
+}

@@ -1,0 +1,307 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "8 h. Frontier agents get parse/format/validity quickly but miss as-you-type, possible-length edge cases and regex-dialect differences. Buckets are per operation. A weaker model stops at E164 parse and basic format. Library is well known, so the metadata is renamed and trimmed at the edges.",
+  "cheat": "Embedding precomputed outputs is impossible because inputs are hidden and generated. The Java oracle and test sources are not in the image, and the metadata copy is a modified snapshot with perturbed patterns and region codes so memorized outputs would be wrong.",
+  "grading": "Differential check against the Java original run offline at build time: hidden generator of random and edge numbers across about 240 regions and all ops, exact string match. Also the ported Java test assertions (about 2,000 asserts across 4 test classes, which are sealed). Reward is the fraction of cases matching the reference.",
+  "reference": "Our reference is a Rust port written from the Java source and checked against the Java oracle; expected size is 3-5k lines. nyaruka/phonenumbers shows a port is feasible.",
+  "source": "https://github.com/google/libphonenumber @ v9.0.41 (33be5664), Apache-2.0; nyaruka/phonenumbers Go port MIT as design cross-check",
+  "task": "/app ships PhoneNumberMetadata.xml pinned plus an empty Rust crate. The agent builds parse, validity, number type, national/international/E164/RFC3966 formatting, region lookup, possible-length checks and as-you-type formatting, as a CLI reading JSON-lines requests and a library API. Geocoding and carrier data are excluded.",
+  "title": "libphonenumber core ported to Rust with metadata-driven parse, format and validity"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T23:19:04Z",
+ "family": "data-format",
+ "final": 74,
+ "history": [
+  [
+   "2026-10-20T23:19:04Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:04Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-014 0.23"
+  ],
+  [
+   "2026-10-21T00:07:50Z",
+   "v1",
+   "pass",
+   "score 74; dead links []"
+  ],
+  [
+   "2026-10-21T00:12:22Z",
+   "v2",
+   "pass",
+   "final 74"
+  ],
+  [
+   "2026-10-21T01:01:53Z",
+   "spike",
+   "validated",
+   "The Java core builds offline in about 2 s with a plain JDK and gives identical output on two runs. The public crate (phonenumber 0.3.10, bundled metadata) matches the oracle on about 99% of parse, validity and format fields. It lacks as-you-type formatting and possible-length reasons, and I did not "
+  ]
+ ],
+ "id": "S-im-038",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.23,
+    "S-im-014"
+   ],
+   [
+    0.228,
+    "S-im-033"
+   ],
+   [
+    0.219,
+    "S-im-037"
+   ],
+   [
+    0.177,
+    "rust-java-lsp [SWE-Marathon]"
+   ],
+   [
+    0.153,
+    "family (Java, TS, JS, Go, Rust, C, C++) [Multi-SWE-bench]"
+   ]
+  ]
+ },
+ "method": "port",
+ "rank": 1,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 6,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DBUILD_TESTING=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "33be5664343676b27761213d8f5500d682568ea7",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": false,
+  "fetch_s": 15,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "  Can't find Google C++ Testing Framework: can't locate gtest/gtest.h.\n  Please read the README and also take a look at tools/cpp/gtest.cmake.\nCall Stack (most recent call first):\n  CMakeLists.txt:135 (find_or_build_gtest)\n\n\n-- Configuring incomplete, errors occurred!\nSee also \"/p/src/cpp/build/CMakeFiles/CMakeOutput.log\".\nninja: error: loading 'build.ninja': No such file or directory",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "cpp",
+  "suite_s": 0,
+  "test_files": 186,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "33be5664343676b27761213d8f5500d682568ea7",
+  "kb": 325902,
+  "lang": "C++",
+  "open_prs": 64,
+  "pushed": "2026-10-08",
+  "release": "v9.0.41",
+  "spdx": "Apache-2.0",
+  "stars": 18321,
+  "test_files": 186,
+  "test_kb": 1326,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/google/libphonenumber|libphonenumber-v9-0-41-2026-10-08-commit-33be5664-nyaruka-ph",
+ "source_notes": "Metadata-driven and version sensitive so pin XML; low crowding and good real-world task; geocoding/carrier data sets are large and can be excluded; regex-heavy (uses Java regex features)",
+ "source_url": "https://github.com/google/libphonenumber",
+ "source_version": "libphonenumber v9.0.41 (2026-10-08) commit 33be5664; nyaruka/phonenumbers v1.8.1 (2026-07-15); rust-phonenumber v0.3.7+8.13.52 (2025-01-11, older metadata)",
+ "spike": {
+  "blockers": [
+   "Rust reference port (3-5k lines) is not written; reference_built and reference_cases_passed describe the Java oracle, not the port.",
+   "Tag v9.0.41 resolves to b68df884, not 33be5664 (that is HEAD); pin the tag commit.",
+   "Public Rust ports match about 99% on parse/validity/format, so those buckets are easy for an agent that knows them.",
+   "Not tested: start scoring zero on a shipped empty crate (true by construction), ported test asserts, offline run with network disabled."
+  ],
+  "build_minutes": 1,
+  "cases_sampled": 1062,
+  "commands_log": "git clone --branch v9.0.41 google/libphonenumber; apt install default-jdk-headless; javac -encoding UTF-8 -d out $(find java/libphonenumber/src -name '*.java'); cp -r .../phonenumbers/data out/...; java Oracle (parse/valid/type/possible/formats/as-you-type) over 1062 cases x2 identical; cargo add phonenumber 0.3.10, same cases diffed per field",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Java oracle is the ceiling (builds, deterministic). Public Rust crate phonenumber 0.3.10 matches ~99% on parse/valid/format but has no as-you-type formatter or possible-length reason, so those buckets stay open.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "The Java core builds offline in about 2 s with a plain JDK and gives identical output on two runs. The public crate (phonenumber 0.3.10, bundled metadata) matches the oracle on about 99% of parse, validity and format fields. It lacks as-you-type formatting and possible-length reasons, and I did not check its number-type API. Notes are in /work/SPIKE.md.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 1062,
+  "reference_lines": 4000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 3
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/google/libphonenumber/releases/tag/v9.0.41",
+  "facts": [
+   {
+    "claim": "google/libphonenumber tag v9.0.41 exists and is marked Latest on the GitHub release page",
+    "status": "confirmed",
+    "url": "https://github.com/google/libphonenumber/releases/tag/v9.0.41"
+   },
+   {
+    "claim": "Repo licence is Apache-2.0 (the release page does not show a LICENSE; the spdx comes from source_facts, not independently checked in the file)",
+    "status": "not_found",
+    "url": "https://github.com/google/libphonenumber/releases/tag/v9.0.41"
+   },
+   {
+    "claim": "Commit 33be5664 is the v9.0.41 commit",
+    "status": "not_found",
+    "url": "https://github.com/google/libphonenumber/releases/tag/v9.0.41"
+   },
+   {
+    "claim": "A public Rust port of libphonenumber exists: crate 'phonenumber' (whisperfish/rust-phonenumber), latest 0.3.9+9.0.21, MSRV 1.76",
+    "status": "confirmed",
+    "url": "https://lib.rs/crates/phonenumber"
+   },
+   {
+    "claim": "A second public Rust port rlibphonenumber exists, based on libphonenumber 9.0.8",
+    "status": "confirmed",
+    "url": "https://awesome.ecosyste.ms/projects/github.com%2Fvloldik%2Frlibphonenumber"
+   },
+   {
+    "claim": "nyaruka/phonenumbers Go port is MIT licensed and public",
+    "status": "not_found",
+    "url": "https://github.com/nyaruka/phonenumbers"
+   },
+   {
+    "claim": "About 2,000 asserts across 4 Java test classes, and the Java oracle builds offline (smoke probe red: no build, 0 tests)",
+    "status": "not_found",
+    "url": "https://github.com/google/libphonenumber"
+   }
+  ],
+  "full_card": {
+   "band": "Budget 8 h. Frontier likely clears parse and basic format; misses as-you-type, possible-length edges and regex dialect differences. Weaker model stops at E164 parse. No dated public evidence, so Band capped at 3.",
+   "build_cost": "About 3-4 days: reference port 3-5k lines plus oracle build; smoke probe red (cmake target for cpp subdir did not build), so the oracle build path is unverified.",
+   "deliverable": "Rust crate and CLI for parse, validity, type, national/international/E164/RFC3966 format, region lookup, possible-length and as-you-type formatting, JSON-lines in, library API.",
+   "gates_anticheat": "Oracle and test sources absent from image; metadata perturbed (renamed patterns and region codes) so memorized outputs fail; no vendoring since no network and no crate in the image.",
+   "grading_surface": "Hidden generator over about 240 regions and all ops, exact string match vs Java oracle, plus about 2,000 ported asserts; buckets per operation.",
+   "local_fit": "Pure Rust plus Java oracle built at image time; CPU only, fits 8 cores and 16 GB; no GPU or network at run time.",
+   "lookup": "partial: public Rust ports exist (phonenumber 9.0.21, rlibphonenumber 9.0.8) at older metadata; not installable offline; the agent may still know the algorithm from the Java source.",
+   "provenance": "google/libphonenumber v9.0.41 (33be5664), Apache-2.0 per source_facts; release tag confirmed, commit and licence file not re-checked; 186 test files, 1.3 MB tests, 326 MB repo.",
+   "reference": "Rust port written from the Java source, 3-5k lines, not yet written; public Rust ports exist (whisperfish phonenumber 0.3.9+9.0.21) that a grader would have to be checked against.",
+   "ships": "Pinned PhoneNumberMetadata.xml plus empty Rust crate; Java oracle and sealed test sources kept out of the image and built offline at image build time.",
+   "similarity": "Max l0 cosine 0.23 (S-im-014), below K1 threshold; not a CROWDED task subject, but a Rust libphonenumber port is a known public subject."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent performance on this port, so capped at 3 by rule; the seed's bucket description is plausible."
+   },
+   "Build": {
+    "v": 2,
+    "why": "A 3-5k line port plus an oracle build path that the red smoke probe did not verify is roughly 3-4 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only Rust plus a Java oracle built offline at image time; fits the sandbox, though the Java build is unverified."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8 h tier fits a 3-5k line port, but the scope could be finished by a strong agent in one or two long sessions."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 per source_facts, which permits shipping the source and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several operations (parse, validity, format variants, region lookup, as-you-type) give natural per-operation buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max l0 cosine 0.23 with no crowded match, but a public Rust libphonenumber port already exists, so the subject overlaps with known work."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Google's official repo, pinned release tag, 18k stars, real metadata XML."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference is a port not yet written; the Java original is a strong oracle and public Rust ports give a cross-check, but no complete permissive Rust reference is confirmed at 9.0.41."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and tests stay out of the image and metadata is perturbed, but the Java source and public Rust ports are public, so a model may partly recall the approach."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generator across about 240 regions and all ops with exact-match oracle gives thousands of cases; not a full executable generator yet."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Public crate matches more than about 90% of oracle outputs across all operations, or the Java oracle cannot be built offline.",
+   "pass_if": "Java oracle builds offline in under 30 minutes, is deterministic across two runs, and the public crate misses at least one operation bucket substantially (e.g. as-you-type or possible-length edges).",
+   "steps": [
+    "In a throwaway Linux container with network, clone google/libphonenumber at 33be5664 and confirm the Apache-2.0 LICENSE file.",
+    "Build the Java core (javac over java/libphonenumber sources) offline; record whether it needs extra jars or protobuf.",
+    "Fetch the whisperfish phonenumber crate (0.3.9+9.0.21) and run its tests against the same pinned XML to see how far a public port already matches.",
+    "Generate about 2,000 random and edge inputs across 20 regions with the Java oracle, and run them through the public Rust crate for parse, format and validity.",
+    "Score the match rate per operation; if the public port already matches most outputs at 9.0.41 metadata, the task is too easy (K8).",
+    "Re-run the Java oracle twice with the same seed to confirm determinism."
+   ]
+  },
+  "summary": "The seed is a real, pinned, Apache-2.0 port target with a strong Java oracle, and the grading surface and per-operation buckets are sound. The main risks are that public Rust ports already exist (so the subject is well known and Band evidence is absent) and that the red smoke probe leaves the oracle build unverified, so it passes validation with a spike to check whether the public crate already covers most outputs."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-038",
+  "kill_code": "",
+  "note": "Real pinned release (v9.0.41 tag confirmed; commit and LICENSE file not checked). Grading is strong: a differential Java oracle with an unlimited generator, and per-operation buckets give dense credit. Gaps: (1) the card ships no behavioural spec. Without the Java source in /app, exact-match grading tests whether the agent remembers libphonenumber's leniency and formatting quirks, not engineering work. Ship the Java core source (no JDK, no tests) as the spec, or accept that this is a recall test. (2) Perturbing the metadata does nothing against memorisation, because the agent reads the same XML the oracle does. Drop this claim. (3) Two public Rust ports and Go/JS ports exist, so K8 is a real risk. The spike must measure how far a recalled port gets. (4) The smoke build is red. The Java oracle build is unproven and the reference is not written, so build cost is 3-4+ days. Band is capped at 3: there is no dated evidence.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 78
+}

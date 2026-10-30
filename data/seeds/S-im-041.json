@@ -1,0 +1,269 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "8 h. Frontier agents implement the main resolution path but skip lockfile and filtering branches. Weaker models stop at a build that does not finish.",
+  "cheat": "There is no network, and later upstream sources are absent. Hidden fixtures use generated registries.",
+  "grading": "Hidden behavioural tests run the CLI against an offline fixture registry (lockfile contents, exit codes, messages), plus the existing suite subset as a regression gate. Several hundred cases. The probe is red, so offline fixture setup is required.",
+  "reference": "Written by us, expected 1,500+ added lines.",
+  "source": "https://github.com/pnpm/pnpm @ v12.14.0 (52018292), MIT",
+  "task": "/app ships a history-less snapshot at the pinned release. The agent implements a multi-part feature chosen from long-open upstream issues: policy rules in the workspace file, resolution and lockfile output, a CLI check subcommand, and offline fixtures. The specific issue is not found and must be selected when pinning. Language of the repo needs checking, as the metadata is inconsistent.",
+  "title": "pnpm workspace catalog and dependency policy feature set"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T23:19:04Z",
+ "family": "build-system",
+ "history": [
+  [
+   "2026-10-20T23:19:04Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:04Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-039 0.36"
+  ],
+  [
+   "2026-10-21T00:09:06Z",
+   "v1",
+   "killed:K7",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 3, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 3, 'Lic': 4, 'Fit': 2, 'Build': 2}"
+  ]
+ ],
+ "id": "S-im-041",
+ "kill": "K7",
+ "l0": {
+  "neighbours": [
+   [
+    0.359,
+    "S-im-039"
+   ],
+   [
+    0.28,
+    "S-im-008"
+   ],
+   [
+    0.277,
+    "S-im-036"
+   ],
+   [
+    0.101,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ],
+   [
+    0.1,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "curl g++ git make python3",
+  "build_ok": false,
+  "build_s": 145,
+  "ci_files": 29,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "78838d566d7ab8134bb0944e987ec23a5e91ecfc",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 52,
+  "log": " cexpr v0.6.0\n  Downloaded sigstore-sign v0.11.0\n  Downloaded tabled_derive v0.11.0\n  Downloaded tower v0.5.3\n  Downloaded bindgen v0.66.1\n   Compiling wait-timeout v0.2.1\n   Compiling serde_with v3.22.0\n   Compiling rand v0.9.4\n   Compiling oauth2 v5.0.0\n   Compiling itertools v0.10.5\n   Compiling serde_plain v1.0.2\n   Compiling dyn-clone v1.0.20\n   Compiling pnpr-osv v0.0.1 (/p/src/pnpr/crates/osv)\n   Compiling similar v2.7.0\n   Compiling openidconnect v4.0.1\nerror: could not compile `pnpm-deps-restorer` (lib) due to 1 previous error\nwarning: build failed, waiting for other jobs to finish...",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   101,
+   101,
+   101
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 6,
+  "test_files": 2638,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "52018292b075a3aecb3fd53074a768ebb7591ed1",
+  "kb": 290251,
+  "lang": "Rust",
+  "open_prs": 187,
+  "pushed": "2026-10-20",
+  "release": "v12.14.0",
+  "spdx": "MIT",
+  "stars": 36866,
+  "test_files": 2638,
+  "test_kb": 27172,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/pnpm/pnpm|pnpm-pnpm",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: pnpm run prepare-fixtures. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/pnpm/pnpm",
+ "source_version": "",
+ "status": "killed:K7",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/pnpm/pnpm/releases/tag/v12.14.0",
+  "facts": [
+   {
+    "claim": "pnpm/pnpm release v12.14.0 exists (published 15 Oct, per release page)",
+    "status": "confirmed",
+    "url": "https://github.com/pnpm/pnpm/releases/tag/v12.14.0"
+   },
+   {
+    "claim": "v12.14.0 already ships catalog-related lockfile reuse (lockfile reused when a catalog entry is unused by any dependency), so catalog behaviour is present in the pinned base",
+    "status": "confirmed",
+    "url": "https://github.com/pnpm/pnpm/releases/tag/v12.14.0"
+   },
+   {
+    "claim": "v12.14.0 already keeps lockfile entries for workspace projects missing from disk in filtered installs",
+    "status": "confirmed",
+    "url": "https://github.com/pnpm/pnpm/releases/tag/v12.14.0"
+   },
+   {
+    "claim": "Catalogs are a pnpm workspace feature (pnpm-workspace.yaml catalog/catalogs), added in v9.5.0",
+    "status": "confirmed",
+    "url": "https://pnpm.io/catalogs"
+   },
+   {
+    "claim": "Repository is primarily Rust (lang: Rust)",
+    "status": "contradicted",
+    "url": "https://github.com/pnpm/pnpm"
+   },
+   {
+    "claim": "Repository contains a Rust experimental CLI port (pacquet) alongside TypeScript tooling (package.json, eslint, tsconfig)",
+    "status": "confirmed",
+    "url": "https://github.com/pnpm/pnpm"
+   },
+   {
+    "claim": "Repository licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/pnpm/pnpm"
+   },
+   {
+    "claim": "pnpr/ directory is under PolyForm Shield 1.0.0, not MIT, so it must be excluded from any shipped snapshot",
+    "status": "confirmed",
+    "url": "https://github.com/pnpm/pnpm"
+   },
+   {
+    "claim": "minimumReleaseAge and minimumReleaseAgeExclude settings exist (version of introduction not stated)",
+    "status": "confirmed",
+    "url": "https://pnpm.io/settings"
+   },
+   {
+    "claim": "A 'check' subcommand exists in pnpm CLI",
+    "status": "not_found",
+    "url": "https://pnpm.io/settings"
+   },
+   {
+    "claim": "v12.14.0 release adds a --check flag to pnpm dedupe (closest existing check-like behaviour)",
+    "status": "confirmed",
+    "url": "https://github.com/pnpm/pnpm/releases/tag/v12.14.0"
+   },
+   {
+    "claim": "2638 test files and 290251 KB repo size from GitHub API",
+    "status": "not_found",
+    "url": "https://github.com/pnpm/pnpm"
+   },
+   {
+    "claim": "Repo is used by a SWE-bench-family dataset and its suite runs via pnpm run prepare-fixtures",
+    "status": "not_found",
+    "url": "https://github.com/pnpm/pnpm"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier suggested by seed; no dated public evidence of agent performance on this task. Frontier likely finishes the main resolution path; lockfile and filter branches are the skip risk.",
+   "build_cost": "About 3-5 days: TS build and fixture registry generator, reference of 1500+ lines, and history-less snapshot plus pnpr exclusion.",
+   "deliverable": "Not yet chosen: seed says the issue must be selected at pinning. Scope named as workspace policy rules, resolution/lockfile output, a check subcommand, offline fixtures.",
+   "gates_anticheat": "Offline run; grader must reject edits to tests/fixtures/build config; regression subset must be protected from edits; no network to registry.",
+   "grading_surface": "Hidden CLI behavioural tests on an offline fixture registry (lockfile contents, exit codes, messages), several hundred cases, plus regression subset. Oracle would be our reference; no external oracle.",
+   "local_fit": "Node/TypeScript build plus cargo workspace; smoke probe ran only cargo and went red, so the TS toolchain was never exercised. gVisor-compatible in principle.",
+   "lookup": "partial: catalogs and lockfile reuse are already in v12.14.0 base; minimumReleaseAge exists upstream; later upstream releases cover adjacent behaviour.",
+   "provenance": "pnpm/pnpm @ v12.14.0 (MIT core; pnpr/ is PolyForm Shield). Release page confirmed; head commit 52018292 from seed not re-verified.",
+   "reference": "Not written; expected 1500+ added lines by us. Upstream later releases implement parts of the same area, so reference is not public but overlaps public direction.",
+   "ships": "Mixed monorepo: TypeScript pnpm CLI plus experimental Rust port (pacquet, Cargo workspace). Must snapshot history-less and exclude pnpr/.",
+   "similarity": "Neighbours S-im-039 (0.359), S-im-008 (0.28), S-im-036 (0.277) not inspected; none in CROWDED list; no pnpm task found in CROWDED."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausible for 8 h, but no dated evidence and the base already covers catalog behaviour, which shifts the difficulty."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 3-5 days including fixture registry, reference and snapshot preparation."
+   },
+   "Fit": {
+    "v": 2,
+    "why": "Smoke probe is red (cargo exit 101 x3, no report), so the TS path is unproven and offline fixture setup is needed."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-module feature (policy, resolver, lockfile, CLI, fixtures) fits the 8 h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "MIT core is shippable; pnpr/ under PolyForm Shield must be excluded from the bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four named parts (policy rules, resolution/lockfile, check subcommand, fixtures) give natural buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Overlaps S-im-039 (0.359) and the pinned release's own catalog and lockfile behaviour; needs re-scoping to new branches only."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MIT-licensed upstream at a published tag; paper trail is strong, but the feature is not yet chosen and the language metadata conflicts."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference not written; our 1500+ line reference would need to match upstream-adjacent behaviour, and the feature is partly in base."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is ours, but the upstream direction is public through later releases and 187 open PRs; a history-less snapshot is required."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Several hundred behavioural CLI cases over an offline fixture registry, with dense partial buckets; not thousands and no executable oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "prepare-fixtures or the TS build needs network, or the base passes the new-branch cases (after re-scoping), or the TS build exceeds the 60-minute spike budget.",
+   "pass_if": "TS build and suite run offline with deterministic per-test results; prepare-fixtures works without network; base fails all draft new-branch cases.",
+   "steps": [
+    "Clone pnpm/pnpm at tag v12.14.0 in a throwaway networked container; record HEAD and confirm it matches 52018292.",
+    "Install the TypeScript toolchain the way the repo declares it (corepack/pnpm, Node version from package.json); run the TS build and unit tests offline after the install.",
+    "Run pnpm run prepare-fixtures and confirm whether it needs network; record per-test output of the suite subset.",
+    "Diff base behaviour: write 10-20 draft cases for the chosen new branches (policy rule, lockfile output, check subcommand) and confirm the base fails them.",
+    "Confirm the base already passes the catalog and lockfile-reuse cases; if so, drop them from the graded set or re-scope the issue.",
+    "Check the cargo side only if the reference touches pacquet; otherwise exclude Cargo.toml and pnpr/ from the snapshot.",
+    "Re-run the probe with the TS test command to see whether the verdict moves from red to green."
+   ]
+  },
+  "summary": "The seed is not ready as written: the feature is unselected, the pinned v12.14.0 already ships catalog and lockfile-reuse behaviour, and the smoke probe ran only the Rust side and went red. It is not killed yet because the scope can be re-cut to branches the base lacks, and the TS build and offline fixture setup still need a spike before the 8 h tier and build cost can be trusted."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

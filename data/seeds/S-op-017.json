@@ -1,0 +1,189 @@
+{
+ "batch": 8,
+ "card": {
+  "band": "8h. Frontier can get partial gains from portable-C and intrinsics work, but the reference uses hand-written assembly and SIMD Huffman, so it averages well below S. Buckets: encode, decode, upsample, colour conversion. A weaker model gains only compiler-flag speedups.",
+  "cheat": "Compiler flags and downgrading quality are not allowed: output must be byte-identical and the build uses a fixed command. The 3.2 source is not in the image.",
+  "grading": "The gate is a byte-identical JPEG on the encode side and pixel-identical output on decode with a fixed DCT method, over a hidden image set. The score is the wall-clock median speedup over the base on hidden images, as 2^u - 1 against reference speedup S.",
+  "reference": "The 3.2 release is the measured upstream reference: its ChangeLog gives 149-246% faster RGB baseline compression, with decode gains too. We use the real diff, restricted to the portable and SSE2/AVX2 paths.",
+  "source": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/ChangeLog.md @ 3.1.x to 3.2.x; IJG + BSD-3 + zlib",
+  "task": "/app ships a history-less snapshot of libjpeg-turbo 3.1.x with CMake, the cjpeg and djpeg tools and a benchmark script over a fixed image set. The agent makes baseline Huffman encode and decode faster (SIMD Huffman encode, merged upsampling, colour conversion), keeping output correct. The delivery is the modified source tree built offline.",
+  "title": "libjpeg-turbo 3.1 to 3.2 baseline encode and decode speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-011 0.18"
+  ],
+  [
+   "2026-10-21T00:57:40Z",
+   "v1",
+   "killed:K5",
+   "The seed's reference speedup (149-246% on RGB baseline compression) is not a measured x86 result: the ChangeLog attributes it to 3.1.90 (3.2 beta1) RISC-V Vector work, and the 3.2.0 section has no speed bullet. S is therefore unknown, so the reward normalisation has no trustworthy anchor. Revive onl"
+  ]
+ ],
+ "id": "S-op-017",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.181,
+    "S-op-011"
+   ],
+   [
+    0.161,
+    "S-op-014"
+   ],
+   [
+    0.14,
+    "S-im-032"
+   ],
+   [
+    0.101,
+    "family (247 tasks) [KernelBench-Verified]"
+   ],
+   [
+    0.091,
+    "set_cover [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/changelog.md|libjpeg-turbo-3-1-x-for-3-1-90-claim-or-2-0-x-1-5-x-per-entr",
+ "source_notes": "Levers: AVX2/SSE2 kernels, SIMD Huffman encoder, progressive Huffman SIMD, merged upsampling, ARM/Loongson ports. Only first 100000 of 142915 chars of ChangeLog read; older 1.5.x claims after the cutoff not read. Overlap with prior corpus: none known. Hand-written assembly means the reference is not a simple portable-C patch: INFERRED hard to backport per-PR. Output of decode (pixels) is byte-identical across versions in general not guaranteed (DCT method), gate with fixed dct-method.",
+ "source_url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/ChangeLog.md",
+ "source_version": "libjpeg-turbo 3.1.x (for 3.1.90 claim) or 2.0.x/1.5.x (per entry) -> libjpeg-turbo 3.2.x",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/ChangeLog.md",
+  "facts": [
+   {
+    "claim": "The 149-246% faster RGB baseline compression claim appears in the ChangeLog under 3.1.90 (3.2 beta1), item 6, which is RISC-V Vector work, not in the 3.2.0 section and not for x86 SSE2/AVX2 paths",
+    "status": "contradicted",
+    "url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/ChangeLog.md"
+   },
+   {
+    "claim": "The 3.2.0 ChangeLog section contains no compression/encoding speed, Huffman, merged-upsampling, colour-conversion or percentage speedup bullet",
+    "status": "contradicted",
+    "url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/ChangeLog.md"
+   },
+   {
+    "claim": "3.1.x already includes an accelerated Huffman codec for AArch64 (3.1.2, item 4); x86 SIMD Huffman status in 3.1.x was not verified",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/ChangeLog.md"
+   },
+   {
+    "claim": "libjpeg-turbo 3.2.0 exists as a release (Arch Linux package 3.2.0-2 listed; search summary cites a June 30, 2026 release; release page not fetched)",
+    "status": "confirmed",
+    "url": "https://www.archlinux.org/packages/extra/x86_64/libjpeg-turbo/"
+   },
+   {
+    "claim": "Licences are IJG (libjpeg API and programs, README.ijg), modified BSD-3 (TurboJPEG, libspng, build/test), and zlib (SIMD code); source and binary redistribution permitted with notices",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/main/LICENSE.md"
+   },
+   {
+    "claim": "Reference diff is public upstream history (3.2.0 tag on GitHub), so an agent could read it if the snapshot leaked history; snapshot must be history-less",
+    "status": "not_found",
+    "url": "https://github.com/libjpeg-turbo/libjpeg-turbo/releases/tag/3.2.0"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier argued; no dated public evidence of agent performance; frontier partial gains plausible via intrinsics; weaker model gains only from flags",
+   "build_cost": "about 3-4 days: pin 3.1.x snapshot, build harness, measure reference on x86, byte-stable gates",
+   "deliverable": "modified source tree that builds offline; faster baseline Huffman encode/decode, merged upsampling, colour conversion; byte-identical JPEG and pixel-identical decode with fixed DCT method",
+   "gates_anticheat": "fixed build command, no flag or quality changes, output byte-identical; 3.2 source not in image; history-less snapshot required",
+   "grading_surface": "hidden image set; byte compare on encode, pixel compare on decode; wall-clock median speedup vs base; score 2^u-1 vs S",
+   "local_fit": "x86 CPU-only, gVisor; SIMD intrinsics ok; wall-clock benchmarks noisy under gVisor",
+   "lookup": "direct: full reference diff is public in upstream 3.2.0 history",
+   "provenance": "libjpeg-turbo, public GitHub project, IJG+BSD-3+zlib; 3.2.0 exists; 3.2 speed claim is misattributed to RISC-V work",
+   "reference": "upstream 3.2.0 diff restricted to portable + SSE2/AVX2 paths; S unmeasured for these paths (the 149-246% figure is RISC-V Vector, 3.2 beta1)",
+   "ships": "history-less snapshot of 3.1.x source, CMake, cjpeg/djpeg, benchmark script, fixed image set",
+   "similarity": "nearest l0 neighbour 0.181 (S-op-011); not on CROWDED list; distinct subject from libexpat/ffmpeg entries"
+  },
+  "kill_code": "K5",
+  "kill_reason": "The seed's reference speedup (149-246% on RGB baseline compression) is not a measured x86 result: the ChangeLog attributes it to 3.1.90 (3.2 beta1) RISC-V Vector work, and the 3.2.0 section has no speed bullet. S is therefore unknown, so the reward normalisation has no trustworthy anchor. Revive only if the spike measures a clear x86 gain from the upstream diff.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this scope; at most 3 without it"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-4 days, mainly pinning the snapshot and measuring the reference"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only C/asm within 8 cores; wall-clock timing noisy under gVisor"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Encode, decode, upsampling and colour conversion justify an 8h tier"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "IJG, BSD-3 and zlib all permit redistribution with notices"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four buckets (encode, decode, upsample, colour conversion) give steady partial credit"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbour 0.181 and not crowded"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real public project with pinned releases; speed claim misattributed to RISC-V, so the x86 paper trail is weaker"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference exists but its claimed speedup is not measured for the stated x86 paths; S is unknown"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public upstream diff is not installable offline, but a frontier agent may recall libjpeg-turbo structure"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Byte and pixel comparisons over an unlimited image generator are an executable oracle"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "x86 gain below 1.2x, or outputs differ between versions so the byte gate cannot be used as a reference",
+   "pass_if": "3.2.0 gives at least 1.5x median RGB baseline encode speedup on x86, and outputs are byte-identical across the two versions",
+   "steps": [
+    "In a networked throwaway Linux container, fetch the libjpeg-turbo 3.1.x and 3.2.0 tags from GitHub (not the platform).",
+    "Build both with CMake on x86-64, default flags, and record the build commands.",
+    "Run cjpeg and djpeg on a fixed set of about 20 RGB images with a fixed quality and fixed DCT method, 5 repetitions each.",
+    "Compare 3.1.x and 3.2.0 outputs byte for byte (encode) and pixel for pixel (decode) to check the gate is stable across versions.",
+    "Compute median wall-clock speedup of 3.2.0 over 3.1.x for RGB baseline encode and decode on x86, separately for each path.",
+    "Check whether the 3.1.x base already has x86 SIMD Huffman, to see how much of the lever is left."
+   ]
+  },
+  "summary": "The seed is a real, licence-compatible codec project, but its reference speedup claim is misattributed: the 149-246% figure is for RISC-V Vector work in 3.2 beta1, not for the x86 baseline paths the task grades. Killed as K5 because S cannot be anchored; the spike should first measure the upstream 3.1.x to 3.2.0 x86 gain and byte stability."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

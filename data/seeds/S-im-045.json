@@ -1,0 +1,301 @@
+{
+ "batch": 8,
+ "card": {
+  "band": "8h. Frontier gets non-ignorable ordering quickly, then fails on contractions, discontiguous matches and shifted weighting. A weaker model stops at the simple per-codepoint lookup. Buckets: variants, implicit weights, contractions, tailorings.",
+  "cheat": "The expected order is not shipped as a table. Hidden pairs are generated, and sorting by code point or a lookup of the public file does not pass them. The oracle crate is held in the verifier.",
+  "grading": "Hidden cases include the 848k CollationTest lines (4 variants) plus generated string pairs and tailoring cases. The oracle is icu_collator, used in the verifier only, compared on the sign of the comparison. Exact; score is the fraction passed per variant and tailoring bucket.",
+  "reference": "We write a Rust implementation (about 2000 lines) and check it against the icu_collator oracle on all cases to confirm it scores 1.",
+  "source": "https://www.unicode.org/Public/UCA/latest/CollationTest.zip @ UCA 18.0.0; Unicode-3.0 (reference ICU4X icu_collator Unicode-3.0)",
+  "task": "/app ships allkeys.txt (DUCET), UCD files and a library skeleton. The agent implements sort keys and compare for UTS #10: contraction and expansion matching, discontiguous contractions, implicit weights for Han, Tangut and unified ideographs, variable weighting (non-ignorable and shifted), and normalization pre-pass. It also supports a small set of CLDR-style tailorings given as rule strings.",
+  "title": "UCA collation key generator with DUCET and tailoring"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:11:20Z",
+ "family": "font-text",
+ "final": 76,
+ "history": [
+  [
+   "2026-10-21T00:11:20Z",
+   "write",
+   "short",
+   "batch 8"
+  ],
+  [
+   "2026-10-21T00:11:20Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-044 0.32"
+  ],
+  [
+   "2026-10-21T00:13:07Z",
+   "v1",
+   "pass",
+   "score 77; dead links ['https://www.unicode.org/Public/UCA/latest/CollationTest.html']"
+  ],
+  [
+   "2026-10-21T01:00:00Z",
+   "v2",
+   "pass",
+   "final 76"
+  ],
+  [
+   "2026-10-21T01:01:42Z",
+   "spike",
+   "killed:K5",
+   "icu_collator 2.3.1 has no rule-string tailoring API (only compiled locale data), so tailoring buckets have no oracle; icu_collator uses CLDR root, not DUCET; no DUCET-only mode; feruca 0.12.0 DUCET fails 883 of 212035 adjacent pairs on the 18.0.0 NON_IGNORABLE file, so it is not a clean second basel"
+  ]
+ ],
+ "id": "S-im-045",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.322,
+    "S-im-044"
+   ],
+   [
+    0.17,
+    "S-im-037"
+   ],
+   [
+    0.161,
+    "S-im-038"
+   ],
+   [
+    0.127,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.076,
+    "regex-log [archive]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "rank": 2,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "unicode.org/public/uca/latest/collationtest.zip|uca-18-0-0-files-dated-2026-08-26",
+ "source_notes": "ordering test: verifier checks monotonic sort order, so output is sort keys or compare function; implicit weights for Han/Tangut and variable weighting (shifted vs non-ignorable) are the tricky parts; low crowding; huge case count but one algorithm",
+ "source_url": "https://www.unicode.org/Public/UCA/latest/CollationTest.zip",
+ "source_version": "UCA 18.0.0 (files dated 2026-08-26)",
+ "spike": {
+  "blockers": [
+   "icu_collator 2.3.1 has no rule-string tailoring API (only compiled locale data), so tailoring buckets have no oracle",
+   "icu_collator uses CLDR root, not DUCET; no DUCET-only mode",
+   "feruca 0.12.0 DUCET fails 883 of 212035 adjacent pairs on the 18.0.0 NON_IGNORABLE file, so it is not a clean second baseline"
+  ],
+  "build_minutes": 1,
+  "cases_sampled": 848304,
+  "commands_log": "curl CollationTest.zip + allkeys.txt; unzip; cargo add icu_collator feruca; custom monotonic-adjacent-pair harness over NON_IGNORABLE and SHIFTED; run twice for determinism; grep icu_collator src for rules API (none)",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "The untouched start (library skeleton only) was not run. The reference is not written. The 848,304-line count holds (4 files x 212,076).",
+  "headroom_ok": true,
+  "image_gb_estimate": 0.5,
+  "kill_code": "K5",
+  "notes": "The idea fails the spike's pass_if (the spike_plan's kill_if names K5 for the tailoring buckets). Downloads: allkeys.txt is version 18.0.0, CollationTest has 4 files of 212,076 lines each (848,304 total). The harness checks that adjacent lines are non-decreasing (212,035 pairs per file). Failed pairs: icu_collator 638 (NON_IGNORABLE) and 851 (SHIFTED); feruca 0.12.0 DUCET 883 and 823; feruca CLDR root 879 and 1089. icu_collator therefore passes about 99.6-99.7% of pairs, but it is CLDR root, not DUCET, and it has no way to take a rule string like '&a < g'. A fix that would work: the reference would be our own Rust implementation checked against the CollationTest files, with the tailoring oracle limited to a hand-built tailoring (for example our own implementation, or ICU4C if added). That is a redesign, not a spike pass. Repeated icu runs gave identical output (determinism OK). The ICU path is a pure library call, so offline_ok is true after vendoring. Nothing here needs perf counters, valgrind or Landlock.",
+  "offline_ok": true,
+  "oracle_available": false,
+  "outputs_match": true,
+  "reference_built": false,
+  "reference_cases_passed": 0,
+  "reference_lines": 2000,
+  "start_scores_zero": true,
+  "verdict": "fail",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "not found",
+  "facts": [
+   {
+    "claim": "UCA 'latest' directory lists version 18.0.0 data with CollationTest.zip (4.6M), allkeys.txt (2.2M), ctt.txt and decomps.txt",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/UCA/latest/"
+   },
+   {
+    "claim": "ReadMe in UCA latest says 'final data files for version 18.0.0 of UTS #10: Unicode Collation Algorithm'",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/UCA/latest/ReadMe.txt"
+   },
+   {
+    "claim": "UTS #10 is at revision 55, Version 18.0.0, dated 2026-08-31, synchronized with Unicode 18.0",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/reports/tr10/"
+   },
+   {
+    "claim": "CollationTest files exist as NON_IGNORABLE and SHIFTED (plus _SHORT), test untailored DUCET order, and CLDR variants use the same names with a _CLDR infix",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/UCA/15.1.0/CollationTest.html"
+   },
+   {
+    "claim": "Each CollationTest line is ordered >= the previous line under UCA at identical strength, so the test is an adjacent-pair monotonicity check; sort keys in comments are informational",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/UCA/15.1.0/CollationTest.html"
+   },
+   {
+    "claim": "CollationTest files for 18.0.0 are published at the latest path; the latest CollationTest.html page returned 404 on fetch",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/UCA/latest/CollationTest.html"
+   },
+   {
+    "claim": "The CollationTest suites total 848k lines across 4 variants",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/UCA/latest/CollationTest.html"
+   },
+   {
+    "claim": "icu_collator (ICU4X) repository licence is Unicode License v3 (SPDX Unicode-3.0)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/unicode-org/icu4x/main/LICENSE"
+   },
+   {
+    "claim": "icu_collator crate page reports its own licence field, version and repository",
+    "status": "not_found",
+    "url": "https://crates.io/crates/icu_collator"
+   },
+   {
+    "claim": "icu_collator does not pass or claim CollationTest conformance in its published docs or README",
+    "status": "not_found",
+    "url": "https://doc.servo.org/src/icu_collator/docs.rs.html"
+   },
+   {
+    "claim": "icu_collator documents known deviations from ICU4C: unpaired surrogates sort as REPLACEMENT CHARACTER so they compare equal; no backward iteration",
+    "status": "confirmed",
+    "url": "https://doc.servo.org/src/icu_collator/docs.rs.html"
+   },
+   {
+    "claim": "icu_collator accepts arbitrary CLDR-style tailoring rule strings at runtime (oracle could produce tailoring expectations from rule strings)",
+    "status": "not_found",
+    "url": "https://icu.unicode.org/design/size/collation"
+   },
+   {
+    "claim": "icu_collator can produce an untailored DUCET-only order (not CLDR root) for the two DUCET CollationTest variants",
+    "status": "not_found",
+    "url": "https://doc.servo.org/src/icu_collator/docs.rs.html"
+   },
+   {
+    "claim": "feruca 0.8.0 is an MIT-licensed Rust implementation of UCA that passes the official conformance tests, supports non-ignorable and shifted, and CLDR root",
+    "status": "confirmed",
+    "url": "https://docs.rs/crate/feruca/0.8.0"
+   },
+   {
+    "claim": "Tangut, Nushu and Khitan implicit weights are specified in UTS #10 section 10.1.3",
+    "status": "not_found",
+    "url": "https://www.unicode.org/reports/tr10/"
+   },
+   {
+    "claim": "Seed reference (~2000-line Rust implementation scoring exactly 1 against icu_collator) exists",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/UCA/latest/"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Claimed frontier success on untailored orders, then failure on contractions, discontiguous matches, shifted weighting and tailorings. No dated public evidence yet.",
+   "build_cost": "About 2-4 days: 2000-line reference, oracle harness with DUCET and CLDR variants, tailoring cases, surrogate filtering. Under the 5-day limit.",
+   "deliverable": "Rust library: sort-key generation and compare for UCA 18.0.0 with normalization pre-pass, variable weighting (non-ignorable, shifted), implicit weights, contractions/expansions/discontiguous matches, and rule-string tailorings.",
+   "gates_anticheat": "Hidden pairs and tailorings generated in verifier; expected order not shipped; oracle held in verifier; sorting by code point or table lookup fails. Open: surrogate lines must be filtered; oracle DUCET mode and tailoring support unverified.",
+   "grading_surface": "CollationTest lines (4 variants, count 848k claimed, not verified) plus generated string pairs and tailoring buckets; sign-of-comparison exact per bucket.",
+   "local_fit": "Rust CPU-only, small data, deterministic; fits 8 CPU / 16 GB sandbox.",
+   "lookup": "direct: feruca (MIT, Rust, passes conformance) and icu_collator (Unicode-3.0) are public complete UCA-family implementations; not installable offline; agents may recall UCA structure from ICU/pyuca in outline.",
+   "provenance": "UTS #10 / UCA 18.0.0 data (allkeys.txt, CollationTest.zip) from unicode.org; UTS #10 revision 55 dated 2026-08-31. Public, pinned version confirmed.",
+   "reference": "Not yet written. Plan: CG Rust implementation ~2000 lines checked against icu_collator (Unicode-3.0). Public alternatives: icu_collator and feruca (MIT); not shipped.",
+   "ships": "/app: allkeys.txt (DUCET), UCD files, library skeleton. Not shipped: CollationTest files, CLDR root table (needed for CLDR variants, not in seed list), icu_collator, reference.",
+   "similarity": "Nearest l0 neighbour S-im-044 at 0.322 (same batch, different subject per title); S-im-037 0.17, S-im-038 0.161; no CROWDED entry for UCA; no K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Band claim is plausible but has no dated public evidence; a frontier agent may reach DUCET variants quickly, so tailorings are the main difficulty."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 2-4 days including the oracle harness and tailoring support; under the 5-day limit."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only Rust library and small data; fits the sandbox."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8h tier with several levers (variants, implicit weights, contractions, tailorings) gives sustained work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Unicode License v3 (Unicode-3.0) confirmed for icu4x; UCA data is under Unicode terms, shippable."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four CollationTest variants plus tailoring and implicit-weight buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No CROWDED match; nearest neighbour 0.322 is S-im-044 in the same batch, which is below near-duplicate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned UCA 18.0.0 data and UTS #10 revision 55 confirmed at unicode.org."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference not written. Oracle DUCET-only mode and rule-string tailoring are unverified, so scoring 1 on all buckets is unproven."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and reference are public (icu_collator, feruca) and are not shipped; UCA is well known, so recall is a Band issue, not Seal."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "CollationTest line files are public and large, but the 848k count is unverified and tailoring cases are generated."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Oracle cannot produce DUCET-only order or cannot take rule-string tailorings (then kill K5 for tailoring buckets), or its pass rate on 18.0.0 files is well below 99% after surrogate filtering.",
+   "pass_if": "Oracle passes at least 99% of non-surrogate lines for both DUCET variants, has a DUCET-only mode or a documented way to get it, and produces a tailored order from a rule string.",
+   "steps": [
+    "In a throwaway networked Linux container, download https://www.unicode.org/Public/UCA/latest/CollationTest.zip and allkeys.txt; unzip into a fresh directory and record file line counts for NON_IGNORABLE, SHIFTED and _SHORT. Check whether the 848k total holds.",
+    "Add icu_collator to a scratch Cargo project. Confirm the crate version and its CLDR/UCA data version. Check whether it offers a DUCET-only (non-CLDR) root, and whether it accepts a rule-string tailoring such as '&a < g'.",
+    "Run icu_collator as a monotonicity check over the NON_IGNORABLE and SHIFTED CollationTest files, filtering lines with unpaired surrogates. Report the pass rate.",
+    "Run feruca 0.8.0 over the same files as a second, independent baseline, to confirm the 18.0.0 files are attainable by a public implementation.",
+    "Run icu_collator twice on the same generated pairs to check determinism. Record outputs in the scratch directory."
+   ]
+  },
+  "summary": "The seed is real and sealable: UCA 18.0.0 data and CollationTest files are confirmed at unicode.org, and icu4x is Unicode-3.0. It is not killed, but it is conditional: the 848k count and the oracle's DUCET and rule-string tailoring support are unverified, and the spike must confirm them before the reference is built."
+ },
+ "v1_links": {
+  "checked": 10,
+  "dead": [
+   "https://www.unicode.org/Public/UCA/latest/CollationTest.html"
+  ],
+  "ratio": 0.1
+ },
+ "v1_score": 77,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-045",
+  "kill_code": "",
+  "note": "UCA 18.0.0 data and UTS #10 rev 55 are confirmed. CollationTest checks adjacent lines for order, so it works as its own oracle for the DUCET non-ignorable and shifted variants. feruca (MIT) shows those files can be passed. Main risk is the oracle. icu_collator is CLDR-root and its DUCET-only mode is unverified, and it probably cannot take runtime rule strings. The tailoring bucket needs ICU4C RuleBasedCollator in the verifier; confirm this in the spike, or drop tailoring and lean on contraction, implicit-weight and generated-pair buckets. Untailored UCA is well known, so the tailoring-rule parser has to carry most of the depth. Without it this is K8. The 848k case count is unverified, and surrogate lines must be filtered.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 76
+}

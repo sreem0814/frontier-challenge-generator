@@ -1,0 +1,251 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "4 h. Memorisation risk and a small case count lower difficulty. Frontier agents pass the common cases and miss odd indentation and error classes. Weaker models stop at simple block mappings.",
+  "cheat": "Case files are not all in the image, and mutated cases defeat table lookups. No libyaml or PyYAML in the image.",
+  "grading": "Remaining hidden cases (about 351 cases in total, with expected event streams and in.json, plus error cases), exact match. The subject is crowded, so we add generated mutations of the cases, checked against libyaml and a second parser in the grader.",
+  "reference": "A reference parser that we write or adapt from an MIT parser, which scores 1 on the hidden set. Expected 2-3k lines.",
+  "source": "https://github.com/yaml/yaml-test-suite @ tag v2022-01-17, MIT",
+  "task": "/app ships a visible subset of case files and a CLI spec. The agent builds a YAML 1.2 parser (anchors, tags, block and flow styles, multi-docs, error detection) that emits the test-suite event stream, in a language chosen by the task.",
+  "title": "YAML 1.2 event-stream parser against the yaml-test-suite"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T23:19:05Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-20T23:19:05Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:05Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-038 0.25"
+  ],
+  [
+   "2026-10-21T00:10:29Z",
+   "v1",
+   "killed:K1",
+   "Crowded subject (JSON/YAML/TOML parsers are in the CROWDED list) with the same deliverable and grading as the public yaml-test-suite event-stream benchmark. Mutations are the only delta and do not clearly differentiate it. Also, the grader's libyaml cross-check is YAML 1.1, which conflicts with a 1."
+  ]
+ ],
+ "id": "S-im-043",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.254,
+    "S-im-038"
+   ],
+   [
+    0.248,
+    "S-im-041"
+   ],
+   [
+    0.248,
+    "S-im-014"
+   ],
+   [
+    0.203,
+    "json_parser [SpecBench]"
+   ],
+   [
+    0.182,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 1,
+  "clone_ok": true,
+  "cmd_build": "make -j4",
+  "cmd_fetch": "true",
+  "cmd_test": "make test",
+  "commit": "da267a5c4782e7361e82889e76c0dc7df0e1e870",
+  "deterministic": true,
+  "eco": "make",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "log": "make: Nothing to be done for 'default'.",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   2,
+   2,
+   2
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 0,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "da267a5c4782e7361e82889e76c0dc7df0e1e870",
+  "kb": 4561,
+  "lang": "Perl",
+  "open_prs": 19,
+  "pushed": "2025-12-25",
+  "release": "",
+  "spdx": "MIT",
+  "stars": 272,
+  "test_files": 0,
+  "test_kb": 0,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/yaml/yaml-test-suite|tag-v2022-01-17-tags-api-main-da267a5c-2025-12-25",
+ "source_notes": "CROWDED (YAML parser theme flagged in brief) and small; memorization risk high. Listed only for completeness",
+ "source_url": "https://github.com/yaml/yaml-test-suite",
+ "source_version": "tag v2022-01-17 (tags API); main da267a5c 2025-12-25",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/yaml/yaml-test-suite/tags",
+  "facts": [
+   {
+    "claim": "Repository yaml/yaml-test-suite exists, described as a comprehensive language-independent YAML test suite, licence MIT",
+    "status": "confirmed",
+    "url": "https://github.com/yaml/yaml-test-suite"
+   },
+   {
+    "claim": "Tag v2022-01-17 exists (dated Jan 17, 2022), with a matching data-2022-01-17 tag",
+    "status": "confirmed",
+    "url": "https://github.com/yaml/yaml-test-suite/tags"
+   },
+   {
+    "claim": "Data layout per test includes in.yaml, test.event, in.json, out.yaml, emit.yaml, error markers, so expected event streams are published alongside inputs",
+    "status": "confirmed",
+    "url": "https://github.com/yaml/yaml-test-suite"
+   },
+   {
+    "claim": "src/ at tag v2022-01-17 contains about 351 test cases",
+    "status": "not_found",
+    "url": "https://github.com/yaml/yaml-test-suite/tree/v2022-01-17/src"
+   },
+   {
+    "claim": "src/ at tag v2022-01-17 has at least 100 case files (listing truncated at 100)",
+    "status": "confirmed",
+    "url": "https://github.com/yaml/yaml-test-suite/tree/v2022-01-17/src"
+   },
+   {
+    "claim": "libfyaml is a full YAML parser that passes the full yaml-test-suite and uses it in its testsuite (project claim)",
+    "status": "confirmed",
+    "url": "https://github.com/pantoniou/libfyaml/wiki"
+   },
+   {
+    "claim": "yaml-rust2 is a YAML 1.2 parser that tests against and passes the YAML test suite (project claim)",
+    "status": "confirmed",
+    "url": "https://arai.searchfox.org/firefox-main/source/third_party/rust/yaml-rust2/Cargo.toml.orig"
+   },
+   {
+    "claim": "Reference parser scores 1 on the hidden set and is 2-3k lines",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Reference is adapted from a named MIT parser (which one is unspecified, so its licence is unverified)",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "libyaml (grader cross-check) agrees with the suite's YAML 1.2 event streams on the mutated cases",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier claimed by seed; no dated public evidence of frontier results on this task; E0",
+   "build_cost": "Reference + mutation/cross-check grader roughly 3-5 days; smoke probe amber (make test exit 2 x3, no per-test report), so repo tooling is unusable as the harness",
+   "deliverable": "A YAML 1.2 parser CLI in a task-chosen language emitting yaml-test-suite event streams (anchors, tags, block/flow, multi-doc, error detection)",
+   "gates_anticheat": "Hidden cases and expected streams out of image; mutations defeat table lookup; must block vendored copies of the suite in any local package cache; no libyaml/PyYAML in image",
+   "grading_surface": "~351 suite cases (count unverified; src listing truncated at 100) plus generated mutations; exact match on event streams",
+   "local_fit": "CPU-only text parsing; fits sandbox",
+   "lookup": "partial: libfyaml (C), yaml-rust2 (Rust), rapidyaml, YAML::PP (Perl), SnakeYAML Engine, yaml (JS) claim suite conformance; none in image; outline recallable by frontier models",
+   "provenance": "yaml/yaml-test-suite, MIT, tag v2022-01-17 exists (data-2022-01-17 branch/tag too); last push 2025-12-25; 272 stars; not a fork; not archived",
+   "reference": "Our own parser (2-3k lines), claimed to score 1 on hidden set; not yet written; source MIT parser unnamed",
+   "ships": "/app: visible subset of case files + CLI spec; the rest of the public suite is withheld; grader holds hidden cases and libyaml/second-parser cross-check for generated mutations",
+   "similarity": "l0 max 0.254 (S-im-038); but CROWDED list names JSON/YAML/TOML parsers and the grading is the public suite's own event-stream format, so same subject and deliverable as public benchmarks"
+  },
+  "kill_code": "K1",
+  "kill_reason": "Crowded subject (JSON/YAML/TOML parsers are in the CROWDED list) with the same deliverable and grading as the public yaml-test-suite event-stream benchmark. Mutations are the only delta and do not clearly differentiate it. Also, the grader's libyaml cross-check is YAML 1.1, which conflicts with a 1.2 oracle. Recommendation: do not pursue as is; a non-YAML-conformance variant would need a separate seed.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of frontier results; difficulty claims are self-asserted."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Several days for reference plus grader cross-check; smoke probe is amber with no usable report."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU, text-only, small I/O."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4 h tier is plausible for a 2-3k line parser but the scope is closer to 2-4 h of focused work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT suite; cross-check parsers are grader-side only."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Clear buckets: block/flow, anchors/tags, multi-doc, error classes."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "CROWDED list names JSON/YAML/TOML parsers; same subject and event-stream deliverable as public benchmarks; mutations are the only delta."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public MIT repo at a pinned tag with published event streams."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is ours, unwritten, and its 'scores 1' is unverified; no upstream measured reference."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden remainder is public and widely vendored (libfyaml, yaml-rust2 crates, rapidyaml); sealing depends on image hygiene."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 351 suite cases plus a generator of mutations; count of 351 not verified."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Case count well below 300 or not reproducible; libyaml disagrees with test.event on more than about 10% of non-error cases (a 1.1-vs-1.2 gap the grader cannot resolve); or the baseline already scores near 1 on the visible set.",
+   "pass_if": "Counted cases approx. 351 and reproducible; libyaml agrees with test.event on at least 95% of non-error cases; the baseline scores strictly between 0 and 1 across buckets; mutation output is deterministic.",
+   "steps": [
+    "In a networked throwaway Linux container, clone yaml/yaml-test-suite at tag v2022-01-17 and at branch/tag data-2022-01-17; count case directories and test.event files to verify the ~351 figure.",
+    "Check that every case with test.event has in.yaml, and list the error-marked cases separately.",
+    "Install libyaml dev package, write a tiny event-dumper wrapper in C, and run it over all cases; compare its event output to test.event and record agreement per case, split by error and non-error.",
+    "Write a 30-minute baseline (block mappings and scalars only) and score it on the same cases to check that the partial-credit curve has buckets.",
+    "Run the grader's mutation generator twice with the same seed and confirm identical mutated cases; confirm libyaml-vs-suite disagreements are rare enough to use as a cross-check."
+   ]
+  },
+  "summary": "The seed's repository, MIT licence, and tag v2022-01-17 are confirmed, but the ~351-case count is not verified (src listing truncated at 100). The idea is killed as K1 because YAML parsers are a crowded subject with the same deliverable and event-stream grading as the public yaml-test-suite benchmark, and the mutations are the only difference."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

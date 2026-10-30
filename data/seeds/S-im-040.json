@@ -1,0 +1,271 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "4 h. Frontier agents rebuild the main loaders but miss feature-flag defaults and context-key edge cases. Buckets are artifact types. A weaker model stops at type errors.",
+  "cheat": "The original files are not in the image and there is no git history or node_modules copy of the published package. The bundle strips the published package from caches.",
+  "grading": "The package's own jest suite (yarn test in cx-api) is hidden, plus hidden differential cases that call the original through the public API on generated manifests. The shipped base fails all graded cases. Probe is red, so a minimal offline dependency set must be built. Reward is the fraction passed.",
+  "reference": "The original subsystem in the pinned commit, removed from /app. Expected 800-1,500 lines to restore. Scores 1 on hidden tests.",
+  "source": "https://github.com/aws/aws-cdk @ v2.274.0 (280b8018), Apache-2.0",
+  "task": "/app ships a history-less snapshot of packages/@aws-cdk/cx-api (and its local dependencies) with a chosen subsystem removed: cloud-assembly artifact loading, metadata/context-provider typing and feature-flag resolution. The agent rebuilds it in TypeScript to the exported API.",
+  "title": "Rebuild cloud-assembly API manifest and context-provider logic in aws-cdk cx-api"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T23:19:04Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-20T23:19:04Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:04Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-020 0.33"
+  ],
+  [
+   "2026-10-21T00:09:11Z",
+   "v1",
+   "killed:K3",
+   "gate on scores {'Real': 4, 'Surf': 2, 'Ref': 4, 'Band': 3, 'Hor': 3, 'Multi': 3, 'Seal': 3, 'Nov': 4, 'Lic': 5, 'Fit': 3, 'Build': 3}; dead cited links ['https://github.com/aws/aws-cdk/tree/v2.274.0/packages/@aws-cdk/cx-api/lib', 'https://socket.dev/npm/package/@aws-cdk/cx-api/overview/^2.161.1']"
+  ]
+ ],
+ "id": "S-im-040",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.33,
+    "S-im-020"
+   ],
+   [
+    0.288,
+    "S-im-012"
+   ],
+   [
+    0.285,
+    "S-im-037"
+   ],
+   [
+    0.117,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.089,
+    "create-bucket [original]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "git python3 python3-pip",
+  "build_ok": false,
+  "build_s": 14,
+  "ci_files": 49,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack yarn run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack yarn install --frozen-lockfile || corepack yarn install --immutable",
+  "cmd_test": "false",
+  "commit": "ec69377954402020b150fe324cc9d59a71777641",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": true,
+  "fetch_s": 482,
+  "log": "thy/types@3.5.0\" is incompatible with requested version \"@smithy/types@^4.19.0\"\nwarning Resolution field \"@smithy/types@3.5.0\" is incompatible with requested version \"@smithy/types@^4.19.0\"\nsuccess Already up-to-date.\n=============================================================================================\nDownloading git-secrets...\nCloning into 'git-secrets'...\nfatal: unable to access 'https://github.com/awslabs/git-secrets.git/': Could not resolve host: github.com\nerror Command failed with exit code 128.\ninfo Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 24647,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "280b8018b21e7c913c77e181cc65980f9536f331",
+  "kb": 1558454,
+  "lang": "TypeScript",
+  "open_prs": 518,
+  "pushed": "2026-10-20",
+  "release": "v2.274.0",
+  "spdx": "Apache-2.0",
+  "stars": 12945,
+  "test_files": 24647,
+  "test_kb": 1418764,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/aws/aws-cdk|aws-aws-cdk",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: cd packages/@aws-cdk/cx-api && yarn test. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/aws/aws-cdk",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "",
+  "facts": [
+   {
+    "claim": "aws/aws-cdk tag v2.274.0 exists and its tree pages load",
+    "status": "confirmed",
+    "url": "https://github.com/aws/aws-cdk/tree/v2.274.0/packages/aws-cdk-lib/cx-api"
+   },
+   {
+    "claim": "Repository licence at v2.274.0 is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/aws/aws-cdk/blob/v2.274.0/LICENSE"
+   },
+   {
+    "claim": "packages/@aws-cdk/cx-api at v2.274.0 is Apache-2.0 with scripts build (yarn gen && cdk-build) and test (jest); deps semver and @aws-cdk/cloud-assembly-api",
+    "status": "confirmed",
+    "url": "https://github.com/aws/aws-cdk/blob/v2.274.0/packages/@aws-cdk/cx-api/package.json"
+   },
+   {
+    "claim": "packages/@aws-cdk/cx-api at v2.274.0 contains lib/ and test/ source directories (seed says the subsystem is removed from this package)",
+    "status": "contradicted",
+    "url": "https://github.com/aws/aws-cdk/tree/v2.274.0/packages/@aws-cdk/cx-api/lib"
+   },
+   {
+    "claim": "The cx-api source at v2.274.0 lives in packages/aws-cdk-lib/cx-api/lib (app.ts, cxapi.ts, features.ts, index.ts, legacy-moved.ts, private/ visible; listing may be truncated)",
+    "status": "confirmed",
+    "url": "https://github.com/aws/aws-cdk/tree/v2.274.0/packages/aws-cdk-lib/cx-api/lib"
+   },
+   {
+    "claim": "The cx-api test suite is small: packages/aws-cdk-lib/cx-api/test shows one test file (features.test.ts) plus util.ts; seed's 24,647 test_files is repo-wide, not cx-api",
+    "status": "contradicted",
+    "url": "https://github.com/aws/aws-cdk/tree/v2.274.0/packages/aws-cdk-lib/cx-api/test"
+   },
+   {
+    "claim": "Feature flags are documented in packages/aws-cdk-lib/cx-api/FEATURE_FLAGS.md",
+    "status": "confirmed",
+    "url": "https://github.com/aws/aws-cdk/tree/v2.274.0/packages/aws-cdk-lib/cx-api"
+   },
+   {
+    "claim": "Cloud-assembly artifact loading lives in a sibling package @aws-cdk/cloud-assembly-api (dependency of @aws-cdk/cx-api), so the 'artifact loading' subsystem may sit outside cx-api",
+    "status": "not_found",
+    "url": "https://github.com/aws/aws-cdk/blob/v2.274.0/packages/@aws-cdk/cx-api/package.json"
+   },
+   {
+    "claim": "Seed head 280b8018 is part of v2.274.0 (commit page shows no tag or release containing it)",
+    "status": "not_found",
+    "url": "https://github.com/aws/aws-cdk/commit/280b8018b21e7c913c77e181cc65980f9536f331"
+   },
+   {
+    "claim": "Smoke-probe commit ec693779 differs from source_facts head 280b8018; the probed tree and the pinned tree are not confirmed to match",
+    "status": "contradicted",
+    "url": "https://github.com/aws/aws-cdk/commit/280b8018b21e7c913c77e181cc65980f9536f331"
+   },
+   {
+    "claim": "@aws-cdk/cx-api is published on npm; version 2.250.0 package.json has license Apache-2.0, main lib/index.js, types lib/index.d.ts",
+    "status": "confirmed",
+    "url": "https://cdn.jsdelivr.net/npm/@aws-cdk/cx-api@2.250.0/package.json"
+   },
+   {
+    "claim": "npm registry page for @aws-cdk/cx-api (latest version, deprecation)",
+    "status": "not_found",
+    "url": "https://www.npmjs.com/package/@aws-cdk/cx-api"
+   },
+   {
+    "claim": "Public source for the context-provider logic of cx-api was found (only third-party overviews describing CloudAssembly, stacks, assets, metadata)",
+    "status": "not_found",
+    "url": "https://socket.dev/npm/package/@aws-cdk/cx-api/overview/^2.161.1"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier. Frontier agent likely finishes features/context plumbing but misses flag defaults and context-key edge cases (seed claim, unverified). Weak model stops at type errors. No dated public evidence, so Band capped at 3.",
+   "build_cost": "About 2-3 days: monorepo deps, red build, re-scope to aws-cdk-lib/cx-api, sealed hidden tests and differential harness. Estimated bucket 3.",
+   "deliverable": "TypeScript rebuild of removed cx-api subsystem (artifact loading, metadata/context-provider typing, feature-flag resolution) matching the exported API; seed estimates 800-1,500 lines.",
+   "gates_anticheat": "Hidden tests and reference absent from image; history-less snapshot; npm cache and node_modules copies of @aws-cdk/cx-api must be stripped; no network at run time. Edits to jest config or test files must be detected and reverted before grading.",
+   "grading_surface": "Hidden jest suite plus hidden differential cases on generated manifests. Visible upstream test dir has 1 test file (features.test.ts) so the hidden suite is unsized; case count not found.",
+   "local_fit": "Probe red: build exits 1 on all three runs, cmd_test is 'false', tests_listed 0, so the suite never ran. Needs minimal offline dep set (semver, cloud-assembly-api, cdk-build-tools, jest, mock-fs) built before any scoring is credible.",
+   "lookup": "Partial: full upstream code is public on GitHub and npm; not installable offline at run time; frontier models know CDK in outline. No PR or later release checked for this exact subsystem.",
+   "provenance": "aws/aws-cdk v2.274.0 (Apache-2.0). Upstream cx-api source is at packages/aws-cdk-lib/cx-api at this tag, not packages/@aws-cdk/cx-api (which holds only config files and package.json). Published as @aws-cdk/cx-api on npm (2.250.0 confirmed).",
+   "reference": "Original upstream files at the pinned tag; public on GitHub and npm. Seed claims it scores 1 on hidden tests (not verified).",
+   "ships": "Needs re-scoping: /app snapshot should be packages/aws-cdk-lib/cx-api (lib/, test/, FEATURE_FLAGS.md) plus any local deps it imports, history-less, with the removed subsystem deleted. Scope is unverified beyond the lib listing (app.ts, cxapi.ts, features.ts, index.ts, legacy-moved.ts, private/).",
+   "similarity": "l0 neighbours: S-im-020 0.33, S-im-012 0.288, S-im-037 0.285 (internal seeds, not public tasks); public python-pytest-cases 0.117, create-bucket 0.089. No public-task neighbour above 0.15; not CROWDED."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed says 4, but no dated public evidence was found, so the cap is 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 2-3 days: red build, monorepo deps, and re-scoping the package path."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "TypeScript and jest run offline, but the smoke build is red and the test command never ran."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "800-1,500 lines fits a 4 h tier, but the scope is borderline for long-horizon work and shrinks if the subsystem is smaller than claimed."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 at the tag, confirmed on LICENSE and package.json."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Artifact types and feature-flag/context buckets give partial credit, though the bucket count is unverified."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public-task neighbour above 0.15; the 0.33 neighbour is an internal seed, not a public task."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real Apache-2.0 upstream repo at a real tag; the subsystem paths in the seed are wrong (source is in aws-cdk-lib/cx-api), so re-scoping is needed."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "The reference is the real upstream code at a pinned tag, so it is strong if the subsystem boundary is right; seed's '1 on hidden tests' is unverified."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Full upstream is public on GitHub and npm, so the snapshot must be history-less and the npm cache stripped; recallable in outline only."
+   },
+   "Surf": {
+    "v": 2,
+    "why": "Visible upstream test dir has one test file; hidden differential count not verified and likely tens of cases unless the generator is large."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Subsystem is under 300 lines or lives outside cx-api; the test suite cannot run offline after a minimal dep set; or two runs of the differential output disagree.",
+   "pass_if": "Tag and SHA reconciled; subsystem located in aws-cdk-lib/cx-api at 800+ lines; jest runs deterministically and the deleted-subsystem build fails while the original passes.",
+   "steps": [
+    "In a throwaway container with network, clone aws/aws-cdk at v2.274.0 and confirm the head SHA; reconcile 280b8018 with smoke commit ec693779 before anything else.",
+    "Read packages/aws-cdk-lib/cx-api/lib (incl. private/) and count lines per file; map which files belong to artifact loading, metadata/context typing and feature flags, and whether loading sits in @aws-cdk/cloud-assembly-api instead.",
+    "Install the minimal offline dep set for packages/@aws-cdk/cx-api and packages/aws-cdk-lib/cx-api; run jest there and record per-test results for features.test.ts.",
+    "Remove the candidate subsystem in a scratch copy and run the single upstream test file against the original; check it fails and then passes with the original restored.",
+    "Generate 20 random manifests and run the original through its public API twice to test determinism of the differential output.",
+    "Decide: if the removed subsystem is 800+ lines and the test run is deterministic, keep; if it is under ~300 lines or sits outside cx-api, re-scope or kill K3."
+   ]
+  },
+  "summary": "The aws-cdk v2.274.0 tag, Apache-2.0 licence and cx-api package metadata are confirmed, but the seed's package path and test suite are contradicted: the source is in packages/aws-cdk-lib/cx-api with one visible test file, and the smoke probe never ran tests. The card should not be accepted until it is re-scoped to aws-cdk-lib/cx-api and the spike confirms the subsystem size and a deterministic offline suite."
+ },
+ "v1_links": {
+  "checked": 10,
+  "dead": [
+   "https://github.com/aws/aws-cdk/tree/v2.274.0/packages/@aws-cdk/cx-api/lib",
+   "https://socket.dev/npm/package/@aws-cdk/cx-api/overview/^2.161.1"
+  ],
+  "ratio": 0.2
+ },
+ "v1_score": 65
+}

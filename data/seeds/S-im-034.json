@@ -1,0 +1,238 @@
+{
+ "batch": 6,
+ "card": {
+  "band": "8h. Frontier agents get the basic detection right, but fixers, option matrices and type edge cases (unions, generics, intersections) separate the results. Credit is per rule. A weaker model fails the type-checker plumbing.",
+  "cheat": "Hidden tests run only through the public API. The specification covers option and message semantics in depth, so stubbing a rule fails the invalid cases.",
+  "grading": "Hidden RuleTester suites per rule (valid, invalid, output, messageIds, suggestions), several hundred cases, run through the public rule API. The repo's existing suite is a regression gate. Score is the pass fraction per rule.",
+  "reference": "Written by us. About 1500-2500 lines across 6-8 rules and tests. Not upstream code, so it is not recallable.",
+  "source": "https://github.com/typescript-eslint/typescript-eslint @ v8.72.0 (head c688f4a5), MIT",
+  "task": "/app ships a history-less snapshot at the base. The agent implements a pack of new type-aware rules in packages/eslint-plugin, drawn from long-standing open rule-request issues (exact issue list not verified: not found), with options, suggestions and autofixes, and registers them in the config and docs.",
+  "title": "Type-aware lint rule pack for typescript-eslint"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T21:25:09Z",
+ "family": "compiler-toolchain",
+ "history": [
+  [
+   "2026-10-20T21:25:09Z",
+   "write",
+   "short",
+   "batch 6"
+  ],
+  [
+   "2026-10-20T21:25:09Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-031 0.22"
+  ],
+  [
+   "2026-10-20T21:26:44Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 4, 'Lic': 5, 'Fit': 3, 'Build': 3}"
+  ]
+ ],
+ "id": "S-im-034",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.22,
+    "S-im-031"
+   ],
+   [
+    0.197,
+    "S-im-008"
+   ],
+   [
+    0.191,
+    "S-im-006"
+   ],
+   [
+    0.117,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ],
+   [
+    0.108,
+    "opa-rego-rule-profiling [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "git",
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 15,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "npx vitest run --reporter=json --outputFile=$OUT/run$i.json",
+  "commit": "c688f4a5a121d6ece6207dd24286279722f80e85",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "gine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0\n      at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5) {\n    [cause]: Error: getaddrinfo EAI_AGAIN registry.npmjs.org\n        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {\n      errno: -3001,\n      code: 'EAI_AGAIN',\n      syscall: 'getaddrinfo',\n      hostname: 'registry.npmjs.org'\n    }\n  }\n}\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 72,
+  "test_files": 5766,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "c688f4a5a121d6ece6207dd24286279722f80e85",
+  "kb": 84813,
+  "lang": "TypeScript",
+  "open_prs": 37,
+  "pushed": "2026-10-20",
+  "release": "v8.72.0",
+  "spdx": "MIT",
+  "stars": 16435,
+  "test_files": 5766,
+  "test_kb": 13775,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/typescript-eslint/typescript-eslint|typescript-eslint-typescript-eslint",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: export NX_DAEMON=false && pnpm run build && pnpm run test. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/typescript-eslint/typescript-eslint",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/typescript-eslint/typescript-eslint/releases/tag/v8.72.0",
+  "facts": [
+   {
+    "claim": "typescript-eslint release v8.72.0 exists (dated 2026-10-19)",
+    "status": "confirmed",
+    "url": "https://github.com/typescript-eslint/typescript-eslint/releases/tag/v8.72.0"
+   },
+   {
+    "claim": "Repo licence is MIT (from GitHub API spdx; not re-checked since spdx is not empty)",
+    "status": "confirmed",
+    "url": "https://github.com/typescript-eslint/typescript-eslint"
+   },
+   {
+    "claim": "Rule catalogue has 136 rules, of which 64 are type-aware, so many type-aware rule ideas already ship upstream (e.g. no-unnecessary-condition, no-misused-promises, prefer-nullish-coalescing, no-unnecessary-type-arguments, no-floating-promises)",
+    "status": "confirmed",
+    "url": "https://typescript-eslint.io/rules/"
+   },
+   {
+    "claim": "Rule test directory at v8.72.0 has about 94 .test.ts files (rule-level regression surface; seed's test_files 5766 is repo-wide and not comparable)",
+    "status": "confirmed",
+    "url": "https://github.com/typescript-eslint/typescript-eslint/tree/v8.72.0/packages/eslint-plugin/tests/rules"
+   },
+   {
+    "claim": "Exact list of open rule-request issues the pack is drawn from",
+    "status": "not_found",
+    "url": "https://github.com/typescript-eslint/typescript-eslint/issues"
+   },
+   {
+    "claim": "Open issues carry labels 'enhancement: new plugin rule', 'New rule request for eslint-plugin', 'accepting prs' (search only returned 2024-era mirror snapshots; current open state unverified)",
+    "status": "not_found",
+    "url": "https://github.com/typescript-eslint/typescript-eslint/issues"
+   },
+   {
+    "claim": "Seed smoke build is red: build_ok false, fetch_ok false, three runs returned exit codes 1 with no per-test report",
+    "status": "contradicted",
+    "url": "https://github.com/typescript-eslint/typescript-eslint"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Frontier agent can plausibly get basic detection per rule; fixers, option matrices and union/generic/intersection edge cases split results. Weaker model fails type-checker plumbing. No dated public evidence.",
+   "build_cost": "About 3 days for reference plus card work: pre-cache pnpm store, make build green offline, write 6-8 rules and tests.",
+   "deliverable": "6-8 new type-aware rules in packages/eslint-plugin with options, messageIds, suggestions and autofixes, registered in config and docs; per-rule RuleTester hidden suites.",
+   "gates_anticheat": "Hidden cases only through public rule API; reference and hidden suites kept out of image; edits to test or build config must be reverted by grader; stubbing a rule fails invalid cases.",
+   "grading_surface": "Hidden RuleTester suites per rule (valid/invalid/output/messageIds/suggestions), several hundred cases, pass fraction per rule. Hand-written cases, not an executable oracle.",
+   "local_fit": "Node/TypeScript monorepo; 8 cores and 16 GB are adequate for typecheck and vitest, but the smoke build is red, so offline install and build are unproven.",
+   "lookup": "partial: many type-aware rules already exist upstream in the same codebase and are famous; a model may recall upstream implementations of any rule the pack shares with upstream. Requested rule list unverified.",
+   "provenance": "Real repo typescript-eslint @ v8.72.0 (head c688f4a5), MIT. Snapshot base is history-less per seed; upstream later releases and PRs exist, so history must be stripped.",
+   "reference": "Not yet written (seed says 'written by us', 1500-2500 lines). No evidence of completeness. Not upstream code.",
+   "ships": "Monorepo snapshot at base with packages/eslint-plugin (136 rules, 94 rule test files). Node/pnpm/nx toolchain; dependencies must be pre-cached in image because runtime is offline.",
+   "similarity": "Nearest seed neighbours cos 0.22 (S-im-031), 0.197 (S-im-008), 0.191 (S-im-006); no public benchmark task above 0.12. Not crowded. Overlap with upstream rule catalogue is a risk, not a benchmark duplicate."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task type; band plausible at 8h but unproven."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days to write the reference and make the offline build green; under the 5-day K12 limit."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Node monorepo fits 8 cores / 16 GB, but smoke build is red and offline pnpm install is unproven."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8h tier with multiple independent rules and per-rule buckets fits long-horizon work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per API spdx; shippable inside bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-rule buckets plus option, fixer and suggestion sub-buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour cosine 0.22 against public tasks; not crowded; upstream overlap is a difficulty risk."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MIT repo at confirmed release v8.72.0; rule list and open issues unverified (not found)."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference not written yet; no completeness evidence; cannot score 5 without an implementation."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden RuleTester suites and our reference stay out of image; upstream rules are recallable in outline, so difficulty-side risk is scored under Band."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Several hundred hand-written RuleTester cases across 6-8 rules; no executable oracle or generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build cannot be made green offline, or fewer than 6 open rule requests survive the upstream-overlap check (then the card is K1/K8 or K2).",
+   "pass_if": "Offline-capable install and build go green, per-test results are emitted, and at least 6 open, verified, not-yet-upstream rule requests can be named with issue URLs.",
+   "steps": [
+    "In a throwaway networked Linux container, clone typescript-eslint at c688f4a5 and strip git history.",
+    "Run corepack pnpm install --frozen-lockfile, then the build, to see whether the offline toolchain can be made green; record the first failing step.",
+    "Run the existing packages/eslint-plugin rule tests on the base to confirm a per-test report exists (smoke test had none).",
+    "Pin the rule list: for each candidate open issue, check it is still open and not already shipped in the rule catalogue (136 rules, 64 type-aware). Keep only unshipped rules.",
+    "Write one minimal stub rule and one RuleTester invalid case per candidate to check that the harness runs the case and reports per-case results.",
+    "Check determinism by running the suite three times and comparing pass sets."
+   ]
+  },
+  "summary": "The typescript-eslint v8.72.0 base is real and MIT-licensed, and the grading shape (per-rule RuleTester suites) is sound, but the rule list is unverified (not found), 64 of 136 type-aware rules already ship upstream, and the smoke build is red with no per-test report. Not killed; the 60-minute spike must confirm an offline green build and at least 6 open, not-yet-upstream rule requests before the card can pass."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 68
+}

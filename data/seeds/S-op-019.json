@@ -1,0 +1,233 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "20 h. The full 3.11 diff is far too large, so the scope is a subset of the levers and the S target is set accordingly. Frontier runs gain on specialised opcodes but break the interpreter at the frame work; a weaker model gets only micro-opts.",
+  "cheat": "Swapping in a system or newer Python: the image has no other Python and the test harness pins the built binary hash and its version string. Hidden benchmark programs differ from the shipped samples.",
+  "grading": "Hard gate: a chosen subset of the CPython test suite plus a hidden set of correctness scripts must pass. Score from the wall-clock median speedup over hidden benchmark programs, reward 2^u-1 with S set from the reference.",
+  "reference": "A reference reproducing a subset of the 3.11 levers measured at the 1.25x average claimed by the release notes; the exact reference speedup is to be measured.",
+  "source": "https://docs.python.org/3.11/whatsnew/3.11.html; CPython 3.10.x to 3.11.0, PSF License v2",
+  "task": "/app ships a history-less CPython 3.10 source snapshot that builds offline. The agent speeds up the interpreter on a pyperformance-style workload set by choosing from cheaper frames, inlined Python-to-Python calls, specialised opcodes with inline caches, and zero-cost try. It must stay a correct interpreter.",
+  "title": "CPython 3.10 interpreter loop speedup toward 3.11"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "compiler-toolchain",
+ "final": 74,
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-018 0.23"
+  ],
+  [
+   "2026-10-21T01:00:30Z",
+   "v1",
+   "pass",
+   "score 74; dead links []"
+  ],
+  [
+   "2026-10-21T01:02:19Z",
+   "v2",
+   "killed:K5",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-op-019",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.226,
+    "S-op-018"
+   ],
+   [
+    0.163,
+    "S-im-048"
+   ],
+   [
+    0.151,
+    "S-im-012"
+   ],
+   [
+    0.129,
+    "set_cover [AlgoTune]"
+   ],
+   [
+    0.117,
+    "giac_subset [MirrorCode]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 1,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "docs.python.org/3.11/whatsnew/3.11.html|cpython-3-10-x-cpython-3-11-0",
+ "source_notes": "q:\"On average, we measured a 1.25x speedup on the standard benchmark suite.\" Levers: lazy cheap frames, inlined Py-to-Py calls, PEP659 specializing adaptive interpreter + inline caches, zero-cost try, frozen startup modules, computed-goto regex refactor, micro-opts (sum 30%, int // 20%). Very large diff to backport; better as a subset (e.g. specialization of a few opcodes). json/decimal figures not found on page (page read only up to char 100000 of 170833). Text interpreter hot loop, not MIPS/path-trace overlap.",
+ "source_url": "https://docs.python.org/3.11/whatsnew/3.11.html",
+ "source_version": "CPython 3.10.x -> CPython 3.11.0",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://docs.python.org/3.11/whatsnew/3.11.html",
+  "facts": [
+   {
+    "claim": "CPython 3.11 What's New states an average 1.25x speedup on the standard benchmark suite",
+    "status": "confirmed",
+    "url": "https://docs.python.org/3.11/whatsnew/3.11.html"
+   },
+   {
+    "claim": "Faster CPython section cites about 25% faster than 3.10 on pyperformance, with 10-60% workload-dependent range",
+    "status": "confirmed",
+    "url": "https://docs.python.org/3.11/whatsnew/3.11.html"
+   },
+   {
+    "claim": "Levers named in What's New: PEP 659 specializing adaptive interpreter, inlined Python-to-Python calls, zero-cost exceptions, lazy/cheaper frames, startup/frozen imports, sum() and list.append micro-opts",
+    "status": "confirmed",
+    "url": "https://docs.python.org/3.11/whatsnew/3.11.html"
+   },
+   {
+    "claim": "CPython is licensed under the PSF License Version 2, which permits redistribution and derivative works with notice retained",
+    "status": "confirmed",
+    "url": "https://github.com/python/cpython/blob/3.11/LICENSE"
+   },
+   {
+    "claim": "Specializing adaptive interpreter design is publicly documented in PEP 659",
+    "status": "confirmed",
+    "url": "https://peps-aaturner.readthedocs.io/pep-0659"
+   },
+   {
+    "claim": "A public CPython 3.10 backport or fork of the specializing interpreter / inline caches exists",
+    "status": "not_found",
+    "url": "https://lwn.net/Articles/857754"
+   },
+   {
+    "claim": "The 1.25x figure is a pyperformance geometric mean",
+    "status": "not_found",
+    "url": "https://www.phoronix.com/review/python311-pyston-pypy/3"
+   },
+   {
+    "claim": "The reference speedup for the lever subset is measured",
+    "status": "not_found",
+    "url": "https://docs.python.org/3.11/whatsnew/3.11.html"
+   },
+   {
+    "claim": "The /app 3.10.x snapshot version and test-suite size",
+    "status": "not_found",
+    "url": "https://docs.python.org/3.11/whatsnew/3.11.html"
+   }
+  ],
+  "full_card": {
+   "band": "20 h tier. Frontier likely gains on specialised LOAD_ATTR/LOAD_GLOBAL/BINARY_OP and micro-opts; frame work is the break point. Weaker model stalls at micro-opts. No dated evidence.",
+   "build_cost": "Build of 3.10 is minutes; writing a multi-lever reference plus harness is roughly 3-5 days for a subset.",
+   "deliverable": "Speed up the 3.10 interpreter loop by choosing a subset of levers: specialised opcodes with inline caches, cheaper lazy frames, inlined Py-to-Py calls, zero-cost try, micro-opts; must stay correct.",
+   "gates_anticheat": "Swapping in a system/newer Python blocked by no other interpreter in image and version string check. Conflict: pinning the built binary hash would reject any valid optimized build; pin version string and build config instead. Editing tests or build config must be blocked by sealed harness.",
+   "grading_surface": "Hard gate: chosen CPython test subset plus hidden correctness scripts; score = wall-clock median speedup on hidden benchmark programs mapped via 2^u-1. Surface size not counted (test subset size unverified).",
+   "local_fit": "CPU-only, 8 cores, 16 GB; C build offline feasible; wall-clock timing noisy under gVisor, needs repeated medians.",
+   "lookup": "partial: design public (PEP 659, 3.11 git), no 3.10 backport found; model may recall outline of 3.11 levers.",
+   "provenance": "CPython 3.10 to 3.11.0 release; What's New 3.11 and PSF licence v2 confirmed; upstream 3.11 is in public git history, so /app must be a history-less 3.10 snapshot.",
+   "reference": "Reference subset implementation not yet written; speedup unmeasured; 1.25x is the upstream 3.11 claim, not the subset target.",
+   "ships": "History-less CPython 3.10.x source tree that builds offline (no git history past base); no 3.11 code shipped.",
+   "similarity": "Nearest l0 neighbour S-op-018 at 0.226; others 0.163 and below. Not on CROWDED list (CPython interpreter speedup is distinct from matching-expert-commit Python-library speedups)."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausible for frontier on a subset at 20 h, but no dated public evidence of agents on this work."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference subset plus harness estimated at 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, 8 cores, offline build feasible; wall-clock noise under gVisor is the main risk."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-lever interpreter work at 20 h tier is genuinely long-horizon."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "PSF License v2 confirmed; permits shipping and derivatives with notice."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several independent levers (opcodes, frames, try, micro-opts) give natural partial-credit buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max l0 neighbour 0.226 with no crowded match; distinct from Python-library speedup tasks."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real CPython release with public What's New and PSF licence; reference diff is upstream-real but unmeasured."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "No reference built; speedup must be measured; a subset reference is writable but not yet proven."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "History-less snapshot blocks 3.11 git; design is recallable in outline, so difficulty is scored under Band."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Differential testing against the shipped 3.10 binary on an unlimited generator plus CPython test subset gives a large surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "No lever gives measurable median gain above noise, or tests are nondeterministic across two runs.",
+   "pass_if": "Single lever gives >=1.05x median on at least two benchmarks, all subset tests still pass, and run-to-run spread is under 5%.",
+   "steps": [
+    "Fetch CPython 3.10 release tarball in a throwaway container; build with ./configure && make -j8 offline; record time and binary hash.",
+    "Run the chosen CPython test subset twice; confirm per-test results are deterministic.",
+    "Write 5-8 pyperformance-style microbenchmarks (calls, attribute access, globals, arithmetic loops, try/except loops) and time median of 7 runs each on the stock build.",
+    "Hand-implement one lever in a copy: LOAD_GLOBAL with an inline dict-version cache. Rebuild, re-run tests and benchmarks.",
+    "Measure median speedup and run-to-run spread; confirm the diff stays under 150 lines for this lever to size the subset.",
+    "Check that differential output matches stock binary on 200 generated programs."
+   ]
+  },
+  "summary": "The CPython 3.11 claim, PSF v2 licence and PEP 659 design are confirmed, and no public 3.10 backport was found, so the idea is viable as a subset of levers. Open items: the reference speedup is unmeasured, the binary-hash pin conflicts with valid optimized builds, and wall-clock grading needs noise control; spike before committing."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-019",
+  "kill_code": "",
+  "note": "Survives, but weakly. The source and licence are confirmed: CPython 3.10 to 3.11 What's New says 1.25x, and the PSF v2 licence is fine. Everything that would justify the score is missing. Reference: the subset backport is unwritten and its speedup unmeasured. The 1.25x is upstream 3.11's own figure, so S has no basis yet, and the 3-5 day build is close to K12. Spike plan flaw: 3.10 already has the opcache for LOAD_GLOBAL and LOAD_ATTR, so the proposed LOAD_GLOBAL dict-version-cache lever is already partly in the base. The spike must pick a lever 3.10 lacks, such as BINARY_OP or CALL specialisation, or zero-cost try. Gate conflict: pinning the built binary hash would reject every valid optimised build. Pin the version string and build config instead, and run a sealed harness that rebuilds from the agent's source. Review dimensions: the CPython test subset plus hidden scripts tests correctness, and the hidden benchmark median tests speed, so any valid set of levers can score. The change is realistic because it is upstream's own direction. Infrastructure risk is real on two counts: wall-clock noise under gVisor and CPython tests that are sensitive to the sandbox. Before building, we need a measured spread under 5% and a deterministic test subset. Band: frame and inlined-call work can break the hard gate and score 0, which pushes toward K9. Micro-opts alone may give a weak model some u, which pushes toward K8. With no dated evidence, Band is capped at 3. Seal: 3.11 is public and models know it in outline, so the base must be a history-less snapshot of 3.10.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 75
+}

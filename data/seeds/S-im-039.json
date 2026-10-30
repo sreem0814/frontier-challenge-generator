@@ -1,0 +1,287 @@
+{
+ "batch": 7,
+ "card": {
+  "band": "8 h. Frontier agents cover parser and basic comparisons but skip parallel branches (type member access, sequences, parameter rebinding). Buckets are operator groups and type kinds. A weaker model stops at builds failing on the large C++ codebase.",
+  "cheat": "Hard-coding expression strings fails because the hidden cases use generated expressions. Sources of later upstream releases are not vendored and the snapshot has no git history.",
+  "grading": "Hidden C++ behavioural tests through public API (several hundred expression and sample combinations, exact accept/reject and filter result), plus the repo's existing non-Blackbox ctest suite as a regression gate. The probe on this repo is red, so a trimmed offline build must be proven first.",
+  "reference": "Written by us. Expected 1,500-2,500 added lines across parser, evaluator, type-support glue and tests. Reference passes all hidden cases.",
+  "source": "https://github.com/eProsima/Fast-DDS @ v3.6.2 (51521ef9), Apache-2.0",
+  "task": "/app ships a history-less snapshot at the pinned release with the existing unit tests. The agent adds a multi-part feature: a full DDS SQL-subset filter expression parser and evaluator extended with parameter binding, BETWEEN/LIKE/MATCH operators, nested type member access and enum/array/sequence field access, plus a public-API for dynamic filter replacement. Specific upstream issue is not found and must be chosen at pin time.",
+  "title": "Fast DDS content-filtered topic expression engine and runtime filter extensions"
+ },
+ "class": "implementation",
+ "created": "2026-10-20T23:19:04Z",
+ "family": "protocol",
+ "final": 53,
+ "history": [
+  [
+   "2026-10-20T23:19:04Z",
+   "write",
+   "short",
+   "batch 7"
+  ],
+  [
+   "2026-10-20T23:19:04Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-036 0.25"
+  ],
+  [
+   "2026-10-21T00:08:35Z",
+   "v1",
+   "pass",
+   "score 66; dead links []"
+  ],
+  [
+   "2026-10-21T00:12:22Z",
+   "v2",
+   "killed:K2",
+   "The paper trail fails. No upstream issue or PR asks for this feature, and the pin is wrong: 51521ef is not the v3.6.2 tag, which is 3930384. The base already ships DDSSQLFilter with BETWEEN, AND/OR/NOT and %n parameters. As far as I know (not verified) it also covers LIKE/MATCH, member/array access,"
+  ]
+ ],
+ "id": "S-im-039",
+ "kill": "K2",
+ "l0": {
+  "neighbours": [
+   [
+    0.25,
+    "S-im-036"
+   ],
+   [
+    0.195,
+    "S-im-006"
+   ],
+   [
+    0.187,
+    "S-im-037"
+   ],
+   [
+    0.111,
+    "filter-js-from-html [archive]"
+   ],
+   [
+    0.11,
+    "kalman_filter [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 3,
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential cmake git libasio-dev libssl-dev libtinyxml2-dev python3-pip wget",
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 29,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "51521ef94b859757e951b1b05317603a36c64b6e",
+  "deterministic": true,
+  "eco": "cmake",
+  "fetch_ok": false,
+  "fetch_s": 0,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "CMake Error at cmake/common/eprosima_libraries.cmake:141 (message):\n  fastcdr package NOT found\nCall Stack (most recent call first):\n  CMakeLists.txt:258 (eprosima_find_package)\n\n\n-- Configuring incomplete, errors occurred!\nSee also \"/p/src/build/CMakeFiles/CMakeOutput.log\".\nninja: error: loading 'build.ninja': No such file or directory",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 1428,
+  "tests_fail": 0,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "51521ef94b859757e951b1b05317603a36c64b6e",
+  "kb": 150453,
+  "lang": "C++",
+  "open_prs": 59,
+  "pushed": "2026-10-20",
+  "release": "v3.6.2",
+  "spdx": "Apache-2.0",
+  "stars": 2935,
+  "test_files": 1428,
+  "test_kb": 37770,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/eprosima/fast-dds|eprosima-fast-dds",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: cd build && ctest --verbose --output-on-failure --rerun-failed --repeat until-pass:1 -E \"BlackboxTest\". The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/eProsima/Fast-DDS",
+ "source_version": "",
+ "status": "killed:K2",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.2",
+  "facts": [
+   {
+    "claim": "Fast-DDS tag v3.6.2 exists (release marked Latest, 39 commits on 3.6.x since)",
+    "status": "confirmed",
+    "url": "https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.2"
+   },
+   {
+    "claim": "The seed's pin 'v3.6.2 (51521ef9)' is wrong: the v3.6.2 release resolves to commit 3930384, while 51521ef is a later default-branch commit (title 'Release topic payload pool registry entries ... (#6573)')",
+    "status": "contradicted",
+    "url": "https://github.com/eProsima/Fast-DDS/commit/51521ef94b859757e951b1b05317603a36c64b6e"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (seed GitHub API field; release page showed no licence, LICENSE file not re-read)",
+    "status": "not_found",
+    "url": "https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.2"
+   },
+   {
+    "claim": "Fast DDS already ships a SQL-like content filter parser (DDSSQLFilter) with BETWEEN, AND/OR/NOT and %n parameters, so part of the proposed feature exists in the base",
+    "status": "confirmed",
+    "url": "https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-7577-rf2r-j88m"
+   },
+   {
+    "claim": "Default SQL-like filter documentation page exists (body text not reached; grammar seen only in search snippet)",
+    "status": "confirmed",
+    "url": "https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/defaultFilter.html"
+   },
+   {
+    "claim": "LIKE and MATCH operators are in the Fast DDS default filter grammar",
+    "status": "not_found",
+    "url": "https://fast-dds.docs.eprosima.com/en/latest/fastdds/dds_layer/topic/contentFilteredTopic/defaultFilter.html"
+   },
+   {
+    "claim": "A recursion-depth DoS advisory (GHSA-7577-rf2r-j88m, published 2026-07-23) affects DDSSQLFilter; a fix may exist in later commits, which would be public history the snapshot must hide",
+    "status": "confirmed",
+    "url": "https://github.com/eProsima/Fast-DDS/security/advisories/GHSA-7577-rf2r-j88m"
+   },
+   {
+    "claim": "Upstream later release or merged PR implements the proposed LIKE/BETWEEN/MATCH extensions or dynamic filter replacement API",
+    "status": "not_found",
+    "url": "https://github.com/eProsima/Fast-DDS/releases/tag/v3.6.2"
+   },
+   {
+    "claim": "Smoke build is red (build_ok false, run exit codes 8, zero tests reported)",
+    "status": "confirmed",
+    "url": "https://github.com/eProsima/Fast-DDS"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. No dated public evidence of agent performance on this work: band claim is unsourced (E0). Estimated risk: frontier partial credit on the existing-parser extensions; weaker model stalls on build.",
+   "build_cost": "About 3-5 days: trimmed offline build (smoke red), hidden-test generator, reference 1,500-2,500 lines, base-must-fail calibration.",
+   "deliverable": "Extend the content-filter expression engine (parser, evaluator, parameter binding, BETWEEN/LIKE/MATCH, nested type member access, enum/array/sequence access) and add a public API for dynamic filter replacement. The public API signature is not specified in the seed and must be fixed before grading.",
+   "gates_anticheat": "Generated hidden expressions block hard-coding. Hidden tests kept out of image. Snapshot must be history-less. Base already parses BETWEEN and %n, so grading must use only new-feature cases and base must score 0 on them.",
+   "grading_surface": "Several hundred hidden expression x sample cases via public API, exact accept/reject and filter result, plus non-Blackbox ctest as regression gate. Hidden-case count not verified.",
+   "local_fit": "gVisor CPU-only, 8 cores, 16 GB. Full Fast-DDS build with tests is heavy but feasible with a trimmed target (libasio, libtinyxml2, openssl). Trimmed build not yet proven.",
+   "lookup": "partial. Upstream DDSSQLFilter already exists and the seed's operators are partly present in the grammar. Later upstream commits not inspected; LIKE/MATCH semantics not confirmed.",
+   "provenance": "eProsima Fast-DDS, pinned release v3.6.2 (tag commit 3930384 per release page; seed commit 51521ef is wrong). Apache-2.0 per seed API field.",
+   "reference": "Team-written, 1,500-2,500 added lines. No upstream reference found. Not verified against the 'passes all hidden cases' claim.",
+   "ships": "History-less snapshot of the v3.6.2 tag tree with existing unit tests; must exclude any later 3.6.x or fix commits, including the DDSSQLFilter recursion fix referenced by GHSA-7577-rf2r-j88m if it exists upstream.",
+   "similarity": "Neighbours S-im-036 (0.25), S-im-006 (0.195), S-im-037 (0.187) are internal DDS seeds, not public tasks; none of the CROWDED list. Differs by subject: DDS content filter, not generic parser. Check S-im-036 overlap before accepting."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8 h tier with no dated public evidence; band claim unsourced, so capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Smoke build red and reference is 1,500-2,500 lines plus test generator; roughly 3-5 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Large C++ build on 8 cores and 16 GB; feasible only with a trimmed target."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier; several sub-systems (parser, evaluator, type glue, public API)."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Apache-2.0 per seed API; LICENSE file not re-read."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Operator groups and type kinds give several independent buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public task neighbour; internal sibling seed S-im-036 at 0.25 overlaps the DDS-filter family and needs a check."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real Apache-2.0 project with a pinned tag and in-tree DDSSQLFilter; pin commit wrong (51521ef vs tag 3930384)."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Team-written reference; no upstream complete implementation of the full scope to compare against."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Snapshot can be history-less and tests hidden, but later upstream fix commits exist and would need to be excluded."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Several hundred generated expression cases; no executable oracle or unlimited generator stated."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "No trimmed build succeeds offline, or the base already passes most new-feature probes so the untouched start does not score 0.",
+   "pass_if": "Trimmed build completes offline in under 60 min, ctest is deterministic, and the base fails every new-feature probe case.",
+   "steps": [
+    "Clone eProsima/Fast-DDS at tag v3.6.2 (expect commit 3930384) into a throwaway container with network; record the commit and reconcile with the seed's 51521ef.",
+    "Confirm LICENSE is Apache-2.0 from the file itself.",
+    "Build a trimmed target: core library and tests only, no BlackboxTest, with libasio-dev, libtinyxml2-dev, libssl-dev. Time it; target under 60 min on 8 cores.",
+    "Run ctest -E BlackboxTest twice to confirm per-test results are deterministic.",
+    "Write a 20-line driver against the public ContentFilteredTopic API that feeds BETWEEN, %n parameters and simple comparisons into the existing DDSSQLFilter.",
+    "Run 30 probe expressions covering only the seed's NEW features (LIKE, MATCH, member access, enum/array/sequence, rebinding). Record base pass/fail counts.",
+    "Check whether later upstream commits or the GHSA-7577 fix touch DDSSQLFilter; list the files.",
+    "Draft the dynamic-replacement API signature and freeze it before writing any hidden test."
+   ]
+  },
+  "summary": "Real, Apache-2.0 Fast DDS project with a valid v3.6.2 tag, but the seed's commit pin 51521ef is not that tag (it resolves to 3930384), and Fast DDS already ships a DDSSQLFilter with BETWEEN, AND/OR/NOT and %n parameters, so the base will pass part of the graded surface unless grading is restricted to the new features. Not killed, but blocked until the pin is fixed, the dynamic-replacement API is specified, and the trimmed build and base-fails-new-features check pass in the spike."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 66,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-039",
+  "kill_code": "K2",
+  "note": "The paper trail fails. No upstream issue or PR asks for this feature, and the pin is wrong: 51521ef is not the v3.6.2 tag, which is 3930384. The base already ships DDSSQLFilter with BETWEEN, AND/OR/NOT and %n parameters. As far as I know (not verified) it also covers LIKE/MATCH, member/array access, and runtime expression and parameter changes through the ContentFilteredTopic API. If so, most of the 'feature' is already there, and the base would not score 0. The smoke build is red, and a trimmed offline build of a 150 MB C++ repo is unproven. The deliverable's API is still unspecified.",
+  "scores": {
+   "Band": 2,
+   "Build": 1,
+   "Fit": 2,
+   "Hor": 3,
+   "Lic": 4,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 2,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 53
+}
