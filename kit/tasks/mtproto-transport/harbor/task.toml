@@ -1,0 +1,28 @@
+[task]
+name = "cg/mtproto-transport"
+description = "Rebuild the MTProto transport codecs, transport obfuscation, message crypto and auth-key exchange of gotd/td v0.162.0 behind their existing Go API, so the rest of the client works and interoperates byte for byte."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["go"]
+category = "protocols"
+difficulty = "frontier"
+tags = ["go", "mtproto", "cryptography", "network-protocol", "key-exchange"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+user = "agent"                            # unprivileged; owns /app (the image itself ends as root)
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"
