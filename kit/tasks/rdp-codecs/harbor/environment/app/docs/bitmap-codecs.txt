@@ -1,0 +1,577 @@
+Codecs in libfreerdp/codec: format and behaviour reference
+==========================================================
+
+This file describes, for the seven codecs whose decoders were removed from this tree, what the
+streams look like and what FreeRDP 3.32.2 does with them: the bytes it reads, the arithmetic it uses and
+what lands in the destination buffer. It follows the public Microsoft protocol documents named in each
+section ([MS-RDPBCGR], [MS-RDPEGDI], [MS-RDPNSC], [MS-RDPRFX], [MS-RDPEGFX]); where FreeRDP picks one of
+several readings, or adds a check, this file states FreeRDP's choice, because the decoders must reproduce
+FreeRDP's output byte for byte.
+
+Everything that is still in the tree may be used: winpr (wStream, wBitStream, pools, threads), the colour
+helpers in libfreerdp/codec/color.c (freerdp_image_copy_no_overlap, FreeRDPGetColor, FreeRDPWriteColor,
+FreeRDPConvertColor), region16_* (libfreerdp/codec/region.c), and the primitives returned by
+primitives_get() (libfreerdp/primitives). The original decoders used exactly these helpers; the sections
+below name the helper call wherever the output depends on it. The library is built with WITH_SIMD=OFF, so
+primitives_get() returns the generic C primitives.
+
+Conventions
+-----------
+- Multi-byte integers in streams are little endian. Bitstreams (RLGR, SRL, RAW) are read most significant
+  bit first: bit 7 of byte 0 is the first bit. Reading past the end of a bitstream yields zero bits.
+- Pixel formats are FreeRDP's PIXEL_FORMAT_* values (include/freerdp/codec/color.h). PIXEL_FORMAT_BGRA32
+  means bytes B, G, R, A in memory; BGRX32 the same with an unused fourth byte; BGR24 bytes B, G, R; RGB16
+  a little-endian 5-6-5 word; RGB15 5-5-5. FreeRDPGetBytesPerPixel() gives the size (RGB15: 2).
+- "Copy with flags F" below means freerdp_image_copy_no_overlap(dst, DstFormat, nDstStep, x, y, w, h,
+  src, SrcFormat, nSrcStep, xSrc, ySrc, palette, F). With FREERDP_FLIP_VERTICAL, destination row y + i
+  receives source row ySrc + h - 1 - i. FREERDP_KEEP_DST_ALPHA keeps the alpha byte already in the
+  destination.
+- ">>" on a negative number is an arithmetic (flooring) shift; "/" is C integer division, which truncates
+  toward zero. Where a formula uses one or the other, that is what FreeRDP does.
+- A decode call either fully succeeds or reports failure. When it reports failure, nothing about the
+  destination buffer is promised.
+
+
+1. Interleaved RLE  ([MS-RDPBCGR] 2.2.9.1.1.3.1.2.4 and 3.1.9, "RLE_BITMAP_STREAM")
+===================================================================================
+
+API (include/freerdp/codec/interleaved.h)
+    BITMAP_INTERLEAVED_CONTEXT* bitmap_interleaved_context_new(BOOL Compressor);
+    void bitmap_interleaved_context_free(BITMAP_INTERLEAVED_CONTEXT*);
+    BOOL interleaved_decompress(ctx, pSrcData, SrcSize, nSrcWidth, nSrcHeight, bpp,
+                                pDstData, DstFormat, nDstStep, nXDst, nYDst,
+                                nDstWidth, nDstHeight, palette);
+
+bpp is 8, 15, 16 or 24 (anything else fails), the source pixel size is 1, 2, 2 or 3 bytes. The stream
+decodes into a temporary image of nSrcWidth x nSrcHeight source pixels, scanline nSrcWidth * pixel size
+bytes, no padding, in source format RGB8 (palette index), RGB15, RGB16 or BGR24 respectively. Pixels are
+read from the stream little endian (24 bpp: three bytes, value = b0 | b1 << 8 | b2 << 16) and written to
+the temporary image the same way.
+
+The stream is bottom-up: the first decoded scanline is the bottom row. After decoding, the call copies
+the temporary image with flags FREERDP_FLIP_VERTICAL | FREERDP_KEEP_DST_ALPHA:
+    copy(dst, DstFormat, nDstStep, nXDst, nYDst, nDstWidth, nDstHeight,
+         temp, SrcFormat, nSrcWidth * pixel size, 0, 0, palette, ...)
+The palette (gdiPalette: a format and 256 colours) converts 8 bpp indices.
+
+Orders. Each order starts with a header byte; the order code is
+    header & 0xC0 != 0xC0    regular order, code = header >> 5        (5-bit length field)
+    header & 0xF0 == 0xF0    mega/special order, code = header         (whole byte)
+    otherwise                lite order, code = header >> 4            (4-bit length field)
+
+    code  name                      length encoding                         payload
+    0x0   REGULAR_BG_RUN            regular                                 -
+    0x1   REGULAR_FG_RUN            regular                                 -
+    0x2   REGULAR_FGBG_IMAGE        fgbg-regular                            bitmask bytes
+    0x3   REGULAR_COLOR_RUN         regular                                 1 pixel
+    0x4   REGULAR_COLOR_IMAGE       regular                                 length pixels
+    0xC   LITE_SET_FG_FG_RUN        lite                                    1 pixel (new foreground)
+    0xD   LITE_SET_FG_FGBG_IMAGE    fgbg-lite                               1 pixel, then bitmask bytes
+    0xE   LITE_DITHERED_RUN         lite                                    2 pixels
+    0xF0  MEGA_MEGA_BG_RUN          16-bit                                  -
+    0xF1  MEGA_MEGA_FG_RUN          16-bit                                  -
+    0xF2  MEGA_MEGA_FGBG_IMAGE      16-bit                                  bitmask bytes
+    0xF3  MEGA_MEGA_COLOR_RUN       16-bit                                  1 pixel
+    0xF4  MEGA_MEGA_COLOR_IMAGE     16-bit                                  length pixels
+    0xF6  MEGA_MEGA_SET_FG_RUN      16-bit                                  1 pixel (new foreground)
+    0xF7  MEGA_MEGA_SET_FGBG_IMAGE  16-bit                                  1 pixel, then bitmask bytes
+    0xF8  MEGA_MEGA_DITHERED_RUN    16-bit                                  2 pixels
+    0xF9  SPECIAL_FGBG_1            none (8 pixels, mask 0x03)              -
+    0xFA  SPECIAL_FGBG_2            none (8 pixels, mask 0x05)              -
+    0xFD  SPECIAL_WHITE             none (1 pixel)                          -
+    0xFE  SPECIAL_BLACK             none (1 pixel)                          -
+    any other code (for example 0xF5, 0xFB, 0xFC, 0xFF, 0x5..0xB as regular/lite codes) fails.
+
+Length encodings ("length" is a pixel count; for dithered runs the order writes 2 * length pixels):
+    regular:       L = header & 0x1F; if L == 0, L = next byte + 32
+    lite:          L = header & 0x0F; if L == 0, L = next byte + 16
+    fgbg-regular:  L = (header & 0x1F) * 8; if that is 0, L = next byte + 1
+    fgbg-lite:     L = (header & 0x0F) * 8; if that is 0, L = next byte + 1
+    16-bit:        L = next two bytes (little endian)
+    FGBG images carry ceil(L / 8) bitmask bytes; bit 0 of each byte is the first pixel.
+
+State: fgPel starts as white; white is all bits of the source pixel set (0xFF, 0xFFFF or 0xFFFFFF),
+black is 0. The SET_FG orders replace fgPel before they act. "Above" means the pixel one scanline earlier
+in decode order (the pixel at the same column of the previous decoded row).
+
+First-line rule: at the start of every order, if the decoder is still in the first scanline and the
+output position has reached the end of the first scanline (offset >= scanline bytes), it leaves first-line
+mode and clears the insert flag. The whole order is handled in the mode that was current at its start,
+even when it crosses into the second scanline.
+
+    BG run:   in first-line mode writes black, otherwise copies the pixel above. If the previous order
+              was also a BG run (insert flag set), the first pixel of this run is instead fgPel (first
+              line) or above XOR fgPel, and counts as one of the run's pixels. A BG run sets the insert
+              flag; every other order clears it.
+    FG run:   first line: fgPel; otherwise above XOR fgPel.
+    dithered: writes pixelA, pixelB alternately, length times (2 * length pixels).
+    colour run: writes the pixel length times. colour image: copies length pixels.
+    FGBG image: for each bit: first line: bit ? fgPel : black; otherwise bit ? above XOR fgPel : above.
+    special FGBG 1 / 2: an FGBG image of 8 pixels with the fixed mask 0x03 / 0x05 and the current fgPel.
+    white / black: one pixel.
+
+Failures: any read past SrcSize (an order header, length byte, pixel or bitmask byte that is not
+there), any order that would write past nSrcWidth * nSrcHeight pixels, an unknown code, bpp outside the
+four values, a zero width or height. Streams always describe every pixel of the image; the decoder may
+reject a stream that ends early, but FreeRDP accepts one that ends exactly on an order boundary.
+
+
+2. Planar  ([MS-RDPEGDI] 2.2.2.5.1 and 3.1.9; also used by [MS-RDPEGFX] RDPGFX_CODECID_PLANAR)
+==============================================================================================
+
+API (include/freerdp/codec/planar.h)
+    BITMAP_PLANAR_CONTEXT* freerdp_bitmap_planar_context_new(DWORD flags, UINT32 maxWidth,
+                                                             UINT32 maxHeight);
+    void freerdp_bitmap_planar_context_free(BITMAP_PLANAR_CONTEXT*);
+    BOOL freerdp_bitmap_decompress_planar(ctx, pSrcData, SrcSize, nSrcWidth, nSrcHeight,
+                                          pDstData, DstFormat, nDstStep, nXDst, nYDst,
+                                          nDstWidth, nDstHeight, vFlip);
+    (planar_decompress is a deprecated wrapper with the same arguments.)
+
+The context's maxWidth/maxHeight bound the source size (nSrcWidth > maxWidth or nSrcHeight > maxHeight
+fails) and size any temporary buffers. flags is 0 for decoding.
+
+Stream: one FormatHeader byte, then the planes, then an optional pad byte.
+    FormatHeader bits 0-2  CLL (colour loss level, 0 = planes are R, G, B; 1..7 = planes are Y, Co, Cg)
+                 bit 3     CS  (chroma subsampling; only allowed with CLL != 0, otherwise the call fails)
+                 bit 4     RLE (planes are RLE coded; otherwise raw)
+                 bit 5     NA  (no alpha plane)
+Plane order: alpha (absent when NA is set), then R or Y, then G or Co, then B or Cg. Plane size is
+nSrcWidth x nSrcHeight, except Co and Cg with CS: ceil(w/2) x ceil(h/2). Raw planes are stored row by
+row; a raw stream may end with one pad byte, which is ignored.
+
+RLE planes ([MS-RDPEGDI] 2.2.2.5.1.1): each row is a sequence of segments. A segment starts with a control
+byte: nRunLength = low nibble, cRawBytes = high nibble. If nRunLength is 1, the segment is a run of
+cRawBytes + 16 with no raw bytes; if it is 2, a run of cRawBytes + 32 with no raw bytes. Otherwise
+cRawBytes raw bytes follow the control byte and then the run of nRunLength. A run repeats the last value
+of the row so far (0 at the start of each row). In the first row of a plane, values are absolute bytes.
+In every later row, a raw byte b is a delta: (b & 1) ? -((b >> 1) + 1) : (b >> 1), the run repeats the last
+delta, and the output byte is (pixel above + delta) & 0xFF, "above" being the previous row of the same
+plane in decode order. A segment that would run past the row width fails; so does running out of data.
+FreeRDP first walks all RLE planes to find their sizes, so a short plane fails before anything is written.
+
+vFlip: when TRUE, the first plane row is the bottom row of the destination rectangle (bitmap updates are
+bottom-up); when FALSE, the top row.
+
+RGB (CLL = 0): pixel (x, y) is R, G, B from the three planes; alpha is the alpha plane value when the
+alpha plane is present and DstFormat has alpha (FreeRDPColorHasAlpha), otherwise 0xFF. The result is the
+source image converted to DstFormat at (nXDst, nYDst); FreeRDP decodes into BGRA32/BGRX32 (directly into
+the destination when that is DstFormat and the source and destination sizes match, otherwise through a
+temporary image and a flag-less copy of min(src, dst) width and height).
+
+YCoCg (CLL = 1..7): with CS, Co and Cg are first expanded to full size by replication,
+Co(x, y) = Co_sub(x >> 1, y >> 1). The three planes (and alpha) are laid out as BGRA bytes
+(B = Cg, G = Co, R = Y, A = alpha or 0xFF) and converted with
+    primitives_get()->YCoCgToRGB_8u_AC4R(temp, tempStep, dst + offset, DstFormat, nDstStep,
+                                          min(nSrcWidth, nDstWidth), min(nSrcHeight, nDstHeight),
+                                          CLL, useAlpha)
+which computes, per pixel, with s = CLL - 1:
+    co = (INT8)(Co << s), cg = (INT8)(Cg << s)        (the shift is done on the byte, then sign-extended)
+    t = Y - cg; R = clip(t - co); G = clip(Y + cg); B = clip(t + co); clip to 0..255
+    A = useAlpha ? alpha : 0xFF, useAlpha = alpha plane present and DstFormat has alpha.
+In every graded YCoCg call nXDst = nYDst = 0.
+
+How the graded calls look: bitmap updates (libfreerdp/gdi/graphics.c): nXDst = nYDst = 0,
+nDstWidth = nSrcWidth, nDstHeight = nSrcHeight, vFlip TRUE, any CLL/CS/RLE/alpha combination. GFX planar
+(libfreerdp/gdi/gfx.c): vFlip FALSE, the bitmap placed at (nXDst, nYDst) inside a larger surface,
+CLL = 0. Several calls may share one context and one destination.
+
+
+3. NSCodec  ([MS-RDPNSC] 2.2 and 3.1.9)
+=======================================
+
+API (include/freerdp/codec/nsc.h)
+    NSC_CONTEXT* nsc_context_new(void);  void nsc_context_free(NSC_CONTEXT*);
+    BOOL nsc_process_message(ctx, bpp, width, height, data, length, pDstData, DstFormat, nDstStride,
+                             nXDst, nYDst, nWidth, nHeight, flip);
+
+bpp is 32 in every graded call. width x height is the bitmap; nWidth x nHeight is the size of the whole
+destination surface (not of the bitmap). nDstStride 0 means nWidth * bytes per pixel; a smaller non-zero
+stride fails. nXDst > nWidth or nYDst > nHeight fails.
+
+Stream (NSCODEC_BITMAP_STREAM):
+    u32 LumaPlaneByteCount, u32 OrangeChromaPlaneByteCount, u32 GreenChromaPlaneByteCount,
+    u32 AlphaPlaneByteCount, u8 ColorLossLevel (1..7, otherwise fail), u8 ChromaSubsamplingLevel
+    (non-zero = subsampling), u16 reserved, then the four planes back to back (Y, Co, Cg, A), each of its
+    byte count. The sum of the four counts must be present, otherwise the call fails.
+
+Plane sizes before coding ("original size"), with tw = width rounded up to a multiple of 8 and
+th = height rounded up to a multiple of 2:
+    no subsampling: Y, Co, Cg, A are width x height
+    subsampling:    Y is tw x height (rows of tw bytes, only the first width used), Co and Cg are
+                    (tw / 2) x (th / 2), A is width x height
+A plane whose byte count is 0 is filled with 0xFF (used for an absent alpha plane). A byte count smaller
+than the original size means RLE; equal (or larger) means raw: the first original-size bytes are the plane.
+
+Plane RLE: decode until original size bytes are produced. While more than 4 bytes remain to be produced:
+    if exactly 5 remain: copy one byte (a literal), no look-ahead
+    else read value; if the next byte equals value, it is a run: skip that byte, read n; if n < 0xFF the
+         run length is n + 2, else the run length is the following u32; write value that many times
+    else write value once (a literal)
+The last 4 bytes of the plane are copied verbatim. Running out of input, or a run longer than what is left
+to produce (leaving fewer than 4 bytes), fails.
+
+Colour conversion, per pixel, with shift = ColorLossLevel - 1 and chroma taken at (x >> 1, y >> 1) when
+subsampling:
+    co = (INT8)(Co << shift); cg = (INT8)(Cg << shift)    (byte shift, then sign extension)
+    R = clamp(Y + co - cg), G = clamp(Y + cg), B = clamp(Y - co - cg), A = alpha plane; clamp to 0..255
+The result is a width x height BGRA32 image (rows top to bottom in decode order). It is copied to the
+destination with flags = flip, at (nXDst, nYDst), width min(width, nWidth - nXDst) and height
+min(height, nHeight - nYDst), source stride 0 (meaning the copied width * 4). The graded calls use
+FREERDP_FLIP_VERTICAL or FREERDP_FLIP_NONE; a bitmap is only clipped at the bottom edge, and only with
+FREERDP_FLIP_NONE. A context is reused across calls of different sizes.
+
+
+4. RemoteFX  ([MS-RDPRFX] 2.2.2, 3.1.8)
+=======================================
+
+API (include/freerdp/codec/rfx.h)
+    RFX_CONTEXT* rfx_context_new(BOOL encoder);  void rfx_context_free(RFX_CONTEXT*);
+    void rfx_context_set_pixel_format(RFX_CONTEXT*, UINT32 pixel_format);
+    BOOL rfx_context_reset(RFX_CONTEXT*, UINT32 width, UINT32 height);
+    BOOL rfx_process_message(ctx, data, length, left, top, dst, dstFormat, dstStride, dstHeight,
+                             REGION16* invalidRegion);
+
+The graded sequence per context: rfx_context_new(FALSE), rfx_context_set_pixel_format (the tile format:
+BGRX32, BGRA32, RGBX32 or XRGB32), rfx_context_reset(surface width, surface height), then one or more
+rfx_process_message calls on the same destination. The destination is dstStride / bpp(dstFormat) pixels
+wide and dstHeight rows high; left/top is where the channel's origin lands in it. invalidRegion, when not
+NULL, receives the union of the rectangles that were written (not graded).
+
+Message: a sequence of blocks, each starting with u16 blockType, u32 blockLen (whole block, header
+included, >= 6 and not past the end of the message). Blocks of type 0xCCC3 to 0xCCC7 carry two more
+header bytes, codecId (must be 1) and channelId (0xFF for the context block, 0 for the others).
+    0xCCC0 WBT_SYNC            u32 magic 0xCACCACCA, u16 version 0x0100
+    0xCCC1 WBT_CODEC_VERSIONS  u8 numCodecs (1), u8 codecId (1), u16 version (0x0100)
+    0xCCC2 WBT_CHANNELS        u8 numChannels (>= 1), then numChannels x {u8 channelId, u16 width,
+                               u16 height}; the first channel must have id 0 and a non-zero size, which
+                               becomes the context width/height; other channels are skipped
+    0xCCC3 WBT_CONTEXT         u8 ctxId, u16 tileSize (64), u16 properties: bits 0-2 flags, 3-4 cct,
+                               5-8 xft, 9-12 entropy (1 = RLGR1, 4 = RLGR3, anything else fails), 13-14 qt
+    0xCCC4 WBT_FRAME_BEGIN     u32 frameIdx, u16 numRegions
+    0xCCC6 WBT_REGION          u8 regionFlags, u16 numRects, numRects x {u16 x, y, width, height},
+                               u16 regionType (0xCAC1), u16 numTilesets (1)
+    0xCCC7 WBT_EXTENSION       the tileset: u16 subtype (0xCAC2), u16 idx, u16 properties, u8 numQuant
+                               (>= 1), u8 tileSize, u16 numTiles, u32 tilesDataSize, numQuant x 5 bytes of
+                               quantization values, then numTiles tile blocks
+    0xCCC5 WBT_FRAME_END       empty
+Tile block: u16 blockType 0xCAC3, u32 blockLen (>= 19, inside the tileset), u8 quantIdxY, quantIdxCb,
+quantIdxCr (each < numQuant), u16 xIdx, yIdx, u16 YLen, CbLen, CrLen, then the three component streams.
+
+Header blocks (sync, codec versions, channels, context) may come in any order, may be repeated, and are
+remembered by the context across calls: a data block (types above 0xCCC3) fails unless all four have been
+seen, in this call or an earlier one on the same context. Data blocks follow a state machine that also
+persists across calls: FRAME_BEGIN, then REGION, then the tileset, then FRAME_END, then FRAME_BEGIN
+again; any other order fails. Every message in the graded set is one frame (optionally preceded by header
+blocks) with exactly one region and one tileset holding at least one tile. numRects = 0 means one
+rectangle (0, 0, context width, context height).
+
+Quantization values: 5 bytes per table, 10 four-bit values, low nibble first:
+    byte 0: LL3 | LH3 << 4, byte 1: HL3 | HH3 << 4, byte 2: LH2 | HL2 << 4, byte 3: HH2 | LH1 << 4,
+    byte 4: HL1 | HH1 << 4
+(the names of [MS-RDPRFX] 2.2.2.1.5; values 6..15 in valid streams, a value of 0 fails the message).
+
+Tile decode, per component (Y with quantIdxY, Cb, Cr):
+ 1. RLGR decode (mode from the context block) of the component bytes into 4096 INT16 coefficients.
+ 2. The last 64 coefficients (offset 4032, band LL3) are a running difference: for i = 1..63,
+    c[4032 + i] += c[4032 + i - 1] (a sum outside INT16 fails).
+ 3. Dequantize: every coefficient of a band is shifted left by (q - 1), 16-bit result
+    (primitives_get()->lShiftC_16s_inplace), with this band layout and quant value:
+        offset  count  quant          offset  count  quant          offset  count  quant
+        0       1024   HL1            3072    256    HL2            3840    64     HL3
+        1024    1024   LH1            3328    256    LH2            3904    64     LH3
+        2048    1024   HH1            3584    256    HH2            3968    64     HH3
+                                                                    4032    64     LL3
+ 4. Inverse DWT, three levels, in place (level 3 block at offset 3840 with n = 8, then level 2 at 3072 with
+    n = 16, then level 1 at 0 with n = 32). A level-n block holds four n x n bands in the order
+    [HL | LH | HH | LL] (row-major each); its 2n x 2n result, row-major, overwrites the block, which is
+    exactly the LL band of the next level. One level:
+      - horizontal: for each of the n rows, inverse-lift (LL row, HL row) into a 2n-wide L row and
+        (LH row, HH row) into a 2n-wide H row;
+      - vertical: for each of the 2n columns, inverse-lift (L column, H column) into the 2n output rows.
+    The 1-D inverse lift of low l[0..n-1] and high h[0..n-1] into x[0..2n-1]:
+        x[2k]   = l[k] - ((h[k-1] + h[k] + 1) >> 1)        with h[-1] = h[0]
+        x[2k+1] = (h[k] << 1) + ((x[2k] + x[2k+2]) >> 1)   with x[2n] = x[2n-2]
+    computed in int and stored as INT16 (valid streams never overflow).
+ 5. Colour: primitives_get()->yCbCrToRGB_16s8u_P3AC4R(Y, Cb, Cr with step 128 bytes, tile pixels,
+    stride 256, the context's pixel format, 64 x 64). The coefficients are 11.5 fixed point; the
+    primitive computes Yv = (Y + 4096) << 16, R = (Yv + Cr * 91916) >> 21,
+    G = (Yv - Cb * 22527 - Cr * 46819) >> 21, B = (Yv + Cb * 115992) >> 21, each clipped to 0..255, and
+    leaves the fourth byte of 32 bpp pixels untouched; tile buffers start filled with 0xFF.
+RLGR fails only on an impossible magnitude; a component that ends early yields zeros for the rest.
+
+Composition, once the whole message parsed and every tile decoded: each region rectangle becomes the
+clip rectangle (left + x, top + y) to (left + x + width, top + y + height), every coordinate clamped to
+the destination size; the clip region is the union of these. Each tile covers (left + 64 * xIdx,
+top + 64 * yIdx) to +64, +64; the part of the tile inside the clip region is copied (no flags) from the
+tile image (context pixel format, stride 256) to the destination. Pixels outside the clip region are not
+touched. A tile whose square lies partly outside the channel or the destination is clipped the same way.
+
+RLGR ([MS-RDPRFX] 3.1.8.1.7.3). Constants KPMAX 80, LSGR 3, UP_GR 4, DN_GR 6, UQ_GR 3, DQ_GR 3. State
+k = 1, kp = 8, kr = 1, krp = 8. Output stops after 4096 values; if the bits run out first the remaining
+values are 0. A loop iteration that runs out of bits in the middle stops the decode without writing.
+    if k != 0 (run-length mode):
+        count leading 0 bits (vk), consume them and the terminating 1 bit;
+        run = 0; repeat vk times { run += 1 << k; kp = min(kp + UP_GR, KPMAX); k = kp >> LSGR }
+        run += next k bits
+        sign = next bit
+        count leading 1 bits (vk), consume them and the terminating 0 bit
+        code = (next kr bits) | (vk << kr)
+        if vk == 0: krp = max(krp - 2, 0); kr = krp >> LSGR
+        else if vk != 1: krp = min(krp + vk, KPMAX); kr = krp >> LSGR
+        kp = max(kp - DN_GR, 0); k = kp >> LSGR
+        write run zeros (clipped to 4096), then (sign ? -(code + 1) : code + 1)
+    else (Golomb-Rice mode):
+        count leading 1 bits (vk), consume them and the terminating 0 bit
+        code = (next kr bits) | (vk << kr); update kr/krp from vk exactly as above
+        RLGR1: if code == 0: kp = min(kp + UQ_GR, KPMAX), value 0
+               else: kp = max(kp - DQ_GR, 0), value = (code & 1) ? -((code + 1) >> 1) : code >> 1
+               k = kp >> LSGR; write value
+        RLGR3: nIdx = number of significant bits of code (0 for code 0); val1 = next nIdx bits;
+               val2 = code - val1
+               if val1 and val2 both non-zero: kp = max(kp - 2 * DQ_GR, 0)
+               if both zero: kp = min(kp + 2 * UQ_GR, KPMAX)
+               k = kp >> LSGR
+               write m(val1) then m(val2), m(v) = (v & 1) ? -((v + 1) >> 1) : v >> 1
+
+
+5. RemoteFX progressive  ([MS-RDPEGFX] 2.2.4.2 and 3.3.8.2 - 3.3.8.3)
+======================================================================
+
+API (include/freerdp/codec/progressive.h)
+    PROGRESSIVE_CONTEXT* progressive_context_new(BOOL Compressor);
+    void progressive_context_free(PROGRESSIVE_CONTEXT*);
+    INT32 progressive_create_surface_context(ctx, UINT16 surfaceId, UINT32 width, UINT32 height);
+    INT32 progressive_decompress(ctx, pSrcData, SrcSize, pDstData, DstFormat, nDstStep, nXDst, nYDst,
+                                 REGION16* invalidRegion, UINT16 surfaceId, UINT32 frameId);
+
+progressive_decompress returns a negative value on failure and a value >= 0 on success. The graded
+sequence: one context, progressive_create_surface_context(surfaceId, W, H) (returns >= 0), then calls on
+the W x H destination with nXDst = nYDst = 0 and a frameId that differs from the previous call's. A
+surface owns a grid of 64 x 64 tiles; each tile keeps its state between calls (pixels, the dequantized
+coefficients, the sign array, its quant values and bit positions).
+
+Message: a sequence of blocks, u16 blockType, u32 blockLen (whole block, >= 6, inside the message);
+every block must be consumed exactly and the blocks must cover the message exactly.
+    0xCCC0 SYNC         blockLen 12: u32 magic 0xCACCACCA, u16 version 0x0100
+    0xCCC3 CONTEXT      blockLen 10: u8 ctxId, u16 tileSize (64), u8 flags (bit 0: RFX_SUBBAND_DIFFING);
+                        remembered by the context across calls
+    0xCCC1 FRAME_BEGIN  blockLen 12: u32 frameIndex, u16 regionCount
+    0xCCC4 REGION       u8 tileSize (64), u16 numRects (>= 1), u8 numQuant (<= 7), u8 numProgQuant,
+                        u8 flags (bit 0: RFX_DWT_REDUCE_EXTRAPOLATE), u16 numTiles, u32 tileDataSize,
+                        numRects x {u16 x, y, width, height}, numQuant x 5 bytes of quant values (each
+                        6..15, otherwise fail), numProgQuant x {u8 quality, 5 bytes Y, 5 bytes Cb,
+                        5 bytes Cr progressive quant values}, then tile blocks totalling tileDataSize
+                        bytes, exactly numTiles of them
+    0xCCC2 FRAME_END    blockLen 6; must be the last bytes of the message
+Each call starts a fresh block state; a REGION is only processed after a FRAME_BEGIN of the same call.
+Every message in the graded set is [SYNC] [CONTEXT] FRAME_BEGIN REGION FRAME_END with one region.
+
+Quant values here use a different nibble order from RemoteFX:
+    byte 0: LL3 | HL3 << 4, byte 1: LH3 | HH3 << 4, byte 2: HL2 | LH2 << 4, byte 3: HH2 | HL1 << 4,
+    byte 4: LH1 | HH1 << 4
+
+Tile blocks (all fields after the 6-byte header; each block must be exactly its blockLen):
+    0xCCC5 TILE_SIMPLE   u8 quantIdxY, quantIdxCb, quantIdxCr, u16 xIdx, yIdx, u8 flags, u16 yLen, cbLen,
+                         crLen, tailLen, then the Y, Cb, Cr and tail bytes (tail is ignored)
+    0xCCC6 TILE_FIRST    as SIMPLE, with u8 quality after flags
+    0xCCC7 TILE_UPGRADE  u8 quantIdxY, quantIdxCb, quantIdxCr, u16 xIdx, yIdx, u8 quality, u16 ySrlLen,
+                         yRawLen, cbSrlLen, cbRawLen, crSrlLen, crRawLen, then ySrl, yRaw, cbSrl, cbRaw,
+                         crSrl, crRaw bytes
+quality 0xFF means full quality (all progressive quant values 0; SIMPLE tiles are always full quality);
+otherwise it indexes the region's progressive quant table. Tile flags bit 0 is RFX_TILE_DIFFERENCE.
+xIdx/yIdx always lie inside the surface's grid.
+
+Band layouts. Without RFX_DWT_REDUCE_EXTRAPOLATE the coefficients use the RemoteFX layout and DWT of
+section 4. With it, the 4096 coefficients are laid out as
+    offset  count        band          offset  count       band        offset  count      band
+    0       1023 31x33   HL1           3007    272 16x17   HL2         3807    72  8x9    HL3
+    1023    1023 33x31   LH1           3279    272 17x16   LH2         3879    72  9x8    LH3
+    2046    961  31x31   HH1           3551    256 16x16   HH2         3951    64  8x8    HH3
+                                                                       4015    81  9x9    LL3
+(sizes are rows x columns of the stored band, see the DWT below). Band buffer position i (0..9 in the
+order HL1, LH1, HH1, HL2, LH2, HH2, HL3, LH3, HH3, LL3) uses the quant value of the band of that name.
+
+FIRST / SIMPLE pass, per component:
+    q = region quant table[quantIdx] (per band), p = progressive quant for the tile's quality (per band)
+    bitPos = q + p (stored in the tile), shift = bitPos - 1 (per band)
+    v = RLGR1 decode of the component bytes into 4096 values (progressive always uses RLGR1)
+    sign = copy of v (stored in the tile)
+    LL3 running difference (64 values at 4032, or 81 values at 4015 with extrapolation); then every band
+    shifted left by its shift (16-bit)
+    if RFX_TILE_DIFFERENCE: v[i] = current[i] = saturate16(v[i] + current[i]) for all i,
+    else current = v                     (current = the tile's stored coefficients)
+    inverse DWT of v (section 4, or the reduce-extrapolate DWT below), then yCbCrToRGB_16s8u_P3AC4R as
+    in section 4 into the tile's 64 x 64 pixels, in the tile format (see composition)
+
+UPGRADE pass (only used with RFX_DWT_REDUCE_EXTRAPOLATE in the graded set), per component:
+    q, p' from the tile's indices and new quality; newBitPos = q + p'; numBits = tile bitPos - newBitPos
+    per band (never negative in valid streams); shift = newBitPos - 1; the tile's bitPos becomes newBitPos
+    The SRL and RAW bitstreams of the component are read with one SRL state (kp = 8, nz = 0, mode 0).
+    Bands in buffer order HL1 .. HH3, then LL3; a band with numBits 0 is skipped entirely.
+    Non-LL bands, for each coefficient i of the band:
+        if sign[i] > 0: in = RAW(numBits); if sign[i] < 0: in = -RAW(numBits)
+        if sign[i] == 0: in = SRL(numBits); sign[i] = in
+        current[i] += in << shift
+    LL3: for each coefficient: current[i] += RAW(numBits) << shift   (RAW is unsigned)
+    then v = copy of current, inverse DWT, colour conversion as for the first pass.
+    RAW(n) reads n bits as an unsigned number. SRL(n):
+        if nz > 0: nz -= 1; return 0
+        k = kp / 8
+        if mode == 0:
+            bit = next bit
+            if bit == 0: nz = (1 << k) - 1; kp = min(kp + 4, 80); return 0
+            mode = 1; nz = next k bits (none when k == 0)
+            if nz > 0: nz -= 1; return 0
+        mode = 0
+        sign = next bit; kp = max(kp - 6, 0)
+        if n == 1: return sign ? -1 : 1
+        mag = 1; while mag < (1 << n) - 1: if next bit is 1: break; mag += 1
+        return sign ? -mag : mag
+
+Reduce-extrapolate inverse DWT: three levels, in place, at offset 3807 (level 3), 3007 (level 2), 0
+(level 1). At level l, nL = (64 >> l) + 1 and nH = 31, 16, 8 for l = 1, 2, 3 (so nL = 33, 17, 9). The
+block holds HL (nL rows of nH), LH (nH rows of nL), HH (nH rows of nH), LL (nL rows of nL), row-major,
+in that order; its (nL + nH) x (nL + nH) result, row-major, overwrites the block.
+    horizontal: each of the nL rows of (LL, HL) -> a row of L; each of the nH rows of (LH, HH) -> a row of H
+    vertical: each of the nL + nH columns of (L above H, i.e. nL low values, nH high values) -> output column
+The 1-D inverse of low L[0..nL-1], high H[0..nH-1] (C int arithmetic, "/" truncating, c() clamps to
+INT16) produces nL + nH values X:
+    H0 = H[0]; X0 = X2 = c(L[0] - H0)
+    for j = 0 .. nH - 2:
+        H1 = H[j + 1]; X2 = c(L[j + 1] - (H0 + H1) / 2); X1 = c((X0 + X2) / 2 + 2 * H0)
+        emit X0, X1; X0 = X2; H0 = H1
+    if nL == nH + 1: X0 = c(L[nH] - H0); emit X2, c((X0 + X2) / 2 + 2 * H0), X0
+    if nL == nH + 2: X0 = c(L[nH] - H0 / 2); emit X2, c((X0 + X2) / 2 + 2 * H0), X0,
+                     then c((X0 + L[nH + 1]) / 2)
+
+Composition: if frameId differs from the previous call's frameId on this surface, the surface's list of
+updated tiles is cleared. Every tile block parsed in the call adds its tile to the list (once). After the
+whole message parsed, each listed tile's square (64 * xIdx, 64 * yIdx, 64 x 64, offset by nXDst/nYDst)
+is intersected with the union of the region's rectangles, and those parts are copied from the tile pixels
+(stride 256) to the destination with FREERDP_KEEP_DST_ALPHA. The tile pixel format is DstFormat when it
+is RGBA32, RGBX32, BGRA32 or BGRX32, and XRGB32 otherwise. The region's rectangles always lie inside the
+surface in the graded set.
+
+
+6. ClearCodec  ([MS-RDPEGFX] 2.2.4.1 and 3.3.8.1)
+=================================================
+
+API (include/freerdp/codec/clear.h)
+    CLEAR_CONTEXT* clear_context_new(BOOL Compressor);  void clear_context_free(CLEAR_CONTEXT*);
+    INT32 clear_decompress(ctx, pSrcData, SrcSize, nWidth, nHeight, pDstData, DstFormat, nDstStep,
+                           nXDst, nYDst, nDstWidth, nDstHeight, palette);
+
+clear_decompress returns 0 on success and a negative value on failure. nWidth x nHeight is the bitmap,
+placed at (nXDst, nYDst); nDstWidth x nDstHeight is the whole destination surface. The graded calls
+(libfreerdp/gdi/gfx.c style) keep the bitmap inside the surface, pass palette NULL and use one DstFormat
+per context (a later call with a format that differs other than in alpha fails). The context owns an
+NSCodec context for subcodec 1, a temporary buffer, the V-bar storage (32768 entries), the short V-bar
+storage (16384 entries), the glyph cache (4000 entries) and the expected sequence number; all of them
+persist across calls. Colours built from stream bytes are FreeRDPGetColor(DstFormat, r, g, b, 0xFF).
+
+Stream: u8 glyphFlags, u8 seqNumber, then u16 glyphIndex when glyphFlags has GLYPH_INDEX (0x01), then,
+unless the message is a glyph hit, u32 residualByteCount, u32 bandsByteCount, u32 subcodecByteCount and the
+three layers in that order (a count of 0 skips the layer). Every count must be backed by data.
+    seqNumber: if the context's expected number is 0 and seqNumber is not, the expected number becomes
+    seqNumber; seqNumber must then equal it, otherwise the call fails; afterwards expected =
+    (seqNumber + 1) % 256.
+    CACHE_RESET (0x04): the V-bar and short V-bar storage cursors go back to 0 (stored entries stay).
+    GLYPH_HIT (0x02) needs GLYPH_INDEX (otherwise fail). glyphIndex must be < 4000.
+
+Glyphs. With GLYPH_INDEX and GLYPH_HIT the cached glyph (it must hold at least nWidth * nHeight pixels)
+is copied, stride nWidth * bpp, to (nXDst, nYDst) with FREERDP_KEEP_DST_ALPHA and the call ends: the
+message has no composition header. With GLYPH_INDEX alone the message is decoded normally and, at the
+end, the nWidth x nHeight destination rectangle (DstFormat) is copied into the glyph cache entry.
+Glyphs are at most 1024 pixels in the graded set.
+
+Residual layer: runs of {u8 B, u8 G, u8 R, run length} covering exactly nWidth * nHeight pixels in row
+order. Run length: u8; if it is 0xFF, a u16 follows; if that is 0xFFFF, a u32 follows. The pixels form a
+temporary nWidth x nHeight image in DstFormat which is copied to (nXDst, nYDst) with
+FREERDP_KEEP_DST_ALPHA. Fewer or more pixels than the bitmap fails.
+
+Bands layer: bands until bandsByteCount bytes are used. A band is u16 xStart, xEnd, yStart, yEnd (bitmap
+coordinates, inclusive; xEnd >= xStart, yEnd >= yStart, height yEnd - yStart + 1 at most 52), u8 B, G, R
+background, then one u16 vBarHeader per column xStart..xEnd:
+    header & 0xC000 == 0x0000  short V-bar cache miss: yOn = header & 0xFF, yOff = (header >> 8) & 0x3F
+                               (yOff >= yOn), then (yOff - yOn) pixels of B, G, R (at most 52). They are
+                               stored at short V-bar storage[shortCursor]; shortCursor = (shortCursor + 1)
+                               % 16384.
+    header & 0xC000 == 0x4000  short V-bar cache hit: index = header & 0x3FFF, then u8 yOn; the stored
+                               short V-bar at index supplies the pixels.
+    header & 0x8000 == 0x8000  V-bar cache hit: index = header & 0x7FFF; the stored V-bar is used as it is.
+For both short cases a full V-bar of the band's height is built: rows below yOn get the background, the
+next rows get the short V-bar's pixels, the rest the background; it is stored at V-bar storage[vCursor]
+and vCursor = (vCursor + 1) % 32768. The V-bar of column i of the band is then written pixel by pixel
+(FreeRDPWriteColor, no alpha keeping) to destination column nXDst + xStart + i, rows nYDst + yStart and
+down. V-bar cache hits in the graded set always refer to stored V-bars of the band's height, and short
+V-bars always fit between yOn and the band's height.
+
+Subcodec layer: entries until subcodecByteCount bytes are used: u16 xStart, yStart, width, height (inside
+the bitmap and the destination, otherwise fail), u32 bitmapDataByteCount, u8 subcodecId, then the data.
+    0  uncompressed: exactly width * height * 3 bytes, B, G, R per pixel in row order, copied to
+       (nXDst + xStart, nYDst + yStart) with FREERDP_KEEP_DST_ALPHA
+    1  NSCodec: nsc_process_message(context's NSC context, 32, width, height, data, bitmapDataByteCount,
+       pDstData, DstFormat, nDstStep, nXDst + xStart, nYDst + yStart, nDstWidth, nDstHeight,
+       FREERDP_FLIP_NONE) (section 3)
+    2  RLEX: u8 paletteCount (1..127), paletteCount x {B, G, R}, then segments until the data is used.
+       numBits = floor(log2(paletteCount - 1)) + 1, or 1 when paletteCount is 1. A segment is one byte v
+       (stopIndex = v & ((1 << numBits) - 1), suiteDepth = v >> numBits, startIndex = stopIndex -
+       suiteDepth; both indices must be < paletteCount) and a run length coded as in the residual layer.
+       It writes run length pixels of palette[startIndex], then palette[startIndex .. stopIndex]
+       (suiteDepth + 1 pixels), in row order of the subcodec rectangle, each with FreeRDPWriteColor. The
+       segments must produce exactly width * height pixels.
+    any other id fails.
+
+
+7. RDP8 bulk compression, ZGFX  ([MS-RDPEGFX] 2.2.5 and 3.1.9.1)
+=================================================================
+
+API (include/freerdp/codec/zgfx.h)
+    ZGFX_CONTEXT* zgfx_context_new(BOOL Compressor);  void zgfx_context_free(ZGFX_CONTEXT*);
+    int zgfx_decompress(ctx, pSrcData, SrcSize, BYTE** ppDstData, UINT32* pDstSize, UINT32 flags);
+
+zgfx_decompress returns a negative value on failure and a value >= 0 on success. On success *ppDstData
+is a buffer the caller releases with free() and *pDstSize its length (a message that produces no bytes
+may return NULL and 0). The graded calls decode the messages of a sequence in order on one context, with
+flags 0, and compare the output bytes. The context keeps a 2,500,000-byte history ring across calls;
+every byte the decoder outputs, compressed or not, is appended to it.
+
+Message: u8 descriptor. 0xE0 (single): the rest of the message is one segment. 0xE1 (multipart):
+u16 segmentCount, u32 uncompressedSize, then segmentCount x {u32 segmentSize, segment}; the output is the
+concatenation of the segments' outputs and must be exactly uncompressedSize bytes (more or fewer fails).
+Any other descriptor fails. Reading past the end of the message fails.
+
+Segment: u8 header, then data. If header & 0x20 (PACKET_COMPRESSED) is clear the data is the output.
+Otherwise the last data byte is the number of unused bits at the end of the byte before it, and the bits
+before that (8 * (data length - 1) - last byte of them, most significant bit first) are a sequence of
+tokens. A segment that would output more than 65536 bytes fails. Tokens are identified by these prefix
+codes (prefix written in binary, then the number of value bits that follow):
+    literal tokens: byte = base + value
+        0          8 bits, base 0
+        11000      0 bits, byte 0x00        11001     0 bits, byte 0x01
+        110100     0x02     110101   0x03   110110   0xFF
+        1101110    0x04     1101111  0x05   1110000  0x06   1110001  0x07   1110010  0x08
+        1110011    0x09     1110100  0x0A   1110101  0x0B   1110110  0x3A   1110111  0x3B
+        1111000    0x3C     1111001  0x3D   1111010  0x3E   1111011  0x3F   1111100  0x40
+        1111101    0x80     11111100 0x0C   11111101 0x38   11111110 0x39   11111111 0x66
+    match tokens: distance = base + value
+        10001      5 bits, base 0            10010     7 bits, base 32
+        10011      9 bits, base 160          10100    10 bits, base 672
+        10101     12 bits, base 1696         101100   14 bits, base 5792
+        101101    15 bits, base 22176        1011100  18 bits, base 54944
+        1011101   20 bits, base 317088       10111100 20 bits, base 1365664
+        10111101  21 bits, base 2414240      101111100 22 bits, base 4511392
+        101111101 23 bits, base 8705696      101111110 24 bits, base 17094304
+A match with distance > 0 reads a length: a 0 bit means 3; otherwise length = 4 and extra = 2, and while
+the next bit is 1, length *= 2 and extra += 1; then length += the next extra bits. It copies length bytes
+starting distance bytes back in the history (when length > distance the copied bytes repeat, as in LZ77).
+A match with distance 0 is an unencoded run: the next 15 bits are a count, the reader skips to the next
+byte boundary, count bytes are copied verbatim from the segment data, and token reading resumes after them.
+
+
+8. Out of scope
+===============
+The encoders in these files (interleaved_compress, freerdp_bitmap_compress, freerdp_bitmap_compress_planar,
+nsc_compose_message, rfx_encode_message and friends, progressive_compress, zgfx_compress) and the RFX
+message accessors (rfx_message_get_*) are not graded.

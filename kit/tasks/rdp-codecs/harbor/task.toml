@@ -1,0 +1,27 @@
+[task]
+name = "cg/rdp-codecs"
+description = "Restore the RDP codec decoders of FreeRDP 3.32.2 (interleaved RLE, planar, NSCodec, ClearCodec, RemoteFX, RemoteFX progressive, ZGFX) in a tree where they were removed, matching FreeRDP's output byte for byte on unseen streams."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["c"]
+category = "codecs"
+difficulty = "frontier"
+tags = ["rdp", "freerdp", "image-codec", "remotefx", "rlgr", "dwt", "bulk-compression", "c"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"
