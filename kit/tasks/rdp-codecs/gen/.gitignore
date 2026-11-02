@@ -1,0 +1,10 @@
+# generated or downloaded while authoring; regenerate with the scripts here
+pristine/
+stubbed/
+oracle-build/
+stub-build/
+sets/
+harness/codec_runner_oracle
+harness/rlgr_check
+*.log
+__pycache__/
