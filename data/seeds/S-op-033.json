@@ -1,0 +1,201 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "4 h. A frontier agent reaches a 2-4x gain by hand-written SIMD; the full carry-less-multiply quote mask and escape handling is the remaining lever. A weaker model breaks correctness on edge cases.",
+  "cheat": "Caching results by input hash is stopped by fresh generated inputs at grade time. Output must also match on invalid inputs. The simdjson source is not in the image.",
+  "grading": "Hard gate: the structural-index array and the validity verdict must be identical on hidden corpora (generated plus real-world JSON files, with invalid-UTF-8 and malformed variants). Score is the median wall-clock throughput over several runs, mapped by 2^u-1 against our reference speedup S.",
+  "reference": "A stage-1 backport from the pinned simdjson release into the task API (about 800 lines). The speedup is measured on the grading machine, not copied from upstream.",
+  "source": "https://github.com/simdjson/simdjson @ v5.0.5, Apache-2.0 OR MIT (check repo)",
+  "task": "/app ships a scalar C++ JSON tokenizer and structural-index builder (UTF-8 validation, string/escape masks, structural positions) with a DOM-less consumer API. The agent speeds it up with SIMD, branchless quote/escape handling and block-wise processing, for x86-64 with AVX2 and a scalar fallback.",
+  "title": "JSON structural indexer speedup with identical stage-1 output"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-038 0.22"
+  ],
+  [
+   "2026-10-21T03:06:35Z",
+   "v1",
+   "killed:K8",
+   "Kill K8 (too easy / recallable famous port). The reference is a backport of simdjson stage 1, which is public on GitHub, in the arXiv paper, and packaged in Debian, so a frontier agent can recall the approach. The seed's own band description (2-4x via hand SIMD) is unverified, and the licence claim "
+  ]
+ ],
+ "id": "S-op-033",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.216,
+    "S-im-038"
+   ],
+   [
+    0.176,
+    "S-im-069"
+   ],
+   [
+    0.168,
+    "S-im-071"
+   ],
+   [
+    0.094,
+    "enemy-grid-escape [original]"
+   ],
+   [
+    0.09,
+    "json_parser [SpecBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "fc358c5c2b253c185a99dee586eb4e9da4b34cc0",
+  "kb": 121598,
+  "lang": "C++",
+  "open_prs": 21,
+  "pushed": "2026-10-20",
+  "release": "v5.0.5",
+  "spdx": "Apache-2.0",
+  "stars": 24441,
+  "test_files": 145,
+  "test_kb": 1502,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/simdjson/simdjson|naive-dom-json-parsers-nlohmann-0-15-gb-s-simdjson",
+ "source_notes": "q:\"4x faster than RapidJSON and 25x faster than JSON for Modern C++\". Levers: SIMD structural indexing, microparallel algorithms, branch-misprediction reduction, runtime CPU dispatch, on-demand lazy parse, multithreaded NDJSON. Numbers from one Xeon Gold 6548N / GCC 16.2 setup, single-source. Task idea: speed up a scalar JSON tokenizer; correctness gate = identical token stream. Full simdjson is too large to backport.",
+ "source_url": "https://github.com/simdjson/simdjson",
+ "source_version": "naive/DOM JSON parsers (nlohmann 0.15 GB/s) -> simdjson",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/pdf/1902.08318",
+  "facts": [
+   {
+    "claim": "simdjson tag v5.0.5 exists and is marked Latest (commit 9c003534b1be3bc4f1322bfa7a770a7ffbf247d9)",
+    "status": "confirmed",
+    "url": "https://github.com/simdjson/simdjson/releases/tag/v5.0.5"
+   },
+   {
+    "claim": "Licence is Apache-2.0 OR MIT (seed claim)",
+    "status": "contradicted",
+    "url": "https://github.com/simdjson/simdjson/blob/master/LICENSE"
+   },
+   {
+    "claim": "Licence file grants Apache License 2.0 only, with no MIT text; copyright 2018-2025 The simdjson authors. Still permits shipping in a bundle, so K6 does not apply",
+    "status": "confirmed",
+    "url": "https://github.com/simdjson/simdjson/blob/master/LICENSE"
+   },
+   {
+    "claim": "Langdale and Lemire paper 'Parsing Gigabytes of JSON per Second' describes the stage-1 design: branch-free quote/escape handling and SIMD UTF-8 validation",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/1902.08318"
+   },
+   {
+    "claim": "simdjson is packaged in Debian as libsimdjson-dev (installable via apt, so the upstream stage-1 code is public outside GitHub)",
+    "status": "confirmed",
+    "url": "https://tracker.debian.org/simdjson"
+   },
+   {
+    "claim": "Test-file count of 145 and 1502 KB of tests",
+    "status": "not_found",
+    "url": "https://github.com/simdjson/simdjson"
+   }
+  ],
+  "frontier_hours": 7,
+  "full_card": {
+   "band": "Seed claims 4 h tier with 2-4x SIMD gain; no dated public evidence of agent results on this task; frontier agent can likely recall simdjson stage-1 structure",
+   "build_cost": "about 3 (800-line backport plus harness); smoke_build was empty so build status is unknown",
+   "deliverable": "Faster structural-index builder with identical index arrays and validity verdicts on hidden corpora",
+   "gates_anticheat": "Exact match of structural index and validity; fresh generated inputs at grade time defeat input-hash caching; simdjson source absent from image",
+   "grading_surface": "Hidden corpora (generated and real-world JSON, invalid UTF-8 and malformed variants); exact-match gate plus median throughput",
+   "local_fit": "CPU-only x86-64 with AVX2 and scalar fallback fits the 8 CPU / 16 GB sandbox; no network needed at run time",
+   "lookup": "direct: upstream stage 1 is public on GitHub, in the arXiv paper, and in Debian packages",
+   "provenance": "simdjson v5.0.5 (tag confirmed, Apache-2.0 only, not dual-licensed); upstream stage-1 is public on GitHub, in the Lemire/Langdale paper, and in Debian libsimdjson-dev",
+   "reference": "Upstream simdjson stage 1 backported into the task API; speedup measured on grading machine (S not yet measured)",
+   "ships": "A scalar C++ tokenizer/structural indexer plus AVX2 and scalar fallback, backported from simdjson stage 1 (~800 lines)",
+   "similarity": "Nearest l0 neighbour S-im-038 at 0.216; JSON parsers are on the CROWDED list"
+  },
+  "kill_code": "K8",
+  "kill_reason": "Kill K8 (too easy / recallable famous port). The reference is a backport of simdjson stage 1, which is public on GitHub, in the arXiv paper, and packaged in Debian, so a frontier agent can recall the approach. The seed's own band description (2-4x via hand SIMD) is unverified, and the licence claim is contradicted (Apache-2.0 only), which does not kill it but must be corrected. K11 (sealing) is also at risk for the same reason.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task; the seed's 2-4x band is unverified"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Backport of about 800 lines plus a differential harness is a few days; smoke_build not reported"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only, offline, with an AVX2 fallback; fits the sandbox"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "A 4 h tier is plausible but the scope is one module (stage 1), so horizon is limited"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Apache-2.0 allows shipping the reference, though the seed's dual-licence claim is wrong"
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Levers are mostly one pipeline (quote mask, escape, UTF-8, structural positions); partial buckets are weak"
+   },
+   "Nov": {
+    "v": 2,
+    "why": "JSON parsers are on the CROWDED list and the nearest neighbour is at 0.216"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Apache-2.0 repo at a real release tag with 24k stars and a published paper"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream stage 1 is a complete permissive implementation, though the 800-line backport is a subset"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Upstream code is public, packaged in Debian, and a famous port a model can recall; cannot be sealed from recall"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden corpora give a large differential surface, but it is not an executable oracle with an unlimited generator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "A no-access agent reproduces the upstream stage 1 from memory within the cap with identical output, which confirms K8; or the build fails",
+   "pass_if": "Upstream stage 1 is reproducible and its speedup over scalar is stable across runs, and a no-access agent cannot reach the upstream speedup within a 1 h cap",
+   "steps": [
+    "In a throwaway networked Linux container, clone simdjson at tag v5.0.5 and record the commit hash.",
+    "Build the stage-1 functions (haswell/AVX2 and generic) offline and confirm the structural-index output and validity verdict on a sample of valid, invalid-UTF-8, and malformed JSON.",
+    "Write a 50-line scalar baseline and a timing harness; measure median throughput of the upstream stage 1 against the scalar baseline on the target machine.",
+    "Check determinism: repeat the timing 5 times and confirm the index arrays are byte-identical across runs.",
+    "Ask a frontier agent to reproduce stage 1 from the spec only, with no upstream access, and compare its output and speedup to the upstream build."
+   ]
+  },
+  "summary": "The simdjson v5.0.5 tag and its Apache-2.0-only licence check out (the seed's dual-licence claim is contradicted), but the reference is upstream stage-1 code that is public in GitHub, the Langdale-Lemire paper, and Debian packages. That makes the idea a famous port a frontier agent can recall, so it is killed as K8 and the spike is not run.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

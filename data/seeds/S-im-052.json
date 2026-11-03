@@ -1,0 +1,203 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "8 h. Subject is crowded, so difficulty rests on the regex engine, special cases and exit codes. Buckets: addresses, commands, substitution flags, regex, in-place/multi-file. A weaker model stops after basic s///.",
+  "cheat": "Calling the system sed: it is removed from the image and the script rejects process spawns of sed/busybox. Generated scripts are not in the image.",
+  "grading": "Hidden suite: the testsuite scripts (about 74 .sh plus *.sed cases), classic sed script corpora, and thousands of generated command/input pairs, all compared byte-exact on stdout, stderr class and exit code against GNU sed run on the verifier only.",
+  "reference": "Reference of about 4k lines in Rust, with GNU sed as the oracle. Divergent cases (locale specific) are excluded.",
+  "source": "https://git.savannah.gnu.org/cgit/sed.git @ master a179e7a (release tag to be pinned), GPL-3.0-or-later; uutils/sed (MIT) as an alternative",
+  "task": "/app ships a CLI skeleton. The agent implements sed with GNU extensions: -E/-n/-i/-s/-z, address ranges with addr1,~N and 0,/re/, all commands including e, F, W, y, a/i/c one-liners, special replacement cases (\\U, \\L, \\n), and its own regex engine for BRE/ERE.",
+  "title": "GNU sed 4.9 compatible stream editor with extensions"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-048 0.35"
+  ],
+  [
+   "2026-10-21T01:00:30Z",
+   "v1",
+   "killed:K1",
+   "sed is on the CROWDED list, and the deliverable (a sed clone graded byte-exact against GNU sed) matches the public sed-clone tasks (MirrorCode neighbour 0.266, SpecBench sed_interpreter 0.20). The proposed grading does not differ enough to avoid a near-duplicate. The MirrorCode sed membership itself"
+  ]
+ ],
+ "id": "S-im-052",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.346,
+    "S-im-048"
+   ],
+   [
+    0.266,
+    "sed [MirrorCode]"
+   ],
+   [
+    0.216,
+    "S-im-050"
+   ],
+   [
+    0.21,
+    "S-im-044"
+   ],
+   [
+    0.2,
+    "sed_interpreter [SpecBench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "git.savannah.gnu.org/cgit/sed.git/tree/testsuite|savannah-master-a179e7a-2026-09-20-cloned-tag-not-determined",
+ "source_notes": "Small surface by itself, but combine with toybox/busybox sed cases and sed 'script' corpora for a bigger target. sed clones are semi-crowded among coreutils tasks. GPL tests redistributable with source",
+ "source_url": "https://git.savannah.gnu.org/cgit/sed.git/tree/testsuite",
+ "source_version": "savannah master a179e7a 2026-09-20 (cloned; tag not determined); GitHub mirror/sed is stale 2024",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://epoch.ai/benchmarks/mirrorcode",
+  "facts": [
+   {
+    "claim": "GNU sed 4.9 tarball exists, dated 2022-11-06",
+    "status": "confirmed",
+    "url": "https://ftp.gnu.org/gnu/sed/"
+   },
+   {
+    "claim": "A newer GNU sed 4.10 tarball exists (dated 2026-04-21), so 4.9 is not the latest release and the pin must be chosen deliberately",
+    "status": "confirmed",
+    "url": "https://ftp.gnu.org/gnu/sed/"
+   },
+   {
+    "claim": "Savannah cgit master commit a179e7a exists in git.savannah.gnu.org/cgit/sed.git",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/sed.git/tree/"
+   },
+   {
+    "claim": "GNU sed licence is GPL-3.0-or-later (COPYING checked directly)",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/sed.git/tree/"
+   },
+   {
+    "claim": "Upstream testsuite holds about 74 .sh scripts plus *.sed cases",
+    "status": "contradicted",
+    "url": "https://github.com/mirror/sed/tree/master/testsuite"
+   },
+   {
+    "claim": "uutils/sed is a Rust reimplementation of sed, MIT licensed",
+    "status": "confirmed",
+    "url": "https://github.com/uutils/sed"
+   },
+   {
+    "claim": "uutils/sed runs the GNU sed upstream testsuite shell scripts to measure compatibility",
+    "status": "confirmed",
+    "url": "https://github.com/uutils/sed"
+   },
+   {
+    "claim": "sed is one of MirrorCode's target programs (the neighbour 'sed [MirrorCode]')",
+    "status": "not_found",
+    "url": "https://epoch.ai/benchmarks/mirrorcode"
+   },
+   {
+    "claim": "MirrorCode has 25 target programs and grades by exact stdout/stderr match with held-out tests",
+    "status": "confirmed",
+    "url": "https://epoch.ai/benchmarks/mirrorcode"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; frontier outcome unknown; no sed-specific dated evidence found.",
+   "build_cost": "Roughly 3 days for the reference (4k-line Rust plus oracle harness); smoke_build skipped, no git source probed.",
+   "deliverable": "Stream editor binary: BRE/ERE regex engine, all commands, addresses, -E/-n/-i/-s/-z, GNU extensions, exit codes.",
+   "gates_anticheat": "Remove system sed; reject sed/busybox spawns; hidden scripts not in image. Uncloseable recall risk: GNU sed and uutils sed are public source.",
+   "grading_surface": "Upstream testsuite (67 .sh + 7 .sed visible on mirror, seed says ~74) plus classic sed script corpora plus generated command/input pairs; byte-exact stdout, stderr class, exit code.",
+   "local_fit": "Rust or C toolchain, no network, fits 8 cores / 16 GB.",
+   "lookup": "partial: uutils/sed (MIT Rust) and GNU sed source are public; not installable offline but recallable in outline.",
+   "provenance": "GNU sed (savannah, GPL-3.0-or-later per seed; licence not re-verified). Pin 4.9 (2022-11-06) or 4.10 (2026-04-21); cgit master a179e7a unverified (cgit returned 502).",
+   "reference": "Seed claims ~4k-line Rust reference against GNU sed oracle; not verified. uutils/sed (MIT, Rust) exists as a public near-complete alternative.",
+   "ships": "CLI skeleton in /app; hidden reference ~4k lines Rust; GNU sed oracle run only on verifier.",
+   "similarity": "Same subject and deliverable as a sed-clone public task (MirrorCode neighbour 0.266, sed_interpreter SpecBench 0.20); sed is on CROWDED list. Nov 2."
+  },
+  "kill_code": "K1",
+  "kill_reason": "sed is on the CROWDED list, and the deliverable (a sed clone graded byte-exact against GNU sed) matches the public sed-clone tasks (MirrorCode neighbour 0.266, SpecBench sed_interpreter 0.20). The proposed grading does not differ enough to avoid a near-duplicate. The MirrorCode sed membership itself is unconfirmed (not_found on the benchmark page), so the kill rests on the crowded subject and the matching deliverable.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on sed; difficulty plausible but unmeasured."
+   },
+   "Build": {
+    "v": 4,
+    "why": "About 3 days for the reference and oracle harness."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure CPU text tool, no network, fits the sandbox."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "A full sed with its own regex engine is multi-day scope for an 8 h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "GPL tests are redistributable and uutils is MIT; GPL-3 licence still needs confirming on the pinned commit."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Addresses, commands, flags, regex and in-place mode give natural partial-credit buckets."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "sed is on the CROWDED list; sed-clone neighbours (MirrorCode 0.266, SpecBench 0.20) share subject and deliverable."
+   },
+   "Real": {
+    "v": 4,
+    "why": "GNU sed is real with 4.9 and 4.10 tarballs on ftp.gnu.org; the pinned commit is unverified."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is an unverified 4k-line Rust build; uutils/sed is a public partial alternative."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "GNU and uutils source are public and well known; the hidden oracle stays sealed but the approach is recallable."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Upstream testsuite plus generated command/input pairs gives a large surface, though visible count is 67 not 74."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "The pinned commit cannot be verified, or sed-clone public tasks already cover the same grading, which is the case here.",
+   "pass_if": "Testsuite runs green and deterministically, and a basic subset passes many generated pairs.",
+   "steps": [
+    "Skip the source build: smoke_build was skipped, so clone savannah sed at the 4.9 tag (or 4.10) in a throwaway container with network and build GNU sed.",
+    "Run the upstream testsuite to confirm the visible .sh count and per-test results.",
+    "Generate about 200 random command/input pairs and run them on GNU sed twice to check determinism.",
+    "Build a minimal Rust prototype of addresses and s/// and diff it against GNU sed on the pairs to see how far a basic subset gets.",
+    "Check that the pinned commit a179e7a exists and that COPYING is GPL-3.0-or-later."
+   ]
+  },
+  "summary": "GNU sed is real (4.9 dated 2022-11-06, 4.10 dated 2026-04-21 on ftp.gnu.org), and the uutils/sed MIT Rust clone is public, but the seed's 74-script count and commit a179e7a are not confirmed (67 .sh visible, cgit down). Killed as K1 because sed is on the CROWDED list and the byte-exact sed-clone deliverable duplicates public sed-clone tasks."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

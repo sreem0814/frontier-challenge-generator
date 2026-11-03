@@ -1,0 +1,241 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "8 h. Git is crowded and widely memorised, so credit comes from the breadth: pack deltas, index extensions and diff heuristics are the long tail. A weaker model stops at loose objects.",
+  "cheat": "Shelling out to git: not installed in the image. Pack and diff cases use hidden generated repos so memorised outputs do not help.",
+  "grading": "Hidden scenarios: scripted sequences derived from the t0000-t4000 plumbing scripts plus generated repos. Resulting object IDs, index bytes, pack bytes (round-trip via real git on the verifier) and diff output are compared exactly against real git run on the verifier only.",
+  "reference": "Own reference of about 4k lines in Rust or Go. Real git is the oracle on the verifier and absent in the image.",
+  "source": "https://github.com/git/git @ master 47fdf22 (pin a release tag), GPL-2.0-only",
+  "task": "/app ships a CLI skeleton. The agent implements the plumbing subset: hash-object, cat-file, update-index, write-tree, commit-tree, ls-tree, read-tree, loose and pack object reading/writing with deltas, the index v2 format and unified diff (Myers) with git's heuristics.",
+  "title": "Git object store, index and diff plumbing compatible with git"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-052 0.27"
+  ],
+  [
+   "2026-10-21T01:00:51Z",
+   "v1",
+   "killed:K1",
+   "Primary subject is git plumbing, which the CROWDED list names ('git (incl. git-to-Zig)'). The deliverable (a git-compatible implementation graded byte-for-byte against real git) is not clearly different from git-to-Zig, and the ProgramBench git-graph neighbour sits at cos 0.163. The subset framing d"
+  ]
+ ],
+ "id": "S-im-053",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.272,
+    "S-im-052"
+   ],
+   [
+    0.219,
+    "S-im-050"
+   ],
+   [
+    0.191,
+    "S-im-006"
+   ],
+   [
+    0.163,
+    "git-graph [ProgramBench]"
+   ],
+   [
+    0.143,
+    "kd_tree [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 1,
+  "ci_files": 5,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "47fdf2208c5b94c8cc01c106b8f7c85efb91c926",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "log": "own-linux-gnu/bin/gcc-ld\" \"-fuse-ld=lld\" \"-Wl,--eh-frame-hdr\" \"-Wl,-z,noexecstack\" \"-L\" \".\" \"-L\" \"<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib\" \"-o\" \"/p/src/target/debug/deps/gitcore-b65ca2602a03c4e2\" \"-Wl,--gc-sections\" \"-pie\" \"-Wl,-z,relro,-z,now\" \"-nodefaultlibs\"\n  = note: some arguments are omitted. use `--verbose` to show all linker arguments\n  = note: rust-lld: error: unable to find library -lgit\n          rust-lld: error: unable to find library -lz\n          collect2: error: ld returned 1 exit status\n          \n\nerror: could not compile `gitcore` (lib test) due to 1 previous error",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   101,
+   101,
+   101
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 24,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "47fdf2208c5b94c8cc01c106b8f7c85efb91c926",
+  "kb": 322314,
+  "lang": "C",
+  "open_prs": 398,
+  "pushed": "2026-10-20",
+  "release": "",
+  "spdx": "NOASSERTION",
+  "stars": 63908,
+  "test_files": 24,
+  "test_kb": 28,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/git/git/tree/master/t|master-47fdf22-2026-10-19-v2-56-0-rc2-tag-seen-via-ls-remote",
+ "source_notes": "~20k test blocks of black-box git CLI behaviour (plumbing + porcelain) is extremely large and data is shell not data files; reimplementing git fully is out of 20 h scope but subset (hash-object, cat-file, update-index, write-tree, commit-tree, diff) is feasible. High memorization risk (git source ubiquitous)",
+ "source_url": "https://github.com/git/git/tree/master/t",
+ "source_version": "master 47fdf22 2026-10-19 (v2.56.0-rc2 tag seen via ls-remote; final release not verified)",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "not found",
+  "facts": [
+   {
+    "claim": "git/git has release tag v2.56.0 (dated Sep 28, 2026), so the seed's 'pin a release tag' is possible; source_facts.release was empty",
+    "status": "confirmed",
+    "url": "https://github.com/git/git/tags"
+   },
+   {
+    "claim": "git/git COPYING is GPL version 2 ('Version 2, June 1991'); GitHub spdx NOASSERTION, so licence is GPL-2.0 per the COPYING file, not the API field",
+    "status": "confirmed",
+    "url": "https://github.com/git/git/blob/master/COPYING"
+   },
+   {
+    "claim": "Repo root contains a Makefile (the real C build) and a Cargo.toml plus build.rs, so the smoke probe's cargo-only build and eco=rust does not describe the project's main build",
+    "status": "confirmed",
+    "url": "https://github.com/git/git"
+   },
+   {
+    "claim": "t/ holds about 1000 t####-*.sh suites (task says t0000-t4000); only 63 are visible in the first 100k characters of the t/ listing and the total was not established",
+    "status": "not_found",
+    "url": "https://github.com/git/git/tree/master/t"
+   },
+   {
+    "claim": "gitoxide is a complete pure-Rust Git implementation licensed MIT and/or Apache-2.0 (lookup and licence)",
+    "status": "confirmed",
+    "url": "https://github.com/GitoxideLabs/gitoxide"
+   },
+   {
+    "claim": "gix crate on crates.io has a licence field (exact SPDX) and version",
+    "status": "not_found",
+    "url": "https://crates.io/crates/gix"
+   },
+   {
+    "claim": "go-git is licensed Apache License 2.0 (complete Go git implementation exists)",
+    "status": "confirmed",
+    "url": "https://github.com/go-git/go-git/blob/master/LICENSE"
+   },
+   {
+    "claim": "A public 'git-to-Zig' benchmark task exists (named in the CROWDED list)",
+    "status": "not_found",
+    "url": "https://github.com/git/git"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Frontier likely finishes object store and index subset; pack deltas and diff heuristics are the long tail; weaker model stops at loose objects (author claim, no dated evidence).",
+   "build_cost": "3: about 4k-line reference plus verifier-side make build of git and grader harness, roughly 3-5 days of work.",
+   "deliverable": "Plumbing subset: hash-object, cat-file, update-index, write-tree, commit-tree, ls-tree, read-tree, loose and pack objects with deltas, index v2, unified Myers diff with git heuristics.",
+   "gates_anticheat": "Real git absent from image; shelling out fails; hidden repos and scripts not in image; grader compares bytes so memorised output does not help; must confirm no git binary or libgit2 in the image.",
+   "grading_surface": "Hidden scenarios from t0000-t4000 scripts plus generated repos; exact comparison of OIDs, index bytes, pack bytes (round-trip via real git on verifier) and diff text. Potentially thousands of cases.",
+   "local_fit": "Rust or Go on 8 cores, 16 GB; C build of real git only on verifier; the smoke probe was red with exit 101 under cargo, so the oracle build needs its own check.",
+   "lookup": "partial: gitoxide (pure Rust, MIT/Apache-2.0) and go-git (Apache-2.0) are complete public implementations in the target languages, not installable offline; git internals are heavily memorised.",
+   "provenance": "git/git upstream, pin v2.56.0 (tag Sep 28 2026); GPL-2.0 per COPYING; GitHub API spdx NOASSERTION; HEAD 47fdf22 on master.",
+   "reference": "Own ~4k-line Rust or Go reference; real git (C, Makefile build) as oracle, verifier-only. Reference not yet written.",
+   "ships": "CLI skeleton in Rust or Go; no git source or oracle in /app; real git only on verifier.",
+   "similarity": "Same subject as CROWDED 'git (incl. git-to-Zig)'; ProgramBench git-graph neighbour at cos 0.163; other neighbours 0.272 (S-im-052), 0.219 (S-im-050), 0.191 (S-im-006). Deliverable overlaps a git reimplementation, differing only by subset."
+  },
+  "kill_code": "K1",
+  "kill_reason": "Primary subject is git plumbing, which the CROWDED list names ('git (incl. git-to-Zig)'). The deliverable (a git-compatible implementation graded byte-for-byte against real git) is not clearly different from git-to-Zig, and the ProgramBench git-graph neighbour sits at cos 0.163. The subset framing does not separate it enough to pass the rule.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this kind of work; the frontier-finishes-subset claim is untested."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference of about 4k lines plus verifier-side make build and harness is several days of work."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Rust or Go fits 8 cores and 16 GB; git oracle built only on the verifier."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Object store, index, pack and diff across many commands fits an 8 h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "GPL-2.0 permits shipping the oracle source and our own permissive code; the git source itself need not be shipped."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several independent buckets (hash, cat-file, index, pack, diff) give steady partial credit."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Git reimplementation is a CROWDED subject; several neighbours exceed 0.15, including ProgramBench git-graph at 0.163."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real upstream repo, pinned tag v2.56.0, GPL-2.0 per COPYING, with a real test suite."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Real git is a strong oracle, but the reference is the author's own unwritten 4k-line implementation, not a complete permissive implementation of the scope."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle absent from image and reference not shipped, but git source is public and widely memorised, so the approach is recallable."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated repos and t-script derived scenarios with byte-exact compare; could reach thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "The oracle does not build offline, the suites emit no per-test results, or outputs are non-deterministic across runs.",
+   "pass_if": "make builds git at v2.56.0 offline, at least 3 plumbing suites run with per-test results, and repeated runs give byte-identical outputs.",
+   "steps": [
+    "In a throwaway networked Linux container, clone git/git at tag v2.56.0 and run make -j8 (NO_GETTEXT=1 NO_TCLTK=1 if needed) to confirm the oracle builds offline from the pinned tag.",
+    "Run t/t0000-basic.sh and two other plumbing suites (for example t1000-read-tree.sh, t1400-update-ref.sh) with the built binary to confirm the suites run and report per-test results.",
+    "Generate 20 random small repos with a script; record hash-object, cat-file, update-index, write-tree, commit-tree and ls-tree output bytes plus pack-objects output.",
+    "Re-run the same commands twice and diff the outputs to confirm determinism of OIDs, index bytes, pack bytes and diff text.",
+    "Check that the git binary is absent from the base image and that the oracle is never needed inside /app."
+   ]
+  },
+  "summary": "Git plumbing reimplementation (pinned to v2.56.0, GPL-2.0 oracle, byte-exact grading) has a real paper trail and strong grading, but its subject is on the CROWDED git list with close neighbours, so it is killed as K1 unless it is re-scoped to a non-crowded object store or diff subject. The smoke probe was red because it ran cargo on a repo whose main build is make."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

@@ -1,0 +1,199 @@
+{
+ "batch": 14,
+ "card": {
+  "band": "8 h. Research class: a pass improves on the baseline. Frontier agents recall multilevel ideas and recover much of the gap, but tuning for balance at tight imbalance and large k is where they fall short of the reference. Buckets by k and imbalance. A weaker model gets small gains from refinement tweaks only.",
+  "cheat": "Embed best-known partitions for the dev graphs: hidden graphs are different and are relabelled and permuted. Ignore balance: the checker zeroes infeasible instances. Call KaHIP or METIS: not installed, no network.",
+  "grading": "Hidden 14 graphs not in the dev set, run at k in {2,4,8,16,32,64} and imbalance in {0,1,3,5}% (336 instances). Infeasible balance scores 0 for that instance. Otherwise score is the cut ratio to best-known, normalised between the shipped baseline and the reference. Deterministic given the fixed seed and time cap.",
+  "reference": "Our own multilevel partitioner (heavy-edge matching, FM/KL refinement, V-cycles), about 1,500 lines, measured on the hidden graphs. It defines the ceiling.",
+  "source": "Walshaw graph partitioning archive, mirrored as SuiteSparse DIMACS10 (https://sparse.tamu.edu/DIMACS10/cs4); 34 graphs. Licence described as public domain in secondary sources, primary statement not verified",
+  "task": "/app ships a baseline partitioner (greedy BFS growth plus one-pass swap refinement), a graph reader, a cut and balance checker and 20 graphs with best-known cuts as the dev set. The agent designs and tunes a stronger partitioner (coarsening, initial partition, FM refinement, parameter search) and ships a CLI: graph, k, imbalance in, partition out, within a fixed CPU time per instance.",
+  "title": "Balanced k-way graph partitioner tuned on the Walshaw archive with a graph split"
+ },
+ "class": "research",
+ "created": "2026-10-21T01:18:42Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T01:18:42Z",
+   "write",
+   "short",
+   "batch 14"
+  ],
+  [
+   "2026-10-21T01:18:42Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-031 0.21"
+  ],
+  [
+   "2026-10-21T01:20:29Z",
+   "v1",
+   "killed:K6",
+   "Licence for shipping the graphs cannot be confirmed. The SuiteSparse DIMACS10 page states no licence. The Walshaw archive page has no licence or terms; its only public-domain wording refers to the software used to build the site. The graphs are no longer directly downloadable from the archive. The b"
+  ]
+ ],
+ "id": "S-rs-014",
+ "kill": "K6",
+ "l0": {
+  "neighbours": [
+   [
+    0.212,
+    "S-op-031"
+   ],
+   [
+    0.18,
+    "S-im-062"
+   ],
+   [
+    0.14,
+    "S-im-064"
+   ],
+   [
+    0.104,
+    "parallelize-graph [original]"
+   ],
+   [
+    0.09,
+    "set_cover [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "sparse.tamu.edu/dimacs10/cs4|archive-with-best-known-partitions-816-instances-34-graphs-x",
+ "source_notes": "Well-known benchmark, so an agent may recall multilevel heuristics but not exact best-known values; the metric is clean and deterministic. Graphs are small-to-medium, CPU fine. Primary archive URL not confirmed; use the SuiteSparse mirror to validate the graphs.",
+ "source_url": "https://sparse.tamu.edu/DIMACS10/cs4",
+ "source_version": "Archive with best-known partitions; 816 instances = 34 graphs x k in {2,4,8,16,32,64} x imbalance in {0,1,3,5}%. Mirror: SuiteSparse DIMACS10 group",
+ "status": "killed:K6",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://sparse.tamu.edu/DIMACS10/cs4",
+  "facts": [
+   {
+    "claim": "SuiteSparse DIMACS10/cs4 page exists and the DIMACS10 Walshaw table lists 34 graphs including 3elt, 4elt, add20, data, t60k, wing, memplus, bcsstk29",
+    "status": "confirmed",
+    "url": "https://sparse.tamu.edu/DIMACS10/cs4"
+   },
+   {
+    "claim": "Walshaw archive publishes best-known partitions for P = 2, 4, 8, 16, 32, 64 and imbalance 0, 1, 3, 5 percent",
+    "status": "confirmed",
+    "url": "https://chriswalshaw.co.uk/partition/"
+   },
+   {
+    "claim": "Hidden grid of 14 graphs x 6 k x 4 imbalance = 336 instances",
+    "status": "confirmed",
+    "url": "https://chriswalshaw.co.uk/partition/"
+   },
+   {
+    "claim": "Walshaw graph data is public domain",
+    "status": "contradicted",
+    "url": "https://chriswalshaw.co.uk/partition/"
+   },
+   {
+    "claim": "SuiteSparse DIMACS10 collection states a licence for the graphs",
+    "status": "not_found",
+    "url": "https://sparse.tamu.edu/DIMACS10/cs4"
+   },
+   {
+    "claim": "Walshaw graphs and partitions are directly downloadable from the archive",
+    "status": "contradicted",
+    "url": "https://chriswalshaw.co.uk/partition/"
+   },
+   {
+    "claim": "KaHIP current licence is MIT (cheat path only, not shipped)",
+    "status": "confirmed",
+    "url": "https://ae.iti.kit.edu/documents/research/kahip/"
+   },
+   {
+    "claim": "METIS 5.1.0 upstream licence is Apache 2.0",
+    "status": "not_found",
+    "url": "https://packages.msys2.org/base/mingw-w64-metis"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier, research class. Frontier agents likely recall multilevel methods and recover much of the gap; no dated public evidence found (E0), so Band capped at 3.",
+   "build_cost": "About 3 to 5 days for baseline, reader, checker and ~1500-line reference; smoke build skipped (no git source), so unverified.",
+   "deliverable": "CLI partitioner: graph, k, imbalance in; partition out; fixed CPU time per instance",
+   "gates_anticheat": "Embedded dev partitions fail on relabelled hidden graphs. KaHIP/METIS not installed. Balance checked by checker. Confirm shipped graphs do not expose archive partitions.",
+   "grading_surface": "14 hidden graphs x k in {2..64} x imbalance in {0,1,3,5}% = 336 instances; deterministic; infeasible balance scores 0",
+   "local_fit": "Small-to-medium graphs; CPU fine within 8 cores and 16 GB; no network needed at run time.",
+   "lookup": "Multilevel partitioning is widely published (METIS, KaHIP, Scotch) and recallable in outline; archive best-known cuts are public; no direct solution offline. partial.",
+   "provenance": "Walshaw graph partitioning archive (Chris Walshaw), mirrored in SuiteSparse DIMACS10; 34 graphs; best-known tables public; graph licence unconfirmed",
+   "reference": "Own multilevel partitioner (HEM, FM/KL, V-cycles, about 1500 lines); not public; defines ceiling",
+   "ships": "Baseline partitioner, graph reader, checker, 20 dev graphs with best-known cuts. Blocked by licence for the graph data.",
+   "similarity": "Max l0 neighbour 0.212 (S-op-031), above the 0.15 line; its subject was not checked. Not on the CROWDED list."
+  },
+  "kill_code": "K6",
+  "kill_reason": "Licence for shipping the graphs cannot be confirmed. The SuiteSparse DIMACS10 page states no licence. The Walshaw archive page has no licence or terms; its only public-domain wording refers to the software used to build the site. The graphs are no longer directly downloadable from the archive. The bundle must ship 20 dev graphs, so the licence gate fails as things stand.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results (E0), so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-5 days for baseline, reader, checker and reference; smoke build skipped, unverified."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only, small-to-medium graphs, offline, fits 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier fits a multilevel partitioner plus tuning sweeps over k and imbalance."
+   },
+   "Lic": {
+    "v": 1,
+    "why": "Graph licence unverified: SuiteSparse and Walshaw state none; public-domain wording covers software only."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Buckets by k and imbalance give steady per-instance credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour similarity 0.212 is above the 0.15 line; S-op-031 subject not verified; not CROWDED."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real archive and SuiteSparse mirror with 34 graphs and published best-known tables; graph licence is the open issue."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Own ~1500-line reference measured on hidden graphs; ceiling defined, not a public implementation."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden graphs and best-known cuts are public archive data but not in the image; reference is ours; relabel and permute defeats dev-partition embedding."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "336 deterministic instances across 14 graphs, scored by code."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "No stated licence permitting shipping the graphs and no accepted substitute; or the 3-graph run is non-deterministic.",
+   "pass_if": "A permissive licence for the graph data is found, or a self-generated substitute is accepted; the 3-graph run is deterministic and shows a measurable gap to best-known.",
+   "steps": [
+    "Licence check first (about 15 min): read the LICENSE or terms of the metapart Walshaw derivative repo and the archive page; request written reuse permission from the archive maintainer. Stop if none is found.",
+    "If a permissive licence is confirmed, fetch 3 graphs (3elt, add20, memplus) from the SuiteSparse mirror in a throwaway container.",
+    "Write a ~200-line heavy-edge-matching plus greedy-refinement partitioner and run it on the 3 graphs at k in {2,8,64} and imbalance 3%.",
+    "Compare cut ratios with archive best-known values for the same cells; check determinism across 3 seeds.",
+    "If the gap to best-known is measurable and seed spread is small, the scope is viable; otherwise kill.",
+    "If no licence is found, substitute self-generated meshes or random geometric graphs from permissive generators and rescore the card."
+   ]
+  },
+  "summary": "The task is real and well-defined: the SuiteSparse DIMACS10 mirror lists the 34 Walshaw graphs and the archive publishes best-known cuts for the exact k and imbalance grid, so the metric is sound. It is killed under K6 because neither the SuiteSparse page nor the Walshaw archive states a licence for the graph data, and the public-domain claim only covers the archive's software, so the 20 dev graphs cannot be shipped in /app as validated."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

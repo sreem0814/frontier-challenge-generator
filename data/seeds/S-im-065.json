@@ -1,0 +1,380 @@
+{
+ "batch": 15,
+ "card": {
+  "band": "8 h. Many resources and fields give independent buckets. A frontier agent gets the core matching and the common validators but misses the long tail of cross-field rules and exact error text, so the mean sits well below 1. A weaker model stops after host matching.",
+  "cheat": "Recalling upstream code from memory or fetching a module cache. The snapshot has no history and no vendored copy of the removed packages, the verifier has no network, and tests use renamed fixtures and generated inputs.",
+  "grading": "Hidden Go tests for those packages, built from the upstream package tests plus generated table cases compared against the original package compiled in the sealed verifier. Reward is the fraction of cases passed. The probe was amber (build failed, 266 of 2616 tests failing), so the bundle must pin a subset of packages that builds offline and passes deterministically.",
+  "reference": "The upstream packages at the pinned release. Expected size is about 3-5k Go lines, and it scores 1 by construction.",
+  "source": "https://github.com/istio/istio @ 1.31.2 (head d43f12f), Apache-2.0",
+  "task": "/app ships a history-less snapshot of Istio with the host/wildcard matching and the networking/security config validation packages removed (stubs only). The agent rebuilds them in Go behind the existing package APIs: hostname ordering and wildcard subsumption, and the validators for VirtualService, DestinationRule, Gateway, AuthorizationPolicy.",
+  "title": "Rebuild Istio hostname matching and config validation"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:14:10Z",
+ "family": "protocol",
+ "final": 72,
+ "history": [
+  [
+   "2026-10-21T02:14:10Z",
+   "write",
+   "short",
+   "batch 15"
+  ],
+  [
+   "2026-10-21T02:14:10Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-012 0.33"
+  ],
+  [
+   "2026-10-21T02:15:28Z",
+   "v1",
+   "pass",
+   "score 72; dead links ['https://discuss.istio.io/t/destination-rule-to-set-mtls-ignores-specific-host/4528']"
+  ],
+  [
+   "2026-10-21T02:16:30Z",
+   "v2",
+   "pass",
+   "final 72"
+  ],
+  [
+   "2026-10-21T02:22:25Z",
+   "spike",
+   "validated",
+   "The tag commit is e2f3a79 and go.mod needs Go 1.26.0, which is auto-downloaded with network, so the image needs the toolchain preinstalled. The first build takes about 4 min and the module cache is 738 MB. The validation package depends on 47 istio.io packages, and they all build. validation.go has "
+  ]
+ ],
+ "id": "S-im-065",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.33,
+    "S-im-012"
+   ],
+   [
+    0.282,
+    "S-im-037"
+   ],
+   [
+    0.226,
+    "S-im-016"
+   ],
+   [
+    0.134,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.121,
+    "amber [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 1,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 600,
+  "ci_files": 0,
+  "clone_ok": true,
+  "cmd_build": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -run '^$' ./... >/dev/null",
+  "cmd_fetch": "go mod download all",
+  "cmd_test": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -json -p 4 ./...",
+  "commit": "a1c252aee5d5a513096b3f36c8ae452dd4c761bd",
+  "deterministic": false,
+  "eco": "go",
+  "fetch_ok": false,
+  "fetch_s": 551,
+  "flaky_names": [
+   "istio.io/istio/pkg/bootstrap/platform::<package>",
+   "istio.io/istio/pkg/bootstrap/platform::TestAWSLocality",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestConcatCerts",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestConcatCerts/existing_newline",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestConcatCerts/multiple_certs",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestConcatCerts/no_certs",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestConcatCerts/single_cert",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFileSecrets",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFileSecrets/file",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFileSecrets/file_sds",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFindSymlinkInPath",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFindSymlinkInPath/multiple_symlinks_-_first_one_found",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFindSymlinkInPath/no_symlinks_in_path",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFindSymlinkInPath/single_symlink_at_end",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFindSymlinkInPath/single_symlink_in_middle",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestFindSymlinkInPath/system_symlink_ignored",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestHandleFileEventKubernetesSecretRotationEventsTriggerUpdate",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestHandleFileEventKubernetesSecretRotationEventsTriggerUpdate/first_rotation_direct_cert_chmod",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestHandleFileEventKubernetesSecretRotationEventsTriggerUpdate/second_rotation_metadata_data_symlink_create",
+   "istio.io/istio/security/pkg/nodeagent/cache::TestKeyCertificateExist"
+  ],
+  "flaky_tests": 250,
+  "log": "/conflict.go:29:2: module lookup disabled by GOPROXY=off\n# istio.io/istio/tools/lint/helm-values-proto\n/root/go/pkg/mod/k8s.io/apimachinery@v0.36.1/pkg/util/managedfields/internal/runtimetypeconverter.go:23:2: module lookup disabled by GOPROXY=off\n# istio.io/istio/tools/lint/helm-values-proto\npkg/config/schema/kubetypes/resources.gen.go:17:2: module lookup disabled by GOPROXY=off\n# istio.io/istio/tools/lint/helm-values-proto\npkg/kube/client.go:70:2: module lookup disabled by GOPROXY=off\n# istio.io/istio/tools/lint/helm-values-proto\npkg/kube/client.go:71:2: module lookup disabled by GOPROXY=off",
+  "oom": false,
+  "ref": "default",
+  "report_format": "go-json",
+  "run_rcs": [
+   124,
+   1,
+   124
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "istio.io/istio/cni/cmd/install-cni::<package>",
+   "istio.io/istio/cni/cmd/istio-cni::<package>",
+   "istio.io/istio/cni/pkg/addressset::<package>",
+   "istio.io/istio/cni/pkg/cmd::<package>",
+   "istio.io/istio/cni/pkg/install::<package>",
+   "istio.io/istio/cni/pkg/iptables::<package>",
+   "istio.io/istio/cni/pkg/nftables::<package>",
+   "istio.io/istio/cni/pkg/nodeagent::<package>",
+   "istio.io/istio/cni/pkg/plugin::<package>",
+   "istio.io/istio/cni/pkg/repair::<package>",
+   "istio.io/istio/cni/pkg/trafficmanager::<package>",
+   "istio.io/istio/cni/pkg/util::<package>",
+   "istio.io/istio/cni/test::<package>",
+   "istio.io/istio/istioctl/cmd/istioctl::<package>",
+   "istio.io/istio/istioctl/cmd::<package>",
+   "istio.io/istio/istioctl/pkg/admin::<package>",
+   "istio.io/istio/istioctl/pkg/analyze::<package>",
+   "istio.io/istio/istioctl/pkg/authz::<package>",
+   "istio.io/istio/istioctl/pkg/checkinject::<package>",
+   "istio.io/istio/istioctl/pkg/cli::<package>"
+  ],
+  "stable_failures": 261,
+  "subdir": "",
+  "suite_s": 300,
+  "test_files": 2152,
+  "tests_fail": 266,
+  "tests_listed": null,
+  "tests_pass": 2347,
+  "tests_skip": 3,
+  "tests_total": 2616,
+  "timeouts": [
+   "build",
+   "run1",
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "d43f12f82e220fdabb7db3701ce84c13dbddadcc",
+  "kb": 306830,
+  "lang": "Go",
+  "open_prs": 112,
+  "pushed": "2026-10-20",
+  "release": "1.31.2",
+  "spdx": "Apache-2.0",
+  "stars": 38458,
+  "test_files": 2152,
+  "test_kb": 12393,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/istio/istio|oss-fuzz-istio",
+ "source_notes": "OSS-Fuzz project, language go",
+ "source_url": "https://github.com/istio/istio",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Start-score-zero was not run against stubs; assumed since the package would be removed",
+   "Differential driver not written; the upstream tests (8.8k lines) serve as the oracle",
+   "Band risk: Istio validation code is well known and may be partly recalled",
+   "Hidden tests are the upstream tests; the task must rename fixtures or generate extra cases to avoid recall"
+  ],
+  "build_minutes": 5,
+  "cases_sampled": 935,
+  "commands_log": "git clone --depth 1 --branch 1.31.2 istio; go test -count=1 -json ./pkg/config/validation ./pkg/config/host (x3; runs 2 and 3 with GOPROXY=off GOFLAGS=-mod=mod); compared per-test results",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Reference passes all 935 test results (incl. subtests) in pkg/config/validation and pkg/config/host; removed stubs would fail all.",
+  "headroom_ok": true,
+  "image_gb_estimate": 3,
+  "kill_code": "",
+  "notes": "The tag commit is e2f3a79 and go.mod needs Go 1.26.0, which is auto-downloaded with network, so the image needs the toolchain preinstalled. The first build takes about 4 min and the module cache is 738 MB. The validation package depends on 47 istio.io packages, and they all build. validation.go has ValidateGateway at line 410, ValidateDestinationRule at 661, ValidateAuthorizationPolicy at 1430 and ValidateVirtualService at 1769, with virtualservice.go beside it. The package also holds Sidecar, ServiceEntry and other validators, so the stubbed scope must be chosen or those tests excluded. Offline repeat runs were identical (935 results each); the first online run counted 828 passes, which is not directly comparable.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 935,
+  "reference_lines": 3700,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/istio/istio/releases/tag/1.31.2",
+  "facts": [
+   {
+    "claim": "Istio release 1.31.2 exists on GitHub",
+    "status": "confirmed",
+    "url": "https://github.com/istio/istio/releases/tag/1.31.2"
+   },
+   {
+    "claim": "The pinned commit is d43f12f (seed head); the 1.31.2 tag page lists commit e2f3a79 instead, and the probe used a1c252a",
+    "status": "contradicted",
+    "url": "https://github.com/istio/istio/releases/tag/1.31.2"
+   },
+   {
+    "claim": "Istio is licensed Apache-2.0 at the 1.31.2 tag",
+    "status": "confirmed",
+    "url": "https://github.com/istio/istio/blob/1.31.2/LICENSE"
+   },
+   {
+    "claim": "pkg/config/host exists at 1.31.2 with name.go, names.go and their _test.go files",
+    "status": "confirmed",
+    "url": "https://github.com/istio/istio/tree/1.31.2/pkg/config/host"
+   },
+   {
+    "claim": "name.go is about 95 lines and exports Name with Matches, SubsetOf, IsWildCarded and String; it has no NewName, Names, Less or Subsumes",
+    "status": "confirmed",
+    "url": "https://github.com/istio/istio/blob/1.31.2/pkg/config/host/name.go"
+   },
+   {
+    "claim": "Hostname ordering (sorting) lives in names.go",
+    "status": "not_found",
+    "url": "https://github.com/istio/istio/blob/1.31.2/pkg/config/host/names.go"
+   },
+   {
+    "claim": "pkg/config/validation exists at 1.31.2 with validation.go (about 3,632 lines) and virtualservice.go",
+    "status": "confirmed",
+    "url": "https://github.com/istio/istio/tree/1.31.2/pkg/config/validation"
+   },
+   {
+    "claim": "validation.go exports ValidateGateway, ValidateDestinationRule and ValidateSidecar as validator variables",
+    "status": "confirmed",
+    "url": "https://github.com/istio/istio/blob/1.31.2/pkg/config/validation/validation.go"
+   },
+   {
+    "claim": "ValidateVirtualService and ValidateAuthorizationPolicy exist in the validation package",
+    "status": "not_found",
+    "url": "https://github.com/istio/istio/blob/1.31.2/pkg/config/validation/validation.go"
+   },
+   {
+    "claim": "The validation package has 4 test files (fuzz, openapi, validation, virtualservice)",
+    "status": "confirmed",
+    "url": "https://github.com/istio/istio/tree/1.31.2/pkg/config/validation"
+   },
+   {
+    "claim": "istio.io/istio is published on the Go module proxy (so offline module cache is derivable)",
+    "status": "not_found",
+    "url": "https://proxy.golang.org/istio.io/istio/@v/list"
+   },
+   {
+    "claim": "A public write-up or search index quotes the Istio Name.Matches doc comment (public lookup exposure)",
+    "status": "confirmed",
+    "url": "https://discuss.istio.io/t/destination-rule-to-set-mtls-ignores-specific-host/4528"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Host matching is small (about 95 lines) and easy; the validators are the bulk and carry the long tail of cross-field rules and exact error text. Frontier mean likely well below 1; weaker model stops after host matching. No dated public evidence.",
+   "build_cost": "About 3 days: pin an offline module cache for the two packages' closure, stub the rest, build the differential harness from the reference, and cut a deterministic subset.",
+   "deliverable": "Go implementations of hostname matching/ordering/wildcard subsumption and validators for VirtualService, DestinationRule, Gateway, AuthorizationPolicy behind the existing APIs.",
+   "gates_anticheat": "Hidden tests replace agent tests; verifier offline; history removed; no vendored copy of removed packages. Risk: public upstream code is recallable in outline and an unpinned or leftover module cache could expose it.",
+   "grading_surface": "Hidden Go tests: upstream package tests plus generated table cases differential against the original package compiled in the sealed verifier. Count not measured; the test-file count is 4 in the validation package and 2 in host.",
+   "local_fit": "Go, CPU only; the full module closure of istio.io/istio is large. Only the two packages and their closure need to be pinned offline; the probe failed to fetch deps (fetch_ok false) and built out of time (600 s).",
+   "lookup": "partial: full upstream code is public in git history (removed in snapshot) and the Matches doc comment is quoted publicly; no installable full solution found.",
+   "provenance": "istio/istio 1.31.2 tag (commit e2f3a79 per release page; seed head d43f12f; probe a1c252a). Apache-2.0. 38k stars, Go, OSS-Fuzz.",
+   "reference": "Upstream packages at 1.31.2 (validation.go about 3,632 lines; host name.go about 95 lines). Complete permissive implementation.",
+   "ships": "History-less Istio snapshot with pkg/config/host and pkg/config/validation (and related validators) replaced by stubs that keep the exported API.",
+   "similarity": "Neighbours S-im-012 (0.33) and S-im-037 (0.28) are internal seeds and cannot be checked here; both are above the 0.15 novelty threshold. No public task checked as a near-duplicate. S-im-012 may be another Istio seed; confirm."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Estimated, not measured: a frontier agent likely lands well below 0.9 of reference on validators. No dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days to pin an offline closure, stub packages and build the harness."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Go build with a large dependency closure; the probe failed to fetch and built out of time, so the subset must be pinned."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "About 3.7k+ lines across validators and host matching fits the 8 h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at the tag."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Each validator and the host-matching functions are separate buckets with partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbours are 0.33 and 0.28 (above the 0.15 bar); no public task is a near-duplicate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public Apache-2.0 repo with a 1.31.2 release tag and commit."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "The upstream packages at the pinned tag are complete and score 1 by construction."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "History-less snapshot closes the obvious route, but the upstream code is public and partly recallable in outline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated differential tables against the original package could reach thousands of cases; not measured."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The offline closure cannot be built within the probe budget, or the subset flakes across runs, or the surface is too small to score densely.",
+   "pass_if": "The two packages build offline from a pinned module cache, the deterministic test subset passes identically in three runs, and the differential driver is stable.",
+   "steps": [
+    "In a throwaway container with network, clone istio/istio at tag 1.31.2 and check out e2f3a79 (the tag commit); record the commit that is pinned.",
+    "Run go mod download and measure the module closure of ./pkg/config/host and ./pkg/config/validation; record size and whether it builds offline with GOPROXY=off.",
+    "Build the two packages and run their _test.go files with -count=1 three times; compare per-test results.",
+    "Count the tests that pass per package and drop any that fail or flake, to establish the deterministic subset.",
+    "Write a 50-case differential driver that calls the reference ValidateGateway and ValidateDestinationRule on generated inputs and records outputs and error text; check it reruns identically.",
+    "Confirm ValidateVirtualService and ValidateAuthorizationPolicy locations in the tree (not in the first 1000 lines of validation.go)."
+   ]
+  },
+  "summary": "The Istio 1.31.2 release and Apache-2.0 licence are confirmed, but the seed's pinned commit (d43f12f) differs from the tag commit (e2f3a79), so the pin must be corrected to the tag. The probe is not green (build timed out, deps fetch failed, 266 failing tests), so the bundle must pin a deterministic subset of host and validation packages before the idea can pass."
+ },
+ "v1_links": {
+  "checked": 9,
+  "dead": [
+   "https://discuss.istio.io/t/destination-rule-to-set-mtls-ignores-specific-host/4528"
+  ],
+  "ratio": 0.1111111111111111
+ },
+ "v1_score": 72,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-065",
+  "kill_code": "",
+  "note": "Real Apache-2.0 repo with a confirmed 1.31.2 tag and package paths, but the pin is contradicted: use tag commit e2f3a79, not d43f12f or a1c252a. The probe was amber (fetch failed, build timed out at 600 s, 250 flaky tests), so Fit and Build depend on pinning an offline closure for pkg/config/{host,validation} only. Host matching is about 95 lines; the validators (validation.go about 3.6k lines plus virtualservice.go) carry the real scope. Confirm where ValidateVirtualService and ValidateAuthorizationPolicy live (V1 could not find them). Grading risk: a differential on exact error text over-tests and rejects valid alternatives. Grade on accept/reject plus the warning-vs-error class and the offending field, not on verbatim message strings. Internal neighbour S-im-012 at 0.33 must be checked as a possible Istio duplicate. Band capped at 3: no dated evidence.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 79
+}

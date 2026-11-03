@@ -1,0 +1,204 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "20 h. This is a big surface with many features, so partial credit is steady. A frontier agent gets the core quickly, and secondary expansion, vpath, the odd functions and diagnostics message text are the long tail. Weaker models stop at basic rules. Risk: make is a crowded subject, so the scope is the complete test-suite behaviour and not just make basics.",
+  "cheat": "GNU make is not installed in the image, so wrapping the real tool is impossible. Hidden Makefiles are not shipped, and exact messages cannot be guessed.",
+  "grading": "Hidden: the 1210 run_make_test cases from tests/scripts, converted into a data-driven harness (Makefile, command line, expected output and exit code), plus generated Makefiles compared to the sealed real make. Tests are stdout/exit-status exact. Score is the fraction passed.",
+  "reference": "The upstream GNU make is the oracle, and the reference solution is a compatible clone written for the task. Whether it reaches the ceiling is a risk: no permissive complete clone is verified (kati is incomplete), so the ceiling is the pass rate of our reference, not 1.",
+  "source": "https://git.savannah.gnu.org/cgit/make.git @ master b380278 (release tag not determined), GPL-3.0-or-later",
+  "task": "/app ships a stub make binary skeleton and the written GNU make manual semantics list. Agent implements Makefile parsing, variable flavours, pattern and static rules, secondary expansion, the built-in function set, include and remake, .ONESHELL, -j with output sync, and the shell execution protocol.",
+  "title": "GNU make 4.4 compatible build tool for the make test scripts"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "build-system",
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-056 0.36"
+  ],
+  [
+   "2026-10-21T01:03:16Z",
+   "v1",
+   "killed:K1",
+   "Make is on the CROWDED list, and gnu_make [SpecBench] is a public task with the same subject and deliverable (l0 cosine 0.271). The upstream tests are public, so the hidden corpus is recallable in outline. K1 applies."
+  ]
+ ],
+ "id": "S-im-057",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.365,
+    "S-im-056"
+   ],
+   [
+    0.292,
+    "S-im-048"
+   ],
+   [
+    0.271,
+    "gnu_make [SpecBench]"
+   ],
+   [
+    0.176,
+    "S-im-055"
+   ],
+   [
+    0.132,
+    "git-to-zig [FrontierSWE]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "git.savannah.gnu.org/cgit/make.git/tree/tests|savannah-master-b380278-2026-04-29-cloned-release-tag-not-de",
+ "source_notes": "Each test is a Makefile + expected output in Perl heredocs, so porting the harness is needed or grader must keep Perl. Black-box 'implement make' is a classic but plausible; dependency on shell for recipes. Medium memorization risk",
+ "source_url": "https://git.savannah.gnu.org/cgit/make.git/tree/tests",
+ "source_version": "savannah master b380278 2026-04-29 (cloned; release tag not determined)",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://lwn.net/Articles/913253",
+  "facts": [
+   {
+    "claim": "GNU make upstream repository exists with tests/scripts containing subdirectories features/, functions/, misc/, options/, targets/, variables/, vms/",
+    "status": "confirmed",
+    "url": "https://gnu.googlesource.com/make/+/refs/heads/master/tests/scripts/"
+   },
+   {
+    "claim": "tests/scripts contains 1210 test cases (per-directory file count not visible on the mirror page)",
+    "status": "not_found",
+    "url": "https://gnu.googlesource.com/make/+/refs/heads/master/tests/scripts/"
+   },
+   {
+    "claim": "Upstream licence is GPL-3.0-or-later (COPYING fetch returned 502 on the Savannah host and was not visible on the mirror)",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/make.git/tree/COPYING?h=master"
+   },
+   {
+    "claim": "GNU make 4.4 was released on 31 October 2022",
+    "status": "confirmed",
+    "url": "https://lwn.net/Articles/913253"
+   },
+   {
+    "claim": "GNU make 4.4.1 bug-fix release came out on 26 February 2023",
+    "status": "confirmed",
+    "url": "https://mail.gnu.org/archive/html/bug-make/2023-02/msg00127.html"
+   },
+   {
+    "claim": "GNU make 4.4 tag exists in the upstream repository",
+    "status": "confirmed",
+    "url": "https://gnu.googlesource.com/make/+/refs/tags/4.4"
+   },
+   {
+    "claim": "kati is an incomplete GNU make-compatible clone (seed claim about its completeness)",
+    "status": "not_found",
+    "url": "https://gnu.googlesource.com/make/+/refs/heads/master/README.OS2"
+   },
+   {
+    "claim": "remake is a GNU make fork packaged in Debian, built on GNU make's own code and targeting gnumake 3.81 compatibility, so not a from-scratch permissive clone",
+    "status": "confirmed",
+    "url": "https://packages.debian.org/remake"
+   },
+   {
+    "claim": "SpecBench lists a gnu_make task with a ~20K-line Python reference and 159 validation / 102 held-out tests",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2605.21384"
+   }
+  ],
+  "full_card": {
+   "band": "Seed claims 20 h; no dated public evidence of frontier results on this scope, so Band capped at 3.",
+   "build_cost": "Reference is a full make-scale clone that passes 1210 exact-output tests: well over 5 days, so build cost is 1.",
+   "deliverable": "Clone of GNU make 4.4 behaviour (parsing, variables, rules, functions, include/remake, .ONESHELL, -j output sync, shell protocol) scored on 1210 converted test cases.",
+   "gates_anticheat": "No make binary in image so wrapping is impossible; hidden Makefiles unshipped. But upstream tests/scripts are public, so the case corpus is recallable in outline.",
+   "grading_surface": "Hidden 1210 run_make_test cases from tests/scripts, exact stdout and exit code, plus generated Makefiles compared to real make.",
+   "local_fit": "gVisor-compatible process and shell work; 8 CPU is enough; no network needed.",
+   "lookup": "partial: make semantics are heavily memorised; a public gnu_make task (SpecBench) exists; no complete permissive clone verified.",
+   "provenance": "GNU make upstream, git.savannah master b380278, release 4.4 (Oct 2022), GPL-3.0-or-later per seed (licence not directly verified).",
+   "reference": "Upstream GNU make is the oracle; our reference is a task-written clone of unverified completeness; no permissive complete clone found (kati incomplete per seed, remake is a GPL fork).",
+   "ships": "Stub make skeleton plus GNU make manual semantics list; no oracle or hidden Makefiles.",
+   "similarity": "Same subject and deliverable as gnu_make [SpecBench] (cosine 0.271); make is on the CROWDED list; S-im-056 at 0.365 and S-im-048 at 0.292 are also close."
+  },
+  "kill_code": "K1",
+  "kill_reason": "Make is on the CROWDED list, and gnu_make [SpecBench] is a public task with the same subject and deliverable (l0 cosine 0.271). The upstream tests are public, so the hidden corpus is recallable in outline. K1 applies.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed's 20 h band is asserted, with no dated public evidence; capped at 3."
+   },
+   "Build": {
+    "v": 1,
+    "why": "Reference equal to a full make clone passing 1210 cases is more than 5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and offline; process and shell tests fit gVisor."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Large surface suits a 20 h tier, though the long tail is much of the work."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "GPL-3+ permits shipping, but the licence was not directly verified."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Test categories (features, functions, variables, targets, options) give steady buckets."
+   },
+   "Nov": {
+    "v": 1,
+    "why": "Same subject and deliverable as gnu_make [SpecBench] (0.271) on the CROWDED list."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Upstream GNU make repo, 4.4 release (Oct 2022) and 4.4.1 confirmed; real tests/scripts tree exists."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No complete permissive clone verified; kati incomplete; our reference's ceiling is unknown."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Upstream tests are public and the GNU make source is recallable in outline, so the corpus is not sealed."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 1210 exact-output cases, data-driven; large but not thousands of executable cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Counts or determinism fail, or the tests cannot be converted without the Perl harness, or the public corpus makes the hidden cases recallable.",
+   "pass_if": "Tests are deterministic over three runs, the count is about 1210, and the sampled features are separable into buckets a clone could pass independently.",
+   "steps": [
+    "In a throwaway networked Linux container, clone the upstream make repo at the pinned master commit and check tests/scripts file counts per directory against the claimed 1210.",
+    "Build upstream GNU make offline and run its test suite to confirm it is deterministic across three runs and records per-test pass/fail.",
+    "Sample 30 scripts across features/, functions/, targets/ and variables/, and estimate how many need -j output sync or shell-specific behaviour.",
+    "Check whether the 1210 cases can be converted to Makefile, command, expected stdout and exit code without the Perl harness.",
+    "Confirm the GPL-3.0-or-later COPYING text from a working mirror.",
+    "Check whether a licence-clean reference of 150 lines or more can cover the function set in one sitting."
+   ]
+  },
+  "summary": "The GNU make upstream repository, its 4.4 release and the tests/scripts layout are confirmed, but the 1210-case count, GPL licence and kati incompleteness are not verified. Because make is a crowded subject with a same-subject public neighbour (gnu_make [SpecBench]) and public tests, the idea is killed as K1 near-duplicate."
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

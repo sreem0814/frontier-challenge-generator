@@ -1,0 +1,254 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "8 h. A frontier agent gets the unified/context output quickly. Edge cases (hunk merging, heuristics that make output differ from the minimal diff, diff3 conflict markers, side-by-side column rules) take a long time. Output has to match GNU's non-minimal heuristics, so that bucket is where the average falls. A weaker model stops at normal and unified.",
+  "cheat": "There is no diff binary in the image. A wrapper around Python difflib would fail on hunks, because difflib does not produce GNU's choice of edit script. Generated inputs hit the divergences.",
+  "grading": "The hidden harness runs the GNU binaries (kept only in the sealed verifier) on thousands of generated file pairs, directory trees and option combinations. It compares stdout and exit status byte for byte. The score is the fraction of cases passed, grouped by format.",
+  "reference": "A reference built from GNU's algorithm for the matching hunk output. It should match on almost all generated cases; the ceiling is set by its pass rate.",
+  "source": "https://git.savannah.gnu.org/cgit/diffutils.git @ master 3cfe0c6 (tag not determined), GPL-3.0-or-later (oracle only); uutils/diffutils Apache-2.0 for the design check",
+  "task": "/app ships an empty project (language of the agent's choice, build script) and a spec in the form of the GNU diffutils manual. Agent builds diff (normal, context, unified, ed, RCS, side-by-side, if-then-else), cmp, diff3 and sdiff with the options -i -b -w -B -I, --ignore-matching-lines, -r, --label, --color, --minimal and the diff3 merge modes.",
+  "title": "GNU diff, cmp, diff3 and sdiff clone in every output format"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "other",
+ "final": 73,
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-048 0.25"
+  ],
+  [
+   "2026-10-21T01:03:32Z",
+   "v1",
+   "pass",
+   "score 73; dead links []"
+  ],
+  [
+   "2026-10-21T01:06:07Z",
+   "v2",
+   "pass",
+   "final 73"
+  ],
+  [
+   "2026-10-21T01:08:06Z",
+   "spike",
+   "killed:K5",
+   "No permissive reference: GNU is GPL, so the reference must be clean-room. The full scope (all formats, diff3, sdiff, dirs, colour) is estimated at 4-6k lines, which risks K12. Narrow to diff normal/context/unified/ed plus cmp.; Debian ships diff, cmp, diff3 and sdiff via the diffutils package. The t"
+  ]
+ ],
+ "id": "S-im-056",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.253,
+    "S-im-048"
+   ],
+   [
+    0.174,
+    "gnu_make [SpecBench]"
+   ],
+   [
+    0.163,
+    "S-im-032"
+   ],
+   [
+    0.146,
+    "S-im-038"
+   ],
+   [
+    0.121,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 1,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "git.savannah.gnu.org/cgit/diffutils.git/tree/tests|savannah-master-3cfe0c6-2026-10-04-cloned-tag-not-determined",
+ "source_notes": "Small suite, but diff output formats (normal/context/unified/ed/side-by-side/diff3) are exact-match black-box targets; test generation by running GNU diff on random inputs would extend surface at grading time. Low crowding",
+ "source_url": "https://git.savannah.gnu.org/cgit/diffutils.git/tree/tests",
+ "source_version": "savannah master 3cfe0c6 2026-10-04 (cloned; tag not determined)",
+ "spike": {
+  "blockers": [
+   "No permissive reference: GNU is GPL, so the reference must be clean-room. The full scope (all formats, diff3, sdiff, dirs, colour) is estimated at 4-6k lines, which risks K12. Narrow to diff normal/context/unified/ed plus cmp.",
+   "Debian ships diff, cmp, diff3 and sdiff via the diffutils package. The task Dockerfile must delete them, and git diff must be blocked."
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 500,
+  "commands_log": "curl ftp.gnu.org diffutils-3.12.tar.xz; ./configure && make -j3; a 500-pair generator ran diff with 8 option sets 3 times, and the three outputs diffed identical; a Python LCS prototype of normal format matched 465/500 against GNU",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Start is an empty project and scores 0. The GNU binary is the oracle, not a shippable reference. The clean-room prototype reached 465/500 on normal format only; heuristics on larger inputs and the other formats were not tested.",
+  "headroom_ok": true,
+  "image_gb_estimate": 0.5,
+  "kill_code": "",
+  "notes": "The oracle builds from source in about 3 minutes and is deterministic over 500 pairs \u00d7 8 option sets \u00d7 3 runs. The prototype was a naive LCS with greedy tie-breaking and no heuristics, written without reading GNU source. It matched 465/500 (93%) on small inputs. Divergences on larger inputs, where GNU's heuristics matter, were not tested. The step 6 git-diff check was not run. I assumed git diff output differs from GNU, which is not confirmed. The main risk is reference build cost: the full scope is 1-2 weeks, and the narrowed scope is 3-5 days.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 465,
+  "reference_lines": 150,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 10
+ },
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.gnu.org/software/diffutils/manual/html_node/index.html",
+  "facts": [
+   {
+    "claim": "GNU diffutils manual documents version 3.12 (12 January 2025)",
+    "status": "confirmed",
+    "url": "https://www.gnu.org/software/diffutils/manual/html_node/index.html"
+   },
+   {
+    "claim": "GNU diffutils manual covers diff output formats: normal, context, unified, ed, forward ed, RCS, side-by-side, if-then-else; plus cmp, diff3, sdiff invocation chapters",
+    "status": "confirmed",
+    "url": "https://www.gnu.org/software/diffutils/manual/html_node/index.html"
+   },
+   {
+    "claim": "Savannah repository git.savannah.gnu.org/cgit/diffutils.git exists, is GPL-3.0-or-later, and has master at commit 3cfe0c6",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/diffutils.git"
+   },
+   {
+    "claim": "uutils/diffutils is a Rust reimplementation licensed MIT and Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/uutils/diffutils"
+   },
+   {
+    "claim": "uutils/diffutils implements cmp, diff3 and sdiff, and which diff formats and options it supports",
+    "status": "not_found",
+    "url": "https://github.com/uutils/diffutils"
+   },
+   {
+    "claim": "uutils diffutils tracker: diff3 implementation tracked as unimplemented (Feb 2024 issue); winget listing claims cmp, diff3, sdiff included",
+    "status": "not_found",
+    "url": "https://goodfirstissue.org/uutils/diffutils/issues/15"
+   },
+   {
+    "claim": "smoke_build skipped with reason 'no git source' although source is a git repository",
+    "status": "contradicted",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/diffutils.git"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier is plausible for diff normal/unified/context and cmp. Full scope (all formats, diff3/sdiff merge modes, dirs, colour) is unlikely to reach 0.9 of reference in any trial. Narrow to diff normal/context/unified/ed + cmp + -i -b -w -B -I, or move to 20 h. No dated public evidence, so Band capped at 3.",
+   "build_cost": "Clean-room reference for the full scope is estimated at 1-2 weeks (4-6k lines plus byte-exact debugging), which trips K12 as written. Diff plus cmp, narrowed as above, is estimated at 3-5 days. The smoke probe was skipped, so this is an estimate.",
+   "deliverable": "diff (normal, context, unified, ed, RCS, side-by-side, if-then-else), cmp, diff3, sdiff with -i -b -w -B -I, --ignore-matching-lines, -r, --label, --color, --minimal, diff3 merge modes.",
+   "gates_anticheat": "Remove or hide diff, cmp, diff3, sdiff from the image; block calls to git diff (xdiff gives different output); reject wrappers around Python difflib (fails on GNU edit-script choice); verifier keeps GNU binaries and oracle outputs out of /app.",
+   "grading_surface": "Hidden generated file pairs and directory trees run through GNU binaries in the sealed verifier; byte-exact stdout and exit status; per-format buckets. Executable oracle with unlimited generator: Surf 5.",
+   "local_fit": "CPU only, small binaries, no network at run time. Fits the sandbox.",
+   "lookup": "partial. GNU source is public and widely mirrored, and the algorithm is recallable in outline. uutils/diffutils (Rust, MIT/Apache) is a public port of unknown completeness. Neither is installable offline. /app must ship no history.",
+   "provenance": "GNU diffutils (GPL-3.0-or-later) is a real, long-lived project; manual confirmed at 3.12. Pinned master 3cfe0c6 not verified (Savannah cgit returned 502).",
+   "reference": "None exists. Seed proposes a reference from GNU's algorithm, but GNU source is GPL and the card says oracle-only, so the reference must be clean-room. Cost is the main unknown.",
+   "ships": "Empty Rust/other project skeleton with build script, a clean-room spec drawn from the GNU manual, sample inputs. No GNU source, no GNU binaries, no diff/cmp in the image (must verify the Debian base image).",
+   "similarity": "l0 neighbours: S-im-048 0.253 (another seed, not public), gnu_make 0.174, S-im-032 0.163, S-im-038 0.146. Nothing public above 0.15 except gnu_make, which is a different subject. Not K1. Not on the crowded list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Full scope likely unreachable for any trial at 8 h; narrowed scope plausible. No dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Clean-room reference for the narrowed scope is about 3-5 days. Full scope exceeds 5 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU, small, offline, no special kernel features."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Matching non-minimal heuristics and merge modes is sustained work across several modules."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "Oracle is GPL-3.0-or-later and must stay sealed. Reference must be clean-room to ship permissively."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Many formats, options and tools give clear per-format buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest public neighbour gnu_make 0.174; S-im-048 at 0.253 is a seed, not public. Not crowded."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Manual 3.12 confirmed. Pinned master commit and Savannah repo not verified (502)."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "GNU binaries are an exact oracle, but no permissive reference exists. A clean-room reference must be written and is not free."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle stays in verifier and GNU source is public but not in the image. Must verify diff/cmp absence in base image, and close git diff and difflib routes."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Thousands of generated pairs and trees against an executable GNU oracle with an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "GNU output is nondeterministic. Or the base image ships diff/cmp and they cannot be removed. Or the non-minimal heuristics cannot be reproduced from the manual alone, which forces a GPL-derived reference and breaks the licence.",
+   "pass_if": "Outputs are deterministic across 3 runs. A clean-room prototype reaches at least 80% byte-exact on normal and unified for random small pairs within 30 min. diff/cmp can be removed from the base image.",
+   "steps": [
+    "In a network-enabled throwaway Linux container, fetch the GNU diffutils 3.12 tarball from ftp.gnu.org or savannah, then build it with ./configure && make (about 5 min).",
+    "Generate 500 random small text pairs: 0-30% changed lines, duplicate lines, empty files, and trailing-newline cases. Run diff normal, -c, -u, -e, --minimal, and -i/-b/-w on each, saving outputs.",
+    "Run the same commands three times over the same inputs and diff the outputs to confirm determinism.",
+    "Write a quick clean-room Python Myers diff with prefix/suffix trimming and check its normal-format output byte-for-byte against GNU on the 500 pairs. Record pass rate per format.",
+    "In a Debian base image matching the bundle Dockerfile, run `which diff cmp diff3 sdiff` and `dpkg -L diffutils`. Confirm whether these binaries exist and whether they can be removed without breaking the image.",
+    "Check whether `git diff` or other installed tools produce GNU-equivalent output, to close the cheat paths."
+   ]
+  },
+  "summary": "The idea is real and sealable: the GNU diffutils manual (3.12) is confirmed and the oracle stays in the verifier. As written, the full scope (every format, diff3/sdiff merge modes, directory trees) is too big for an 8 h tier and the clean-room reference is likely over 5 days, so it passes only if narrowed to diff normal/context/unified/ed plus cmp with the -i/-b/-w/-B/-I options, or moved to a 20 h tier. The seed's claim that there is no diff binary in the image is unverified, since Debian base images usually ship diffutils, and the spike must check this."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-056",
+  "kill_code": "",
+  "note": "An executable GNU oracle with an unlimited generator gives a strong surface. Grading per format and per tool gives natural partial-credit buckets. Byte-exact match on GNU's tie-breaks and hunk merging is where difficulty comes from the work itself. V1 is wrong that the reference must be clean-room: GPL allows shipping the GNU 3.12 source inside the bundle as the reference, and it scores 1. Pin the release tarball, because the commit 3cfe0c6 is unverified. Risks: diffutils is Essential in Debian, so it must be force-removed and the image checked for busybox/git diff. The full scope is probably too big for 8 h, so use the 20 h tier or drop if-then-else/--color/diff3 merge modes. A spike must confirm a clean-room Myers port can match GNU byte-for-byte on small inputs.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 5,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 79
+}

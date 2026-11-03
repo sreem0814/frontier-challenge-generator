@@ -1,0 +1,259 @@
+{
+ "batch": 15,
+ "card": {
+  "band": "8 h. Many function families (arithmetic, string, date, cast, null semantics) give buckets. A frontier agent covers the arithmetic and boolean rules and is weak on the edge cases of dates, decimals and casts. A weaker model stops at the boolean simplifications.",
+  "cheat": "Copying folding logic from a cached Doris jar. The image ships no jar and no network, and the tests use generated expressions the visible samples do not cover.",
+  "grading": "Hidden JUnit-style tests: the upstream rule tests plus generated expression trees whose folded or simplified result and value semantics are compared with the original rules in the sealed verifier. The probe failed (the clone failed three times), so build feasibility and snapshot size are unverified and need a check before this card is used.",
+  "reference": "The upstream rules at the pinned release. Expected size is about 2-4k Java lines.",
+  "source": "https://github.com/apache/doris @ 4.1.5-release (head cefe023), Apache-2.0",
+  "task": "/app ships a scaled-down snapshot of the Doris FE (Java) with the expression simplification and constant-folding rewrite rules in Nereids removed. The agent rebuilds them against the existing expression tree and rule interfaces.",
+  "title": "Rebuild Doris Nereids expression rewrite and constant folding rules"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:14:10Z",
+ "family": "database-query",
+ "final": 76,
+ "history": [
+  [
+   "2026-10-21T02:14:10Z",
+   "write",
+   "short",
+   "batch 15"
+  ],
+  [
+   "2026-10-21T02:14:10Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-065 0.33"
+  ],
+  [
+   "2026-10-21T02:15:48Z",
+   "v1",
+   "pass",
+   "score 76; dead links ['https://github.com/apache/doris/blob/4.1.5-release/LICENSE']"
+  ],
+  [
+   "2026-10-21T02:16:30Z",
+   "v2",
+   "killed:K7",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-im-067",
+ "kill": "K7",
+ "l0": {
+  "neighbours": [
+   [
+    0.328,
+    "S-im-065"
+   ],
+   [
+    0.235,
+    "S-im-066"
+   ],
+   [
+    0.216,
+    "S-im-038"
+   ],
+   [
+    0.092,
+    "family (Java, TS, JS, Go, Rust, C, C++) [Multi-SWE-bench]"
+   ],
+   [
+    0.089,
+    "biofabric-rust-rewrite [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 2,
+ "smoke": {
+  "skipped": "probe failed 3 times: probe: repo reachable but the clone failed"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cefe02309506fa446dfe54ee0a9ea72d1a40d5f5",
+  "kb": 1439774,
+  "lang": "Java",
+  "open_prs": 997,
+  "pushed": "2026-10-20",
+  "release": "4.1.5-release",
+  "spdx": "Apache-2.0",
+  "stars": 16103,
+  "test_files": 5044,
+  "test_kb": 103538,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/apache/doris|oss-fuzz-apache-doris",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/apache/doris",
+ "source_version": "",
+ "status": "killed:K7",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/apache/doris/releases/tag/4.1.5-release",
+  "facts": [
+   {
+    "claim": "apache/doris has a release tag 4.1.5-release (published 15 Oct, labelled Latest)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/doris/releases/tag/4.1.5-release"
+   },
+   {
+    "claim": "The 4.1.5-release tag points to commit 917b20be83878e98f94e3ebf7efccc80346e3e50; the card pins head cefe023 instead",
+    "status": "contradicted",
+    "url": "https://github.com/apache/doris/releases/tag/4.1.5-release"
+   },
+   {
+    "claim": "Master is 4863 commits ahead of the 4.1.5 tag, so the upstream direction is public history the snapshot must hide",
+    "status": "confirmed",
+    "url": "https://github.com/apache/doris/releases/tag/4.1.5-release"
+   },
+   {
+    "claim": "LICENSE file at 4.1.5-release is Apache License 2.0 (API spdx also says Apache-2.0)",
+    "status": "not_found",
+    "url": "https://github.com/apache/doris/blob/4.1.5-release/LICENSE"
+   },
+   {
+    "claim": "fe-core rules/expression/rules directory at the tag holds FoldConstantRule, FoldConstantRuleOnFE, SimplifyArithmeticRule, SimplifyComparisonPredicate, SimplifyCastRule and DateFunctionRewrite",
+    "status": "confirmed",
+    "url": "https://github.com/apache/doris/tree/4.1.5-release/fe/fe-core/src/main/java/org/apache/doris/nereids/rules/expression/rules"
+   },
+   {
+    "claim": "The rules directory holds about 62 Java rule files, including date rules (DateFunctionRewrite, MergeDateTrunc, TimestampToAddTime) and cast rules (SimplifyCastRule, ConvertAggStateCast)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/doris/tree/4.1.5-release/fe/fe-core/src/main/java/org/apache/doris/nereids/rules/expression/rules"
+   },
+   {
+    "claim": "A dedicated decimal-precision simplification rule exists (card's decimal edge-case claim)",
+    "status": "not_found",
+    "url": "https://github.com/apache/doris/tree/4.1.5-release/fe/fe-core/src/main/java/org/apache/doris/nereids/rules/expression/rules"
+   },
+   {
+    "claim": "Rule test directory holds at least 15 test files (e.g. SimplifyCastRuleTest, SimplifyComparisonPredicateTest, SimplifyArithmeticComparisonRuleTest, TimestampToAddTimeTest, ExpressionRewriteSqlTest), with more behind View all files",
+    "status": "confirmed",
+    "url": "https://github.com/apache/doris/tree/4.1.5-release/fe/fe-core/src/test/java/org/apache/doris/nereids/rules/expression/rules"
+   },
+   {
+    "claim": "FE build needs JDK 17 and a thirdparty toolchain (DORIS_THIRDPARTY set, protoc present under thirdparty/installed/bin) before mvn runs; build is mvn install -DskipTests from fe/",
+    "status": "confirmed",
+    "url": "https://apache.googlesource.com/doris/+show/HEAD/fe/AGENTS.md"
+   },
+   {
+    "claim": "Documented procedure exists for pre-populating ~/.m2 so the FE builds offline",
+    "status": "not_found",
+    "url": "https://apache.googlesource.com/doris/+show/HEAD/fe/AGENTS.md"
+   },
+   {
+    "claim": "Public history includes related Nereids constant-folding PRs (#49473 EliminateGroupByConstant, #29511 no folding of table-generating functions to NULL) but no PR for FoldConstantRule itself was found",
+    "status": "confirmed",
+    "url": "https://github.com/apache/doris/pull/49473"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Frontier agent likely covers arithmetic and boolean rules; weak on date, decimal and cast edge cases. Weaker model stops at boolean simplifications. No dated public evidence found, so Band capped at 3.",
+   "build_cost": "Estimated 3-4 days: offline thirdparty plus m2 cache, snapshot scaling, generator-based oracle, per-family buckets. K12 risk if the offline toolchain cannot be made to work.",
+   "deliverable": "Rebuilt rule classes (FoldConstantRule family, SimplifyArithmetic/Comparison/Cast, date and boolean simplifications) that register into the existing ExpressionRewrite rule executor and pass the upstream-style rule tests.",
+   "gates_anticheat": "Oracle and original rules sealed in verifier. Snapshot history-less. Anti-cheat: forbid edits to test and build config; reject vendored Doris jars; verifier compares against sealed originals, not visible code. Jar cache absent in image (card claim, not verified).",
+   "grading_surface": "Sealed JUnit: upstream rule tests (held out) plus generated expression trees whose folded or simplified output and value semantics are compared with the original rules run by the verifier. Per-family buckets: arithmetic, boolean, string, date, cast, null semantics. Scale estimated Surf 4 pending a generator check.",
+   "local_fit": "FE is Java with a multi-GB Maven graph and thirdparty toolchain; 8 cores, 16 GB is tight for -T 1C FE builds but probably workable. Offline Maven cache and thirdparty dir unverified; this is the main fit risk.",
+   "lookup": "Full upstream rules are public on GitHub at the tag and in master. Not installable offline. Recall of outline likely; exact code not reproducible from memory. Lookup verdict direct, sealed only by snapshot.",
+   "provenance": "apache/doris release tag 4.1.5-release (Apache-2.0, OSS-Fuzz project). Card pin cefe023 must be corrected to the tag commit 917b20be83878e98f94e3ebf7efccc80346e3e50.",
+   "reference": "Upstream rules at tag 4.1.5-release, Apache-2.0, Java. Expected size about 2-4k Java lines (card estimate, not counted).",
+   "ships": "History-less scaled-down FE snapshot at the base. Expression simplification and constant-folding rules removed from rules/expression/rules. Visible samples only, with the removed rules' tests also removed. No .git, no ~/.m2 Doris artifacts, no thirdparty jars with Doris classes.",
+   "similarity": "l0 neighbours S-im-065 (0.328), S-im-066 (0.235), S-im-038 (0.216), all above 0.15, so Nov is reduced. Not on the CROWDED list. S-im-065 content not inspected; check it is not another Nereids rule task before use."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8h tier fits the scope; no dated public agent evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Snapshot scaling, offline toolchain, and generator oracle estimated at 3-4 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Offline FE Maven build with thirdparty toolchain is unverified; tight for 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Many rule families and an FE build fit an 8h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 per API; LICENSE file fetch returned 404, so verify before shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Arithmetic, boolean, string, date, cast and null families give buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours above 0.15 (0.328, 0.235, 0.216) are seeds, not public tasks; not CROWDED, but S-im-065 needs checking."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real Apache Doris release tag with Nereids rule source and tests at the pinned tag."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete Apache-2.0 upstream implementation at the tag; would score 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public, so sealing relies on a history-less snapshot and held-out tests; recall is a difficulty question."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Upstream rule tests plus generated expression trees give thousands of cases via a generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Thirdparty toolchain or Maven graph cannot be made offline, or the build exceeds the 8-core/16 GB sandbox, or the cache exceeds about 10 GB.",
+   "pass_if": "Offline FE build succeeds after one online warm-up, the three rule test classes pass deterministically, and total cache plus thirdparty size is under about 10 GB.",
+   "steps": [
+    "In a throwaway container with network, clone apache/doris at tag 4.1.5-release (depth 1) and confirm the commit is 917b20be83878e98f94e3ebf7efccc80346e3e50.",
+    "Install JDK 17 and Maven 3.9.x. Set DORIS_THIRDPARTY and fetch the thirdparty toolchain per the docs; record its size and time.",
+    "Run generated-source.sh, then cd fe && mvn -T 1C install -DskipTests -Dskip.doc=true. Record wall time, peak memory, and ~/.m2 size.",
+    "Run the rule tests that exist upstream (SimplifyCastRuleTest, SimplifyComparisonPredicateTest, SimplifyArithmeticComparisonRuleTest) with -Dtest= to check they run and are deterministic over 3 runs.",
+    "Re-run the same build with mvn -o after deleting the target dirs to test offline reproducibility.",
+    "Check that the m2 cache and thirdparty dir hold no org/apache/doris FE artifacts (cheat-path check)."
+   ]
+  },
+  "summary": "The Doris 4.1.5 rule sources, tests and Apache-2.0 licence are real and confirmed, but the card's pinned head cefe023 is wrong: the tag commit is 917b20b, so the card must re-pin. Build feasibility (offline Maven plus thirdparty toolchain, snapshot size) is still unverified, so the spike must run before this card is used; kill_code is left empty pending that check."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [
+   "https://github.com/apache/doris/blob/4.1.5-release/LICENSE"
+  ],
+  "ratio": 0.16666666666666666
+ },
+ "v1_score": 76,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-067",
+  "kill_code": "",
+  "note": "Strong subject: about 62 rule files in confirmed families (fold, arithmetic, comparison, cast, date), and a generator-driven differential on folded expressions gives dense buckets. But the probe could not clone the repo in 3 tries, the FE needs the JDK 17 thirdparty toolchain (protoc/thrift) plus a multi-GB Maven graph, and no offline-build procedure was found. The LICENSE link is dead; licence rests on the API spdx. The pin is wrong: use tag commit 917b20b. FoldConstantRuleOnFE depends on the function-executable library elsewhere in FE: keep that library shipped, or the scope blows up. K12 risk until the offline FE build is spiked. Band capped at 3.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 2,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 5,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 79
+}

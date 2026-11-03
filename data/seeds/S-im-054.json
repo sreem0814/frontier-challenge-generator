@@ -1,0 +1,240 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "4 h. Grapheme is easy and word/sentence rules have a long tail of context-lookahead rules, so a frontier agent usually gets most of it and sometimes all. Buckets: grapheme, word, sentence, random differential. A weaker model stops after grapheme and basic word rules. Risk: the algorithm is well known, so the tier may be too easy and could need more scope (tailoring, custom locales).",
+  "cheat": "Embedding the visible test lines as a lookup table does not help: hidden cases and random strings are not shipped, and the random differential covers combinations absent from the test files. The shipped UCD files are properties only, with no break tests.",
+  "grading": "Visible: a sample slice of the break-test files (about 10%). Hidden: the remaining Grapheme (853), Word (1944), Sentence (512) cases plus a few thousand random strings sampled over all property classes, checked against a sealed segmenter built from the same UCD. Exact boundary-position match; score is the fraction of cases passed.",
+  "reference": "Reference written from the spec with tables generated from the UCD; cross-checked against the permissive unicode-segmentation crate (MIT OR Apache-2.0). It passes every case, so it scores 1.",
+  "source": "https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/ @ Unicode 18.0.0, Unicode-3.0",
+  "task": "/app ships the raw UCD property files (GraphemeBreakProperty, WordBreakProperty, SentenceBreakProperty, emoji-data, DerivedCoreProperties) and a CLI/library stub. Agent builds the three UAX #29 segmenters, including extended grapheme clusters (Indic conjuncts, emoji ZWJ, regional indicators), word rules WB1-WB999 and sentence rules, with property tables generated from the UCD files.",
+  "title": "UAX #29 grapheme, word and sentence segmenter"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "font-text",
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-038 0.18"
+  ],
+  [
+   "2026-10-21T01:03:32Z",
+   "v1",
+   "killed:K8",
+   "Too easy at the 4 h tier. UAX #29 is well known with public full implementations in several languages, and the seed itself says frontier agents usually get most of it and sometimes all, so mean frontier score is likely above 0.85 of the reference. The weaker model does not clearly lag on word and se"
+  ]
+ ],
+ "id": "S-im-054",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.183,
+    "S-im-038"
+   ],
+   [
+    0.161,
+    "S-im-048"
+   ],
+   [
+    0.157,
+    "S-im-037"
+   ],
+   [
+    0.133,
+    "emoji [NL2Repo-Bench]"
+   ],
+   [
+    0.102,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "unicode.org/public/ucd/latest/ucd/auxiliary|unicode-18-0-0",
+ "source_notes": "combine with line breaking (UAX 14) for depth; well-known",
+ "source_url": "https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/",
+ "source_version": "Unicode 18.0.0",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.unicode.org/reports/tr29/",
+  "facts": [
+   {
+    "claim": "UCD auxiliary directory at Unicode 'latest' contains GraphemeBreakTest.txt, WordBreakTest.txt, SentenceBreakTest.txt and the matching *BreakProperty.txt files",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/"
+   },
+   {
+    "claim": "WordBreakTest.txt header identifies WordBreakTest-18.0.0.txt dated 2026-06-12",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakTest.txt"
+   },
+   {
+    "claim": "UAX #29 current revision 49 is for Unicode 18.0.0, dated 2026-09-01",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/reports/tr29/"
+   },
+   {
+    "claim": "UAX #29 page states three conformance test files are available (Tests29)",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/reports/tr29/"
+   },
+   {
+    "claim": "Unicode License v3 permits use, copy, modify, merge, publish, distribute and/or sell, with redistribution allowed when the notice is kept (the page does not print the SPDX identifier 'Unicode-3.0')",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/license.txt"
+   },
+   {
+    "claim": "unicode-segmentation is dual-licensed MIT OR Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/unicode-rs/unicode-segmentation"
+   },
+   {
+    "claim": "unicode-segmentation latest version is 1.13.2 (top changelog entry; the Releases section is empty)",
+    "status": "confirmed",
+    "url": "https://github.com/unicode-rs/unicode-segmentation"
+   },
+   {
+    "claim": "unicode-segmentation provides grapheme, word and sentence segmentation per UAX #29",
+    "status": "confirmed",
+    "url": "https://docs.rs/unicode-segmentation/latest/unicode_segmentation/"
+   },
+   {
+    "claim": "The Unicode version that unicode-segmentation targets (needed for the seed's cross-check against Unicode 18.0)",
+    "status": "not_found",
+    "url": "https://docs.rs/unicode-segmentation/latest/unicode_segmentation/"
+   },
+   {
+    "claim": "Break-test case counts: Grapheme 853, Word 1944, Sentence 512 remaining cases",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/UCD/latest/ucd/auxiliary/WordBreakTest.txt"
+   },
+   {
+    "claim": "Perl regex supports \\b{wb} and \\X implementing UAX #29 boundaries (relevant to a system-tool cheat path)",
+    "status": "confirmed",
+    "url": "https://perldoc.perl.org/perlunicode"
+   },
+   {
+    "claim": "Perl's Unicode data version (for comparison with Unicode 18.0)",
+    "status": "not_found",
+    "url": "https://perldoc.perl.org/perlunicode"
+   },
+   {
+    "claim": "Complete UAX #29 implementations exist publicly in Go (clipperhouse/uax29)",
+    "status": "confirmed",
+    "url": "https://tracker.debian.org/golang-github-clipperhouse-uax29"
+   },
+   {
+    "claim": "Complete UAX #29 implementation exists publicly as an npm package (unicode-segmenter)",
+    "status": "confirmed",
+    "url": "https://mcp.depscope.dev/pkg/npm/unicode-segmenter"
+   },
+   {
+    "claim": "A public LLM coding-agent benchmark task using UAX #29 exists",
+    "status": "not_found",
+    "url": "https://www.unicode.org/reports/tr29/"
+   },
+   {
+    "claim": "The seed's reference is cross-checked against unicode-segmentation and passes every case (reference source not public)",
+    "status": "not_found",
+    "url": "https://github.com/unicode-rs/unicode-segmentation"
+   }
+  ],
+  "full_card": {
+   "band": "4 h tier. Frontier agent likely reaches most or all of the reference (seed's own estimate). Weaker model stops after grapheme and basic word. No dated public agent evidence found.",
+   "build_cost": "About 2-3 days for the reference: generate tables from UCD 18.0, three segmenters, random-differential oracle.",
+   "deliverable": "Three UAX #29 segmenters (grapheme incl. Indic conjuncts and emoji ZWJ, word WB1-WB999, sentence SB1-SB998) with tables generated from UCD 18.0.",
+   "gates_anticheat": "Hidden cases and random strings not shipped. Cheat paths: (1) Perl is in Debian base images (perl-base is Essential) and implements \\b{wb}/\\X; shelling out to it is closed by a no-subprocess rule in the harness and by the random differential over code points assigned after Perl's Unicode version (not verified). (2) Any system libicu (check ldconfig in the image) via ctypes: close by the same rule and by blocking libicu loading if it is present. (3) Lookup-table embedding of visible lines: closed by the random differential.",
+   "grading_surface": "Visible ~10% of GraphemeBreakTest/WordBreakTest/SentenceBreakTest; hidden remaining cases plus a few thousand random strings, exact boundary match, fraction passed. Sealed segmenter from same UCD.",
+   "local_fit": "CPU-only, offline, small data. Fits 8 cores and 16 GB easily.",
+   "lookup": "Complete implementations are public and recallable in Rust (unicode-segmentation), Go (clipperhouse/uax29), JS (unicode-segmenter), and in ICU. The UAX #29 rules and tables are fully public.",
+   "provenance": "Unicode UAX #29 rev 49 for Unicode 18.0.0 (2026-09-01); UCD auxiliary conformance files dated 2026-09-01; Unicode License v3. Confirmed.",
+   "reference": "Seed-authored reference from spec + generated tables; cross-check against unicode-segmentation 1.13.2 (MIT OR Apache-2.0) is unverified because that crate's targeted Unicode version was not stated.",
+   "ships": "Raw UCD property files (GraphemeBreakProperty, WordBreakProperty, SentenceBreakProperty, emoji-data, DerivedCoreProperties) plus CLI/library stub. Break-test files only as a visible ~10% slice. Not verified: the 853/1944/512 counts.",
+   "similarity": "Nearest L0 neighbour S-im-038 at 0.183 (above 0.15, so Nov is reduced). Not on the CROWDED list by name, but it is a standard subject with many public implementations and no public agent benchmark found."
+  },
+  "kill_code": "K8",
+  "kill_reason": "Too easy at the 4 h tier. UAX #29 is well known with public full implementations in several languages, and the seed itself says frontier agents usually get most of it and sometimes all, so mean frontier score is likely above 0.85 of the reference. The weaker model does not clearly lag on word and sentence rules. A rescope (adding UAX #14 line breaking with its own conformance tests, locale tailoring, or moving to 8 h) would be a new seed.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Frontier likely reaches near the reference on average and the algorithm is widely known, so this is too easy at 4 h; no dated evidence for a band of 3 or more."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Reference is roughly 2-3 days of work."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only, offline, modest data."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Scope is roughly 1.5-3k lines of work, which is not an 8-20 h long-horizon task as written."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Unicode License v3 and MIT OR Apache-2.0 both permit shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four buckets (grapheme, word, sentence, random) give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max L0 neighbour 0.183 (above 0.15); no public agent benchmark found."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Standard and UCD 18.0 data confirmed at unicode.org; the reference crate is public, but its Unicode version is unverified."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Public permissive implementations exist, but the seed's own reference is not public, so Ref is not a full 5."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden cases are the public UAX #29 test files, so they are sealed only by not shipping them; the random differential is sealed."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of break cases plus a random-string differential with an executable oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "The pilot shows grapheme near 1.0 and the word/sentence rules are table-driven with no long tail, which confirms K8 (too easy at 4 h).",
+   "pass_if": "Counts within about 5% of the stated 853/1944/512; the crate or reference is validated against UCD 18.0; a system-segmenter closure (no ICU or Perl path) is confirmed.",
+   "steps": [
+    "In a throwaway networked Debian container matching the task base image, download the UCD auxiliary files (GraphemeBreakTest.txt, WordBreakTest.txt, SentenceBreakTest.txt and the three *BreakProperty.txt) and record sha256 and the number of non-comment data lines to settle the 853/1944/512 counts.",
+    "Check the base image for system segmenters: `ldconfig -p | grep -i icu`, and `perl -MUnicode::UCD -e 'print Unicode::UCD::UnicodeVersion()'` to record Perl's Unicode version and confirm `\\b{wb}` works.",
+    "Fetch the unicode-segmentation 1.13.2 source, read its Unicode version constant, and run its test suite against the UCD 18.0 break-test files to see whether the cross-check claim holds.",
+    "Write a grapheme-only Python pilot from GraphemeBreakProperty.txt (about 40 min) and score it against GraphemeBreakTest.txt, to see how much of the easiest bucket is mechanical.",
+    "Decide from the results: pass if the counts are within about 5% of the stated figures, the crate's Unicode version matches 18.0 (or the self-written reference is validated), and a closure for system segmenters exists; kill if the pilot shows the grapheme bucket already near 1.0 and the word/sentence rules are mechanical from the tables, which confirms K8."
+   ]
+  },
+  "summary": "UAX #29 Unicode 18.0 data, its conformance files and the Unicode License v3 are confirmed at unicode.org, and unicode-segmentation is confirmed as MIT OR Apache-2.0. The seed is killed as K8 (too easy): the algorithm and full implementations are public, the seed itself expects frontier agents to get most or all of the reference, and the 853/1944/512 counts and the crate's Unicode version could not be verified."
+ },
+ "v1_links": {
+  "checked": 9,
+  "dead": [
+   "https://mcp.depscope.dev/pkg/npm/unicode-segmenter"
+  ],
+  "ratio": 0.1111111111111111
+ },
+ "v1_score": 66
+}

@@ -1,0 +1,224 @@
+{
+ "batch": 12,
+ "card": {
+  "band": "8 h. Run-to-run time noise must be controlled with a conservative time limit. Gains over the default come by family, which gives dense partial credit. The year split makes plain memorisation of instance names useless. A weaker model tends to submit untuned or over-fit settings. Dated public evidence: not found.",
+  "cheat": "Hard-coding instance-to-answer tables is closed because the hidden instances are never in the image and are scored by actually running the solver. The agent cannot ship a different stronger solver because the harness fixes the solver binary and checks solutions with an independent checker.",
+  "grading": "Hidden 2025 instances and unseen series. Per instance the score is solved status and objective quality (PAR2 or normalised objective gap). The mean is normalised between the shipped default config (0) and our tuned reference (1). Deterministic seeds and fixed node/time limits.",
+  "reference": "A reference selector tuned by us (portfolio plus per-family settings) on the development years. It is not found upstream and has to be built and measured.",
+  "source": "https://xcsp.org/instances (COP22to25 and CSP22to25 tracks, 2022-2025 archives); licence not found, so it must be verified per series before shipping. The solver would be a permissively licensed open CP solver (not chosen yet).",
+  "task": "/app ships a small open CP solver that reads XCSP3, a development subset of 2022-2024 instances, and a time-boxed harness. The agent designs and trains a configuration policy: instance features to variable and value heuristics, restart and propagation settings, learned or tuned on the development set. The delivery is a config selector script that runs on CPU within a per-instance limit.",
+  "title": "Constraint solver configuration tuning on XCSP3 instances with a year-based split"
+ },
+ "class": "research",
+ "created": "2026-10-21T01:07:29Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T01:07:29Z",
+   "write",
+   "short",
+   "batch 12"
+  ],
+  [
+   "2026-10-21T01:07:29Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-027 0.18"
+  ],
+  [
+   "2026-10-21T01:09:18Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 3, 'Lic': 3, 'Fit': 4, 'Build': 2}"
+  ]
+ ],
+ "id": "S-rs-013",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.185,
+    "S-op-027"
+   ],
+   [
+    0.116,
+    "S-op-026"
+   ],
+   [
+    0.1,
+    "S-im-061"
+   ],
+   [
+    0.096,
+    "pickup_delivery_time_windows [HeuriGym]"
+   ],
+   [
+    0.071,
+    "MDS [FrontierCO]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "xcsp.org/instances|cop22to25-1000-instances-and-csp22to25-800-instances-main-tr",
+ "source_notes": "Distinct from already_known SAT/MIP/JSP sets; overlaps the AClib/SMAC tuning-engine row in method but not in data. Instances are CPU-only and offline-friendly once downloaded; the 2025 archive gives a natural OOD year split. Licence must be checked on each series before shipping instances.",
+ "source_url": "https://xcsp.org/instances",
+ "source_version": "COP22to25 (1000 instances) and CSP22to25 (800 instances) main tracks; per-year zip archives 2022\u20132025",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://xcsp.org/instances",
+  "facts": [
+   {
+    "claim": "xcsp.org/instances lists COP22to25 (1000 COP instances) and CSP22to25 (800 CSP instances) combined archives",
+    "status": "confirmed",
+    "url": "https://xcsp.org/instances"
+   },
+   {
+    "claim": "Yearly archives exist for 2022 (main and full), 2023, 2024 and 2025 (instancesXCSP25.zip)",
+    "status": "confirmed",
+    "url": "https://xcsp.org/instances"
+   },
+   {
+    "claim": "The instance archives state no licence or terms of use on the instances page",
+    "status": "confirmed",
+    "url": "https://xcsp.org/instances"
+   },
+   {
+    "claim": "xcsp.org states CC BY-SA 4.0 for specifications and an MIT licence for 'any derived piece of software and benchmarks'; it does not name a licence for the original instance files",
+    "status": "confirmed",
+    "url": "https://xcsp.org"
+   },
+   {
+    "claim": "The seed's licence claim 'not found' is accurate: no explicit licence for the original competition instances was found",
+    "status": "confirmed",
+    "url": "https://xcsp.org/instances"
+   },
+   {
+    "claim": "XCSP3 2025 competition proceedings exist (Audemard, Lecoutre, Lonca; Nov 2025) with results at cril.univ-artois.fr/XCSP25",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2511.06918v1"
+   },
+   {
+    "claim": "The 2025 competition selected 33 problems",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2511.06918v1"
+   },
+   {
+    "claim": "Choco solver is a Java CP library under a BSD licence, 4-clause variant per GitHub metadata and an older README",
+    "status": "confirmed",
+    "url": "https://choco-solver.org/"
+   },
+   {
+    "claim": "CPHydra is a per-instance CSP solver portfolio (case-based/k-NN selection) that won the 2008 CSP solver competition, using XCSP",
+    "status": "confirmed",
+    "url": "https://homepages.laas.fr/ehebrard/papers/aics2008.pdf"
+   },
+   {
+    "claim": "SUNNY is a later lazy portfolio for constraint solving using MiniZinc-based features, reported to outperform CPHydra",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/1311.3353"
+   },
+   {
+    "claim": "A public tuned XCSP3 per-family configuration selector exists upstream",
+    "status": "not_found",
+    "url": "https://xcsp.org/competitions"
+   },
+   {
+    "claim": "Dated public evidence of agents attempting this solver-configuration task exists",
+    "status": "not_found",
+    "url": "https://xcsp.org/competitions"
+   },
+   {
+    "claim": "The 2025 tracks match the 2024 structure (CSP one-solution 30 min, COP 30 min, Fast COP 3 min)",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2511.06918v1"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Frontier agent must finish dev-set tuning and feature mapping; default config gives 0 and gains come per family. Weaker model tends to submit untuned or over-fit settings. No dated evidence found.",
+   "build_cost": "About 3-5 days: pick and build an offline CP solver (JVM dependency vendoring), XCSP3 reader, feature extractor, checker, then compute-heavy reference tuning.",
+   "deliverable": "A CPU config selector script: instance features mapped to variable/value heuristics, restart and propagation settings, under a per-instance limit.",
+   "gates_anticheat": "Hidden instances absent from the image; harness fixes the solver binary and checks solutions independently, so a hard-coded table or a swapped stronger solver scores 0. Open items: time-limit noise (use node limits), and no OS-level trust of config files.",
+   "grading_surface": "Hidden 2025 instances (about 33 problems from the 2025 competition, instance count not verified), scored per instance by solved status and PAR2 or normalised objective gap; mean normalised between default config (0) and tuned reference (1).",
+   "local_fit": "CPU, 8 cores, 16 GB; dev sweeps are compute-heavy (about 1800 instances x per-instance limit per full config sweep), so tuning needs node limits and a subset.",
+   "lookup": "Per-instance CSP portfolios (CPHydra 2008, SUNNY) and algorithm configuration (SMAC/ParamILS) are public in outline; no tuned XCSP3 config selector found upstream.",
+   "provenance": "XCSP3 instance archives (CRIL, Artois) for COP and CSP tracks 2022-2025; XCSP3 format with competition proceedings (arXiv 2511.06918).",
+   "reference": "Our own tuned selector (portfolio plus per-family settings); no upstream reference found.",
+   "ships": "Dev subset of 2022-2024 XCSP3 instances, a permissive open CP solver (not chosen; Choco is BSD-4-Clause, Java), a time-boxed harness and an independent checker. Hidden 2025 instances are not shipped.",
+   "similarity": "Max l0 neighbour 0.185 (S-op-027) and 0.116 (S-op-026); not on CROWDED list. Method overlaps the AClib/SMAC tuning row but data differs."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence found, so capped at 3; plausible 8h difficulty with a weaker-model gap."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Solver choice, offline JVM build, checker and reference tuning likely take 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits CPU, 8 cores, 16 GB; JVM and large sweeps are heavy but within limits."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Tuning requires many sweeps over an 8h budget on 8 cores."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "Solver candidate is permissive; the original instance licence is not stated and must be verified per series."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-family buckets and several config knobs give partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.185 (above the 0.15 threshold) and no crowded match."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Competition archives at cril.univ-artois.fr and published proceedings; real XCSP3 format."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is our own tuned selector, not an upstream system; strength is unmeasured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden 2025 files are publicly downloadable, but absent from the image and offline at run time; sealed for the agent."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden 2025 subset gives hundreds of instances with PAR2 per instance; each run is costly, so the surface is large but not thousands."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Default config solves almost all instances at all settings (no headroom), run-to-run noise exceeds config gains, or the instance licence forbids shipping the dev subset.",
+   "pass_if": "Default and alternative configs show a repeatable PAR2 spread above run-to-run noise on at least a third of instances, the solver builds offline, and the instance archives' licence is clear enough to ship the dev subset.",
+   "steps": [
+    "Download instancesXCSP25.zip and COP22to25.zip into fresh empty directories; check sizes and read any licence text inside the archives.",
+    "Pick one permissive solver (Choco BSD-4 or another verified-licence CP solver); build it offline and confirm it parses 20 XCSP3 instances.",
+    "Run 20 mixed instances (CSP and COP) at the default config with a 60 s limit, three times with the same seed and node limit, to check determinism.",
+    "Run the same 20 instances at 2-3 hand-set alternative configs (restart policy, value heuristic) to see whether gains exist beyond noise.",
+    "Check that the default solves most instances (too easy means K8) and that the spread between configs is above run-to-run variance.",
+    "Record licence findings per series and the total hidden-instance count for the 2025 year."
+   ]
+  },
+  "summary": "The seed is a real XCSP3 competition-based config-tuning research task whose archives, proceedings and solver candidates are confirmed, but the instance licence is ambiguous (xcsp.org names MIT only for derived benchmarks) and the reference is not yet built. No kill gate fails outright, so it passes conditionally on the licence check and a spike showing headroom over the default config under noise."
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 70
+}

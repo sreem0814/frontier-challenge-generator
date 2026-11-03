@@ -1,0 +1,247 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "4 h. A hard long tail: LB25 numerics, LB30, emoji and regional indicators. A frontier agent usually passes most of the file and sometimes everything. Buckets: rule groups, class resolution, random strings. A weaker model gets the basic pair table but misses the numeric and context rules.",
+  "cheat": "The test file lines are not in the image except the visible slice, and the random generator produces unseen strings, so a lookup table fails. The image ships no segmenter or ICU library.",
+  "grading": "Visible: about 10% of LineBreakTest. Hidden: the other roughly 17k cases of LineBreakTest.txt (19,346 total) plus random strings from a sealed generator, compared with a sealed reference built from the same data. Exact opportunity-position match; score is the fraction passed.",
+  "reference": "Reference implemented from the spec and validated against the test file (all cases pass); ICU4X (Unicode-3.0) is used only offline for cross-checks. It scores 1.",
+  "source": "https://www.unicode.org/Public/18.0.0/ucd/ (LineBreak.txt, LineBreakTest.txt) @ UCD 18.0.0, Unicode-3.0",
+  "task": "/app ships the UCD property files (LineBreak, EastAsianWidth, emoji-data, general category) and an empty library with a CLI taking a string and printing break opportunities. Agent implements the full UAX #14 pair-table and rule set LB1-LB31, including LB30 East Asian width handling, the quotation, numeric and emoji rules, and the resolution of AI/SG/XX/SA/CJ classes.",
+  "title": "UAX #14 line breaking with tailorable classes"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "font-text",
+ "final": 72,
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-054 0.44"
+  ],
+  [
+   "2026-10-21T01:03:06Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-21T01:06:07Z",
+   "v2",
+   "killed:K8",
+   "The source is solid: UCD 18.0.0 and LineBreakTest are confirmed, though the file is under auxiliary/, not the ucd/ root. The 19,346 line count was not verified. The ICU4X cross-check for 18.0 was contradicted, so the random-string oracle depends only on our own reference. Implementing UAX #14 is one"
+  ]
+ ],
+ "id": "S-im-055",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.44,
+    "S-im-054"
+   ],
+   [
+    0.169,
+    "S-im-038"
+   ],
+   [
+    0.149,
+    "emoji [NL2Repo-Bench]"
+   ],
+   [
+    0.133,
+    "S-im-037"
+   ],
+   [
+    0.116,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "rank": null,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "unicode.org/public/18.0.0/ucd|ucd-18-0-0-files-dated-2026-06-icu4x-icu-2-3-0-release",
+ "source_notes": "agent must derive properties from UCD files; normalization (with Hangul and canonical ordering) is moderate, UAX #14 line break is a hard long tail; memorization risk moderate; test files are tiny-to-medium; low crowding; verifier can also run random strings against ICU4X",
+ "source_url": "https://www.unicode.org/Public/18.0.0/ucd/",
+ "source_version": "UCD 18.0.0 (files dated 2026-06); ICU4X icu@2.3.0 release",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.unicode.org/reports/tr14/",
+  "facts": [
+   {
+    "claim": "UCD 18.0.0 directory exists at https://www.unicode.org/Public/18.0.0/ucd/ and contains LineBreak.txt, EastAsianWidth.txt and UnicodeData.txt",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/"
+   },
+   {
+    "claim": "LineBreakTest.txt is at the ucd/ root as the seed source states; it is not listed there. It lives under ucd/auxiliary/",
+    "status": "contradicted",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/auxiliary/LineBreakTest.txt"
+   },
+   {
+    "claim": "LineBreakTest.txt for Unicode 18.0.0 exists (header: LineBreakTest-18.0.0, dated 2026-08-07, copyright 2026 Unicode, Inc.)",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/auxiliary/LineBreakTest.txt"
+   },
+   {
+    "claim": "Total of 19,346 test lines in LineBreakTest.txt",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/auxiliary/LineBreakTest.txt"
+   },
+   {
+    "claim": "emoji-data.txt is present under ucd/emoji/",
+    "status": "not_found",
+    "url": "https://www.unicode.org/Public/18.0.0/ucd/"
+   },
+   {
+    "claim": "UAX #14 revision 57 (2026-09-01) is the Unicode 18.0.0 line-breaking spec",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/reports/tr14/"
+   },
+   {
+    "claim": "UAX #14 defines rules LB1 to LB31 including LB30a/LB30b and the AI/SG/XX/SA/CJ resolution",
+    "status": "not_found",
+    "url": "https://www.unicode.org/reports/tr14/"
+   },
+   {
+    "claim": "Unicode data files are governed by the Unicode License v3",
+    "status": "confirmed",
+    "url": "https://www.unicode.org/copyright.html"
+   },
+   {
+    "claim": "ICU4X icu_segmenter is Unicode-3.0 licensed",
+    "status": "confirmed",
+    "url": "https://docs.rs/icu_segmenter/latest/icu_segmenter/struct.LineSegmenter.html"
+   },
+   {
+    "claim": "ICU4X stable line segmenter is UAX #14 compatible for UCD 18.0 (cross-check reference)",
+    "status": "contradicted",
+    "url": "https://docs.rs/icu_segmenter/latest/icu_segmenter/struct.LineSegmenter.html"
+   },
+   {
+    "claim": "unicode-linebreak Rust crate (UAX #14 implementation) is Apache-2.0",
+    "status": "confirmed",
+    "url": "https://licenses.dev/cargo/unicode-linebreak/0.1.5"
+   },
+   {
+    "claim": "Unicode 18.0 was released in September 2026",
+    "status": "confirmed",
+    "url": "https://gcc.gnu.org/pipermail/libstdc++/2026-September/067801.html"
+   }
+  ],
+  "full_card": {
+   "band": "4h tier. Frontier likely passes most of file, sometimes all (seed claim, unverified). Weaker model: basic pair table only. K8 risk: frontier average may sit near reference",
+   "build_cost": "About 3-5 days for sealed reference, tables generated from UCD; cost 4 (2-5 days)",
+   "deliverable": "Library + CLI: string in, UAX #14 break-opportunity positions out; full LB1-LB31 incl. LB25 numerics, LB30/30a/30b, AI/SG/XX/SA/CJ resolution, tailorable classes",
+   "gates_anticheat": "Hidden lines not in image; random generator unseen; no segmenter/ICU in image; cheat paths: lookup table of test lines (blocked by random strings), vendoring a line-break crate (none installed offline), wrapping system ICU (not in image), editing test harness (sealed)",
+   "grading_surface": "About 17k hidden LineBreakTest cases (exact opportunity match) plus sealed random strings; reward = fraction passed vs reference; test total 19,346 unverified",
+   "local_fit": "CPU-only, pure text processing, trivial in gVisor; cross-check against ICU4X stable crate targets UCD 15.1 so random-string reference must not rely on ICU4X stable output for 18.0 behaviour",
+   "lookup": "partial: UAX #14 algorithm and implementations (unicode-linebreak Rust crate Apache-2.0, ICU, icu4x) are public; none in image; frontier models can recall the rules in outline",
+   "provenance": "Unicode UCD 18.0.0 (LineBreak.txt, auxiliary/LineBreakTest.txt); UAX #14 rev 57; Unicode License v3 (Unicode-3.0 SPDX)",
+   "reference": "Sealed reference built from UCD data, passes all LineBreakTest cases; ICU4X used only for offline cross-check; no public full solution in image",
+   "ships": "UCD property files (LineBreak, EastAsianWidth, emoji data, UnicodeData) plus visible ~10% LineBreakTest slice and an empty library with CLI",
+   "similarity": "L0: S-im-054 at 0.44 (content not inspected; needs dedup check against that seed), S-im-038 0.169, S-im-037 0.133, others below 0.15; not on CROWDED list"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public agent evidence; seed says frontier passes most, so K8 risk caps the band at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Sealed reference is a few hundred lines plus table generation; estimated 2-5 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure CPU text processing on UCD files; fits gVisor and 8 CPU/16 GB easily."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Single algorithm with many rule groups; 4h tier is plausible but the scope is less than 8h-sustained work."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Unicode data under Unicode License v3 permits shipping with notice; ICU4X is Unicode-3.0 and used offline only."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Rule groups, class resolution, numeric/emoji buckets and random strings give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No CROWDED neighbour, but S-im-054 at 0.44 needs a dedup check against that seed."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Official Unicode UCD 18.0.0 and UAX #14 rev 57 exist and match the seed."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference scores 1 and is complete on the file; not public in image; no public full copy at 18.0 verified."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden lines are sealed, but the full LineBreakTest.txt is public on unicode.org, so sealing rests on offline run only."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 17k hidden cases with exact-match scoring plus unlimited random generator; not 5 because the core is one table-driven algorithm."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Pair-only breaker already passes over 85% (too easy, K8) or the full rule set cannot pass 90% of lines after reasonable effort (K9), or ICU and the test file disagree on 18.0 (K4).",
+   "pass_if": "Basic pair-only breaker passes roughly 30-60% of lines and full rules reach 95%+, showing a partial-credit curve and a weaker-model gap.",
+   "steps": [
+    "Fetch LineBreak.txt and auxiliary/LineBreakTest.txt (18.0.0) into a scratch dir; confirm LineBreakTest header and count test lines.",
+    "Write a throwaway Python line breaker from LineBreak.txt with only pair-table rules (LB1, LB2, LB6-LB18, LB31); run it against the test file and record the pass fraction per line.",
+    "Add LB25 numerics, LB30/30a/30b and class resolution (AI/SG/XX/SA/CJ) as a second pass; record pass fraction again.",
+    "Build an ICU-based oracle on a network host using a unstable/18-compatible segmenter or PyICU, and check it against the test file to confirm the cross-check path matches Unicode 18.0 behaviour.",
+    "Run the same test file twice to confirm determinism and that the visible ~10% slice is a stable subset."
+   ]
+  },
+  "summary": "The core data is real and verifiable: UCD 18.0.0 exists with LineBreak.txt and auxiliary/LineBreakTest.txt, which is licensed under Unicode License v3, and UAX #14 rev 57 covers Unicode 18.0. Three seed claims fail or need caution: LineBreakTest.txt is under auxiliary/, the 19,346 count is unverified, and ICU4X's stable API targets UCD 15.1, so the cross-check path needs an 18-compatible oracle; the main open risk is K8 (frontier may sit near the reference), which the spike must measure."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-055",
+  "kill_code": "K8",
+  "note": "The source is solid: UCD 18.0.0 and LineBreakTest are confirmed, though the file is under auxiliary/, not the ucd/ root. The 19,346 line count was not verified. The ICU4X cross-check for 18.0 was contradicted, so the random-string oracle depends only on our own reference. Implementing UAX #14 is one well-known algorithm of about 600-800 lines plus table generation. Implementations are common (unicode-linebreak, ICU) and frontier models know the rules well, so a frontier agent at 4 h would likely land near the reference. That is at or below the DeepSWE calibration, so this is too easy. It also overlaps S-im-054 (0.44). It may be worth reviving only as one part of a combined UAX #14/#29/#9 text-algorithm suite.",
+  "scores": {
+   "Band": 2,
+   "Build": 4,
+   "Fit": 5,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 72
+}

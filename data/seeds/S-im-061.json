@@ -1,0 +1,228 @@
+{
+ "batch": 12,
+ "card": {
+  "band": "4 h. Core emitter is easy, so a weaker model stops there. The async iterator, captureRejections and EventTarget buckets are where frontier agents drop cases. Buckets: emitter core, error semantics, once/on, EventTarget, edge cases. Dated public evidence: not found.",
+  "cheat": "Wrapping a JS engine or Node is impossible because the image has neither. Hidden scenarios, generated traces and the Node oracle stay outside the image. Random scenarios block hard-coding.",
+  "grading": "Hidden suite of several hundred cases translated from Node's own event tests into declarative scenario scripts (call sequences plus expected emission traces), plus generated random call-sequence scenarios whose expected traces come from running real Node offline during bundle build. Exact trace match per case.",
+  "reference": "Our own Go port written against Node's lib/events.js, roughly 1500-2500 lines. It passes the whole scenario set, so it scores 1.",
+  "source": "https://github.com/nodejs/node lib/events.js and test/parallel/test-event-emitter-*.js @ a pinned release tag (tag not found in input), MIT; the row's npm node-event-emitter 0.0.1 (MIT) is only a minimal seed",
+  "task": "/app ships a Go module skeleton and a JS-value shim. The agent ports Node's full events module: EventEmitter (ordering, prepend, error event, newListener/removeListener, max listeners, captureRejections, symbols), events.once/on async iterators, getEventListeners, and EventTarget/Event. The delivery is a Go package with a documented API.",
+  "title": "Node events module ported to Go with EventEmitter, once/on and EventTarget semantics"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:07:29Z",
+ "family": "other",
+ "final": 60,
+ "history": [
+  [
+   "2026-10-21T01:07:29Z",
+   "write",
+   "short",
+   "batch 12"
+  ],
+  [
+   "2026-10-21T01:07:29Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-014 0.24"
+  ],
+  [
+   "2026-10-21T01:08:22Z",
+   "v1",
+   "pass",
+   "score 71; dead links []"
+  ],
+  [
+   "2026-10-21T01:16:14Z",
+   "v2",
+   "killed:K8",
+   "lib/events.js (about 1,256 lines, MIT) is confirmed, but no release tag is pinned. The card wrongly places EventTarget in events.js (contradicted: it lives in lib/internal/event_target.js). EventEmitter semantics are among the best-known in JS and models know them closely, so a frontier agent will f"
+  ]
+ ],
+ "id": "S-im-061",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.241,
+    "S-im-014"
+   ],
+   [
+    0.201,
+    "S-im-038"
+   ],
+   [
+    0.186,
+    "S-im-012"
+   ],
+   [
+    0.1,
+    "slurm-simple-node-monitoring [original]"
+   ],
+   [
+    0.073,
+    "simpy [Commit0]"
+   ]
+  ]
+ },
+ "method": "port",
+ "rank": 2,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "git@github.com:benjreinhart/node-event-emitter|0-0-1",
+ "source_notes": "Direct port of node's EventEmitter with no dependencies. Available for CommonJS and browser environments.",
+ "source_url": "git@github.com:benjreinhart/node-event-emitter.git",
+ "source_version": "0.0.1",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/nodejs/node/blob/main/lib/events.js",
+  "facts": [
+   {
+    "claim": "nodejs/node lib/events.js exists on main, about 1,256 lines, and is the source of Node's events module",
+    "status": "confirmed",
+    "url": "https://github.com/nodejs/node/blob/main/lib/events.js"
+   },
+   {
+    "claim": "Node.js core is licensed under an MIT-style license that permits modification and redistribution",
+    "status": "confirmed",
+    "url": "https://github.com/nodejs/node/blob/main/LICENSE"
+   },
+   {
+    "claim": "A pinned Node release tag for the source snapshot is named in the seed",
+    "status": "not_found",
+    "url": "https://github.com/nodejs/node/blob/main/lib/events.js"
+   },
+   {
+    "claim": "lib/events.js exports EventEmitter, once, on, getEventListeners, captureRejections and errorMonitor, as the seed's task describes",
+    "status": "confirmed",
+    "url": "https://github.com/nodejs/node/blob/main/lib/events.js"
+   },
+   {
+    "claim": "EventTarget and Event are part of lib/events.js (the seed's task says the events module includes them)",
+    "status": "contradicted",
+    "url": "https://github.com/nodejs/node/blob/main/lib/events.js"
+   },
+   {
+    "claim": "Mirrors list about 18 to 26 test-event-emitter-* files under test/parallel; no upstream count confirmed for the pinned tag",
+    "status": "not_found",
+    "url": "https://deno.land/x/deno/tests/node_compat/test/parallel/test-event-emitter-check-listener-leaks.js"
+   },
+   {
+    "claim": "Go ports of Node-style EventEmitter exist (govents, go-zoox/eventemitter, jiyeyuran/go-eventemitter, CHH/eventemitter) but none is a full Node events port with once/on async iterators and EventTarget",
+    "status": "confirmed",
+    "url": "https://github.com/ghoshRitesh12/govents"
+   },
+   {
+    "claim": "npm package node-event-emitter 0.0.1 (MIT) exists as a minimal JS seed",
+    "status": "not_found",
+    "url": "https://www.npmjs.com/package/node-event-emitter"
+   }
+  ],
+  "full_card": {
+   "band": "4h stated; recommend 8h tier. Core emitter easy; async iterator, captureRejections and EventTarget buckets are where frontier agents drop cases. No dated public evidence found",
+   "build_cost": "About 3-4 days: Go reference 1500-2500 lines, scenario schema, Node trace generator, microtask-ordering spec; under the 5-day kill line",
+   "deliverable": "Go package porting EventEmitter (ordering, prepend, error event, newListener/removeListener, max listeners, captureRejections, symbols), events.once/on iterators, getEventListeners, and EventTarget/Event, with documented API",
+   "gates_anticheat": "Oracle and traces stay outside image; random scenarios block hard-coding; no JS engine or Node in image so wrapping is impossible; agent could still recall Node semantics (not a cheat, a difficulty question)",
+   "grading_surface": "Hidden several hundred declarative scenario scripts translated from Node tests, plus generated random call-sequence scenarios whose traces come from offline Node run at bundle build; exact trace match per case",
+   "local_fit": "Pure Go, CPU only, fits 8 cores, 16 GB; no kernel features needed",
+   "lookup": "partial: several Go EventEmitter libraries exist, none a full Node events port; no PR or later release of a Go port found",
+   "provenance": "nodejs/node lib/events.js (MIT, Joyent/Node contributors); pinned tag not supplied; test-event-emitter-* files in test/parallel",
+   "reference": "Own Go port against lib/events.js, est. 1500-2500 lines; not yet written, so 'scores 1' is unverified",
+   "ships": "Go module skeleton and JS-value shim in /app; no Node runtime, no Node tests, no reference",
+   "similarity": "max L0 0.241 to S-im-014 (above 0.15 threshold, not a CROWDED subject); not K1 as subject not verified"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; difficulty plausibly sits in async and EventTarget buckets, but band is unverified and capped at 3 without evidence"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days for reference, scenario schema and Node trace generator"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Go and CPU only; fits the sandbox"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4h tier is at the low edge for 1500-2500 lines plus async and EventTarget; 8h is the safer tier"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT on Node core; permits shipping source, tests and reference"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several buckets (core, errors, once/on, EventTarget, edge cases) give steady partial credit"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour 0.241 (above 0.15); not a crowded subject; partly overlaps other Node-style seeds"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real lib/events.js and MIT licence confirmed; pinned tag not supplied and EventTarget claim is wrong about file location"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference Go port does not exist yet; its ability to score 1 is unverified"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Node source is public and known in outline; traces and generated cases stay sealed, so 3 per the outline rule"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Several hundred scenarios plus generated random traces with an executable oracle (Node) is a large surface"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Traces are nondeterministic across runs, or async ordering cannot be specified in the declarative schema so that two valid Go implementations give the same trace.",
+   "pass_if": "Node traces are deterministic across 3 runs, the schema fixes microtask ordering, and a minimal Go core passes at least 4 of 5 scenarios.",
+   "steps": [
+    "Pin a Node LTS tag (e.g. v22.x) and check out lib/events.js and lib/internal/event_target.js at that tag in a throwaway container with network.",
+    "Install the pinned Node binary, run test/parallel/test-event-emitter-*.js and record per-test results to confirm the oracle is deterministic across 3 runs.",
+    "Write the scenario schema for 5 scenarios (emit, prepend, error throw, once, removeListener) and generate traces with the Node binary; confirm exact-match stability.",
+    "Specify microtask ordering for once/on iterators in the schema; check that two runs produce identical traces including promise-resolution order.",
+    "Write a minimal Go core (EventEmitter emit/on/once/off) and run it against the 5 scenarios; record pass rate.",
+    "Decide scope: whether EventTarget lives in events.js or lib/internal/event_target.js, and drop or move it accordingly."
+   ]
+  },
+  "summary": "The Node events source is real, MIT-licensed and sealable as a hidden scenario set, but the seed's claim that EventTarget sits in events.js is contradicted and no pinned tag was supplied. Not killed: the main risks are unspecified microtask ordering for async iterators (exact-trace risk) and a 4h tier that is likely too short, so the spike should check trace determinism before anything else."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-061",
+  "kill_code": "K8",
+  "note": "lib/events.js (about 1,256 lines, MIT) is confirmed, but no release tag is pinned. The card wrongly places EventTarget in events.js (contradicted: it lives in lib/internal/event_target.js). EventEmitter semantics are among the best-known in JS and models know them closely, so a frontier agent will finish the emitter core and once/on, and a Qwen-class model will likely keep up on most buckets. The only hard parts (microtask ordering, captureRejections, async iterators) depend on an invented Go JS-value shim and our own scenario schema. That schema fixes the API and the event-loop model, so the grading tests how well the agent fits our harness, not a real artifact, and other valid designs would fail. A maintainer would not accept this port. It is a 4 h job with no Go reference written yet. Kill as too easy and recallable (K8).",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 60
+}

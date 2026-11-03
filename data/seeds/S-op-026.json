@@ -1,0 +1,275 @@
+{
+ "attempts": {
+  "spike": 1
+ },
+ "batch": 11,
+ "card": {
+  "band": "20h. The build takes about 30 minutes per full compile; frontier agents can find the segment tree or sort wins in some trials, but not all 14 levers. A weaker model breaks results or finds only one tweak. Buckets: aggregate window, ranking, frame types, sort.",
+  "cheat": "Caching results or special-casing the benchmark queries: the hidden queries and data are fresh and the equality gate runs on a wide random query set.",
+  "grading": "The hard gate compares query results with the reference build on hidden generated queries and data (partitioned, framed, ordered, NULL-heavy). Hidden benchmark queries are timed as wall-clock medians. Reward is 2^u - 1 with S measured from v0.9.0.",
+  "reference": "The reference is the v0.9.0 window-function changes (the post lists 14 optimizations). The speedup on the window benchmark is claimed to be large, up to 25x over three years, but the 0.8 to 0.9 figure is not found and must be measured.",
+  "source": "https://github.com/duckdb/duckdb, v0.8.1 base to v0.9.0 target (release pair from duckdb.org benchmarks-over-time post), MIT",
+  "task": "/app ships a history-less v0.8.1 snapshot with a build setup. The agent speeds up window functions (segment tree aggregation, partitioning, parallel sort) and the multithreaded sort path on a window benchmark set, keeping SQL results identical.",
+  "title": "DuckDB 0.8 to 0.9 window function and sort speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:04:51Z",
+ "family": "database-query",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-21T01:04:51Z",
+   "write",
+   "short",
+   "batch 11"
+  ],
+  [
+   "2026-10-21T01:04:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-025 0.29"
+  ],
+  [
+   "2026-10-21T01:06:53Z",
+   "v1",
+   "pass",
+   "score 78; dead links []"
+  ],
+  [
+   "2026-10-21T01:10:06Z",
+   "v2",
+   "pass",
+   "final 75"
+  ],
+  [
+   "2026-10-21T01:18:58Z",
+   "spike",
+   "retry",
+   "Large real gap exists for frame aggregates (segment tree), so optimization headroom is credible. Not verified: from-source builds, 500-query equality, determinism, sqllogictest, offline. Note that duckdb wheels for 0.9.0 are public, but agent offline so fine. Also, other lever families (ranking, sor"
+  ],
+  [
+   "2026-10-21T01:31:57Z",
+   "spike",
+   "killed:K5",
+   "Source builds not completed. The v0.8.1 ninja -j3 build reached only 8 of 280 steps in about 8 min on a box at load ~21, so the full compile is likely over 1.5-2 h here.; The 200-query equality run on the wheel builds did not finish because the box was overloaded, so equality and determinism are unv"
+  ]
+ ],
+ "id": "S-op-026",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.295,
+    "S-op-025"
+   ],
+   [
+    0.265,
+    "S-op-023"
+   ],
+   [
+    0.229,
+    "duckdb [ProgramBench]"
+   ],
+   [
+    0.217,
+    "S-op-022"
+   ],
+   [
+    0.171,
+    "kysely-window-grouping-helpers [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 1,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "duckdb.org/2024/06/26/benchmarks-over-time.html|duckdb-v0-2-7-june-2021-duckdb-v1-0-0-june-2024",
+ "source_notes": "Levers (per release): multithreaded aggregation + push-based execution (0.3.1), parallel loading and out-of-core hash join (0.6.1), parallel Parquet write (0.8.1), 14 window-function optimizations incl. segment tree, parallel sort, work stealing (0.9.0), memory manager (0.10.0), dictionary compression sampling (0.10.2). Overlap warning: public corpus already has query-optimize tasks (brief). Better slice: a single-window-function 0.8.x -> 0.9.0 pair (INFERRED). Single-source.",
+ "source_url": "https://duckdb.org/2024/06/26/benchmarks-over-time.html",
+ "source_version": "DuckDB v0.2.7 (June 2021) -> DuckDB v1.0.0 (June 2024)",
+ "spike": {
+  "blockers": [
+   "Source builds not completed. The v0.8.1 ninja -j3 build reached only 8 of 280 steps in about 8 min on a box at load ~21, so the full compile is likely over 1.5-2 h here.",
+   "The 200-query equality run on the wheel builds did not finish because the box was overloaded, so equality and determinism are unverified.",
+   "4 of 13 checksums differed between 0.8.1 and 0.9.0 in the earlier attempt. This is probably tie order or float fp and was not investigated, so equality needs unique ORDER BY keys and a float tolerance.",
+   "Partial-credit buckets are skewed: only frame aggregates show large gains."
+  ],
+  "build_minutes": 120,
+  "cases_sampled": 13,
+  "commands_log": "pip wheels duckdb 0.8.1 and 0.9.0 with bench.py (13 queries, 3 runs each, 3M rows); eq.py 200 random window queries (did not finish); git clone --depth 1 --branch v0.8.1, cmake Release plus ninja -j3 (8/280 after about 8 min, killed)",
+  "deterministic": false,
+  "gvisor_concerns": [],
+  "headroom_note": "Wheel proxies (3M rows, 3 threads): frame aggregates 3-25x faster in 0.9.0 (sum rows frame 16x, avg range 25x, min 14x, sum partition 5.5x, count 4.9x, median 3x); ranking, lag, ntile and sort only ~1.2-1.3x. Timing noise is high on the shared box. The gain is concentrated in frame aggregates.",
+  "headroom_ok": true,
+  "image_gb_estimate": 3,
+  "kill_code": "",
+  "notes": "The wheel proxies show a real, large frame-aggregate gap, but source builds, 500-query equality, the sqllogictest runs and the offline check were not done. The box was overloaded (load ~21), so timings and compile speed are unreliable. Counts are from the earlier proxy run. cases_sampled 13 are queries from that run. reference_cases_passed 9 are the queries whose checksums matched between 0.8.1 and 0.9.0. deterministic false means equality was not established, not that a run failed. Notes are in /work/SPIKE.md.",
+  "offline_ok": false,
+  "oracle_available": true,
+  "outputs_match": false,
+  "reference_built": false,
+  "reference_cases_passed": 9,
+  "reference_lines": 0,
+  "start_scores_zero": false,
+  "verdict": "inconclusive",
+  "verifier_minutes_estimate": 30
+ },
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://duckdb.org/2023/09/26/announcing-duckdb-090.html",
+  "facts": [
+   {
+    "claim": "DuckDB v0.9.0 release exists (tag v0.9.0, 'Undulata' preview), announced 26 Sep 2023",
+    "status": "confirmed",
+    "url": "https://duckdb.org/2023/09/26/announcing-duckdb-090.html"
+   },
+   {
+    "claim": "v0.8.1 is a tagged bugfix release ('no new features'), released 13 Jun (year not shown on page; 2023 inferred from release order)",
+    "status": "confirmed",
+    "url": "https://github.com/duckdb/duckdb/releases/tag/v0.8.1"
+   },
+   {
+    "claim": "Licence is MIT (Stichting DuckDB Foundation copyright, standard MIT text)",
+    "status": "confirmed",
+    "url": "https://github.com/duckdb/duckdb/blob/main/LICENSE"
+   },
+   {
+    "claim": "Benchmarks-over-time post says window functions were improved substantially with 0.9.0 and credits '14 different performance optimizations'",
+    "status": "confirmed",
+    "url": "https://duckdb.org/2024/06/26/benchmarks-over-time"
+   },
+   {
+    "claim": "The 0.9.0 release page lists 9 window/sort/parallel items (6 window, 2 sort, 1 parallel fix), not 14; the fetch may be truncated, so the count of 14 is only confirmed from the blog post",
+    "status": "contradicted",
+    "url": "https://github.com/duckdb/duckdb/releases/tag/v0.9.0"
+   },
+   {
+    "claim": "'Up to 25x' is a multi-year overall figure (June 2021 to June 2024) across all benchmarks, not a window-function or 0.8-to-0.9 figure",
+    "status": "contradicted",
+    "url": "https://duckdb.org/2024/06/26/benchmarks-over-time"
+   },
+   {
+    "claim": "0.8 to 0.9 window speedup: windowed sum with few or no partitions dropped from 33.8 s to 3.8 s (about 8.9x on one query)",
+    "status": "confirmed",
+    "url": "https://duckdb.org/2023/09/26/announcing-duckdb-090.html"
+   },
+   {
+    "claim": "Window benchmark suite is H2O.ai db-benchmark queries 302 to 316 on the largest join-benchmark table at 5 GB scale, with 16 window tests",
+    "status": "confirmed",
+    "url": "https://duckdb.org/2024/06/26/benchmarks-over-time"
+   },
+   {
+    "claim": "Per-version window timings for 0.8.x vs 0.9.0 are published",
+    "status": "not_found",
+    "url": "https://duckdb.org/2024/06/26/benchmarks-over-time"
+   }
+  ],
+  "full_card": {
+   "band": "20 h tier; full 14-lever scope is probably beyond most trials; partial buckets are aggregate window, ranking, frame types, sort; weaker model lags.",
+   "build_cost": "About 3 weeks of our work to build the snapshot, the equality harness, the generator and the reference timings; 30 min per full compile; not measured yet.",
+   "deliverable": "Faster window functions (segment tree aggregation, partitioning, frame handling) and multithreaded sort, with identical SQL results on hidden generated queries and data.",
+   "gates_anticheat": "Equality gate on fresh random queries and data defeats result caching and special-casing; tests, build config and CMake files are read-only and checked against a hash; no vendoring of newer DuckDB code (sealed, history-less snapshot, no network at run time).",
+   "grading_surface": "Hidden generated queries over partitioned, framed, ordered, NULL-heavy data, equality-gated against a sealed v0.9.0 build on a wide random query set; wall-clock medians on a hidden H2O-style window set.",
+   "local_fit": "Fits 8 cores / 16 GB; a full DuckDB compile takes about 30 min, which limits iteration; gVisor has no perf counters, but wall-clock timing is allowed.",
+   "lookup": "partial: v0.9.0 code is public on GitHub and a later release, so an agent with recall may know the segment-tree approach in outline; no installable package reproduces the exact code offline.",
+   "provenance": "DuckDB, MIT, v0.8.1 base to v0.9.0 target; both tags confirmed on GitHub; v0.9.0 post and benchmarks-over-time post cite the window changes.",
+   "reference": "Upstream v0.9.0 MIT source (public, measurable); 14 claimed optimizations; one measured window query 33.8 s to 3.8 s; overall 25x is multi-year and not window-specific.",
+   "ships": "History-less v0.8.1 snapshot with CMake build; no git past base; no vendored v0.9.0 code.",
+   "similarity": "Nearest L0 neighbour is S-op-025 at 0.295 (seed, not a public task); no public task checked with the same DuckDB window deliverable; not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence that agents finish or partly finish this kind of work; the 'frontier finds some wins' claim is unverified, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Roughly 3 weeks of harness and snapshot work plus many 20 h trials; under the 5-day K12 limit only if the scope is trimmed."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, fits 8 cores and 16 GB; the long compile is the only sandbox risk."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "20 h tier fits, but 30-min compiles cap iteration speed."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, so shipping the snapshot, data and reference is allowed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four named buckets (aggregate, ranking, frame types, sort) give partial credit, though most levers sit in one window subsystem."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.295 (not a public task); DuckDB and query-optimize subject overlap with the public corpus is a warning."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public MIT repo with confirmed tags v0.8.1 and v0.9.0 and a dated release post."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Full upstream v0.9.0 implementation, MIT, measurable; would score 1 by definition."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "The public upstream reference is only sealed by the history-less snapshot and no network at run time; recall of the approach is a difficulty issue (K8), not sealing."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generator-driven equality gate over random queries and data plus timed hidden benchmark; not fully unlimited because the timed part is narrower."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Equality is not deterministic, the full build exceeds 2 h, or the window speedup is under 1.5x overall (no meaningful reference gap).",
+   "pass_if": "Equality holds on all sampled queries, medians are stable within 10%, and the geometric-mean window speedup from 0.8.1 to 0.9.0 is at least 3x with at least 3 query families showing gains.",
+   "steps": [
+    "In a throwaway container with network, clone duckdb at tags v0.8.1 and v0.9.0 (full history for the reference only).",
+    "Build both in Release mode with the same flags, timing the full compile to confirm the 30-min estimate.",
+    "Generate a synthetic table of about 50M rows with partitions, ordering, frames and NULLs (no hidden data reuse), then run H2O-style window queries 302 to 316 on both builds.",
+    "Compare results row-by-row for equality over about 500 random window queries to check the equality gate is deterministic.",
+    "Time each query with 5 runs and take the median; record the per-query speedup from 0.8.1 to 0.9.0 to measure S.",
+    "Run the tests/sql/window sqllogictest subset on 0.8.1 to confirm the baseline passes and the suite is deterministic across 3 runs."
+   ]
+  },
+  "summary": "The DuckDB v0.8.1 to v0.9.0 pair is real and MIT-licensed, and the 14-optimization claim is confirmed in the benchmarks post, but the \"25x\" figure is a multi-year overall number, not a window speedup. The one window speedup published is 33.8 s to 3.8 s on a single windowed sum, which is about 8.9x and must still be measured across the full window set before S is fixed."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 78,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-026",
+  "kill_code": "",
+  "note": "Solid paper trail: tags v0.8.1 and v0.9.0 are both confirmed, MIT, and one window query has a measured 33.8 s to 3.8 s gain. Two of V1's claims are contradicted. The '14 optimizations' count only appears in the blog post. The '25x' figure is a multi-year number across all benchmarks, not a window speedup. S has to be measured. Risks: v0.9.0 also changes much more than window code, so the reference speedup must be isolated to window and sort queries. The equality gate needs float tolerance and a set ordering, because parallel SUM/AVG is not bit-stable. Semantic differences between 0.8.1 and 0.9.0 must be checked by diffing outputs before anything is graded. Segment trees already exist in 0.8.1, so the real levers are parallel partitioning and parallel tree building, both known in outline (Seal 3). Compiles of about 30 min slow iteration but are workable at the 20 h tier. V1's 3-week build estimate looks inflated. A realistic estimate is 4-5 days, borderline K12, so Build is 2. Keep only if the spike shows a window geomean of at least 3x and stable medians.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 75
+}

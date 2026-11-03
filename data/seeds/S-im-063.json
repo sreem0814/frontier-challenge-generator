@@ -1,0 +1,215 @@
+{
+ "batch": 13,
+ "card": {
+  "band": "20h tier. The spec is wide, so there are buckets per constraint family. A frontier agent covers the parser and the basic constraints in some trials, but misses global-constraint propagation and the time limit on average. A weaker model gets only the parser and a brute-force search.",
+  "cheat": "Hard-coding answers is blocked because the hidden instances are generated and not shipped. Fabricated solutions fail the independent checker. The reference solver is not in the image.",
+  "grading": "Hidden ~300 instances from our own XCSP3 models (generated with a Python model generator over scheduling, puzzles, routing and packing). Each answer is validated by an independent checker. The satisfiable/unsatisfiable status and the optimum objective are compared with a reference solver run offline. Credit is proportional to the number solved correctly within the limit.",
+  "reference": "A solver we write, or a licence-compatible open solver if one is confirmed, with outputs precomputed offline. Its coverage of the hidden set is the ceiling. Reference licence not found, so confirm it before use.",
+  "source": "https://www.xcsp.org/ (XCSP3-core format specification; competition instances have no stated licence, so none are shipped) ; reference solver ACE or Choco, version and licence not found",
+  "task": "/app ships the XCSP3-core spec notes and a few sample instances. The agent builds an XML parser and a CP solver for the core constraints (intension, extension, allDifferent, sum, element, cumulative, circuit and others) with search heuristics. The CLI prints competition-style s/v lines (status, solution) and o lines (objective).",
+  "title": "XCSP3-core constraint solver"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:09:01Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T01:09:01Z",
+   "write",
+   "short",
+   "batch 13"
+  ],
+  [
+   "2026-10-21T01:09:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-062 0.36"
+  ],
+  [
+   "2026-10-21T01:10:18Z",
+   "v1",
+   "killed:K9",
+   "As scoped (all XCSP3-core families, optimum and unsat proofs, ACE-level coverage), no trial is likely to reach 0.9 of the reference within 20h, and the 0.9-of-reference pass bar is unmet. A narrowed re-seed (satisfaction only, ~10-12 families, instances ACE proves in 60 s, buckets per family) is via"
+  ]
+ ],
+ "id": "S-im-063",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.364,
+    "S-im-062"
+   ],
+   [
+    0.337,
+    "S-rs-013"
+   ],
+   [
+    0.221,
+    "S-op-029"
+   ],
+   [
+    0.099,
+    "cyclic_independent_set [AlgoTune]"
+   ],
+   [
+    0.093,
+    "max_weighted_independent_set [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "xcsp.org/competitions|n-a-input-set-pairing-older-ace-choco-or-tools-cp-sat-releas",
+ "source_notes": "Page: q:\"XCSP3 is provided by CRIL.\" Only attribution on page is for medal icons (Flaticon). Instance archives not opened (links only) -> sizes/licence not found; single-source. Lower priority.",
+ "source_url": "https://www.xcsp.org/competitions/",
+ "source_version": "n/a (input set); pairing = older ACE/Choco/OR-tools CP-SAT release",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.xcsp.org/",
+  "facts": [
+   {
+    "claim": "XCSP3 specifications are published at xcsp.org (version 3.2, dated 28 Aug 2024) and are licensed CC BY-SA 4.0; XCSP3-core is arXiv 2009.00514",
+    "status": "confirmed",
+    "url": "https://www.xcsp.org/"
+   },
+   {
+    "claim": "XCSP3 page states derived software and benchmarks fall under MIT; no separate licence stated for competition instances",
+    "status": "confirmed",
+    "url": "https://www.xcsp.org/"
+   },
+   {
+    "claim": "Competition instance archives are hosted by CRIL/xcsp.org by year (2017-2025), but no licence terms for the instances were found",
+    "status": "not_found",
+    "url": "https://xcsp.org/instances"
+   },
+   {
+    "claim": "ACE is an XCSP3 constraint solver in Java, licensed MIT, reads any XCSP3 instance",
+    "status": "confirmed",
+    "url": "https://github.com/xcsp3team/ACE"
+   },
+   {
+    "claim": "ACE current stable version 2.6 (1 Mar 2026) per README; GitHub Releases section empty; seed said version not found",
+    "status": "confirmed",
+    "url": "https://github.com/xcsp3team/ACE"
+   },
+   {
+    "claim": "ACE builds with Gradle (>= v7.0); Java version not stated",
+    "status": "confirmed",
+    "url": "https://github.com/xcsp3team/ACE"
+   },
+   {
+    "claim": "Choco-solver core is BSD-3-Clause from v6.0.0 (BSD-4-Clause earlier); XCSP3 parser is in separate choco-parsers repo whose licence was not checked",
+    "status": "confirmed",
+    "url": "https://choco-solver.org/docs/considerations/"
+   },
+   {
+    "claim": "Official XCSP3 parsers exist in Java 8, C++11, Rust and Python; Java 8 solution checker exists",
+    "status": "confirmed",
+    "url": "https://www.xcsp.org/"
+   },
+   {
+    "claim": "PyCSP3 (XCSP3 instance generator/modeller) is on PyPI and GitHub xcsp3team/pycsp3, v2.5 (11 Jun 2025), licence MIT per arXiv paper; GitHub LICENSE not checked",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/pycsp3/"
+   },
+   {
+    "claim": "XCSP-Launcher (PyPI xcsp) is LGPL v3+ and is a solver-runner, not a parser",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/xcsp/"
+   },
+   {
+    "claim": "Seed claim that the reference solver version and licence are not found: ACE version and licence are in fact found (2.6, MIT)",
+    "status": "contradicted",
+    "url": "https://github.com/xcsp3team/ACE"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier. Frontier likely covers parser and basic constraints; global propagation and time limit are the bottleneck. Weak model: parser + brute force.",
+   "build_cost": "3 (2-5 days): generator, independent checker over ~20 families, offline reference runs on ~300 instances.",
+   "deliverable": "Java/Python/C++ XML parser plus CP solver for XCSP3-core constraint families with competition-format output, satisfiable/unsat and optimum status.",
+   "gates_anticheat": "Instances generated and not shipped; answers must pass independent checker; reference outputs offline only; ACE not installed in image.",
+   "grading_surface": "~300 hidden generated instances, scored by status + optimum match and an independent solution checker; proportional credit within time limit.",
+   "local_fit": "CPU-only Java/Python fits 8 cores/16 GB; ACE Gradle offline build not yet verified; memory risk on large instances.",
+   "lookup": "Direct: MIT-licensed full XCSP3 solver (ACE) and official parsers are public. Recall of architecture in outline only.",
+   "provenance": "XCSP3 spec (xcsp.org, CC BY-SA 4.0), XCSP3-core arXiv 2009.00514; public competition series 2017-2025; no git source, single web source.",
+   "reference": "ACE 2.6 (MIT, Java, xcsp3team/ACE) is a complete public XCSP3 solver; coverage of our generated set unknown until run. Choco (BSD-3 from v6) is a second option.",
+   "ships": "XCSP3-core spec notes, a few sample instances, CLI requirement with s/v/o lines. Reference ACE (MIT, Java, Gradle) run offline to precompute outputs; generated instances via own PyCSP3-style generator (MIT).",
+   "similarity": "Nearest l0 neighbour S-im-062 at 0.364 (not identified here); other neighbours below 0.34; not on CROWDED list but same subject and deliverable as the public XCSP3 competition solvers."
+  },
+  "kill_code": "K9",
+  "kill_reason": "As scoped (all XCSP3-core families, optimum and unsat proofs, ACE-level coverage), no trial is likely to reach 0.9 of the reference within 20h, and the 0.9-of-reference pass bar is unmet. A narrowed re-seed (satisfaction only, ~10-12 families, instances ACE proves in 60 s, buckets per family) is viable and would fix it.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this exact task; band estimate is the seed's own."
+   },
+   "Build": {
+    "v": 3,
+    "why": "2-5 days to write generator, checker and reference runs."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and within 8 cores/16 GB; ACE offline Gradle build unverified."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Parser plus multi-family solver with COP support fits the 20h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "ACE MIT, Choco BSD-3, spec CC BY-SA; instance licence not found but instances are generated, not shipped."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-constraint-family buckets and time-limit buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Same subject and deliverable as public XCSP3 competition solvers; S-im-062 neighbour at 0.364 not examined."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Published XCSP3 standard with arXiv papers and yearly competitions; instance licence not found and the reference source is a snapshot-free single web source."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "ACE (MIT) is a complete public XCSP3 solver, but its coverage ceiling on our generated set is unmeasured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "ACE and official parsers are public and cannot be used offline, but a solver is recallable in outline; reference outputs stay offline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "About 300 hidden generated instances plus an independent checker; an executable checker with generator would be 5."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "ACE fails to build offline, or solves <50% of generated instances in 60 s, or generated instances are trivially solved by a naive backtracker.",
+   "pass_if": "ACE builds offline, >=80% of 30 generated instances solved or proven in 60 s, status and objective deterministic across two runs.",
+   "steps": [
+    "In a throwaway networked Linux container, clone xcsp3team/ACE at its 2.6 tag and run the Gradle build offline after one online dependency warm-up; record Java version and build time.",
+    "Clone xcsp3team/pycsp3 (MIT) and generate ~30 instances across scheduling, puzzle, routing and packing families with fixed seeds.",
+    "Run ACE on the 30 instances with a 60 s limit; record status, optimum objective and wall time per instance.",
+    "Re-run the same seeds twice to check determinism of status and objective.",
+    "Count how many instances ACE solves or proves within 60 s; that fraction is the realistic reference ceiling for the hidden set.",
+    "Write a throwaway checker that validates a few ACE solutions against the XCSP3 constraint semantics for three families (allDifferent, sum, element) to confirm the validator is feasible.",
+    "Decide: if ACE solves at least 80% of generated instances in 60 s and is deterministic, keep the 20h tier; otherwise narrow the scope (satisfaction only, fewer families) and re-seed."
+   ]
+  },
+  "summary": "The XCSP3 spec and an MIT-licensed complete solver (ACE 2.6) exist publicly, so the reference and its licence are confirmed (contradicting the seed's \"not found\"), but the lookup is direct and the sealing rests on the instances being generated. As scoped it is killed K9 because reaching 0.9 of ACE-level coverage on all XCSP3-core families is unlikely in 20h; a narrowed satisfaction-only scope with the spike above is the path forward."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

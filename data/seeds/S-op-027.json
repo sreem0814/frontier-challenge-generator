@@ -1,0 +1,239 @@
+{
+ "batch": 11,
+ "card": {
+  "band": "20h. Frontier agents get easy preprocessing and rewrite wins in some trials. Very few match the later release, so the average is low. A weaker model breaks soundness or gains nothing. Levers: rewrites, bit-blasting, SAT settings, memory.",
+  "cheat": "Returning cached answers or reading benchmark status headers: hidden instances have stripped status and the instances are unseen. A timeout wrapper that returns guesses is caught by the wrong-answer gate.",
+  "grading": "Hidden QF_BV instances, sampled across families, are run with a timeout. A correctness gate scores 0 for any wrong answer versus the reference result and the benchmark status. Speed is the median of per-instance time ratios, with PAR-2 as a secondary measure. Reward is 2^u - 1.",
+  "reference": "The reference is the later Bitwuzla tag, a diff of several thousand lines. Its measured speedup is not found and must be measured; per-file licences must be checked before shipping.",
+  "source": "https://zenodo.org/records/16740866 (SMT-LIB 2025, CC-BY-4.0 record-level, per-file licences vary) with Bitwuzla (tags and licence not found; check)",
+  "task": "/app ships a history-less snapshot of an older Bitwuzla tag and a visible sample of QF_BV instances. The agent speeds up the solver (rewriting, bit-blasting, preprocessing, SAT interface) without changing sat/unsat answers.",
+  "title": "Bitwuzla QF_BV solving speedup on SMT-LIB 2025 bit-vector benchmarks"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:04:51Z",
+ "family": "solver",
+ "final": 63,
+ "history": [
+  [
+   "2026-10-21T01:04:51Z",
+   "write",
+   "short",
+   "batch 11"
+  ],
+  [
+   "2026-10-21T01:04:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-025 0.24"
+  ],
+  [
+   "2026-10-21T01:06:48Z",
+   "v1",
+   "pass",
+   "score 72; dead links []"
+  ],
+  [
+   "2026-10-21T01:10:06Z",
+   "v2",
+   "killed:K5",
+   "The Bitwuzla MIT licence and the SMT-LIB 2025 Zenodo record are confirmed. The core reference facts were not found: no measured QF_BV speedup between any two tags, no diff size, and no pick of a base tag backed by a perf changelog. The release pair is arbitrary and may give a ratio near 1. SAT-backe"
+  ]
+ ],
+ "id": "S-op-027",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.235,
+    "S-op-025"
+   ],
+   [
+    0.218,
+    "S-op-026"
+   ],
+   [
+    0.187,
+    "S-im-060"
+   ],
+   [
+    0.106,
+    "weighted-max-sat-solver [original]"
+   ],
+   [
+    0.085,
+    "records [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": null,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "zenodo.org/records/16740866 ; https://smt-lib.org/benchmarks.shtml|n-a-input-set-pairing-older-z3-cvc5-bitwuzla-yices-tag",
+ "source_notes": "Zenodo API: q:\"The contributor and licence of each benchmark is indicated in the metadata fields of each benchmark file.\" smt-lib.org page says releases from 2023 on are on Zenodo, older on StarExec, gives no count or licence. So check (set-info :license ...) per file before shipping; CC-BY dominant but not guaranteed. Incremental releases also on Zenodo (2023-2025).",
+ "source_url": "https://zenodo.org/records/16740866 ; https://smt-lib.org/benchmarks.shtml",
+ "source_version": "n/a (input set); pairing = older z3/cvc5/bitwuzla/Yices tag",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/bitwuzla/bitwuzla/releases",
+  "facts": [
+   {
+    "claim": "Zenodo record 16740866 exists: 'SMT-LIB release 2025 (non-incremental benchmarks)', version 2025.08.04, record-level licence CC-BY-4.0, and per-file licences stated only in each file's metadata.",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/16740866"
+   },
+   {
+    "claim": "QF_BV.tar.zst is in the record at about 1.7 GB; total record about 4.9 GB across 90 archives.",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/16740866"
+   },
+   {
+    "claim": "Per-file licences of the QF_BV benchmarks are CC-BY or otherwise permissive (checked per file).",
+    "status": "not_found",
+    "url": "https://zenodo.org/records/16740866"
+   },
+   {
+    "claim": "Bitwuzla is MIT licensed (COPYING: 'MIT License', copyright 2018-2025 authors).",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/bitwuzla/bitwuzla/main/COPYING"
+   },
+   {
+    "claim": "Bitwuzla GitHub repository is public and its badge reads MIT.",
+    "status": "confirmed",
+    "url": "https://github.com/bitwuzla/bitwuzla"
+   },
+   {
+    "claim": "Bitwuzla numbered releases include 0.5.0, 0.6.0, 0.6.1, 0.7.0, 0.8.0, 0.8.1, 0.8.2, 0.9.0, 0.9.1 (marked Latest), plus a rolling 'latest' pre-release. Release years are not shown on the page.",
+    "status": "confirmed",
+    "url": "https://github.com/bitwuzla/bitwuzla/releases"
+   },
+   {
+    "claim": "The later Bitwuzla tag's diff is several thousand lines.",
+    "status": "not_found",
+    "url": "https://github.com/bitwuzla/bitwuzla/releases"
+   },
+   {
+    "claim": "A measured QF_BV speedup of the later tag over an older tag exists.",
+    "status": "not_found",
+    "url": "https://github.com/bitwuzla/bitwuzla/releases"
+   },
+   {
+    "claim": "Bundled SAT solver and GMP dependency licences (CaDiCaL, Kissat, GMP) are checked and permissive.",
+    "status": "not_found",
+    "url": "https://dfsg-new-queue.debian.org/reviews/bitwuzla"
+   },
+   {
+    "claim": "Debian package review gives the upstream licence as Expat (MIT-equivalent) for Bitwuzla 0.8.2, with copyright 2018-2025.",
+    "status": "confirmed",
+    "url": "https://dfsg-new-queue.debian.org/reviews/bitwuzla"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier. Expected: easy preprocessing and rewrite wins in some trials, few reach the later tag. Unverified. No dated evidence.",
+   "build_cost": "smoke_build skipped (no git source). Expect meson build with SAT backend. Offline build needs vendored SAT solver sources. Estimate 3-5 days including snapshot, sample, and gate.",
+   "deliverable": "Faster solver (rewrites, bit-blasting, preprocessing, SAT interface) with identical sat/unsat answers on hidden QF_BV instances.",
+   "gates_anticheat": "Wrong-answer gate versus reference and status. Hidden status stripped. Block editing tests or build config, vendored binaries, and timeout wrappers that return guesses. Offline run.",
+   "grading_surface": "Hidden QF_BV instances run under timeout. Correctness gate versus reference result and status. Reward 2^u-1 from median per-instance time ratio, PAR-2 secondary.",
+   "local_fit": "CPU-only, 8 cores, 16 GB. Wall-clock timing under gVisor is noisy. Hidden instances can be large. Timeouts must be fixed.",
+   "lookup": "partial: later upstream code is public in git history; snapshot removes it. Agents may recall Bitwuzla internals.",
+   "provenance": "Bitwuzla (MIT, GitHub, releases 0.5.0-0.9.1) plus SMT-LIB 2025 non-incremental benchmarks (Zenodo 16740866, CC-BY-4.0 record-level, per-file licences).",
+   "reference": "Later upstream Bitwuzla tag (public, MIT). Its QF_BV speedup over the snapshot is not measured.",
+   "ships": "History-less snapshot of an older Bitwuzla tag, a visible QF_BV sample, and a sample runner. Hidden QF_BV subset sampled across families.",
+   "similarity": "l0 neighbours max 0.235 (S-op-025), 0.218 (S-op-026), 0.187 (S-im-060). None is a public task. Solver-speed siblings need checking for overlap."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "20h tier. No dated public evidence of agents on this work, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Offline build needs vendored SAT solver. Estimated 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and in budget. Timing noise under gVisor is the main risk."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Solver speedup across several subsystems fits a 20h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Bitwuzla MIT confirmed. Per-file SMT-LIB licences and bundled SAT solver licences not yet checked."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers, but one median-ratio scalar. Partial buckets are unclear (family or timeout buckets needed)."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours are 0.235 and 0.218 (above 0.15). None is a public task on the same subject."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public MIT Bitwuzla and official SMT-LIB 2025 release on Zenodo, both confirmed."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "A complete upstream later tag exists, but its speedup is unmeasured and may be small."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Later tag is public history. History-less snapshot mitigates. Oracle is public SMT-LIB data, offline run."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden QF_BV sample is large and executable with a status oracle. Total instance count not confirmed."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Median ratio at or below 1.05, a repeat-to-repeat spread above about 15%, any answer disagreement, or the build cannot be made offline. Also kill if per-file licences forbid shipping the QF_BV subset.",
+   "pass_if": "Later tag median ratio is at least 1.2 over the older tag across the three repeats, spread under about 10%, zero status disagreements, and the build runs offline after vendoring.",
+   "steps": [
+    "In a throwaway container with network, clone bitwuzla at the older snapshot tag (e.g. 0.8.2) and at 0.9.1 (no need for history beyond the tag).",
+    "Build both with meson; record which SAT backend and dependency downloads the build needs. Note any network fetch at build time.",
+    "Download QF_BV.tar.zst from Zenodo and draw a fixed random sample of about 150 instances, seeded, spanning families.",
+    "Check each file's set-info :license and record the licence per file.",
+    "Run both binaries serially with a 60 s timeout on the same machine, three repeats each. Record time, result, and PAR-2.",
+    "Compare answers to set-info :status and across binaries. Any disagreement is a wrong-answer event.",
+    "Compute the median per-instance time ratio and PAR-2 for each repeat, and the run-to-run spread."
+   ]
+  },
+  "summary": "The seed's real base holds up: Bitwuzla is MIT, the SMT-LIB 2025 QF_BV set is an official Zenodo record, and the upstream later tag exists. The open risks are an unmeasured reference speedup, a public later tag that the snapshot must hide, per-file benchmark licences, and an offline build that needs a vendored SAT solver, so the spike must confirm a meaningful median speedup before any build."
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-027",
+  "kill_code": "K5",
+  "note": "The Bitwuzla MIT licence and the SMT-LIB 2025 Zenodo record are confirmed. The core reference facts were not found: no measured QF_BV speedup between any two tags, no diff size, and no pick of a base tag backed by a perf changelog. The release pair is arbitrary and may give a ratio near 1. SAT-backed runtimes are chaotic, so small heuristic changes swing instances by orders of magnitude, and a median ratio under gVisor timing noise risks K4. Switching the SAT backend or settings may be a dominant single lever. Per-file benchmark licences were not checked. Revive only as a release pair whose changelog shows a measured QF_BV gain.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 3,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 1,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 63
+}

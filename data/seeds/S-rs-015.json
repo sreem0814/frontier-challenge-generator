@@ -1,0 +1,232 @@
+{
+ "batch": 14,
+ "card": {
+  "band": "8 h. Frontier agents get feasible schedules but often leave soft penalty on the table on the larger late-group and generated instances. Buckets: feasibility rate, penalty by constraint type, scaling with team count. A weaker model usually fails to reach feasibility on many instances.",
+  "cheat": "Hardcode known schedules: hidden instances are different and perturbed. Edit the evaluator: the sealed grader uses its own copy. Use an installed CP-SAT: not available offline.",
+  "grading": "Scored on the late-group and generated hidden instances using the evaluator: hard-constraint violation gives 0, otherwise the soft penalty normalised between the baseline and the reference. Deterministic under fixed seeds and time caps. Surface is modest (tens of instances), so a seeded generator of varied RobinX instances adds hundreds more.",
+  "reference": "Our own simulated annealing / tabu search with a constructive start, about 1,500 lines. Its penalties on the hidden set define the ceiling.",
+  "source": "ITC 2021 Sports Timetabling instances (https://sportscheduling.ugent.be/ITC2021/instances.php), RobinX format, 45 instances in early/middle/late groups. Licence: not found, to be confirmed before shipping; bundle can fall back to generated RobinX-style instances",
+  "task": "/app ships a RobinX parser, a penalty and feasibility evaluator reimplemented from the published constraint definitions, a baseline constructive scheduler and the early-group instances. The agent builds and tunes a timetabling search (construction, local search, constraint weighting) that writes a schedule file within a fixed CPU time per instance.",
+  "title": "Sports timetabling heuristic with an early-to-late instance release split"
+ },
+ "class": "research",
+ "created": "2026-10-21T01:18:42Z",
+ "family": "solver",
+ "final": 59,
+ "history": [
+  [
+   "2026-10-21T01:18:42Z",
+   "write",
+   "short",
+   "batch 14"
+  ],
+  [
+   "2026-10-21T01:18:42Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-014 0.23"
+  ],
+  [
+   "2026-10-21T01:20:37Z",
+   "v1",
+   "pass",
+   "score 72; dead links []"
+  ],
+  [
+   "2026-10-21T01:23:26Z",
+   "v2",
+   "killed:K1",
+   "The ITC2021 competition and the Udine SA paper are confirmed, but this is a heuristic task for an NP-hard competition problem. That is on the CROWDED list, and the deliverable and grading (feasibility plus a normalised soft penalty) do not differ from that pattern. Other problems: (1) the late-group"
+  ]
+ ],
+ "id": "S-rs-015",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.226,
+    "S-rs-014"
+   ],
+   [
+    0.16,
+    "S-im-064"
+   ],
+   [
+    0.149,
+    "S-im-062"
+   ],
+   [
+    0.091,
+    "group_lasso [AlgoTune]"
+   ],
+   [
+    0.074,
+    "caps-log [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "research",
+ "rank": null,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "sportscheduling.ugent.be/itc2021/instances.php|itc-2021-competition-instance-set-45-instances-3-release-gro",
+ "source_notes": "Real competition with a paper trail; not on the already_known list and not crowded. Only 45 instances, so the surface is modest unless the generator is extended. Scale and size need checking. Licence must be confirmed before use. CPU-only, offline-friendly.",
+ "source_url": "https://sportscheduling.ugent.be/ITC2021/instances.php",
+ "source_version": "ITC 2021 competition instance set (45 instances, 3 release groups); exact release tag not found",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://link.springer.com/article/10.1007/s10951-022-00740-y",
+  "facts": [
+   {
+    "claim": "ITC 2021 sports timetabling has 45 competition instances in early, middle and late groups of 15 each (plus a test group)",
+    "status": "confirmed",
+    "url": "https://robinxval.ugent.be/ITC2021/instances.php"
+   },
+   {
+    "claim": "The seed's sportscheduling.ugent.be instances page redirects to robinxval.ugent.be",
+    "status": "confirmed",
+    "url": "https://sportscheduling.ugent.be/ITC2021/instances.php"
+   },
+   {
+    "claim": "The instances page states no licence or terms of use for the instance files, and the validator page does not describe a downloadable checker",
+    "status": "not_found",
+    "url": "https://robinxval.ugent.be/ITC2021/instances.php"
+   },
+   {
+    "claim": "Late-group instances (ITC2021_Late_1..15) are already publicly downloadable as XML, so they are not sealed",
+    "status": "confirmed",
+    "url": "https://robinxval.ugent.be/ITC2021/instances.php"
+   },
+   {
+    "claim": "Rosati, Petris, Di Gaspero, Schaerf, 'Multi-neighborhood simulated annealing for the sports timetabling competition ITC2021', J. Scheduling 25(3), 301-319 (2022), solves 44 of 45 instances feasibly",
+    "status": "confirmed",
+    "url": "https://link.springer.com/article/10.1007/s10951-022-00740-y"
+   },
+   {
+    "claim": "Public C++ source of the Udine ITC2021 simulated annealing solver exists, licence GPL-3.0, CMake build, XML input and JSON output",
+    "status": "confirmed",
+    "url": "https://github.com/robertomrosati/sa4stt"
+   },
+   {
+    "claim": "The Udine solver paper's own text gives no licence for its code repository",
+    "status": "not_found",
+    "url": "https://link.springer.com/article/10.1007/s10951-022-00740-y"
+   },
+   {
+    "claim": "RobinX C++ library is free and open source with a licence stated",
+    "status": "not_found",
+    "url": "https://robinxval.ugent.be/ITC2021/instances.php"
+   },
+   {
+    "claim": "Seed reference: our own ~1,500-line SA/tabu solver with penalties on the hidden set",
+    "status": "not_found",
+    "url": "https://robinxval.ugent.be/ITC2021/instances.php"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Frontier agents probably reach feasibility on most instances; soft penalty gap to the reference is the dense bucket. Weaker model likely fails feasibility on many instances. No LLM-agent evidence found.",
+   "build_cost": "About 3-4 days: RobinX parser, evaluator matching the official checker, baseline, generator, and a ~1,500-line reference. smoke_build skipped (no git source).",
+   "deliverable": "Search program that writes a schedule file per instance within a fixed CPU budget; penalty and feasibility scored by our evaluator.",
+   "gates_anticheat": "Hidden instances are perturbed or generated, so hardcoded schedules fail. Sealed grader holds its own evaluator copy. No CP-SAT offline. Public late instances must be excluded from the hidden set or the grader is weak.",
+   "grading_surface": "Hidden late-group and generated instances; tens of fixed instances plus a seeded generator giving hundreds more. Fixed-seed, iteration-capped runs needed (wall-clock caps break determinism).",
+   "local_fit": "CPU-only, offline-friendly, 8 cores and 16 GB, well within the sandbox. The reference is C++ or Python with no network need.",
+   "lookup": "Partial. Algorithm described in the public paper; a complete C++ SA solver for the exact ITC2021 problem is public on GitHub (GPL-3.0). Not in the image, not installable offline, but a model can recall the approach in outline.",
+   "provenance": "ITC 2021 sports timetabling competition (RobinX format), 45 instances in 15/15/15 early/middle/late groups; competition paper in J. Scheduling 2022. Seed URL redirects to robinxval.ugent.be.",
+   "reference": "Own SA/tabu with constructive start, ~1,500 lines, not yet written. Public Udine SA (GPL-3.0, C++) exists and must NOT be used or copied in the reference.",
+   "ships": "Proposed: RobinX parser, evaluator rewritten from published constraint definitions, constructive baseline, early instances. Instance licence NOT FOUND, so ship the seeded generator and generated RobinX-style instances instead of the competition files unless licence is confirmed.",
+   "similarity": "Sibling seed S-rs-014 at cosine 0.226 is above the 0.15 threshold and must be checked for overlap before use. S-im-064 (0.16) and S-im-062 (0.149) are borderline. No CROWDED entry covers sports timetabling. Not a public benchmark task."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Expected band is plausible from the feasibility vs penalty split, but no dated evidence of frontier agents on this kind of work."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Roughly 3-4 days for parser, evaluator, baseline, generator and reference; under the 5-day cap."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only, offline, modest memory; fits the sandbox easily."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier fits: construction, several neighbourhoods, tuning, and generator-based scaling."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "Instance licence not found, so the generator fallback is needed; the public solver is GPL and must not be copied."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Buckets by feasibility, constraint type, and team count (16/18/20) give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Sibling S-rs-014 at 0.226 needs a check before use; other neighbours are low and no crowded entry matches."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real ITC 2021 competition with a 2022 J. Scheduling paper, RobinX standard and 45 public instances."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Own reference not yet written; a public GPL solver shows a strong approach, which lifts the bar, but ours is unproven."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Late instances are public, so hidden sets must be generated or perturbed; reference and evaluator stay out of the image."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden set is tens of instances plus a seeded generator; time-capped solves limit how many can run."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "No usable oracle or licence for the validator, evaluator mismatches that the published definitions cannot resolve, or the generated instances show no penalty spread between baseline and a strong solver.",
+   "pass_if": "Evaluator matches the official validator on all test solutions, the Udine solver reaches feasibility on most early instances in 10 minutes, and fixed-seed iteration-capped runs are identical.",
+   "steps": [
+    "In a throwaway networked container, clone https://github.com/robertomrosati/sa4stt for the spike only (GPL-3.0, never shipped). Build with CMake and run it on ITC2021_Early_1 and ITC2021_Late_1 under an iteration cap. Record feasibility and penalty.",
+    "Fetch the 45 instance XMLs and the RobinX C++ library or official validator from robinxval.ugent.be. Confirm the library licence before using it as an oracle.",
+    "Run the official validator on the Udine output to confirm the penalty convention and per-constraint breakdown.",
+    "Write a minimal evaluator from the published constraint definitions and compare it with the official validator on about 20 solutions (Udine output plus perturbed variants). Count mismatches per constraint type.",
+    "Run the seeded generator for 20 RobinX instances at 16/18/20 teams. Check how many the constructive baseline makes feasible and whether two fixed-seed runs give identical penalties under iteration caps."
+   ]
+  },
+  "summary": "The ITC 2021 sports timetabling problem is real, with 45 public instances, a 2022 J. Scheduling paper and RobinX, but its instance licence is not found, so the generator fallback is needed. A complete GPL-3.0 C++ SA solver for this exact problem is public on GitHub, so the reference must be written independently and the snapshot must exclude it; the sibling seed S-rs-014 (cosine 0.226) also needs checking before this card proceeds."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-rs-015",
+  "kill_code": "K1",
+  "note": "The ITC2021 competition and the Udine SA paper are confirmed, but this is a heuristic task for an NP-hard competition problem. That is on the CROWDED list, and the deliverable and grading (feasibility plus a normalised soft penalty) do not differ from that pattern. Other problems: (1) the late-group 'hidden' instances are publicly downloadable, so the real hidden surface would be generated instances only; (2) no licence was found for the instances or for RobinX; (3) a complete GPL-3.0 solver for this exact problem is public, and its approach is recallable; (4) penalties under CPU-time caps are not deterministic without iteration caps; (5) the evaluator must be rebuilt from the published constraint definitions, and its match to the official validator is unconfirmed. The idea is too close to existing benchmark patterns, and the licence and seal are weak.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 2,
+   "Multi": 3,
+   "Nov": 2,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 2,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 59
+}

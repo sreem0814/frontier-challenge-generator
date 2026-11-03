@@ -1,0 +1,198 @@
+{
+ "batch": 11,
+ "card": {
+  "band": "20h. Frontier agents get intra-only and some inter streams in some trials, but few finish CDEF and loop restoration, so the mean sits well below the reference. A weaker model stops at OBU parsing. Buckets: key-frame intra, inter, loop filters, quantizer range, size edge cases.",
+  "cheat": "Embedding the MD5s or the frames: the streams and MD5s are hidden and the decoder size is capped. Shipping a dav1d binary: none is in the image and no network is available.",
+  "grading": "The sealed set is the 8-bit, size, quantizer and features streams (several hundred, none visible except a sample). Each stream is scored by exact MD5 of the decoded frames against the dav1d reference MD5s. The score is the fraction of streams matched, divided by what the reference matches.",
+  "reference": "Reference is a reduced-scope decoder we write, with dav1d as the cross-check. Size would be about 15k lines, which is a large build; not yet measured. The 10-bit, 12-bit, svc, sframe and film-grain directories are out of scope.",
+  "source": "https://code.videolan.org/videolan/dav1d-test-data @ master 61afa1ce; licence not found (README only). Reference decoder dav1d is BSD-2-Clause. Licence must be settled before shipping.",
+  "task": "/app ships the AV1 spec text as excerpts, an IVF/OBU demux stub and a few sample streams. The agent writes a decoder in C, Rust or Go for 8-bit 4:2:0 profile-0 streams: OBU parsing, entropy decoding, intra and inter prediction, transforms, loop filter, CDEF, loop restoration, with film grain optional. It outputs raw frames via a CLI.",
+  "title": "AV1 8-bit profile-0 decoder verified by per-frame MD5"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:04:51Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-21T01:04:51Z",
+   "write",
+   "short",
+   "batch 11"
+  ],
+  [
+   "2026-10-21T01:04:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-059 0.17"
+  ],
+  [
+   "2026-10-21T01:05:50Z",
+   "v1",
+   "killed:K6",
+   "Licence of the dav1d-test-data streams and MD5s is not found (repo page blocked, README only), and the Argon stream licence terms are also not found. The task must ship sample streams, so the licence gate fails until resolved. Also K12 risk: the reference is a multi-week build."
+  ]
+ ],
+ "id": "S-im-060",
+ "kill": "K6",
+ "l0": {
+  "neighbours": [
+   [
+    0.169,
+    "S-im-059"
+   ],
+   [
+    0.145,
+    "S-im-032"
+   ],
+   [
+    0.144,
+    "S-im-038"
+   ],
+   [
+    0.143,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.114,
+    "loop [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "code.videolan.org/videolan/dav1d-test-data|master-61afa1ce-2024-04-16-gitlab-api-commits",
+ "source_notes": "Largest codec stream corpus here; exact md5 of output frames; full AV1 decoder is a multi-week effort (CDEF, loop restoration, film grain, inter pred); rav1d/dav1d exist; test-data licence unknown so shipping is risky; Argon full suite not freely available (not checked)",
+ "source_url": "https://code.videolan.org/videolan/dav1d-test-data",
+ "source_version": "master 61afa1ce 2024-04-16 (GitLab API commits)",
+ "status": "killed:K6",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/videolan/dav1d",
+  "facts": [
+   {
+    "claim": "dav1d-test-data repo exists at code.videolan.org at master 61afa1ce and its licence is not found (README only)",
+    "status": "not_found",
+    "url": "https://code.videolan.org/videolan/dav1d-test-data"
+   },
+   {
+    "claim": "dav1d is licensed BSD-2-Clause",
+    "status": "confirmed",
+    "url": "https://github.com/videolan/dav1d"
+   },
+   {
+    "claim": "dav1d is written in pure C and asm",
+    "status": "confirmed",
+    "url": "https://github.com/videolan/dav1d"
+   },
+   {
+    "claim": "dav1d's README documents an Argon conformance step (tests/dav1d_argon.bash with downloaded Argon bitstreams)",
+    "status": "confirmed",
+    "url": "https://github.com/videolan/dav1d"
+   },
+   {
+    "claim": "Argon Streams AV1 was open-sourced and is freely available via AOMedia, including the current bitstream test set",
+    "status": "confirmed",
+    "url": "https://aomedia.org/blog%20posts/graphcore-open-sources-argon-streams-av1-video-decoder-verification-tool/"
+   },
+   {
+    "claim": "Argon test-stream licence terms and total stream count",
+    "status": "not_found",
+    "url": "https://aomedia.org/blog%20posts/graphcore-open-sources-argon-streams-av1-video-decoder-verification-tool/"
+   },
+   {
+    "claim": "Seed note says the Argon full suite is not freely available",
+    "status": "contradicted",
+    "url": "https://aomedia.org/blog%20posts/graphcore-open-sources-argon-streams-av1-video-decoder-verification-tool/"
+   },
+   {
+    "claim": "rav1d is a BSD-2-Clause Rust port of dav1d",
+    "status": "confirmed",
+    "url": "https://summary.ecosyste.ms/projects/3635"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier; frontier agents likely get intra-only and some inter, few finish CDEF/LR; weaker model stops at OBU parsing; no dated public evidence",
+   "build_cost": "Reference is a multi-week effort (more than 5 days), so Build 1 and K12 applies as well",
+   "deliverable": "AV1 8-bit 4:2:0 profile-0 decoder in C, Rust or Go, CLI emitting raw frames",
+   "gates_anticheat": "Hidden streams and MD5s kept out of image; decoder size capped; no dav1d binary in image; offline run",
+   "grading_surface": "Several hundred hidden streams, exact per-frame MD5 match; fraction matched over reference",
+   "local_fit": "CPU-only, 15k lines of C/Rust/Go fits 8 cores/16 GB; no GPU or network needed at run time",
+   "lookup": "direct: complete BSD-2 decoders dav1d (C) and rav1d (Rust) are public; Argon suite public",
+   "provenance": "dav1d (BSD-2, C/asm) and its Argon test hook are real and public; the test-data repo exists per seed but its licence is unresolved; Argon streams are open-sourced via AOMedia",
+   "reference": "Own reduced-scope ~15k-line decoder, not written or measured; dav1d as cross-check (BSD-2)",
+   "ships": "Seed ships spec excerpts, IVF/OBU demux stub and a few sample streams; shipping those streams depends on the unresolved test-data and Argon licences",
+   "similarity": "Max l0 neighbour 0.169 (S-im-059), above 0.15; no AV1 task in CROWDED list"
+  },
+  "kill_code": "K6",
+  "kill_reason": "Licence of the dav1d-test-data streams and MD5s is not found (repo page blocked, README only), and the Argon stream licence terms are also not found. The task must ship sample streams, so the licence gate fails until resolved. Also K12 risk: the reference is a multi-week build.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "no dated public evidence; full decoder in 20h likely averages well below reference, with pass uncertain"
+   },
+   "Build": {
+    "v": 1,
+    "why": "reference is a multi-week effort, over 5 days"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and fits 8 cores/16 GB; no kernel feature issues expected"
+   },
+   "Hor": {
+    "v": 5,
+    "why": "a full codec decoder is clearly 20h-scale sustained work"
+   },
+   "Lic": {
+    "v": 1,
+    "why": "test-data and Argon stream licences not found; shipping not confirmed"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "clear buckets: intra, inter, loop filters, quantizer range, size edges"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "max neighbour 0.169 is above the 0.15 threshold; no AV1 task in CROWDED"
+   },
+   "Real": {
+    "v": 5,
+    "why": "dav1d and the AV1 spec are real public projects with pinned versions available"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "reference is an unwritten reduced-scope decoder; dav1d would score 1 but is out of scope as a shipped reference"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "hidden streams and MD5s stay out of image, but dav1d and rav1d are famous and recallable in outline"
+   },
+   "Surf": {
+    "v": 5,
+    "why": "hundreds of exact-MD5 streams, with an executable oracle (dav1d)"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Licence stays unknown or forbids shipping, or the 8-bit profile-0 subset has too few streams to score densely.",
+   "pass_if": "Test-data or Argon licence explicitly allows redistribution of sample streams and MD5s, and dav1d reproduces the MD5s deterministically.",
+   "steps": [
+    "In a throwaway networked Linux container, clone code.videolan.org/videolan/dav1d-test-data and check for a LICENSE file or licence text; record the result.",
+    "Find the Argon stream release licence on AOMedia or Argon's release notes; record licence and stream count.",
+    "Clone dav1d (BSD-2) at a pinned tag, build with meson/ninja, and run its tests/dav1d_argon.bash or decode a sample of the test-data streams to confirm MD5 output is deterministic over 3 runs.",
+    "Count 8-bit profile-0 streams by directory (size, quantizer, features) to size the grading surface.",
+    "Stop and kill if the licence cannot be found or does not allow redistribution of the streams."
+   ]
+  },
+  "summary": "AV1 8-bit profile-0 decoder validated against dav1d-derived MD5s: the grading surface is strong and the dav1d reference is BSD-2, but the test-data and Argon stream licences are unresolved, so shipping fails. Killed as K6; the reference is also a multi-week build (K12 risk) and lookup is direct via public dav1d and rav1d."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74
+}

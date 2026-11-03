@@ -1,0 +1,283 @@
+{
+ "attempts": {
+  "spike": 1
+ },
+ "batch": 13,
+ "card": {
+  "band": "8h tier. Five kernels give separate buckets. Direction-optimising BFS and parallelism are known techniques, but a frontier agent rarely tunes all five on skewed graphs. A weaker model stops at -O3 and OpenMP pragmas.",
+  "cheat": "Caching results by graph hash is blocked because the hidden graphs are generated at grading time. Approximate answers fail the exact gates. Network is absent.",
+  "grading": "Exact equality of BFS levels, component partitions, triangle counts and SSSP distances against a reference on hidden generated graphs (different seeds, scales and skews, up to ~100M edges). PageRank is compared at 1e-6 L1. Score is the median wall-clock speedup per kernel, averaged.",
+  "reference": "Our optimised implementation, built on published GAP/Ligra techniques. Its speedup on the hidden graphs defines S.",
+  "source": "https://snap.stanford.edu/data/ (used only as the shape reference; no licence stated, so no SNAP data is shipped) ; GAP Benchmark Suite reference kernels, version not found, licence not verified",
+  "task": "/app ships a straightforward C++ baseline library with BFS, PageRank, connected components, triangle counting and SSSP over CSR graphs, plus an R-MAT/Kronecker generator for shipped sample graphs. The agent makes it faster on 8 cores (direction-optimising BFS, relabelling, bitmaps, parallel scheduling) behind the same CLI and file formats.",
+  "title": "Graph analytics kernels speedup on power-law graphs"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:09:00Z",
+ "family": "numeric-scientific",
+ "final": 71,
+ "history": [
+  [
+   "2026-10-21T01:09:00Z",
+   "write",
+   "short",
+   "batch 13"
+  ],
+  [
+   "2026-10-21T01:09:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-029 0.19"
+  ],
+  [
+   "2026-10-21T01:11:40Z",
+   "v1",
+   "pass",
+   "score 71; dead links []"
+  ],
+  [
+   "2026-10-21T01:12:23Z",
+   "v2",
+   "pass",
+   "final 71"
+  ],
+  [
+   "2026-10-21T01:43:44Z",
+   "spike",
+   "retry",
+   "GAP builds and runs. At scale 18, speedup over a naive baseline is large for TC, PR and SSSP, and about 1x or less for CC and BFS. That is below the plan's 3x on three kernels only if the TC/PR/SSSP count is taken as met. Scale 18 is too small for BFS and CC, and the host was too loaded to measure n"
+  ],
+  [
+   "2026-10-21T01:49:24Z",
+   "spike",
+   "killed:K4",
+   "Host load average 6-17 on 3 CPUs made timing meaningless; GAP scale-20 repeats varied up to 2.5x (tc 7.7-21.7 s, cc 0.036-0.068 s, pr 0.24-0.40 s), so CV was not measurable; Scales 22 and 24 not run (the converter takes 1m42s at scale 20 here); Exact-equality comparison was not completed beyond the "
+  ]
+ ],
+ "id": "S-op-031",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.187,
+    "S-op-029"
+   ],
+   [
+    0.166,
+    "pagerank [AlgoTune]"
+   ],
+   [
+    0.151,
+    "S-rs-013"
+   ],
+   [
+    0.135,
+    "S-op-030"
+   ],
+   [
+    0.12,
+    "count_connected_components [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 2,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "snap.stanford.edu/data|n-a-input-set-pairing-older-ligra-gap-style-or-networkx-grap",
+ "source_notes": "q:\"We encourage you to cite our datasets if you have used them in your work.\" -- no licence/terms on the page; individual dataset pages may carry source-specific terms (not opened). Redistribution unclear -> prefer a synthetic generator (e.g. Graph500 row) for shipped inputs.",
+ "source_url": "https://snap.stanford.edu/data/",
+ "source_version": "n/a (input set); pairing = older Ligra/GAP-style or networkx graph algorithm code",
+ "spike": {
+  "blockers": [
+   "Host load average 6-17 on 3 CPUs made timing meaningless; GAP scale-20 repeats varied up to 2.5x (tc 7.7-21.7 s, cc 0.036-0.068 s, pr 0.24-0.40 s), so CV was not measurable",
+   "Scales 22 and 24 not run (the converter takes 1m42s at scale 20 here)",
+   "Exact-equality comparison was not completed beyond the TC count",
+   "Baseline is self-written, so the headroom figures are not independent evidence"
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 5,
+  "commands_log": "git clone sbeamer/gapbs; make; ./converter -g 18 -k 16 -e; g++ -O3 base.cpp; OMP_NUM_THREADS=8 ./gapbs/{bfs,pr,cc,sssp,tc} -g 20 -k 16 -n 3 (x3 repeats)",
+  "deterministic": false,
+  "gvisor_concerns": [
+   "Wall-clock timing noise on a shared host",
+   "OpenMP thread oversubscription"
+  ],
+  "headroom_note": "Scale 18, naive single-thread baseline vs GAP: tc 19x, pr 12x, sssp 4x, cc ~0.9x, bfs ~0.25x (GAP slower; scale too small, GAP times include thread startup). Headroom depends on how naive the baseline is, and I wrote the baseline. BFS and CC need scale 22+ to show a gain.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "GAP (BSD-3, commit 941462c7) builds and runs. Because the 3-CPU host was heavily loaded, I could not measure noise or the plan's 3x-on-three-kernels test. TC, PR and SSSP clearly exceed 3x over a naive baseline. BFS and CC show about 1x or less at scale 18-20, so the headroom there is unproven. The idea is plausible but depends on the baseline design: the seed-authored baseline would need to be naive enough that BFS and CC leave headroom, without making the task too easy. Wall-clock noise under the sandbox is unverified.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": false,
+  "reference_built": true,
+  "reference_cases_passed": 5,
+  "reference_lines": 900,
+  "start_scores_zero": true,
+  "verdict": "inconclusive",
+  "verifier_minutes_estimate": 25
+ },
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E1",
+  "evidence_url": "https://arxiv.org/abs/2507.15887",
+  "facts": [
+   {
+    "claim": "GAP Benchmark Suite repo (sbeamer/gapbs) exists and is the reference implementation with bfs, sssp, pr, cc, bc and tc kernels; C++11 with OpenMP",
+    "status": "confirmed",
+    "url": "https://github.com/sbeamer/gapbs"
+   },
+   {
+    "claim": "GAP Benchmark Suite licence is BSD 3-Clause (Copyright 2015, The Regents of the University of California)",
+    "status": "confirmed",
+    "url": "https://github.com/sbeamer/gapbs/blob/master/LICENSE"
+   },
+   {
+    "claim": "GAP Benchmark Suite has a published release/version tag",
+    "status": "not_found",
+    "url": "https://github.com/sbeamer/gapbs"
+   },
+   {
+    "claim": "GAP Benchmark Suite paper (Beamer, Asanovi\u0107, Patterson, arXiv:1508.03619) defines the kernels, input graphs and evaluation method and provides optimised reference kernels",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/1508.03619"
+   },
+   {
+    "claim": "Direction-optimizing BFS published by Beamer, Asanovi\u0107, Patterson (SC 2012); GAP BFS uses the direction-optimising approach",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/1508.03619"
+   },
+   {
+    "claim": "SNAP datasets page states no licence, terms of use or redistribution policy (only a citation request)",
+    "status": "confirmed",
+    "url": "https://snap.stanford.edu/data/index.html"
+   },
+   {
+    "claim": "Graph500 specification defines a Kronecker/R-MAT-style generator and requires randomised vertex labels (anti-locality rule)",
+    "status": "confirmed",
+    "url": "https://graph500.org/?page_id=12"
+   },
+   {
+    "claim": "AlgoTune reports LLM agents reach ~1.72x speedup on numerical programs but tend to miss algorithmic innovations, preferring surface-level optimisation",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2507.15887"
+   },
+   {
+    "claim": "AlgoTune contains PageRank and connected-components tasks (the l0 neighbour labels)",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2507.15887"
+   },
+   {
+    "claim": "Our reference implementation (optimised GAP/Ligra-style kernels) exists, builds and reaches a measured speedup S",
+    "status": "not_found",
+    "url": "not_found"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier. Frontier agent likely reaches DOBFS and OpenMP parallelism; full five-kernel tuning to 0.9 of reference is uncertain. Weaker model stops at -O3 plus pragmas. No dated graph-kernel evidence; AlgoTune is adjacent.",
+   "build_cost": "About 3-4 days: write reference over five kernels plus generator and grader; smoke build skipped (no git source).",
+   "deliverable": "Faster C++ library behind unchanged CLI; reward from median wall-clock speedup per kernel averaged, exact-equality gates (PR at 1e-6 L1).",
+   "gates_anticheat": "Hidden graphs regenerated at grading time defeat hash caching; exact gates defeat approximation; grader owns timing harness and build config; shipped sample outputs must not be hard-coded (hidden seeds differ); thread count fixed by grader; network absent.",
+   "grading_surface": "Hidden generated graphs (new seeds, scales, skews, up to ~100M edges) across five kernels; executable oracle, unlimited generator (Surf 4).",
+   "local_fit": "8 cores, 16 GB: 100M-edge CSR with 32-bit ids is roughly 1 GB per graph, fits. OpenMP fine under gVisor. Wall-clock noise under gVisor unverified.",
+   "lookup": "partial: techniques (DOBFS, relabelling, Afforest-style CC, delta-stepping SSSP, TC ordering) and GAP code are public and recallable in outline; no installable offline solution.",
+   "provenance": "GAP Benchmark Suite (sbeamer/gapbs, BSD-3-Clause, Beamer/Asanovi\u0107/Patterson arXiv:1508.03619) used as shape reference; no SNAP data shipped; baseline C++ library and R-MAT generator are seed-authored.",
+   "reference": "Team's own optimised implementation (not yet built, no public artifact). Complete GAP suite is public BSD-3 and covers all five kernels, so GAP-level code is a near-direct reference for the technique space.",
+   "ships": "Baseline C++ library in /app with BFS, PR, CC, TC, SSSP over CSR, same CLI and file formats, plus R-MAT/Kronecker generator for sample graphs. No SNAP data. Snapshot must be history-less.",
+   "similarity": "Nearest l0 neighbour S-op-029 at 0.187 (sibling seed); pagerank [AlgoTune] at 0.166 is a numerical-library task, not a graph-kernel speedup. Not on CROWDED list. Differs by five kernels on hidden power-law graphs at scale."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated graph-kernel evidence, so capped at 3; plausible but unproven that frontier lands near 0.5 of reference."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days to write reference, generator and grader; smoke build skipped."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits 8 cores, 16 GB and a CPU-only sandbox."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Five kernels each with their own tuning path fits an 8h tier."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "GAP is BSD-3 (shippable); SNAP data is not shipped, and the seed uses a synthetic generator."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five kernels give separate speedup buckets with steady credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top neighbour 0.187 exceeds 0.15; graph kernels are not on the CROWDED list."
+   },
+   "Real": {
+    "v": 4,
+    "why": "GAP is a real BSD-3 repo; baseline and reference are seed-authored, so the paper trail is partly indirect."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference not yet built; GAP is a strong public point of comparison but the team's own reference is unmeasured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference and hidden cases are sealed, but GAP code is public and recallable, so technique recall is a Band question."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Five kernels on thousands of generated graphs with an executable oracle and unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Headroom is under 1.5x on most kernels, run-to-run CV is above 10% under the sandbox, or GAP fails exact equality against baseline (indicates an unstable oracle).",
+   "pass_if": "Baseline-to-GAP ratio is at least 3x on at least three of five kernels, exact-equality checks pass, and run-to-run CV is under 5%.",
+   "steps": [
+    "In a throwaway container with network, clone sbeamer/gapbs at the default branch and build with -O3 -fopenmp.",
+    "Build the seed's C++ baseline the same way; write a small driver that runs the five kernels on R-MAT graphs at scale 20, 22 and 24 with fixed seeds.",
+    "Run each kernel 5 times on 8 threads; record median wall-clock for baseline and GAP and compute per-kernel ratio.",
+    "Compare GAP outputs to baseline outputs for exact equality on BFS levels, CC partitions, TC counts and SSSP distances; check PR within 1e-6 L1.",
+    "Repeat the same run 3 times to measure run-to-run noise (coefficient of variation per kernel).",
+    "Record GAP's speedup over baseline as a proxy for S and how much headroom the baseline leaves."
+   ]
+  },
+  "summary": "The GAP suite is real and BSD-3 with all five kernels, and the SNAP data page states no licence, so the seed correctly avoids shipping SNAP data. No kill applies, but the reference is unbuilt and the reference is GAP-based, so a frontier agent could recall GAP-level code, which makes Band the main risk for the spike to test."
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-031",
+  "kill_code": "",
+  "note": "Builds on the GAP suite (BSD-3, arXiv:1508.03619) and the Graph500 generator, but the baseline we ship is written by the seed, so Real is lower. GAP can be adapted as the reference, which keeps Build cost down. GAP's techniques (direction-optimising BFS, Afforest CC, delta-stepping SSSP, ordered triangle counting) are well known and recallable, so a frontier agent may get close to S on several kernels (K8 risk); the separate kernels do give good partial-credit buckets. Requirements: (1) SSSP needs integer weights so exact equality holds. (2) PageRank needs a fixed iteration count so the 1e-6 L1 check is stable regardless of reduction order. (3) gVisor cgroup CPU limits are stubs, so 8-thread wall-clock noise is the main infrastructure risk; the spike must measure CV and enforce the 1.5x headroom kill. (4) Inputs of 100M edges fit in 16 GB only if the grader avoids keeping several copies.",
+  "scores": {
+   "Band": 3,
+   "Build": 4,
+   "Fit": 3,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 71
+}

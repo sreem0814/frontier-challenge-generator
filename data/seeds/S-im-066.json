@@ -1,0 +1,258 @@
+{
+ "batch": 15,
+ "card": {
+  "band": "8 h. Three independent parts give partial credit. A frontier agent usually completes the decoder for common keywords and misses the combinators and refinements, so the mean is below the reference. A weaker model loses the type-level API.",
+  "cheat": "Hard-coding outputs for visible examples. Hidden property tests use generated ASTs, and the regression suite catches edits that break existing behaviour.",
+  "grading": "Hidden vitest suites calling the public API, with round-trip properties (Schema to JSON Schema to Schema) and generated schema ASTs, plus the existing Schema suite as a regression gate. The probe was red (build failed, deterministic), so the bundle must pre-install node_modules in the image and build with a pinned toolchain.",
+  "reference": "We write it. Expected size is about 1.5-2.5k TypeScript lines. The upstream issue trail is not verified (not found).",
+  "source": "https://github.com/Effect-TS/effect @ head 1b74086 (release not pinned), MIT",
+  "task": "/app ships a pinned snapshot of the effect monorepo with the Schema package. The agent adds a multi-part feature set: (1) a JSON Schema to Schema decoder (the reverse of the existing generator), (2) a derived-equivalence and ordering generator, (3) a configurable error-formatter with path-aware messages. Delivery is through the public Schema API.",
+  "title": "Effect Schema: JSON Schema import, Standard Schema bridge and derivations"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:14:10Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T02:14:10Z",
+   "write",
+   "short",
+   "batch 15"
+  ],
+  [
+   "2026-10-21T02:14:10Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-065 0.26"
+  ],
+  [
+   "2026-10-21T02:15:33Z",
+   "v1",
+   "killed:K4",
+   "Round-trip grading (Schema->JSON Schema->Schema) is lossy and the mapping is unspecified; upstream's own importer is documented best-effort, so a different valid solution would fail or pass arbitrarily. Also the decoder premise and the Standard Schema bridge overlap merged upstream code (SchemaRepre"
+  ]
+ ],
+ "id": "S-im-066",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.26,
+    "S-im-065"
+   ],
+   [
+    0.249,
+    "schema [NL2Repo-Bench]"
+   ],
+   [
+    0.227,
+    "S-im-016"
+   ],
+   [
+    0.216,
+    "S-im-014"
+   ],
+   [
+    0.163,
+    "arktype-json-schema-refs-dependencies [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "git",
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 9,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack pnpm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack pnpm install --frozen-lockfile",
+  "cmd_test": "npx vitest run --reporter=json --outputFile=$OUT/run$i.json",
+  "commit": "a9f0ca68aa27fe056f8e1292085331a67a5676e0",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 4,
+  "log": "gine.executePackageManagerRequest (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:22390:47)\n    at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5)\n\nNode.js v22.11.0\n      at async Object.runMain (/usr/local/lib/node_modules/corepack/dist/lib/corepack.cjs:23096:5) {\n    [cause]: Error: getaddrinfo EAI_AGAIN registry.npmjs.org\n        at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {\n      errno: -3001,\n      code: 'EAI_AGAIN',\n      syscall: 'getaddrinfo',\n      hostname: 'registry.npmjs.org'\n    }\n  }\n}\n\nNode.js v22.11.0",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 70,
+  "test_files": 886,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b740862e3d25ec5d4b6f86b9fe792b6dabbf84c",
+  "kb": 151534,
+  "lang": "TypeScript",
+  "open_prs": 117,
+  "pushed": "2026-10-20",
+  "release": "@effect/platform-bun@0.91.3",
+  "spdx": "MIT",
+  "stars": 17339,
+  "test_files": 886,
+  "test_kb": 11195,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/effect-ts/effect|effect-ts-effect",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: pnpm vitest run. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/Effect-TS/effect",
+ "source_version": "",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Effect-TS/effect/pull/8657",
+  "facts": [
+   {
+    "claim": "Effect repo is MIT licensed (copyright Effectful Technologies Inc)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/Effect-TS/effect/main/LICENSE"
+   },
+   {
+    "claim": "Effect Schema documents JSONSchema.make (Schema to JSON Schema generator)",
+    "status": "confirmed",
+    "url": "https://effect.website/docs/schema/json-schema/"
+   },
+   {
+    "claim": "Effect Schema docs document a JSON Schema to Schema import function (seed's decoder premise)",
+    "status": "contradicted",
+    "url": "https://effect.website/docs/schema/json-schema/"
+   },
+   {
+    "claim": "A JSON Schema Draft 2020-12 importer already exists upstream: SchemaRepresentation.fromJsonSchemaDocument, best-effort, not lossless, multi-root variant",
+    "status": "confirmed",
+    "url": "https://effect.website/docs/v4/api/effect/SchemaRepresentation"
+   },
+   {
+    "claim": "PR #6781 'fix(schema): deduplicate JSON Schema fallback definitions' changes JSON Schema import behaviour and is merged (2026-07-30)",
+    "status": "confirmed",
+    "url": "https://github.com/Effect-TS/effect/pull/6781"
+   },
+   {
+    "claim": "PR #8657 'canonicalize imported JSON Schema pattern sources' is merged (2026-10-02) and fixes the existing importer, not a new converter",
+    "status": "confirmed",
+    "url": "https://github.com/Effect-TS/effect/pull/8657"
+   },
+   {
+    "claim": "Schema Standard Schema bridge already exists (Schema.toStandardSchemaV1 in v4, standardSchemaV1 in 3.13); the seed title lists it as in scope but the task body does not",
+    "status": "confirmed",
+    "url": "https://effect.website/docs/v4/schema/standard-schema.md"
+   },
+   {
+    "claim": "Reverse JSON Schema to Schema API under the name Schema.fromJsonSchema exists",
+    "status": "not_found",
+    "url": "https://effect.website/docs/v4/schema/json-schema.md"
+   },
+   {
+    "claim": "Upstream issue trail for the reverse decoder",
+    "status": "not_found",
+    "url": "https://github.com/Effect-TS/effect/pulls?q=is%3Apr+%22json+schema%22"
+   },
+   {
+    "claim": "Repo at head 1b74086 dated 2026-10-20, 886 test files, 11195 KB tests, 117 open PRs, not archived, not fork",
+    "status": "confirmed",
+    "url": "https://github.com/Effect-TS/effect"
+   },
+   {
+    "claim": "Smoke probe build commit a9f0ca68 differs from the seed's pinned head 1b74086; pinned ref is inconsistent",
+    "status": "contradicted",
+    "url": "https://github.com/Effect-TS/effect"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier; frontier likely completes common keywords; combinators/refinements partial; weaker model loses type-level API. Unverified against dated evidence",
+   "build_cost": "3-4 days: rebuild probe fix, pre-install deps, pinned toolchain, history-less snapshot from pre-July-2026 base, write reference and hidden suites",
+   "deliverable": "JSON Schema to Schema decoder, derived equivalence/ordering generator, path-aware configurable error formatter, via public Schema API",
+   "gates_anticheat": "Hidden tests, regression suite; cheat paths: hard-coded outputs, editing tests/build config. Round-trip is not lossless upstream so oracle depends on our mapping choices",
+   "grading_surface": "Hidden vitest suites: round-trip properties Schema->JSON Schema->Schema and generated ASTs, plus existing Schema suite as regression gate; no per-test report in probe",
+   "local_fit": "Node/pnpm monorepo, 886 test files; fits 8 CPU/16 GB if node_modules pre-installed; smoke build red (corepack pnpm build failed offline, runs exit 1 x3, no per-test report)",
+   "lookup": "partial: upstream Draft 2020-12 importer (SchemaRepresentation.fromJsonSchemaDocument, merged 2026-07/10) already covers the reverse direction; seed's API name not found",
+   "provenance": "Effect-TS/effect monorepo, MIT, head 1b74086 (2026-10-20); release not pinned; smoke probe used a9f0ca68 (mismatch)",
+   "reference": "Not written; seed says we write ~1.5-2.5k TS lines; no upstream reference for the decoder API",
+   "ships": "Pinned history-less snapshot of effect monorepo with Schema package; pre-installed node_modules required",
+   "similarity": "l0 neighbours: S-im-065 (0.26, another seed), NL2Repo 'schema' (0.249, not same deliverable), S-im-016 (0.227), S-im-014 (0.216); not a CROWDED subject but overlaps upstream feature work"
+  },
+  "kill_code": "K4",
+  "kill_reason": "Round-trip grading (Schema->JSON Schema->Schema) is lossy and the mapping is unspecified; upstream's own importer is documented best-effort, so a different valid solution would fail or pass arbitrarily. Also the decoder premise and the Standard Schema bridge overlap merged upstream code (SchemaRepresentation importer, toStandardSchemaV1), and the seed's pinned commit (1b74086) differs from the probe commit (a9f0ca68). Re-scope to an exact-fidelity keyword subset with a written mapping spec and a pre-July 2026 base to resubmit.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausibly hard at 8 h with multi-part credit, but no dated public evidence"
+   },
+   "Build": {
+    "v": 2,
+    "why": "Probe red offline; pinned toolchain and per-test reporting needed; est. 3-4 days"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Node monorepo fits 8 CPU/16 GB once deps are pre-installed"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Three independent parts give sustained 8 h work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT confirmed"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Three parts with natural partial-credit buckets"
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Reverse JSON Schema importer already public upstream, so overlap with public work is high"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MIT monorepo with 886 test files, but the decoder premise overlaps merged upstream importer code"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference exists; we would write it, and it is not a complete upstream implementation of the spec"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Snapshot needed to hide merged upstream importer; base must predate July 2026"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Vitest suites with generated ASTs can be large, but round-trip oracle depends on unspecified mapping choices"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build cannot be made offline-deterministic, or the round-trip oracle cannot be specified without encoding the reference's internal mapping choices, or the base snapshot would need to be pre-July 2026 with the decoder scope already public.",
+   "pass_if": "Build succeeds offline with pinned toolchain, per-test JSON results are produced deterministically, and round-trip failure set is small and explainable by a fixed mapping spec.",
+   "steps": [
+    "In a networked throwaway Linux container, clone Effect-TS/effect at 1b74086 and at a9f0ca68; record which commit the seed's probe actually built.",
+    "grep-free check: confirm whether SchemaRepresentation.fromJsonSchemaDocument exists and which merged PRs (#6781, #8657) are in the head tree; find the last commit before 2026-07-30 as candidate base.",
+    "Run corepack pnpm install and the build command from smoke_build; record the exact failure (lockfile, corepack, network) and the pinned pnpm version needed.",
+    "Run pnpm vitest run for the Schema package with --reporter=json and check per-test results and determinism over 3 runs.",
+    "Sample 20 generated Schema ASTs, run Schema->JSONSchema.make->SchemaRepresentation import->Schema, and count exact-equality round-trip failures to measure lossiness.",
+    "Decide whether the decoder subset can be specified exactly enough that two independent implementations agree; if not, re-scope."
+   ]
+  },
+  "summary": "Effect Schema multi-part feature with real MIT source, but the reverse JSON Schema decoder already exists in merged upstream code (SchemaRepresentation.fromJsonSchemaDocument, PRs #6781 and #8657) and the Standard Schema bridge already ships, so the premise is partly public. Round-trip grading is lossy and unspecified, and the smoke build is red offline, so it is killed as K4 pending a re-scoped version."
+ },
+ "v1_links": {
+  "checked": 9,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

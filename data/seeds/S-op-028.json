@@ -1,0 +1,214 @@
+{
+ "batch": 12,
+ "card": {
+  "band": "8 h. Scalar and algorithmic wins (radix, better partitioning) are easy. Intrinsics, dispatch and the skewed-input pathologies separate frontier agents from weaker ones. Risk: if the host lacks AVX-512 the ceiling drops, so S must be measured there. Dated public evidence: not found.",
+  "cheat": "Caching results or returning unsorted data is closed by the exact-equality gate on fresh arrays and by timing each array once. The shipped snapshot has no newer NumPy or x86-simd-sort source, and installation is impossible offline.",
+  "grading": "Hard gate: exact output equality against the untouched scalar build on thousands of generated arrays (random, sorted, reversed, many duplicates, NaN-laden, skewed, odd lengths, strided views) plus the existing sort tests. Score: median wall-clock speedup over a mixed distribution set, reward = 2^u - 1 against S.",
+  "reference": "NumPy 1.25.0 sort and argsort kernels. S is measured on the grading host with the same build flags, so it reflects the instruction sets that host really has. The upstream PR reports int16 555us to 32.8us on AVX-512, and the host may lack AVX-512.",
+  "source": "https://numpy.org/doc/stable/release/1.25.0-notes.html (gh-22315 sort, gh-23707 argsort); NumPy 1.24.x base, BSD-3-Clause; x86-simd-sort BSD-3-Clause",
+  "task": "/app ships a history-less NumPy 1.24.x source snapshot with a build recipe for a pinned Python. The agent makes np.sort and np.argsort faster for int16, int64 and float64 (SIMD kernels or another fast algorithm) with a scalar fallback on CPUs lacking the instructions. It must keep stable and non-stable kind semantics, NaN ordering and every dtype's existing results.",
+  "title": "NumPy 1.24 to 1.25 vectorised np.sort and np.argsort speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:07:29Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T01:07:29Z",
+   "write",
+   "short",
+   "batch 12"
+  ],
+  [
+   "2026-10-21T01:07:29Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-026 0.23"
+  ],
+  [
+   "2026-10-21T01:15:38Z",
+   "v1",
+   "killed:K1",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 4, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 2, 'Lic': 5, 'Fit': 3, 'Build': 3}"
+  ]
+ ],
+ "id": "S-op-028",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.228,
+    "S-op-026"
+   ],
+   [
+    0.147,
+    "numpy__numpy-794f474 [GSO]"
+   ],
+   [
+    0.138,
+    "S-op-023"
+   ],
+   [
+    0.135,
+    "S-im-012"
+   ],
+   [
+    0.117,
+    "stable_matching [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "numpy.org/doc/stable/release/1.25.0-notes.html|numpy-1-24-x-numpy-1-25-0-gh-22315-sort-gh-23707-argsort",
+ "source_notes": "Levers: AVX-512 SKX (64-bit) and ICL (16-bit) vector quicksort kernels, bitonic networks, runtime CPU dispatch, headers split out. Caveat: Voultapher writeup (github.com/Voultapher/sort-research-rs intel_avx512) shows these kernels can be ~15x slower than ipnsort on skewed/sorted inputs, so input distribution decides S. AVX-512 not guaranteed on grader hosts: a portable variant (ipnsort-style) would be safer. Release notes do not name x86-simd-sort",
+ "source_url": "https://numpy.org/doc/stable/release/1.25.0-notes.html",
+ "source_version": "NumPy 1.24.x -> NumPy 1.25.0 (gh-22315 sort, gh-23707 argsort)",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://numpy.org/doc/stable/release/1.25.0-notes.html",
+  "facts": [
+   {
+    "claim": "NumPy 1.25.0 release notes list 'Faster np.sort on AVX-512 enabled processors' (16-bit up to 15x, 64-bit up to 9x) linked to PR gh-22315",
+    "status": "confirmed",
+    "url": "https://numpy.org/doc/stable/release/1.25.0-notes.html"
+   },
+   {
+    "claim": "NumPy 1.25.0 release notes list 'Faster np.argsort on AVX-512 enabled processors' (32/64-bit up to 6x) linked to PR gh-23707",
+    "status": "confirmed",
+    "url": "https://numpy.org/doc/stable/release/1.25.0-notes.html"
+   },
+   {
+    "claim": "The NumPy 1.25.0 release notes do not name x86-simd-sort, SIMD or highway",
+    "status": "confirmed",
+    "url": "https://numpy.org/doc/stable/release/1.25.0-notes.html"
+   },
+   {
+    "claim": "PR numpy/numpy#22315 'ENH: Vectorize quicksort for 16-bit and 64-bit dtype using AVX512' was opened 2022-09-20 and merged 2023-02-15 into main (after the 1.24.x release line)",
+    "status": "confirmed",
+    "url": "https://github.com/numpy/numpy/pull/22315"
+   },
+   {
+    "claim": "PR #22315 benchmark on Tiger Lake i7-1165G7: int16 random 555 us to 32.8 us",
+    "status": "confirmed",
+    "url": "https://github.com/numpy/numpy/pull/22315"
+   },
+   {
+    "claim": "PR #22315 says x86-simd-sort routines do not preserve NaN bit patterns; follow-up issue #23234 opened on NaN handling",
+    "status": "confirmed",
+    "url": "https://github.com/numpy/numpy/pull/22315"
+   },
+   {
+    "claim": "NumPy 1.25 vendors x86-simd-sort as a submodule used for np.sort, np.argsort, np.partition and np.argpartition",
+    "status": "confirmed",
+    "url": "https://www.phoronix.com/news/Intel-AVX-512-Quicksort-Numpy"
+   },
+   {
+    "claim": "x86-simd-sort is licensed BSD 3-Clause, Copyright (c) 2022, Intel",
+    "status": "confirmed",
+    "url": "https://github.com/intel/x86-simd-sort/blob/main/LICENSE.md"
+   },
+   {
+    "claim": "NumPy source is BSD 3-Clause, Copyright (c) 2005-2022 NumPy Developers (checked at v1.24.4 tag)",
+    "status": "confirmed",
+    "url": "https://github.com/numpy/numpy/blob/v1.24.4/LICENSE.txt"
+   },
+   {
+    "claim": "Bergdoll (2023-06-10) reports intel_avx512 has worst performance on random_p5 (95% one value) and cannot exploit sorted input; ipnsort about 15-19x faster on random_p5 at 10M and about 15-20x faster on sorted at 100k (author is ipnsort's author, disclosed)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/Voultapher/sort-research-rs/main/writeup/intel_avx512/text.md"
+   },
+   {
+    "claim": "Dated public evidence of AI agents attempting or partially solving this kind of NumPy sort-kernel task",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Scalar and algorithmic wins are easy; SIMD dispatch, bitonic kernels and skewed-input pathologies are the separator. Reference is itself weak on random_p5 and sorted inputs, so S depends on the distribution mix. No dated agent evidence found.",
+   "build_cost": "About 3 days: pinned Python plus meson NumPy 1.24 build, dispatch harness, reference build from 1.25.0 tag, timing and distribution harness.",
+   "deliverable": "Faster int16/int64/float64 np.sort and np.argsort, SIMD or other fast algorithm, with scalar fallback; keep kind semantics, NaN ordering and all other dtypes.",
+   "gates_anticheat": "Fresh arrays per timing call, each array timed once (defeats caching); exact-equality gate on fresh inputs (defeats unsorted output). Editing tests or build config must be closed by a grader-owned test harness outside /app. Vendoring x86-simd-sort from memory or network closed by no-network run and history-less snapshot.",
+   "grading_surface": "Exact-equality gate versus untouched scalar build on thousands of generated arrays plus existing sort tests; reward 2^u-1 from median speedup over mixed distributions. Gate as written is unsafe for argsort on duplicates and for NaN payloads (see kill_reason); must be repaired.",
+   "local_fit": "CPU-only NumPy build; fits 8 cores / 16 GB; gVisor has no perf counters (not needed, wall-clock only). Grader host must have AVX-512 (SKX and ICL) for the reference ceiling to be meaningful.",
+   "lookup": "direct: full AVX-512 quicksort is public in NumPy 1.25 and x86-simd-sort (BSD-3); a model may recall the outline. Snapshot must omit both.",
+   "provenance": "NumPy 1.25.0 release notes, gh-22315 (int16/int64/float64 sort) and gh-23707 (argsort); upstream merged PR; NumPy and x86-simd-sort both BSD-3-Clause. Upstream 1.25 is a public later release.",
+   "reference": "NumPy 1.25.0 tag (AVX-512 SKX 64-bit and ICL 16-bit kernels via x86-simd-sort). S measured on the grading host. Reference's own pass against the exact gate is unverified.",
+   "ships": "History-less NumPy 1.24.x source snapshot plus pinned-Python build recipe; no newer NumPy or x86-simd-sort source. Snapshot not yet verified for absence of the submodule (spike step).",
+   "similarity": "Top l0 neighbour S-op-026 cos 0.228 (above 0.15 threshold, not checked against its card); numpy__numpy-794f474 [GSO] 0.147 is a NumPy speedup matching an expert commit, which is on the CROWDED list. Deliverable (C kernels, 2^u-1 on mixed distributions, exact gate) differs from GSO's patch-match scoring."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Likely finishable in some trials, but no dated agent evidence found; capped at 3 without it."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days including NumPy build, dispatch harness and reference."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Fits CPU-only sandbox, but AVX-512 availability on the grader host is unknown."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Three dtypes, two operations, several kinds, dispatch and fallback; sustained 8 h work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "NumPy and x86-simd-sort are both BSD-3-Clause, confirmed at source."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Independent buckets per dtype, operation, kind and distribution, with steady partial credit."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Top neighbour cos 0.228 and a GSO-style NumPy speedup neighbour; closest to the CROWDED Python-library-speedup class."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Merged upstream NumPy PRs, dated release notes, BSD-3 source with a real history."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete permissive reference exists, but its exact-equality behaviour on NaN payloads and argsort ties is unverified, so it may not score 1 on the gate."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is public and famous; snapshot can omit it, but x86-simd-sort is known in outline to a frontier agent."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of generated arrays across dtypes, kinds, distributions and existing NumPy sort tests; executable oracle with unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Reference fails the repaired gate, the grading host lacks AVX-512 so the reference speedup is near 1 (K7/K4), or the snapshot contains the upstream kernels (K11).",
+   "pass_if": "Snapshot has no newer AVX-512 sort source; 1.25.0 passes the repaired gate on all distributions; reference median speedup on int16 and float64 is at least 3x on the AVX-512 host; build finishes within the spike budget.",
+   "steps": [
+    "In a throwaway networked Linux container, check host CPU flags (avx512f, avx512bw, avx512vl, avx512dq, avx512_icl) on the grading-equivalent machine type; record them.",
+    "Clone numpy v1.24.4 and v1.25.0 tags into separate empty dirs; confirm the 1.24.4 tree and history contain no x86-simd-sort submodule or npysort AVX-512 kernels (git log on the tag for numpy/_core or core/src/npysort).",
+    "Build both trees with the same pinned Python and the same meson flags (-Dbuildtype=release); record build time.",
+    "Run a fixed-seed script: for float64 and int16 inputs (random, sorted, reversed, 95% duplicates, NaN-laden), compare 1.25.0 np.sort output bit-for-bit with 1.24.4 output; repeat for np.argsort kind='quicksort' and check whether indices differ on duplicates while values and permutation validity still hold.",
+    "Time np.sort int16 random 1M and float64 random 1M on 1.24.4 vs 1.25.0 with 5 repeats each; record medians. Time the skewed (95% one value) and sorted distributions too.",
+    "Decide: if 1.25.0 fails bit-equality on NaNs or argsort ties, the gate must compare sorted values and check permutation validity instead; rewrite the gate before building the card. If the 1.25.0 reference cannot pass its own repaired gate, kill K4."
+   ]
+  },
+  "summary": "The source, licences (NumPy and x86-simd-sort both BSD-3-Clause) and the int16 benchmark (555 us to 32.8 us, Tiger Lake) check out against upstream, but the lookup is direct because the full AVX-512 kernels are public in NumPy 1.25 and x86-simd-sort. The exact-equality gate as written is unsafe: x86-simd-sort does not preserve NaN bit patterns and non-stable argsort indices on duplicates differ across valid algorithms, so the gate must compare values and permutation validity and be proven against the 1.25.0 reference in the spike before any build."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74
+}

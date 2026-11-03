@@ -1,0 +1,274 @@
+{
+ "batch": 13,
+ "card": {
+  "band": "20h tier. Numerically robust simplex plus branching is a large surface. A frontier agent solves the LP and small MIP buckets in some trials, but rarely the harder families. A weaker model stops at the MPS parser and a dense tableau.",
+  "cheat": "There is no HiGHS or scipy in the image and no network. The solution checker is independent. Instances are generated at grading time and the family list is hidden.",
+  "grading": "Hidden set of ~500 generated MIPs (knapsack, set cover, facility location, lot sizing, assignment, infeasible and unbounded cases). Each is checked for status, optimal objective at 1e-6 relative tolerance against HiGHS, and feasibility of the returned solution with an independent checker. Reward is the fraction solved within the limit, and the time limit gives graded credit.",
+  "reference": "A reference solver we write, validated against HiGHS (MIT) offline. Expected size is ~4k lines. Its solve rate on the hidden set is the ceiling.",
+  "source": "MPS format and MIPLIB 2017 (https://miplib.zib.de/, licence not stated, so no MIPLIB files are shipped) ; HiGHS (MIT) as the oracle, version not found",
+  "task": "/app ships the CLI spec and a few small sample MPS/LP models. The agent builds an LP/MIP solver in C++ or Rust: MPS reader (free and fixed format, RANGES and BOUNDS), presolve, dual simplex, branch-and-bound with cuts and heuristics. The CLI prints status and objective plus a solution file under a time limit.",
+  "title": "Mixed-integer linear programming solver with MPS reader"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:09:01Z",
+ "family": "solver",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-21T01:09:01Z",
+   "write",
+   "short",
+   "batch 13"
+  ],
+  [
+   "2026-10-21T01:09:01Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-013 0.22"
+  ],
+  [
+   "2026-10-21T01:10:46Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-21T01:12:23Z",
+   "v2",
+   "pass",
+   "final 75"
+  ],
+  [
+   "2026-10-21T02:05:55Z",
+   "spike",
+   "validated",
+   "Oracle is HiGHS 1.15.1 (highspy). HiGHS and SCIP 6.3.0 (via PySCIPOpt) agree within 1e-6 on every instance both proved optimal (50/50, plus infeasible match); the 6 mismatches are SCIP time-limit stops. HiGHS repeat runs matched on 54/56, and the 2 differences were time-limit instances. \"reference_c"
+  ]
+ ],
+ "id": "S-im-062",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.22,
+    "S-rs-013"
+   ],
+   [
+    0.184,
+    "S-op-029"
+   ],
+   [
+    0.183,
+    "S-im-038"
+   ],
+   [
+    0.145,
+    "set_cover [AlgoTune]"
+   ],
+   [
+    0.12,
+    "set_cover_conflicts [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 1,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "miplib.zib.de/download.html ; https://miplib.zib.de|n-a-input-set-pairing-older-highs-cbc-scip-release",
+ "source_notes": "q:\"contains 240 instances that are solvable by (the union of) today's codes.\" Download page shows only \"\u00a9 by Zuse Institute Berlin (ZIB)\" footer, no licence text -> redistribution unclear; ask ZIB or have the task download-free (agent cannot download offline). Many individual instances have own sources. Single-source (miplib site).",
+ "source_url": "https://miplib.zib.de/download.html ; https://miplib.zib.de/",
+ "source_version": "n/a (input set); pairing = older HiGHS/CBC/SCIP release",
+ "spike": {
+  "blockers": [
+   "Our own 4k-line reference solver is not written (HiGHS is only the oracle); HiGHS reports unbounded MIPs as 'Primal infeasible or unbounded', so the spec must define the status convention or the grader must run presolve-off/LP checks.",
+   "Time-limited instances give non-deterministic objectives; grade only instances HiGHS proves optimal."
+  ],
+  "build_minutes": 5,
+  "cases_sampled": 56,
+  "commands_log": "pip install highspy pyscipopt numpy (venv /work/v); python s/gen.py (140 MPS); python s/run.py highs 1|2, scip 1 (8 seeds/family, 15s, threads=1); python s/cmp.py",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Families span trivial (inf, unb, assign ~1s), mid (knap up to 9s) and hard (sc, lot, fl hit 15s limit with HiGHS); sizes need tuning so hard families are mostly solvable within the limit.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "Oracle is HiGHS 1.15.1 (highspy). HiGHS and SCIP 6.3.0 (via PySCIPOpt) agree within 1e-6 on every instance both proved optimal (50/50, plus infeasible match); the 6 mismatches are SCIP time-limit stops. HiGHS repeat runs matched on 54/56, and the 2 differences were time-limit instances. \"reference_cases_passed\" counts the HiGHS oracle, not our own solver, which doesn't exist yet. The sample covered 8 seeds per family, not the planned 20, and ran at a 15 s limit. Generators were adjusted after an initial cost-vector bug.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 56,
+  "reference_lines": 4000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 60
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/pdf/2605.09186",
+  "facts": [
+   {
+    "claim": "HiGHS core is MIT-licensed; HiPO-enabled binaries and highspy-extras are Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/ERGO-Code/HiGHS"
+   },
+   {
+    "claim": "HiGHS latest release is v1.14.0 (April 2026); v1.15 planned for June 2026, not verified as shipped",
+    "status": "not_found",
+    "url": "https://cran.r-project.org/web/packages/highs/index.html"
+   },
+   {
+    "claim": "MIPLIB 2017 benchmark set has 240 instances that are solvable by the union of today's codes",
+    "status": "confirmed",
+    "url": "https://miplib.zib.de/"
+   },
+   {
+    "claim": "MIPLIB site states no licence or redistribution terms; only a copyright footer (ZIB) and a citation request",
+    "status": "confirmed",
+    "url": "https://miplib.zib.de/"
+   },
+   {
+    "claim": "MPS format sections (NAME, ROWS, COLUMNS, RHS, RANGES, BOUNDS, ENDATA) and bound types (UP, LO, FX, FR, MI, PL, BV) are documented by solver manuals; free and fixed MPS variants exist",
+    "status": "confirmed",
+    "url": "https://lpsolve.sourceforge.net/5.1/mps-format.htm"
+   },
+   {
+    "claim": "IBM documentation of the MPS format sections and bound types",
+    "status": "not_found",
+    "url": "https://www.ibm.com/docs/en/icos/22.1.1?topic=formats-mps-file-format"
+   },
+   {
+    "claim": "SCIP is released under Apache-2.0 (a complete permissive MIP solver exists publicly)",
+    "status": "confirmed",
+    "url": "https://github.com/scipopt/scip"
+   },
+   {
+    "claim": "CBC is a C++ MIP solver under EPL-2.0 (a complete public MIP solver exists)",
+    "status": "confirmed",
+    "url": "https://github.com/coin-or/Cbc"
+   },
+   {
+    "claim": "No public paper found in which an LLM agent writes a complete MIP solver from scratch with benchmark results; closest work (arXiv 2605.09186, May 2026) extends SCIP plugins and solves five extra MIPLIB instances",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2605.09186"
+   },
+   {
+    "claim": "Hidden set of ~500 generated MIPs across seven families, checked against HiGHS and an independent checker",
+    "status": "not_found",
+    "url": "https://highs.dev/"
+   },
+   {
+    "claim": "Reference solver of ~4k lines exists and is validated against HiGHS",
+    "status": "not_found",
+    "url": "https://github.com/ERGO-Code/HiGHS"
+   }
+  ],
+  "full_card": {
+   "band": "20h tier. Frontier: some trials pass LP and small MIP families, harder families (lot sizing, big-M facility location, numerics) rarely. Weaker model stops at the MPS parser/dense tableau. Band claim unverified (E0).",
+   "build_cost": "~2-4 days of our work: 4k-line reference, generator for seven families, checker, HiGHS harness, validation across ~500 instances. Smoke build skipped (no git source).",
+   "deliverable": "C++ or Rust LP/MIP solver: MPS reader (free/fixed, RANGES, BOUNDS), presolve, dual simplex, branch-and-bound with cuts/heuristics, CLI with status, objective, solution file under a time limit.",
+   "gates_anticheat": "Oracle and checker sealed; no LP/MIP library (scipy, glpk, cbc, highs) in image; verify with a sweep at build time. Tests/config not writable by agent; no network at run time. Status strings and unbounded-vs-infeasible convention must be fixed in the spec.",
+   "grading_surface": "~500 generated MIPs over knapsack, set cover, facility location, lot sizing, assignment, infeasible, unbounded; status + objective at 1e-6 rel vs HiGHS + independent feasibility check; time-limit credit. Generator and oracle run at grading time (unlimited generator).",
+   "local_fit": "8 cores, 16 GB, CPU only, no network, gVisor-safe (plain processes and file I/O). Memory caps for B&B nodes must be explicit in spec.",
+   "lookup": "Complete public solvers exist (HiGHS MIT, SCIP Apache-2.0, CBC EPL-2.0) but none installable offline in the image; known in outline, not recallable verbatim. No merged PR/fork of our reference expected. lookup_verdict partial.",
+   "provenance": "Real subject: MPS format (solver manuals), MIPLIB 2017 benchmark (240 instances, no licence on site), HiGHS (MIT) as oracle. Graded instances are generated, so no MIPLIB file is needed for grading.",
+   "reference": "Our ~4k-line solver, validated against HiGHS offline; not yet written. Ceiling = its solve rate.",
+   "ships": "CLI spec, a few self-made small MPS/LP samples (must not be MIPLIB files), no oracle, no reference, no solver library.",
+   "similarity": "Nearest l0 neighbours: S-rs-013 0.22, S-op-029 0.184, S-im-038 0.183 (above 0.15), set_cover AlgoTune 0.145 and set_cover_conflicts 0.12 share a subject but not the deliverable. Not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents building this kind of solver; seed band claim is unverified; at most 3 without evidence."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Roughly 2-4 days for reference, generator, checker and validation; under the 5-day K12 limit."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, 8 cores, 16 GB fits; B&B memory must be capped explicitly."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Parser, presolve, dual simplex, B&B and cuts across a 20h tier is sustained multi-module work."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "HiGHS MIT oracle is not shipped; MIPLIB has no licence so its files must not ship; reference is ours."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Seven instance families plus parser features (RANGES, BOUNDS, free/fixed) give steady independent buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours at 0.22, 0.184, 0.183 exceed 0.15; set-cover neighbours share subject but differ in deliverable."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MPS standard, MIPLIB 2017 and HiGHS repo confirmed; graded instances are synthetic, so subject is real but data is generated."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference is planned (~4k lines) and validated against HiGHS but not written yet; reaches 5 only after it exists and scores 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "HiGHS, SCIP and CBC are public and installable outside the image; large implementations are known in outline only; oracle and reference stay sealed."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Unlimited generator plus executable HiGHS oracle; ~500 cases per run."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Oracle non-deterministic, or two public solvers disagree beyond 1e-6 on more than about 10% of instances (K4), or every family is either trivial or unsolvable within the limit (K8/K9).",
+   "pass_if": "Oracle is deterministic, second solver agrees with HiGHS within 1e-6 on at least 95% of instances, and families spread across easy and hard solve times.",
+   "steps": [
+    "In a throwaway container with network, pip install a pinned HiGHS (highspy) and record the exact version; pin the oracle version in the card.",
+    "Write a small generator for each of the seven families (knapsack, set cover, facility location, lot sizing, assignment, infeasible, unbounded), 20 seeds each, and write MPS files.",
+    "Solve each instance with HiGHS twice with a fixed time limit and thread count; confirm identical status and objective within 1e-9 relative (determinism).",
+    "Solve the same instances with a second public solver (SCIP via pyscipopt or CBC via a binary) and count disagreements beyond 1e-6 relative; a high disagreement rate kills the 1e-6 gate (K4).",
+    "Record per-family solve times and rates under 10 s and 60 s to set the partial-credit buckets and check that the harder families are not trivially easy or unsolvable for a dense baseline.",
+    "Confirm the spec's status convention for MIP unbounded vs infeasible by checking HiGHS' reported status on the unbounded family."
+   ]
+  },
+  "summary": "The MIP solver idea passes the gates on paper: MPS and HiGHS (MIT) are real, the generated grading surface is large, and no gate is failed outright, with lookup partial because public solvers exist but cannot be installed offline. The main risks are unverified difficulty bands (no dated evidence), the 1e-6 objective tolerance against HiGHS, and the reference not yet written, so the spike must check oracle determinism and solver agreement before building."
+ },
+ "v1_links": {
+  "checked": 9,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-062",
+  "kill_code": "",
+  "note": "Has a real paper trail: the MPS format is documented in solver manuals, and HiGHS (MIT) can serve as a differential oracle. Instances come from a generator, so the grading surface is unlimited, and no MIPLIB files are shipped. The reference solver (~4k lines) has not been written yet, so the 2-4 day estimate is optimistic and Ref and Build are scored low. Nothing dated backs the band claim, so Band stays at 3 with some K9 risk on the lot-sizing and big-M families. Five review fixes: (1) Fix the HiGHS gap settings: mip_rel_gap=0 or an absolute gap, because the default 1e-4 gap conflicts with the 1e-6 objective check. (2) Spell out the infeasible vs unbounded status convention. (3) Judge alternative optima on objective plus feasibility only, so any valid solution passes. (4) Make the time limits generous, because gVisor wall-clock jitter would otherwise cause infrastructure failures. (5) The spike must check that our reference is not slower than the frontier, since its solve rate sets the ceiling.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 5,
+   "Hor": 5,
+   "Lic": 4,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 79
+}

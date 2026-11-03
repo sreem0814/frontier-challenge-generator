@@ -1,0 +1,246 @@
+{
+ "batch": 14,
+ "card": {
+  "band": "8 h. Frontier agents usually get parsing and basic bit-blasting working but diverge on multiplication/division encodings, preprocessing and CDCL performance, so they average below the reference. Buckets: operator coverage, sat correctness, unsat completeness, speed tiers by instance size. A weaker model stops at parsing and a naive solver that times out on arithmetic-heavy instances.",
+  "cheat": "Shell out to z3, bitwuzla or another installed solver: none are in the image and there is no network. Guess answers by status prior: sat answers need a verified model, and renamed, reordered hidden instances prevent lookup by hash.",
+  "grading": "Hidden set of several hundred QF_BV instances, subsampled and size-limited from the library, with variables renamed and assertions reordered. Each has a recorded status. Unsat must match the recorded status. Sat is accepted only if a model checker evaluating get-value output against the assertions confirms it. Fixed per-instance timeout, score is the fraction solved correctly. A wrong answer counts zero for that instance.",
+  "reference": "Our own reference: roughly 3,000 lines of parser, bit-blaster and CDCL, run over the hidden set. Its solved fraction is the ceiling; implementation reward is the fraction relative to it.",
+  "source": "https://smt-lib.org benchmark library, QF_BV family (explore.smt-lib.org); CC-BY-4.0 from the 2017 release onward (attribution kept in bundle). Exact release number: not found",
+  "task": "/app ships an empty CLI skeleton, an SMT-LIB 2.6 QF_BV command-subset spec and about 100 sample instances with known status. The agent builds a tool that reads .smt2 files (set-logic, declare-fun/const, define-fun, assert, check-sat, get-value, full BV operator set incl. bvmul, bvudiv, bvurem, shifts, rotate, extract/concat, ite, let) and prints sat/unsat plus requested values. Needs a parser, term simplifier, bit-blaster and its own CDCL SAT core.",
+  "title": "QF_BV SMT decision procedure with bit-blasting and CDCL"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:18:42Z",
+ "family": "solver",
+ "final": 68,
+ "history": [
+  [
+   "2026-10-21T01:18:42Z",
+   "write",
+   "short",
+   "batch 14"
+  ],
+  [
+   "2026-10-21T01:18:42Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-062 0.19"
+  ],
+  [
+   "2026-10-21T01:22:46Z",
+   "v1",
+   "pass",
+   "score 68; dead links ['https://cs.nyu.edu/pipermail/smt-comp/2017/000493.html', 'https://smtcomp.sourceforge.net/2015/benchmarks.shtml']"
+  ],
+  [
+   "2026-10-21T01:23:26Z",
+   "v2",
+   "killed:K8",
+   "final 68 below line"
+  ]
+ ],
+ "id": "S-im-064",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.191,
+    "S-im-062"
+   ],
+   [
+    0.162,
+    "S-im-038"
+   ],
+   [
+    0.118,
+    "S-im-030"
+   ],
+   [
+    0.104,
+    "weighted-max-sat-solver [original]"
+   ],
+   [
+    0.08,
+    "set_cover [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "rank": 1,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "explore.smt-lib.org/benchmark/199477.html|benchmark-library-release-cc-by-4-0-from-june-2017-release-o",
+ "source_notes": "Close to AutoSAT/SAT-solver tuning in the known list, so novelty risk is K1-adjacent; the SMT-level tuning or bit-blasting heuristic angle is less crowded. Large file sizes may be an issue for the 16 GB limit. Count is dated (2015).",
+ "source_url": "https://explore.smt-lib.org/benchmark/199477.html",
+ "source_version": "Benchmark library release; CC-BY 4.0 from June 2017 release onward. Current release number not found",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://smt-lib.org/logics-all.shtml",
+  "facts": [
+   {
+    "claim": "SMT-LIB QF_BV logic exists (quantifier-free fixed-size bitvectors); its logic entry shows release 2024-07-21, created 2010-05-02, last updated 2025-02-25",
+    "status": "confirmed",
+    "url": "https://smt-lib.org/logics-all.shtml"
+   },
+   {
+    "claim": "The seed's 'exact release number: not found' is accurate; the library is hosted on Zenodo as the latest release and no version number is given on the benchmarks page",
+    "status": "confirmed",
+    "url": "https://smt-lib.org/benchmarks.shtml"
+   },
+   {
+    "claim": "QF_BV logic is defined against SMT-LIB 2.7, while the task ships an SMT-LIB 2.6 command-subset spec",
+    "status": "contradicted",
+    "url": "https://smt-lib.org/logics-all.shtml"
+   },
+   {
+    "claim": "SMT-LIB benchmarks move to CC-BY 4.0 with the 2017 release (announced 2017-06-05); this is the only licence statement found and it is from a mailing-list post seen in search results, not opened; per-benchmark QF_BV licence and pre-2017 licences not verified",
+    "status": "confirmed",
+    "url": "https://cs.nyu.edu/pipermail/smt-comp/2017/000493.html"
+   },
+   {
+    "claim": "QF_BV size: a 2015 snapshot lists about 26,414 SMT-COMP-eligible QF_BV benchmarks (6,062 excluded); current total on explore.smt-lib.org not found",
+    "status": "confirmed",
+    "url": "https://smtcomp.sourceforge.net/2015/benchmarks.shtml"
+   },
+   {
+    "claim": "Current QF_BV benchmark count and sat/unsat split on explore.smt-lib.org",
+    "status": "not_found",
+    "url": "https://explore.smt-lib.org/"
+   },
+   {
+    "claim": "Bitwuzla is a complete MIT-licensed SMT solver for bit-vectors (public reference that could be used offline in our pipeline, not shipped in the image)",
+    "status": "confirmed",
+    "url": "https://github.com/bitwuzla/bitwuzla"
+   },
+   {
+    "claim": "Z3 is MIT licensed (Microsoft copyright)",
+    "status": "confirmed",
+    "url": "https://github.com/Z3Prover/z3/blob/master/LICENSE.txt"
+   },
+   {
+    "claim": "Public complete QF_BV solvers (z3, Bitwuzla) exist, so a frontier model may recall the bit-blasting and CDCL approach in outline",
+    "status": "confirmed",
+    "url": "https://github.com/bitwuzla/bitwuzla"
+   },
+   {
+    "claim": "Seed's band claim that frontier agents average below the reference on this task, with a weaker model stopping at parsing; no dated public evidence found",
+    "status": "not_found",
+    "url": "https://smt-lib.org/benchmarks.shtml"
+   },
+   {
+    "claim": "Seed's ~3,000-line reference implementation and ~100 shipped sample instances with known status",
+    "status": "not_found",
+    "url": "https://smt-lib.org/benchmarks.shtml"
+   }
+  ],
+  "full_card": {
+   "band": "Band 3: plausible for a strong agent in 8 h to get parsing, bit-blasting, basic CDCL, partial credit by instance size; no dated public evidence of agent results on this task.",
+   "build_cost": "About 3 days: 3k-line reference plus size-tier harness and oracle pipeline (Build 3).",
+   "deliverable": "A CLI program that parses .smt2 QF_BV files, bit-blasts to CNF, runs its own CDCL, prints sat/unsat and get-value output.",
+   "gates_anticheat": "Sat answers need a model that the checker verifies. Unsat has no certificate, so a constant 'unsat' printer earns the unsat share: must be neutralised (balanced sat/unsat, or baseline-normalised reward). Hidden files are not in the image; no network at run time; shelling out to z3/bitwuzla blocked by image contents and check that no solver binaries or python bindings are present.",
+   "grading_surface": "Hidden set of several hundred QF_BV instances subsampled from the library and size-limited; statuses recorded; sat answers checked by a model evaluator; unsat must match status; fixed wall-clock timeout per instance.",
+   "local_fit": "CPU-only, 8 cores, 16 GB; large .smt2 files need size caps; wall-clock timeouts are noisy under gVisor, so timeouts need generous margins.",
+   "lookup": "partial: full permissive solvers are public (Z3 MIT, Bitwuzla MIT) but not installable offline; agent may recall approach in outline.",
+   "provenance": "SMT-LIB benchmark library, QF_BV family (smt-lib.org; explorer; Zenodo latest release). Real public benchmark data; release number not found, logic entry dated 2024-07-21.",
+   "reference": "Own ~3,000-line parser, bit-blaster and CDCL; not built yet. Public MIT solvers (Bitwuzla, Z3) can serve as offline oracles in our pipeline only.",
+   "ships": "Spec subset for SMT-LIB 2.6 commands; CLI skeleton; about 100 public sample .smt2 files with known status; attribution for CC-BY-4.0 files. Filter to post-2017 files for licence.",
+   "similarity": "Nearest seeds S-im-062 (0.191) and S-im-038 (0.162) are seeds, not public tasks; not K1. Subject is SAT-adjacent (AutoSAT in known list) but not on the CROWDED list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Difficulty is plausible but no dated public evidence of agent results; band text is unsourced."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days for the reference and harness."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and within 16 GB if file sizes are capped; wall-clock timeouts are noisy."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Parser, simplifier, bit-blaster, CDCL and model extraction form a deep chain suited to 8 h."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "CC-BY-4.0 from the 2017 release on is supported; pre-2017 files need filtering and per-file checks."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Operator coverage, sat/unsat correctness and size tiers give independent buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours above 0.15 are seeds (0.191, 0.162), not public tasks; SAT-adjacent subject."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public SMT-LIB benchmark library with a long paper trail."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Our own 3k-line reference is unbuilt and unverified; public MIT solvers exist but are not the shipped reference."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden files and statuses live outside the image; the approach is recallable in outline, which is a Band question."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Tens of thousands of QF_BV instances are available; the hidden set is several hundred with an executable model checker."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Fewer than about 70% of sampled files are solvable within a timeout a reference could meet; per-file licences cannot be confirmed; or the constant-unsat baseline stays above about 0.5 and cannot be neutralised by the scoring rule.",
+   "pass_if": "At least 80% of the sample is solved by Z3 or Bitwuzla within a generous timeout with a stable status across 3 runs; per-file CC-BY-4.0 or pre-2017 filtering works; sat/unsat is roughly balanced; the constant baseline is below about 0.3 after balancing.",
+   "steps": [
+    "In a throwaway networked container, download a small post-2017 QF_BV sample (about 50 files, size-capped) from the SMT-LIB library and record each file's licence metadata.",
+    "Read the recorded status from each file's metadata; confirm it with Z3 and Bitwuzla installed only in the spike container (not in the task image).",
+    "For sat instances, extract get-value models and check them with an independent evaluator.",
+    "Run each file 3 times; compare statuses and wall-clock times to check determinism and set timeout tiers.",
+    "Measure the constant-answer baseline (always unsat, always sat) on the sample and check the sat/unsat balance of the sample.",
+    "Check that the sampled instances stay within size caps and that none is solved in under 1 s by a trivial preprocessor alone."
+   ]
+  },
+  "summary": "The SMT-LIB QF_BV source is real, public and CC-BY-4.0 from the 2017 release on, with a strong oracle path via MIT solvers used only offline. The idea passes all gates but needs fixes before the spike: the constant-unsat cheat must be neutralised in scoring, timeouts must allow for noise, and the 2.6 vs 2.7 spec mismatch must be resolved, with Band 3 and E0 until evidence exists."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [
+   "https://cs.nyu.edu/pipermail/smt-comp/2017/000493.html",
+   "https://smtcomp.sourceforge.net/2015/benchmarks.shtml"
+  ],
+  "ratio": 0.2857142857142857
+ },
+ "v1_score": 68,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-064",
+  "kill_code": "",
+  "note": "Real public data: the SMT-LIB QF_BV logic is confirmed, with a 2024-07-21 logic entry. The CC-BY-4.0 move rests on a dead mailing-list link, so per-file licences still need checking in the spike. The executable oracle is strong: sat answers are checked against the model, and Bitwuzla/Z3 (MIT) can confirm statuses offline in our pipeline. That allows hundreds of renamed, reordered hidden instances. The ~3k-line reference is not built yet, so Ref is 3. Band is capped at 3 because there is no agent evidence. The idea is plausible: an agent can build the parser and bit-blaster, while bvmul/bvudiv encodings and CDCL speed separate agents. Risks: (1) unsat answers have no certificate, so a constant 'unsat' printer must score 0 through balanced sets or baseline normalisation; (2) solved-within-timeout scoring is wall-clock based under gVisor, so timeouts need generous margins and tiers set from the reference; (3) the spec should say 2.7, not 2.6, which is minor. The grading tests what the task asks, and any correct solver passes. Not crowded; the nearest public task is at 0.104.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 73
+}

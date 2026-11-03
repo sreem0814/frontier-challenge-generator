@@ -1,0 +1,232 @@
+{
+ "batch": 12,
+ "card": {
+  "band": "8 h. Profiling-guided gains come easily in the first hours. Reaching the reference needs deep restructuring, and exact seed-level equivalence is hard, hence the tolerance gate. A weaker model finds only compiler flag and micro gains. Dated public evidence: not found.",
+  "cheat": "Cutting iterations or lowering search effort is caught by the fixed iteration count and the cost gate. Hidden instances come from seeds that are never shipped, and the reference is not in the image.",
+  "grading": "Gate: with the same seed and iteration count the final cost must be within tolerance of the baseline's on hidden generated instances (n 100-1000), and the routes must be feasible under an independent checker. Score: median wall-clock speedup, reward = 2^u - 1.",
+  "reference": "The later upstream version with its known optimisations, measured on the same hidden set. Its speedup S is to be measured and is not given in the input.",
+  "source": "https://github.com/vidalt/HGS-CVRP @ a pinned release (release and licence to be verified, believed MIT but not confirmed); instance format and X-set generator from CVRPLIB (https://galgos.inf.puc-rio.br/cvrplib), whose instance licence is not found",
+  "task": "/app ships a history-less snapshot of an early, slow version of the hybrid genetic search. The agent speeds up the solver (neighbourhood evaluation, move caching, split algorithm, data layout) for a fixed iteration budget without worsening solution quality. Instances are generated with the published X-set generator and so come with no licensing issue.",
+  "title": "HGS-CVRP style vehicle routing heuristic speedup on generated X-type instances"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T01:07:29Z",
+ "family": "solver",
+ "final": 68,
+ "history": [
+  [
+   "2026-10-21T01:07:29Z",
+   "write",
+   "short",
+   "batch 12"
+  ],
+  [
+   "2026-10-21T01:07:29Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-026 0.26"
+  ],
+  [
+   "2026-10-21T01:08:43Z",
+   "v1",
+   "pass",
+   "score 72; dead links []"
+  ],
+  [
+   "2026-10-21T01:16:14Z",
+   "v2",
+   "killed:K5",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-op-029",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.26,
+    "S-op-026"
+   ],
+   [
+    0.233,
+    "S-op-027"
+   ],
+   [
+    0.185,
+    "CVRP [FrontierCO]"
+   ],
+   [
+    0.184,
+    "S-rs-013"
+   ],
+   [
+    0.117,
+    "cyclic_independent_set [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 1,
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "comopt.ifi.uni-heidelberg.de/software/tsplib95/ ; https://galgos.inf.puc-rio.br/cvrplib/index.php/en|n-a-input-set-pairing-older-lkh-hgs-cvrp-or-tools-release",
+ "source_notes": "TSPLIB q:\"a library of sample instances for the TSP (and related problems) from various sources and of various types.\" and q:\"not intended to add further problems instances (1.1.2013)\". CVRPLIB page links a Terms of Use page that returned HTTP 404 on my fetch (/terms-of-use guess) and was not read -> licence not found. Redistribution unclear; instances are small, text, and widely mirrored but that is not a licence.",
+ "source_url": "http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/ ; https://galgos.inf.puc-rio.br/cvrplib/index.php/en/",
+ "source_version": "n/a (input set); pairing = older LKH / HGS-CVRP / OR-tools release",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/vidalt/HGS-CVRP/releases",
+  "facts": [
+   {
+    "claim": "vidalt/HGS-CVRP has a latest release v2.0.0 and an earlier v1.0.0 (pinned-release candidates exist)",
+    "status": "confirmed",
+    "url": "https://github.com/vidalt/HGS-CVRP/releases"
+   },
+   {
+    "claim": "HGS-CVRP repository licence is MIT, Copyright (c) 2020 Thibaut Vidal",
+    "status": "confirmed",
+    "url": "https://github.com/vidalt/HGS-CVRP/blob/main/LICENSE"
+   },
+   {
+    "claim": "The later upstream version contains the known optimisations (neighbourhood evaluation, move caching, split, data layout) that make it faster than the early version",
+    "status": "not_found",
+    "url": "https://github.com/vidalt/HGS-CVRP/releases"
+   },
+   {
+    "claim": "X set is 100 instances, X-n101-k25 to X-n1001-k43, cited to Uchoa et al. 2017",
+    "status": "confirmed",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/instances"
+   },
+   {
+    "claim": "Uchoa et al. 2017 'New benchmark instances for the CVRP' (EJOR 257(3):845-858) describes the X generation scheme",
+    "status": "confirmed",
+    "url": "https://optimization-online.org/?p=13102"
+   },
+   {
+    "claim": "The X instance generator is published as source code by the authors and can be used as-is",
+    "status": "not_found",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/instances"
+   },
+   {
+    "claim": "CVRPLIB states a licence or usage terms for the X instances",
+    "status": "not_found",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/instances"
+   },
+   {
+    "claim": "HGS-CVRP C++ implementation with SWAP* is described in Vidal, Computers & Operations Research 140 (2022) 105643",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2012.10384"
+   },
+   {
+    "claim": "A PyPI package hygese wraps the HGS-CVRP C++ solver and is pip-installable with a source build",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/hygese"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Profiling wins come early; reaching reference S needs SWAP*-class restructuring and data-layout work. Weaker model stops at compiler flags and micro gains. No dated public evidence, so Band capped at 3.",
+   "build_cost": "Roughly 2-4 days: pinned source build, generator reimplementation from paper, reference timing harness, tolerance calibration",
+   "deliverable": "Faster C++ solver at fixed seed and iteration count; reward 2^u-1 on median wall-clock speedup, gated by cost tolerance and feasibility",
+   "gates_anticheat": "Fixed iteration count and cost gate block cutting search effort; reference and hidden seeds outside image; must pin build flags or flag-only gains dominate (Surf/Band risk); tolerance must absorb float reordering",
+   "grading_surface": "Hidden generated X-like instances n 100-1000, many seeds; cost gate and independent feasibility checker; speed median over instances",
+   "local_fit": "CPU only, 8 cores, small C++ build; wall-clock medians under gVisor are noisy but feasible with repeats",
+   "lookup": "partial: HGS-CVRP is public (GitHub, PyPI wrapper) and a frontier model knows its design in outline; exact v2 code not recallable verbatim",
+   "provenance": "vidalt/HGS-CVRP (MIT, Vidal 2020); v1.0.0 and v2.0.0 releases; paper Vidal 2022 COR 140:105643; X instances Uchoa et al. 2017 via CVRPLIB",
+   "reference": "Later upstream HGS-CVRP v2.0.0 (MIT), speedup S not yet measured",
+   "ships": "history-less snapshot of an early slow HGS-CVRP-style solver (proxy: v1.0.0-era code); no git history past the base; no reference in image; instances generated at run time from unshipped seeds",
+   "similarity": "Nearest l0 neighbours S-op-026 (0.26), S-op-027 (0.233), CVRP [FrontierCO] (0.185). Subject overlaps (CVRP heuristic) but deliverable is solver speedup at fixed budget, not solution quality. No neighbour above 0.3 and not a public task of same deliverable."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this work; capped at 3 by rule"
+   },
+   "Build": {
+    "v": 4,
+    "why": "Small C++ codebase; a 2-4 day build of harness, generator and reference"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU C++, 8 cores, 16 GB fits; gVisor timing noise needs repeats"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Profiling, neighbourhood, split and layout work sustains an 8 h run"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "HGS-CVRP is MIT (confirmed); X generator and instance licence not found, so ship nothing from them and reimplement from paper"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers (neighbourhood, caching, split, layout) but one median-speedup reward with a continuous curve"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Shares CVRP subject with S-op-026/027 and FrontierCO CVRP; deliverable is solver speedup, not quality"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Public MIT repo with tagged releases and peer-reviewed paper; the early-version snapshot is a proxy, not verified as an actual upstream commit"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete permissive upstream v2.0.0 exists; its speedup S is unmeasured and its optimisations are unverified"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public upstream reference is closed by history-less snapshot; hidden seeds unshipped; generator reproducible from paper"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of generated instances across seeds and sizes; executable cost and feasibility oracle; speed is one median metric"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Speedup under 1.3x (so the reference is not meaningfully above the start), or fixed-seed output is not reproducible across repeats.",
+   "pass_if": "v2.0.0 median speedup over v1.0.0 is at least 2x with cost gap inside tolerance, and fixed-seed runs are deterministic.",
+   "steps": [
+    "In a throwaway networked container, clone vidalt/HGS-CVRP and check out the v1.0.0 and v2.0.0 tags; build both with the same flags (-O2, no -ffast-math).",
+    "Reimplement the Uchoa 2017 X generator from the paper (no third-party code) and generate 20 instances at n 100, 300, 600, 1000.",
+    "Run both builds at a fixed seed and iteration count on the same instances, 5 repeats each; record wall-clock median per instance and final cost.",
+    "Check determinism: identical final cost and routes on repeat runs with the same seed.",
+    "Check the cost gap between v1 and v2 is inside a tolerance that a reordered-float implementation could meet (for example within 0.5 percent median)."
+   ]
+  },
+  "summary": "The HGS-CVRP base is real and MIT-licensed with a latest release v2.0.0, but the claimed upstream optimisations, the X generator's publication and the X instance licence are unverified, so the generator must be reimplemented from the Uchoa 2017 paper. Band is capped at 3 with no dated evidence, and the spike (build v1.0.0 vs v2.0.0, measure speedup and determinism) decides whether the reference is far enough above the start to pass."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-029",
+  "kill_code": "",
+  "note": "Confirmed: HGS-CVRP is MIT, has v1.0.0 and v2.0.0 releases, and the X-set generation scheme is published (Uchoa 2017). Not found: any evidence that v2.0.0 is faster than v1.0.0. v1.0.0 is already the efficient SWAP* paper code, and v2 looks mostly like an interface and bindings release, so the perfseries reference S is speculative. If the spike shows less than 2x, either write our own optimised reference or kill under K5. Equivalence risk: any reordering of move evaluation changes the fixed-seed trajectory, so the gate has to be a statistical cost tolerance over many instances. That tolerance is a loophole: an agent could prune the neighbourhood and stay inside it. Close it with a tight median-gap bound plus a per-instance worst-case bound, and pin compiler flags. gVisor wall-clock noise needs repeated medians. CVRPLIB has no licence, but instances generated from our own reimplementation of the generator avoid that. The FrontierCO CVRP neighbour (0.185) scores solution quality, not speedup, so it is a different deliverable. Survives, pending the spike.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 4,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 68
+}

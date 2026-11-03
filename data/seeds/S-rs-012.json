@@ -1,0 +1,222 @@
+{
+ "batch": 11,
+ "card": {
+  "band": "4h. A frontier agent improves on the baseline in some trials, but the mean is below the reference, since OOD generalization needs several levers. A weaker model tunes one parameter. Buckets: instance sizes, resource tightness, time per instance.",
+  "cheat": "Looking up best-known makespans: hidden instances are freshly generated and not in PSPLIB. Using CP-SAT at run time: it is not installed and the time limit is enforced.",
+  "grading": "A hidden split comes from different generator parameters (j120 style, higher resource strength and network complexity). Feasibility is checked by code. The score is the normalized average makespan gap between the baseline and the reference.",
+  "reference": "The reference is a tuned forward-backward improvement GA that reaches CP-SAT-level gaps; CP-SAT makespans give bounds on the hidden split. We would write it, at about 600 lines; the measured gap is not found.",
+  "source": "https://www.om-db.wi.tum.de/psplib/main.html (Kolisch and Sprecher 1997); licence not found (academic use stated). Instances can be regenerated with an own ProGen-style generator, with OR-Tools CP-SAT (Apache-2.0) as the reference.",
+  "task": "/app ships a baseline serial schedule-generation heuristic with priority rules, a PSPLIB-format parser and training instances (j30 and j60 style). The agent designs or tunes a heuristic or metaheuristic (GA, tabu, learned priority rule) in a fixed CPU time per instance.",
+  "title": "RCPSP scheduling heuristic with an instance-family split"
+ },
+ "class": "research",
+ "created": "2026-10-21T01:04:51Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T01:04:51Z",
+   "write",
+   "short",
+   "batch 11"
+  ],
+  [
+   "2026-10-21T01:04:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-011 0.34"
+  ],
+  [
+   "2026-10-21T01:07:24Z",
+   "v1",
+   "killed:K4",
+   "As written, the task gives each instance a fixed CPU-time budget, so scored makespans depend on wall-clock speed and load, not only on the agent's code. Not deterministically gradable as specified. Resubmit with a fixed schedule-generation budget. Other open risks: PSPLIB licence not found (K6 if sh"
+  ]
+ ],
+ "id": "S-rs-012",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.342,
+    "S-rs-011"
+   ],
+   [
+    0.196,
+    "S-op-027"
+   ],
+   [
+    0.136,
+    "i3-style [ProgramBench]"
+   ],
+   [
+    0.125,
+    "S-op-025"
+   ],
+   [
+    0.116,
+    "weighted-max-sat-solver [original]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "om-db.wi.tum.de/psplib/main.html|library-of-instance-families-j30-j60-j120-and-others-kolisch",
+ "source_notes": "Classic, widely used; a near neighbour of the existing JSPLIB/CP-SAT row, so novelty is weak. Licence must be read on the TUM site before use. Listed as a candidate for the heuristic-search hint, not a clean research row.",
+ "source_url": "https://www.om-db.wi.tum.de/psplib/main.html",
+ "source_version": "library of instance families (j30, j60, j120 and others); Kolisch & Sprecher 1997",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.om-db.wi.tum.de/psplib/",
+  "facts": [
+   {
+    "claim": "PSPLIB is a real public benchmark library by Kolisch and Sprecher, EJOR 1997 (96(1), 205-216), for single- and multi-mode RCPSP",
+    "status": "confirmed",
+    "url": "https://www.om-db.wi.tum.de/psplib/"
+   },
+   {
+    "claim": "The source URL given in the seed (https://www.om-db.wi.tum.de/psplib/main.html) exists",
+    "status": "contradicted",
+    "url": "https://www.om-db.wi.tum.de/psplib/main.html"
+   },
+   {
+    "claim": "PSPLIB licence or redistribution terms exist and allow shipping instances in a bundle (seed says academic use stated)",
+    "status": "not_found",
+    "url": "https://www.om-db.wi.tum.de/psplib/"
+   },
+   {
+    "claim": "PSPLIB root page says to read general information before downloading; the linked geninfo page was not read",
+    "status": "not_found",
+    "url": "https://www.om-db.wi.tum.de/psplib/"
+   },
+   {
+    "claim": "j30 and j60 sets each contain 480 instances (10 per each of 48 parameter combinations)",
+    "status": "not_found",
+    "url": "https://www.om-db.wi.tum.de/psplib/"
+   },
+   {
+    "claim": "j120 set contains about 600 instances (60 parameter combinations x 10); inferred from parameter ranges only",
+    "status": "not_found",
+    "url": "https://cpmpy.readthedocs.io/en/logo/api/tools/datasets/psplib.html"
+   },
+   {
+    "claim": "OR-Tools is licensed under Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/google/or-tools/blob/stable/LICENSE"
+   },
+   {
+    "claim": "Valls, Ballestin, Quintanilla 2008 hybrid GA for RCPSP, EJOR 185(2) 495-508, exists (uses forward-backward improvement)",
+    "status": "confirmed",
+    "url": "https://unpaywall.org/10.1007%2F11424925_41"
+   },
+   {
+    "claim": "Forward-backward (double justification) improvement and Debels-Vanhoucke bi-population GA are published RCPSP techniques",
+    "status": "confirmed",
+    "url": "https://ideas.repec.org/a/spr/annopr/v131y2004i1p305-32410.1023-banor.0000039524.09792.c9.html"
+   },
+   {
+    "claim": "A 2025 public two-phase GA for RCPSP alternating forward and backward populations exists (arXiv 2506.21915, CC BY 4.0 for the article; code release not stated)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2506.21915"
+   },
+   {
+    "claim": "The reference GA reaches CP-SAT-level gaps (measured)",
+    "status": "not_found",
+    "url": "https://arxiv.org/abs/2506.21915"
+   },
+   {
+    "claim": "A public source shows agents partially succeeding or failing at this RCPSP heuristic-design task (E1 evidence)",
+    "status": "not_found",
+    "url": "https://www.om-db.wi.tum.de/psplib/"
+   }
+  ],
+  "full_card": {
+   "band": "Card claims 4h tier; no dated public evidence, so Band capped at 3. Frontier agent can likely reproduce FBI GA from literature, so K8 risk is real; the weaker model tunes one parameter.",
+   "build_cost": "About 4 days: ~600-line GA, ProGen-style generator, CP-SAT bounds on hidden split, validation. Under 5-day K12 limit but tight.",
+   "deliverable": "Heuristic/metaheuristic scheduler (e.g. forward-backward GA or learned priority rule) under a fixed budget per instance; hidden split from different generator parameters (j120-style, higher resource strength, network complexity).",
+   "gates_anticheat": "Hidden instances freshly generated so PSPLIB best-known values do not match. Run-time CP-SAT blocked: not installed and time-limited. Must still block vendoring of solver libs and editing of grader or budget. Wall-clock budget is a determinism gate failure as written; fixed schedule-generation count needed.",
+   "grading_surface": "Hidden generated instances; count not fixed in card; generator allows thousands, so surface is large if seeds are held out. Feasibility checked by code.",
+   "local_fit": "CPU only, 8 cores, 16 GB: fits. Fixed wall-clock per instance is noisy under gVisor and cgroup stubs; use schedule-count budget.",
+   "lookup": "partial: forward-backward GA and bi-population GA are public in literature and a 2025 arXiv two-phase GA exists; no public code for the exact reference found.",
+   "provenance": "PSPLIB (Kolisch & Sprecher 1997, EJOR 96(1):205-216); site reachable at /psplib/ root; main.html returned 404 in this check; licence not stated on root page; geninfo page unread.",
+   "reference": "Tuned forward-backward GA, ~600 lines, to be written by us; gap vs CP-SAT not measured. CP-SAT (Apache-2.0) used offline for hidden-split bounds.",
+   "ships": "Baseline serial SGS with priority rules, PSPLIB-format parser, training instances. Proposed: regenerate training instances with own ProGen-style generator rather than ship PSPLIB files until licence is confirmed.",
+   "similarity": "Nearest l0 neighbour S-rs-011 at 0.342 (above 0.15 so Nov reduced); S-op-027 0.196. Not a CROWDED subject. Source notes call novelty weak versus JSPLIB/CP-SAT row. Not K1 on cosine alone."
+  },
+  "kill_code": "K4",
+  "kill_reason": "As written, the task gives each instance a fixed CPU-time budget, so scored makespans depend on wall-clock speed and load, not only on the agent's code. Not deterministically gradable as specified. Resubmit with a fixed schedule-generation budget. Other open risks: PSPLIB licence not found (K6 if shipping is forbidden), reference gap unmeasured, and Band 4 without dated evidence.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Claimed 4 without dated public evidence; capped at 3. Frontier likely reproduces FBI GA from literature, so K8 risk."
+   },
+   "Build": {
+    "v": 4,
+    "why": "About 4 days for reference, generator, bounds and validation."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only fits the sandbox; wall-clock budgets are noisy under gVisor."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4h tier is plausible for tuning a GA, but scope is one algorithm family and lever count is modest."
+   },
+   "Lic": {
+    "v": 2,
+    "why": "PSPLIB licence not found, only academic use stated; shipping PSPLIB files is unconfirmed. OR-Tools Apache-2.0 is fine."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Buckets (instance size, resource tightness, time per instance) give partial credit, but they are one algorithm family."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Classic RCPSP heuristic subject; S-rs-011 at 0.342 and source notes say novelty is weak."
+   },
+   "Real": {
+    "v": 4,
+    "why": "PSPLIB is a real, cited, widely used benchmark (Kolisch & Sprecher 1997); licence unverified."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference GA is unwritten and its gap to CP-SAT is unmeasured; CP-SAT bounds are a fallback."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden split from own generator with held-out seeds is sealable; ProGen algorithm is public so parameters and seeds must stay hidden."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generator allows thousands of hidden instances; grading surface is large if seeds are held out."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Licence forbids derived data and regeneration is not acceptable; baseline priority rules already match the GA on held-out j120-style instances; reruns differ with fixed budget; or the GA cannot approach CP-SAT even on j30.",
+   "pass_if": "Licence is compatible with regeneration (or shipping is clearly allowed); GA beats the baseline on held-out j120-style instances by a clear margin; reruns with fixed seed and budget are identical; GA reaches within a few percent of CP-SAT on j30.",
+   "steps": [
+    "Read the PSPLIB general-information page (linked from the root) and record the exact licence or redistribution wording; if it forbids derived or shipped data, switch the training set to own ProGen-style regeneration only.",
+    "Confirm j30 and j120 archive counts from the download page; do not rely on the 480/600 figures from secondary sources.",
+    "Write a small ProGen-style generator (j30 and j120-style parameters) and generate 20 training and 20 held-out instances with fixed seeds.",
+    "Run CP-SAT (Apache-2.0) with a fixed time limit (e.g. 60 s) on the held-out set to get reference makespans and lower bounds.",
+    "Implement the serial SGS baseline plus a forward-backward improvement GA with a fixed schedule-generation budget (e.g. 5000 evaluations), not wall-clock.",
+    "Compute the normalized average makespan gap of baseline vs GA vs CP-SAT on held-out instances; check the GA beats the baseline on j120-style instances.",
+    "Re-run the GA three times with the same seed and budget; check identical makespans (determinism)."
+   ]
+  },
+  "summary": "An RCPSP heuristic research seed built on PSPLIB with a generated hidden split: real and well cited, but the PSPLIB licence and URL are unconfirmed, the reference gap is unmeasured, and the fixed wall-clock budget makes grading noisy. It is killed as written under K4; a fixed schedule-count budget and a 60-minute spike would decide whether to resubmit."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [
+   "https://www.om-db.wi.tum.de/psplib/main.html"
+  ],
+  "ratio": 0.14285714285714285
+ },
+ "v1_score": 65
+}

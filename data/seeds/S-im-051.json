@@ -1,0 +1,250 @@
+{
+ "batch": 9,
+ "card": {
+  "band": "4 h. Crowded subject (HTTP/2) and a small case count, so this is likely to be on the easy side: a frontier agent finishes in many trials. The band depends on the fuzzer cases for stream-state and flow-control edge errors. A weaker model fails the HPACK and state-machine buckets.",
+  "cheat": "Using net/http or an h2 crate: the build has no vendored copy and the grader rejects it by import check on the module graph. The hidden fuzzer sequences are not in the image.",
+  "grading": "The verifier runs a built h2spec binary (not in the image) against the server in generic, http2 and hpack groups, plus a generated frame-sequence fuzzer whose expected error codes come from the reference server. Score is the fraction of cases passed over the reference. The agent has a small sample test client.",
+  "reference": "Own reference server written in Go, about 2.5k lines, passing all h2spec cases it should.",
+  "source": "https://github.com/summerwind/h2spec @ v2.6.0 (head af83a65f0b), MIT",
+  "task": "/app ships a TCP-level server skeleton in Go or Rust with no HTTP/2 library. The agent implements framing, HPACK with Huffman and dynamic table, stream state machine, flow control, SETTINGS/GOAWAY/RST_STREAM error handling, CONTINUATION and priority rules, serving fixed responses.",
+  "title": "HTTP/2 server with HPACK passing the h2spec suite"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T00:58:32Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-21T00:58:32Z",
+   "write",
+   "short",
+   "batch 9"
+  ],
+  [
+   "2026-10-21T00:58:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-044 0.21"
+  ],
+  [
+   "2026-10-21T00:59:29Z",
+   "v1",
+   "killed:K11",
+   "Cannot be sealed: Go stdlib net/http serves HTTP/2 automatically over TLS (pkg.go.dev/net/http), and the stated import check runs on the module graph, which does not cover stdlib imports, so the agent can bypass the implementation entirely. Also K8 risk: seed itself says a frontier agent finishes in"
+  ]
+ ],
+ "id": "S-im-051",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.212,
+    "S-im-044"
+   ],
+   [
+    0.197,
+    "S-im-015"
+   ],
+   [
+    0.189,
+    "S-im-048"
+   ],
+   [
+    0.188,
+    "http_server [SpecBench]"
+   ],
+   [
+    0.125,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 1,
+  "ci_files": 0,
+  "clone_ok": true,
+  "cmd_build": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -run '^$' ./... >/dev/null",
+  "cmd_fetch": "go mod download all",
+  "cmd_test": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -json -p 4 ./...",
+  "commit": "af83a65f0b6273ef38bf778d400d98892e7653d8",
+  "deterministic": true,
+  "eco": "go",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "",
+  "oom": false,
+  "ref": "default",
+  "report_format": "go-json",
+  "run_rcs": [
+   0,
+   0,
+   0
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [],
+  "stable_failures": 0,
+  "subdir": "",
+  "suite_s": 1,
+  "test_files": 7,
+  "tests_fail": 0,
+  "tests_listed": 1,
+  "tests_pass": 1,
+  "tests_skip": 0,
+  "tests_total": 1,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "af83a65f0b6273ef38bf778d400d98892e7653d8",
+  "kb": 446,
+  "lang": "Go",
+  "open_prs": 7,
+  "pushed": "2023-10-15",
+  "release": "v2.6.0",
+  "spdx": "MIT",
+  "stars": 737,
+  "test_files": 7,
+  "test_kb": 44,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/summerwind/h2spec|v2-6-0-2020-08-04-head-af83a65f0b-2022-06-25",
+ "source_notes": "too small alone (subjects.md already dropped HPACK/h2spec); unmaintained since 2022; single-source",
+ "source_url": "https://github.com/summerwind/h2spec",
+ "source_version": "v2.6.0 2020-08-04; head af83a65f0b 2022-06-25",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://pkg.go.dev/net/http",
+  "facts": [
+   {
+    "claim": "h2spec tag v2.6.0 exists in summerwind/h2spec",
+    "status": "confirmed",
+    "url": "https://github.com/summerwind/h2spec/releases/tag/v2.6.0"
+   },
+   {
+    "claim": "h2spec licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/summerwind/h2spec"
+   },
+   {
+    "claim": "h2spec has test groups generic (generic HTTP/2 server), http2 (RFC 7540) and hpack (RFC 7541)",
+    "status": "confirmed",
+    "url": "https://github.com/summerwind/h2spec"
+   },
+   {
+    "claim": "h2spec is a client that tests a target server (default 127.0.0.1)",
+    "status": "confirmed",
+    "url": "https://github.com/summerwind/h2spec"
+   },
+   {
+    "claim": "Total h2spec case count is about 146 (non-strict or strict total not stated by the project; only one third-party Caddy run reports 146 in strict mode)",
+    "status": "not_found",
+    "url": "https://github.com/caddyserver/caddy/issues/2132"
+   },
+   {
+    "claim": "Go standard library net/http enables an HTTP/2 server automatically over HTTPS with no third-party module, so an HTTP/2 server is available without any listed import",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/net/http"
+   },
+   {
+    "claim": "Seed says h2spec is unmaintained since 2022; GitHub API pushed date is 2023-10-15 and README shows no deprecation notice",
+    "status": "contradicted",
+    "url": "https://github.com/summerwind/h2spec"
+   },
+   {
+    "claim": "Own Go reference server is about 2.5k lines and passes all h2spec cases it should",
+    "status": "not_found",
+    "url": "https://github.com/summerwind/h2spec"
+   }
+  ],
+  "full_card": {
+   "band": "Seed admits a frontier agent finishes in many trials at 4h. Likely too easy (K8 risk).",
+   "build_cost": "About 2-3 days: reference 2.5k lines, fuzzer generator, h2spec harness, cheat-blocking check.",
+   "deliverable": "HTTP/2 server speaking framing, HPACK (Huffman, dynamic table), stream state, flow control, SETTINGS/GOAWAY/RST_STREAM, CONTINUATION, priority; serves fixed responses.",
+   "gates_anticheat": "Go stdlib net/http serves HTTP/2 automatically over TLS (verified). An import check on the module graph does not see stdlib imports, so net/http or a copied x/net/http2 from the module cache is an open cheat path. Fuzzer sequences are hidden.",
+   "grading_surface": "h2spec generic, http2, hpack groups (about 146 cases, count unverified) plus fuzzer with expected codes from own reference. Fraction passed over reference.",
+   "local_fit": "Go, CPU only, offline; fits 8 cores and 16 GB.",
+   "lookup": "direct: Go toolchain ships a complete HTTP/2 server; x/net/http2 is famous and likely in module cache.",
+   "provenance": "summerwind/h2spec v2.6.0 (MIT, 737 stars, last push 2023-10-15). Subject is a public conformance tool; no upstream server implementation is the target.",
+   "reference": "Own Go server, about 2.5k lines (not public, not verified). Upstream h2spec is a tester, not a server.",
+   "ships": "Go TCP skeleton in /app with no HTTP/2 library; grader runs a sealed h2spec binary plus a generated frame-sequence fuzzer.",
+   "similarity": "CROWDED list names HTTP/2. Nearest l0 neighbour http_server [SpecBench] at 0.188. No K1 near-duplicate by cosine, but same subject and deliverable as a public-benchmark family."
+  },
+  "kill_code": "K11",
+  "kill_reason": "Cannot be sealed: Go stdlib net/http serves HTTP/2 automatically over TLS (pkg.go.dev/net/http), and the stated import check runs on the module graph, which does not cover stdlib imports, so the agent can bypass the implementation entirely. Also K8 risk: seed itself says a frontier agent finishes in many trials at 4h, and HTTP/2 is a CROWDED subject.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Seed states a frontier agent finishes in many trials; stdlib net/http makes the task far easier; weaker model not shown to lag."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 2-3 days to write reference, fuzzer and cheat check."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Go, CPU only, offline build, small footprint."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Several protocol layers, but a 4h tier suits the scope; not clearly 8h work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT confirmed; reference is own code."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Groups generic/http2/hpack give buckets, but small case count and fixed responses limit steady credit."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "HTTP/2 is named in CROWDED list; same subject and deliverable as public conformance tasks."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MIT repo at tag v2.6.0 with 737 stars; but the target server is own reference, not upstream."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Own 2.5k-line Go reference, unpublished; reaches full h2spec pass but not an upstream complete implementation."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Stdlib net/http and x/net/http2 are recallable and in toolchain; import check does not cover stdlib; h2spec is public."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "About 146 h2spec cases plus a generated fuzzer; count not verified; more than tens but well short of thousands."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Stdlib net/http cannot be blocked without breaking the TCP skeleton, or the stdlib server passes all groups (confirming the cheat and too-easy band).",
+   "pass_if": "Exact case count is recorded and a net/http-only server passes the bulk of h2spec, which closes the case for the cheat path only if the allowlist can block it; otherwise the task is K11.",
+   "steps": [
+    "In a throwaway Linux container with network, clone summerwind/h2spec at v2.6.0 and build it (smoke build already green, so build is quick).",
+    "Run h2spec --dryrun and h2spec --dryrun -S to get the exact case count per group (generic, http2, hpack).",
+    "Write a 20-line Go TLS server using only net/http with a fixed 200 handler; run h2spec against it and record per-group pass counts.",
+    "Check whether the server passes most cases: if it does, the stdlib path is a working cheat.",
+    "Test whether an import allowlist can block net/http and crypto/tls without breaking a raw net.Listen TCP skeleton (go list -deps on a sample main).",
+    "Record results and decide whether the task is K11 (cheat unclosable) or K8 (too easy)."
+   ]
+  },
+  "summary": "The seed is killed as K11 because the Go stdlib HTTP/2 server gives the agent a working path that an import check on the module graph does not block. Even if sealed, the seed's own band note points to K8 (too easy at 4h), and HTTP/2 is on the CROWDED list, so this should not be reworked as-is."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 60
+}

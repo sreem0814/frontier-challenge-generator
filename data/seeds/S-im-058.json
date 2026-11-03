@@ -1,0 +1,209 @@
+{
+ "batch": 10,
+ "card": {
+  "band": "20 h. It is a large decoder with deep dependency chains (SILK and CELT), which makes it long-horizon. A frontier agent usually gets CELT or SILK but not both with bit-close output. A weaker model fails to produce output within the quality threshold. Buckets: SILK, CELT, hybrid, FEC/PLC.",
+  "cheat": "Expected outputs for the hidden streams are not shipped, and libopus is not in the image, so the agent cannot link a library. Generated streams cover cases outside the 12 vectors.",
+  "grading": "Hidden: the other nine bitstreams, stereo and mono variants, plus extra streams made with libopus encoder settings in a sealed verifier. Pass by opus_compare quality threshold per stream, and the score is the fraction passed. Mode-specific streams give partial credit for SILK, CELT and hybrid.",
+  "reference": "libopus (BSD-3-Clause) is the oracle; the reference solution is a clean decoder written for the task and validated on all 12 vectors. It scores 1.",
+  "source": "https://opus-codec.org/testvectors/ (opus_testvectors-rfc8251) @ RFC 8251, normative vectors; libopus v1.5.2 BSD-3-Clause; archive licence not stated",
+  "task": "/app ships the RFC 6716 text and 3 of the 12 sample bitstreams with their expected PCM, plus an opus_compare-style quality-metric tool. Agent writes a decoder from scratch (range decoder, SILK LPC and excitation, CELT MDCT/PVQ/band energy, hybrid mode, PLC and FEC, stereo, resampling) that turns .bit files into 48 kHz PCM.",
+  "title": "Opus (RFC 6716/8251) decoder against the standard test vectors"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:01:48Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-21T01:01:48Z",
+   "write",
+   "short",
+   "batch 10"
+  ],
+  [
+   "2026-10-21T01:01:48Z",
+   "l0",
+   "pass",
+   "top neighbour zstd-decoder [SWE-Marathon] 0.15"
+  ],
+  [
+   "2026-10-21T01:03:26Z",
+   "v1",
+   "killed:K11",
+   "Cannot be sealed. The RFC 6716 text the seed ships includes Appendix A, the full normative C reference decoder in base64. An agent can decode, build and match the vectors without writing a decoder. Removing Appendix A leaves prose the RFC says may differ from the reference in ordering or simplificat"
+  ]
+ ],
+ "id": "S-im-058",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.15,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.135,
+    "S-im-032"
+   ],
+   [
+    0.126,
+    "S-im-057"
+   ],
+   [
+    0.113,
+    "S-im-055"
+   ],
+   [
+    0.074,
+    "sample-specific-masks [PaperBench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "opus-codec.org/testvectors|opus-testvectors-rfc8251-tar-gz-downloaded-and-listed-72mb-t",
+ "source_notes": "Already a project candidate. Only 12 streams but long (~72MB) and exercise whole decoder; compare uses opus_compare thresholds; decoder is complex (range coder, SILK LPC/NSQ, CELT MDCT/PVQ); reference implementation is C only, no verified permissive Rust port (low memorization risk); tarball licence unverified",
+ "source_url": "https://opus-codec.org/testvectors/",
+ "source_version": "opus_testvectors-rfc8251.tar.gz (downloaded and listed; 72MB tgz); libopus v1.5.2 2024-09-11",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://datatracker.ietf.org/doc/html/rfc6716",
+  "facts": [
+   {
+    "claim": "opus-codec.org/testvectors offers opus_testvectors-rfc8251.tar.gz (and the original opus_testvectors.tar.gz)",
+    "status": "confirmed",
+    "url": "https://opus-codec.org/testvectors/"
+   },
+   {
+    "claim": "RFC 8251 vector set has 12 bitstreams (testvector01 to 12), with .bit inputs unchanged from RFC 6716",
+    "status": "confirmed",
+    "url": "https://www.rfc-editor.org/rfc/rfc8251"
+   },
+   {
+    "claim": "RFC 8251 ships two decoded outputs per bitstream (standard and 'm' variant that skips the CELT 180-degree phase shift), 24 .dec files total; grader must pick one set",
+    "status": "confirmed",
+    "url": "https://www.rfc-editor.org/rfc/rfc8251"
+   },
+   {
+    "claim": "Test-vector archive licence is stated",
+    "status": "not_found",
+    "url": "https://opus-codec.org/testvectors/"
+   },
+   {
+    "claim": "RFC 6716 Appendix A is the normative reference implementation, shipped as base64-encoded C source (A.3, roughly pages 164-321) inside the RFC text",
+    "status": "confirmed",
+    "url": "https://datatracker.ietf.org/doc/html/rfc6716"
+   },
+   {
+    "claim": "RFC 6716 says the normative part of the spec is the source in Appendix A and the prose may differ from the reference in ordering or simplification",
+    "status": "confirmed",
+    "url": "https://datatracker.ietf.org/doc/html/rfc6716"
+   },
+   {
+    "claim": "libopus v1.5.2 release tag exists on GitHub",
+    "status": "confirmed",
+    "url": "https://github.com/xiph/opus/releases/tag/v1.5.2"
+   },
+   {
+    "claim": "libopus licence is BSD-3-Clause",
+    "status": "contradicted",
+    "url": "https://raw.githubusercontent.com/xiph/opus/main/COPYING"
+   },
+   {
+    "claim": "A public pure-Go Opus decoder exists (darui3018823/opus) and self-reports passing the 12 RFC 8251 vectors; its licence was not checked",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/darui3018823/opus@v1.1.1"
+   },
+   {
+    "claim": "The 'source_facts' block is empty in the seed, so the repo, version and licence rely on the seed text",
+    "status": "not_found",
+    "url": "https://opus-codec.org/testvectors/"
+   }
+  ],
+  "full_card": {
+   "band": "20 h tier if the decoder were sealed; no dated public evidence of agent results, so Band capped at 3.",
+   "build_cost": "Clean reference decoder for all modes plus opus_compare-style harness is well over 5 days (K12 range); reference C is cheap to build but the clean reference is not.",
+   "deliverable": "Clean Opus decoder from scratch (range coder, SILK, CELT, hybrid, PLC/FEC, stereo, resampling) turning .bit into 48 kHz PCM.",
+   "gates_anticheat": "Fails: the RFC text shipped in /app contains the full normative C decoder (base64 in Appendix A). Agent can decode, build and pass without engineering. Not closed.",
+   "grading_surface": "Nine hidden RFC vectors, mono/stereo variants, and libopus-encoded extra streams scored per stream by opus_compare threshold; roughly tens of streams.",
+   "local_fit": "CPU-only C/Rust/Python decode of ~72 MB vectors fits 8 cores/16 GB; no network needed.",
+   "lookup": "direct: RFC 6716 Appendix A; public pure-Go decoder darui3018823/opus claims 12-vector pass (licence unchecked).",
+   "provenance": "RFC 6716 / RFC 8251 normative Opus vectors; libopus is the public reference; vector archive hosted on opus-codec.org and IETF materials.",
+   "reference": "Seed says a clean decoder validated on 12 vectors scores 1; libopus (C) is the oracle. The RFC Appendix A source is itself a complete decoder.",
+   "ships": "RFC 6716 full text (including Appendix A reference source) plus 3 of 12 bitstreams with expected PCM and an opus_compare-style tool.",
+   "similarity": "Max l0 neighbour 0.15 (zstd-decoder); no CROWDED overlap; not a public task. Novelty is fine; sealing is the problem."
+  },
+  "kill_code": "K11",
+  "kill_reason": "Cannot be sealed. The RFC 6716 text the seed ships includes Appendix A, the full normative C reference decoder in base64. An agent can decode, build and match the vectors without writing a decoder. Removing Appendix A leaves prose the RFC says may differ from the reference in ordering or simplification, which makes bit-close output unreachable (K9). Test-vector archive licence is also unstated (K6 risk).",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Large decoder fits 20 h, but no dated public evidence of frontier results; capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Writing a clean full decoder reference plus compare harness exceeds 5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, fits 8 cores and 16 GB; 72 MB of vectors is fine."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several interacting modules, deep chains (SILK, CELT, hybrid), long budget."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "libopus licence is a BSD-style text with IETF non-endorsement and patent notice, not stock BSD-3; vector archive licence not stated."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "SILK, CELT, hybrid, FEC/PLC, stereo and mono are separable partial-credit buckets."
+   },
+   "Nov": {
+    "v": 5,
+    "why": "Max l0 neighbour 0.15, not on the CROWDED list."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Published RFC 8251 vectors, libopus v1.5.2 release, real codec standard."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "libopus is a complete implementation that would score 1 and is the oracle; the task reference is a clean decoder not yet written."
+   },
+   "Seal": {
+    "v": 1,
+    "why": "Appendix A of the shipped RFC is the full normative C decoder; an agent can extract and build it."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "12 shipped vectors plus 9 hidden plus libopus-encoded extras; tens of streams, not thousands."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 30,
+   "kill_if": "Extracted source does not build or fails on several vectors; then re-spike with Appendix A removed from /app and check whether prose-only spec can reach bit-close output (K9 risk).",
+   "pass_if": "Extracted Appendix A source builds and passes all 12 vectors under opus_compare, which confirms the seal breach and kills the idea as K11.",
+   "steps": [
+    "In a throwaway container with network, fetch the full RFC 6716 text and extract the Appendix A.3 base64 block; decode and untar to get the C source.",
+    "Build the extracted decoder with gcc -O2 offline and check it links without libopus.",
+    "Decode testvector01-12 .bit files with the built tool.",
+    "Compare output to the RFC 8251 .dec files (standard set) using the opus_compare tool from libopus tests/.",
+    "Record per-stream pass/fail and confirm the decoder is deterministic across two runs.",
+    "Also check whether the 'm' variant .dec set is needed to match any stream."
+   ]
+  },
+  "summary": "The Opus decoder idea is well grounded: the 12 RFC 8251 vectors, the libopus v1.5.2 release and the RFC text all exist. It fails the sealing gate because the RFC 6716 Appendix A ships the full normative C decoder, so an agent could extract it and pass without engineering, and the 'clean decoder' reference cannot be sealed by simply deleting that appendix without making bit-exact targets unreachable."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

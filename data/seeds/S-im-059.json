@@ -1,0 +1,211 @@
+{
+ "batch": 11,
+ "card": {
+  "band": "8h. A frontier agent covers the core options in some trials but misses the parallel branches: context-line merging, binary detection, multibyte locales, backreferences, error text. A weaker model stops at basic matching and -n/-c. Buckets: matcher, output options, recursion, encoding, diagnostics.",
+  "cheat": "Calling system grep or busybox: the image has neither on PATH at test time, and the verifier runs in a sandbox with them removed. Special-casing visible tests: the hidden cases are generated and differ from the visible ones.",
+  "grading": "Hidden cases are generated (pattern, flags, input file sets, locale) and the real GNU grep binary, kept outside the image, supplies stdout, stderr and exit status. Exact match. Add the upstream tests/*.tests table files (spencer1/2 and others) as a second bucket; score is the fraction of cases passed, bucketed by option family.",
+  "reference": "Upstream GNU grep itself defines what is correct. The reference solution is a clean-room implementation we would write, about 4-6k lines; its size is not yet measured. It is expected to pass nearly all cases except exotic PCRE and obscure locales, which are left out of scope.",
+  "source": "https://git.savannah.gnu.org/cgit/grep.git @ master e187ca5 (tag not determined), GPL-3.0-or-later",
+  "task": "/app ships an empty Rust or C project, a grep-compatible CLI spec (man page text) and the visible subset of the shell tests. The agent builds grep: -E/-F/-G/-P-lite, -o -c -l -L -n -b -H -Z, -A/-B/-C, -r/-R with include/exclude, --color, -z, -f, -m, binary-file handling, exit codes and messages, UTF-8 and C locales. It uses its own matcher (no system grep call).",
+  "title": "GNU grep 3.x clone covering options, context, recursion and encodings"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T01:04:51Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T01:04:51Z",
+   "write",
+   "short",
+   "batch 11"
+  ],
+  [
+   "2026-10-21T01:04:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-056 0.33"
+  ],
+  [
+   "2026-10-21T01:09:25Z",
+   "v1",
+   "killed:K9",
+   "As scoped (full grep: -P-lite, backrefs, multibyte locales, binary detection, recursion, color, exact stderr text, against an unwritten 4-6k-line reference), no evidenced trial is likely to reach 0.9 of the reference within the 8h tier. Re-scope to a smaller real subset (BRE/ERE/-F matcher, -n -c -l"
+  ]
+ ],
+ "id": "S-im-059",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.334,
+    "S-im-056"
+   ],
+   [
+    0.187,
+    "ast-grep [ProgramBench]"
+   ],
+   [
+    0.172,
+    "gnu_make [SpecBench]"
+   ],
+   [
+    0.165,
+    "S-im-015"
+   ],
+   [
+    0.164,
+    "S-im-037"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "git.savannah.gnu.org/cgit/grep.git/tree/tests|savannah-master-e187ca5-2026-09-06-cloned-tag-not-determined",
+ "source_notes": "Regex-engine heavy (BRE/ERE/PCRE, backrefs, multibyte locales) so overlaps crowded regex theme; locale-dependent tests need glibc locales in Docker. Small file count",
+ "source_url": "https://git.savannah.gnu.org/cgit/grep.git/tree/tests",
+ "source_version": "savannah master e187ca5 2026-09-06 (cloned; tag not determined)",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/uutils/grep",
+  "facts": [
+   {
+    "claim": "GNU grep 3.12 was released (stable, announced 10 Apr 2025), so the '3.x' label is current",
+    "status": "confirmed",
+    "url": "https://tracker.debian.org/media/packages/g/grep/changelog-3.12-1"
+   },
+   {
+    "claim": "Pinned commit e187ca5 on savannah master exists and its date/subject match",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/grep.git/commit/?id=e187ca5"
+   },
+   {
+    "claim": "Savannah grep repo tests/ directory lists current *.tests table files (spencer1.tests, spencer2.tests, others)",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/grep.git/tree/tests?h=master"
+   },
+   {
+    "claim": "spencer1.tests and spencer2.tests exist in the GNU grep tests/ directory (older releases)",
+    "status": "confirmed",
+    "url": "https://sources.debian.org/data/main/g/grep/2.2-1/tests"
+   },
+   {
+    "claim": "spencer1 test file is a table of pattern/input/expected-status cases run through grep -E with an awk generator",
+    "status": "confirmed",
+    "url": "https://git.stg.centos.org/source-git/grep/blob/a6f1cadc18e445edff147e78102260342d75dc34/f/tests/spencer1"
+   },
+   {
+    "claim": "GNU grep licence is GPL-3.0-or-later (COPYING)",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/grep.git/plain/COPYING"
+   },
+   {
+    "claim": "A public Rust reimplementation of GNU grep exists (uutils/grep), MIT licensed, initial release, no localization or non-UTF-8 encoding support, no stated GNU test pass rate",
+    "status": "confirmed",
+    "url": "https://github.com/uutils/grep"
+   },
+   {
+    "claim": "uutils/grep runs the GNU grep tests/*.tests suite",
+    "status": "contradicted",
+    "url": "https://github.com/uutils/grep/tree/main/tests"
+   },
+   {
+    "claim": "A complete clean-room reference implementation (4-6k lines) exists for this seed",
+    "status": "not_found",
+    "url": "https://cgit.git.savannah.gnu.org/cgit/grep.git/tree/tests?h=master"
+   },
+   {
+    "claim": "Mirror of GNU grep on GitHub is reachable for tests and COPYING (mirror/grep)",
+    "status": "not_found",
+    "url": "https://github.com/mirror/grep/tree/master/tests"
+   }
+  ],
+  "full_card": {
+   "band": "8h tier; core options likely reachable by a frontier agent, full scope to 0.9 of reference unlikely; weaker model stops at basic match and -n/-c (seed claim, no dated evidence)",
+   "build_cost": "Estimated 3-5+ days for the 4-6k-line reference with exact GNU diagnostics, locale and backref semantics; borderline vs 5-day K12 limit; smoke_build skipped (no git source)",
+   "deliverable": "grep-compatible CLI: BRE/ERE/-F, limited -P, -o -c -l -L -n -b -H -Z, -A/-B/-C, -r/-R with include/exclude, --color, -z, -f, -m, binary handling, exit codes and messages, UTF-8/C locale",
+   "gates_anticheat": "Image has no grep/busybox on PATH at test time; oracle binary and hidden cases outside image; hidden cases generated; visible tests not special-cased",
+   "grading_surface": "Generated cases (pattern, flags, file sets, locale) compared exact on stdout, stderr, exit status; plus upstream spencer*.tests as second bucket; count of generated cases not yet fixed",
+   "local_fit": "Needs glibc locales (en_US.UTF-8 / C.UTF-8) in the image; otherwise fits CPU-only 8c/16G gVisor",
+   "lookup": "partial: GNU grep source public on savannah and mirrors; uutils/grep public Rust port (MIT, partial); not installable offline at run time; behaviour recallable in outline",
+   "provenance": "GNU grep (savannah, GPL-3.0-or-later); upstream tests/spencer*.tests present in older releases; current master commit not verified (savannah timeouts/redirects, GitHub mirror 404)",
+   "reference": "None exists yet; clean-room reference planned at about 4-6k lines, size unmeasured; upstream GNU grep defines correctness",
+   "ships": "Empty Rust or C project, man-page spec, visible subset of shell tests; hidden generated cases graded against a real GNU grep binary kept outside the image",
+   "similarity": "l0: S-im-056 0.334 (unchecked content), ast-grep 0.187, gnu_make 0.172; overlaps regex-engine theme (crowded family) but deliverable is a grep CLI with exact-output diff grading"
+  },
+  "kill_code": "K9",
+  "kill_reason": "As scoped (full grep: -P-lite, backrefs, multibyte locales, binary detection, recursion, color, exact stderr text, against an unwritten 4-6k-line reference), no evidenced trial is likely to reach 0.9 of the reference within the 8h tier. Re-scope to a smaller real subset (BRE/ERE/-F matcher, -n -c -l -o -H, -A/-B/-C, -r with include/exclude, C locale, exit codes) and re-validate; build cost is also borderline against the 5-day limit.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed claims frontier gets core options only; no dated public evidence, so capped at 3"
+   },
+   "Build": {
+    "v": 2,
+    "why": "Reference of 4-6k lines with exact GNU behaviour is likely 3-5+ days of work"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and small; needs locale packages in the image"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Breadth across matcher, output, recursion, encodings and diagnostics suits an 8h tier"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "GPL-3.0-or-later allows shipping tests and oracle; licence text itself not verified this session"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five natural buckets (matcher, output, recursion, encoding, diagnostics) with steady partial credit"
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Grep-clone subject overlaps regex-engine crowded theme and an existing public Rust port (uutils/grep)"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real upstream GNU project with long history and public test tables; pinned commit not verified this session"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference exists; a clean-room 4-6k-line reference is planned and unmeasured"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and reference kept out of image, but GNU grep and its spencer tests are public and largely recallable"
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Generated cases diffed against a real binary give an executable oracle with an unlimited generator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Spencer tables absent or nondeterministic across runs, locales unavailable, or the minimal matcher cannot reach a meaningful share of core cases, which would show the full scope is too large for an 8h run.",
+   "pass_if": "Release builds offline-clean, spencer tables give hundreds of deterministic cases, locales present, three generator runs identical, and the minimal matcher passes at least half of the core cases in 30 minutes.",
+   "steps": [
+    "In a throwaway networked Debian container, fetch the GNU grep 3.12 release tarball from ftp.gnu.org and verify its signature; check COPYING reads GPLv3 or later.",
+    "Run ./configure && make && make check; record per-file counts for tests/spencer1.tests and tests/spencer2.tests and any other *.tests files.",
+    "Generate about 300 random (pattern, flags, file, locale) cases over the core families (BRE/ERE/-F, -o -c -l -n -H -A/-B/-C, -r, exit codes) and record GNU grep stdout, stderr and status; run the generator three times and confirm byte-identical output.",
+    "Check that en_US.UTF-8 and C.UTF-8 locales exist in the image so the locale bucket is reproducible.",
+    "Time-box 30 minutes to write a minimal BRE/ERE/-F matcher with -n -c -l -o and score it against the generated core cases to estimate how much of the scope a first hour of work covers and how many lines it takes."
+   ]
+  },
+  "summary": "The GNU grep seed is real and its grading surface is large and executable: generated cases diffed against the real binary, plus upstream spencer tables from older releases. It fails as scoped because no reference exists, the full scope is unlikely to reach 0.9 of reference in 8h, and building the 4-6k-line reference is borderline on cost; a re-scoped subset is worth a spike."
+ },
+ "v1_links": {
+  "checked": 9,
+  "dead": [
+   "https://git.stg.centos.org/source-git/grep/blob/a6f1cadc18e445edff147e78102260342d75dc34/f/tests/spencer1",
+   "https://github.com/mirror/grep/tree/master/tests"
+  ],
+  "ratio": 0.2222222222222222
+ },
+ "v1_score": 66
+}
