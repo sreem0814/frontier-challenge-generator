@@ -462,5 +462,43 @@
     "probe10-20261021T065004Z",
     "qwen-20261021T093917Z",
     "qwen-20261021T110340Z"
-  ]
+  ],
+  "ladder": {
+    "auto": true,
+    "runners": [
+      "vm2",
+      "vm3"
+    ],
+    "frontier_model": "anthropic/claude-opus-5-5",
+    "stand_in": {
+      "agent": "terminus-2",
+      "model": "openai/gpt-4.1",
+      "label": "weak25",
+      "mult": 0.25,
+      "derive": "tmux",
+      "keys": "openai"
+    },
+    "qwen": {
+      "agent": "terminus-2",
+      "model": "openrouter/qwen/qwen3.8-max-0902",
+      "keys": "qwen",
+      "mult": 1.0,
+      "host_arg": [],
+      "derive": "tmux",
+      "min_remaining_usd": 30
+    },
+    "qwen_runs": 1,
+    "priority": [
+      "opencv-core-kernels",
+      "svg-render",
+      "rdp-codecs",
+      "mtproto-transport"
+    ],
+    "cheat_max_secs": 3600,
+    "qwen_first": true,
+    "qwen_per_runner": {
+      "vm2": 2,
+      "vm3": 3
+    }
+  }
 }

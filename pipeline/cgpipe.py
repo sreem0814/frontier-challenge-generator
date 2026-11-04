@@ -2589,6 +2589,195 @@ ul{{margin:0;padding-left:18px}}li{{margin:3px 0;color:var(--warn)}}li.ok{{color
 </div></body></html>"""
 
 
+LADDER_STATE = os.path.join(DATA, "ladder-state.json")
+
+
+def ladder_next(b, d, lc):
+    """The next model trial a bundle needs, cheapest evidence first (kit/BUILD.md 3b, 7, 7c), as a launch spec or None.
+    Order: frontier short probe; then, above the band, Qwen (stop at its first solve: a gap is then unlikely); in the
+    band, one full-budget frontier trial; the cheat trial only last, once the bundle is complete and the gate is met."""
+    st = b.get("stage", "")
+    if b.get("passed") or b.get("failed") or "running" in st or st.startswith(("phase", "ready for recall")):
+        return None
+    runs = [(t, trial_verdict(t)) for t in d["trials"] if t["task"] == b["slug"] and not t.get("infra")]
+    kinds = [v[0] for _, v in runs]
+    claude = {"keys": "claude", "agent": "claude-code", "model": lc.get("frontier_model", "anthropic/claude-opus-5-5"),
+              "host_arg": ["--allow-agent-host", "api.anthropic.com"]}
+    budget = b.get("budget_secs") or 28800
+    cheat_mult = round(min(0.1, lc.get("cheat_max_secs", 3600) / budget), 3)
+    cheat = dict(claude, label="cheat", mult=cheat_mult, cheat=True, why="adversarial probe (cheat trial), last step")
+    q = lc.get("qwen") or {}
+    qw = [t["reward"] for t, v in runs if v[0] == "qwen" and t["reward"] is not None]
+    qwen_run = {"keys": q.get("keys", "qwen"), "agent": q.get("agent", "terminus-2"), "model": q.get("model"),
+                "host_arg": q.get("host_arg", []), "label": "qwen", "mult": q.get("mult", 1.0),
+                "why": "second-model gap check (Qwen)", "derive": q.get("derive", "")}
+    if any(r >= 0.9 for r in qw):              # Qwen solved it once: a gap is unlikely, spend nothing more
+        return None
+    if st == "ready for short probe":
+        if lc.get("qwen_first") and q.get("model") and not qw:      # the requirements' own order (line 332)
+            return dict(qwen_run, why="Qwen first: a solve ends the task before any Claude allowance is spent")
+        return dict(claude, label="probe10", mult=0.1, why="difficulty ladder: short probe")
+    if st == "ready for quarter probe":
+        return dict(claude, label="probe", mult=0.25, why="borderline short probe: quarter probe")
+    if b.get("above"):
+        if q.get("model") and len(qw) < lc.get("qwen_runs", 2) and "qwen" not in [
+                v[0] for t, v in runs if t["state"] == "running"]:
+            return qwen_run
+        w = lc.get("stand_in") or {}
+        if not q.get("model") and w.get("model") and "stand-in" not in kinds:     # only without Qwen access
+            return {"keys": w.get("keys", "openai"), "agent": w.get("agent", "terminus-2"), "model": w["model"], "host_arg": [],
+                    "label": w.get("label", "weak25"), "mult": w.get("mult", 0.25), "why": "stand-in weaker model: gap hint",
+                    "derive": w.get("derive", "tmux")}
+        if b.get("gap") and b.get("ready") and "cheat" not in kinds:
+            return cheat
+        return None
+    if b.get("ready") and "full" not in kinds:
+        return dict(claude, label="l4-opus", mult=1.0, why="in the band: one full-budget frontier trial")
+    if b.get("ready") and "full" in kinds and "cheat" not in kinds:
+        return cheat
+    return None
+
+
+def derive_tmux_bundle(slug):
+    """kit/tasks/<slug>--tmux/harbor (git-ignored): the bundle with tmux installed in its image, inserted before the
+    spec's timer tail so the tail stays last. Graders, hidden sets and the task are unchanged; only agents that need a
+    tmux pane (closed network: Harbor cannot install it at setup) run on it."""
+    src = os.path.join(ROOT, "kit", "tasks", slug, "harbor")
+    dst_task = os.path.join(ROOT, "kit", "tasks", slug + "--tmux")
+    shutil.rmtree(dst_task, ignore_errors=True)
+    shutil.copytree(src, os.path.join(dst_task, "harbor"), symlinks=True)
+    df = os.path.join(dst_task, "harbor", "environment", "Dockerfile")
+    text = open(df).read()
+    i = text.find("# --- task timer")
+    if i < 0:
+        raise RuntimeError(f"{slug}: no timer tail in the Dockerfile")
+    add = ("USER root\nRUN (command -v tmux >/dev/null || (apt-get update && DEBIAN_FRONTEND=noninteractive "
+           "apt-get install -y --no-install-recommends tmux && rm -rf /var/lib/apt/lists/*))\n")
+    open(df, "w").write(text[:i] + add + text[i:])
+    return slug + "--tmux"
+
+
+OPENROUTER_LEFT = r"""
+import json, os, re, urllib.request
+t = open(os.path.expanduser("~/cg.env")).read()
+m = re.search(r"^OPENROUTER_API_KEY=(\S+)", t, re.M)
+if not m:
+    print("-1")
+else:
+    req = urllib.request.Request("https://openrouter.ai/api/v1/key", headers={"Authorization": "Bearer " + m.group(1)})
+    print(json.load(urllib.request.urlopen(req, timeout=20))["data"].get("limit_remaining"))
+"""
+
+
+def openrouter_left(host):
+    """Dollars left on the runner's OpenRouter key (read on the runner, so the key never leaves it); None if unknown."""
+    try:
+        p = subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", host, "python3 -"],
+                           input=OPENROUTER_LEFT, capture_output=True, text=True, timeout=40)
+        return float(p.stdout.strip())
+    except (subprocess.TimeoutExpired, OSError, ValueError):
+        return None
+
+
+def runner_load(host):
+    """How many Harbor task containers run on the runner (None: unreachable or held with data/HOLD-<host>)."""
+    if os.path.exists(os.path.join(ROOT, "data", f"HOLD-{host}")):
+        return None
+    try:
+        p = subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", host,
+                            'docker ps --format "{{.Names}}" | grep -c "^harbor__.*env-main" || true'],
+                           capture_output=True, text=True, timeout=30)
+        return int(p.stdout.strip()) if p.returncode == 0 else None
+    except (subprocess.TimeoutExpired, OSError, ValueError):
+        return None
+
+
+def runner_free(host):
+    """No Harbor trial or L3 container running on the runner (one trial per runner: 8 CPUs, 16 GB)."""
+    try:
+        p = subprocess.run(["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", host,
+                            'docker ps --format "{{.Names}}" | grep -c "^harbor__.*env-main" || true'],
+                           capture_output=True, text=True, timeout=30)
+        return p.returncode == 0 and p.stdout.strip() == "0" and not os.path.exists(os.path.join(ROOT, "data", f"HOLD-{host}"))
+    except (subprocess.TimeoutExpired, OSError):
+        return False
+
+
+def cmd_ladder(dry):
+    """Start the next model trial on each free runner (BUILD.md 3b, 7, 7c): zero tokens itself; the trials cost the pool
+    accounts (Claude) or the runner's OPENAI key (stand-in, Qwen). Off unless config.json ladder.auto; `ladder plan` only plans."""
+    lc = load_config().get("ladder", {})
+    if not lc.get("auto") and not dry:
+        print("ladder: off (config.json ladder.auto); `cgpipe.py ladder plan` shows what it would start")
+        return
+    if not dry:                                  # one ladder at a time: two runs would both start the same trial
+        import fcntl
+        lockf = open(os.path.join(DATA, ".ladder.lock"), "w")
+        try:
+            fcntl.flock(lockf, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
+            print("ladder: another ladder run is in progress"); return
+    d = dashboard_data()
+    state = load_json(LADDER_STATE, {"launched": []})
+    recent = [x for x in state["launched"] if time.time() - x["at"] < 1200]     # trials take minutes to appear
+    pri = lc.get("priority", [])               # bundles named in config first, then closest to submission
+    order = lambda b: (pri.index(b["slug"]) if b["slug"] in pri else len(pri), -b["done"], b["slug"])  # noqa: E731
+    plan = [(b, a) for b in sorted(d["builds"], key=order) if (a := ladder_next(b, d, lc))
+            and b["slug"] not in {x["task"] for x in recent}]
+    if not plan:
+        print("ladder: nothing to start"); return
+    if dry:
+        for b, a in plan:
+            print(f"ladder: queued {b['slug']}: {a['label']} ({a['why']}) [{b.get('stage', '')}]")
+    # Claude trials take a runner alone (8 CPUs of builds and tests); Qwen trials run the model at OpenRouter, so up to
+    # qwen_per_runner of them may share a runner that runs no Claude trial
+    running = [t for t in d["trials"] if t["state"] == "running"]
+    claude_on = {t["host"] for t in running if trial_verdict(t)[0] not in ("qwen", "stand-in")}
+    just = collections.Counter(x["host"] for x in recent)
+    for host in lc.get("runners", ["vm2", "vm3"]):
+        if not plan:
+            break
+        load = len([t for t in running if t["host"] == host]) if dry else runner_load(host)
+        if load is None or host in claude_on:
+            print(f"ladder: {host} busy"); continue
+        fresh = sum(1 for x in recent if x["host"] == host and time.time() - x["at"] < 180)   # started, not yet visible
+        load = load + fresh if not dry else max(load, just[host])
+        cap = lc.get("qwen_per_runner", 2)
+        cap = cap.get(host, 2) if isinstance(cap, dict) else cap       # Qwen mostly waits on the model (about 40 tokens/s)
+        pick = next((i for i, (bb, aa) in enumerate(plan) if (load == 0) or
+                     (aa["label"] == "qwen" and load < cap and all(x["label"] == "qwen" for x in recent if x["host"] == host and time.time() - x["at"] < 1200))), None)
+        if pick is None:
+            print(f"ladder: {host} busy"); continue
+        b, a = plan.pop(pick)
+        if a["label"] == "qwen" and not dry:          # spend guard on the OpenRouter key
+            left = openrouter_left(host)
+            floor = (lc.get("qwen") or {}).get("min_remaining_usd", 30)
+            if left is None or left < floor:
+                print(f"ladder: {host}: Qwen paused, OpenRouter credit left {left} (floor {floor})")
+                log(f"ladder: Qwen paused: OpenRouter credit left {left}, floor {floor}")
+                continue
+        task = b["slug"]
+        if a.get("derive") == "tmux" and not dry:
+            task = derive_tmux_bundle(b["slug"])
+        cmd = ["bash", os.path.join(ROOT, "kit", "scripts", "remote_run.sh"), "run", task, "--keys", a["keys"],
+               "--label", a["label"]] + (["--cheat"] if a.get("cheat") else []) + ["--detach", "--", "-a", a["agent"], "-m", a["model"],
+               "-k", "1", "-n", "1", "--agent-timeout-multiplier", str(a["mult"])] + a["host_arg"]
+        print(f"ladder: {host} <- {b['slug']} {a['label']} ({a['why']})")
+        if dry:
+            continue
+        mark = {"task": b["slug"], "host": host, "label": a["label"], "at": time.time()}
+        state["launched"].append(mark)                 # recorded before the launch, so no run can start it twice
+        atomic_write(LADDER_STATE, json.dumps(state, indent=1))
+        p = subprocess.run(cmd, cwd=os.path.join(ROOT, "kit"), env=dict(os.environ, CG_RUNNER_HOST=host),
+                           capture_output=True, text=True, timeout=1200)
+        ok = p.returncode == 0 and "detached" in p.stdout
+        log(f"ladder: {host} {b['slug']} {a['label']}: {'started' if ok else 'not started: ' + (p.stdout + p.stderr).strip().splitlines()[-1][:160]}")
+        if not ok:
+            state["launched"].remove(mark)
+    state["launched"] = state["launched"][-50:]
+    atomic_write(LADDER_STATE, json.dumps(state, indent=1))
+
+
 def cmd_watch(interval, once, html_path=None, port=None):
     if html_path:
         html_path = os.path.abspath(html_path)
