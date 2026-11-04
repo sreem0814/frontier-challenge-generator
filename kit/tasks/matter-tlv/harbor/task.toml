@@ -1,0 +1,27 @@
+[task]
+name = "cg/matter-tlv"
+description = "Rebuild the Matter TLV codec, message-header framing, onboarding-payload codecs and JSON<->TLV converter of connectedhomeip v1.6.1.0 in a trimmed tree where their implementations were removed, matching upstream behaviour exactly on unseen inputs."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["cpp"]
+category = "protocols"
+difficulty = "frontier"
+tags = ["matter", "tlv", "serialization", "qr-code", "json", "c++", "connectedhomeip"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"
