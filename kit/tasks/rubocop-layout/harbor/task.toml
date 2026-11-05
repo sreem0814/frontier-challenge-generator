@@ -1,0 +1,28 @@
+[task]
+name = "cg/rubocop-layout"
+description = "Rebuild the 100 Layout cops of RuboCop 1.92.0 (offense detection, autocorrection and every configuration option) on top of the rest of the tool; scored on frozen spec-derived and real-file cases against the released cops' output."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["ruby"]
+category = "compilers"
+difficulty = "frontier"
+tags = ["ruby", "rubocop", "linter", "formatter", "autocorrect", "ast", "static-analysis"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+user = "agent"
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"
