@@ -89,3 +89,14 @@ Near-misses that always apply: a native-code or system-tool shortcut, output in 
 - Keep the project's existing test suite as a regression gate (DeepSWE's pass-to-pass list): a change that breaks unrelated behaviour scores 0 on that gate. Record tamper signals (edited test infrastructure, vendored dependencies, test-binary hijacks such as a new TestMain) in evidence.json.
 - Ship /app as a history-less snapshot at the base commit (shallow clone, or a fresh `git init` of the tree). Full upstream history let agents read the gold fix on about 13 % of SWE-bench Pro trials (DeepSWE blog).
 - Run the verifier three times on the reference while authoring; any case whose result changes is flaky and must be fixed or dropped before the hidden set is frozen.
+
+## 8. Scripts
+| Script | Use |
+|---|---|
+| scripts/l0_check.py | L0 static checks (§4) |
+| scripts/l3_run.sh | L3 Docker checks (§5) |
+| scripts/remote_run.sh, vm2-run.sh | Harbor runs on VM 3 or `--local`: leak guard, `--keys none|claude|openai|codex|xai`, `--cheat`, `--stop-on-pass`, pull and redaction (from tb-ws; runs land in ~/cg-runs on VM 3) |
+| scripts/make_zip.sh | deterministic submission zip; refuses unless L0 passes |
+| scripts/humanize_diff.py | checks that humanizing changed only wording (paths, numbers, requirement words kept) |
+| scripts/usage.py | Claude token usage and cost for this project's sessions (`--session current [--log]`) |
+| scripts/leak-denylist.txt | phrases that must never appear in a bundle |
