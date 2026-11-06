@@ -1,0 +1,254 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "8 h. Comparison ordering across mixed value types, array-contains and in filters, and bound semantics are subtle, so the average is below the reference. Weaker models stop at simple equality filters.",
+  "cheat": "Hard-coded canonical IDs fail on the generated corpus. No upstream copy ships in the image.",
+  "grading": "Hidden gtest-style cases derived from the repo's core tests and a generated corpus of documents and queries. Compare match results, sort order and canonical IDs exactly. The existing core suite acts as a regression gate. The base fails all graded cases.",
+  "reference": "The upstream implementation at the pinned release. It scores 1 and is roughly 3,000 lines.",
+  "source": "https://github.com/firebase/firebase-ios-sdk @ 13.0.1 (Firestore core), Apache-2.0",
+  "task": "/app ships the Firestore C++ core with the query/target subsystem removed: filters, order-by bounds, canonical IDs, field-path and value comparison ordering, and the document-matching logic. The agent rebuilds them. Interface: the C++ headers used by the local tests, built with CMake.",
+  "title": "Rebuild the Firestore core query and target model in C++"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "database-query",
+ "final": 65,
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-076 0.24"
+  ],
+  [
+   "2026-10-21T03:07:06Z",
+   "v1",
+   "pass",
+   "score 80; dead links ['https://swiftpackageindex.com/builds/17E90928-E478-4F12-9815-3E5EFD05C6A2']"
+  ],
+  [
+   "2026-10-21T03:10:35Z",
+   "v2",
+   "killed:K8",
+   "query.cc is only 346 lines, and the claimed 3,000-line subset is unverified and likely much smaller. The same query model is public in the JS (583 lines) and Java (734 lines) SDKs, which frontier models know well, so translating the semantics is fast and well under the tier. Building the core requir"
+  ]
+ ],
+ "id": "S-im-080",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.244,
+    "S-im-076"
+   ],
+   [
+    0.228,
+    "S-im-075"
+   ],
+   [
+    0.226,
+    "S-im-065"
+   ],
+   [
+    0.143,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.103,
+    "i3-style [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "12d8a1dd6d3a151d943953fc992e41bae77d7754",
+  "kb": 84637,
+  "lang": "C++",
+  "open_prs": 172,
+  "pushed": "2026-10-20",
+  "release": "13.0.1",
+  "spdx": "Apache-2.0",
+  "stars": 6974,
+  "test_files": 1427,
+  "test_kb": 31590,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/firebase/firebase-ios-sdk|oss-fuzz-firestore",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/firebase/firebase-ios-sdk",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/firebase/firebase-ios-sdk/releases/tag/13.0.1",
+  "facts": [
+   {
+    "claim": "firebase-ios-sdk release 13.0.1 exists (title 'Firebase Apple 13.0.1', tag 13.0.1, published 07 Oct; page does not show the year)",
+    "status": "confirmed",
+    "url": "https://github.com/firebase/firebase-ios-sdk/releases/tag/13.0.1"
+   },
+   {
+    "claim": "Firestore/core/src/core at tag 13.0.1 contains query, target, target_id_generator, bound, order_by, filter, field_filter, in_filter, array_contains_filter, composite_filter and key_field filters. The tree also has pipeline/expression files (pipeline_run, expressions_eval), which the seed's task text does not mention",
+    "status": "confirmed",
+    "url": "https://github.com/firebase/firebase-ios-sdk/tree/13.0.1/Firestore/core/src/core"
+   },
+   {
+    "claim": "Firestore/core has a CMakeLists.txt at tag 13.0.1, so a CMake build of the core exists",
+    "status": "confirmed",
+    "url": "https://github.com/firebase/firebase-ios-sdk/tree/13.0.1/Firestore/core"
+   },
+   {
+    "claim": "Core unit tests exist, including query_test.cc, target_test.cc, filter_test.cc, target_id_generator_test.cc, view_test.cc and others (10 visible; listing truncated, so the total is unknown)",
+    "status": "confirmed",
+    "url": "https://github.com/firebase/firebase-ios-sdk/tree/13.0.1/Firestore/core/test/unit/core"
+   },
+   {
+    "claim": "query.cc is 346 lines (293 code lines) and implements canonical ID, matching, bounds, order-by normalisation and comparator",
+    "status": "confirmed",
+    "url": "https://github.com/firebase/firebase-ios-sdk/blob/13.0.1/Firestore/core/src/core/query.cc"
+   },
+   {
+    "claim": "The whole removed subset is roughly 3,000 lines in the reference",
+    "status": "not_found",
+    "url": "https://github.com/firebase/firebase-ios-sdk/tree/13.0.1/Firestore/core/src/core"
+   },
+   {
+    "claim": "A public JS port of the same query model exists: packages/firestore/src/core/query.ts, 583 lines, Apache-2.0 header, with canonifyQuery, queryMatchesFilters, queryMatchesBounds and newQueryComparator",
+    "status": "confirmed",
+    "url": "https://github.com/firebase/firebase-js-sdk/blob/main/packages/firestore/src/core/query.ts"
+   },
+   {
+    "claim": "A public Android/Java port exists: firebase-firestore core/Query.java, 734 lines, Apache-2.0 header, with getCanonicalId, matchesFilters, matchesOrderBy and matchesBounds",
+    "status": "confirmed",
+    "url": "https://github.com/firebase/firebase-android-sdk/blob/main/firebase-firestore/src/main/java/com/google/firebase/firestore/core/Query.java"
+   },
+   {
+    "claim": "The C++ core's CMake dependency list (abseil, grpc, nanopb, leveldb, gtest) is confirmed. Only Swift Package Manager build logs were found, which list abseil, grpc, nanopb and leveldb; no CMake dependency list was found",
+    "status": "not_found",
+    "url": "https://swiftpackageindex.com/builds/17E90928-E478-4F12-9815-3E5EFD05C6A2"
+   },
+   {
+    "claim": "A smoke build for this seed exists (smoke_build is empty, so no probe result was available to check)",
+    "status": "not_found",
+    "url": "https://github.com/firebase/firebase-ios-sdk/tree/13.0.1/Firestore/core"
+   }
+  ],
+  "frontier_hours": 8,
+  "full_card": {
+   "band": "8 h tier. Hard parts: mixed-type comparison ordering, array-contains and in filters, bound and cursor semantics, and exact canonical ID strings. Frontier agents may recall the JS/Java semantics but must match exact C++ output. No dated public evidence, so Band is capped at 3.",
+   "build_cost": "Estimated at several days, unverified. Image must carry the full core build chain (abseil, grpc, nanopb, leveldb, protobuf, gtest). smoke_build was empty, so the spike must produce the real figure.",
+   "deliverable": "Rebuilt C++ query/target/filter/bound/order-by/canonical-ID code so that the core builds with CMake and the hidden gtest cases pass.",
+   "gates_anticheat": "Hidden cases and corpus generator stay outside the image. Remove query_test.cc, target_test.cc, filter_test.cc and the other query/target tests from /app. Block hard-coded canonical IDs through the generated corpus. Freeze CMake and test config so the agent cannot edit tests or build flags. Strip git history and any vendored newer copy.",
+   "grading_surface": "Hidden gtest cases derived from the core query/target tests, plus a generated corpus of documents and queries. Compares match results, sort order and canonical IDs exactly. Count not verified. Existing core suite is a regression gate.",
+   "local_fit": "Hard to verify. Needs gtest and CMake, plus the core's third-party deps (abseil, grpc, nanopb, leveldb per SPM logs) pre-installed in the image. CPU-only and within 8 cores/16 GB probably, but not verified under gVisor.",
+   "lookup": "Partial. Same semantics are public in firebase-js-sdk query.ts (583 lines) and firebase-android-sdk Query.java (734 lines), both Apache-2.0. No C++ package install is possible offline. Public git history contains the full upstream C++, so a snapshot is required.",
+   "provenance": "firebase/firebase-ios-sdk @ 13.0.1 (tag confirmed), Firestore/core, Apache-2.0 per seed API facts. Source is public on GitHub, so /app must ship a history-less snapshot.",
+   "reference": "Upstream 13.0.1 core. Seed states the reference is about 3,000 lines and scores 1; not verified. query.cc alone is 346 lines.",
+   "ships": "Firestore C++ core at 13.0.1 with the query/target subsystem removed (query, target, target_id_generator, bound, order_by, filters, canonical IDs, comparators), plus a CMake build of the rest of the core and its headers.",
+   "similarity": "Nearest seeds S-im-076 (0.244), S-im-075 (0.228), S-im-065 (0.226) are sibling seeds, not public tasks. Nearest public task is python-pytest-cases at 0.143, below the 0.15 cutoff. Not in the CROWDED list (document query matching, not SQL)."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence, so capped at 3. Frontier agents may recall JS/Java semantics, but exact C++ canonical IDs and cursor semantics are hard."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated several days to get the full core build chain into the image; unverified, since smoke_build was empty."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only and probably fits, but the abseil/grpc/nanopb/leveldb chain under gVisor is unverified."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several modules and filter types. A strong agent needs most of an 8 h budget with debugging against the corpus."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the code, reference and snapshot in the bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Filters, in/array-contains, bounds, order-by, comparators and canonical IDs are separate buckets with partial credit."
+   },
+   "Nov": {
+    "v": 5,
+    "why": "Nearest public task is 0.143, under 0.15. Neighbours listed are sibling seeds, not public tasks."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real repo at a verified release tag, real core with CMake and a core test suite; Apache-2.0."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream at the pinned release, scores 1 by definition."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public; a history-less snapshot with tests removed is needed. Recall risk is scored under Band."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated corpus of documents and queries plus gtest cases gives thousands of cases; no executable oracle in the image."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The CMake build needs network or deps that cannot be preinstalled in the image, the core test binaries cannot run under gVisor, or the removed subset is under about 1,000 lines.",
+   "pass_if": "Core builds offline from the image's pre-installed deps, the query/target tests pass twice with identical output, and the removed subset is at least 2,000 lines.",
+   "steps": [
+    "In a throwaway networked Linux container, fetch firebase-ios-sdk at tag 13.0.1 with no history (git archive).",
+    "Read Firestore/core/CMakeLists.txt and record every third-party dependency (abseil, grpc, nanopb, leveldb, protobuf, gtest) and its version.",
+    "Install those deps and configure the core with CMake. Record the first failure and whether anything needs the network.",
+    "Build the core test targets. Run query_test, target_test, filter_test and target_id_generator_test twice each and confirm they pass and are deterministic.",
+    "Count the lines in query, target, target_id_generator, bound, order_by and the filter files to verify the ~3,000-line reference claim.",
+    "Delete those query/target files in a copy and check which build targets break. This maps the removal boundary.",
+    "Write 5-10 generated documents and queries with mixed value types and check that canonical IDs and sort order from the untouched upstream are stable across runs."
+   ]
+  },
+  "summary": "The source is a real, pinned Apache-2.0 release (13.0.1) with a CMake-built core and a core test suite, and the same query semantics are public in the JS and Android SDKs. The build chain and the ~3,000-line reference size are unverified, and smoke_build was empty, so the spike must confirm the build before the seed is accepted; Band is capped at 3 with no dated evidence.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [
+   "https://swiftpackageindex.com/builds/17E90928-E478-4F12-9815-3E5EFD05C6A2"
+  ],
+  "ratio": 0.125
+ },
+ "v1_score": 80,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-080",
+  "kill_code": "K8",
+  "note": "query.cc is only 346 lines, and the claimed 3,000-line subset is unverified and likely much smaller. The same query model is public in the JS (583 lines) and Java (734 lines) SDKs, which frontier models know well, so translating the semantics is fast and well under the tier. Building the core requires grpc, abseil, leveldb, nanopb and protobuf with an unverified CMake path, which risks K12.",
+  "scores": {
+   "Band": 2,
+   "Build": 1,
+   "Fit": 3,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 4,
+   "Seal": 2,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 65
+}

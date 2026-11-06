@@ -1,0 +1,287 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "8 h. The semantics are manageable for a frontier agent; the exact emitted shape (variable naming, helper order, private-name handling) is the hard part, so the average is well below 1. A weaker model produces behaviour-correct but non-matching output. Buckets: field, method, accessor, class, private, static, ordering.",
+  "cheat": "Evaluating decorators natively or reusing the legacy transform changes the emitted code and fails the output compare. No newer babel copy is in node_modules.",
+  "grading": "The fixture runner executes hidden input.js files and compares the generated code to the expected output.js exactly, plus an exec-style subset that runs the compiled output and checks behaviour. Expected files come from the upstream suite plus generated variants from a sealed build. Score is the fraction passed, the base scores 0.",
+  "reference": "The upstream plugin code (about 2-3k lines of TS/JS). It scores 1.",
+  "source": "https://github.com/babel/babel @ b6e7638 (packages/babel-plugin-proposal-decorators and helpers), MIT",
+  "task": "/app ships a history-less Babel monorepo snapshot where the 2023-11 and 2023-05 decorators transforms and their helper code are removed (the legacy transform stays). The agent rebuilds the class, field, accessor, method, private and static decorator transforms, with the runtime helpers, so that the output matches the plugin's contract.",
+  "title": "Babel decorators transform (2023-11) rebuilt against fixture outputs"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "compiler-toolchain",
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-065 0.28"
+  ],
+  [
+   "2026-10-21T02:38:09Z",
+   "v1",
+   "killed:K4",
+   "Grading compares generated code to the upstream output.js text exactly, so a different valid emitter (other names or helper order) fails. That breaks the 'different valid solution must pass' gate and encodes the reference's internal shape. A behaviour-only rescope (exec subset plus semantic checks) "
+  ]
+ ],
+ "id": "S-im-074",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.28,
+    "S-im-065"
+   ],
+   [
+    0.268,
+    "S-im-071"
+   ],
+   [
+    0.264,
+    "S-im-068"
+   ],
+   [
+    0.197,
+    "babel [Commit0]"
+   ],
+   [
+    0.098,
+    "affine_transform_2d [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 2,
+  "ci_files": 15,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && corepack yarn run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "corepack yarn install --frozen-lockfile || corepack yarn install --immutable",
+  "cmd_test": "npx jest --ci --json --outputFile=$OUT/run$i.json",
+  "commit": "ec29782bf4df9a03a67f5bb7746aebee252862d6",
+  "deterministic": false,
+  "eco": "node",
+  "fetch_ok": false,
+  "fetch_s": 77,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "///p/src/Makefile.js:36:195971)\n    at Yy.tscheck-babel-parser (file:///p/src/Makefile.js:36:200655)\n    at ne.target.<computed> (file:///p/src/Makefile.js:36:92147)\n    at Yy.bundle-babel-parser-dts (file:///p/src/Makefile.js:36:200300)\n    at ne.target.<computed> (file:///p/src/Makefile.js:36:92147)\n    at Yy.build-no-bundle (file:///p/src/Makefile.js:36:198979)\n    at ne.target.<computed> (file:///p/src/Makefile.js:36:92147)\n    at Yy.build (file:///p/src/Makefile.js:36:198617)\n    at ne.target.<computed> [as build] (file:///p/src/Makefile.js:36:92147)\nmake: *** [Makefile:23: build] Error 1",
+  "oom": false,
+  "ref": "default",
+  "report_format": "json",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 1,
+  "stable_failure_names": [
+   "0.js::<file>",
+   "1.js::<file>",
+   "2.js::<file>",
+   "3.js::<file>",
+   "4.js::<file>",
+   "5.js::<file>",
+   "6.js::<file>",
+   "7.js::<file>",
+   "ancestry.js::<file>",
+   "api.js::<file>",
+   "arrow-functions.js::<file>",
+   "arrow-transform.js::<file>",
+   "asserts.js::<file>",
+   "assumptions.js::<file>",
+   "async.js::<file>",
+   "attachComment-false.js::<file>",
+   "babel-eslint-plugin.js::should work with ESLint 10.3.0",
+   "babel.js::#11534 - supports quantifiers in unicode regexps",
+   "babel.js::#11628 - supports stage-0 passing importAssertionsVersion to stage-1",
+   "babel.js::#11897 - [...map.keys()] in Babel source should be transformed correctly"
+  ],
+  "stable_failures": 185,
+  "subdir": "",
+  "suite_s": 4,
+  "test_files": 26407,
+  "tests_fail": 185,
+  "tests_listed": 276,
+  "tests_pass": 5,
+  "tests_skip": 0,
+  "tests_total": 190,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "b6e76380fb62e968f5e24cca94b9f6045ccc9ef4",
+  "kb": 147316,
+  "lang": "TypeScript",
+  "open_prs": 192,
+  "pushed": "2026-10-20",
+  "release": "v8.0.7",
+  "spdx": "MIT",
+  "stars": 44060,
+  "test_files": 26388,
+  "test_kb": 27302,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/babel/babel|babel-babel",
+ "source_notes": "SWE-smith profile (javascript): its suite runs in a container; test command: yarn jest --verbose. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/babel/babel",
+ "source_version": "",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "not found",
+  "facts": [
+   {
+    "claim": "babel/babel repo exists at pinned commit b6e76380fb62e968f5e24cca94b9f6045ccc9ef4 (commit title 'chore: update node flags (#18367)', touches only packages/babel-node/data/node-flags-with-value.json)",
+    "status": "confirmed",
+    "url": "https://github.com/babel/babel/commit/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4"
+   },
+   {
+    "claim": "Repo licence is MIT (LICENSE file: 'MIT License', Copyright (c) 2014-present Sebastian McKenzie and other contributors)",
+    "status": "confirmed",
+    "url": "https://github.com/babel/babel/blob/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4/LICENSE"
+   },
+   {
+    "claim": "packages/babel-plugin-proposal-decorators/src contains transformer-2023-11.ts and transformer-2023-05.ts files (seed implies the 2023-11/2023-05 transforms live as separate plugin source files)",
+    "status": "contradicted",
+    "url": "https://github.com/babel/babel/tree/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4/packages/babel-plugin-proposal-decorators/src"
+   },
+   {
+    "claim": "The plugin package src holds only index.ts and transformer-legacy.ts; the 2023-11 decorator logic is in babel-helper-create-class-features-plugin/src/decorators.ts (with fields.ts, misc.ts, features.ts, typescript.ts, index.ts)",
+    "status": "confirmed",
+    "url": "https://github.com/babel/babel/tree/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4/packages/babel-helper-create-class-features-plugin/src"
+   },
+   {
+    "claim": "Plugin fixture tree has about 23 '2023-11-*' fixture directories (accessors, classes, fields, getters, setters, methods, misc, ordering, duplicated-keys, exported, runtime-errors, typescript, assumption-constantSuper, plus --to-es2015 variants); listing is truncated so the exact total is not confirmed",
+    "status": "confirmed",
+    "url": "https://github.com/babel/babel/tree/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4/packages/babel-plugin-proposal-decorators/test/fixtures"
+   },
+   {
+    "claim": "Fixture directories for 2023-05 exist in the plugin test tree",
+    "status": "not_found",
+    "url": "https://github.com/babel/babel/tree/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4/packages/babel-plugin-proposal-decorators/test/fixtures"
+   },
+   {
+    "claim": "Babel option version \"2023-11\" for the decorators plugin was added in Babel 7.24.0 and tracks the proposal after the Nov 2023 TC39 meeting; 7.24.0 changed initializer execution order for context.addInitializer vs 2023-05",
+    "status": "confirmed",
+    "url": "https://babeljs.io/blog/2024/02/28/7.24.0"
+   },
+   {
+    "claim": "Babel 2023-05 option added in v7.22.0; 2023-01 in v7.21.0; 2022-03 in v7.19.0",
+    "status": "confirmed",
+    "url": "https://babeljs.io/docs/babel-plugin-proposal-decorators"
+   },
+   {
+    "claim": "Latest npm version, publish date and licence of @babel/plugin-proposal-decorators",
+    "status": "not_found",
+    "url": "https://www.npmjs.com/package/@babel/plugin-proposal-decorators"
+   },
+   {
+    "claim": "Smoke probe ran at the pinned source commit (probe commit ec29782 vs source head b6e7638)",
+    "status": "contradicted",
+    "url": "https://github.com/babel/babel/commit/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4"
+   },
+   {
+    "claim": "Upstream grading uses exact expected output.js text, so a different valid emitter (other naming or helper order) would fail",
+    "status": "not_found",
+    "url": "https://github.com/babel/babel/tree/b6e76380fb62e968f5e24cca94b9f6045ccc9ef4/packages/babel-plugin-proposal-decorators/test/fixtures"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. No dated public evidence of agent results on this task; band estimate 3 at best. Exact-shape matching is the main difficulty, so a frontier mean is likely well below 1 while behaviour-level pass is plausible.",
+   "build_cost": "3-5 days to get a runnable offline monorepo and a deterministic fixture runner (smoke_build amber, fetch failed, commit mismatch). Above the 2-day target, under the 5-day kill.",
+   "deliverable": "Rebuilt decorators transform (class, field, accessor, method, private, static, ordering) emitting code for 2023-11 that matches the plugin contract.",
+   "gates_anticheat": "Exact text compare encodes the reference's naming and helper order, so it fails the 'different valid solution must pass' gate. Cheat paths: reuse of legacy transform (changes output, caught by compare), native decorator evaluation (changes output), copying from git history (closed only if the snapshot is truly history-less), node_modules copy of a newer @babel package (stated absent, unverified).",
+   "grading_surface": "Hidden input.js fixtures; exact compare of generated code to output.js plus an exec-style behaviour subset. Count of hidden cases not confirmed; visible 2023-11 fixture dirs about 23 (truncated listing).",
+   "local_fit": "Node/TypeScript on CPU; offline yarn build of a 26k-test-file monorepo is heavy. smoke_build amber: build_ok false, fetch_ok false, 185/190 stable failures, one run without report, non-deterministic. Fit 3.",
+   "lookup": "Public code on GitHub and npm (@babel/helper-create-class-features-plugin 7.24+). Not installable at run time, but the upstream source is well known; history must be stripped. Verdict partial.",
+   "provenance": "babel/babel @ b6e7638 (HEAD per GitHub API), MIT; upstream 2023-11 decorator logic in babel-helper-create-class-features-plugin/src/decorators.ts plus fixtures under babel-plugin-proposal-decorators/test/fixtures/2023-11-*. Public since Babel 7.24.0 (2024).",
+   "reference": "Upstream plugin + helper code, about 2-3k lines TS, MIT; scores 1 by definition. Pinned at b6e7638.",
+   "ships": "A history-less Babel monorepo snapshot with the 2023-11 and 2023-05 transform code and helpers removed; legacy transform kept. Not verified in this pass; the removal map of helper files is unconfirmed because decorators.ts is shared with other code.",
+   "similarity": "l0 neighbours max 0.28 (S-im-065), then 0.268 (S-im-071), 0.264 (S-im-068), 0.197 babel [Commit0]. None above the 0.15 novelty threshold without crowding; Commit0 babel is a same-repo neighbour. Nov 3."
+  },
+  "kill_code": "K4",
+  "kill_reason": "Grading compares generated code to the upstream output.js text exactly, so a different valid emitter (other names or helper order) fails. That breaks the 'different valid solution must pass' gate and encodes the reference's internal shape. A behaviour-only rescope (exec subset plus semantic checks) could be resubmitted as a new seed. Build is also amber, not green.",
+  "lookup_verdict": "partial",
+  "lookup_verdict_note": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results; 8 h scope plausible but exact-shape matching lowers the mean; a weaker model would be behaviour-correct but non-matching."
+   },
+   "Build": {
+    "v": 2,
+    "why": "smoke_build build_ok false and 185 stable failures; estimated 3-5 days to a deterministic runner."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Node/TS on CPU is fine, but the offline monorepo build failed in smoke_build (amber) and fetch failed."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Seven bucket groups over a 2-3k line transform need sustained 8 h work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, verified on LICENSE at the pinned commit."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Field, method, accessor, class, private, static and ordering buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max l0 neighbour 0.28, above the 0.15 bar; babel Commit0 is a same-repo neighbour, so not clearly novel."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real babel repo at a pinned commit, MIT, 44k stars, real decorator transform and fixtures."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete upstream MIT implementation scores 1, but the reference is graded by exact emitted text, so its ceiling is tied to one shape."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream source is public on GitHub and npm; snapshot removes local copies, and visible fixtures expose expected outputs, so sealing is partial."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Fixture-based hidden cases plus exec subset; about 23+ visible 2023-11 dirs, generated variants add more; not counted."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Build needs network at run time that cannot be cached, fixture results differ between runs, or the removal map cannot separate 2023-11 code from shared helpers.",
+   "pass_if": "Offline or cached build of the plugin succeeds, fixture run is deterministic across two runs, and a behaviour-only subset can be written for the bucket list.",
+   "steps": [
+    "In a throwaway Linux container with network, clone babel/babel at b6e76380fb62e968f5e24cca94b9f6045ccc9ef4 (not ec29782; the probe commit differs) and record the tree hash.",
+    "Run yarn install offline-capable and build only @babel/core and the decorators plugin packages; record the wall time and the first failure.",
+    "Run jest on packages/babel-plugin-proposal-decorators with the 2023-11 option and count fixtures that pass; run twice to check determinism.",
+    "List every file that a 2023-11-only snapshot would need to keep (helper decorators.ts and shared misc/fields code) to confirm the removal map is clean.",
+    "Write a 2-line exec-only check (run compiled output, compare behaviour) for three buckets (field, method, static) and confirm it passes on the unmodified repo.",
+    "Record whether an exact-text compare would reject a valid alternative emitter; this decides whether the seed can be rescoped to behaviour-only grading."
+   ]
+  },
+  "summary": "Repo, pinned commit, MIT licence and the 2023-11 option (Babel 7.24.0) are confirmed, but the 2023-11 logic lives in babel-helper-create-class-features-plugin/src/decorators.ts rather than the transformer files the seed implies, and the smoke build is amber with a commit mismatch. The grading as written compares exact emitted text against the upstream output, which fails the different-valid-solution gate, so it is killed as K4 pending a behaviour-only rescope."
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75
+}

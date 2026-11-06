@@ -1,0 +1,243 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "4h. The lever is partly known (buffer fill and SIMD-friendly refill), but frontier agents vary on the range-sampling and Bool paths. Several independent hot paths give a steady curve. A weaker model breaks stream identity.",
+  "cheat": "Switching to a different generator breaks stream identity. Caching outputs fails across seeds and sizes.",
+  "grading": "Hard gate: bitwise-identical output streams for many seeds, types, sizes and ranges against recorded reference streams. The score is the median wall-clock speedup over a hidden benchmark set, reward 2^u-1 against our reference speedup.",
+  "reference": "The merged upstream PR plus later follow-ups, with the speedup measured on the grader machine. The size is not found and must be measured.",
+  "source": "https://github.com/JuliaLang/julia/pull/37914 @ v1.13.2 line, MIT",
+  "task": "/app ships a Julia stdlib Random snapshot at the pre-PR state, with a toolchain. The agent speeds up rand for MersenneTwister over integer types, arrays, ranges and bools without changing any output stream.",
+  "title": "Julia MersenneTwister bulk rand speedup under a stream-identity gate"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "numeric-scientific",
+ "final": 56,
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-062 0.16"
+  ],
+  [
+   "2026-10-21T03:14:19Z",
+   "v1",
+   "pass",
+   "score 77; dead links []"
+  ],
+  [
+   "2026-10-21T03:16:14Z",
+   "v2",
+   "killed:K10",
+   "The base pin was contradicted: the snapshot would have to be a 2020 Julia tree (parent of b8bc816), and building it offline is costly and unprobed. The lever is one known, recallable trick (bulk dSFMT fill) and the PR diff is small. The speedup is self-reported (1.5-1.8x) and unmeasured, and gVisor "
+  ]
+ ],
+ "id": "S-op-039",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.157,
+    "S-im-062"
+   ],
+   [
+    0.155,
+    "S-im-014"
+   ],
+   [
+    0.154,
+    "S-rs-019"
+   ],
+   [
+    0.1,
+    "kcp-go-multiplexed-kcp-streams [DeepSWE]"
+   ],
+   [
+    0.095,
+    "bitwise [MirrorCode]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "75b93327a801ffe66a42b1e0653eba81ca8eefb1",
+  "kb": 390954,
+  "lang": "Julia",
+  "open_prs": 1036,
+  "pushed": "2026-10-20",
+  "release": "v1.13.2",
+  "spdx": "MIT",
+  "stars": 49218
+ },
+ "source_key": "github.com/julialang/julia/pull/37914|julialang-julia-37914-quite-faster-rand-mersennetwister-type",
+ "source_notes": "repo https://github.com/JuliaLang/julia; merged PR or fixed issue",
+ "source_url": "https://github.com/JuliaLang/julia/pull/37914",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/JuliaLang/julia/pull/37914",
+  "facts": [
+   {
+    "claim": "JuliaLang/julia PR #37914 'quite faster rand(::MersenneTwister, ::Type{Int})' exists and was merged on 2020-10-17 as commit b8bc81677ea4075d161a464dbb33f0eef33aa291",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/pull/37914"
+   },
+   {
+    "claim": "The seed's pin 'PR 37914 @ v1.13.2 line' cannot be the pre-PR base: the PR is already merged into the v1.13.2 line, so the snapshot must be taken from a commit before b8bc816 (about Oct 2020)",
+    "status": "contradicted",
+    "url": "https://github.com/JuliaLang/julia/pull/37914"
+   },
+   {
+    "claim": "PR #37916 (rand Float64, Int32 etc. for MersenneTwister) was merged on 2020-10-07, ten days before #37914, so a pre-#37914 snapshot already contains its Float64 and small-integer speedups",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/pull/37914"
+   },
+   {
+    "claim": "The PR description reports about 1.8x for Int64/UInt64 scalar generation, about 1.6x for Int128/UInt128, and about 1.5x for ranges under 64 bits; the author says these are measured on their machine only (self-reported)",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/pull/37914"
+   },
+   {
+    "claim": "Julia v1.13.2 stdlib/Random/src contains MersenneTwister.jl, DSFMT.jl, generation.jl, normal.jl, Xoshiro.jl and related files",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/tree/v1.13.2/stdlib/Random/src"
+   },
+   {
+    "claim": "Repository licence is MIT (GitHub API spdx field; LICENSE file itself not opened)",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia"
+   },
+   {
+    "claim": "Diff size of PR #37914 (added/removed lines) is shown on the PR page",
+    "status": "not_found",
+    "url": "https://github.com/JuliaLang/julia/pull/37914"
+   },
+   {
+    "claim": "Later follow-up PRs #58089 and #58306 tuned rand(1:n) performance",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Reference speedup on the grader machine",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "frontier_hours": 3.5,
+  "full_card": {
+   "band": "Tier 4h. Lever is partly known from upstream (SIMD dSFMT fill, aligned buffer); several hot paths give buckets. Weaker model likely breaks stream identity. Band capped at 3 because no dated public agent evidence (E0)",
+   "build_cost": "About 3-5 days to produce an offline Julia build snapshot with vendored dependencies and a stable benchmark harness; smoke_build was not probed ({}), so the build cost is unknown",
+   "deliverable": "Faster MersenneTwister rand for integer types, Float64 where still slow, integer ranges, arrays and Bool, with bitwise-identical streams",
+   "gates_anticheat": "Stream identity over many seeds and sizes closes generator-swap and output-caching; hidden benchmark sizes and types close special-casing; tests and build config must be read-only to the agent",
+   "grading_surface": "Hidden seeds x types x sizes x ranges compared to recorded reference streams (executable oracle is the snapshot itself, so agent can self-check); score = median wall-clock speedup on hidden benchmark set",
+   "local_fit": "Pure CPU, 8 cores, 16 GB; gVisor timing noise is a risk for median wall-clock; no network needed at run time if Julia builds offline",
+   "lookup": "partial: upstream PR diff is public in git history and a model may recall the dSFMT fill outline; not installable offline; must ship history-less snapshot",
+   "provenance": "JuliaLang/julia, MIT, Random stdlib; PR #37914 merged 2020-10-17 (b8bc816); related PR #37916 merged 2020-10-07; release v1.13.2 contains both",
+   "reference": "Upstream PR #37914 plus follow-ups; speedup not measured on grader; PR self-reports 1.5-1.8x on Int/Int128/ranges; diffstat not found",
+   "ships": "Julia toolchain plus Random stdlib snapshot at the parent of b8bc816 (pre-#37914, post-#37916), history removed",
+   "similarity": "Max l0 neighbour 0.157 (S-im-062); not crowded; Julia Random subject distinct from listed crowded tasks"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed proposes 4h, but with no dated public agent evidence (E0) the cap is 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Offline Julia build with a stable benchmark harness, roughly 3-5 days; not yet probed"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only and fits, but gVisor timing noise threatens median wall-clock and the Julia build needs offline deps"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Mostly one module with buckets; sustained work but a 4h tier is near the edge"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per GitHub API"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Int, Int128, Float64, ranges, arrays and Bool give separate buckets"
+   },
+   "Nov": {
+    "v": 5,
+    "why": "Max neighbour cosine 0.157 and not in the crowded list"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Merged upstream PR in a 49k-star MIT repo with a release tag"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream merged code exists but its speedup on the grader is unmeasured and the diffstat is not found"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream diff is in public history, so the snapshot must be history-less; the approach is recallable in outline"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Seeds x types x sizes x ranges give thousands of comparable streams"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Reference speedup on the median benchmark is under 1.2x, run-to-run noise is over 15%, or the Julia build cannot be made offline",
+   "pass_if": "Reference build is at least 1.5x faster on the Int and range buckets, streams are bit-identical across runs, and noise is under 10%",
+   "steps": [
+    "In a networked container, clone JuliaLang/julia and check out the parent of b8bc816 (pre-#37914), then build with make -j8 and record the build time and downloaded deps",
+    "Check out b8bc816 as the reference build and build it the same way",
+    "Write a timing harness for rand(MT, Int64/Int128/UInt32), rand(1:n) for n<64 bits, rand(Bool), Float64 arrays and Bool arrays; run each build 5 times and take medians",
+    "Dump streams for many seeds, types, sizes and ranges from the pre-PR build; confirm the reference build reproduces them exactly and run the dump twice to confirm determinism",
+    "Compute reference speedup S per bucket and the noise (run-to-run spread) of the medians",
+    "Check whether the Julia build can be made fully offline by vendoring its download cache, and note the size"
+   ]
+  },
+  "summary": "The seed is real and well-sourced: PR #37914 is merged (b8bc816, 2020-10-17), MIT-licensed, and its self-reported 1.5-1.8x speedups are public, but the seed's \"@ v1.13.2\" pin is wrong because the PR is already in that release, so the snapshot must be pre-b8bc816 and must already include #37916. Band is capped at 3 with E0 evidence, the build cost is unprobed (smoke_build {}), and the approach is partly recallable from upstream, so the seed should pass with conditions: a history-less pre-PR snapshot, a measured reference speedup, and a spike to confirm the build and speedup before committing.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 77,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-039",
+  "kill_code": "K10",
+  "note": "The base pin was contradicted: the snapshot would have to be a 2020 Julia tree (parent of b8bc816), and building it offline is costly and unprobed. The lever is one known, recallable trick (bulk dSFMT fill) and the PR diff is small. The speedup is self-reported (1.5-1.8x) and unmeasured, and gVisor wall-clock noise threatens the median. With 3.5 frontier hours in a 4h tier, there is not enough sustained work.",
+  "scores": {
+   "Band": 2,
+   "Build": 1,
+   "Fit": 3,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 2,
+   "Nov": 5,
+   "Real": 4,
+   "Ref": 2,
+   "Seal": 2,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 56
+}

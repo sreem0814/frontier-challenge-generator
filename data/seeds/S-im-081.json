@@ -1,0 +1,291 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "4 h. The spec-driven encoding is clear, but container nesting rules, error classification and the many API entry points keep the average below 1. Weaker models fail on error semantics.",
+  "cheat": "There is no TLV library installed. Fixed byte vectors fail the generated corpus.",
+  "grading": "Hidden unit tests derived from the repo's TLV and message tests, plus a differential corpus (random nested structures, malformed input, boundary integer widths) against reference encodings. Compare exact bytes and error codes. The base fails all.",
+  "reference": "The upstream sources at the pinned tag, roughly 3,000 lines, which score 1.",
+  "source": "https://github.com/project-chip/connectedhomeip @ v1.6.1.0, Apache-2.0",
+  "task": "/app ships a snapshot with src/lib/core TLV reader, writer and utilities, plus message header encode and decode, removed. The agent rebuilds them with the same API. Interface: C++ library, built via a trimmed CMake or GN setup.",
+  "title": "Rebuild the Matter TLV codec and message framing layer in connectedhomeip"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "protocol",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-080 0.32"
+  ],
+  [
+   "2026-10-21T03:06:35Z",
+   "v1",
+   "pass",
+   "score 77; dead links []"
+  ],
+  [
+   "2026-10-21T03:10:35Z",
+   "v2",
+   "pass",
+   "final 75"
+  ],
+  [
+   "2026-10-21T03:29:12Z",
+   "spike",
+   "validated",
+   "Trimmed offline build works with plain g++ in about 10 s: no GN and no network after the clone and the two small submodules. Reference passes 66/66 upstream tests (TestTLV 53, TestTLVVectorWriter 4, TestMessageHeader 9) three times with identical results. The differential corpus (1000 TLV and 1000 h"
+  ]
+ ],
+ "id": "S-im-081",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.319,
+    "S-im-080"
+   ],
+   [
+    0.264,
+    "S-im-012"
+   ],
+   [
+    0.25,
+    "S-im-071"
+   ],
+   [
+    0.083,
+    "php-src [ProgramBench]"
+   ],
+   [
+    0.073,
+    "dnspython [Commit0]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 3,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "26f29cd091ce24c34d7e4294569171d987e56efb",
+  "kb": 1942239,
+  "lang": "C++",
+  "open_prs": 403,
+  "pushed": "2026-10-20",
+  "release": "v1.6.1.0",
+  "spdx": "Apache-2.0",
+  "stars": 8975,
+  "test_files": 2454,
+  "test_kb": 25284,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/project-chip/connectedhomeip|oss-fuzz-connectedhomeip",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/project-chip/connectedhomeip",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Tests use pigweed pw_unit_test; I shimmed them to gtest (pw_string stubbed, StringBuilderAdapters.cpp skipped)",
+   "TLV UTF-8 write tests need -DCHIP_CONFIG_TLV_VALIDATE_CHAR_STRING_ON_WRITE=1",
+   "Removed set is about 8000 non-blank lines including comments, larger than the 3000 in the seed; the agent must also rebuild TLVCircularBuffer, TLVDebug, TLVUpdater and TLVVectorWriter",
+   "My corpus generator was sloppy: 33% of cases encode OK, and the reader-side error codes need cleanup",
+   "Whole-repo snapshot is 130 MB for src plus 2 submodules; must be trimmed and made history-less",
+   "Public upstream is recallable (K8 risk) and the Matter TLV spec is public"
+  ],
+  "build_minutes": 1,
+  "cases_sampled": 66,
+  "commands_log": "git clone --depth 1 --branch v1.6.1.0 connectedhomeip; git submodule update --init --depth 1 third_party/nlassert/repo third_party/nlio/repo; direct g++ -std=gnu++20 of src/lib/core/TLV*.cpp, CHIPError, ErrorStr, lib/support/*.cpp, system/*.cpp, MessageHeader.cpp with -D flags in /work/flags.sh; apt install libgtest-dev; link with shim main; /work/tlvtest x3 = 66 pass; /work/gen x3 = identical md5; deleted the TLV/MessageHeader files, so TestTLV fails to compile",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Base with TLV*/MessageHeader removed fails to compile TestTLV (fatal error lib/core/TLV.h); reference passes 66/66 unit tests plus a 2000-case differential corpus (md5 identical x3).",
+  "headroom_ok": true,
+  "image_gb_estimate": 0.5,
+  "kill_code": "",
+  "notes": "Trimmed offline build works with plain g++ in about 10 s: no GN and no network after the clone and the two small submodules. Reference passes 66/66 upstream tests (TestTLV 53, TestTLVVectorWriter 4, TestMessageHeader 9) three times with identical results. The differential corpus (1000 TLV and 1000 header cases) was byte-identical across three runs. Base fails to compile. Harness cost is low, about 1 day. Main risks are Band/K8 (a frontier model may recall Matter TLV) and the scope of about 8000 lines, which is large for a 4-8 h tier, though it gives good partial-credit buckets. Hidden tests would be derived from the gtest-shimmed TestTLV.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 66,
+  "reference_lines": 8000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 2
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core/tests",
+  "facts": [
+   {
+    "claim": "connectedhomeip tag v1.6.1.0 exists and src/lib/core is at that tag",
+    "status": "confirmed",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core"
+   },
+   {
+    "claim": "Licence is Apache License 2.0 at v1.6.1.0",
+    "status": "confirmed",
+    "url": "https://github.com/project-chip/connectedhomeip/blob/v1.6.1.0/LICENSE"
+   },
+   {
+    "claim": "src/lib/core contains TLVReader.h/.cpp, TLVWriter.h/.cpp, TLVUtilities.h/.cpp, TLVTags.h/.cpp, TLVCommon.h, TLVUpdater.h/.cpp, TLVVectorWriter.h/.cpp, TLVCircularBuffer.h/.cpp",
+    "status": "confirmed",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core"
+   },
+   {
+    "claim": "Message header encode/decode lives at src/transport/raw/MessageHeader.h and MessageHeader.cpp, not in src/lib/core as the seed task text implies; the snapshot must remove files from both places",
+    "status": "confirmed",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/transport/raw"
+   },
+   {
+    "claim": "Test file named TestTlv.cpp exists (seed grading names it as TLV test)",
+    "status": "contradicted",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core/tests"
+   },
+   {
+    "claim": "TLV unit tests exist: TestTLV.cpp and TestTLVVectorWriter.cpp in src/lib/core/tests (14 files total)",
+    "status": "confirmed",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core/tests"
+   },
+   {
+    "claim": "A message-header test file exists in src/lib/core/tests (seed says 'TLV and message tests')",
+    "status": "not_found",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core/tests"
+   },
+   {
+    "claim": "Upstream fuzz targets FuzzTlvReader.cpp and FuzzTlvReaderPW.cpp exist and must be excluded from the snapshot",
+    "status": "confirmed",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core/tests"
+   },
+   {
+    "claim": "Public third-party mirrors of the same core TLV source files exist (sealing risk for a verbatim-recall path, offline run only)",
+    "status": "confirmed",
+    "url": "https://gpl.boxmatrix.info/zzzz-none-000/packages/connectedhomeip/src/lib/core/TLVReader.h"
+   },
+   {
+    "claim": "Predecessor Weave TLV reader API is publicly documented, near-identical to the CHIP reader",
+    "status": "confirmed",
+    "url": "https://openweave.io/reference/class/nl/weave/t-l-v/t-l-v-reader"
+   },
+   {
+    "claim": "Reference of about 3,000 lines scores 1 (the removed upstream files themselves)",
+    "status": "not_found",
+    "url": "https://github.com/project-chip/connectedhomeip/tree/v1.6.1.0/src/lib/core"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Budget tier 8 h. Frontier estimate about 6 h for the whole scope, including build wiring. Partial buckets: reader types and containers, writer, tags, error classification, message header. Weaker models fail on error semantics. No dated public evidence, so Band 3.",
+   "build_cost": "Unknown: smoke_build is empty (no verdict). Trimmed GN or CMake build of src/lib/core plus MessageHeader needs CHIPError, support headers and possibly nlassert and nlio submodules. Estimate 2 to 4 days of harness work.",
+   "deliverable": "C++ TLV reader, writer, utilities and message header encode/decode with the upstream API, built via a trimmed GN or CMake setup.",
+   "gates_anticheat": "Base fails to build without the removed headers, so the start scores 0. Close: no TLV library on the image, tests and fuzz targets removed, hidden tests outside /app, no git history, network off at run time. Check that the agent cannot restore the removed files from a build cache or a sibling checkout.",
+   "grading_surface": "Hidden unit tests derived from TestTLV.cpp (not TestTlv.cpp) plus a differential corpus of random nested structures, malformed input and integer-width boundaries; exact bytes and error codes compared. Size not counted; estimated hundreds to thousands of cases.",
+   "local_fit": "gVisor CPU build, 8 cores, 16 GB; no GPU or network needed at run time, provided the trimmed build avoids third-party submodule fetches.",
+   "lookup": "direct: the complete removed source is public on GitHub and in third-party mirrors. Offline run and a history-less snapshot close the path, but a frontier model may recall much of the Matter TLV format from the spec.",
+   "provenance": "project-chip/connectedhomeip v1.6.1.0, Apache-2.0, public OSS-Fuzz project, C++; TLV core in src/lib/core, message header in src/transport/raw.",
+   "reference": "Upstream files at v1.6.1.0, Apache-2.0, C++, complete and production-used (would score 1). Completeness of the removed set not measured.",
+   "ships": "Snapshot at v1.6.1.0 history-less, with TLV reader/writer/utilities, MessageHeader.h/.cpp and their tests and fuzz targets removed; support, CHIPError and build files kept (not yet verified that a trimmed build works).",
+   "similarity": "Neighbours S-im-080 (0.319), S-im-012 (0.264) and S-im-071 (0.25) are internal seeds, not public tasks; their content is unknown to me, so check overlap with S-im-080 before building. Nearest public (php-src 0.083, dnspython 0.073) are far."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Expected band 4 h per seed, but no dated public evidence, so capped at 3; error semantics is the lever weaker models miss."
+   },
+   "Build": {
+    "v": 2,
+    "why": "smoke_build empty; trimmed GN or CMake setup of connectedhomeip core is unverified and may take 2 to 4 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU C++ build fits gVisor if submodule fetches are avoided."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "About 6 h of frontier work across reader, writer, utilities, message header and build wiring; fits an 8 h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at the tag; shipping is permitted."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several buckets: containers, tags, integer widths, error codes, message header fields, malformed input."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public-task neighbour above 0.15; the 0.319 neighbour is internal and its content is unknown, so overlap needs a check."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real OSS-Fuzz project, pinned tag, Apache-2.0 source with TLV and transport files."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Upstream file set at a pinned tag is a complete permissive implementation that would score 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public upstream and mirrors exist, so the snapshot must be history-less and offline; the spec is recallable in outline, which is a Band question."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden unit tests plus a differential corpus of random nested structures, malformed input and boundary widths; thousands of cases feasible."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Trimmed build needs network fetches of third-party code that cannot be vendored, or the core files cannot be isolated from the wider support library without more than 5 days of harness work (K12).",
+   "pass_if": "Trimmed build of the core TLV and MessageHeader files completes offline in under 2 hours of harness work; TestTLV passes deterministically over three runs; corpus is byte-identical across runs; base fails to build.",
+   "steps": [
+    "In a throwaway networked Linux container, clone project-chip/connectedhomeip at v1.6.1.0 with submodules needed for src/lib/core (nlassert, nlio if required).",
+    "Build src/lib/core (TLV files) and src/transport/raw/MessageHeader.cpp with a trimmed CMake or GN target, offline after the fetch; record the time and any missing headers.",
+    "Build and run the upstream TestTLV.cpp and TestTLVVectorWriter.cpp; record per-test results for determinism over three runs.",
+    "Delete the TLV reader/writer/utilities and MessageHeader files in a copy, confirm the trimmed build fails (base scores 0).",
+    "Write a small generator that encodes 1,000 random nested structures and boundary integer widths with the upstream code, and saves the bytes and error codes as the reference corpus; re-run to confirm byte-identical output.",
+    "Check that the snapshot build plus the corpus runs without network and within 8 cores and 16 GB."
+   ]
+  },
+  "summary": "The seed is real and sealable: connectedhomeip v1.6.1.0 is Apache-2.0 with TLV core in src/lib/core and message header in src/transport/raw, though the seed's names are partly wrong (TestTLV.cpp, not TestTlv.cpp; no message-header test file). Its main risks are the unverified trimmed build (smoke_build is empty) and the direct public lookup, so it is worth the 60-minute spike at an 8 h tier before any build work.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 77,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-081",
+  "kill_code": "",
+  "note": "Real Apache-2.0 code, the upstream files as reference, and a differential corpus for exact bytes and error codes. Matter TLV is fully specified and close to the publicly documented Weave API, so the 6 h frontier estimate in an 8 h tier carries K8 risk, and the weaker-model gap is unproven. The headers must ship as the API contract. MessageHeader lives in src/transport/raw, and the reference's 3,000 lines are not verified. Isolating a trimmed GN/CMake build from connectedhomeip is the main build cost. Including TLVUpdater, CircularBuffer and VectorWriter would widen the scope.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 75
+}

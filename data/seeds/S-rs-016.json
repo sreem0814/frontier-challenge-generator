@@ -1,0 +1,204 @@
+{
+ "batch": 15,
+ "card": {
+  "band": "8 h. A frontier agent improves on the baseline by moving from rules to tabu search but does not tune across families. A weaker model produces infeasible or slow schedules. The existing job-shop style cards overlap partly, and the machine-routing layer is the difference.",
+  "cheat": "Looking up best-known values. The hidden split is freshly generated with different shapes, and the score uses our own reference gap.",
+  "grading": "The metric is the makespan gap to the best known or reference value. The training split is Brandimarte and Hurink and the hidden split is generated Dauzere-Perez-style instances with larger machine flexibility. Feasibility is checked by code, and the score is normalised between the baseline and our reference. The licence must be confirmed, so the hidden split uses generated instances only.",
+  "reference": "We tune a tabu-search reference. A CP-SAT reference is a candidate (licence not verified).",
+  "source": "https://www.ime.usp.br/~cris/fjs/benchmark/brandimarte/README (Brandimarte, Hurink rdata/edata/vdata, Dauzere-Perez families), licence not found",
+  "task": "/app ships a baseline dispatching and local-search scheduler in Python plus a generator for flexible job shop instances. The agent designs and tunes the heuristic (rules, neighbourhoods, learned weights) under a fixed CPU budget per instance.",
+  "title": "Flexible job shop scheduling heuristic with an instance-family split"
+ },
+ "class": "research",
+ "created": "2026-10-21T02:14:10Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T02:14:10Z",
+   "write",
+   "short",
+   "batch 15"
+  ],
+  [
+   "2026-10-21T02:14:10Z",
+   "l0",
+   "pass",
+   "top neighbour job_shop_scheduling [AlgoTune] 0.21"
+  ],
+  [
+   "2026-10-21T02:15:17Z",
+   "v1",
+   "killed:K6",
+   "gate on scores {'Real': 4, 'Surf': 4, 'Ref': 3, 'Band': 4, 'Hor': 4, 'Multi': 4, 'Seal': 4, 'Nov': 3, 'Lic': 2, 'Fit': 5, 'Build': 3}"
+  ]
+ ],
+ "id": "S-rs-016",
+ "kill": "K6",
+ "l0": {
+  "neighbours": [
+   [
+    0.212,
+    "job_shop_scheduling [AlgoTune]"
+   ],
+   [
+    0.209,
+    "FJSP [FrontierCO]"
+   ],
+   [
+    0.202,
+    "S-op-032"
+   ],
+   [
+    0.117,
+    "S-im-062"
+   ],
+   [
+    0.087,
+    "S-im-067"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "skipped": "no git source"
+ },
+ "source_facts": {},
+ "source_key": "ime.usp.br/~cris/fjs/benchmark/brandimarte/readme|instance-families-as-cited-in-a-2026-arxiv-benchmarking-pape",
+ "source_notes": "Natural extension of the known JSPLIB row with a multi-machine routing layer, so multi-part scope is good. Hurink/Dauzere originals not directly fetched; a USP mirror hosts Brandimarte. Licence blocks shipping until confirmed. Memorisation risk moderate for small instances.",
+ "source_url": "https://www.ime.usp.br/~cris/fjs/benchmark/brandimarte/README",
+ "source_version": "Instance families as cited in a 2026 arXiv benchmarking paper; no single version number",
+ "status": "killed:K6",
+ "v1": {
+  "evidence_grade": "E1",
+  "evidence_url": "https://proceedings.mlr.press/v306/cao26z.html",
+  "facts": [
+   {
+    "claim": "USP mirror hosts Brandimarte FJSP instances, citing Brandimarte 1993 (Annals of OR, tabu search for routing and scheduling in a flexible job shop)",
+    "status": "confirmed",
+    "url": "https://www.ime.usp.br/~cris/fjs/benchmark/brandimarte/README"
+   },
+   {
+    "claim": "Brandimarte instances carry a licence or usage terms",
+    "status": "not_found",
+    "url": "https://www.ime.usp.br/~cris/fjs/benchmark/brandimarte/README"
+   },
+   {
+    "claim": "Hurink rdata/edata/vdata sets exist (Hurink et al. 1994), with tabu-search results reported on rdata",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2010.12702"
+   },
+   {
+    "claim": "A primary download page and a licence for Hurink rdata/edata/vdata exist",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2010.12702"
+   },
+   {
+    "claim": "Best-known or lower-bound values exist for edata and vdata",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2010.12702"
+   },
+   {
+    "claim": "Dauzere-Perez-style FJSP generator is public with a licence",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2403.16766"
+   },
+   {
+    "claim": "Behnke and Geiger (2012) FJSP test instance report exists on openHSU, with a PDF",
+    "status": "confirmed",
+    "url": "https://openhsu.ub.hsu-hh.de/entities/publication/436"
+   },
+   {
+    "claim": "OR-Tools including CP-SAT is licensed under Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/google/or-tools"
+   },
+   {
+    "claim": "Most LLM agents fail to consistently beat strong dispatching baselines on dynamic FJSP (ICML 2026 benchmark finding)",
+    "status": "confirmed",
+    "url": "https://proceedings.mlr.press/v306/cao26z.html"
+   }
+  ],
+  "full_card": {
+   "band": "8 h tier. Frontier agent likely reaches tabu-level gains over rules; full multi-family tuning is the hard part. Weaker model: infeasible or slow schedules. Dated evidence (ICML 2026 DynaSchedBench) that LLM agents often fail to beat dispatching baselines.",
+   "build_cost": "About 3 to 5 days from scratch: smoke build skipped (no git source), so baseline, generator, feasibility checker, tabu reference and calibration across families must all be written and tuned.",
+   "deliverable": "Python heuristic module (dispatch rules, neighbourhoods, tabu/local search, learned weights) that returns feasible FJSP schedules under a fixed CPU budget per instance",
+   "gates_anticheat": "Hidden split is generated, so no published best-known exists to look up; training instances must not be shipped if licence unconfirmed; decide whether OR-Tools is in the image (if yes, CP-SAT becomes an available lever); fixed CPU budget and code-checked feasibility",
+   "grading_surface": "Hidden generated Dauzere-style instances with larger machine flexibility; feasibility checked by code; makespan gap vs own reference, normalised between baseline and reference",
+   "local_fit": "CPU-only, 8 cores, 16 GB, Python; fits the sandbox. Generator and baseline are small; no network needed at run time.",
+   "lookup": "partial: FJSP tabu/metaheuristic methods are published (Brandimarte 1993, Hurink 1994) but no complete public solution to this task's generator, feasibility checker or grading split was found",
+   "provenance": "Brandimarte 1993 (USP mirror, no licence stated); Hurink 1994 and Dauzere-Perez/Paulli 1997 cited via secondary sources only; no primary Hurink or Dauzere download or licence found",
+   "reference": "Tuned tabu-search reference (to be written); CP-SAT (OR-Tools, Apache-2.0) as optional candidate; not yet built or verified against published values",
+   "ships": "Own generator and generated training/hidden instances only. Brandimarte/Hurink files not shipped until a licence is confirmed.",
+   "similarity": "Neighbours: job_shop_scheduling AlgoTune 0.212, FJSP FrontierCO 0.209 (both above 0.15, so no novelty-5). Differs in deliverable: heuristic design under a family split with a routing layer, not a solver for a fixed instance set. No K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 4,
+    "why": "Dated ICML 2026 evidence that LLM agents often fail to beat dispatching baselines supports a 4; tabu is well known, so a frontier agent may reach it, which limits the score to 4 rather than 5."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3 to 5 days from scratch with no smoke build, close to the 5-day limit."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only Python work within 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Train-evaluate-iterate across families fits an 8 h budget."
+   },
+   "Lic": {
+    "v": 2,
+    "why": "Brandimarte and Hurink licences are not found, so the training split cannot ship; the generator is ours and CP-SAT is Apache-2.0, so shipping is possible once Brandimarte/Hurink are dropped."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several families, routing, rules, neighbourhoods and learned weights give separate partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours 0.212 (job-shop AlgoTune) and 0.209 (FJSP FrontierCO) are above 0.15 and cover similar subject matter; the routing layer and family split differ."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Brandimarte, Hurink and Dauzere-Perez are real published benchmarks with papers; the USP mirror is confirmed, though the licence and Hurink/Dauzere primary sources are not."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "A tabu reference is plausible but not yet built, and no measured gap to published values exists; CP-SAT is a candidate only."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Hidden generated instances and reference stay out of the image; training split from public benchmarks is memorisable for small instances, so not a 5."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden generated instances with an executable makespan oracle and unlimited generator give a large surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Tabu gains under 1% over rules on the generated high-flexibility set (no headroom), or run-to-run spread is as large as the gain (too noisy to grade), or the generator cannot separate difficulty across families.",
+   "pass_if": "Tabu beats the rule baseline by at least 5% makespan on the generated high-flexibility set, the gap to the CP-SAT proxy is measurable, and run-to-run spread is well below the baseline-to-tabu gap.",
+   "steps": [
+    "In a throwaway networked Linux container, fetch the USP Brandimarte files and record the exact licence stance (none stated); do not ship them.",
+    "Write a Dauzere-Perez-style generator from the published parameters (not copied code), with a flexibility knob to produce low- and high-flexibility instances.",
+    "Implement a rule-based dispatcher as the baseline and a basic tabu search (assignment plus sequence neighbourhood) as the reference candidate.",
+    "Run baseline and tabu on 10 Brandimarte-format instances and 10 generated high-flexibility instances under a fixed CPU budget; record feasibility and makespan.",
+    "Run CP-SAT with a long time limit on the small instances to estimate a best-known proxy and the tabu gap.",
+    "Repeat each tabu run 3 times with fixed seeds to check determinism and run-to-run spread."
+   ]
+  },
+  "summary": "The seed is a real, multi-family flexible job shop research task with a sealable generated hidden split, and it passes the gates with conditions. The main risk is licensing: Brandimarte and Hurink licences are not found, so the training split must be generated or dropped before shipping, and the build cost is high because nothing has been built yet."
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75
+}

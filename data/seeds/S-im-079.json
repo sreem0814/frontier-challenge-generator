@@ -1,0 +1,245 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "8 h. Frontier agents complete the core model but miss enforcement on secondary endpoints (components, variables, MCP, websockets). Weaker models stop at models and one route.",
+  "cheat": "Only guarding the UI is useless, since tests are API-level. A superuser-only shortcut fails the multi-user matrices.",
+  "grading": "Hidden pytest API scenarios with multiple users, covering allow and deny matrices over endpoints, inheritance, revocation and migration upgrade and downgrade. The repo's existing backend tests are the regression gate. Partial credit is per endpoint family.",
+  "reference": "We write the reference, estimated at 1,500 or more added lines across models, services, routers and migrations.",
+  "source": "https://github.com/langflow-ai/langflow/issues/1864 @ v1.12.6, MIT",
+  "task": "/app ships a snapshot of the Langflow backend at the pinned release. The agent adds collaborative access control: roles (owner, editor, viewer), per-flow and per-folder sharing grants, API enforcement on flow CRUD, run and export endpoints, migrations, and an audit list endpoint. Interface: the REST API and alembic migrations.",
+  "title": "Role-based access control and flow sharing for Langflow"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "other",
+ "final": 54,
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-078 0.22"
+  ],
+  [
+   "2026-10-21T03:06:19Z",
+   "v1",
+   "pass",
+   "score 73; dead links []"
+  ],
+  [
+   "2026-10-21T03:10:35Z",
+   "v2",
+   "killed:K3",
+   "The grading is hand-rolled multi-user matrices tied to an API we invent ourselves: owner/editor/viewer roles, the shape of the audit endpoint and the grant semantics. Any other reasonable design would fail. Upstream docs already describe a pluggable authz seam with viewer/developer/admin roles, so t"
+  ]
+ ],
+ "id": "S-im-079",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.217,
+    "S-im-078"
+   ],
+   [
+    0.19,
+    "family (392 backend tasks) [BaxBench]"
+   ],
+   [
+    0.157,
+    "S-im-073"
+   ],
+   [
+    0.14,
+    "S-op-033"
+   ],
+   [
+    0.125,
+    "acl-permissions-inheritance [original]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "972d56c47d3830d17060ee85cfaad152df823041",
+  "kb": 1637444,
+  "lang": "Python",
+  "open_prs": 957,
+  "pushed": "2026-10-20",
+  "release": "v1.12.6",
+  "spdx": "MIT",
+  "stars": 155877,
+  "test_files": 2480,
+  "test_kb": 47307,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/langflow-ai/langflow/issues/1864|langflow-ai-langflow-1864-feature-request-collaborative-acce",
+ "source_notes": "repo https://github.com/langflow-ai/langflow; opened 2024-05-08",
+ "source_url": "https://github.com/langflow-ai/langflow/issues/1864",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://docs.langflow.org/authorization",
+  "facts": [
+   {
+    "claim": "Langflow issue #1864 exists, is open, was opened 2024-05-08, and requests role-based access control, sharing grants and per-user read/edit permissions for flows",
+    "status": "confirmed",
+    "url": "https://github.com/langflow-ai/langflow/issues/1864"
+   },
+   {
+    "claim": "Issue #1864 shows no linked PRs or branches under Development, so no merged or open PR is visible for it",
+    "status": "confirmed",
+    "url": "https://github.com/langflow-ai/langflow/issues/1864"
+   },
+   {
+    "claim": "Langflow v1.12.6 release exists (dated 13 October) and its notes contain no access-control, roles, sharing, permissions or audit items",
+    "status": "confirmed",
+    "url": "https://github.com/langflow-ai/langflow/releases/tag/v1.12.6"
+   },
+   {
+    "claim": "Upstream Langflow docs already describe an authorization model: pluggable RBAC over flows, projects, deployments, files, variables, knowledge bases, shares, roles, teams and an audit log, with built-in roles viewer, developer and admin (not owner/editor/viewer)",
+    "status": "confirmed",
+    "url": "https://docs.langflow.org/authorization"
+   },
+   {
+    "claim": "Open-source Langflow registers a pass-through authorization service that allows everything; enforcement needs a separate plugin, and OSS includes no registered plugin; the flag LANGFLOW_AUTHZ_ENABLED defaults to false",
+    "status": "confirmed",
+    "url": "https://docs.langflow.org/authorization"
+   },
+   {
+    "claim": "The upstream docs link no reference plugin or source code, and do not say which version introduced authorization",
+    "status": "confirmed",
+    "url": "https://docs.langflow.org/authorization"
+   },
+   {
+    "claim": "Repository is MIT licensed (spdx MIT from GitHub API)",
+    "status": "confirmed",
+    "url": "https://github.com/langflow-ai/langflow"
+   },
+   {
+    "claim": "Backend test-file count of 2480 and 957 open PRs were checked against the repo",
+    "status": "not_found",
+    "url": "https://github.com/langflow-ai/langflow"
+   },
+   {
+    "claim": "A later upstream release or PR implements the owner/editor/viewer roles with per-flow and per-folder grants as specified in the seed",
+    "status": "not_found",
+    "url": "https://docs.langflow.org/authorization"
+   }
+  ],
+  "frontier_hours": 10,
+  "full_card": {
+   "band": "8 h tier; frontier likely finishes core model, misses secondary endpoints; weaker models stop at models and one route.",
+   "build_cost": "About 3-5 days for reference plus hidden matrices; under the 5-day kill line but heavy.",
+   "deliverable": "Roles (owner/editor/viewer), per-flow and per-folder grants with inheritance and revocation, enforcement on flow CRUD, run, export, components, variables, MCP and websockets, audit list endpoint, alembic up/down migrations.",
+   "gates_anticheat": "Hidden tests API-level so UI-only guards score 0; superuser shortcut fails multi-user matrices; tests and build config read-only; no vendoring of upstream authz plugin.",
+   "grading_surface": "Hidden pytest API scenarios, multi-user allow/deny matrices, partial credit per endpoint family; existing backend tests as regression gate.",
+   "local_fit": "Python backend, CPU, SQLite default; no network needed if deps pre-installed in image. Smoke build not run (empty), so dependency install cost unverified.",
+   "lookup": "partial: upstream docs describe the same model shape (roles, shares, audit, pass-through seam) under different role names; no enforcement code or reference plugin public in the docs.",
+   "provenance": "Real: langflow-ai/langflow MIT, pinned v1.12.6; feature issue #1864 open since 2024-05-08.",
+   "reference": "Our own, est. 1,500+ added lines across models, services, routers, migrations. Not yet written.",
+   "ships": "History-less Langflow backend snapshot at v1.12.6 with no authorization plugin; OSS pass-through default only.",
+   "similarity": "Max l0 neighbour 0.217 (S-im-078), BaxBench family 0.19, S-im-073 0.157; not crowded. Differs in subject: Langflow flow ACL, not a generic API backend."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this work, so capped at 3; 8 h tier plausibly reachable but secondary endpoints are the risk."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Reference plus hidden multi-user matrices estimated 3-5 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Python backend fits gVisor and CPU, but dependency install offline is unverified since smoke_build is empty."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Models, services, routers, migrations and matrices need sustained multi-hour work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT permits shipping the system inside the bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Endpoint families (flows, folders, components, variables, MCP, websockets, audit) give independent partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.217 is above 0.15, so not 5; no public task with the same subject and deliverable."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT repo, pinned release, open feature issue #1864 with a requested spec."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference not yet written; role model and inheritance rules are ours and must be precise enough for acceptance breadth."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference and hidden cases stay ours, but upstream docs publicly outline the model, so a strong agent can recall the approach in outline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Multi-user API matrices across several endpoint families give hundreds of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Dependency install needs network at run time, or a later upstream release ships a working owner/editor/viewer enforcement the snapshot could be read against (then re-scope or seal harder), or the endpoint surface cannot be split into buckets.",
+   "pass_if": "Existing backend suite runs offline-capable and deterministic; endpoint count supports at least 4 partial-credit families; spike route enforcement passes deterministically.",
+   "steps": [
+    "In a throwaway networked container, clone langflow at tag v1.12.6 and install backend deps offline-capable (record install time and any failures); run the existing backend tests once and record the pass count and time.",
+    "Check whether the 1.13 line (or any later tag) contains an authorization plugin or the roles/shares tables: inspect tags and release artifacts for the authz seam only, not the implementation, and record what is public.",
+    "Count flow, folder, component, variable, MCP, websocket and export endpoints in the snapshot to size the endpoint families for partial-credit buckets.",
+    "Write a minimal model-only spike: roles table plus one per-flow grant check on flow GET and PATCH, and confirm the existing suite still passes.",
+    "Run a two-user allow/deny pytest on that route three times to confirm determinism."
+   ]
+  },
+  "summary": "The seed is real and mostly well-grounded: issue #1864 is open with no linked PR, and v1.12.6 has no access-control work, but upstream authorization docs already outline a near-identical model (roles, shares, audit, plugin seam) under different role names, so lookup is partial and sealing depends on keeping the reference and hidden tests ours. Validated with 8 h tier and est. 10 frontier hours; not killed, but the spike must confirm offline dependency install and check that no later upstream release ships enforcement code.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-079",
+  "kill_code": "K3",
+  "note": "The grading is hand-rolled multi-user matrices tied to an API we invent ourselves: owner/editor/viewer roles, the shape of the audit endpoint and the grant semantics. Any other reasonable design would fail. Upstream docs already describe a pluggable authz seam with viewer/developer/admin roles, so this spec conflicts with the maintainers' direction and fails the realism check. The frontier estimate of 10 h exceeds the 8 h tier, and the reference is unwritten. The BaxBench backend family is a neighbour at 0.19.",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 54
+}

@@ -1,0 +1,241 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "8 h. A frontier agent gets indexing and traversal quickly. Polygon fill, compaction edge cases and pentagon distortion cause failures, so the average stays below 1. Weaker models stop after basic cell conversion.",
+  "cheat": "A wrapper over a Rust h3 crate or FFI to libh3: the image has no crates or C library, and the harness rejects FFI. The oracle binary is held out. Lookup tables for point-to-cell are not memorisable at the tested resolutions.",
+  "grading": "Hidden differential cases generated from the C library across all 16 resolutions: millions of random points, pentagon-adjacent cells, antimeridian and polar cases. The CLI output is compared exactly (cell ids) or within 1e-9 rad (coordinates). Partial credit is per API bucket. The port's own tests are also used.",
+  "reference": "A Rust port that we write, validated against the C library: roughly 3,000 lines. The oracle is the compiled C library, kept out of the image.",
+  "source": "https://github.com/uber/h3 @ v4.5.0, Apache-2.0",
+  "task": "/app ships the H3 C docs, the public API header list and a Rust crate skeleton with the test harness. The agent ports the core: lat/lng to cell, cell to boundary, grid disk and ring, compact/uncompact, polygon fill, directed edges, vertexes, and the local IJ coordinates. Interface: a Rust library plus a JSON-lines CLI that the harness drives.",
+  "title": "Port the H3 hexagonal index core to Rust with differential checks against the C library"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "geo",
+ "final": 74,
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-014 0.27"
+  ],
+  [
+   "2026-10-21T03:05:02Z",
+   "v1",
+   "pass",
+   "score 84; dead links []"
+  ],
+  [
+   "2026-10-21T03:10:35Z",
+   "v2",
+   "killed:K8",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-im-076",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.275,
+    "S-im-014"
+   ],
+   [
+    0.263,
+    "S-im-038"
+   ],
+   [
+    0.214,
+    "S-im-030"
+   ],
+   [
+    0.16,
+    "Zig to Rust port [Bun]"
+   ],
+   [
+    0.153,
+    "MiniJinja port to Go [Armin Ronacher]"
+   ]
+  ]
+ },
+ "method": "port",
+ "rank": 4,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "28d83cddc03462199fab41361a9a4dfbce37e4e7",
+  "kb": 73216,
+  "lang": "C",
+  "open_prs": 48,
+  "pushed": "2026-10-15",
+  "release": "v4.5.0",
+  "spdx": "Apache-2.0",
+  "stars": 6634,
+  "test_files": 158,
+  "test_kb": 41349,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/uber/h3|oss-fuzz-h3",
+ "source_notes": "OSS-Fuzz project, language c",
+ "source_url": "https://github.com/uber/h3",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/uber/h3/releases/tag/v4.5.0",
+  "facts": [
+   {
+    "claim": "uber/h3 release v4.5.0 exists, marked Latest, dated 2026-05-21",
+    "status": "confirmed",
+    "url": "https://github.com/uber/h3/releases/tag/v4.5.0"
+   },
+   {
+    "claim": "uber/h3 is licensed Apache-2.0 (LICENSE file at v4.5.0 is Apache License 2.0)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/uber/h3/v4.5.0/LICENSE"
+   },
+   {
+    "claim": "C core lives in src/h3lib/lib with about 18 .c files (algos, baseCells, faceijk, localij, directedEdge, vertex, polyfill, cellsToMultiPoly, etc.); visible listing, may be incomplete",
+    "status": "confirmed",
+    "url": "https://github.com/uber/h3/tree/v4.5.0/src/h3lib/lib"
+   },
+   {
+    "claim": "Test file count 158 and 41 MB of tests (from GitHub API facts supplied in seed)",
+    "status": "not_found",
+    "url": "https://github.com/uber/h3/tree/v4.5.0"
+   },
+   {
+    "claim": "A complete public pure-Rust reimplementation of H3 exists: h3o, a from-scratch port (not a binding), BSD-3-Clause, version 0.11.0 released 2026-08-29",
+    "status": "confirmed",
+    "url": "https://lib.rs/crates/h3o"
+   },
+   {
+    "claim": "h3o's API coverage of grid, directed edges, vertexes, local IJ and polygon fill is complete",
+    "status": "not_found",
+    "url": "https://lib.rs/crates/h3o"
+   },
+   {
+    "claim": "Smoke build (offline build plus test suite) of the C source at v4.5.0",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "The 16 resolutions (0-15) of the H3 grid used by the grading",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "frontier_hours": 9,
+  "full_card": {
+   "band": "8 h tier. Frontier agent gets indexing and traversal quickly; pentagon distortion, polygon fill and compaction edge cases push the average below 1. Weaker models stop after basic cell conversion. No dated public evidence supplied; band claim is an estimate.",
+   "build_cost": "Unknown: smoke_build was empty, so C build status is unverified. Estimate 3-4 days for the reference (3k lines Rust plus C oracle build, generator and per-bucket scoring).",
+   "deliverable": "Rust library plus JSON-lines CLI driven by the harness: latLngToCell, cellToBoundary, gridDisk/gridRing, compact/uncompact, polygonToCells, directed edges, vertexes, local IJ.",
+   "gates_anticheat": "No crates in image, no network at run time, FFI rejected by harness, oracle binary held out, tests and build config read-only for grading. Lookup tables for point-to-cell are the residual risk (see summary).",
+   "grading_surface": "Hidden differential cases from the C library over all 16 resolutions: millions of random points, pentagon-adjacent, antimeridian and polar cases; exact cell ids, coordinates within 1e-9 rad; per-API-bucket partial credit. Executable oracle with unlimited generator.",
+   "local_fit": "Rust on CPU, 8 cores, 16 GB; fits gVisor. No kernel features needed.",
+   "lookup": "partial: h3o (BSD-3-Clause, v0.11.0, from-scratch Rust H3 reimplementation, public on GitHub and crates.io) covers most of the same subject; not installable offline. C library is public and recallable in outline only. 48 open PRs on uber/h3 not checked for a Rust port.",
+   "provenance": "uber/h3 v4.5.0 (Latest, 2026-05-21), Apache-2.0, OSS-Fuzz project, C. Real upstream repo with a release tag and a Lib tree.",
+   "reference": "Our own ~3,000-line Rust port validated against the C library (not yet written). No public reference used as the ceiling.",
+   "ships": "Rust crate skeleton, H3 C docs, public API header list, test harness. No C source, no libh3 binary, no crates beyond the skeleton. Oracle (compiled C library) held out.",
+   "similarity": "Nearest l0 neighbours 0.275 (S-im-014), 0.263 (S-im-038), 0.214 (S-im-030), 0.16 Zig to Rust port [Bun], 0.153 MiniJinja port to Go. No crowded-list match; H3 is not on the CROWDED list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Band claim is an estimate with no dated public evidence; capped at 3 per rule."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days for our reference plus oracle and generator; smoke build unverified."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only C and Rust build, no GPU, no network at run time, no gVisor-missing feature."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier with a multi-module port (indexing, traversal, polygon fill, IJ, directed edges) is sustained work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the source, docs and reference in the bundle."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Many independent API buckets give steady per-bucket partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No neighbour above 0.15 is avoided: the Zig to Rust port (0.16) and MiniJinja port (0.153) are close public neighbours, so novelty is not clean."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real uber/h3 release v4.5.0, Apache-2.0, OSS-Fuzz project with a long history."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference is our own 3k-line port, not yet written or validated; no public complete reference is used as the ceiling."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle held out and C not in the image, but the C library and h3o are public and the algorithms are partly recallable from outline; base-cell and face tables are a residual leak risk."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Executable oracle with an unlimited random generator across 16 resolutions and edge classes."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "The C build needs network or fails offline, ctest is nondeterministic, or the base cell and face tables can be fully reproduced from the docs plus header alone (then Seal drops and the task is K11).",
+   "pass_if": "C build is green offline, ctest is deterministic across three runs, the driver output is stable, and the base cell table is not recoverable from the shipped docs alone (so the agent must port it).",
+   "steps": [
+    "In a throwaway Linux container with network, clone uber/h3 at tag v4.5.0 (no history beyond the tag) and record the commit 28d83cddc03462199fab41361a9a4dfbce37e4e7.",
+    "Build libh3 with cmake and the default toolchain; record the wall time and whether it builds offline (no fetched deps).",
+    "Run the upstream ctest suite three times; record per-test pass or fail and check determinism.",
+    "Write a small C driver that prints latLngToCell for 10k random points at all 16 resolutions plus pentagon, antimeridian and polar points; record output.",
+    "Check whether the base cell table and face data needed for latLngToCell can be recovered from the supplied docs and header alone, or only from the .c sources (this is the sealing risk).",
+    "Fetch h3o 0.11.0 source (outside the container, for reference only) and compare cell ids on the same 10k points to see how far a from-scratch port gets without the C source."
+   ]
+  },
+  "summary": "The uber/h3 v4.5.0 release and Apache-2.0 licence are confirmed, so the source is real and shippable, but the reference is unwritten and the smoke build was empty, so the build cost is unverified. The main risks are a public complete-ish Rust port (h3o, BSD-3-Clause) and recallable base-cell tables, which hit Seal and Band rather than a hard kill, so this passes to a 50-minute spike.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 84,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-076",
+  "kill_code": "",
+  "note": "The compiled C library is an excellent executable oracle, but the design as written is flawed. It ships only docs and headers, so the 122 base cells, the face-IJK tables and the pentagon rotation data must come from memory. That makes it a recall quiz with K9 risk, not engineering. The C sources must ship as the thing being ported, with FFI or linking blocked. The frontier estimate of 9 h exceeds the 8 h tier, so move it to the 20 h tier. The reference is unwritten, a 3-4 day build. The public h3o crate is a known Rust port; that is a Band concern.",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 74
+}

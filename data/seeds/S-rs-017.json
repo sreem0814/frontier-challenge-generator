@@ -1,0 +1,253 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "20 h. CPU fine-tuning is slow (mostly single-threaded), so schedule choices decide the result. A frontier agent beats the baseline in some trials by fine-tuning, but few tune the preprocessing and augmentation for noise shift. A weaker model overfits or breaks the model format.",
+  "cheat": "Training on the evaluation books is blocked because they are not shipped. The evaluation uses an unseen split, and the model file size is capped so a lookup of text is not possible.",
+  "grading": "Hidden line images from books and prints never seen in training are run through the delivered model. The score is the character error rate, normalized between the shipped stock-model baseline (0) and our reference (1) and clamped. Output is run deterministically with a fixed seed.",
+  "reference": "Our fine-tuned LSTM from make training plus tuned binarization and deskew, run on the same split. The CER is measured by us and not copied from any source.",
+  "source": "https://github.com/tesseract-ocr/tesstrain @ 405346a (Apache-2.0); data GT4HistOCR https://zenodo.org/records/1344132 (CC BY 4.0)",
+  "task": "/app ships tesstrain, the Tesseract tools, a stock model and a training split of line images (images plus text from GT4HistOCR subcorpora). The agent trains and tunes the pipeline (preprocessing, network spec, augmentation, schedule, dictionary) within the CPU budget. It then delivers a traineddata file and an optional preprocessing script.",
+  "title": "Historical-print line OCR error rate with Tesseract fine-tuning on unseen books"
+ },
+ "class": "research",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "other",
+ "final": 64,
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-068 0.16"
+  ],
+  [
+   "2026-10-21T03:07:26Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-21T03:09:02Z",
+   "v2",
+   "killed:K8",
+   "Licences of the data (CC BY 4.0) and the tool (Apache) are confirmed. However, the reference is just the documented 'make training' recipe plus tuned binarization. A weaker model running the same Makefile target would get most of the normalised gain, so the 0.20 frontier lead is unlikely, and the ta"
+  ]
+ ],
+ "id": "S-rs-017",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.163,
+    "S-im-068"
+   ],
+   [
+    0.133,
+    "S-op-033"
+   ],
+   [
+    0.129,
+    "S-im-006"
+   ],
+   [
+    0.091,
+    "google-images-download [NL2Repo-Bench]"
+   ],
+   [
+    0.085,
+    "Budget NanoGPT Speedrun [METR]"
+   ]
+  ]
+ },
+ "method": "research",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "405346a3a67d8e4e049341d1da6a4b752e0b8351",
+  "kb": 13816,
+  "lang": "Python",
+  "open_prs": 5,
+  "pushed": "2025-04-18",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 723
+ },
+ "source_key": "github.com/tesseract-ocr/tesstrain; https://zenodo.org/records/1344132|baseline-stock-tesseract-model-via-start-model-readme-exampl",
+ "source_notes": "GT4HistOCR: 313,173 line image + text pairs, 4.0 GB tar, German Fraktur and Early Modern Latin; q:\"A total of 313,173 ground truth lines are provided.\" Subcorpora use different transcription guidelines (train per subcorpus). tesstrain: MAX_ITERATIONS default 10000, TARGET_ERROR_RATE default 0.01, RATIO_TRAIN 0.90; README gives no CER numbers or timing. OOD: hold out a whole subcorpus/book/print (but transcription-convention mismatch adds noise, so prefer hold-out of books within a subcorpus) or degrade images with unseen noise/blur. INFERRED run time on 8 CPUs: fine-tuning on 5-10k lines 30-120 min (Tesseract LSTM training is mostly single-threaded, unverified); CER eval on 1k lines ~1-2 min. Levers: preprocessing, net spec, augmentation, lang model/dictionary, training schedule. Distinct from public corpus.",
+ "source_url": "https://github.com/tesseract-ocr/tesstrain; https://zenodo.org/records/1344132",
+ "source_version": "Baseline: stock Tesseract model via START_MODEL (README example uses deu_latf) with no fine-tuning, or a classical template/pixel-feature classifier -> Reference: fine-tuned LSTM from make training on in-domain lines, or tuned preprocessing (binarization, deskew) + stock model",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/tesseract-ocr/tesstrain/wiki/GT4HistOCR",
+  "facts": [
+   {
+    "claim": "tesstrain is Apache-2.0 licensed (README states Apache 2.0; GitHub API spdx Apache-2.0)",
+    "status": "confirmed",
+    "url": "https://github.com/tesseract-ocr/tesstrain"
+   },
+   {
+    "claim": "tesstrain has no releases/tags; the pinned commit 405346a is used instead",
+    "status": "confirmed",
+    "url": "https://github.com/tesseract-ocr/tesstrain"
+   },
+   {
+    "claim": "tesstrain requires GNU make 4.2+, wget, find, bash, unzip, Tesseract 5.3+ built with training tools and matching Leptonica, Python 3 with Pillow",
+    "status": "confirmed",
+    "url": "https://github.com/tesseract-ocr/tesstrain"
+   },
+   {
+    "claim": "Makefile targets include make training MODEL_NAME=..., traineddata, evaluation, plot, clean; GROUND_TRUTH_DIR defaults to OUTPUT_DIR-ground-truth",
+    "status": "confirmed",
+    "url": "https://github.com/tesseract-ocr/tesstrain"
+   },
+   {
+    "claim": "GT4HistOCR (Zenodo 1344132) is licensed CC BY 4.0 and the archive is 4.0 GB",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/1344132"
+   },
+   {
+    "claim": "GT4HistOCR contains 313,173 ground-truth line image + transcription pairs",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/1344132"
+   },
+   {
+    "claim": "GT4HistOCR subcorpora use different transcription guidelines; the record advises training a separate model per subcorpus",
+    "status": "confirmed",
+    "url": "https://zenodo.org/records/1344132"
+   },
+   {
+    "claim": "Public Fraktur models exist that were trained further on GT4HistOCR-style data (frak2021 per tesstrain wiki; UB Mannheim Fraktur model)",
+    "status": "confirmed",
+    "url": "https://github.com/tesseract-ocr/tesstrain/wiki/GT4HistOCR"
+   },
+   {
+    "claim": "Third-party line-OCR evaluation reports UB Mannheim Fraktur model CER ~0.9-1.4% on its test sets vs ~8-12% for tess-deufrak (search snippet only, not fetched in full)",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2008.02777"
+   },
+   {
+    "claim": "Fine-tuning time of 30-120 min on 5-10k lines on 8 CPUs (Tesseract LSTM mostly single-threaded)",
+    "status": "not_found",
+    "url": "https://github.com/tesseract-ocr/tesstrain"
+   },
+   {
+    "claim": "The reference CER and the stock-model CER on the hidden split",
+    "status": "not_found",
+    "url": "https://zenodo.org/records/1344132"
+   }
+  ],
+  "frontier_hours": 12,
+  "full_card": {
+   "band": "20 h tier; CPU LSTM fine-tuning is slow, schedule decides result; baseline may be strong if the stock model is already a UB Mannheim-class Fraktur model, so headroom is unknown",
+   "build_cost": "3 (2-4 days): build Tesseract 5.3+ with lstmtraining/combine tools, wire tesstrain offline with pinned langdata, prepare subcorpus split and hidden set; smoke_build was empty so not verified",
+   "deliverable": "traineddata file under the model size cap, optional preprocessing script, run deterministically",
+   "gates_anticheat": "hidden split not shipped; model size capped to block text lookup; agent cannot fetch Zenodo offline; must not train on hidden data; deterministic fixed-seed inference",
+   "grading_surface": "hidden line images from unseen books/prints, scored by CER normalized between stock (0) and reference (1); size of hidden set not stated, estimated 1k+ lines",
+   "local_fit": "CPU only, 8 cores, 16 GB, offline; single-threaded LSTM training over 20 h is feasible; Tesseract 5.3+ with training tools must be packaged in the image",
+   "lookup": "partial: public Fraktur models trained on GT4HistOCR-style data exist (frak2021, UB Mannheim) and the tesstrain recipe is public; no public solution to the exact task (preprocessing + augmentation + schedule tuned for noise shift)",
+   "provenance": "tesstrain @405346a (Apache-2.0, 723 stars, pushed 2025-04-18) plus GT4HistOCR (CC BY 4.0, 313,173 lines); both real and public",
+   "reference": "own fine-tuned LSTM from make training with tuned binarization and deskew; CER measured by CG, not copied",
+   "ships": "tesstrain Makefile pipeline, Tesseract tools, stock model, line-image training split (subset of GT4HistOCR); deliverable traineddata plus optional preprocessing script",
+   "similarity": "l0 max 0.163 (S-im-068); OCR fine-tuning is not a listed crowded task; differs from public image-model tasks by Tesseract LSTM CPU pipeline and OOD print/book shift"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "no dated public evidence of frontier agent results on this exact task; headroom over a strong stock Fraktur model is unverified"
+   },
+   "Build": {
+    "v": 3,
+    "why": "about 2-4 days to package Tesseract training tools and an offline pipeline; not verified by smoke build"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "fits CPU 8-core 16 GB offline; LSTM training is slow but feasible in 20 h"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "20 h tier; sequential CPU training runs and tuning loop are genuinely long-horizon"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 tesstrain and CC BY 4.0 data both permit shipping with attribution"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "several levers (binarization, deskew, augmentation, net spec, schedule, dictionary) give buckets, but many share one training loop"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "max l0 neighbour 0.163 and OCR fine-tuning is not a crowded public task"
+   },
+   "Real": {
+    "v": 5,
+    "why": "tesstrain Apache-2.0 repo at a pinned commit and GT4HistOCR on Zenodo, both public with a paper (arXiv 1809.05501)"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "reference is own measured fine-tune, not a complete permissive implementation; strength depends on the unseen split and the tuned pipeline"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "hidden split comes from public GT4HistOCR, so it is sealed by not shipping it and by offline runtime, not by secrecy; model-size cap blocks lookup"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "hidden OOD line set and per-line CER give thousands of scored lines with dense partial credit; exact hidden size not stated"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "stock CER is already within 1 point of the best fine-tune (no headroom), or training cannot be made deterministic",
+   "pass_if": "fine-tuned CER is at least 30% lower than stock on the held-out book, and a run of 2000 iterations finishes in under 60 minutes on 8 cores",
+   "steps": [
+    "In a throwaway networked Linux container, install Tesseract 5.3+ with training tools and Leptonica; clone tesstrain at 405346a.",
+    "Download one GT4HistOCR subcorpus (not the full 4 GB) and split it into a train and a held-out book set; keep the held-out book out of training.",
+    "Run make training with a short MAX_ITERATIONS (about 2000) on 8 cores and time it; record iterations per minute.",
+    "Compute CER of the stock model and of the fine-tuned model on the held-out book with the same binarization.",
+    "Repeat once with a fixed seed to check determinism of the traineddata and CER.",
+    "Check the stock model's CER on the held-out book to see whether there is headroom."
+   ]
+  },
+  "summary": "The seed is real and sealable: tesstrain (Apache-2.0, pinned) and GT4HistOCR (CC BY 4.0, 313,173 lines) are both public and licence-clean, and the hidden split is not shipped. The main risk is headroom: public GT4HistOCR-trained Fraktur models (frak2021, UB Mannheim) may make the stock baseline strong, so the spike must measure stock CER on a held-out book before committing to a 20 h tier.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-rs-017",
+  "kill_code": "K8",
+  "note": "Licences of the data (CC BY 4.0) and the tool (Apache) are confirmed. However, the reference is just the documented 'make training' recipe plus tuned binarization. A weaker model running the same Makefile target would get most of the normalised gain, so the 0.20 frontier lead is unlikely, and the task is effectively one lever. Headroom is unknown: public frak2021/UB Mannheim models were trained on GT4HistOCR-style data and may already cover the hidden books, which would also contaminate the OOD split. No CER or timing numbers were found.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 2,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 64
+}

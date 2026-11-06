@@ -1,0 +1,203 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "8 h. Rust build time uses part of the budget. A frontier agent can find the planner change but tends to lose correctness on edge aggregations. Weaker models cannot build or finish.",
+  "cheat": "Caching results or special-casing benchmark shapes: workloads are hidden and randomised, and the equality gate runs on varied schemas.",
+  "grading": "Hard gate: results of a hidden set of pivots (types, null handling, aggregations, ordering) must be identical to the reference. Reward is wall-clock median speedup on hidden wide and tall pivot workloads, 2^u-1 against our measured fix.",
+  "reference": "The upstream fix (pull request not found in the row). Our measured speedup S on the same workloads sets the ceiling.",
+  "source": "https://github.com/pola-rs/polars/issues/26207 @ py-2.0.0 lineage, MIT",
+  "task": "/app ships the Rust workspace snapshot, scoped to the query-plan and ops crates, at the regressed commit. The agent restores partitionable pivot execution so group-wise pivots run in parallel and stream. Output must stay identical. Interface: a Python benchmark that runs pivot workloads.",
+  "title": "Polars pivot partitioning regression recovery on the streaming engine"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-033 0.24"
+  ],
+  [
+   "2026-10-21T03:07:06Z",
+   "v1",
+   "killed:K10",
+   "One lever. The regression is one predicate (Filter in can_pre_agg for partitioned pivot), the upstream fix is merged public history in PR #28749, and the seed's own band note says a frontier agent finds the planner change easily. The remaining work is correctness checks on edge aggregations, which d"
+  ]
+ ],
+ "id": "S-op-035",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.242,
+    "S-op-033"
+   ],
+   [
+    0.195,
+    "S-op-034"
+   ],
+   [
+    0.17,
+    "S-im-073"
+   ],
+   [
+    0.108,
+    "wal-recovery-ordering [tasks]"
+   ],
+   [
+    0.079,
+    "langchain-request-coalescing [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "8512c7e385be1a48cfaf0bbdd91e4f390a475fb1",
+  "kb": 232932,
+  "lang": "Rust",
+  "open_prs": 395,
+  "pushed": "2026-10-20",
+  "release": "py-2.0.0",
+  "spdx": "MIT",
+  "stars": 40134
+ },
+ "source_key": "github.com/pola-rs/polars/issues/26207|pola-rs-polars-26207-pivot-operations-not-partitionable-caus",
+ "source_notes": "repo https://github.com/pola-rs/polars; merged PR or fixed issue",
+ "source_url": "https://github.com/pola-rs/polars/issues/26207",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/pola-rs/polars/issues/26207",
+  "facts": [
+   {
+    "claim": "Issue #26207 'Pivot operations not partitionable causing performance regression' exists in pola-rs/polars, labelled regression, opened 2026-01-21, closed as completed 2026-08-10",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/26207"
+   },
+   {
+    "claim": "Regression reported starting v1.36.1; pivot unified with group-by using filtered aggregations that were not treated as partitionable (about 680 ms on v1.35.2 vs 35.6 s on v1.37.1 in reporter's example)",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/26207"
+   },
+   {
+    "claim": "The fix PR is #28749 'fix: Correct partitionable filter handling for pivot', MERGED 2026-08-10. The row says the PR was not found, so the row is wrong: the fix is public in the repo's git history",
+    "status": "contradicted",
+    "url": "https://github.com/pola-rs/polars/pulls?q=is%3Apr+pivot+partition"
+   },
+   {
+    "claim": "Closed-unmerged PR #28736 'support AExpr::Filter in can_pre_agg for partitioned pivot execution' is an earlier attempt and also public",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/pulls?q=is%3Apr+pivot+partition"
+   },
+   {
+    "claim": "The fix has no maintainer comment describing it on the issue; the root cause write-up came from an external contributor",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/26207"
+   },
+   {
+    "claim": "Licence MIT (taken from GitHub API spdx field; not separately re-checked)",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars"
+   },
+   {
+    "claim": "Rust build of the polars workspace finishes offline within the budget (smoke_build is empty, so no build evidence)",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars"
+   }
+  ],
+  "frontier_hours": 3,
+  "full_card": {
+   "band": "Narrow: the core lever is one predicate (Filter in can_pre_agg) that a frontier agent can find from the issue text; correctness on edge aggregations is the only real extra work",
+   "build_cost": "Unknown: smoke_build did not run; a full polars Rust workspace build is probably days-scale on 8 cores, so K12 risk",
+   "deliverable": "Partitionable, streaming-capable pivot execution; Python benchmark driver",
+   "gates_anticheat": "Equality gate on varied schemas; no caching or shape special-casing; hidden workloads",
+   "grading_surface": "Hidden pivot cases (types, nulls, aggregations, ordering) gated for exact equality, then median wall-clock speedup on wide and tall workloads",
+   "local_fit": "Rust build of polars on 8 cores and 16 GB, no network at run time; build time unmeasured (smoke_build empty)",
+   "lookup": "direct: the fix is merged public history in the same repo and in later releases",
+   "provenance": "pola-rs/polars issue #26207 (open 2026-01-21, closed 2026-08-10); fix PR #28749 merged 2026-08-10; earlier attempt #28736 closed unmerged",
+   "reference": "Merged upstream PR #28749 (public git history), plus a measured speedup on hidden workloads",
+   "ships": "Rust workspace snapshot scoped to query-plan and ops crates at the regressed commit; must be history-less if the reference is kept",
+   "similarity": "Neighbours S-op-033 (0.242) and S-op-034 (0.195) are above 0.15, so the seed family overlaps; wal-recovery-ordering 0.108; no public task on pivot partitioning found"
+  },
+  "kill_code": "K10",
+  "kill_reason": "One lever. The regression is one predicate (Filter in can_pre_agg for partitioned pivot), the upstream fix is merged public history in PR #28749, and the seed's own band note says a frontier agent finds the planner change easily. The remaining work is correctness checks on edge aggregations, which does not fill an 8 h tier. The seed's claim that the PR was not found is contradicted by the repo. Build cost is also unmeasured (smoke_build empty), so K12 is a secondary risk.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "A frontier agent can find and apply the planner fix quickly, so the reference is near reachable (too easy for a 4 to 8 h tier)"
+   },
+   "Build": {
+    "v": 2,
+    "why": "Full workspace build time unmeasured and probably days-scale"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust polars build is heavy for 16 GB and 8 cores; untested"
+   },
+   "Hor": {
+    "v": 1,
+    "why": "One lever and a small diff; does not need 8 h of sustained work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per GitHub API"
+   },
+   "Multi": {
+    "v": 1,
+    "why": "Essentially one planner predicate; little partial-credit structure beyond correctness"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Two neighbours above 0.15 (S-op-033, S-op-034) in the same family"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real polars issue with a regression label, 40k stars, and a merged fix PR"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream merged fix plus a measurable speedup; the fix is probably small"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The reference is public in merged PR #28749 and in later releases; the snapshot must be history-less, and the approach is recallable from the issue"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden pivot cases can be large with a generator, but the surface is mostly one operator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build exceeds about 3 h or 16 GB; or the fix is a trivial predicate change with the speedup already reached by an obvious edit (confirms K10)",
+   "pass_if": "Build finishes within about 2 h on 8 cores; base outputs match the fixed build on all differential cases; the fix gives a clear median speedup on tall pivots",
+   "steps": [
+    "Clone pola-rs/polars in a throwaway container with network; check out the parent of PR #28749 (the regressed base) and confirm the diff of #28749 is small",
+    "Build the Python extension or the needed crates at the base (record build wall-clock, peak RAM, and whether it fits in 16 GB)",
+    "Write a differential script: pivot on random schemas (types, nulls, mean/sum/first/last/count, ordering), comparing base against the #28749 build",
+    "Run timed wide and tall pivots on base and fixed builds (5 runs each, median) to measure the speedup",
+    "Check determinism: rerun the same seed twice and compare outputs byte-for-byte"
+   ]
+  },
+  "summary": "The regression is real (polars issue #26207, regression label, closed 2026-08-10), but the seed's claim that no fix PR exists is wrong: fix PR #28749 is merged in the public history. Because the fix is a single planner predicate that a frontier agent can find from the issue text, the task is one-lever and too easy for an 8 h tier, so I kill it as K10 (with a secondary K12 build-cost risk, since smoke_build did not run).",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 56
+}

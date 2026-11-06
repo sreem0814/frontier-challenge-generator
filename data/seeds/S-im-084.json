@@ -1,0 +1,270 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "4 h. Buckets are parsing, chunked, ranges, multipart streaming and malformed-input status codes. A frontier agent finishes the main paths in some trials but misses the strict error handling. A weaker model stops at the basic GET and POST.",
+  "cheat": "A hand-rolled parser that handles only the visible samples fails the generated malformed and boundary-case requests. The reference header is not in the image.",
+  "grading": "The upstream test suite (about 8 MB of tests in 107 files) is split into hidden buckets, plus a differential harness sending generated and mutated raw requests over a socket to the sealed reference server and comparing status and body. Fraction of cases passed.",
+  "reference": "The upstream implementation at the same version, which scores 1. The removed code is expected to be about 1500-2500 lines.",
+  "source": "https://github.com/yhirose/cpp-httplib @ v0.62.0 (head 74ef3c42), MIT",
+  "task": "/app ships the header-only library with the request-line and header parser, chunked transfer decoding, Range header handling, and multipart/form-data parsers (stream and content-reader) removed. The agent rebuilds them so the client and server still work. Delivered as the same header with the same public API.",
+  "title": "Rebuild cpp-httplib request parsing, range and multipart handling"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:08:12Z",
+ "family": "protocol",
+ "final": 78,
+ "history": [
+  [
+   "2026-10-21T03:08:12Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:13Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-083 0.32"
+  ],
+  [
+   "2026-10-21T03:09:39Z",
+   "v1",
+   "pass",
+   "score 82; dead links []"
+  ],
+  [
+   "2026-10-21T03:24:47Z",
+   "v2",
+   "pass",
+   "final 78"
+  ],
+  [
+   "2026-10-21T04:31:11Z",
+   "spike",
+   "validated",
+   "Source is MIT, header-only at v0.62.0 (httplib.h has 24011 lines, test/ has 107 files, test.cc has 30956 lines and 878 gtests). It builds offline with no TLS. Removal needed no edits outside the stubbed function bodies, so separation is clean. The parsing areas are about 600-1000 lines, below the se"
+  ]
+ ],
+ "id": "S-im-084",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.325,
+    "S-im-083"
+   ],
+   [
+    0.273,
+    "S-im-012"
+   ],
+   [
+    0.261,
+    "S-im-037"
+   ],
+   [
+    0.106,
+    "httpx-multipart-response-parsing [DeepSWE]"
+   ],
+   [
+    0.103,
+    "requests [Commit0]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 3,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "74ef3c42188acd6391f027c4337fb0e1a68c0024",
+  "kb": 8534,
+  "lang": "C++",
+  "open_prs": 2,
+  "pushed": "2026-10-19",
+  "release": "v0.62.0",
+  "spdx": "MIT",
+  "stars": 16918,
+  "test_files": 107,
+  "test_kb": 7940,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/yhirose/cpp-httplib|oss-fuzz-cpp-httplib",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/yhirose/cpp-httplib",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Removed code measured at only 616 non-blank lines (read_headers, parse_header, content length/chunked readers, FormDataParser::parse, boundary/Range parsers, request line, ChunkedDecoder methods), well below the 1500-2500 estimate and the plan's 1500 pass threshold. More removal (e.g. client-side parsing, multipart ranges generation) could raise it to maybe 900-1100.",
+   "Stripped header scores 0 on only 270 of 856 non-removed cases still passing. A stub that returns 400 for everything matches the reference on malformed-input cases (10 of 24 raw differential requests), so malformed-status buckets need non-400 expectations or mixed valid/invalid cases.",
+   "Debian apt has libcpp-httplib-dev 0.11.4 (older, installable only with network). Not present in this container, and the image must not contain it.",
+   "Full gtest run takes about 440 s on the reference; ConnectionErrorTest, SpecifyServerIPAddressTest and TooManyRedirectTest need network or are slow (exclude them). The stripped binary can abort the whole process (core dump), so run tests per-test."
+  ],
+  "build_minutes": 2,
+  "cases_sampled": 856,
+  "commands_log": "git clone yhirose/cpp-httplib; checkout 74ef3c42. apt install zlib1g-dev libcurl4-openssl-dev libbrotli-dev libzstd-dev. g++ -O0 -std=c++17 test.cc include_httplib.cc gtest/src/gtest-all.cc gtest_main.cc -lz -lbrotli* -lzstd -lcurl -lpthread -lanl (about 65 s). Full run: 873 of 878 pass in run 1, with ConnectionErrorTest.Timeout_Online failing (network). Strip: python /work/b/strip.py stubs 15 function bodies. Per-test runs via /work/b/pertest.sh (30 s timeout each): ref 856/856 x2, stripped 271/856 x2 identical. Differential: 24 raw socket requests, ref vs stripped server, 14 differ. Notes in /work/SPIKE.md.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Stripped header (616 non-blank lines stubbed) fails 585 of 856 gtests, identical on 2 runs; reference passes all 856 non-network tests on 2 per-test runs. Most failures come from the broken request/header parser, not only from the named areas, so buckets need care.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "Source is MIT, header-only at v0.62.0 (httplib.h has 24011 lines, test/ has 107 files, test.cc has 30956 lines and 878 gtests). It builds offline with no TLS. Removal needed no edits outside the stubbed function bodies, so separation is clean. The parsing areas are about 600-1000 lines, below the seed's 1500-2500 estimate. The 150-line minimum is met. The generated corpus can use the reference-server differential harness at scale. Band risk: an all-400 stub scores on error cases. The unmeasured items are a third reference run (the run was killed, 2 completed) and a network-off grading run. The tests use localhost only, so offline_ok is inferred.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 856,
+  "reference_lines": 616,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 8
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/yhirose/cpp-httplib/releases/tag/v0.62.0",
+  "facts": [
+   {
+    "claim": "Tag v0.62.0 exists and points to commit 74ef3c42188acd6391f027c4337fb0e1a68c0024 (equals seed head)",
+    "status": "confirmed",
+    "url": "https://github.com/yhirose/cpp-httplib/releases/tag/v0.62.0"
+   },
+   {
+    "claim": "Release notes cover chunked coding, Range count macros and multipart parsing changes, so the removed areas exist in this version",
+    "status": "confirmed",
+    "url": "https://github.com/yhirose/cpp-httplib/releases/tag/v0.62.0"
+   },
+   {
+    "claim": "Licence is MIT (Copyright 2017 yhirose)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/yhirose/cpp-httplib/v0.62.0/LICENSE"
+   },
+   {
+    "claim": "test/ holds 107 test files (seed source_facts test_files)",
+    "status": "not_found",
+    "url": "https://github.com/yhirose/cpp-httplib/tree/v0.62.0/test"
+   },
+   {
+    "claim": "Repo has 2 open PRs (seed source_facts open_prs)",
+    "status": "contradicted",
+    "url": "https://github.com/yhirose/cpp-httplib/pulls"
+   },
+   {
+    "claim": "GoogleTest is vendored in test/gtest; OpenSSL, zlib, brotli, zstd and libcurl are needed for the full test binaries",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/yhirose/cpp-httplib/v0.62.0/test/Makefile"
+   },
+   {
+    "claim": "Chunked decoding has a security-fix history (negative chunk size fixed in 0.43.4; chunked body size limit fixed in 0.20.1)",
+    "status": "confirmed",
+    "url": "https://www.suse.com/security/cve/CVE-2025-46728.html"
+   }
+  ],
+  "frontier_hours": 7,
+  "full_card": {
+   "band": "Tier 8 h. Frontier agent finishes main paths in some trials and misses strict error handling (malformed input, boundaries). Weaker model stops at basic GET/POST. Seed band of 4 h judged too short for the multi-area scope.",
+   "build_cost": "3-5 days: smoke_build is empty so no offline build verified; need removal of regions, a reference-server harness over sockets, generated and mutated request corpus, and hidden bucket split",
+   "deliverable": "Rebuilt httplib.h passing hidden upstream-derived buckets: parsing, chunked, ranges, multipart streaming, malformed-input status codes; client and server still work",
+   "gates_anticheat": "Reference and hidden cases stay outside the image; close cheats: no test/ or hidden expectations in image, no system httplib (verify no libcpp-httplib-dev or copies under /usr, ~/.cache, conan or pip caches), no network at run time, grader rejects modified tests or build config; differential harness defeats hand-rolled samples-only parsers",
+   "grading_surface": "Hidden buckets from the 8 MB upstream test suite plus differential harness of generated and mutated raw socket requests vs sealed reference server, comparing status and body; fraction passed",
+   "local_fit": "Header-only, CPU only, no network needed for the differential harness; optional TLS and compression backends can be excluded from grading; fits 8 cores, 16 GB",
+   "lookup": "Upstream code is public on GitHub and likely in model memory in outline; verbatim recall unlikely; system package libcpp-httplib-dev may exist in Debian repos, must be absent from image. No later release needed (removed code is already in v0.62.0).",
+   "provenance": "yhirose/cpp-httplib tag v0.62.0 (74ef3c42), MIT, header-only C++, 16.9k stars; removed areas (request-line/header parser, chunked decoder, Range, multipart stream and content reader) are in this release's httplib.h",
+   "reference": "Upstream v0.62.0 header itself, scores 1; removed code expected 1500-2500 lines (not measured yet)",
+   "ships": "history-less httplib.h at v0.62.0 with the listed parsers removed; public API unchanged; no test/ hidden cases, no reference server",
+   "similarity": "Neighbours S-im-083 (0.325), S-im-012 (0.273), S-im-037 (0.261) are seeds, not public tasks; cannot see their subject here, so check S-im-083 for same repo or subject. httpx multipart DeepSWE 0.106 is a single feature, different."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Strict error handling and the multi-area scope are hard for a frontier agent, but the code is famous and partly recallable in outline; no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-5 days: region removal, harness, corpus and bucket split; smoke build empty so unverified."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Header-only, CPU only, offline grading via socket harness works without TLS."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Parsers, chunking, Range and multipart touch many interacting parts of one header; 8 h tier justified."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT licence allows shipping the header and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Buckets for parsing, chunked, ranges, multipart and malformed statuses give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public-task neighbour above 0.15 except seed neighbours at 0.26-0.33, which need checking for same-subject overlap."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT upstream release v0.62.0 at a pinned commit, 16.9k stars."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete upstream header scores exactly 1 and is the real release."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public upstream code that a model knows in outline; sealable by shipping a history-less snapshot with removed regions and an unseen reference server."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Differential harness with an unlimited generator over raw requests plus hidden buckets from a large upstream suite."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Removed code cannot be separated without touching more than about 30% of the header, fewer than 50 failing cases remain, results vary across runs, or an httplib copy is installable or present in the image.",
+   "pass_if": "Reference builds offline from the header; removed region is 1500+ non-blank lines; at least 100 upstream cases fail on the stripped header in the removed areas; results are identical across 3 runs; non-removed cases still pass.",
+   "steps": [
+    "In a throwaway networked container, clone yhirose/cpp-httplib at 74ef3c42 and confirm test/ file count (expect 107 or fewer) and whether gtest builds from test/gtest.",
+    "Build the reference: compile a minimal server and client with g++ -std=c++17 -pthread against the unmodified httplib.h; record success.",
+    "Mark and remove the request-line/header parser, chunked decoder, Range and multipart stream/content-reader code in a copy; count removed non-blank lines (target 1500-2500).",
+    "Compile the stripped header and run the upstream gtest cases filtered to chunked, Range, multipart and malformed inputs; record pass/fail counts.",
+    "Repeat the stripped-header run three times to check determinism of pass/fail per test.",
+    "Confirm the image has no system httplib: check apt-cache policy libcpp-httplib-dev and find / -name httplib.h outside the snapshot.",
+    "Write 20 generated and mutated raw requests and compare the stripped server against the reference server output for status and body."
+   ]
+  },
+  "summary": "The seed is a real MIT upstream release (v0.62.0 at 74ef3c42, confirmed) with a large removable surface and a strong reference, so it passes the Real, Ref and Lic gates. The main risks are the famous, recallable code, an unverified offline build (smoke_build empty), and the unconfirmed 107-file count and open-PR claims, and the 8 h tier looks right instead of the seed's 4 h.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 82,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-084",
+  "kill_code": "",
+  "note": "Tag v0.62.0 at 74ef3c42 and MIT are confirmed, and the hidden suite can be split into gtest buckets plus a socket differential harness. Risks: HTTP/1.1 parsing, chunked, Range and multipart are well-known patterns (frontier 7 h on an 8 h tier, close to K8 if the removal is small), and the 1500-2500 removed lines are unmeasured. Status codes must match the reference exactly on malformed input, so make sure the hidden cases test documented behaviour, not incidental choices. Upstream tests that need network or TLS/compression backends must be filtered out. Smoke build is empty; verify gtest builds offline.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 78
+}

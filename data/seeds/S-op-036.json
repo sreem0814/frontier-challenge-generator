@@ -1,0 +1,214 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "4 h. Obvious wins are available (avoiding per-point allocations, merging commands), so the frontier gets part of the speedup. The ceiling needs subtle work. Weaker models break the equality gate.",
+  "cheat": "Skipping the tessellation work: the output arrays are compared. A scoped headless benchmark leaves no room for GPU-side tricks.",
+  "grading": "Hard gate: generated geometry output (vertex and index arrays) must match the reference exactly or within 1e-6 over many line, width and cap combinations. Reward is median wall-clock speedup.",
+  "reference": "The merged change plus our additional measured improvements on the same path. S is measured. Exact figures not found.",
+  "source": "https://github.com/godotengine/godot/pull/54377 (faster editor line drawing), MIT",
+  "task": "/app ships a scoped Godot snapshot at the parent of the change, with the 2D canvas polyline and line tessellation code. The agent speeds up the canvas item draw-command recording and tessellation path. Interface: a headless C++ benchmark that calls the canvas draw APIs.",
+  "title": "Godot 2D polyline and draw_line batching speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-035 0.29"
+  ],
+  [
+   "2026-10-21T03:07:21Z",
+   "v1",
+   "killed:K5",
+   "No strong obtainable reference: the public change is a 2021 PR in the 3.x branch, the 'additional measured improvements' do not exist yet, and S is unmeasured ('exact figures not found'). The seed's 4.x framing also contradicts the PR's 3.x history."
+  ]
+ ],
+ "id": "S-op-036",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.289,
+    "S-op-035"
+   ],
+   [
+    0.218,
+    "S-op-033"
+   ],
+   [
+    0.196,
+    "S-op-034"
+   ],
+   [
+    0.12,
+    "lca-on-the-line [PaperBench]"
+   ],
+   [
+    0.093,
+    "shortest_path_dijkstra [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/pull/54377|godotengine-godot-54377-faster-editor-line-drawing-path2d-an",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/pull/54377",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/pull/54377",
+  "facts": [
+   {
+    "claim": "PR godotengine/godot #54377 exists, titled 'Faster editor line drawing - Path2D and draw_line', and is merged",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/54377"
+   },
+   {
+    "claim": "The PR was merged 30 Nov 2021 into the 3.x branch (merge commit 3be0f85e91e09a4463630c004209a9ed5b5c5a1b), milestone 3.5, so the change is in public 3.x history and not a 4.x change as the seed implies",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot/pull/54377"
+   },
+   {
+    "claim": "PR touches the canvas_item_add_line / rasterizer_canvas path and changes the diff size as the seed describes (files and line counts)",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/pull/54377"
+   },
+   {
+    "claim": "Repository licence is MIT (copyright Godot Engine contributors 2014-present; Linietsky and Manzur 2007-2014)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/blob/master/LICENSE.txt"
+   },
+   {
+    "claim": "Release tag 4.7.2-stable exists (released 18 Aug per the page; year not shown)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/releases/tag/4.7.2-stable"
+   },
+   {
+    "claim": "4.7.2 release notes mention a canvas, polyline, draw_line or line-tessellation performance change",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/releases/tag/4.7.2-stable"
+   },
+   {
+    "claim": "Godot 4.x canvas tessellation or draw_line/draw_polyline performance change exists upstream (for the 4.x path the seed names)",
+    "status": "not_found",
+    "url": "https://docs.godotengine.org/de/4.x/tutorials/2d/custom_drawing_in_2d.html"
+   },
+   {
+    "claim": "Reference speedup S is measured and exact figures are available",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/pull/54377"
+   },
+   {
+    "claim": "Smoke build verdict for this snapshot (offline build and test suite)",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot"
+   }
+  ],
+  "frontier_hours": 3.5,
+  "full_card": {
+   "band": "Tier 4h proposed; no dated public evidence for this kind of work (E0).",
+   "build_cost": "Unknown; full Godot SCons build on 8 cores is hours; 3 days plausible for snapshot plus benchmark harness.",
+   "deliverable": "Faster canvas polyline/draw_line recording and tessellation; output arrays must match within 1e-6.",
+   "gates_anticheat": "Compare output arrays; benchmark scoped headless; cheats (skip tessellation, cache outputs) caught by equality gate. Need to pin build flags and ensure tests cannot be edited.",
+   "grading_surface": "Vertex and index arrays over many line/width/cap combinations (generator possible); median wall-clock speedup. Timing noise is a risk.",
+   "local_fit": "Headless CPU-only benchmark fits 8 cores/16 GB; full Godot build cost unknown (smoke_build empty).",
+   "lookup": "partial: public PR diff and 3.x history expose the approach; 4.x path not checked.",
+   "provenance": "Merged PR #54377 (3.x, Nov 2021, MIT). Public diff; reference must be sealed as history-less snapshot.",
+   "reference": "Merged PR plus unspecified 'additional measured improvements' that do not exist yet; S not measured.",
+   "ships": "Scoped Godot snapshot at the PR parent (3.x-era canvas code), headless C++ benchmark; not 4.x as the seed's head suggests.",
+   "similarity": "Nearest l0 public task lca-on-the-line at 0.12 (below 0.15); sibling seeds S-op-035 (0.289) are seeds, not public tasks."
+  },
+  "kill_code": "K5",
+  "kill_reason": "No strong obtainable reference: the public change is a 2021 PR in the 3.x branch, the 'additional measured improvements' do not exist yet, and S is unmeasured ('exact figures not found'). The seed's 4.x framing also contradicts the PR's 3.x history.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Obvious wins exist, but no dated evidence and the ceiling is undefined."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Full Godot build unknown and smoke_build is empty; likely 2-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU headless benchmark fits sandbox; build size is the concern."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "A PR-scale lever plus small extras; 4h horizon looks thin for the stated scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, confirmed."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers (allocations, command merging, tessellation) give partial buckets."
+   },
+   "Nov": {
+    "v": 5,
+    "why": "No public task above 0.15 cosine; closest is 0.12."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real merged PR in a real MIT repo; but facts mismatch (3.x merge, not 4.x)."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is a small public PR plus unmeasured extras that do not exist; no strong reference."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The reference diff is in public git history and the approach is recallable; needs history-less snapshot."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Geometry arrays over combinations can be generated, but the case count is not stated."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Diff is small or off-path, build is over 5 days, outputs are nondeterministic, or no measurable speedup stays above noise.",
+   "pass_if": "PR diff is at least 150 non-blank lines in the canvas path; headless build finishes in under about 2 hours; harness is deterministic and the PR gives a repeatable speedup above noise.",
+   "steps": [
+    "Clone godotengine/godot in a throwaway container with network; check out 3be0f85e^ (parent of the merge) and run git show --stat 3be0f85e to count changed files and non-blank added lines.",
+    "If the PR diff is under about 150 non-blank code lines, or it lies outside canvas polyline/tessellation, stop: the reference is too small for the seed's scope.",
+    "Build headless Godot at the parent (scons platform=linuxbsd target=template_release disable_3d=yes, no editor/tests) and time it on 8 cores to estimate build cost.",
+    "Write a tiny harness that calls canvas draw_line/draw_polyline on about 50 random line/width/cap combinations and dumps vertex/index arrays; check two runs are byte-identical.",
+    "Apply the merged PR, rerun the harness and measure the median speedup over 5 runs; confirm the array match within 1e-6.",
+    "Record whether the speedup from the PR alone is measurable and stable; if noise exceeds the expected gain, kill for K4."
+   ]
+  },
+  "summary": "Seed S-op-036 is built on real, MIT-licensed upstream work, but PR #54377 was merged into Godot 3.x in Nov 2021 (milestone 3.5), not into the 4.x head the seed cites. The reference is therefore the small public PR plus unspecified extras that do not yet exist, with no measured speedup, so it is killed as K5 (no strong reference obtainable).",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 64
+}

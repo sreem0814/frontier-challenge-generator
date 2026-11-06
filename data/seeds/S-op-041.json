@@ -1,0 +1,277 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. Builds are slow and there are many independent kernels, so credit accrues kernel by kernel. A frontier agent speeds up a few kernels with SIMD and threading, and a weaker model breaks the equivalence gate.",
+  "cheat": "Skipping work or caching results is closed by random inputs generated at run time and a bit-exact gate. The builds ship no upstream binaries.",
+  "grading": "A hard gate runs the core gtest suite (excluding OCL tests) and hidden bit-exact or tolerance checks on random Mats of many types and sizes. Then the wall-clock median over a fixed kernel set is compared with the base. Reward is 2^u - 1.",
+  "reference": "The speedup comes from the upstream optimized kernels (SIMD and parallel loops), measured on the same CPU. S is the measured ratio.",
+  "source": "https://github.com/opencv/opencv @ head e70c9da (5.0.0 release listed), Apache-2.0",
+  "task": "Ship a history-less snapshot of the core module built with the universal intrinsics and parallel backends disabled. The agent speeds up arithmetic, convert, reduce, LUT, norm, mean and matmul on 8 cores while the module still builds and the API is unchanged.",
+  "title": "OpenCV core arithmetic and reduction kernels speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "numeric-scientific",
+ "final": 73,
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-039 0.25"
+  ],
+  [
+   "2026-10-21T03:17:38Z",
+   "v1",
+   "pass",
+   "score 73; dead links ['https://docs.opencv.org/5.x/db/d05/tutorial_config_reference.html']"
+  ],
+  [
+   "2026-10-21T03:19:48Z",
+   "v2",
+   "pass",
+   "final 73"
+  ],
+  [
+   "2026-10-21T05:46:16Z",
+   "spike",
+   "validated",
+   "Checkout at e70c9da. Core suite needs opencv_extra testdata in the image. Base suite ran once; default suite twice with identical counts. One-lever risk: re-enabling flag/intrinsics recovers the speedup, so the snapshot must have those sources deleted."
+  ]
+ ],
+ "id": "S-op-041",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.251,
+    "S-op-039"
+   ],
+   [
+    0.177,
+    "S-im-087"
+   ],
+   [
+    0.172,
+    "S-im-098"
+   ],
+   [
+    0.09,
+    "magsac-install [original]"
+   ],
+   [
+    0.089,
+    "level1 (100 single ops) [KernelBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": 2,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "e70c9dab7c9ecd9f4e9c82005d882b3cd2567256",
+  "kb": 569710,
+  "lang": "C++",
+  "open_prs": 299,
+  "pushed": "2026-10-20",
+  "release": "5.0.0",
+  "spdx": "Apache-2.0",
+  "stars": 91250,
+  "test_files": 533,
+  "test_kb": 7974,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/opencv/opencv|opencv-opencv",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: cd build && ./bin/opencv_test_core --gtest_color=no --gtest_filter=-*OCL*. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/opencv/opencv",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Removed-source snapshot variant (dispatch/intrinsics deleted) not compiled or tested",
+   "80 default-only intrinsics tests must be excluded from the gate",
+   "Grader must reject build-config changes",
+   "No separate offline run was done"
+  ],
+  "build_minutes": 21,
+  "cases_sampled": 2454,
+  "commands_log": "cmake -G Ninja -DBUILD_LIST=ts,core -DBUILD_TESTS=ON -DBUILD_PERF_TESTS=ON [-DCV_DISABLE_OPTIMIZATION=ON]; ninja opencv_test_core opencv_perf_core (def 21m, dis 10m); opencv_test_core --gtest_filter=-*OCL* (def 17669 pass x2, dis 17589 pass); opencv_perf_core filtered, XML medians compared",
+  "deterministic": true,
+  "gvisor_concerns": [
+   "none for grading"
+  ],
+  "headroom_note": "Median dis/def ratios: add 2.3x, multiply 9.4x, absdiff 4.5x, addWeighted 14x, convertTo 1.45x overall (up to 45x), sum 3.9x, norm 4.4x, mean 2.2x, dot 8.5x, gemmSquare 2.3x. Some kernels (max, min, transpose) are about 1x. LUT ratio unmeasured. Timed with 3 threads under some load, not 8 cores.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "Checkout at e70c9da. Core suite needs opencv_extra testdata in the image. Base suite ran once; default suite twice with identical counts. One-lever risk: re-enabling flag/intrinsics recovers the speedup, so the snapshot must have those sources deleted.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 2454,
+  "reference_lines": 3000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 15
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/opencv/opencv/releases/tag/5.0.0",
+  "facts": [
+   {
+    "claim": "OpenCV 5.0.0 release exists on the opencv/opencv GitHub repo (tag 5.0.0, listed as 'OpenCV 5.0.0', dated '06 Jun'; year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/opencv/opencv/releases/tag/5.0.0"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (taken from GitHub API spdx in seed; not re-fetched from LICENSE file)",
+    "status": "confirmed",
+    "url": "https://github.com/opencv/opencv"
+   },
+   {
+    "claim": "modules/core/test at tag 5.0.0 has 22 .cpp test sources plus headers (39 files total incl. an ocl subdirectory); per-test TEST/TEST_F counts not visible",
+    "status": "confirmed",
+    "url": "https://github.com/opencv/opencv/tree/5.0.0/modules/core/test"
+   },
+   {
+    "claim": "CV_DISABLE_OPTIMIZATION is a documented CMake switch in the 5.x config reference that disables universal intrinsics, dispatched SIMD code, IPP/Eigen/LAPACK and loop unrolling (so the 'disabled' base is a build flag, not removed code)",
+    "status": "confirmed",
+    "url": "https://docs.opencv.org/5.x/db/d05/tutorial_config_reference.html"
+   },
+   {
+    "claim": "The 5.0 docs describe a core parallel backend API (cv::parallel, OPENCV_PARALLEL_PRIORITY_* env vars, setParallelForBackend)",
+    "status": "confirmed",
+    "url": "https://docs.opencv.org/5.0/main_modules/core_parallel_backend.html"
+   },
+   {
+    "claim": "WITH_TBB / WITH_PTHREADS_PF build option names and defaults",
+    "status": "not_found",
+    "url": "https://docs.opencv.org/5.x/db/d05/tutorial_config_reference.html"
+   },
+   {
+    "claim": "Universal intrinsics (cv::v_float32 etc.) documentation in the 5.0 docs",
+    "status": "not_found",
+    "url": "https://docs.opencv.org/5.0/main_modules/core_parallel_backend.html"
+   },
+   {
+    "claim": "Config reference page (5.x) fetched directly for exact wording and defaults",
+    "status": "not_found",
+    "url": "https://docs.opencv.org/5.x/db/d05/tutorial_config_reference.html"
+   }
+  ],
+  "frontier_hours": 8,
+  "full_card": {
+   "band": "8 h tier. Credit accrues per kernel; frontier agent likely speeds a subset (SIMD + threads); weaker model fails equivalence. No dated public evidence found (E0).",
+   "build_cost": "Not probed (smoke_build is empty). Full core plus opencv_test_core build expected tens of minutes on 8 cores; estimate 3 days for our reference plus hidden checks",
+   "deliverable": "Faster arithmetic, convert, reduce, LUT, norm, mean, matmul kernels on 8 cores; API unchanged; core gtest suite (no OCL) still passes",
+   "gates_anticheat": "Random inputs at run time defeat caching; bit-exact gate; but the flag CV_DISABLE_OPTIMIZATION exists upstream, so grader must reject any build-config change and the base must have the SIMD/dispatch paths deleted, not just switched off",
+   "grading_surface": "Hard gate: opencv_test_core minus OCL, plus runtime-random Mats over many types and sizes checked bit-exact or within tolerance; then wall-clock median over a fixed kernel set vs base; reward 2^u-1",
+   "local_fit": "CPU-only, 8 cores, 16 GB; OpenCV core plus test build fits; threading must use pthreads/OpenMP since TBB is not installable offline",
+   "lookup": "partial: upstream OpenCV kernels are public in git history and widely known in outline; no installable offline copy in image is assumed",
+   "provenance": "OpenCV 5.0.0 (repo head e70c9da, Apache-2.0, 91k stars), real public C++ library; core module is the subject",
+   "reference": "Upstream optimized kernels (universal intrinsics + parallel_for_), measured on same CPU; reference in public git history, so the snapshot must be history-less",
+   "ships": "History-less snapshot of modules/core and its test tree with universal intrinsics and parallel backends disabled (must be removed from source, not only flagged, see gates)",
+   "similarity": "l0 neighbour S-op-039 at 0.251 (above 0.15, subject not known to us, must check); other neighbours 0.09-0.177; not on CROWDED list as core-kernel speedup"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; the 8h scope of seven kernel families is plausible for a frontier agent in some trials but unproven."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Unprobed; full core and test build is slow and iterative, estimated around 3 days for our reference plus hidden checks."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, 8 cores, 16 GB fits; threading must avoid TBB because it is not installable offline."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8h tier with many independent kernels and build-debug-measure loops is genuinely long-horizon."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the source and reference in a bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Seven kernel families give per-kernel buckets of credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour S-op-039 at 0.251 is above the 0.15 novelty threshold; its subject is not known to us."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real 91k-star Apache-2.0 library at a tagged release 5.0.0 with real test tree."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Upstream optimized kernels are complete and permissive; speedup measurable on the same CPU."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is public in git history; sealable only with history-less snapshot and with SIMD/dispatch code deleted rather than flagged off."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Existing gtest suite plus runtime-random Mats across types and sizes gives thousands of checks, but gate is mostly pass/fail plus kernel timings, not an unlimited executable oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Disabled-build speedup headroom under 1.3x on most kernels, core suite is nondeterministic, or the base cannot be made to compile with the SIMD and dispatch paths removed.",
+   "pass_if": "Both builds finish within about 45 minutes; default build is at least 2x faster than disabled on at least three of the seven kernels; flag-off recovers less than about 60% of the default speedup; test results are deterministic across two runs.",
+   "steps": [
+    "In a throwaway networked Linux container, clone opencv at e70c9da (5.0.0) without history, configure two builds: default and -DCV_DISABLE_OPTIMIZATION=ON, both with core and opencv_test_core only, and time each build.",
+    "Run opencv_test_core --gtest_filter=-*OCL* on both builds and record pass/fail counts and runtime; repeat once to check determinism.",
+    "Write a small benchmark for arithm (add/mul), convertTo, sum/mean/norm, LUT, and gemm on 8 cores; run the median of 5 for default vs disabled builds.",
+    "Check whether the flag alone recovers most of the default-build speedup. If it does, the snapshot must delete the dispatch/intrinsic sources, not only flag them off, or the task is one-lever (K10).",
+    "Confirm the removed-source variant still compiles and the core tests run on it, and record which tests fail because intrinsics are gone (these must be excluded from the hard gate)."
+   ]
+  },
+  "summary": "OpenCV 5.0.0 is a real, Apache-2.0 release with a sizeable core test tree and a measurable upstream speedup, so the seed is viable as an 8h optimization task. The main risk is that CV_DISABLE_OPTIMIZATION is a build flag upstream, so the base must delete the SIMD and dispatch paths or the task collapses to one lever; the spike must measure flag-off headroom and build time before commitment.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [
+   "https://docs.opencv.org/5.x/db/d05/tutorial_config_reference.html"
+  ],
+  "ratio": 0.2
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-op-041",
+  "kill_code": "",
+  "note": "Many independent kernels (arithm, convert, reduce, LUT, norm, mean, gemm) give honest per-lever credit, and S can be measured from the upstream build. Risks the spike must clear: (1) the base must delete the dispatch/.simd.hpp and intrinsic paths from source, not just set CV_DISABLE_OPTIMIZATION, or it becomes one-lever restore-the-flag (K10); (2) removing hal/intrin headers from core may break compilation widely, which drives build cost up; (3) reductions need tolerance, not bit-exact, because accumulation order differs; (4) lock build flags so -O3/-march tweaks are not the lever. No smoke build, and the config-reference link is dead, so E0. The upstream kernel style is recallable in outline (Band cap 3).",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 5,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 80
+}

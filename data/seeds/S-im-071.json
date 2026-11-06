@@ -1,0 +1,207 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "8 h. Semantics-preserving versions are within reach. Byte-exact output needs the same rewrite order, which is hard, so the average sits below the reference. A weaker model breaks the build or the behaviour. Buckets: one per pass.",
+  "cheat": "Making passes no-ops preserves behaviour but fails the text comparison. Upstream pass sources are absent, and binaryen is not installed in the image.",
+  "grading": "wasm-opt runs each pass on hidden .wast inputs from the lit suite plus fuzz-generated modules. Output text is compared against a sealed upstream build, and wasm-opt --fuzz-exec (or wasm-interp) must show unchanged behaviour. Score is the fraction of cases with identical output, with a smaller weight for semantically equal but different output. The base fails all of them.",
+  "reference": "The original pass sources, several thousand lines of C++. They score 1.",
+  "source": "https://github.com/WebAssembly/binaryen @ version_133 (src/passes), Apache-2.0",
+  "task": "/app ships a history-less snapshot where five function-level passes are removed: vacuum, remove-unused-brs, simplify-locals, merge-blocks and dce. The agent re-implements them against the IR and pass-runner API, registers them with wasm-opt, and the project builds with cmake.",
+  "title": "Binaryen function-level optimization passes rebuilt against lit expectations"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "compiler-toolchain",
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-065 0.25"
+  ],
+  [
+   "2026-10-21T03:05:12Z",
+   "v1",
+   "killed:K9",
+   "Grading demands byte-identical text to the sealed upstream build, so a different valid re-implementation earns only the small semantic-equal weight. No realistic trial reaches 0.9 of reference, and the only route to high credit is reproducing the public upstream sources. Rescope to semantics plus si"
+  ]
+ ],
+ "id": "S-im-071",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.25,
+    "S-im-065"
+   ],
+   [
+    0.238,
+    "S-im-037"
+   ],
+   [
+    0.229,
+    "S-im-068"
+   ],
+   [
+    0.149,
+    "wasm_interpreter [SpecBench]"
+   ],
+   [
+    0.132,
+    "wasm-pipeline [original]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "84eb29a678ae08cda52c9675dd92f480cef68bfe",
+  "kb": 158155,
+  "lang": "WebAssembly",
+  "open_prs": 250,
+  "pushed": "2026-10-20",
+  "release": "version_133",
+  "spdx": "Apache-2.0",
+  "stars": 8664,
+  "test_files": 2265,
+  "test_kb": 31625,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/webassembly/binaryen|133",
+ "source_notes": "Compiler infrastructure and toolchain library for WebAssembly",
+ "source_url": "https://github.com/WebAssembly/binaryen",
+ "source_version": "133",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/WebAssembly/binaryen/releases/tag/version_133",
+  "facts": [
+   {
+    "claim": "Tag version_133 exists in WebAssembly/binaryen (commit fba5005, marked Latest; release text is only the commit message 'Version 133 (#9131)')",
+    "status": "confirmed",
+    "url": "https://github.com/WebAssembly/binaryen/releases/tag/version_133"
+   },
+   {
+    "claim": "src/passes at version_133 contains RemoveUnusedBrs.cpp, MergeBlocks.cpp and DeadCodeElimination.cpp (seed's dce pass lives in DeadCodeElimination.cpp)",
+    "status": "confirmed",
+    "url": "https://github.com/WebAssembly/binaryen/tree/version_133/src/passes"
+   },
+   {
+    "claim": "Seed's lowercase filenames vacuum.cpp, remove-unused-brs.cpp, simplify-locals.cpp, merge-blocks.cpp, dce.cpp do not exist; upstream uses CamelCase names. vacuum and SimplifyLocals files were not visible in the truncated listing, so their presence is unverified",
+    "status": "contradicted",
+    "url": "https://github.com/WebAssembly/binaryen/tree/version_133/src/passes"
+   },
+   {
+    "claim": "Line counts of the five pass sources (several thousand lines total)",
+    "status": "not_found",
+    "url": "https://github.com/WebAssembly/binaryen/tree/version_133/src/passes"
+   },
+   {
+    "claim": "Apache-2.0 licence (spdx from GitHub API source_facts; LICENSE file not separately opened)",
+    "status": "confirmed",
+    "url": "https://github.com/WebAssembly/binaryen"
+   },
+   {
+    "claim": "Lit suite size: 2265 test files / 31625 KB in the repo at this release (from source_facts)",
+    "status": "confirmed",
+    "url": "https://github.com/WebAssembly/binaryen"
+   },
+   {
+    "claim": "Public web search surfaced no C++ pass implementations; only pass-name lists, man pages and an old test/passes mirror at version_17",
+    "status": "confirmed",
+    "url": "https://chromium.googlesource.com/external/github.com/WebAssembly/binaryen/+/version_17/test/passes"
+   }
+  ],
+  "frontier_hours": 9,
+  "full_card": {
+   "band": "8 h tier. Byte-exact match to upstream rewrite order is the blocker; semantic-only credit is capped by the small weight, so a finished honest solution scores well below 0.9 of reference",
+   "build_cost": "not measured (smoke_build empty); full binaryen cmake build est. 20-40 min on 8 cores; pass-level rebuild and lit harness est. 2-4 days of work to set up grading",
+   "deliverable": "re-implemented passes registered with wasm-opt, cmake build, byte-exact text output vs sealed upstream build",
+   "gates_anticheat": "no-op passes fail text comparison; upstream pass sources absent from /app; binaryen not installed; but the same code is public at the pinned tag",
+   "grading_surface": "lit .wast inputs plus fuzz-generated modules; exact-text fraction with a smaller weight for semantic-equal output; 2265 test files in repo",
+   "local_fit": "cmake C++ build, CPU-only, fits 8 cores / 16 GB; no network needed at run time",
+   "lookup": "direct: complete upstream sources public at the pinned tag and in git history; models likely recall outline and much of the code",
+   "provenance": "WebAssembly/binaryen tag version_133, Apache-2.0, 8664 stars, pushed 2026-10-20; reference is the upstream pass sources at that same public tag",
+   "reference": "upstream src/passes at version_133, public; several thousand C++ lines (line count not found)",
+   "ships": "history-less snapshot of binaryen minus five pass sources (seed names; upstream files are CamelCase: DeadCodeElimination.cpp, MergeBlocks.cpp, RemoveUnusedBrs.cpp, plus Vacuum and SimplifyLocals not yet confirmed)",
+   "similarity": "closest l0 neighbour S-im-065 at 0.25 (above 0.15); not on CROWDED list; compiler-toolchain family"
+  },
+  "kill_code": "K9",
+  "kill_reason": "Grading demands byte-identical text to the sealed upstream build, so a different valid re-implementation earns only the small semantic-equal weight. No realistic trial reaches 0.9 of reference, and the only route to high credit is reproducing the public upstream sources. Rescope to semantics plus size or structure checks to revive it.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Byte-exact output to upstream means only near-recall of upstream passes can reach 0.9 of reference; no dated evidence; weaker-model lag unverified."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Build est. under 1 h but grader setup with sealed upstream outputs and lit harness is multi-day."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only cmake build fits the sandbox."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Five passes with interactions fit an 8 h tier, though a byte-exact target caps the reachable work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the snapshot and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "One bucket per pass gives steady partial credit, but the exact-text weighting is not steady across buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.25 (S-im-065) is above 0.15; not crowded."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Public tag, Apache-2.0, real project with lit suite; seed filenames and pass set need correction (CamelCase files)."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation at the pinned tag would score exactly 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Snapshot removes the sources offline, but the public tag and its test expectations let a model reconstruct the code."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Lit suite plus unlimited fuzz-generated modules gives a large executable surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Output differs between two builds of the same tag, or the exact-text target can only be met by copying upstream.",
+   "pass_if": "Two builds give identical output on sampled inputs, the five files total 2000+ lines, and a semantics-only check gives a graded curve.",
+   "steps": [
+    "In a throwaway networked Linux container, clone WebAssembly/binaryen at version_133 and build with cmake (Release, -j8); record wall time and whether the suite runs.",
+    "Pick 5 lit .wast files each for dce, vacuum, remove-unused-brs, simplify-locals, merge-blocks from test/passes and run wasm-opt --<pass> on them twice in separate build dirs to check byte-identical output.",
+    "Delete the five pass sources in a copy, stub them to no-ops, and confirm the text comparison fails on the sampled files (validates that exact-text scoring is what separates solutions).",
+    "Run --fuzz-exec on 20 generated modules with the reference build to confirm behaviour checks are deterministic.",
+    "Count the lines of the five upstream pass files to replace the 'several thousand' estimate.",
+    "Ask: does a semantics-only variant (fuzz-exec equivalence plus size no worse than upstream) give a usable partial-credit curve? If yes, rescope the grading to it."
+   ]
+  },
+  "summary": "Binaryen version_133 is real and Apache-2.0, and its pass sources are public, so the reference is strong but the file names in the seed are wrong (upstream uses CamelCase). The card fails because grading requires byte-exact output matching upstream, which encodes the reference's internal rewrite order and lets only recall reach high scores; killed K9 with a suggested semantics-first rescope.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73
+}

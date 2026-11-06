@@ -1,0 +1,262 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "8 h. A frontier agent gets the basic tag and attribute rules right but loses points on CSS parsing, extension and script rules, and error-ordering details. A weaker model stops at plain tag-whitelist checks. Buckets: tag rules, attributes, CSS, layout, document-level rules.",
+  "cheat": "Hard-coding golden outputs fails because the hidden and mutated inputs are not shipped. The snapshot has no newer validator copy, no node_modules copy of the validator, and no network.",
+  "grading": "Run the CLI on hidden HTML files with golden outputs from the upstream validator, plus generated mutations of the visible cases (attributes dropped, tags reordered) whose expected output comes from a sealed copy of the real validator. Compare error code, line and column exactly. Visible sample cases are shipped; the hidden count is not found yet and must be measured.",
+  "reference": "The upstream validator engine, trimmed to the same module set (several thousand lines of JS). It scores 1 by construction on the golden outputs.",
+  "source": "https://github.com/ampproject/amphtml @ 3961d2e (validator/ directory), Apache-2.0",
+  "task": "/app ships a history-less snapshot with the validator engine (tag/attribute spec matching, CSS and URL checks, error reporting) removed. The agent rebuilds it as a Node CLI that reads an HTML file and prints PASS or the error list in the upstream text format. The protoascii rules file stays as input.",
+  "title": "AMP HTML validator rebuilt against golden outputs"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-065 0.23"
+  ],
+  [
+   "2026-10-21T02:52:40Z",
+   "smoke",
+   "amber",
+   "node: build ok, 0 tests, 0 failing, deterministic over 3 runs"
+  ],
+  [
+   "2026-10-21T02:54:21Z",
+   "v1",
+   "killed:K2",
+   "gate on scores {'Real': 2, 'Surf': 4, 'Ref': 4, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 3, 'Lic': 5, 'Fit': 4, 'Build': 3}; dead cited links ['https://cdn.jsdelivr.net/npm/amphtml-validator@1.0.38/README.md', 'https://github.com/ampproject/amphtml', 'https://github.com/ampproject/amphtml/"
+  ]
+ ],
+ "id": "S-im-068",
+ "kill": "K2",
+ "l0": {
+  "neighbours": [
+   [
+    0.235,
+    "S-im-065"
+   ],
+   [
+    0.218,
+    "S-im-037"
+   ],
+   [
+    0.206,
+    "S-im-032"
+   ],
+   [
+    0.125,
+    "css_layout_engine [SpecBench]"
+   ],
+   [
+    0.12,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 11,
+  "clone_ok": true,
+  "cmd_build": "node -e 'process.exit(require(\"./package.json\").scripts?.build?0:3)' && npm run build; r=$?; [ $r -eq 3 ] && r=0; exit $r",
+  "cmd_fetch": "npm ci --no-audit --no-fund",
+  "cmd_test": "false",
+  "commit": "3961d2e011e1ce875554d3fd091870f21474d58e",
+  "deterministic": true,
+  "eco": "node",
+  "fetch_ok": true,
+  "fetch_s": 150,
+  "log": "> amp-html@0.1.0 postinstall\n> node build-system/task-runner/install-amp-task-runner.js\n\nInstalling amp task runner...\nInstalled amp task runner.\n\n\nadded 1977 packages in 2m",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 2753,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "3961d2e011e1ce875554d3fd091870f21474d58e",
+  "kb": 980855,
+  "lang": "JavaScript",
+  "open_prs": 95,
+  "pushed": "2026-10-20",
+  "release": "2608201643000",
+  "spdx": "Apache-2.0",
+  "stars": 14904,
+  "test_files": 2753,
+  "test_kb": 34845,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/ampproject/amphtml|oss-fuzz-ampproject",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/ampproject/amphtml",
+ "source_version": "",
+ "status": "killed:K2",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator",
+  "facts": [
+   {
+    "claim": "ampproject/amphtml exists at commit 3961d2e with a validator/ directory containing cpp/, js/, testdata/, validator-main.protoascii, validator-css.protoascii, validator-svg.protoascii, and build files (package.json, build.py, BUILD, WORKSPACE)",
+    "status": "confirmed",
+    "url": "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator"
+   },
+   {
+    "claim": "Licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/ampproject/amphtml/blob/3961d2e011e1ce875554d3fd091870f21474d58e/LICENSE"
+   },
+   {
+    "claim": "The validator engine is C++ (validator/cpp/engine, C++17, built with Bazel), not several thousand lines of JS; the JS side is a wrapper under validator/js (chromeextension, engine, gulpjs, nodejs, webui). Engine line count not measured.",
+    "status": "contradicted",
+    "url": "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator/cpp/engine"
+   },
+   {
+    "claim": "Engine sources include validator.h, validator-internal.cc, validator-convert.cc, parse-layout, parse-layout-sizes, parse-srcset, parse-viewport, error-formatter, keyframes-parse-css, type-identifier, utf8-util, plus nine *_test.cc unit tests",
+    "status": "confirmed",
+    "url": "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator/cpp/engine"
+   },
+   {
+    "claim": "Engine README documents build with 'bazel build --cxxopt=-std=c++17 validator' and test with 'bazel test ... validator_test'",
+    "status": "confirmed",
+    "url": "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator/cpp/engine"
+   },
+   {
+    "claim": "testdata/feature_tests holds at least 48 .html inputs each with a .out expected output, plus 4 .out.cpponly files; listing is truncated so total is unknown. Sibling dirs amp4ads_feature_tests, amp4email_feature_tests, transformed_feature_tests exist.",
+    "status": "confirmed",
+    "url": "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator/testdata/feature_tests"
+   },
+   {
+    "claim": "A public npm package amphtml-validator (latest listed 1.0.38, Apache-2.0) exists and exposes a Node API for validating HTML, so a complete upstream validator is installable from npm outside the image",
+    "status": "confirmed",
+    "url": "https://npmjs.com/package/amphtml-validator"
+   },
+   {
+    "claim": "Whether the npm package bundles the same compiled engine as the CDN validator.js",
+    "status": "not_found",
+    "url": "https://cdn.jsdelivr.net/npm/amphtml-validator@1.0.38/README.md"
+   },
+   {
+    "claim": "Dated public evidence of agent performance on AMP validator reimplementation",
+    "status": "not_found",
+    "url": "https://github.com/ampproject/amphtml"
+   }
+  ],
+  "full_card": {
+   "band": "Expected 3: scope (tag, attr, CSS, layout, document rules, error ordering) is large; frontier 8h trials likely partial; weaker model stops at tag whitelist; no dated public evidence",
+   "build_cost": "Estimated 3-4 days for reference build plus sealed oracle plus hidden generator; K12 risk if Bazel offline build fails; smoke build_s 0 suggests npm build did not exercise the engine",
+   "deliverable": "Node CLI reading an HTML file, printing PASS or upstream-format error list (code, line, col)",
+   "gates_anticheat": "Keep cpp/, js/, node_modules, npm amphtml-validator, any validator.js bundle and hidden goldens out of image; no network at run time; mutations regenerated only in grader; block vendoring of wasm/prebuilt engine by checking for binaries and tests editing",
+   "grading_surface": "Hidden golden HTML cases plus generated mutations of visible cases (attributes dropped, tags reordered) scored by sealed real validator; exact code/line/col match; hidden count not measured; visible base at least 48 feature tests",
+   "local_fit": "Node CLI fits sandbox; reference build via Bazel C++17 or wasm may need network for external deps offline and is unverified under gVisor; smoke probe amber (exit codes 1, no report, no test suite)",
+   "lookup": "partial: public npm package with full validator and public C++ source at history; snapshot must be history-less at base; rules file is public spec input",
+   "provenance": "ampproject/amphtml @ 3961d2e, validator/ dir, Apache-2.0; real upstream AMP validator, OSS-Fuzz listed",
+   "reference": "Upstream C++ engine (validator/cpp/engine, wasm/JS wrapper), trimmed to module set; seed claim of several thousand lines of JS is contradicted (engine is C++); line count unmeasured",
+   "ships": "history-less snapshot of validator/ with cpp/engine and js engine removed; protoascii rules kept; visible feature_tests html+out samples; Node CLI to be written",
+   "similarity": "Nearest l0 neighbour S-im-065 at 0.235; no neighbour above 0.25; not on CROWDED list (HTML validator not listed); distinct from markdown/JSON parsers"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; scope is large and error-ordering details are tough; likely partial credit for most frontier trials"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Bazel C++17 reference build plus sealed oracle and mutation generator estimated 3-4 days"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Node CLI fits; reference build via Bazel/wasm offline is unverified"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-module engine rebuild fits 8h tier, though ordering and CSS work may not finish in all trials"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed in LICENSE"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five buckets named (tags, attrs, CSS, layout, document rules) give steady partial credit"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour similarity 0.235 which is above 0.15 but not a duplicate; not on crowded list"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real upstream repo at pinned commit with public history and Apache-2.0 licence"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream engine scores 1 by construction, but it is C++ not the JS the seed describes, so the trimmed reference needs measurement"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Full upstream validator is public on GitHub and npm; a model knows it in outline; sealable only if cpp, js, node_modules and goldens are removed"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Visible feature tests at least 48 plus generated mutations; hidden count unknown but plausibly thousands via generator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Bazel build needs network beyond vendored deps and cannot be made offline, or outputs are nondeterministic across runs, or the reference is far above 10k lines so no 8h trial can reach 0.9.",
+   "pass_if": "Engine builds offline from a clean Bazel cache or from vendored deps; at least 45 of 48 feature-test outputs reproduce exactly across three runs; engine size is measured and at least 150 changed lines are plausible for the chosen scope.",
+   "steps": [
+    "In a throwaway networked Linux container, clone ampproject/amphtml at 3961d2e and check out validator/.",
+    "Run the engine build from validator/cpp/engine per README (bazel build --cxxopt=-std=c++17 validator); record whether external WORKSPACE deps need network and whether the build succeeds from a clean cache.",
+    "Build the validator binary or wasm, then run it on all testdata/feature_tests/*.html and compare output with the matching .out files; record match count out of 48.",
+    "Run the same comparison three times to check determinism of output and error ordering.",
+    "Run wc -l on cpp/engine *.cc and *.h and on validator-main.protoascii to measure the reference size and correct the seed's JS line claim.",
+    "Count total files in testdata/feature_tests and sibling dirs with a local clone to fix the visible sample count.",
+    "Confirm that npm amphtml-validator 1.0.38 contains a compiled engine (inspect package contents) to decide the seal removal list."
+   ]
+  },
+  "summary": "The AMP validator is real, Apache-2.0, and pinned at 3961d2e, but the seed's reference is wrong: the engine is C++ under validator/cpp/engine (Bazel, C++17), not several thousand lines of JS, and the smoke probe is amber with no test suite, so reference build cost is unverified. Recommend a spike before committing, and narrowing scope to AMP HTML tag, attribute and document rules (dropping CSS, layout and srcset) so an 8h frontier trial can reach a meaningful share of the reference."
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [
+   "https://cdn.jsdelivr.net/npm/amphtml-validator@1.0.38/README.md",
+   "https://github.com/ampproject/amphtml",
+   "https://github.com/ampproject/amphtml/blob/3961d2e011e1ce875554d3fd091870f21474d58e/LICENSE",
+   "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator",
+   "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator/cpp/engine",
+   "https://github.com/ampproject/amphtml/tree/3961d2e011e1ce875554d3fd091870f21474d58e/validator/testdata/feature_tests",
+   "https://npmjs.com/package/amphtml-validator"
+  ],
+  "ratio": 1.0
+ },
+ "v1_score": 68
+}

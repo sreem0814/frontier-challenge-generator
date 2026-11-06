@@ -1,0 +1,219 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "4 h. Buckets are per dataset. Frontier agents beat the baseline in most trials but average well below the reference. Weaker models stop at default models. Overlaps with the existing tabular rows, so novelty is limited.",
+  "cheat": "Fitting to the visible split does not help on the hidden group shift. The hidden labels are not in the image and the dataset download is not available offline.",
+  "grading": "Scored on a hidden split built by us from held-out groups or time ranges of the same datasets, using the dataset metric, normalised between the shipped baseline and our reference ensemble. Deterministic with fixed seeds.",
+  "reference": "Our reference is a tuned gradient-boosting and tree ensemble pipeline from the repo's reference configs, reaching its normalised score of 1.",
+  "source": "https://github.com/AutoGluon/tabarena @ v0.1.0 (head 041f9b3), Apache-2.0 per the repo metadata. Dataset licences to be confirmed individually.",
+  "task": "/app ships a train split of several of the 51 curated datasets and an evaluation harness. The agent trains and tunes tabular models on CPU within a fixed budget, choosing features, models and ensembling, and submits a prediction script.",
+  "title": "Tabular classification under group shift on TabArena datasets"
+ },
+ "class": "research",
+ "created": "2026-10-21T03:08:13Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T03:08:13Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:13Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-017 0.28"
+  ],
+  [
+   "2026-10-21T03:11:43Z",
+   "v1",
+   "killed:K1",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 3, 'Band': 3, 'Hor': 3, 'Multi': 4, 'Seal': 3, 'Nov': 2, 'Lic': 3, 'Fit': 5, 'Build': 3}"
+  ]
+ ],
+ "id": "S-rs-019",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.279,
+    "S-rs-017"
+   ],
+   [
+    0.144,
+    "huggingface__datasets-5994036 [GSO]"
+   ],
+   [
+    0.139,
+    "S-op-038"
+   ],
+   [
+    0.134,
+    "S-im-085"
+   ],
+   [
+    0.125,
+    "huggingface__datasets-ef3b5dd [GSO]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "041f9b3774d1191ffcdcf137cbe4e1e08159b972",
+  "kb": 117525,
+  "lang": "Python",
+  "open_prs": 1,
+  "pushed": "2026-10-20",
+  "release": "v0.1.0",
+  "spdx": "Apache-2.0",
+  "stars": 346
+ },
+ "source_key": "github.com/autogluon/tabarena|tabarena-v0-1-51-datasets-neurips-2025-d-b-arxiv-2506-16791-",
+ "source_notes": "Close to the already_known Grinsztajn tabular benchmark and OpenML-CTR23 (overlap risk for novelty). Its strength is the public, reproducible evaluation protocol. Needs a custom OOD split. Confirm the code licence before use.",
+ "source_url": "https://github.com/AutoGluon/tabarena",
+ "source_version": "TabArena-v0.1 (51 datasets, NeurIPS 2025 D&B, arXiv 2506.16791 v4); code version not found",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/abs/2506.16791",
+  "facts": [
+   {
+    "claim": "AutoGluon/tabarena GitHub repo exists and its license is Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/AutoGluon/tabarena"
+   },
+   {
+    "claim": "Release tag v0.1.0 exists (dated Sep 3, 2026)",
+    "status": "confirmed",
+    "url": "https://github.com/AutoGluon/tabarena/tags"
+   },
+   {
+    "claim": "Seed pins v0.1.0 at head 041f9b3; the v0.1.0 tag actually points to commit 8cbe2d0, and 041f9b3 does not appear as a tag",
+    "status": "contradicted",
+    "url": "https://github.com/AutoGluon/tabarena/tags"
+   },
+   {
+    "claim": "TabArena curates 51 datasets (9-30 splits each)",
+    "status": "confirmed",
+    "url": "https://github.com/AutoGluon/tabarena"
+   },
+   {
+    "claim": "TabArena paper published at NeurIPS 2025 Datasets and Benchmarks Track; 1053 candidates manually curated to 51",
+    "status": "confirmed",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/1697e3fb412da11dc9488249f9e7bbc9-Abstract-Datasets_and_Benchmarks_Track.html"
+   },
+   {
+    "claim": "Datasets are distributed as OpenML suite 457 (alias tabarena-v0.1)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2506.16791"
+   },
+   {
+    "claim": "Restrictively licensed datasets were excluded from TabArena-v0.1 inclusion",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2506.16791"
+   },
+   {
+    "claim": "Per-dataset licence list for all 51 datasets (needed to ship train splits)",
+    "status": "not_found",
+    "url": "https://arxiv.org/abs/2506.16791"
+   },
+   {
+    "claim": "Repo contains a reference or baseline config directory matching the seed's 'reference configs' ensemble",
+    "status": "not_found",
+    "url": "https://github.com/AutoGluon/tabarena"
+   },
+   {
+    "claim": "Agent (autonomous LLM) results on TabArena or a comparable group-shift tabular task with dated evidence",
+    "status": "not_found",
+    "url": "https://arxiv.org/abs/2506.16791"
+   }
+  ],
+  "frontier_hours": 3,
+  "full_card": {
+   "band": "Research; 4 h tier; per-dataset buckets; frontier likely beats baseline; risk that default GBDT tooling already reaches most of the normalised gap (K8 risk)",
+   "build_cost": "3 days est.; smoke_build empty so no verified offline build; TabArena dependencies unverified",
+   "deliverable": "Prediction script plus trained models in /app within a fixed CPU budget",
+   "gates_anticheat": "Hidden labels and full datasets absent from image; no network at run time; ship train-only rows with no cached OpenML copy; exclude repo history and any reference config files",
+   "grading_surface": "Hidden held-out-group or time-range splits across several datasets; per-dataset metric buckets normalised between shipped baseline and reference ensemble",
+   "local_fit": "CPU-only, 8 cores, 16 GB: GBDT training fits; no GPU needed",
+   "lookup": "partial: GBDT tuning recipes and TabArena search spaces are public; the exact reference ensemble and hidden split are not",
+   "provenance": "TabArena (AutoGluon), NeurIPS 2025 D&B; repo Apache-2.0; 51 curated OpenML datasets; release v0.1.0 tag at 8cbe2d0 (seed head 041f9b3 unverified)",
+   "reference": "Tuned GBDT and tree ensemble pipeline; configs not found in repo, so reference must be authored by CG",
+   "ships": "Train splits of several of the 51 datasets plus an evaluation harness; hidden group/time-shift splits built by CG from the same datasets",
+   "similarity": "Cosine 0.279 to S-rs-017 (another seed); overlaps Grinsztajn and OpenML-CTR23 tabular benchmarks; closest crowded neighbour is Kaggle-style model training"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated evidence of agent performance on this task; a default GBDT stack may already sit near the reference"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Smoke build empty; reference and split harness need several days"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU GBDT workloads fit 8 cores and 16 GB"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "4 h tier, mostly compute-bound tuning rather than sustained engineering"
+   },
+   "Lic": {
+    "v": 3,
+    "why": "Repo Apache-2.0 confirmed; per-dataset licences for the shipped subset unverified"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-dataset buckets give steady partial credit"
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Overlaps Grinsztajn and OpenML-CTR23; close to crowded Kaggle-style model training"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Published NeurIPS 2025 benchmark, Apache-2.0 repo and tagged release"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference configs not found in the repo; the reference must be authored and its strength is unverified"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden split is ours, but datasets are public on OpenML so the image must not carry full data"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "51 datasets with 9-30 splits each gives many graded instances per dataset"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Default GBDT already reaches over 0.9 of the normalised gap (K8), or most datasets cannot ship under their licence, or no group or time split is definable for most datasets.",
+   "pass_if": "Tuned ensemble lands clearly above the baseline on most datasets, with normalised headroom left for a stronger agent; all 3 datasets have shippable licences; seeds reproduce scores.",
+   "steps": [
+    "In a throwaway networked container, clone AutoGluon/tabarena and check out tag v0.1.0; confirm whether 041f9b3 is an ancestor or descendant of 8cbe2d0 and pin to the tag commit.",
+    "Read the OpenML licence field for suite 457 datasets; keep only datasets whose licence permits shipping train rows.",
+    "Pull 3 datasets from suite 457 and define a group or time column for an out-of-distribution split.",
+    "Run a default LightGBM/CatBoost baseline and a 20-minute tuned GBDT ensemble on the hidden split, with 3 fixed seeds.",
+    "Compute the normalised gap between baseline and tuned ensemble per dataset; check determinism across seeds.",
+    "Check that the image would hold only train rows and no cached tabarena data."
+   ]
+  },
+  "summary": "The TabArena repo (Apache-2.0), the NeurIPS 2025 paper and the 51-dataset curation are real and confirmed, but the seed's pinned commit is wrong: tag v0.1.0 points to 8cbe2d0, not 041f9b3. The reference configs and per-dataset licences are unverified, and tabular GBDT tuning is close to crowded and public work, so novelty is limited and K8 is a live risk. Proceed to the spike only after the pin is fixed and the licence check passes.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 70
+}

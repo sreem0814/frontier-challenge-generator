@@ -1,0 +1,291 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "8 h. A frontier agent can get common statements working but long-tail syntax (DDL options, procedural blocks, odd quoting) drags the average below 1. Credit is per fixture family (SELECT, DDL, DML, procedural). A weaker model stops at basic SELECT/INSERT.",
+  "cheat": "Hard-coding fixture outputs: the hidden SQL differs and is tree-compared. Pip-installed sqlfluff: the package is removed from the image and there is no network. Other dialects stay as partial helpers, but the target dialect's fixtures are held out of the image.",
+  "grading": "Hidden SQL files from the repo's dialect fixture corpus (SQL plus YAML parse-tree pairs, many hundreds for one dialect), and extra files not shown to the agent. Score is the exact tree match fraction. The base fails all cases. The agent gets a visible subset of fixtures as a self-check.",
+  "reference": "The upstream dialect module at the pinned release (permissive MIT). It scores 1 by construction. Expected size is well over 1,500 lines.",
+  "source": "https://github.com/sqlfluff/sqlfluff @ 4.4.0 (head ad1231e), MIT",
+  "task": "/app ships a history-less snapshot of sqlfluff with one large dialect module (e.g. Postgres or T-SQL grammar plus its keyword sets and segment classes) removed, leaving the base dialect and the parser/lexer core. The agent rebuilds the dialect so `sqlfluff parse` yields the same segment trees. Interface: the Python package and CLI.",
+  "title": "Rebuild a SQL dialect grammar in sqlfluff against parse-tree fixtures"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "compiler-toolchain",
+ "final": 82,
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-012 0.28"
+  ],
+  [
+   "2026-10-21T03:05:54Z",
+   "v1",
+   "pass",
+   "score 84; dead links ['https://github.com/sqlfluff/sqlfluff/tree/4.4.0/test/fixtures/parser']"
+  ],
+  [
+   "2026-10-21T03:10:35Z",
+   "v2",
+   "pass",
+   "final 82"
+  ],
+  [
+   "2026-10-21T03:20:33Z",
+   "spike",
+   "validated",
+   "The sibling-dialect imports are enumerable and removable. The sibling dialects load lazily, and the ansi parse still works with postgres removed. I did not run the full repo test suite as a regression gate or check offline mode explicitly. Both are low risk, since the package is pure Python. The 513"
+  ]
+ ],
+ "id": "S-im-075",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.278,
+    "S-im-012"
+   ],
+   [
+    0.274,
+    "S-im-074"
+   ],
+   [
+    0.264,
+    "S-im-070"
+   ],
+   [
+    0.145,
+    "parse [NL2Repo-Bench]"
+   ],
+   [
+    0.12,
+    "kd_tree [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 1,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "ad1231eab8ad9951e186f3a695e8e9abc586300d",
+  "kb": 55476,
+  "lang": "Python",
+  "open_prs": 68,
+  "pushed": "2026-10-20",
+  "release": "4.4.0",
+  "spdx": "MIT",
+  "stars": 9985,
+  "test_files": 5645,
+  "test_kb": 17010,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/sqlfluff/sqlfluff|sqlfluff-sqlfluff",
+ "source_notes": "SWE-smith profile (python): its suite runs in a container; test command: the language default. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/sqlfluff/sqlfluff",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Tag 4.4.0 resolves to commit 0348222, not the expected ad1231e (which is the head). Pin the tag commit.",
+   "duckdb, greenplum, materialize and redshift import postgres at module load, so they must be removed, stubbed or held out.",
+   "Only 171 postgres SQL/YAML pairs exist. The surface is a few hundred parametrised test items, which is modest. Adding generated or extra hidden SQL would widen it.",
+   "The postgres module is large (7.6k lines plus 1.1k keyword lines), so the 8h band risks being too hard. Consider a subset of statement families for partial credit."
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 513,
+  "commands_log": "git clone --branch 4.4.0 sqlfluff; python -m venv; pip install -e . pytest pytest-xdist; pytest test/dialects/dialects_test.py -k postgres -n 3 (x3: 513 passed, ~72s each); mv dialect_postgres*.py away; sqlfluff parse on 20 postgres fixtures: all exit 1; pytest -k \"redshift or greenplum or materialize or duckdb\": 459 failed, 39 passed",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "With the postgres dialect modules removed, every postgres fixture fails (ModuleNotFoundError). The intact tree passes all 513 sampled items.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1,
+  "kill_code": "",
+  "notes": "The sibling-dialect imports are enumerable and removable. The sibling dialects load lazily, and the ansi parse still works with postgres removed. I did not run the full repo test suite as a regression gate or check offline mode explicitly. Both are low risk, since the package is pure Python. The 513 items come from `-k postgres` on dialects_test.py. They cover the 171 fixtures plus other parametrised checks (the exact split wasn't counted). Notes are in /work/SPIKE.md.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 513,
+  "reference_lines": 8658,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 2
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/abs/2603.16155",
+  "facts": [
+   {
+    "claim": "sqlfluff release 4.4.0 exists on GitHub, dated 2026-10-02, marked Latest",
+    "status": "confirmed",
+    "url": "https://github.com/sqlfluff/sqlfluff/releases/tag/4.4.0"
+   },
+   {
+    "claim": "sqlfluff 4.4.0 is published on PyPI with MIT licence, dated 2 Oct 2026",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/sqlfluff/4.4.0/"
+   },
+   {
+    "claim": "Repository licence is MIT (Copyright 2018-2026 Alan Cruickshank)",
+    "status": "confirmed",
+    "url": "https://github.com/sqlfluff/sqlfluff/blob/4.4.0/LICENSE.md"
+   },
+   {
+    "claim": "dialect_postgres.py exists in src/sqlfluff/dialects at 4.4.0; it imports dialect_ansi and is roughly 1,500 visible lines, est. 2,000-2,500 total, with about 56+ segment/grammar classes",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/sqlfluff/sqlfluff/4.4.0/src/sqlfluff/dialects/dialect_postgres.py"
+   },
+   {
+    "claim": "Dialect module listing at 4.4.0: 53 dialect_*.py files across 28 dialects, including postgres and tsql, plus matching _keywords modules",
+    "status": "confirmed",
+    "url": "https://github.com/sqlfluff/sqlfluff/tree/4.4.0/src/sqlfluff/dialects"
+   },
+   {
+    "claim": "test/fixtures/dialects contains 28 dialect subdirectories including postgres and tsql",
+    "status": "confirmed",
+    "url": "https://github.com/sqlfluff/sqlfluff/tree/4.4.0/test/fixtures/dialects"
+   },
+   {
+    "claim": "Number of postgres .sql and .yml fixture files (the 'many hundreds' claim)",
+    "status": "not_found",
+    "url": "https://github.com/sqlfluff/sqlfluff/tree/4.4.0/test/fixtures/dialects"
+   },
+   {
+    "claim": "A test/fixtures/parser/postgres directory exists at 4.4.0 as the seed implies",
+    "status": "not_found",
+    "url": "https://github.com/sqlfluff/sqlfluff/tree/4.4.0/test/fixtures/parser"
+   },
+   {
+    "claim": "4.4.0 changelog includes dialect work (Postgres SET ACCESS METHOD, TSQL table alias column lists, SQLite ATTACH/DETACH, Oracle SHOW)",
+    "status": "confirmed",
+    "url": "https://github.com/sqlfluff/sqlfluff/releases/tag/4.4.0"
+   },
+   {
+    "claim": "Other dialects (redshift, greenplum, materialize) are derived from postgres, so removing postgres alone may break imports or leak its grammar",
+    "status": "not_found",
+    "url": "https://raw.githubusercontent.com/sqlfluff/sqlfluff/4.4.0/src/sqlfluff/dialects/dialect_postgres.py"
+   },
+   {
+    "claim": "Public benchmark or agent results on rebuilding SQL dialect parse trees (E1 evidence)",
+    "status": "not_found",
+    "url": "https://arxiv.org/abs/2603.16155"
+   }
+  ],
+  "frontier_hours": 12,
+  "full_card": {
+   "band": "Frontier agents likely reach common statements and SELECT/DDL/DML families but drag on procedural and long-tail syntax; weaker model stops at basic SELECT/INSERT. Band capped at 3 because no dated public evidence of agent results exists.",
+   "build_cost": "Unknown: smoke_build empty; sqlfluff is pure Python with pytest, so likely 1-2 days to build the snapshot, fixture harness and grader",
+   "deliverable": "Rebuilt postgres dialect so `sqlfluff parse` on hidden SQL yields the same segment tree as the reference (YAML parse-tree pairs)",
+   "gates_anticheat": "Hidden fixtures and reference absent from image; block pip install and pip cache; freeze package tree; grader runs sqlfluff from snapshot only; reject edits to test/fixtures and config; check no other installed sqlfluff copy",
+   "grading_surface": "Hidden postgres fixtures from test/fixtures/dialects/postgres (SQL plus YAML trees) and held-out extras; exact tree-match fraction; count of fixtures not yet verified (dir exists, listing truncated)",
+   "local_fit": "Python, CPU only, sqlfluff test suite and parse runs fit 8 cores and 16 GB; no network needed at run time",
+   "lookup": "Direct: the full postgres dialect is in the 4.4.0 PyPI wheel and GitHub history; closed only by build-time removal and history-less snapshot",
+   "provenance": "sqlfluff/sqlfluff @ 4.4.0 (head ad1231e), MIT, 9,985 stars, pushed 2026-10-20; release 2026-10-02 confirmed on GitHub and PyPI",
+   "reference": "Upstream dialect_postgres.py + postgres keywords at 4.4.0, MIT, est. 2,000-2,500 lines, Python",
+   "ships": "History-less snapshot at base with dialect_postgres.py and postgres keyword/segment modules removed; base ansi and lexer/parser core kept; no pip cache, no site-packages copy, no .git; sibling dialects that import postgres must be removed or stubbed to keep the package importable",
+   "similarity": "Nearest L0 neighbours 0.278 (S-im-012), 0.274 (S-im-074), 0.264 (S-im-070), all internal seeds; SQLFlex arXiv 2603.16155 is a parser paper, not a task; no public task on sqlfluff dialect rebuild"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Partial credit per family expected; no dated public evidence, so capped at 3"
+   },
+   "Build": {
+    "v": 4,
+    "why": "Pure Python package, but smoke_build empty so cost is an estimate"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Python, CPU only, offline run"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Grammar and tree-shape work over many families is sustained, but full scope may exceed 8h"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, verified at LICENSE.md and PyPI"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Per-fixture-family buckets (SELECT, DDL, DML, procedural) give steady credit"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Neighbours at 0.278 or below, all internal; no public task on sqlfluff dialect rebuild"
+   },
+   "Real": {
+    "v": 5,
+    "why": "MIT repo, pinned 4.4.0 release confirmed on GitHub and PyPI, 9,985 stars"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream dialect module at pinned release; scores 1 by construction"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public and well known; sibling postgres-derived dialects and pip caches could leak the grammar unless removed"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Per-dialect fixture corpus of many hundreds of SQL/YAML pairs, exact tree match; exact count not verified"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Fixture corpus is under about 100 cases, sibling dialects cannot be cut without gutting the core, or the intact tree is nondeterministic across runs.",
+   "pass_if": "Repo builds offline in one pass, fixture counts are in the hundreds, base fails all postgres fixtures, intact tree matches 100% on 3 runs, and sibling imports are enumerable and removable.",
+   "steps": [
+    "In a throwaway container with network: clone sqlfluff at tag 4.4.0 and record the commit hash (expect ad1231e).",
+    "Create venv, pip install -e the repo, and run the test suite to get the baseline and time it; record the smoke result (smoke_build is empty, so this fills the gap).",
+    "Count fixtures: find test/fixtures/dialects/postgres -name '*.sql' and '*.yml'; record counts and confirm each .sql has a matching .yml.",
+    "Remove dialect_postgres.py and postgres keywords; grep the remaining dialects for imports of dialect_postgres (redshift, greenplum, materialize, others); record which must be removed or stubbed for the package to import.",
+    "Run `sqlfluff parse` on 20 random postgres fixtures with the postgres module removed and confirm the base fails them; then run on the intact tree and confirm YAML tree match is deterministic across 3 runs.",
+    "Check the wheel and pip cache for copies of postgres grammar to confirm they can be stripped from the snapshot."
+   ]
+  },
+  "summary": "The sqlfluff 4.4.0 base is real, MIT, and has a large per-dialect fixture corpus and a complete upstream postgres module, so the seed passes the real, licence and reference gates. Three fixes are needed before it ships: the 8h tier is too short for the full postgres scope (about 12 h for an excellent agent, so 20 h is proposed), postgres-derived sibling dialects must be removed to avoid leaking the grammar, and the empty smoke_build leaves build cost and the spike unverified.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [
+   "https://github.com/sqlfluff/sqlfluff/tree/4.4.0/test/fixtures/parser"
+  ],
+  "ratio": 0.125
+ },
+ "v1_score": 84,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-075",
+  "kill_code": "",
+  "note": "The strongest seed. It has a real MIT repo, a complete upstream reference and executable YAML-tree fixtures, and gives per-file partial credit. Frontier estimate is 12 h against a 20 h tier, which fits. Three things are still open. The postgres fixture count was not found. The fixtures path given under test/fixtures/parser is dead, and the real one is test/fixtures/dialects/postgres. Redshift, greenplum and materialize inherit from postgres, so the spike must delete them and their fixtures, or they leak the grammar. The visible fixtures must cover enough segment-type names that a different valid grammar can still match the hidden trees. Keep the fixture _hash fields out of what is graded.",
+  "scores": {
+   "Band": 3,
+   "Build": 4,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 82
+}

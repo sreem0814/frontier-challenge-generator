@@ -1,0 +1,274 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "8 h. The C build and msgpack manipulation take most of the time. A frontier agent gets set/remove on nested keys but misses array indices, key-creation rules and condition parity. A weaker model fails to compile or crashes. Buckets by operation and condition.",
+  "cheat": "No shortcut through a test-only path: the tests use the real engine and random records. The snapshot has no git history and no later upstream copy.",
+  "grading": "Hidden runtime tests that drive the engine with in-memory inputs through an lib-output callback, comparing the msgpack/JSON output for generated configs and records. The existing runtime filter tests are the regression gate. Exact output match, no fuzz tolerance.",
+  "reference": "Our own reference patch, expected 900-1400 changed lines of C across the filter, record-accessor and test code. It is written by us, because upstream never implemented the issue as asked.",
+  "source": "https://github.com/fluent/fluent-bit/issues/4651 @ f473964, Apache-2.0",
+  "task": "/app ships a snapshot of Fluent Bit at the pinned commit. The agent adds record-accessor keys ($a['b'][0]) to the modify filter for Set, Add, Rename, Copy, Remove, Hard_rename and all Condition types. It also adds regex and wildcard key sets, nested-path creation and array indexing, with the config schema and docs updated.",
+  "title": "Record accessor support across Fluent Bit modify filter and conditions"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "protocol",
+ "final": 74,
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-006 0.20"
+  ],
+  [
+   "2026-10-21T03:05:23Z",
+   "v1",
+   "pass",
+   "score 76; dead links []"
+  ],
+  [
+   "2026-10-21T03:09:02Z",
+   "v2",
+   "pass",
+   "final 74"
+  ],
+  [
+   "2026-10-21T04:07:31Z",
+   "spike",
+   "validated",
+   "Feature method: base builds in about 5 min total with bundled deps (build ran with network on; offline not separately tested, no downloads were seen). 36 filter_modify runtime tests pass identically 3 times. Needs -DFLB_USE_SIMDUTF=No on gcc 12 and flex/bison installed. Probes: nested Key_value_equa"
+  ]
+ ],
+ "id": "S-im-073",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.201,
+    "S-im-006"
+   ],
+   [
+    0.168,
+    "S-im-065"
+   ],
+   [
+    0.152,
+    "S-im-038"
+   ],
+   [
+    0.114,
+    "kalman_filter [AlgoTune]"
+   ],
+   [
+    0.107,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 3,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f4739648c0e91337331765edb9bd19da5a7a1a52",
+  "kb": 158358,
+  "lang": "C",
+  "open_prs": 533,
+  "pushed": "2026-10-20",
+  "release": "v5.1.4",
+  "spdx": "Apache-2.0",
+  "stars": 8163,
+  "test_files": 4492,
+  "test_kb": 34689,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/fluent/fluent-bit/issues/4651|fluent-fluent-bit-4651-modify-filter-not-working-with-record",
+ "source_notes": "repo https://github.com/fluent/fluent-bit; opened 2022-01-21",
+ "source_url": "https://github.com/fluent/fluent-bit/issues/4651",
+ "source_version": "",
+ "spike": {
+  "blockers": [],
+  "build_minutes": 5,
+  "cases_sampled": 0,
+  "commands_log": "apt install flex bison libyaml-dev libssl-dev; cmake .. -DFLB_DEV=On -DFLB_TESTS_RUNTIME=On -DFLB_TESTS_INTERNAL=Off -DFLB_USE_SIMDUTF=No; make -j8 flb-rt-filter_modify fluent-bit-bin; ran bin/flb-rt-filter_modify x3 (36 OK each); probes via bin/fluent-bit dummy input + modify + stdout",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Feature idea: base lacks rule record-accessor support (Set $a['b'] creates a literal key; Remove is a no-op; Key_exists with [0] does not hit). No upstream implementation checked beyond the issue being open.",
+  "headroom_ok": true,
+  "image_gb_estimate": 3,
+  "kill_code": "",
+  "notes": "Feature method: base builds in about 5 min total with bundled deps (build ran with network on; offline not separately tested, no downloads were seen). 36 filter_modify runtime tests pass identically 3 times. Needs -DFLB_USE_SIMDUTF=No on gcc 12 and flex/bison installed. Probes: nested Key_value_equals works; array index [0] in Key_exists does not; Set with $a['b'] creates a literal key; Remove with RA is a no-op. I did not check whether the record accessor library can index arrays or create paths, or whether any PR or later release implements the feature. The reference size of 1000 lines is an estimate.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 0,
+  "reference_lines": 1000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 10
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/fluent/fluent-bit/issues/4651",
+  "facts": [
+   {
+    "claim": "Fluent Bit issue #4651 exists, is open, was opened 2022-01-21, and asks for modify-filter Copy/Remove to match record-accessor nested keys",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit/issues/4651"
+   },
+   {
+    "claim": "Issue #4651 lists no linked or closing pull request (Development section: 'No branches or pull requests')",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit/issues/4651"
+   },
+   {
+    "claim": "Maintainer said the modify filter does not support record accessors yet; only STRING:KEY in Conditions accepts them",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit/issues/4651"
+   },
+   {
+    "claim": "Repository licence is Apache License 2.0 at the pinned commit f4739648",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/fluent/fluent-bit/f4739648c0e91337331765edb9bd19da5a7a1a52/LICENSE"
+   },
+   {
+    "claim": "Pinned commit f4739648 is fetchable and contains plugins/filter_modify/modify.c",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/fluent/fluent-bit/f4739648c0e91337331765edb9bd19da5a7a1a52/plugins/filter_modify/modify.c"
+   },
+   {
+    "claim": "At the pinned commit, modify.c calls flb_ra_create only for condition keys (Key_exists, Key_does_not_exist, Key_value_equals, Key_value_does_not_equal, Key_value_matches, Key_value_does_not_match); no rule type (Set, Add, Rename, Copy, Remove, Hard_rename) uses record accessor",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/fluent/fluent-bit/f4739648c0e91337331765edb9bd19da5a7a1a52/plugins/filter_modify/modify.c"
+   },
+   {
+    "claim": "Official modify filter docs say Conditions accept nested keys as STRING:KEY via record accessor; they give no $a['b'][0] syntax reference and no version",
+    "status": "confirmed",
+    "url": "https://docs.fluentbit.io/manual/pipeline/filters/modify"
+   },
+   {
+    "claim": "Public upstream has no implementation of record-accessor keys in modify rules (Set/Add/Rename/Copy/Remove/Hard_rename) in any release or open PR",
+    "status": "not_found",
+    "url": "https://github.com/fluent/fluent-bit/issues/4651"
+   },
+   {
+    "claim": "Test count (4492 test files) and reference size (900-1400 changed lines) were verified",
+    "status": "not_found",
+    "url": "https://github.com/fluent/fluent-bit"
+   }
+  ],
+  "frontier_hours": 8,
+  "full_card": {
+   "band": "Tier 8 h. Ops x condition buckets give partial credit. Underspecified creation/array semantics are the main risk (exact-match tests encode reference choices). No dated public evidence (E0)",
+   "build_cost": "about 3 days: reference C plus differential harness and generator; smoke_build was empty so build is unverified",
+   "deliverable": "Record-accessor keys ($a['b'][0]) in modify rules (Set, Add, Rename, Copy, Remove, Hard_rename, plus regex/wildcard key sets) and all conditions, with nested creation, array indexing, schema and docs",
+   "gates_anticheat": "Hidden tests and reference kept out of image; test-only path cheat closed by in-process tests on real engine; no git history past snapshot",
+   "grading_surface": "Hidden runtime tests via lib-output callback over generated configs/records, exact msgpack/JSON match; existing filter_modify runtime tests as regression gate; case count not verified",
+   "local_fit": "C, CPU only, 8 cores/16 GB fine; build time for full runtime suite unknown",
+   "lookup": "partial: conditions already accept nested STRING:KEY; rules and regex/wildcard key sets have no public implementation or open PR",
+   "provenance": "Real fluent-bit issue #4651 (open, no linked PR); repo Apache-2.0; pinned commit f4739648 fetched and checked",
+   "reference": "Own unpublished reference, expected 900-1400 C lines; no public implementation to copy",
+   "ships": "History-less snapshot of Fluent Bit at f4739648 (C, cmake); condition record-accessor lookup already present, rule keys are exact-string only",
+   "similarity": "Top l0 neighbour S-im-006 at 0.201, S-im-065 at 0.168; none near-duplicate, not crowded; Nov 3"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this kind of work, so capped at 3 (E0)."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days to write the reference and differential harness."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "C and cmake on CPU, within 8 cores and 16 GB; offline build not yet proven."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several interacting modules (rules, conditions, record accessor, schema, docs) across an 8 h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at pinned commit."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Operation by condition buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest l0 neighbour is 0.201 (above 0.15); not crowded and not a duplicate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real open issue #4651 and Apache-2.0 repo at a pinned commit; confirmed."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Own reference, not public; creation and array-index semantics are not pinned in the task, so a valid alternative may fail exact-match tests."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference never public; no upstream PR to copy. Snapshot has no later copy."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated configs across many ops and conditions with exact match; count not verified, so not 5."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build needs network downloads, baseline runtime tests flake across runs, or the record accessor library cannot index arrays, meaning the scope needs new library work and must be re-scoped.",
+   "pass_if": "Build finishes in under 30 min offline, baseline runtime tests are green and identical across three runs, and at least one nested condition probe resolves as expected.",
+   "steps": [
+    "In a networked throwaway Linux container, clone fluent-bit at f4739648 and cmake-configure with runtime tests on; time the build with -j8.",
+    "Confirm the build works offline with bundled deps (retry with network off for the second build).",
+    "Run the existing filter_modify runtime tests three times and record per-test results to check determinism.",
+    "Write four probe configs: Condition Key_exists with $a['b'][0], Set with $a['b'], Remove with $a['b'], and Key_value_equals on a nested key.",
+    "Run each probe through the lib output and record the msgpack/JSON result to see which paths are currently no-ops.",
+    "Check whether the record accessor library resolves array indexes like [0] and creates nothing on Set, to size the array and creation work."
+   ]
+  },
+  "summary": "The seed is real and sized right: issue #4651 is open with no linked PR, the repo is Apache-2.0, and at the pinned commit only conditions use record accessors while rule keys are exact-string matches. It passes with conditions: the task must pin nested-creation and array-index semantics in the spec (otherwise exact-match hidden tests encode reference choices), and the smoke build was empty so the build and spike are unverified.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 76,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-073",
+  "kill_code": "",
+  "note": "Real open issue #4651 with no upstream PR; maintainer confirmed that rules lack record-accessor support. Seals well because no public implementation exists. The reference is unwritten and its size (900-1400 lines) is unverified. Main risk: semantics for nested-path creation, array indexing and regex/wildcard keys on accessor paths are underspecified. Exact-match tests would encode our own choices and reject reasonable alternatives, so the spec must pin each behaviour with visible examples. frontier_hours of 8 on an 8 h tier is tight but acceptable. Build is unverified because the smoke build is empty.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 74
+}

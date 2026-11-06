@@ -1,0 +1,218 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "4 h. A frontier agent knows the table/polynomial approach and gets the first speedup; the accuracy gate and special cases need care. A weaker model fails the ULP bound. Buckets: one per function.",
+  "cheat": "Lower-precision approximations are rejected by the ULP gate. Calling libm via ccall is allowed only if it is slower than the baseline, which the benchmark shows.",
+  "grading": "Hard gate: max error under 1 ULP (pow under 1.0 ULP) and exact special-case behaviour (NaN, Inf, signed zero, subnormal) on millions of hidden points, checked against BigFloat. Score is median wall-clock over benchmark sweeps, mapped by 2^u-1 against our reference speedup S.",
+  "reference": "The algorithms from Julia's Base.Math and its pow PR, written down in the base's API (about 500 lines). Speedup is measured on the grading machine. Julia must be shippable as an offline toolchain, which the bundle checks.",
+  "source": "https://github.com/JuliaLang/julia/pull/42271 and the Base.Math code at v1.13.2, MIT",
+  "task": "/app ships a Julia package with straightforward Float64 pow, exp, log, exp2, log2, and cbrt implementations, accurate but slow, wrapped as a vectorizable API. The agent rewrites them with table-driven, FMA and range-reduction methods to be faster, without losing accuracy.",
+  "title": "Julia elementary-function kernels (pow, exp, log) speedup under an ULP gate"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-033 0.22"
+  ],
+  [
+   "2026-10-21T03:07:36Z",
+   "v1",
+   "killed:K11",
+   "Cannot be sealed: the reference (Julia Base exp/pow/log, pure Julia, MIT) is compiled into the Julia runtime that must ship offline, so the agent can call Base.exp and Base.^ directly and pass the gate at full speed. The reference is also public in merged history (PR #42271, v1.13.2 base/special), s"
+  ]
+ ],
+ "id": "S-op-034",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.221,
+    "S-op-033"
+   ],
+   [
+    0.169,
+    "S-im-038"
+   ],
+   [
+    0.165,
+    "S-im-072"
+   ],
+   [
+    0.089,
+    "math-verify [NL2Repo-Bench]"
+   ],
+   [
+    0.088,
+    "recover-accuracy-log [original]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "75b93327a801ffe66a42b1e0653eba81ca8eefb1",
+  "kb": 390954,
+  "lang": "Julia",
+  "open_prs": 1036,
+  "pushed": "2026-10-20",
+  "release": "v1.13.2",
+  "spdx": "MIT",
+  "stars": 49218
+ },
+ "source_key": "github.com/julialang/julia/pull/42271|julialang-julia-42271-faster-float64-float64",
+ "source_notes": "repo https://github.com/JuliaLang/julia; merged PR or fixed issue",
+ "source_url": "https://github.com/JuliaLang/julia/pull/42271",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/JuliaLang/julia/pull/42271",
+  "facts": [
+   {
+    "claim": "Seed's 'pow PR' exists: JuliaLang/julia PR #42271 'Faster Float64^Float64' is merged (commit 1389c2f, Oct 2021), so the reference is in public git history",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/pull/42271"
+   },
+   {
+    "claim": "Julia v1.13.2 base/special contains exp.jl, pow.jl, log.jl, cbrt.jl (exp2/log2 not in a dedicated file)",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/tree/v1.13.2/base/special"
+   },
+   {
+    "claim": "Base exp/exp2/exp10 are pure Julia (no ccall to libm/openlibm) with a 256-entry J_TABLE of 2^(j/256) and polynomial kernels",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/blob/v1.13.2/base/special/exp.jl"
+   },
+   {
+    "claim": "Base pow.jl is pure Julia, about 144 lines, no lookup table, calls _log_ext defined elsewhere",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/blob/v1.13.2/base/special/pow.jl"
+   },
+   {
+    "claim": "Licence is MIT (repo spdx MIT; file header states MIT)",
+    "status": "confirmed",
+    "url": "https://julialang.org/license"
+   },
+   {
+    "claim": "PR #42271 author states pow is 'theoretically' 1 ULP and untested; ~66 ns to ~24 ns benchmark for x^y",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/pull/42271"
+   },
+   {
+    "claim": "Seed claim that the reference is about 500 lines across Base.Math",
+    "status": "not_found",
+    "url": "https://github.com/JuliaLang/julia/tree/v1.13.2/base/special"
+   },
+   {
+    "claim": "Table-driven pow with a stated worst-case error (0.54 ULP) is public and MIT-licensed (musl pow.c from ARM optimized-routines), so the approach is recallable",
+    "status": "confirmed",
+    "url": "https://git.musl-libc.org/cgit/musl/tree/src/math/pow.c"
+   },
+   {
+    "claim": "A merged or open Julia PR implementing table-driven log or pow beyond #42271",
+    "status": "not_found",
+    "url": "https://github.com/JuliaLang/julia/pull/42271"
+   },
+   {
+    "claim": "smoke_build probe result for this seed",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Six buckets; frontier knows the table approach from musl/ARM pow.c; evidence none (E0), so Band is capped at 3; weaker model fails ULP",
+   "build_cost": "Unknown: smoke_build is empty; Julia offline toolchain plus oracle likely 1-3 days (score 3)",
+   "deliverable": "Faster table/FMA/range-reduction versions of six functions, vectorizable API, same accuracy gate",
+   "gates_anticheat": "Accuracy gate <1 ULP (pow <1.0). CRITICAL: Base.exp/Base.^ are callable from any package in the shipped Julia, so the agent can wrap the reference directly; the ccall-to-libm rule is ill-defined because glibc libm is fast and under 1 ULP. Neither is closable by a grader without source inspection, which is forbidden.",
+   "grading_surface": "Millions of hidden points per function vs BigFloat (executable oracle), NaN/Inf/signed zero/subnormal special cases, wall-clock sweeps",
+   "local_fit": "gVisor fine for pure CPU; Julia binary plus BigFloat/MPFR oracle is large but offline-installable; no network at run time",
+   "lookup": "direct: exact reference code is public in v1.13.2 and in the installed runtime; PR #42271 is in merged history",
+   "provenance": "JuliaLang/julia v1.13.2 (MIT, 49k stars, pushed 2026-10-20); reference algorithms are base/special exp.jl, pow.jl, log.jl, cbrt.jl plus merged PR #42271 in public history",
+   "reference": "Julia Base.Math code (pure Julia, MIT); the reference is also the Base runtime that ships with the toolchain",
+   "ships": "A Julia package with scalar Float64 pow/exp/log/exp2/log2/cbrt, straightforward and slow; a history-less snapshot is needed; the Julia offline toolchain must also ship",
+   "similarity": "Max l0 neighbour S-op-033 at 0.221; no neighbour above 0.15 otherwise; not in CROWDED list; no K1"
+  },
+  "kill_code": "K11",
+  "kill_reason": "Cannot be sealed: the reference (Julia Base exp/pow/log, pure Julia, MIT) is compiled into the Julia runtime that must ship offline, so the agent can call Base.exp and Base.^ directly and pass the gate at full speed. The reference is also public in merged history (PR #42271, v1.13.2 base/special), so a history-less snapshot does not hide it. The ccall-to-libm rule is ill-defined because glibc libm is fast and under 1 ULP. Build cost is also unverified (smoke_build empty).",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier knows the table method; no dated E1 evidence, so capped at 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Offline Julia toolchain plus BigFloat oracle; smoke_build unknown"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only; Julia plus oracle fits in 16 GB; gVisor is fine"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Six functions of about 1000 lines; a 4 h tier looks short, and 8 h is more realistic"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "One bucket per function gives steady partial credit"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour 0.221; not crowded"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned v1.13.2 release, merged PR #42271, MIT"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete permissive implementation exists, but it is the installed runtime, so it is too easy to reach"
+   },
+   "Seal": {
+    "v": 1,
+    "why": "The reference runs inside the shipped Julia (Base.exp, Base.^) and public source; cannot be sealed"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Millions of hidden points vs BigFloat with an executable oracle, but only six functions"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 30,
+   "kill_if": "Base.exp or Base.^ remains callable from the package (expected), or the ccall rule cannot be enforced without source inspection.",
+   "pass_if": "The shipped runtime can make Base.exp and Base.^ unreachable from the package, and the ccall rule has an objective, non-grep test.",
+   "steps": [
+    "In a throwaway networked container, install Julia 1.13.2 and confirm the offline toolchain runs.",
+    "Write a minimal package that calls Base.exp(x) and Base.:^(x,y) and check the accuracy and timing against a naive baseline.",
+    "Check whether the reference can be hidden from the package: remove base/special from the shipped tree and see whether Base.exp still resolves from the sysimage.",
+    "Check whether a ccall to glibc libm exp/pow passes the 1 ULP gate and beats the baseline, to test the ccall rule.",
+    "Decide: if Base math cannot be made unreachable from the package, kill."
+   ]
+  },
+  "summary": "The seed's reference is confirmed as public: Julia v1.13.2 base/special exp.jl (256-entry table, pure Julia) and pow.jl, plus merged PR #42271, all MIT. It is killed as K11 because the same Base functions ship inside the required offline Julia runtime, so the agent can call them directly and the reference cannot be sealed.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73
+}

@@ -1,0 +1,203 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "4 h. Several iterator types and the threaded workload give distinct levers. A frontier agent gets partition views, but averages below the reference on the others. A weaker model changes semantics.",
+  "cheat": "Special-casing benchmark shapes is closed by random hidden sizes and element types. The equivalence gate covers eltype and length inference.",
+  "grading": "Hidden equivalence tests (values, eltype, length, shape, error cases) are a hard gate. Then wall-clock medians on hidden Julia workloads, including threaded partition, give 2^u-1 against our reference speedup.",
+  "reference": "The merged upstream changes as the reference. Measured speedup not found, to be measured on our runner.",
+  "source": "https://github.com/JuliaLang/julia/pull/33533 and related iterator changes, base v1.13.2 line, MIT",
+  "task": "/app ships a Julia base tree snapshot at the commit before the iterator view change. The agent speeds up Iterators.partition, zip, flatten, product and their array view paths, keeping semantics and type stability, with a runnable benchmark script.",
+  "title": "Julia Base.Iterators and array-view speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T03:08:13Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T03:08:13Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:13Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-037 0.42"
+  ],
+  [
+   "2026-10-21T03:10:56Z",
+   "v1",
+   "killed:K5",
+   "No strong reference can be obtained. The seed's base version (v1.13.2) contradicts the PR's 2019 merge date. The identifiable change covers partition and broadcast, not zip/flatten/product. No measured speedup exists, so the 2^u-1 normalisation has no pinned ceiling. Separately, the partition-view a"
+  ]
+ ],
+ "id": "S-op-038",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.42,
+    "S-op-037"
+   ],
+   [
+    0.174,
+    "S-im-088"
+   ],
+   [
+    0.159,
+    "S-im-083"
+   ],
+   [
+    0.092,
+    "7zip [ProgramBench]"
+   ],
+   [
+    0.082,
+    "lyapunov_stability [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "75b93327a801ffe66a42b1e0653eba81ca8eefb1",
+  "kb": 390954,
+  "lang": "Julia",
+  "open_prs": 1036,
+  "pushed": "2026-10-20",
+  "release": "v1.13.2",
+  "spdx": "MIT",
+  "stars": 49218
+ },
+ "source_key": "github.com/julialang/julia/pull/33533|julialang-julia-33533-make-iterators-partition-split-arrays-",
+ "source_notes": "repo https://github.com/JuliaLang/julia; merged PR or fixed issue",
+ "source_url": "https://github.com/JuliaLang/julia/pull/33533",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/JuliaLang/julia/pull/33533",
+  "facts": [
+   {
+    "claim": "Julia PR #33533 exists: 'Make Iterators.partition split arrays into views for faster and easier parallelism'",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/pull/33533"
+   },
+   {
+    "claim": "PR #33533 was merged on 2019-11-01 as merge commit 3f0e7d6 (so it predates v1.13.2 by years, not on the v1.13.2 line)",
+    "status": "contradicted",
+    "url": "https://github.com/JuliaLang/julia/pull/33533"
+   },
+   {
+    "claim": "Seed says the snapshot is the base v1.13.2 tree at the commit before the iterator view change",
+    "status": "contradicted",
+    "url": "https://github.com/JuliaLang/julia/pull/33533"
+   },
+   {
+    "claim": "PR #33533 changes zip, flatten and product (the seed's other iterator levers)",
+    "status": "not_found",
+    "url": "https://github.com/JuliaLang/julia/pull/33533"
+   },
+   {
+    "claim": "PR touches base/iterators.jl, base/broadcast.jl and base/multidimensional.jl; partition returns views for AbstractArray, with CartesianIndices and range specialisations",
+    "status": "confirmed",
+    "url": "https://github.com/JuliaLang/julia/pull/33533"
+   },
+   {
+    "claim": "Measured speedup for the change exists (author says up to 10x for a .== 0; timings are in an external gist, not on the page)",
+    "status": "not_found",
+    "url": "https://github.com/JuliaLang/julia/pull/33533"
+   },
+   {
+    "claim": "Newer 2025-2026 Julia PRs or release notes changing Iterators.partition/zip/flatten/product performance",
+    "status": "not_found",
+    "url": "https://docs.julialang.org/en/v1.7/base/iterators/"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Stated 4 h. Unsupported: the identifiable change is a small 2019 PR a frontier agent can recall; no dated evidence",
+   "build_cost": "3 days: pin the pre-change commit, build Julia, write equivalence harness and workloads, measure a reference that does not yet exist",
+   "deliverable": "Faster Iterators.partition/zip/flatten/product and array-view paths with equal values, eltype, length, shape and errors, plus a benchmark script",
+   "gates_anticheat": "Equivalence gate on random sizes and eltypes; closing tests/build-config edits needs a locked harness; Julia system image build must be reproducible offline",
+   "grading_surface": "Hidden equivalence cases (values, eltype, length, shape, errors) as gate, then median wall-clock on hidden workloads incl. threaded partition; no sized case set exists yet",
+   "local_fit": "Julia build from source on 8 cores/16 GB is feasible but slow; wall-clock timing under gVisor is noisy; smoke_build is empty so build status is unknown",
+   "lookup": "partial: the upstream partition-view approach is public in git history and recallable; snapshot must be history-less",
+   "provenance": "JuliaLang/julia PR #33533 (merged 2019-11-01, commit 3f0e7d6), MIT; repo head 75b93327, release v1.13.2 per source_facts",
+   "reference": "Not pinned. Only PR #33533 is identifiable; it covers partition views, broadcast and multidimensional, not zip/flatten/product. No measured speedup",
+   "ships": "Julia base tree snapshot (history-less) at a pre-change commit; the commit must be pinned: a 2019 tree, not v1.13.2 as the seed states",
+   "similarity": "Top l0 neighbour S-op-037 at 0.42 (not a CROWDED task); others 0.17 or lower; K1 not triggered"
+  },
+  "kill_code": "K5",
+  "kill_reason": "No strong reference can be obtained. The seed's base version (v1.13.2) contradicts the PR's 2019 merge date. The identifiable change covers partition and broadcast, not zip/flatten/product. No measured speedup exists, so the 2^u-1 normalisation has no pinned ceiling. Separately, the partition-view approach is public and recallable (K8/K11 risk) if re-scoped.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Single small recallable PR; no dated evidence; the stated 4 h band is unsupported"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days: pin the commit, build Julia, write harness and workloads, measure the reference"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Julia builds on 8 cores/16 GB; noisy wall-clock timing under gVisor"
+   },
+   "Hor": {
+    "v": 2,
+    "why": "The identifiable change is small; the seed's several levers are not in the reference"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT"
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Buckets are possible in principle, but the reference only covers partition and broadcast"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour S-op-037 at 0.42, not a CROWDED task; moderate overlap with a seed in the same family"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real merged upstream PR with a paper trail, but the cited base version is wrong"
+   },
+   "Ref": {
+    "v": 1,
+    "why": "No pinned reference and no measured speedup; the PR does not cover zip/flatten/product"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The upstream approach is public and recallable; the snapshot must be history-less and the agent knows upstream direction"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Equivalence and workload surface can be generated, but no case set exists yet"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The pre-change tree does not build, no measurable gain exists, or zip/flatten/product have no upstream change to use as a reference.",
+   "pass_if": "Both builds succeed, the partition gain is measurable (at least 1.5x on a hidden-style workload), and at least two other iterator levers show a real upstream change to reference.",
+   "steps": [
+    "In a throwaway networked Linux container, clone JuliaLang/julia and check out 3f0e7d6^ (the pre-change commit) and 3f0e7d6 separately; confirm v1.13.2 is not the base of the change.",
+    "Build both trees with make -j8 (expect 30-60 min each) and record build success or failure.",
+    "Run a micro-benchmark of Iterators.partition over arrays, plus zip, flatten and product, on both builds; record medians over 5 runs.",
+    "Diff base/iterators.jl between 3f0e7d6^ and current master to see whether zip/flatten/product changed; if not, drop those levers from the scope.",
+    "Check determinism: repeat the timing 3 times and compare spread."
+   ]
+  },
+  "summary": "The seed's source is real (Julia PR #33533, MIT), but the stated base v1.13.2 contradicts the PR's November 2019 merge, and the PR does not cover zip, flatten or product. No measured speedup or pinned reference exists, so the seed is killed as K5. It could be revived only after the reference is redefined to a specific pinned commit with a measured speedup, and the recallable upstream approach is accounted for.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 2,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 53
+}

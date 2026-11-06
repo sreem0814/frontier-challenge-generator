@@ -1,0 +1,212 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "8 h. A frontier agent covers the common functions but misses coercion rules, array behaviour, and financial iterative solvers (IRR, XIRR, RATE). A weaker model implements only the simple ones. Buckets by category.",
+  "cheat": "Hard-coding results is not possible because the hidden formulas and arguments differ. The original sources are removed from the snapshot and from the node_modules.",
+  "grading": "Vitest-style hidden cases: formula in, value or error out, including array broadcasting and error propagation. Upstream function tests are the base, extended by cases cross-checked against a spreadsheet reference. Compare with numeric tolerance 1e-9 and exact error codes. Visible samples ship; the hidden count is not found.",
+  "reference": "The deleted upstream function files (several thousand lines of TS). They score 1 on upstream-derived cases.",
+  "source": "https://github.com/dream-num/univer @ 1e58578 (packages/engine-formula functions), Apache-2.0",
+  "task": "/app ships a history-less snapshot of the engine-formula package with the function implementations for the financial, statistical, date/time, text, lookup and engineering categories deleted. The agent rebuilds them behind the existing function registry, with Excel error and coercion semantics, and the build passes with pnpm.",
+  "title": "Univer spreadsheet formula function library rebuilt"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-068 0.30"
+  ],
+  [
+   "2026-10-21T03:05:17Z",
+   "v1",
+   "killed:K9",
+   "As written (six categories, about 55 financial function folders alone, exact 1e-9 and Excel error codes), no frontier trial is likely to reach 0.9 of the reference within 8 h or even 20 h (frontier_hours about 60). Salvage: re-seed with two or three categories (for example text, lookup and date, or "
+  ]
+ ],
+ "id": "S-im-072",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.303,
+    "S-im-068"
+   ],
+   [
+    0.273,
+    "S-im-071"
+   ],
+   [
+    0.27,
+    "S-im-070"
+   ],
+   [
+    0.262,
+    "spreadsheet_engine [SpecBench]"
+   ],
+   [
+    0.169,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1e585787f94f4fbcee3d2a91cb094c9a94f878d2",
+  "kb": 178142,
+  "lang": "TypeScript",
+  "open_prs": 48,
+  "pushed": "2026-10-20",
+  "release": "v1.1.0",
+  "spdx": "Apache-2.0",
+  "stars": 22688,
+  "test_files": 28,
+  "test_kb": 25814,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/dream-num/univer|dream-num-univer",
+ "source_notes": "SWE-smith profile (typescript): its suite runs in a container; test command: pnpm test -- --passWithNoTests --reporter=verbose. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/dream-num/univer",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/dream-num/univer/tree/1e585787f94f4fbcee3d2a91cb094c9a94f878d2/packages/engine-formula/src/functions/financial",
+  "facts": [
+   {
+    "claim": "dream-num/univer commit 1e585787f94f4fbcee3d2a91cb094c9a94f878d2 exists (its title is a docs-ui fix, PR #7919, not a functions change)",
+    "status": "confirmed",
+    "url": "https://github.com/dream-num/univer/commit/1e585787f94f4fbcee3d2a91cb094c9a94f878d2"
+   },
+   {
+    "claim": "packages/engine-formula/src/functions contains category folders __tests__, array, compatibility, cube, database, date, engineering, financial, information, logical, lookup, math, meta, statistical, text, univer, web",
+    "status": "confirmed",
+    "url": "https://github.com/dream-num/univer/tree/1e585787f94f4fbcee3d2a91cb094c9a94f878d2/packages/engine-formula/src/functions"
+   },
+   {
+    "claim": "functions/financial has about 55 per-function folders, including irr, xirr and rate (plus xnpv, yield, price, duration and others), and no __tests__ subfolder in the visible listing",
+    "status": "confirmed",
+    "url": "https://github.com/dream-num/univer/tree/1e585787f94f4fbcee3d2a91cb094c9a94f878d2/packages/engine-formula/src/functions/financial"
+   },
+   {
+    "claim": "functions/__tests__ visibly holds nested-functions.spec.ts and create-function-test-bed.ts; per-function upstream test files were not visible in the listing, so the claim that upstream function tests are the base is unverified",
+    "status": "not_found",
+    "url": "https://github.com/dream-num/univer/tree/1e585787f94f4fbcee3d2a91cb094c9a94f878d2/packages/engine-formula/src/functions/__tests__"
+   },
+   {
+    "claim": "Latest Univer release is v1.1.0 (17 Oct); no release is newer; HEAD was pushed 2026-10-20",
+    "status": "confirmed",
+    "url": "https://github.com/dream-num/univer/releases"
+   },
+   {
+    "claim": "formulajs is a public MIT-licensed JavaScript implementation of most Excel formula functions, installable from npm (@formulajs/formulajs, 4.6.0 per jsDelivr; search snippets disagree on latest version)",
+    "status": "confirmed",
+    "url": "https://www.jsdelivr.com/package/npm/@formulajs/formulajs?tab=files"
+   },
+   {
+    "claim": "SpecBench / spreadsheet_engine benchmark task exists as a public task (the l0 neighbour at cosine 0.262)",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2606.29955"
+   },
+   {
+    "claim": "Hidden test count, the spreadsheet cross-check reference and the upstream per-function test base are as described in the seed",
+    "status": "not_found",
+    "url": "https://github.com/dream-num/univer"
+   }
+  ],
+  "frontier_hours": 60,
+  "full_card": {
+   "band": "Seed says 8 h; scope is ~6 categories and ~55 financial function folders alone, so a frontier agent covers common functions and misses iterative solvers (IRR, XIRR, RATE). Evidence E0",
+   "build_cost": "About 3-5 days: stripping history, verifying the deleted-start build fails, building the hidden set with spreadsheet cross-checks (needs a spreadsheet engine outside the image), and checking node_modules for leaks",
+   "deliverable": "Rebuilt function implementations behind the existing registry that pass pnpm build and hidden Vitest-style cases (value/error out, broadcasting, coercion, 1e-9 tolerance, exact error codes)",
+   "gates_anticheat": "Hidden formulas differ so hard-coding fails; sources removed from snapshot and node_modules. Open gap: node_modules may still contain compiled @univerjs engine-formula dist or formulajs/jStat/numeric copies; not checked (smoke_build empty)",
+   "grading_surface": "Upstream function tests plus spreadsheet-cross-checked cases; hidden count not found; visible samples ship",
+   "local_fit": "TypeScript/pnpm monorepo; 8 cores/16 GB CPU-only is fine for the test runs; offline pnpm needs node_modules present; smoke_build was not run (empty), so build status is unknown",
+   "lookup": "partial: upstream is public on GitHub (history must be stripped); formulajs (MIT, npm) implements most Excel functions and is recallable in outline; no complete identical implementation found",
+   "provenance": "dream-num/univer @ 1e58578, packages/engine-formula functions; Apache-2.0 per GitHub API; 22.7k stars; not a fork; history must be stripped for the snapshot",
+   "reference": "Deleted upstream TS function files (several thousand lines), scores 1 on upstream-derived cases; the hidden-case pass rate of the reference is not verified",
+   "ships": "history-less snapshot of engine-formula with financial, statistical, date, text, lookup and engineering function implementations deleted; registry, base-function, util and other categories kept",
+   "similarity": "l0 neighbours: S-im-068 0.303, S-im-071 0.273, S-im-070 0.270 (sibling seeds, same family, not verified); spreadsheet_engine 0.262 not found publicly; SpreadsheetBench family is spreadsheet manipulation, a different deliverable"
+  },
+  "kill_code": "K9",
+  "kill_reason": "As written (six categories, about 55 financial function folders alone, exact 1e-9 and Excel error codes), no frontier trial is likely to reach 0.9 of the reference within 8 h or even 20 h (frontier_hours about 60). Salvage: re-seed with two or three categories (for example text, lookup and date, or the non-iterative financial functions) on the 8 h tier. Also unverified: smoke_build was empty (not run), and node_modules may leak compiled function code (K11 risk).",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier coverage of common functions is plausible but there is no dated public evidence, so the cap is 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Roughly 3-5 days to stripping, cross-check set and leak audit"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "TS/pnpm fits the CPU sandbox, but the build and test runtime are unmeasured"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Many modules and categories give sustained work, but the 8 h tier is too short for the whole scope"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the snapshot and reference"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Per-category and per-function buckets give steady partial credit"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours are 0.26-0.30 (sibling seeds, unverified) and the SpreadsheetBench family is related but a different deliverable"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public Apache-2.0 repo at a pinned commit with 22.7k stars; the function directories and irr/xirr/rate folders exist"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "The deleted upstream files are a complete permissive implementation; their hidden-case score is unverified"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public and formulajs is recallable in outline; the snapshot closes repo access, but the node_modules dist leak is unchecked"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Upstream tests plus cross-checked cases could reach thousands, but the hidden count is not found and the per-function upstream test files are not visible"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "node_modules leaks compiled function implementations (K11); the build cannot run offline; or even the narrowed scope needs more than 20 h.",
+   "pass_if": "Offline build green; the deleted-start fails all category cases; node_modules contains no Excel-function code; a narrowed scope of two or three categories looks finishable in 8 h.",
+   "steps": [
+    "In a throwaway container with network, clone univer at 1e58578 and run pnpm install and the engine-formula build; record whether it is green offline and how long it takes (smoke_build is empty, so this is the first real check).",
+    "Search node_modules for compiled copies of the target functions: grep for IRR/XIRR/RATE/VLOOKUP in @univerjs dist bundles and for formulajs, jstat or numeric packages. Any hit is a seal leak, so kill or strip it.",
+    "Copy the repo, delete the six category folders, and run the upstream function tests; confirm the deleted-start scores 0 on those cases and count the per-test results.",
+    "Count the upstream per-function test cases that exist for financial, text, lookup and date, to size the visible base.",
+    "Use formulajs in the spike container only (never in the image) to produce IRR, XIRR and RATE values on about 30 sampled inputs and compare them with the upstream outputs at 1e-9. This shows how far a recall-based agent gets.",
+    "Decide the scope: if the whole scope exceeds 20 h, re-seed with two or three categories (for example text, lookup and date) on the 8 h tier."
+   ]
+  },
+  "summary": "Univer @ 1e58578 is real, Apache-2.0, and its financial, text, lookup, date and engineering function folders exist, so the paper trail holds. The seed as written is too big for any frontier trial to reach 0.9 of the reference in 8 h, so I kill it as K9 and suggest a narrower two-to-three-category scope, after the node_modules leak check and build probe (not yet run) pass.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75
+}

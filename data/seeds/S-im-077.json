@@ -1,0 +1,277 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "8 h. Basic schemas pass fast. Union vectors, nested flatbuffer attributes, include resolution and bfbs field ordering and offsets make the full scope hard. A weaker model stops at plain tables.",
+  "cheat": "Shipping a prebuilt flatc: the image has no flatc binary, only the stripped snapshot. Copying bfbs from memory fails on hidden generated schemas.",
+  "grading": "Hidden `.fbs` schemas, taken from the repo's test schemas and generated variants. Check 1: bfbs bytes are identical to the reference flatc. Check 2: JSON-to-binary conversion on sample data is byte-equal. Check 3: invalid schemas must be rejected with the right error class. Over 1,000 cases.",
+  "reference": "The upstream parser at the pinned tag (idl_parser.cpp and reflection code). It scores 1 and is roughly 4,000 lines.",
+  "source": "https://github.com/google/flatbuffers @ v25.12.19, Apache-2.0",
+  "task": "/app ships a snapshot of flatbuffers where the IDL parser and reflection-schema serializer are removed, with the rest of the build, the runtime and a test driver kept. The agent rebuilds `.fbs` parsing (tables, structs, unions, enums, attributes, includes, namespaces, root_type, file_identifier) and the bfbs output. Interface: the flatc CLI with `--binary --schema`.",
+  "title": "Rebuild the FlatBuffers schema parser and binary schema (.bfbs) emitter"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "compiler-toolchain",
+ "final": 80,
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-068 0.19"
+  ],
+  [
+   "2026-10-21T03:06:25Z",
+   "v1",
+   "pass",
+   "score 80; dead links []"
+  ],
+  [
+   "2026-10-21T03:10:35Z",
+   "v2",
+   "pass",
+   "final 80"
+  ],
+  [
+   "2026-10-21T03:22:39Z",
+   "spike",
+   "validated",
+   "The reference builds in under 3 minutes. The bfbs output is deterministic and matches the checked-in file when the repo's flags are used. 81 schemas in the tests tree produce identical bfbs across 3 runs each, so a generator of hidden variants is feasible. The existing suite (flattests) passes 3 of "
+  ]
+ ],
+ "id": "S-im-077",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.188,
+    "S-im-068"
+   ],
+   [
+    0.184,
+    "S-im-070"
+   ],
+   [
+    0.176,
+    "S-op-033"
+   ],
+   [
+    0.162,
+    "schema [NL2Repo-Bench]"
+   ],
+   [
+    0.145,
+    "json_parser [SpecBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 2,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "b8431fbcd7a5c71817f314e18b332c0648554efa",
+  "kb": 22261,
+  "lang": "C++",
+  "open_prs": 232,
+  "pushed": "2026-09-14",
+  "release": "v25.12.19-2026-02-06-03fffb2",
+  "spdx": "Apache-2.0",
+  "stars": 26569,
+  "test_files": 1240,
+  "test_kb": 7970,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/google/flatbuffers|oss-fuzz-flatbuffers",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/google/flatbuffers",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Checked-in tests/arrays_test.bfbs equals flatc output only with --bfbs-comments --bfbs-builtins (the repo's BINARY_OPTS); the plan's plain --schema output differs. Pin the exact flags in the grader."
+  ],
+  "build_minutes": 2.8,
+  "cases_sampled": 81,
+  "commands_log": "git clone --depth 1 --branch v25.12.19 google/flatbuffers; cmake -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_TESTS=ON; make -j3 flatc flattests (2m49s). flatc -b --schema --bfbs-comments --bfbs-builtins arrays_test.fbs gives md5 0dec9fb3..., which matches the checked-in bfbs. Plain --schema gives 61df9abe... (different). Ran 81 tests/*.fbs schemas 3x each with the default flags: all identical across runs. JSON-to-binary of monsterdata_test.golden with -I include_test succeeded, md5 45907649. flattests exited 0 on 3 runs.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Upstream flatc is the full reference; the stripped start has no parser so it scores 0 by construction (not measured).",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "The reference builds in under 3 minutes. The bfbs output is deterministic and matches the checked-in file when the repo's flags are used. 81 schemas in the tests tree produce identical bfbs across 3 runs each, so a generator of hidden variants is feasible. The existing suite (flattests) passes 3 of 3 runs. Not measured: the stripped start score, offline mode, and the sealing work (stripping the checked-in .bfbs files, golden binaries and the generated-code directories). The Debian flatbuffers-compiler check was not done; the image just must not install it. The 4.5k-line reference is realistic, and the scope is large for an 8h tier.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 81,
+  "reference_lines": 4500,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 10
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_grade_note": "E0",
+  "evidence_url": "https://github.com/google/flatbuffers/tree/v25.12.19",
+  "facts": [
+   {
+    "claim": "google/flatbuffers tag v25.12.19 exists and is the upstream release",
+    "status": "confirmed",
+    "url": "https://github.com/google/flatbuffers/tree/v25.12.19"
+   },
+   {
+    "claim": "Licence is Apache-2.0 (LICENSE at top level)",
+    "status": "confirmed",
+    "url": "https://github.com/google/flatbuffers/tree/v25.12.19"
+   },
+   {
+    "claim": "src/idl_parser.cpp is about 4,574 lines (4,274 loc); the seed's 'roughly 4,000 lines' for the parser is in range, but reflection code is extra",
+    "status": "confirmed",
+    "url": "https://github.com/google/flatbuffers/blob/v25.12.19/src/idl_parser.cpp"
+   },
+   {
+    "claim": "reflection/reflection.fbs (156 lines) defines Schema, Object, Enum, Field, Service, RPCCall, Type, KeyValue, EnumVal, SchemaFile and the BaseType and AdvancedFeatures enums",
+    "status": "confirmed",
+    "url": "https://github.com/google/flatbuffers/blob/v25.12.19/reflection/reflection.fbs"
+   },
+   {
+    "claim": "tests/ top level holds 7 .fbs schemas, 2 .json, 4 .bin and one checked-in pre-generated binary schema tests/arrays_test.bfbs (a cheat/leak path the snapshot must strip)",
+    "status": "confirmed",
+    "url": "https://github.com/google/flatbuffers/tree/v25.12.19/tests"
+   },
+   {
+    "claim": "The seed's count of 1,240 test files / 7,970 KB under tests",
+    "status": "not_found",
+    "url": "https://github.com/google/flatbuffers/tree/v25.12.19/tests"
+   },
+   {
+    "claim": "Debian packages flatbuffers-compiler (flatc) exist in the archive (forky 23.5.26, trixie 2.0.8, older rebuilds), so a flatc binary can come from distro packages; image must not contain it or its apt cache",
+    "status": "confirmed",
+    "url": "https://packages-picconi.debian.org/forky/flatbuffers-compiler"
+   },
+   {
+    "claim": "A flatc wheel on PyPI or an npm package bundling the flatc binary",
+    "status": "not_found",
+    "url": "https://packages-picconi.debian.org/forky/flatbuffers-compiler"
+   },
+   {
+    "claim": "An independent from-scratch BFBS/IDL parser reimplementation exists publicly (reference for lookup)",
+    "status": "not_found",
+    "url": "https://flatbuffers.dev/intermediate_representation/"
+   }
+  ],
+  "frontier_hours": 14,
+  "full_card": {
+   "band": "Basic tables pass fast; unions, nested attributes, include resolution and bfbs field ordering/offsets are hard. Whole scope estimated 12-18 h for an excellent frontier agent: needs 20 h tier, not 8 h, or cut to core tables/enums/unions/bfbs.",
+   "build_cost": "Roughly 3-5 days: snapshot surgery, stripping leaks, grader harness with 1,000 cases and byte-level oracle from pinned flatc. Smoke build not recorded ({}), so compile time is unverified.",
+   "deliverable": "Rebuilt IDL parser (tables, structs, unions, enums, attributes, includes, namespaces, root_type, file_identifier) and bfbs emitter behind flatc --binary --schema.",
+   "gates_anticheat": "Hidden schemas generated from test schema variants; strip tests/arrays_test.bfbs and all generated bfbs; no flatc binary or distro package in image; grader rebuilds from snapshot; reject edits to tests and build config.",
+   "grading_surface": "Over 1,000 hidden cases: bfbs byte-equal to reference flatc; JSON-to-binary byte-equal on sample data; invalid schemas rejected with right error class.",
+   "local_fit": "CPU-only C++ build with CMake, no network at run time, fits 8 cores and 16 GB.",
+   "lookup": "partial: upstream public, structure known in outline to frontier models; no independent reimplementation found; Debian flatc is an older version only if the image carries it.",
+   "provenance": "google/flatbuffers @ v25.12.19, Apache-2.0, C++, OSS-Fuzz project; upstream public on GitHub (history must be stripped from /app snapshot).",
+   "reference": "Upstream idl_parser.cpp (4,574 lines) plus reflection code at the pinned tag; complete, scores 1.",
+   "ships": "History-less snapshot with idl_parser and reflection serializer removed; build, runtime, test driver kept. Must also strip tests/arrays_test.bfbs and any flatc binary, apt cache, or flatbuffers-compiler package.",
+   "similarity": "Nearest L0 neighbour 0.188 (S-im-068), above 0.15 so not novelty 5; not a CROWDED subject; differs as a compiler frontend rebuild with byte-exact bfbs output."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Full scope likely needs 12-18 h, so frontier trials may not finish; no dated public evidence yet, so capped at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Estimated 3-5 days of snapshot and harness work; under the 5-day kill line."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only C++ build, offline, well within 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Many interacting parts (parser, includes, unions, attributes, bfbs layout) needing sustained work over hours."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the snapshot and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several independent buckets: tables, enums, unions, attributes, includes, namespaces, bfbs bytes, error classes."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.188 is above 0.15; no crowded-list match."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Upstream tag exists, Apache-2.0, real OSS-Fuzz project with 26k stars."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation at the pinned tag scores exactly 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is public and known in outline, so recall is a difficulty issue; leaks (arrays_test.bfbs, distro flatc) can be stripped."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden ~1,000 generated schemas with byte-equal oracle from a real flatc; not an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "bfbs output differs across repeated runs, or the checked-in arrays_test.bfbs does not match flatc output for arrays_test.fbs (no stable byte oracle).",
+   "pass_if": "Build finishes offline-capable with the test driver, arrays_test bfbs byte-matches flatc output, and three repeated runs are byte-identical.",
+   "steps": [
+    "In a networked throwaway Linux container, clone google/flatbuffers at v25.12.19 and build flatc with CMake on 8 cores; record wall-clock time and any build errors.",
+    "Run flatc --binary --schema on tests/arrays_test.fbs and byte-compare the output to the checked-in tests/arrays_test.bfbs.",
+    "Repeat the same flatc run three times and confirm identical bfbs bytes (determinism check).",
+    "Write two small samples: one with an include and one with a union plus an attribute, and run flatc on each to confirm bfbs output is stable across runs.",
+    "Run flatc on a JSON sample for one schema and confirm binary output is stable across runs (Check 2 determinism).",
+    "Check the Debian flatbuffers-compiler package version in the target image to confirm no flatc binary or apt cache would be left in the snapshot."
+   ]
+  },
+  "summary": "The seed is real and sealable: upstream flatbuffers v25.12.19 is Apache-2.0 and the reference parser (idl_parser.cpp, 4,574 lines) is public, so the snapshot must strip the checked-in tests/arrays_test.bfbs and any distro flatc. The 8 h tier looks too short for the whole parser-plus-bfbs scope (estimated about 14 frontier hours), so I recommend the 20 h tier or a cut to core tables, enums, unions and bfbs; the spike should confirm byte-stable oracle output first.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 80,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-077",
+  "kill_code": "",
+  "note": "Real C++ parser rebuild with a confirmed 4,574-line reference and a generator-driven surface. The 20 h tier matches the 14 h frontier estimate. Review risk: byte-identical bfbs and JSON binaries depend on the order of builder calls, so a valid parser that serializes differently would fail. Compare decoded reflection objects and decoded buffers instead, and keep byte-equality as an optional bucket. Strip tests/arrays_test.bfbs, the generated bfbs files and any Debian flatc. idl_gen_* depends on the Parser API in idl.h, so ship that header as the contract.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 81
+}

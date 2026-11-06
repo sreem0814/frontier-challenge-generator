@@ -1,0 +1,208 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "4 h. Several separate hot paths avoid a one-lever outcome, but the scope is modest. A frontier agent finds the parenthesis split and some caching, but averages below the reference. A weaker model breaks equivalence.",
+  "cheat": "Memoising on the workload inputs is closed by random hidden inputs and a fresh process per timing. The equivalence gate covers error messages.",
+  "grading": "Hidden PHPUnit-style equivalence suite on generated option definitions and inputs must pass (hard gate). Then wall-clock medians on hidden workloads give reward 2^u-1 against our reference speedup.",
+  "reference": "The merged upstream optimisation commits for the component, rebuilt as a reference. Speedup measured on our runner, not yet found.",
+  "source": "https://github.com/symfony/symfony/pull/61239 and sibling OptionsResolver changes, base v5.4.54 line, MIT. Speedup other than the PR's stated 5.9x not found.",
+  "task": "/app ships the OptionsResolver component and related string-splitting and option-normalisation paths at the pre-optimisation commit plus a PHP CLI. The agent keeps behaviour identical and speeds up resolve(), nested option parsing, lazy options and parenthesis splitting.",
+  "title": "Symfony OptionsResolver and string parsing speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T03:08:13Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T03:08:13Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:13Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-088 0.16"
+  ],
+  [
+   "2026-10-21T03:10:40Z",
+   "v1",
+   "killed:K10",
+   "The only verified upstream change is one function (about 23 changed source lines, 162 added lines including tests), so it is one lever and well under the 150-line reference bar. The seed's sibling changes (resolve, nested options, lazy options) were not found. The base line (5.4.54) also differs fro"
+  ]
+ ],
+ "id": "S-op-037",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.155,
+    "S-im-088"
+   ],
+   [
+    0.149,
+    "S-im-082"
+   ],
+   [
+    0.147,
+    "S-im-006"
+   ],
+   [
+    0.119,
+    "optique-conditional-option-dependencies [DeepSWE]"
+   ],
+   [
+    0.083,
+    "i3-style [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "37e27be00bcb574d55db4e91ea947d19c7305125",
+  "kb": 355316,
+  "lang": "PHP",
+  "open_prs": 27,
+  "pushed": "2026-10-20",
+  "release": "v5.4.54",
+  "spdx": "MIT",
+  "stars": 31192
+ },
+ "source_key": "github.com/symfony/symfony/pull/61239|symfony-symfony-61239-optionsresolver-optimize-splitoutsidep",
+ "source_notes": "repo https://github.com/symfony/symfony; merged PR or fixed issue",
+ "source_url": "https://github.com/symfony/symfony/pull/61239",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/symfony/symfony/pull/61239",
+  "facts": [
+   {
+    "claim": "PR symfony/symfony#61239 exists and is merged, into the 7.4 branch, on 2025-07-29 (merge commit 9977966)",
+    "status": "confirmed",
+    "url": "https://github.com/symfony/symfony/pull/61239"
+   },
+   {
+    "claim": "PR title and description claim a 5.9x speedup of splitOutsideParenthesis(); the commit message says 5.88x",
+    "status": "confirmed",
+    "url": "https://github.com/symfony/symfony/pull/61239"
+   },
+   {
+    "claim": "A 2.91x speedup figure for this PR",
+    "status": "contradicted",
+    "url": "https://github.com/symfony/symfony/pull/61239"
+   },
+   {
+    "claim": "The PR changes only splitOutsideParenthesis() (regex preg_split replaces a char loop): 23 additions and 27 deletions in OptionsResolver.php, plus 139 test lines added",
+    "status": "confirmed",
+    "url": "https://github.com/symfony/symfony/pull/61239/files"
+   },
+   {
+    "claim": "Symfony v5.4.54 release exists (marked Latest, released 15 Oct)",
+    "status": "confirmed",
+    "url": "https://github.com/symfony/symfony/releases/tag/v5.4.54"
+   },
+   {
+    "claim": "The optimisation is on the 5.4 base line (the seed says v5.4.54 base)",
+    "status": "contradicted",
+    "url": "https://github.com/symfony/symfony/pull/61239"
+   },
+   {
+    "claim": "Merged or open upstream PRs optimising resolve(), nested option parsing or lazy options exist (sibling changes)",
+    "status": "not_found",
+    "url": "https://github.com/symfony/symfony/pull/61239"
+   },
+   {
+    "claim": "Licence MIT (GitHub API, from source_facts)",
+    "status": "confirmed",
+    "url": "https://github.com/symfony/symfony"
+   }
+  ],
+  "frontier_hours": 1.5,
+  "full_card": {
+   "band": "2 h tier. One function, one lever. A frontier agent reaches the regex split in well under an hour, so the scope is too small to give dense partial credit.",
+   "build_cost": "Under 1 day for the single-function reference. Smoke_build is empty (no verdict), so the build still needs confirming.",
+   "deliverable": "Faster splitOutsideParenthesis (and any siblings the seed names, none found) with identical output and error messages.",
+   "gates_anticheat": "Equivalence gate on random generated inputs with fresh process per timing closes memoisation. Test file and build config must be read-only to the agent. A public PR diff is a cheat path: snapshot must strip history.",
+   "grading_surface": "Hidden PHPUnit-style equivalence suite on generated type strings; wall-clock medians on hidden workloads. Surface is real but covers one function.",
+   "local_fit": "PHP CLI, no GPU or network needed, fits 8 CPU / 16 GB. Fine.",
+   "lookup": "direct: the merged diff is public in upstream git history and the regex technique is recallable.",
+   "provenance": "symfony/symfony PR #61239 (merged 2025-07-29 to 7.4), single commit; touches only splitOutsideParenthesis() in OptionsResolver.php. Base v5.4.54 is a different branch; the change must be ported.",
+   "reference": "The upstream PR diff (regex with recursive subroutine and (*SKIP)(*FAIL)), roughly 23 changed source lines. Reference speedup on our runner not measured; PR claims 5.9x on a synthetic 16-pattern benchmark.",
+   "ships": "OptionsResolver component plus the string-splitting path at the pre-PR commit, history-less snapshot, PHP CLI.",
+   "similarity": "Max L0 neighbour 0.155 (S-im-088), no crowded-list match. Novelty is fine; the problem is size, not similarity."
+  },
+  "kill_code": "K10",
+  "kill_reason": "The only verified upstream change is one function (about 23 changed source lines, 162 added lines including tests), so it is one lever and well under the 150-line reference bar. The seed's sibling changes (resolve, nested options, lazy options) were not found. The base line (5.4.54) also differs from the PR's 7.4 target, and the reference is public history that a model can recall.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "A frontier agent finishes the single-function scope within an hour, far below the 4 h tier. The seed's band claim is not supported by the actual diff."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Single component, PHP; under a day for the reference. Smoke build not yet verified."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "PHP CLI, CPU only, offline; fits the sandbox."
+   },
+   "Hor": {
+    "v": 1,
+    "why": "Work is one function plus tests; it does not need sustained multi-hour effort."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, shipping allowed."
+   },
+   "Multi": {
+    "v": 1,
+    "why": "One lever (split regex) with no independent buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max L0 neighbour cosine 0.155, just above the 0.15 bar; not crowded."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real merged upstream PR with verified diff and a stated benchmark, but the seed's wider scope (resolve, nested, lazy) has no found source."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is the one-function PR, real and public; the sibling reference commits the seed names are not found."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The reference is a public merged diff in git history, and the regex approach is recallable, so the snapshot must be history-less and the task is easily solved from memory."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Generated type strings and option definitions give an unlimited generator with the original code as oracle, but only one function is covered."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Only the single splitOutsideParenthesis change exists upstream (about 23 source lines), so the scope stays one lever and fails K10. Kill unless the seed is reshaped around a larger real subset.",
+   "pass_if": "Ported change passes the PR tests and the random equivalence check, and sibling work of at least 150 non-blank code lines exists upstream to build the scope on.",
+   "steps": [
+    "Clone symfony/symfony in a throwaway container. Check out the parent of 9977966 on the 7.4 line, and check whether v5.4.54 contains an equivalent splitOutsideParenthesis.",
+    "Apply PR #61239's OptionsResolver.php change to the base and run the PR's own test file (139 added lines) to confirm it passes.",
+    "Write a small PHP harness that generates random nested type strings and compares the old and new split outputs and error messages on about 10k inputs.",
+    "Time the old and new split with hyperfine (fresh process per run) to get the real speedup on this runner.",
+    "Search for any sibling OptionsResolver change touching resolve(), lazy options or nested parsing on 5.4 or 7.x. Record what is found and stop if none."
+   ]
+  },
+  "summary": "Symfony PR #61239 is real and merged (7.4, 5.9x claim in title, 5.88x in commit), but it changes only splitOutsideParenthesis() in about 23 source lines, so the seed's multi-hotpath scope is unsupported. Killed as K10 (one lever, too small, reference public in history); a reshaped seed would need real sibling PRs of at least 150 code lines.",
+  "tier_hours": 2
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 57
+}

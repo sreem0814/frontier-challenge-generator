@@ -1,0 +1,303 @@
+{
+ "batch": 16,
+ "card": {
+  "band": "8 h. Core wildmatch is easy for a frontier agent; the pain is attribute macros, pathspec magic combinations and the ignore stack across nested files. A weaker model passes plain globs and fails the rest. Per-feature buckets give steady credit.",
+  "cheat": "Calling the host git or a regex shortcut: the container has no git binary, and the checker bans spawning one. Hidden queries are generated at grade time with a seed.",
+  "grading": "Differential: a sealed git binary generates expected answers for thousands of generated trees, pattern files and queries (case folding, negation, anchoring, directory-only, **, attribute macros, :(glob) :(exclude) :(attr:) magic). Exact match per query, plus the crate's own fixture-based tests as a visible regression set.",
+  "reference": "Upstream crates at the pinned commit, several thousand lines of Rust. They score 1 on the differential set except known gaps, which are removed from the generator.",
+  "source": "https://github.com/GitoxideLabs/gitoxide @ 0a49d46 (gix-glob, gix-ignore, gix-attributes, gix-pathspec), Apache-2.0 OR MIT (check repo)",
+  "task": "/app ships a history-less workspace snapshot where the bodies of the glob, ignore, attribute and pathspec crates are stubbed. The agent re-implements wildmatch semantics, ignore stack handling, attribute macros and pathspec magic. The workspace API stays; a small CLI runs check-ignore, check-attr and pathspec-match queries over a directory tree.",
+  "title": "Gitignore, gitattributes and pathspec matching rebuilt in Rust against git"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:36:51Z",
+ "family": "other",
+ "final": 79,
+ "history": [
+  [
+   "2026-10-21T02:36:51Z",
+   "write",
+   "short",
+   "batch 16"
+  ],
+  [
+   "2026-10-21T02:36:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-068 0.25"
+  ],
+  [
+   "2026-10-21T02:55:33Z",
+   "smoke",
+   "red",
+   "rust: build failed, 0 tests, 0 failing, deterministic over 3 runs"
+  ],
+  [
+   "2026-10-21T02:56:29Z",
+   "v1",
+   "pass",
+   "score 81; dead links []"
+  ],
+  [
+   "2026-10-21T03:09:02Z",
+   "v2",
+   "pass",
+   "final 79"
+  ],
+  [
+   "2026-10-21T03:14:19Z",
+   "spike",
+   "validated",
+   "The probe's red build was the openssl-sys failure from building the whole workspace. The four target crates build with plain cargo in about 2 min including dependency downloads, and their tests run offline-capable once the dependencies are cached. Tests were identical across three runs. The one stab"
+  ]
+ ],
+ "id": "S-im-069",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.249,
+    "S-im-068"
+   ],
+   [
+    0.227,
+    "S-im-038"
+   ],
+   [
+    0.201,
+    "python-pathspec [NL2Repo-Bench]"
+   ],
+   [
+    0.181,
+    "S-im-012"
+   ],
+   [
+    0.118,
+    "tree-directory-parser [original]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 2,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 104,
+  "ci_files": 6,
+  "clone_ok": true,
+  "cmd_build": "cargo test --offline --no-run --all-targets --locked || cargo test --offline --no-run --all-targets",
+  "cmd_fetch": "cargo fetch --locked || cargo fetch",
+  "cmd_test": "cargo nextest run --offline --no-fail-fast --profile cgprobe",
+  "commit": "0694522bcb52441223551a4651ddd55f0ea13157",
+  "deterministic": true,
+  "eco": "rust",
+  "fetch_ok": true,
+  "fetch_s": 31,
+  "log": "nloaded rustc-hash v2.1.2\n  Downloaded permutohedron v0.2.4\n  Downloaded ptyprocess v0.4.1\n  Downloaded fs-err v3.3.0\n  Downloaded windows v0.44.0\n  For example, `libssl-dev` on Ubuntu or `openssl-devel` on Fedora.\n\n  If you're in a situation where you think the directory *should* be found\n  automatically, please open a bug at https://github.com/rust-openssl/rust-openssl\n  and include information about your system as well as this message.\n\n  $HOST = x86_64-unknown-linux-gnu\n  $TARGET = x86_64-unknown-linux-gnu\n  openssl-sys = 0.9.117\n\n\nwarning: build failed, waiting for other jobs to finish...",
+  "oom": false,
+  "ref": "default",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   101,
+   101,
+   101
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 1,
+  "test_files": 1586,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "red",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "0a49d46f6a0b08943930d5247693992b89e98c1b",
+  "kb": 128810,
+  "lang": "Rust",
+  "open_prs": 15,
+  "pushed": "2026-10-20",
+  "release": "gix-utils-v0.5.1",
+  "spdx": "Apache-2.0",
+  "stars": 12034,
+  "test_files": 1586,
+  "test_kb": 106748,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/gitoxidelabs/gitoxide|oss-fuzz-gitoxide",
+ "source_notes": "OSS-Fuzz project, language rust",
+ "source_url": "https://github.com/GitoxideLabs/gitoxide",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Full scope (glob, ignore, attributes, pathspec) is likely over the 8h tier per v1 estimate; trim scope or use 20h",
+   "Cargo registry and vendor dirs must not ship the four crates",
+   "Stub step (todo!() bodies) not actually done in this spike, so start_scores_zero is inferred rather than measured"
+  ],
+  "build_minutes": 3,
+  "cases_sampled": 7873,
+  "commands_log": "git clone GitoxideLabs/gitoxide; git checkout 0a49d46; CARGO_HTTP_MULTIPLEXING=false cargo test --no-fail-fast -p gix-glob -p gix-ignore -p gix-attributes -p gix-pathspec (x3); scratch crate /work/diff using gix-ignore + gix-glob; /work/gen.py (3 seeds x 200 random trees, git check-ignore --no-index vs gix)",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Stubbed crates would fail every query; upstream matches git on all sampled ignore queries. Only gitignore was sampled, not attributes or pathspec.",
+  "headroom_ok": true,
+  "image_gb_estimate": 2.5,
+  "kill_code": "",
+  "notes": "The probe's red build was the openssl-sys failure from building the whole workspace. The four target crates build with plain cargo in about 2 min including dependency downloads, and their tests run offline-capable once the dependencies are cached. Tests were identical across three runs. The one stable failure is gix-attributes search::attribute_tokenisation_matches_git (\"we match git check-attr -a for reserved\"); it compares against the host git 2.39.5, so keep it out of the regression gate. Differential sample: 3 seeds x 200 random trees with 1-8 patterns each, about 13 queries per tree, 7873 queries in total. Patterns covered *, **, [], POSIX classes, escapes, anchoring, dir-only, negation and trailing spaces. gix-ignore matched `git check-ignore --no-index` on all 7873 queries. Not sampled: check-attr, attribute macros, pathspec magic, case folding, nested .gitignore files. The reference is about 3.7k non-blank lines across the four crates' src/ directories (a cat of src files). Licence is Apache-2.0 OR MIT, per the seed (not re-checked in the repo). Pinned HEAD 0a49d46 checked out; target dir is 1.4G and the cargo registry 140M.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 7873,
+  "reference_lines": 3743,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/GitoxideLabs/gitoxide",
+  "facts": [
+   {
+    "claim": "GitoxideLabs/gitoxide repository exists and is not archived (about 12k stars)",
+    "status": "confirmed",
+    "url": "https://github.com/GitoxideLabs/gitoxide"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 and MIT (LICENSE-APACHE and LICENSE-MIT both present)",
+    "status": "confirmed",
+    "url": "https://github.com/GitoxideLabs/gitoxide"
+   },
+   {
+    "claim": "Pinned commit 0a49d46f6a0b08943930d5247693992b89e98c1b exists; it is a merge of PR #3065 touching gix-zlib, gix-odb and gix-pack, not glob, ignore, attributes or pathspec code",
+    "status": "confirmed",
+    "url": "https://github.com/GitoxideLabs/gitoxide/commit/0a49d46f6a0b08943930d5247693992b89e98c1b"
+   },
+   {
+    "claim": "Directories gix-glob, gix-ignore, gix-attributes and gix-pathspec exist in the repository",
+    "status": "confirmed",
+    "url": "https://github.com/GitoxideLabs/gitoxide"
+   },
+   {
+    "claim": "gix-glob, gix-ignore and gix-attributes are published on docs.rs (gix-ignore up to 0.11.2, gix-attributes up to 0.22.2), so the upstream code is public outside git history",
+    "status": "confirmed",
+    "url": "https://docs.rs/crate/gix-ignore/^0.9.1"
+   },
+   {
+    "claim": "Current crates.io release of gix-pathspec is known",
+    "status": "not_found",
+    "url": "https://yum.oracle.com/repowatch/oraclelinux10.x86_64/ol10_u0_developer_EPEL/b10dbc231afcdc0470a987dcfec7ef4b4d69efa1"
+   },
+   {
+    "claim": "smoke_build probe ran at the pinned commit 0a49d46 (probe commit is 0694522bcb52441223551a4651ddd55f0ea13157)",
+    "status": "contradicted",
+    "url": "https://github.com/GitoxideLabs/gitoxide/commit/0a49d46f6a0b08943930d5247693992b89e98c1b"
+   }
+  ],
+  "full_card": {
+   "band": "Budget tier 8 h. Frontier estimate: about 10-12 h for the whole scope (glob about 1-2 h; ignore stack, attribute macros and pathspec magic take most of the rest), so the full scope is over the tier. Either trim scope (drop one of attribute macros or pathspec magic) or move to 20 h tier. Partial buckets: plain globs, ignore stack, attributes, pathspec each steady credit. No dated public evidence of agent success on this work (E0).",
+   "build_cost": "Smoke build red: cargo test --offline --no-run failed (exit 101) after 104 s, so offline dependency vendoring and stubbing must be fixed first. Estimated 3-5 days to build the snapshot, stubs, CLI, generator and sealed oracle (build 3).",
+   "deliverable": "Rust implementation of wildmatch semantics, ignore stack across nested .gitignore files, attribute macros and pathspec magic (:(glob), :(exclude), :(attr:)) matching gitoxide's API behaviour.",
+   "gates_anticheat": "Container has no git binary; checker bans spawning git; hidden queries generated at grade time from a seed; oracle binary sealed. Must ensure no cargo vendor directory or ~/.cargo registry ships gix-glob/gix-ignore/gix-attributes/gix-pathspec sources, otherwise direct lookup. Editing tests or build config must be closed by using the sealed grader copy.",
+   "grading_surface": "Differential against a sealed git binary over thousands of generated trees, pattern files and queries (case folding, negation, anchoring, directory-only, **, attribute macros, pathspec magic), exact match per query; upstream fixture tests as a visible regression set. Surface is large and scalable (unlimited generator).",
+   "local_fit": "CPU-only Rust build, 8 cores, 16 GB, Rust toolchain and cargo offline: fits gVisor if vendored deps ship. Hidden differential uses only a git binary at grade time, not at run time.",
+   "lookup": "Upstream code is public on GitHub history and crates.io; the feature exists in later releases of these crates. Verdict partial: offline /app has no access, but any shipped cargo registry copy would make it direct. Git's wildmatch.c is famous and partly recallable.",
+   "provenance": "GitoxideLabs/gitoxide @ 0a49d46 (merge of PR #3065), Apache-2.0 OR MIT; crates gix-glob, gix-ignore, gix-attributes, gix-pathspec. Repo confirmed; the four crates are on crates.io/docs.rs.",
+   "reference": "Upstream four crates at the pinned commit, several thousand lines of Rust, Apache/MIT; scores 1 on the differential set after known gaps are removed. Not yet built offline (smoke build red).",
+   "ships": "History-less workspace snapshot with glob, ignore, attribute and pathspec crate bodies stubbed; public API kept; small CLI for check-ignore, check-attr and pathspec-match. Must also strip any cargo registry copies of these four crates.",
+   "similarity": "Nearest l0 neighbours: S-im-068 (0.249), S-im-038 (0.227), python-pathspec NL2Repo-Bench (0.201), S-im-012 (0.181). None above 0.3; none is a near duplicate; python-pathspec shares subject (pathspec) but a different deliverable. Not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Full scope is about 10-12 h frontier work on an 8 h tier; no dated public evidence, so at most 3; needs scope trim to be reachable."
+   },
+   "Build": {
+    "v": 3,
+    "why": "3-5 days to fix offline deps, stub, CLI, generator and oracle."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only Rust build fits, but the offline build is currently red."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-crate scope suits 8 h, but full scope is over the tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 OR MIT, confirmed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Glob, ignore, attributes and pathspec each give independent buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours are between 0.18 and 0.25 and include python-pathspec on the same subject, not a duplicate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned upstream repo, licence confirmed, four crates exist and are published."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation that scores 1 on the differential set."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and reference sealable by stubbing and sealed grader, but the upstream code is public and partly recallable, so Band absorbs it."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Thousands of generated queries with a differential git oracle and an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The pinned commit does not build offline even with vendoring, or upstream fails more than 1% of the generated queries, or the full scope cannot be trimmed to fit 8 h.",
+   "pass_if": "Upstream crates build offline after vendoring, fixture tests pass deterministically, and the git-generated differential set matches upstream on at least 99% of 200 queries.",
+   "steps": [
+    "In a networked throwaway container, clone GitoxideLabs/gitoxide at 0a49d46 and run cargo vendor so the four target crates build offline; record exit reason of the red smoke build (probe was at 0694522, not the pinned commit).",
+    "Confirm the four crates compile with bodies stubbed to todo!() while keeping the public API; check the cargo registry copy used for the build contains none of their sources.",
+    "Write a 50-line generator for 200 random trees and pattern files covering globs, negation, directory-only and ** patterns; run git check-ignore and git check-attr on them to get expected answers.",
+    "Run the upstream gix-glob/gix-ignore fixture tests to confirm they pass at the pinned commit and produce deterministic output across three runs.",
+    "Estimate the frontier hour budget by stubbing attribute macros and pathspec magic and timing one reimplementation of plain globs."
+   ]
+  },
+  "summary": "The repo, pinned commit, Apache/MIT licence and four crates are confirmed, and the seed's reference and differential oracle are sound. The idea is viable only after trimming the scope to fit an 8 h tier and fixing the red offline build, with the cargo registry kept free of these crates."
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 81,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-069",
+  "kill_code": "",
+  "note": "Real repo, Apache/MIT confirmed. Grading is differential against a sealed git binary with an unlimited generator, so the surface is strong. Problems: the smoke build is red (exit 101) and the probe ran at 0694522, not the pinned commit, so offline vendoring is unproven. frontier_hours and tier_hours are null. V1 itself puts the scope at 10-12 h, so set the tier to 20 h or cut pathspec :(attr:) magic. git's wildmatch.c is famous and partly recallable, which makes the glob bucket easy (Band, not Seal). Differences between gitoxide and git must be removed from the generator so the reference scores exactly 1. Strip crates.io copies of the four crates from any registry in the image. python-pathspec (NL2Repo, 0.201) has an adjacent subject but a different deliverable.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 3,
+   "Real": 5,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 79
+}

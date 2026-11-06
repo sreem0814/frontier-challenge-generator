@@ -1,0 +1,224 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "4 h. There are several independent levers, so partial credit accrues. A frontier agent finds the hashing and caching wins; a weaker model changes behaviour and fails the gate.",
+  "cheat": "Caching benchmark results is closed by inputs generated at run time and by a behaviour gate. The hidden benchmark scripts are not shipped.",
+  "grading": "A hard gate runs the existing PHPUnit suite plus hidden differential tests on generated inputs. Wall-clock medians of fixed PHP benchmark scripts are measured against the base. Reward is 2^u - 1.",
+  "reference": "A reference built from the upstream PR #45371 and later merged performance commits, with the measured speedup S.",
+  "source": "https://github.com/laravel/framework @ head 31dbc2b (v13.38.0 release listed), MIT; anchored on PR #45371",
+  "task": "Ship a history-less snapshot at a base where the string helpers, collection pipelines, Blade compilation and cache-key hashing are slow. The agent makes them faster, including a faster hash such as xxh128 for non-security keys, while keeping behaviour identical.",
+  "title": "Laravel framework hot-path speedup (Str, Collection, Blade, hashing)"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "other",
+ "final": 54,
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-041 0.29"
+  ],
+  [
+   "2026-10-21T03:17:53Z",
+   "v1",
+   "pass",
+   "score 74; dead links []"
+  ],
+  [
+   "2026-10-21T03:19:48Z",
+   "v2",
+   "killed:K8",
+   "The anchor PR #45371 (xxh128) was merged in 2022 and is already in the v13 head, so the slow base would be an artificial revert, and the agent knows the upstream fix (lookup direct). The 'later merged perf commits' for Str, Collection and Blade are not identified and S is unmeasured (weak reference)"
+  ]
+ ],
+ "id": "S-op-042",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.295,
+    "S-op-041"
+   ],
+   [
+    0.254,
+    "S-op-039"
+   ],
+   [
+    0.202,
+    "S-im-012"
+   ],
+   [
+    0.102,
+    "sha256_hashing [AlgoTune]"
+   ],
+   [
+    0.087,
+    "php-src [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "31dbc2b9b0fc775ae3bbc87ae2387e88693ad2ff",
+  "kb": 107246,
+  "lang": "PHP",
+  "open_prs": 38,
+  "pushed": "2026-10-20",
+  "release": "v13.38.0",
+  "spdx": "MIT",
+  "stars": 34967
+ },
+ "source_key": "github.com/laravel/framework/pull/45371|laravel-framework-45371-10-x-use-faster-hash-algorithm-xxh12",
+ "source_notes": "repo https://github.com/laravel/framework; merged PR or fixed issue",
+ "source_url": "https://github.com/laravel/framework/pull/45371",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/laravel/framework/pull/45371",
+  "facts": [
+   {
+    "claim": "laravel/framework repo exists, MIT licence, PHP, pushed 2026-10-20 (per GitHub API source_facts)",
+    "status": "confirmed",
+    "url": "https://github.com/laravel/framework"
+   },
+   {
+    "claim": "PR #45371 exists, titled '[10.x] Use faster hash algorithm (xxh128)', state Merged into master on 2022-12-20 as commit 1997729, switches framework hashing from SHA-1 to xxh128 (so the hashing lever is public merged history, not a post-base commit)",
+    "status": "confirmed",
+    "url": "https://github.com/laravel/framework/pull/45371"
+   },
+   {
+    "claim": "Release v13.38.0 exists (released 20 Oct, 2026)",
+    "status": "confirmed",
+    "url": "https://github.com/laravel/framework/releases/tag/v13.38.0"
+   },
+   {
+    "claim": "The v13.38.0 release notes list Str, Collection, Blade or cache-key hashing performance entries",
+    "status": "not_found",
+    "url": "https://github.com/laravel/framework/releases/tag/v13.38.0"
+   },
+   {
+    "claim": "A measured reference speedup S for the combined scope exists",
+    "status": "not_found",
+    "url": "https://github.com/laravel/framework/pull/45371"
+   }
+  ],
+  "frontier_hours": 7,
+  "full_card": {
+   "band": "Band 3: no dated public evidence of frontier success/failure on this scope; four levers give partial credit; weaker model expected to change behaviour and fail gate. Seed's 4h tier judged too short for the whole scope.",
+   "build_cost": "3 (estimate 2-5 days: PHP toolchain, composer vendor offline, benchmark harness, reference reproduction).",
+   "deliverable": "Patched Laravel framework code that is faster on fixed PHP benchmark scripts (Str, Collection, Blade compile, cache-key hashing) with identical behaviour.",
+   "gates_anticheat": "Gate: PHPUnit + differential tests exact match. Cheats closed by run-time generated inputs and hidden scripts not shipped; must still block editing tests/config and vendoring; history-less snapshot removes git path to upstream.",
+   "grading_surface": "Existing PHPUnit suite (hard gate) plus hidden differential tests on generated inputs; wall-clock medians of hidden PHP benchmark scripts vs base; reward 2^u-1.",
+   "local_fit": "PHP CLI on gVisor is fine; timing noise on 8 cores under gVisor is the risk; vendor tree must be shipped offline.",
+   "lookup": "Hashing lever is directly in public merged history (PR #45371) and recallable from Laravel source; Str/Collection/Blade levers not checked against upstream commits.",
+   "provenance": "laravel/framework MIT, head 31dbc2b, v13.38.0 released 20 Oct 2026; hashing lever from merged PR #45371 (xxh128, 2022-12-20).",
+   "reference": "Upstream PR #45371 plus later merged perf commits; speedup S not measured or published in the seed.",
+   "ships": "PHP source tree as a history-less snapshot at a pre-optimisation base, plus composer vendor directory (no network at run time). Smoke build not yet probed (smoke_build empty).",
+   "similarity": "Nearest l0 neighbours S-op-041 (0.295), S-op-039 (0.254), S-im-012 (0.202) are sibling seeds, not near-duplicates; public neighbours sha256_hashing [AlgoTune] 0.102 and php-src [ProgramBench] 0.087 are below 0.15."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; seed's band claim unverified; capped at 3 without evidence."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Offline composer vendor plus PHP toolchain and harness; 2-5 days estimated."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "PHP CLI runs on gVisor; benchmark noise is the main risk."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Four levers plus behaviour gate; whole scope likely 6-8 frontier hours, fits 8h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT licence permits shipping source in the bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Str, Collection, Blade and hashing levers give independent partial-credit buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public neighbour above 0.15 is a near-duplicate; sibling seeds at 0.295 are same family but not duplicates."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT repo at pinned head with merged PR #45371 and a published release."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is a set of upstream commits; no measured speedup S published, so strength unverified."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "History-less snapshot closes the git path; recall of the xxh128 change is a difficulty issue scored under Band."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "PHPUnit suite plus hidden differential and benchmark scripts; large but mostly hand-written benchmark cases unless generator is strong."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Timing CV above 10% on the same host, or the combined known changes give under 1.2x on the whole benchmark set.",
+   "pass_if": "Suite runs green at head; at least three of four hot paths show a >10% gain from known changes; benchmark CV under 5% across runs.",
+   "steps": [
+    "In a throwaway networked Linux container, clone laravel/framework at v13.38.0 and check the PHP version it requires; install that PHP CLI.",
+    "Run composer install and the PHPUnit suite on head; record pass/fail counts per test.",
+    "Check whether head already uses xxh128 for cache/view keys (grep the source only for this spike); if so, the base must revert it.",
+    "Write micro-benchmarks for Str helpers, a Collection pipeline, a Blade compile of a template set, and cache-key hashing; run each 5 times on 8 cores.",
+    "Compute median and coefficient of variation per benchmark; confirm the hot paths are measurably slow and the timing is stable.",
+    "Apply the xxh128 change alone and measure the speedup on the hashing benchmark; confirm PHPUnit still passes.",
+    "Repeat the three-run determinism check on the full benchmark set."
+   ]
+  },
+  "summary": "The seed's hashing lever is real but public: PR #45371 (xxh128 switch) merged 2022-12-20, so the reference is recallable and the base must revert it, and the claimed S and later perf commits were not confirmed. No hard kill, but Band is capped at 3 without dated evidence and the 4h tier looks short for four levers, so 8h is proposed.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-042",
+  "kill_code": "K8",
+  "note": "The anchor PR #45371 (xxh128) was merged in 2022 and is already in the v13 head, so the slow base would be an artificial revert, and the agent knows the upstream fix (lookup direct). The 'later merged perf commits' for Str, Collection and Blade are not identified and S is unmeasured (weak reference). The hashing lever is a one-line swap. PHP micro-benchmarks under gVisor are also noise-prone.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 2,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 2,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 54
+}

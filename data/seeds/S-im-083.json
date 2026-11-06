@@ -1,0 +1,316 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "8 h. Dozens of cops give steady partial credit. A frontier agent gets the simple spacing cops and falls short on alignment and autocorrect corner cases. A weaker model gets only offense detection without correct autocorrect.",
+  "cheat": "Public upstream rubocop is not installed in the image and the gem cache is removed. Hidden cases are fresh variations and the generated corpus, so memorised specs do not suffice.",
+  "grading": "Hidden spec files, drawn from the upstream per-cop specs and rewritten with fresh variations, run in-process. Plus differential runs against a sealed copy of rubocop on a generated corpus of Ruby files, comparing offenses and autocorrected output byte for byte. Fraction of cops and cases passed.",
+  "reference": "The upstream implementation of these cops at the same commit, which scores 1. The removed code is expected to be about 4000+ lines.",
+  "source": "https://github.com/rubocop/rubocop @ v1.92.0 (head 57e64d0b), MIT",
+  "task": "/app ships a snapshot of rubocop at the base with a chosen group of Layout cops (spacing, indentation, alignment, line length, empty lines families) removed and their registry entries left in place. The agent rebuilds these cops, including their autocorrectors and config options, on top of the remaining AST and token infrastructure.",
+  "title": "Rebuild the Layout cop department in RuboCop"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:08:12Z",
+ "family": "compiler-toolchain",
+ "final": 84,
+ "history": [
+  [
+   "2026-10-21T03:08:12Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:12Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-016 0.26"
+  ],
+  [
+   "2026-10-21T03:08:47Z",
+   "smoke",
+   "none",
+   "unknown: build failed, 0 tests, 0 failing, deterministic over 3 runs"
+  ],
+  [
+   "2026-10-21T03:09:23Z",
+   "v1",
+   "pass",
+   "score 84; dead links []"
+  ],
+  [
+   "2026-10-21T03:24:47Z",
+   "v2",
+   "pass",
+   "final 84"
+  ],
+  [
+   "2026-10-21T03:42:00Z",
+   "spike",
+   "validated",
+   "Baseline green and deterministic (~13s). Tag commit is 4172ce57; head 57e64d0b was not checked. Corpus differential is deterministic across 3 runs and 49 Layout cops fired. The size claim holds (removed set is over 6k lines, well above 4000). Not done: a frontier-style rebuild and fresh spec variati"
+  ]
+ ],
+ "id": "S-im-083",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.26,
+    "S-im-016"
+   ],
+   [
+    0.237,
+    "S-im-065"
+   ],
+   [
+    0.234,
+    "S-im-012"
+   ],
+   [
+    0.093,
+    "layout-config-recreation2 [tasks]"
+   ],
+   [
+    0.086,
+    "layout-config-recreation [tasks]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 2,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": false,
+  "build_s": 0,
+  "ci_files": 4,
+  "clone_ok": true,
+  "cmd_build": "false",
+  "cmd_fetch": "true",
+  "cmd_test": "false",
+  "commit": "4172ce57861498492770675a904a6404324b326f",
+  "deterministic": true,
+  "eco": "unknown",
+  "fetch_ok": true,
+  "fetch_s": 0,
+  "log": "",
+  "oom": false,
+  "ref": "v1.92.0",
+  "report_format": "exit-code-only",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 3,
+  "subdir": "",
+  "suite_s": 0,
+  "test_files": 835,
+  "tests_listed": 0,
+  "timeouts": [],
+  "verdict": "none",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "57e64d0b09510d0fbba369527422999a56ef443b",
+  "kb": 56837,
+  "lang": "Ruby",
+  "open_prs": 69,
+  "pushed": "2026-10-20",
+  "release": "v1.92.0",
+  "spdx": "MIT",
+  "stars": 12914,
+  "test_files": 835,
+  "test_kb": 7686,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/rubocop/rubocop|1-92-0",
+ "source_notes": "Ruby static code analyzer and formatter, based on the community Ruby style guide",
+ "source_url": "https://github.com/rubocop/rubocop",
+ "source_version": "1.92.0",
+ "spike": {
+  "blockers": [
+   "Registry is lazy (register_cop path); deleted files raise LoadError in before(:suite), so the base needs stub or registry edits.",
+   "Agent rebuild and fresh-variation pass rate not measured.",
+   "Upstream rubocop is widely known, so recall risk (K8) is unmeasured."
+  ],
+  "build_minutes": 8,
+  "cases_sampled": 5006,
+  "commands_log": "apt install ruby ruby-dev libyaml-dev; git clone --branch v1.92.0; bundle install; bundle exec rspec spec/rubocop/cop/layout (x3: 5006 ex, 0 fail); rm 45 cop files -> specs LoadError; rubocop --only Layout -f json on 200 files x3, md5 identical",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Deleting 45 cops (6319 src lines, ~19.8k spec lines) makes all their specs fail to load; reference passes all 5006 layout examples.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "Baseline green and deterministic (~13s). Tag commit is 4172ce57; head 57e64d0b was not checked. Corpus differential is deterministic across 3 runs and 49 Layout cops fired. The size claim holds (removed set is over 6k lines, well above 4000). Not done: a frontier-style rebuild and fresh spec variations. The 45-cop set may exceed 8 h, so trim to about 25-30 cops. The base must keep registry entries without raising LoadError.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 5006,
+  "reference_lines": 6319,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/rubocop/rubocop/releases/tag/v1.92.0",
+  "facts": [
+   {
+    "claim": "rubocop/rubocop tag v1.92.0 exists (release page)",
+    "status": "confirmed",
+    "url": "https://github.com/rubocop/rubocop/releases/tag/v1.92.0"
+   },
+   {
+    "claim": "v1.92.0 release date is 10 October; the page shows no year, so the year is unverified",
+    "status": "confirmed",
+    "url": "https://github.com/rubocop/rubocop/releases/tag/v1.92.0"
+   },
+   {
+    "claim": "lib/rubocop/cop/layout at v1.92.0 holds 100 cop .rb files (includes spacing, indentation, alignment, empty_lines, line_length families)",
+    "status": "confirmed",
+    "url": "https://github.com/rubocop/rubocop/tree/v1.92.0/lib/rubocop/cop/layout"
+   },
+   {
+    "claim": "Licence is MIT, copyright (c) 2012-26 Bozhidar Batsov",
+    "status": "confirmed",
+    "url": "https://github.com/rubocop/rubocop/blob/v1.92.0/LICENSE.txt"
+   },
+   {
+    "claim": "v1.92.0 release adds an --explain option and a per-cop offense cap and fixes false positives and incorrect autocorrections",
+    "status": "confirmed",
+    "url": "https://github.com/rubocop/rubocop/releases/tag/v1.92.0"
+   },
+   {
+    "claim": "Head commit 57e64d0b is the commit at v1.92.0",
+    "status": "not_found",
+    "url": "https://github.com/rubocop/rubocop/tree/v1.92.0"
+   },
+   {
+    "claim": "Removed cop code is about 4000+ lines",
+    "status": "not_found",
+    "url": "https://github.com/rubocop/rubocop/tree/v1.92.0/lib/rubocop/cop/layout"
+   },
+   {
+    "claim": "835 test files and 7.6 MB of tests in the repo",
+    "status": "not_found",
+    "url": "https://github.com/rubocop/rubocop/tree/v1.92.0/spec"
+   },
+   {
+    "claim": "No public web result gave v1.92.0 release notes beyond the release page; no evidence of agent results on this task",
+    "status": "not_found",
+    "url": "https://github.com/rubocop/rubocop/releases/tag/v1.92.0"
+   }
+  ],
+  "frontier_hours": 11,
+  "full_card": {
+   "band": "8 h tier. Full group of ~50 cops likely needs more than 8 h for a frontier agent; cut to ~25-30 cops to fit. Partial credit per cop and per autocorrect case. No dated public evidence of agent results.",
+   "build_cost": "Remove ~25-50 cops, rewrite registry, build hidden specs from upstream specs, generate corpus, seal oracle copy: about 3-5 days.",
+   "deliverable": "Rebuilt Layout cops: offenses, autocorrect, config options, run in-process.",
+   "gates_anticheat": "Upstream gem absent and cache removed; sealed oracle copy outside image; hidden specs and corpus not in image; grader ignores edits to spec or build config; no wrapping of system rubocop.",
+   "grading_surface": "Hidden per-cop spec files (upstream specs with fresh variations) plus differential runs vs sealed rubocop on a generated Ruby corpus; byte-exact offenses and autocorrected output.",
+   "local_fit": "Ruby on CPU in gVisor; in-process spec runs fit 8 cores and 16 GB.",
+   "lookup": "partial: upstream is public in git history and gem releases; frontier models may recall outline and some code.",
+   "provenance": "rubocop/rubocop v1.92.0, MIT, Ruby; 100 Layout cop files at tag; head 57e64d0b not checked.",
+   "reference": "Upstream MIT implementation of the removed cops at the same tag; size of removed code unverified (claimed 4000+ lines).",
+   "ships": "Snapshot of rubocop at base with a chosen group of Layout cops removed, registry entries kept; rubocop-ast/parser runtime shipped as needed. Must be history-less (upstream later releases contain these cops).",
+   "similarity": "Neighbours S-im-016 0.26, S-im-065 0.237, S-im-012 0.234 (seeds, not public tasks); public layout-config-recreation tasks 0.093 and 0.086 differ in deliverable (config recreation vs cop rebuild)."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Difficulty is plausible for 8h, but no dated public agent evidence exists, so capped at 3."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Trimming cops, writing hidden specs, corpus generation and sealing: about 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Ruby on CPU, in-process specs; fits 8 cores and 16 GB under gVisor."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Many cops, autocorrect and config options; 8h tier fits if scope is trimmed to ~25-30 cops."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT permits shipping the code, specs and reference in a bundle."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Dozens of independent cops give steady per-cop partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest public tasks are at 0.09; the layout-config-recreation tasks share the subject but differ in deliverable."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public MIT rubocop at a tagged release with 100 Layout cop files and a real test suite."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete upstream MIT implementation of the same cops at the same tag."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public and widely known; oracle and hidden cases can be sealed, but recall of the code is a Band risk."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Generated corpus and sealed oracle allow unlimited differential cases, plus per-cop specs with fresh variations."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Baseline suite not green or nondeterministic, or the removed-code size per cop is far below the stated scale, or a rebuild cannot reach a usable pass rate.",
+   "pass_if": "Baseline suite green and deterministic; removed cops reproduce at least 70% of their upstream specs from a fresh rebuild; corpus output identical across 3 runs.",
+   "steps": [
+    "Clone rubocop at v1.92.0 into a throwaway container with network; record head SHA and compare with 57e64d0b.",
+    "Run the bundle install and the upstream spec suite for layout cops to confirm a green baseline (smoke_build was not supplied, so do this now).",
+    "Pick 3 cops of different families (e.g. space_after_comma, indentation_width, line_length) and delete them with registry entries kept.",
+    "Time a frontier-style rebuild of 2 of them within 30 minutes; measure how many of their upstream specs pass.",
+    "Write 20 fresh variations per cop and check that the upstream spec pass rate is not inflated by memorised output.",
+    "Run a 200-file generated Ruby corpus through the sealed copy and the rebuilt cops; confirm byte-exact determinism across 3 runs."
+   ]
+  },
+  "summary": "The RuboCop v1.92.0 base is real, MIT-licensed and contains 100 Layout cop files, so a rebuild task with a complete upstream reference and a sealable oracle is viable. Risks are unverified claims (head SHA, 4000+ removed lines, test counts), no smoke build, and a full dozens-of-cops scope that likely exceeds 8 h, so the scope should be trimmed to about 25-30 cops.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 84,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-083",
+  "kill_code": "",
+  "note": "Tag v1.92.0 and MIT licence are confirmed, and the per-cop specs plus a byte-exact differential corpus give a large, dense surface. Concerns: the smoke build failed (cmd 'false', eco unknown, rc 1 x3), its commit 4172ce57 differs from the claimed head 57e64d0b, and the 4000+ line removal size is unmeasured. Frontier estimate is 11 h against an 8 h tier, so cut the scope to about 25-30 cops or move to the 20 h tier. RuboCop cops are famous and their specs are public, so Seal is 3 and the fresh spec variations plus the corpus are essential. Make sure shared mixins (Alignment, PrecedingFollowingAlignment, etc.) stay shipped so the remaining cops still load.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 5,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 85
+}

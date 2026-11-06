@@ -1,0 +1,198 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "4 h. A frontier agent can implement known methods and ensemble them, which beats the baseline. The hidden family gap limits the mean. A weaker model stops at the baseline.",
+  "cheat": "Memorising dataset identity from features: the hidden families are disjoint and their features are not shipped.",
+  "grading": "AUROC and FPR95 on hidden near-OOD and far-OOD dataset families that are not given to the agent. The score is normalised between the shipped MSP baseline and our reference.",
+  "reference": "The best of the repo's published post-hoc methods (such as ViM, KNN, ensemble variants), re-run on the same cached features. The scores are measured. Data licences must be checked per dataset, and none is verified yet.",
+  "source": "https://github.com/Jingkang50/OpenOOD @ v1.5, MIT",
+  "task": "/app ships a scoped OpenOOD v1.5 evaluation code with small, pre-trained CPU-sized classifiers and cached features for a few in-distribution sets. The agent designs and tunes an OOD scoring method (combining logit, feature and density signals) with a dev split. Interface: a Python scoring function over features.",
+  "title": "Post-hoc OOD detector design on small CPU-trained classifiers with a dataset-family split"
+ },
+ "class": "research",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-017 0.17"
+  ],
+  [
+   "2026-10-21T03:07:16Z",
+   "v1",
+   "killed:K8",
+   "The reference is the best of the repo's own published post-hoc methods (ViM, KNN, ensemble), which already sit in openood/postprocessors at v1.5. A frontier agent can copy and blend them and reach the reference quickly, so the task is too easy. The grading surface is also small (few hidden families)"
+  ]
+ ],
+ "id": "S-rs-018",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.167,
+    "S-rs-017"
+   ],
+   [
+    0.16,
+    "S-op-035"
+   ],
+   [
+    0.14,
+    "S-op-036"
+   ],
+   [
+    0.105,
+    "post-train-ifeval-gpu [SWE-Marathon]"
+   ],
+   [
+    0.085,
+    "lca-on-the-line [PaperBench]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "3c35632ee91b54b09d1f085d04f94744cece7d0b",
+  "kb": 82237,
+  "lang": "Python",
+  "open_prs": 9,
+  "pushed": "2025-12-01",
+  "release": "v1.5",
+  "spdx": "MIT",
+  "stars": 1085
+ },
+ "source_key": "github.com/jingkang50/openood|v1-5-arxiv-2306-09301-no-tagged-release-shown",
+ "source_notes": "MIT licence fits shipping. Likely GPU-heavy for CIFAR/ImageNet-scale training, so CPU fit is doubtful and needs a small-model scoped variant. Benchmark datasets are not bundled in the repo, so data licences must be checked separately. Not on the already_known list.",
+ "source_url": "https://github.com/Jingkang50/OpenOOD",
+ "source_version": "v1.5 (arXiv:2306.09301); no tagged release shown",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/pdf/2306.09301",
+  "facts": [
+   {
+    "claim": "Jingkang50/OpenOOD repository exists and v1.5 release is present (seed source_facts: release v1.5, MIT spdx, pushed 2025-12-01, not a fork, not archived)",
+    "status": "confirmed",
+    "url": "https://github.com/Jingkang50/OpenOOD"
+   },
+   {
+    "claim": "openood/postprocessors at v1.5 includes vim_postprocessor.py, knn_postprocessor.py, ensemble_postprocessor.py, ebo, react, mds, rmds, dice, ash, gradnorm, and others, so the 'best published post-hoc method' reference is already public code in the upstream repo",
+    "status": "confirmed",
+    "url": "https://github.com/Jingkang50/OpenOOD/tree/v1.5/openood/postprocessors"
+   },
+   {
+    "claim": "OpenOOD v1.5 benchmark paper exists and evaluates post-hoc methods including ViM (Wang et al., 2022) and KNN (Sun et al., 2022)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2306.09301"
+   },
+   {
+    "claim": "Exact published ViM and KNN near-OOD/far-OOD numbers for the reference table",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2306.09301v5"
+   },
+   {
+    "claim": "Licences of the benchmark datasets (near-OOD and far-OOD sets such as Textures, SVHN, Places365, iNaturalist, MNIST) permitting shipping inside a task bundle",
+    "status": "not_found",
+    "url": "https://github.com/Jingkang50/OpenOOD"
+   },
+   {
+    "claim": "README states dataset download is separate from the repo (dataset bundling not in repo)",
+    "status": "not_found",
+    "url": "https://github.com/Jingkang50/OpenOOD/blob/main/README.md"
+   }
+  ],
+  "frontier_hours": 3,
+  "full_card": {
+   "band": "Frontier agent copies ViM/KNN/ensemble from upstream and matches reference quickly; the gap is set by hidden families, not by work. Not a 4 h research scope",
+   "build_cost": "about 3 days (dataset licence checks, feature caching, hidden family harness, reference re-runs)",
+   "deliverable": "Python scoring function over features; graded on hidden near/far-OOD dataset families",
+   "gates_anticheat": "Hidden family features not shipped; the reference is public upstream code, so the agent can read it directly and the seal is weak",
+   "grading_surface": "AUROC and FPR95 over a few hidden dataset families; roughly tens of scored cases, not thousands",
+   "local_fit": "CPU-feasible if only the scoring stage runs on cached features; GPU training of CIFAR/ImageNet classifiers is out of scope",
+   "lookup": "direct: the methods and ensemble postprocessor are in the public upstream repo and paper",
+   "provenance": "OpenOOD v1.5 (Jingkang50/OpenOOD, MIT, 1085 stars), NeurIPS 2022 / arXiv 2306.09301 benchmark",
+   "reference": "Best of the repo's published post-hoc methods (ViM, KNN, ensemble variants), re-run on cached features; these are already in openood/postprocessors",
+   "ships": "Scoped OpenOOD v1.5 eval code, small CPU classifiers, cached ID features (planned)",
+   "similarity": "S-rs-017 0.167 (above 0.15, same OOD-scoring family); S-op-035 0.16; S-op-036 0.14; no crowded public task on post-hoc OOD scoring"
+  },
+  "kill_code": "K8",
+  "kill_reason": "The reference is the best of the repo's own published post-hoc methods (ViM, KNN, ensemble), which already sit in openood/postprocessors at v1.5. A frontier agent can copy and blend them and reach the reference quickly, so the task is too easy. The grading surface is also small (few hidden families), and the reference is readable upstream, so sealing is weak.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Upstream code already gives the reference; a frontier agent reaches it fast, so the scope is too easy"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated about 3 days for licence checks, feature caching and the hidden-family harness"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits CPU if the scope is only the scoring stage on cached features"
+   },
+   "Hor": {
+    "v": 1,
+    "why": "Scoring-function design over cached features is a few hours of work, not long-horizon"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Repo is MIT; per-dataset licences are unverified"
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Essentially one lever (choice and blend of scores); little independent partial credit"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max neighbour cosine 0.167 (S-rs-017), above the 0.15 threshold; not a crowded task but close to a neighbour"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Well-known OpenOOD repo at v1.5 with a peer-reviewed benchmark paper"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is measured, but it is the best of existing upstream methods rather than a complete new implementation"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The reference methods are public upstream code in the shipped repo, so the reference is readable"
+   },
+   "Surf": {
+    "v": 2,
+    "why": "Few hidden dataset families give tens of cases, not thousands or an unlimited generator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Upstream ViM/KNN/ensemble matches the best achievable score on dev within about 0.01 AUROC, or any candidate OOD dataset is not licence-clear for shipping. Either way kill as K8 (too easy) or K6.",
+   "pass_if": "The best upstream method is clearly beaten (by at least 0.02 AUROC) on held-out families by a new combination that is not in upstream, AND the hidden-family gap is measurable.",
+   "steps": [
+    "Clone OpenOOD v1.5 into a throwaway container with network; confirm the commit and the postprocessors directory.",
+    "Run the upstream ViM, KNN and ensemble postprocessors on the cached CIFAR-10 features with a small CPU classifier; check that they run and are deterministic over repeated runs.",
+    "Using a stand-in set of far-OOD features (e.g. public SVHN/Textures, only if licence allows), compute AUROC and FPR95 for MSP, ViM, KNN and their ensemble.",
+    "Compare the best upstream combination with a simple learned blend on a dev split to see whether there is headroom above the reference.",
+    "Check per-dataset licences for the candidate OOD sets before any further work."
+   ]
+  },
+  "summary": "The OpenOOD v1.5 repo (MIT) and its post-hoc methods (ViM, KNN, ensemble) are confirmed as public upstream code, so the reference is directly available and a frontier agent can reach it without novel work. The task is killed as K8 (too easy), with a weak seal and a small hidden-family grading surface as secondary concerns.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 55
+}

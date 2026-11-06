@@ -1,0 +1,246 @@
+{
+ "batch": 17,
+ "card": {
+  "band": "8 h. A frontier agent finishes the globbing but misses watcher races, inotify depth and rotation edge cases. The average is below the reference. Weaker models break the build or regress existing tail behaviour.",
+  "cheat": "A shell wrapper around find or forwarding to another input does not pass the plugin-level scenarios. Grading runs the real binary on temporary trees, so hard-coded paths fail.",
+  "grading": "Hidden runtime-test-style scenarios build directory trees, append lines, create, rename and delete subdirectories, then compare the emitted records via the test output plugin. The existing `tests/` suite is a regression gate. Partial credit is per scenario bucket.",
+  "reference": "We write the reference, estimated at 1,200 to 2,000 added lines of C across in_tail scanning, inotify and stat watchers, and config maps. The upstream issue has been open since 2020.",
+  "source": "https://github.com/fluent/fluent-bit/issues/2120 @ v5.1.4, Apache-2.0",
+  "task": "/app ships a history-less Fluent Bit snapshot at the pinned release. The agent adds recursive directory monitoring to the tail input: `**` and nested-glob path expansion, new subdirectories picked up at runtime, rotation and deletion handling, per-directory exclude patterns, and a filename metadata key. Interface: YAML and classic config options, plus the runtime tests.",
+  "title": "Recursive directory input with subdirectory discovery for Fluent Bit tail"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T02:37:53Z",
+ "family": "other",
+ "final": 66,
+ "history": [
+  [
+   "2026-10-21T02:37:53Z",
+   "write",
+   "short",
+   "batch 17"
+  ],
+  [
+   "2026-10-21T02:37:53Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-073 0.37"
+  ],
+  [
+   "2026-10-21T03:06:14Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-21T03:10:35Z",
+   "v2",
+   "killed:K3",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-im-078",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.369,
+    "S-im-073"
+   ],
+   [
+    0.198,
+    "S-im-069"
+   ],
+   [
+    0.177,
+    "S-im-065"
+   ],
+   [
+    0.133,
+    "tree-directory-parser [original]"
+   ],
+   [
+    0.098,
+    "records [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 5,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f4739648c0e91337331765edb9bd19da5a7a1a52",
+  "kb": 158358,
+  "lang": "C",
+  "open_prs": 533,
+  "pushed": "2026-10-20",
+  "release": "v5.1.4",
+  "spdx": "Apache-2.0",
+  "stars": 8163,
+  "test_files": 4492,
+  "test_kb": 34689,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/fluent/fluent-bit/issues/2120|fluent-fluent-bit-2120-support-a-directory-as-input-with-sub",
+ "source_notes": "repo https://github.com/fluent/fluent-bit; opened 2020-04-21",
+ "source_url": "https://github.com/fluent/fluent-bit/issues/2120",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/fluent/fluent-bit/issues/2120",
+  "facts": [
+   {
+    "claim": "fluent/fluent-bit issue #2120 exists, is open, opened 2020-04-21, and requests recursive subdirectory collection for the tail input",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit/issues/2120"
+   },
+   {
+    "claim": "Issue #2120 has no linked branches or pull requests and no maintainer comment saying the feature is implemented",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit/issues/2120"
+   },
+   {
+    "claim": "Issue #2120 was placed on the 'Fluent Bit v5.0' milestone and later moved to 'Fluent Bit Next' (upstream may still land it in a later release, which would make a public reference)",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit/issues/2120"
+   },
+   {
+    "claim": "Fluent Bit release v5.1.4 exists (released 16 Oct per the release page; year not shown in the page text)",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit/releases/tag/v5.1.4"
+   },
+   {
+    "claim": "Fluent Bit 4.2 tail input docs describe no recursive option, no '**' globstar and no subdirectory discovery",
+    "status": "confirmed",
+    "url": "https://docs.fluentbit.io/manual/4.2/data-pipeline/inputs/tail"
+   },
+   {
+    "claim": "Tail input already offers exclude_path and path_key options (so per-directory exclude and filename metadata are extensions of existing options)",
+    "status": "confirmed",
+    "url": "https://docs.fluentbit.io/manual/4.2/data-pipeline/inputs/tail"
+   },
+   {
+    "claim": "Apache-2.0 licence and stars/PR counts as given in source_facts (GitHub API); I did not open the LICENSE file",
+    "status": "confirmed",
+    "url": "https://github.com/fluent/fluent-bit"
+   },
+   {
+    "claim": "smoke_build result (offline build and test suite verdict)",
+    "status": "not_found",
+    "url": "https://github.com/fluent/fluent-bit"
+   },
+   {
+    "claim": "No public implementation of recursive/globstar tail matching found in search (lookup)",
+    "status": "not_found",
+    "url": "https://docs.fluentbit.io/manual/4.2/data-pipeline/inputs/tail"
+   }
+  ],
+  "frontier_hours": 14,
+  "full_card": {
+   "band": "Tier 20 h (frontier ~14 h for whole scope). Partial buckets: basic ** glob, subdir discovery, rotation/delete, exclude, metadata key, config parity. Weaker models break the build or regress tail. Seed's 8 h tier looks too short.",
+   "build_cost": "~3-4 days CG effort for reference plus scenario harness; full cmake build time unknown because smoke_build is empty.",
+   "deliverable": "Recursive directory monitoring in in_tail: ** and nested-glob expansion, runtime discovery of new subdirectories, rotation/deletion handling in watchers, per-directory exclude patterns, filename metadata key, exposed via YAML and classic config.",
+   "gates_anticheat": "Real binary run on temp trees; shell wrappers around find or hard-coded paths fail; tests/ and build config are read-only to the agent; hidden cases and reference kept out of the image.",
+   "grading_surface": "Hidden runtime-test-style scenarios (build trees, append, create/rename/delete subdirs, compare records via test output plugin); partial credit per scenario bucket. Count not measured.",
+   "local_fit": "C/CMake on Linux; inotify under gVisor is untested (main sandbox risk); no GPU or network needed.",
+   "lookup": "none: no public implementation found; issue has no linked PR; 4.2 docs show no recursion.",
+   "provenance": "Real upstream issue #2120 (open since 2020-04-21) against Fluent Bit tail input; base pinned at release v5.1.4 (Apache-2.0).",
+   "reference": "CG-written reference, est. 1,200-2,000 added C lines across in_tail scanning, inotify and stat watchers, config maps. No public reference exists.",
+   "ships": "History-less Fluent Bit v5.1.4 snapshot in /app with existing tests/ as regression gate; no later release or PR code.",
+   "similarity": "Nearest public neighbour tree-directory-parser at 0.133; S-im-073 (0.369) is an internal seed, not a public task. Not crowded."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Expected difficulty plausible for 20 h tier, but no dated public evidence of agents on this work; capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days for reference and harness; fluent-bit build time unknown since smoke_build is empty."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "C/cmake fits, but inotify behaviour under gVisor is unverified and watcher races depend on it."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Spans watchers, globbing, config and rotation across in_tail; needs sustained multi-hour work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the source and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Six independent buckets (glob, subdirs, rotation, exclude, metadata key, config) give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task neighbour above 0.15; highest 0.369 is internal seed S-im-073, subject unverified."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real upstream issue open since 2020, real repo 8.1k stars, pinned release v5.1.4."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is CG-written, not an existing complete permissive implementation; behaviour specifiable but not yet proven to score 1."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference is CG-private; upstream has no PR; risk that upstream lands it in a later release, so the snapshot must stay history-less."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Scenario buckets via runtime tests; count of hidden cases not established, likely tens to low hundreds."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build is red or non-deterministic, existing tail tests are flaky, or inotify misses directory create/delete events needed for the scenarios.",
+   "pass_if": "Build finishes offline in under 30 min, existing tail tests are deterministic across three runs, baseline shows no subdirectory records, and the inotify prototype sees runtime-created subdirectories.",
+   "steps": [
+    "In a throwaway networked Linux container, clone fluent-bit at tag v5.1.4 and record the HEAD SHA f4739648c0e91337331765edb9bd19da5a7a1a52.",
+    "Build with cmake and time it; then rerun the build offline to confirm no network is needed.",
+    "Run the existing tests/runtime tail tests three times; record per-test pass/fail to check determinism.",
+    "Confirm the baseline ignores subdirectories: create a tree with files in nested dirs, run in_tail with a ** path, and check no records from subdirs (should be none).",
+    "Prototype glob expansion for ** with a small standalone C file using opendir/fnmatch; check that subdirectory creation after start is seen by an inotify IN_CREATE watch.",
+    "Run the same inotify prototype in gVisor (runsc) if available, or record that it was not tested."
+   ]
+  },
+  "summary": "The seed is real (open upstream issue #2120 since 2020, no linked PR, v5.1.4 confirmed) and the 4.2 tail docs show no recursion or globstar, so no public lookup kills it. It is worth a spike, but the 8 h tier is too short for the full scope (I estimate ~14 frontier hours, so tier 20 h), smoke_build is empty, and the gVisor inotify behaviour is unverified.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-078",
+  "kill_code": "",
+  "note": "Real open issue #2120 with no public implementation, so it seals well. Weak points: the grading surface is hand-written scenarios that encode our own semantics for **, exclude and metadata, so other reasonable designs may fail. inotify under gVisor and timing-dependent rotation scenarios risk flakiness (K4). Scenarios need generous waits, or must accept stat-watcher fallback output. The tier was already moved to 20 h. The reference is unwritten, and the build time of the large CMake tree is unknown.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 66
+}
