@@ -1,0 +1,186 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 char
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 sign
+sym 7 sign_7
+sym 8 sign_8
+sym 9 sign_9
+sym 10 kw
+sym 11 kw_11
+sym 12 ws
+sym 13 char_13
+sym 14 char_14
+sym 15 char_15
+sym 16 char_16
+sym 17 char_17
+sym 18 char_18
+rule 0: 2:4 2:5 0:0
+rule 1: 2:2 3:123 2:3 0:0
+rule 2: 3:49 5:53 6:97 5:122 6:49 5:53 4:1024 5:1279 2:13 2:14 1:0 3:1024 5:1279 6:223 6:48 5:57 2:15 3:91 3:93 3:91 3:93 3:91 3:93 2:17 2:18 0:0
+rule 3: 3:123 2:3 1:0 0:0
+rule 4: 2:1 1:0 0:0
+rule 5: 3:13 6:1024 5:1279 1:0 0:0
+rule 6: 7:0 2:7 2:8 3:233 2:9 0:0
+rule 7: 4:65 5:70 6:32 5:126 6:945 5:969 1:0 0:0
+rule 8: 3:32 5:126 1:0 0:0
+rule 9: 3:233 2:9 1:0 0:0
+rule 10: 2:11 0:0
+rule 11: 3:223 3:43 3:41 1:0 0:0
+rule 12: 2:2 4:97 5:102 6:62 6:97 5:122 1:0 7:0 0:0
+rule 13: 4:1024 5:1279 2:13 1:0 0:0
+rule 14: 2:6 1:0 0:0
+rule 15: 3:1024 5:1279 6:223 6:48 5:57 2:15 1:0 0:0
+rule 16: 3:91 3:93 1:0 0:0
+rule 17: 3:91 3:93 2:16 1:0 0:0
+rule 18: 3:93 3:8364 3:121 1:0 0:0
+print:
+root ::= root_4 root_5 
+root_1 ::= char [{] root_3 
+char ::= [1-5a-z1-5] [^<U+0400>-<U+04FF>] char_13 char_14 | [<U+0400>-<U+04FF><U+00DF>0-9] char_15 [[] []] [[] []] [[] []] char_17 char_18 
+root_3 ::= [{] root_3 | 
+root_4 ::= root_1 | 
+root_5 ::= [<U+000D><U+0400>-<U+04FF>] | 
+sign ::= .] sign_7 sign_8 [<U+00E9>] sign_9 
+sign_7 ::= [^A-F -~<U+03B1>-<U+03C9>] | 
+sign_8 ::= [ -~] | 
+sign_9 ::= [<U+00E9>] sign_9 | 
+kw ::= kw_11 
+kw_11 ::= [<U+00DF>] [+] [)] | 
+ws ::= char [^a-f>a-z] | .] 
+char_13 ::= [^<U+0400>-<U+04FF>] char_13 | 
+char_14 ::= sign | 
+char_15 ::= [<U+0400>-<U+04FF><U+00DF>0-9] char_15 | 
+char_16 ::= [[] []] | 
+char_17 ::= [[] []] char_16 | 
+char_18 ::= []] [<U+20AC>] [y] | 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 start
+sym 1 start_1
+sym 2 start_2
+sym 3 start_3
+sym 4 start_4
+sym 5 block
+sym 6 start_6
+sym 7 ws
+sym 8 ws_8
+sym 9 ws_9
+sym 10 elem
+sym 11 block_11
+sym 12 block_12
+sym 13 block_13
+sym 14 block_14
+sym 15 block_15
+sym 16 block_16
+sym 17 block_17
+sym 18 block_18
+sym 19 block_19
+sym 20 block_20
+rule 0: 2:1 1:0 3:40 3:97 2:3 2:4 2:5 2:5 2:5 2:6 0:0
+rule 1: 2:2 0:0
+rule 2: 4:59 6:45 6:45 1:0 0:0
+rule 3: 3:40 3:97 2:3 1:0 0:0
+rule 4: 4:61 1:0 0:0
+rule 5: 4:945 5:969 6:48 5:57 6:49 5:53 2:10 1:0 3:120 6:945 5:969 6:55 3:223 2:11 0:0
+rule 6: 2:5 2:6 1:0 0:0
+rule 7: 2:8 1:0 2:9 3:60 3:8364 3:60 0:0
+rule 8: 3:122 2:8 1:0 0:0
+rule 9: 7:0 2:9 1:0 0:0
+rule 10: 4:49 5:53 0:0
+rule 11: 2:12 2:14 1:0 3:34 3:46 3:59 2:18 1:0 2:20 3:42 3:57 2:10 0:0
+rule 12: 7:0 7:0 2:13 0:0
+rule 13: 7:0 2:13 1:0 0:0
+rule 14: 2:12 2:14 1:0 0:0
+rule 15: 3:255 3:10 1:0 2:10 3:95 3:95 3:95 2:16 7:0 2:17 1:0 3:98 5:100 6:97 5:122 6:58 6:45 0:0
+rule 16: 3:95 1:0 0:0
+rule 17: 2:10 2:17 1:0 0:0
+rule 18: 2:15 1:0 0:0
+rule 19: 2:10 0:0
+rule 20: 2:19 1:0 0:0
+print:
+start ::= start_1 | [(] [a] start_3 start_4 block block block start_6 
+start_1 ::= start_2 
+start_2 ::= [^;--] | 
+start_3 ::= [(] [a] start_3 | 
+start_4 ::= [^=] | 
+block ::= [^<U+03B1>-<U+03C9>0-91-5] elem | [x<U+03B1>-<U+03C9>7] [<U+00DF>] block_11 
+start_6 ::= block start_6 | 
+ws ::= ws_8 | ws_9 [<] [<U+20AC>] [<] 
+ws_8 ::= [z] ws_8 | 
+ws_9 ::= .] ws_9 | 
+elem ::= [^1-5] 
+block_11 ::= block_12 block_14 | ["] [.] [;] block_18 | block_20 [*] [9] elem 
+block_12 ::= ..] block_13 
+block_13 ::= .] block_13 | 
+block_14 ::= block_12 block_14 | 
+block_15 ::= [<U+00FF>] [<U+000A>] | elem [_] [_] [_] block_16 .] block_17 | [b-da-z:-] 
+block_16 ::= [_] | 
+block_17 ::= elem block_17 | 
+block_18 ::= block_15 | 
+block_19 ::= elem 
+block_20 ::= block_19 | 
+end print
+init 0
+grammar 2
+parse 1
+sym 0 pair
+sym 1 pair_1
+sym 2 pair_2
+sym 3 pair_3
+sym 4 pair_4
+sym 5 pair_5
+sym 6 root
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 digit
+sym 11 digit_11
+sym 12 digit_12
+sym 13 value
+sym 14 value_14
+sym 15 value_15
+sym 16 term
+rule 0: 2:5 0:0
+rule 1: 2:2 1:0 2:3 3:93 2:4 3:36 0:0
+rule 2: 4:945 5:969 1:0 0:0
+rule 3: 3:97 5:102 6:45 1:0 0:0
+rule 4: 3:93 2:4 1:0 0:0
+rule 5: 2:1 1:0 0:0
+rule 6: 3:121 6:38 6:65 5:70 3:82 3:241 3:45 3:82 3:241 3:45 2:9 0:0
+rule 7: 3:82 3:241 3:45 1:0 0:0
+rule 8: 3:82 3:241 3:45 2:7 1:0 0:0
+rule 9: 3:82 3:241 3:45 2:8 1:0 0:0
+rule 10: 2:11 2:0 2:12 0:0
+rule 11: 2:0 2:0 0:0
+rule 12: 3:128512 3:38 3:10 3:83 2:12 1:0 0:0
+rule 13: 2:14 0:0
+rule 14: 1:0 2:15 2:0 0:0
+rule 15: 3:47 3:20013 2:15 1:0 0:0
+rule 16: 2:10 1:0 3:8364 3:10 3:241 0:0
+print:
+pair ::= pair_5 
+pair_1 ::= pair_2 | pair_3 []] pair_4 [$] 
+pair_2 ::= [^<U+03B1>-<U+03C9>] | 
+pair_3 ::= [a-f-] | 
+pair_4 ::= []] pair_4 | 
+pair_5 ::= pair_1 | 
+root ::= [y&A-F] [R] [<U+00F1>] [-] [R] [<U+00F1>] [-] root_9 
+root_7 ::= [R] [<U+00F1>] [-] | 
+root_8 ::= [R] [<U+00F1>] [-] root_7 | 
+root_9 ::= [R] [<U+00F1>] [-] root_8 | 
+digit ::= digit_11 pair digit_12 
+digit_11 ::= pair pair 
+digit_12 ::= [<U+1F600>] [&] [<U+000A>] [S] digit_12 | 
+value ::= value_14 
+value_14 ::= | value_15 pair 
+value_15 ::= [/] [<U+4E2D>] value_15 | 
+term ::= digit | [<U+20AC>] [<U+000A>] [<U+00F1>] 
+end print
+init 1

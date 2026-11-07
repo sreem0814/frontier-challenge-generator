@@ -1,0 +1,7 @@
+schema 0
+dot ::= [^\x0A\x0D]
+item ::= ref-defs-node
+ref-defs-node ::= "\"" (dot) "\""
+root ::= "[" space  space "]"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar

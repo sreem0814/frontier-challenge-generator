@@ -1,0 +1,141 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+sym 11 root_11
+sym 12 root_12
+sym 13 root_13
+sym 14 root_14
+sym 15 root_15
+sym 16 root_16
+sym 17 root_17
+sym 18 root_18
+sym 19 root_19
+sym 20 root_20
+sym 21 root_21
+sym 22 root_22
+sym 23 root_23
+sym 24 root_24
+sym 25 root_25
+sym 26 root_26
+sym 27 root_27
+sym 28 root_28
+sym 29 root_29
+rule 0: 3:10 6:65 5:70 6:128512 2:1 7:0 2:2 2:9 3:99 3:99 1:0 3:60 2:10 2:11 1:0 3:40 2:15 2:16 2:17 2:18 2:0 0:0
+rule 1: 3:10 6:65 5:70 6:128512 2:1 1:0 0:0
+rule 2: 2:3 1:0 2:4 2:8 0:0
+rule 3: 3:37 4:945 5:969 3:93 3:55 3:64 3:255 0:0
+rule 4: 3:48 6:98 5:100 2:5 1:0 3:10 2:6 3:128512 6:64 6:48 5:57 6:45 1:0 2:7 3:945 5:969 6:32 5:126 6:9 0:0
+rule 5: 3:48 6:98 5:100 2:5 1:0 0:0
+rule 6: 3:10 2:6 1:0 0:0
+rule 7: 3:97 3:98 3:55 3:33 2:7 1:0 0:0
+rule 8: 3:43 3:62 3:40 3:9 1:0 0:0
+rule 9: 2:2 2:9 1:0 0:0
+rule 10: 3:60 2:10 1:0 0:0
+rule 11: 3:33 3:33 1:0 3:125 1:0 4:48 6:41 7:0 7:0 7:0 2:14 0:0
+rule 12: 7:0 1:0 0:0
+rule 13: 7:0 2:12 1:0 0:0
+rule 14: 7:0 2:13 1:0 0:0
+rule 15: 3:83 6:120 6:49 5:53 2:15 1:0 0:0
+rule 16: 4:65 5:70 1:0 0:0
+rule 17: 3:91 6:121 1:0 0:0
+rule 18: 3:32 5:126 4:8364 2:19 2:21 2:22 1:0 3:37 3:40 3:57 2:29 0:0
+rule 19: 4:8364 2:19 1:0 0:0
+rule 20: 3:57 3:43 1:0 3:81 0:0
+rule 21: 2:20 2:21 1:0 0:0
+rule 22: 3:32 3:60 2:23 1:0 3:34 2:24 3:92 6:32 5:126 6:61 2:25 3:41 1:0 2:26 0:0
+rule 23: 3:32 3:60 2:23 1:0 0:0
+rule 24: 3:241 2:24 1:0 0:0
+rule 25: 3:92 6:32 5:126 6:61 2:25 1:0 0:0
+rule 26: 3:241 3:45 3:92 1:0 0:0
+rule 27: 1:0 1:0 2:28 3:20013 1:0 3:233 3:59 3:55 0:0
+rule 28: 3:38 3:20013 3:36 3:99 2:28 1:0 0:0
+rule 29: 2:27 1:0 0:0
+print:
+root ::= [<U+000A>A-F<U+1F600>] root_1 .] root_2 root_9 [c] [c] | [<] root_10 root_11 | [(] root_15 root_16 root_17 root_18 root 
+root_1 ::= [<U+000A>A-F<U+1F600>] root_1 | 
+root_2 ::= root_3 | root_4 root_8 
+root_3 ::= [%] [^<U+03B1>-<U+03C9>] []] [7] [@] [<U+00FF>] 
+root_4 ::= [0b-d] root_5 | [<U+000A>] root_6 [<U+1F600>@0-9-] | root_7 [<U+03B1>-<U+03C9> -~<U+0009>] 
+root_5 ::= [0b-d] root_5 | 
+root_6 ::= [<U+000A>] root_6 | 
+root_7 ::= [a] [b] [7] [!] root_7 | 
+root_8 ::= [+] [>] [(] [<U+0009>] | 
+root_9 ::= root_2 root_9 | 
+root_10 ::= [<] root_10 | 
+root_11 ::= [!] [!] | [}] | [^0)...] root_14 
+root_12 ::= .] | 
+root_13 ::= .] root_12 | 
+root_14 ::= .] root_13 | 
+root_15 ::= [Sx1-5] root_15 | 
+root_16 ::= [^A-F] | 
+root_17 ::= [[y] | 
+root_18 ::= [ -~] [^<U+20AC>] root_19 root_21 root_22 | [%] [(] [9] root_29 
+root_19 ::= [^<U+20AC>] root_19 | 
+root_20 ::= [9] [+] | [Q] 
+root_21 ::= root_20 root_21 | 
+root_22 ::= [ ] [<] root_23 | ["] root_24 [\ -~=] root_25 [)] | root_26 
+root_23 ::= [ ] [<] root_23 | 
+root_24 ::= [<U+00F1>] root_24 | 
+root_25 ::= [\ -~=] root_25 | 
+root_26 ::= [<U+00F1>] [-] [\] | 
+root_27 ::= | | root_28 [<U+4E2D>] | [<U+00E9>] [;] [7] 
+root_28 ::= [&] [<U+4E2D>] [$] [c] root_28 | 
+root_29 ::= root_27 | 
+end print
+init 1
+grammar 1
+parse 0
+init 0
+grammar 2
+parse 1
+sym 0 root
+sym 1 root_1
+rule 0: 2:1 0:0
+rule 1: 3:43 3:41 3:42 3:10 1:0 0:0
+print:
+root ::= root_1 
+root_1 ::= [+] [)] [*] [<U+000A>] | 
+end print
+init 1
+grammar 3
+parse 1
+sym 0 esc
+sym 1 root
+sym 2 esc_2
+sym 3 esc_3
+sym 4 esc_4
+sym 5 esc_5
+sym 6 esc_6
+sym 7 esc_7
+sym 8 esc_8
+rule 0: 3:8364 3:49 5:53 6:98 5:100 2:2 1:0 3:32 3:62 2:3 1:0 3:48 3:1024 5:1279 2:8 0:0
+rule 1: 2:0 0:0
+rule 2: 2:1 1:0 0:0
+rule 3: 2:4 2:5 1:0 2:6 3:83 3:83 3:83 2:7 3:20013 3:241 3:66376 0:0
+rule 4: 1:0 7:0 0:0
+rule 5: 2:4 2:5 1:0 0:0
+rule 6: 3:97 3:92 3:43 1:0 0:0
+rule 7: 3:20013 1:0 0:0
+rule 8: 2:1 1:0 0:0
+print:
+esc ::= [<U+20AC>] [1-5b-d] esc_2 | [ ] [>] esc_3 | [0] [<U+0400>-<U+04FF>] esc_8 
+root ::= esc 
+esc_2 ::= root | 
+esc_3 ::= esc_4 esc_5 | esc_6 [S] [S] [S] esc_7 [<U+4E2D>] [<U+00F1>] [<U+10348>] 
+esc_4 ::= | .] 
+esc_5 ::= esc_4 esc_5 | 
+esc_6 ::= [a] [\] [+] | 
+esc_7 ::= [<U+4E2D>] | 
+esc_8 ::= root | 
+end print
+init 0

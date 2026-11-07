@@ -1,0 +1,46 @@
+schema 0
+-x ::= "{" space  (-x-q-uote-kv -x-q-uote-rest | -x-x-y-kv -x-x-y-rest | -x-flag-kv -x-flag-rest | -x-additional-kv ( "," space -x-additional-kv )* )? space "}"
+-x-additional-k ::= ["] ( [f] ([l] ([a] ([g] char+ | [^"g] char*) | [^"a] char*) | [^"l] char*) | [q] (["] ([u] ([o] ([t] ([e] char+ | [^"e] char*) | [^"t] char*) | [^"o] char*) | [^"u] char*) | [^""] char*) | [x] ([-] ([y] char+ | [^"y] char*) | [^"-] char*) | [^"fqx] char* )? ["]
+-x-additional-kv ::= -x-additional-k ":" space -x-additional-value
+-x-additional-value ::= "\"back\\\\slash\""
+-x-flag ::= -x-flag-0 | -x-flag-1
+-x-flag-0 ::= "{\"count\":false}"
+-x-flag-1 ::= ("-" ([0-8] [0-9]{3,15} | [9] ([0-8] [0-9]{2,14} | [9] ([0-8] [0-9]{1,13} | [9] [0-9]{0,13}))))
+-x-flag-kv ::= "\"flag\"" space ":" space -x-flag
+-x-flag-rest ::= ( "," space -x-additional-kv )*
+-x-kv ::= "\"$x\"" space ":" space -x
+-x-q-uote ::= -x-q-uote-0 | -x-q-uote-1
+-x-q-uote-0 ::= ("\"\"")
+-x-q-uote-1 ::= ("\"123\"")
+-x-q-uote-kv ::= "\"q\\\"uote\"" space ":" space -x-q-uote
+-x-q-uote-rest ::= ( "," space -x-x-y-kv )? -x-x-y-rest
+-x-rest ::= ( "," space id-kv )? id-rest
+-x-x-y ::= "false"
+-x-x-y-kv ::= "\"x-y\"" space ":" space -x-x-y
+-x-x-y-rest ::= ( "," space -x-flag-kv )? -x-flag-rest
+a ::= ("{}")
+a-kv ::= "\"a\"" space ":" space a
+a-rest ::= ( "," space -x-kv )? -x-rest
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+dot ::= [^\x0A\x0D]
+id ::= "\"" (("?" [a-z] [äöü]) [a-c_] | dot* [^\]] [A-Fa-f0-9] | "bz" "c"{0,2} id-1{2,} ("a9x" (dot [\-+] "@1" | "b1" [xyz] dot | [\-+] "1" "@"{2,}) "|"{2,} | "@@" ([0-9] "q") | "x")+) "\""
+id-1 ::= [\-+]
+id-kv ::= "\"id\"" space ":" space id
+id-rest ::= ( "," space z-kv )?
+null ::= "null"
+root ::= "{" space  (a-kv a-rest | -x-kv -x-rest | id-kv id-rest | z-kv )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+string ::= "\"" char* "\""
+z ::= z-0 | z-1 | z-2
+z-0 ::= "[" space string? space "]"
+z-1 ::= "{" space z-1--x-kv "," space z-1-count-kv "," space z-1-age-kv space "}"
+z-1--x ::= ("0" | "[\"😀\"]" | "1e+20" | "1")
+z-1--x-kv ::= "\"$x\"" space ":" space z-1--x
+z-1-age ::= "\""  "\""
+z-1-age-kv ::= "\"age\"" space ":" space z-1-age
+z-1-count-kv ::= "\"count\"" space ":" space null
+z-2 ::= ("900719925474" ([0] ("99" [2-9]) | [1] [0-9]{3} | [2] ([0-1] [0-9]{2} | [2] ([0-1] [0-9] | [2] [0-5]))))
+z-kv ::= "\"z\"" space ":" space z
+end grammar
+schema 1
+THROW

@@ -1,0 +1,4 @@
+init 1
+state awaiting=0 stacks=3 empty=1 partial=0/0 buf=
+allowed 70 bc56d3c7b50e7b67
+allowed 70 bc56d3c7b50e7b67

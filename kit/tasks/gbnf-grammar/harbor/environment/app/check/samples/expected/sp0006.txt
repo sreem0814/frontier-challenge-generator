@@ -1,0 +1,76 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 expr
+sym 3 expr_3
+sym 4 expr_4
+sym 5 expr_5
+sym 6 expr_6
+sym 7 expr_7
+sym 8 factor
+sym 9 expr_9
+sym 10 expr_10
+sym 11 expr_11
+sym 12 expr_12
+sym 13 expr_13
+sym 14 expr_14
+sym 15 expr_15
+sym 16 expr_16
+sym 17 expr_17
+sym 18 expr_18
+sym 19 factor_19
+rule 0: 4:98 5:100 1:0 3:33 6:48 5:57 6:98 5:100 2:1 0:0
+rule 1: 2:0 1:0 0:0
+rule 2: 2:3 2:5 7:0 7:0 2:6 3:64 3:20013 3:57 2:7 3:49 3:33 1:0 3:128512 3:128512 2:9 1:0 2:10 2:18 4:44 3:120 3:82 3:62 0:0
+rule 3: 3:10 2:4 3:223 0:0
+rule 4: 3:1024 5:1279 6:32 5:126 1:0 0:0
+rule 5: 2:3 2:5 1:0 0:0
+rule 6: 7:0 2:6 1:0 0:0
+rule 7: 3:64 3:20013 3:57 2:7 1:0 0:0
+rule 8: 4:97 5:122 3:55 2:19 0:0
+rule 9: 2:8 1:0 0:0
+rule 10: 3:98 5:100 6:58 2:10 1:0 0:0
+rule 11: 2:12 2:13 3:95 3:36 2:14 2:15 1:0 2:16 0:0
+rule 12: 3:44 6:65 5:70 2:8 0:0
+rule 13: 3:47 3:63 2:13 1:0 0:0
+rule 14: 3:95 3:36 2:14 1:0 0:0
+rule 15: 7:0 0:0
+rule 16: 4:97 5:122 6:97 5:122 6:20013 6:45 2:17 3:46 6:32 5:126 6:49 5:53 1:0 3:97 0:0
+rule 17: 4:97 5:122 6:97 5:122 6:20013 6:45 2:17 1:0 0:0
+rule 18: 2:11 2:18 1:0 0:0
+rule 19: 3:55 2:19 1:0 0:0
+print:
+root ::= [^b-d] | [!0-9b-d] root_1 
+root_1 ::= root | 
+expr ::= expr_3 expr_5 ..] expr_6 [@] [<U+4E2D>] [9] expr_7 [1] [!] | [<U+1F600>] [<U+1F600>] expr_9 | expr_10 expr_18 [^,] [x] [R] [>] 
+expr_3 ::= [<U+000A>] expr_4 [<U+00DF>] 
+expr_4 ::= [<U+0400>-<U+04FF> -~] | 
+expr_5 ::= expr_3 expr_5 | 
+expr_6 ::= .] expr_6 | 
+expr_7 ::= [@] [<U+4E2D>] [9] expr_7 | 
+factor ::= [^a-z] [7] factor_19 
+expr_9 ::= factor | 
+expr_10 ::= [b-d:] expr_10 | 
+expr_11 ::= expr_12 expr_13 [_] [$] expr_14 expr_15 | expr_16 
+expr_12 ::= [,A-F] factor 
+expr_13 ::= [/] [?] expr_13 | 
+expr_14 ::= [_] [$] expr_14 | 
+expr_15 ::= .] 
+expr_16 ::= [^a-za-z<U+4E2D>-] expr_17 [. -~1-5] | [a] 
+expr_17 ::= [^a-za-z<U+4E2D>-] expr_17 | 
+expr_18 ::= expr_11 expr_18 | 
+factor_19 ::= [7] factor_19 | 
+end print
+init 1
+grammar 1
+parse 0
+init 0
+grammar 2
+parse 1
+sym 0 root
+rule 0: 3:125 3:58 0:0
+print:
+root ::= [}] [:] 
+end print
+init 1

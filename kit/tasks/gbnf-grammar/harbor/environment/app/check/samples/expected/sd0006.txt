@@ -1,0 +1,5 @@
+schema 0
+root
+  kind 7 types 02 str 0
+schema 1
+THROW

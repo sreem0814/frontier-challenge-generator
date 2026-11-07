@@ -1,0 +1,9 @@
+schema 0
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+item ::= "{" space  (item-items-kv )? space "}"
+item-items ::= string
+item-items-kv ::= "\"items\"" space ":" space item-items
+root ::= "[" space (item ("," space item)*)? space "]"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+string ::= "\"" char* "\""
+end grammar

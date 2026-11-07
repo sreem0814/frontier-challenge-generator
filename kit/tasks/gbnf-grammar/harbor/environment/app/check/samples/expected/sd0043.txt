@@ -1,0 +1,6 @@
+schema 0
+root
+  kind 0 types 7f str 0
+schema 1
+root
+  kind 10 types 10 str 1 pattern 5e5b61626324 format 0 len 0 -1

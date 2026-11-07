@@ -1,0 +1,5 @@
+schema 0
+root
+  kind 10 types 10 str 1 pattern  format 1 len 0 -1
+schema 1
+THROW

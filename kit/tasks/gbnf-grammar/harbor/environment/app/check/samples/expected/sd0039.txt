@@ -1,0 +1,5 @@
+schema 0
+root
+  kind 13 types 40 str 0 props 0 additional 1
+    additional
+      kind 0 types 7f str 0

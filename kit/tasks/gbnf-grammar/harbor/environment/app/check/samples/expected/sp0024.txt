@@ -1,0 +1,121 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 digit
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+sym 11 root_11
+sym 12 root_12
+sym 13 root_13
+sym 14 root_14
+sym 15 root_15
+sym 16 root_16
+sym 17 root_17
+sym 18 root_18
+sym 19 digit_19
+sym 20 digit_20
+rule 0: 3:45 3:32 3:241 1:0 3:128512 2:1 2:10 2:11 2:0 1:0 3:92 3:83 6:97 5:102 6:125 2:14 2:15 3:38 3:98 3:97 3:8364 3:38 3:98 3:97 3:8364 3:32 5:126 3:32 5:126 3:32 5:126 2:17 2:18 0:0
+rule 1: 7:0 1:0 2:3 3:945 5:969 6:98 5:100 2:2 2:4 2:6 1:0 3:43 3:81 3:945 5:969 3:945 5:969 3:945 5:969 2:2 2:7 0:0
+rule 2: 1:0 2:19 1:0 2:20 3:48 3:37 3:42 3:64 3:10 0:0
+rule 3: 2:2 1:0 0:0
+rule 4: 2:5 3:82 3:58 3:8364 3:97 3:45 1:0 3:95 3:33 7:0 4:32 5:126 0:0
+rule 5: 3:35 1:0 0:0
+rule 6: 2:4 2:6 1:0 0:0
+rule 7: 3:9 2:8 1:0 3:32 5:126 6:48 5:57 2:2 2:2 2:9 0:0
+rule 8: 3:9 2:8 1:0 0:0
+rule 9: 2:2 1:0 0:0
+rule 10: 3:65 5:70 1:0 0:0
+rule 11: 2:12 0:0
+rule 12: 3:120 3:123 3:49 3:47 2:13 0:0
+rule 13: 7:0 1:0 0:0
+rule 14: 3:83 6:97 5:102 6:125 2:14 1:0 0:0
+rule 15: 2:16 0:0
+rule 16: 3:98 5:100 2:16 1:0 0:0
+rule 17: 3:32 5:126 1:0 0:0
+rule 18: 2:0 1:0 0:0
+rule 19: 7:0 0:0
+rule 20: 3:38 3:128512 3:83 2:20 1:0 0:0
+print:
+root ::= [-] [ ] [<U+00F1>] | [<U+1F600>] root_1 root_10 root_11 root | [\] [Sa-f}] root_14 root_15 [&] [b] [a] [<U+20AC>] [&] [b] [a] [<U+20AC>] [ -~] [ -~] [ -~] root_17 root_18 
+root_1 ::= .] | root_3 [<U+03B1>-<U+03C9>b-d] digit root_4 root_6 | [+] [Q] [<U+03B1>-<U+03C9>] [<U+03B1>-<U+03C9>] [<U+03B1>-<U+03C9>] digit root_7 
+digit ::= | digit_19 | digit_20 [0] [%] [*] [@] [<U+000A>] 
+root_3 ::= digit | 
+root_4 ::= root_5 [R] [:] [<U+20AC>] [a] [-] | [_] [!.] [^ -~] 
+root_5 ::= [#] | 
+root_6 ::= root_4 root_6 | 
+root_7 ::= [<U+0009>] root_8 | [ -~0-9] digit digit root_9 
+root_8 ::= [<U+0009>] root_8 | 
+root_9 ::= digit | 
+root_10 ::= [A-F] | 
+root_11 ::= root_12 
+root_12 ::= [x] [{] [1] [/] root_13 
+root_13 ::= .] | 
+root_14 ::= [Sa-f}] root_14 | 
+root_15 ::= root_16 
+root_16 ::= [b-d] root_16 | 
+root_17 ::= [ -~] | 
+root_18 ::= root | 
+digit_19 ::= .] 
+digit_20 ::= [&] [<U+1F600>] [S] digit_20 | 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 ws
+sym 8 ws_8
+sym 9 ws_9
+sym 10 seq
+sym 11 ws_11
+sym 12 sep
+sym 13 sep_13
+sym 14 sep_14
+sym 15 sep_15
+rule 0: 3:8364 3:120 3:32 3:41 2:1 2:6 2:7 3:48 5:57 6:65 5:70 0:0
+rule 1: 2:2 2:5 1:0 3:241 6:55 3:98 5:100 7:0 3:47 0:0
+rule 2: 2:3 4:49 5:53 6:48 5:57 6:65 1:0 2:4 1:0 0:0
+rule 3: 3:49 5:53 6:98 5:100 1:0 0:0
+rule 4: 3:83 2:4 1:0 0:0
+rule 5: 3:10 6:233 1:0 0:0
+rule 6: 2:1 2:6 1:0 0:0
+rule 7: 2:8 3:1024 5:1279 3:1024 5:1279 3:1024 5:1279 2:11 3:42 3:99 3:59 3:36 0:0
+rule 8: 3:8364 3:8364 2:9 0:0
+rule 9: 3:8364 3:8364 2:9 1:0 0:0
+rule 10: 3:49 5:53 6:955 0:0
+rule 11: 2:10 1:0 0:0
+rule 12: 4:41 6:125 6:123 2:10 2:13 2:15 0:0
+rule 13: 3:63 3:8364 1:0 0:0
+rule 14: 2:10 2:10 2:10 0:0
+rule 15: 2:14 2:15 1:0 0:0
+print:
+root ::= [<U+20AC>] [x] [ ] [)] root_1 root_6 ws [0-9A-F] 
+root_1 ::= root_2 root_5 | [<U+00F1>7] [b-d.] [/] 
+root_2 ::= root_3 [^1-50-9A] | root_4 | 
+root_3 ::= [1-5b-d] | 
+root_4 ::= [S] root_4 | 
+root_5 ::= [<U+000A><U+00E9>] | 
+root_6 ::= root_1 root_6 | 
+ws ::= ws_8 [<U+0400>-<U+04FF>] [<U+0400>-<U+04FF>] [<U+0400>-<U+04FF>] ws_11 [*] [c] [;] [$] 
+ws_8 ::= [<U+20AC>] [<U+20AC>] ws_9 
+ws_9 ::= [<U+20AC>] [<U+20AC>] ws_9 | 
+seq ::= [1-5<U+03BB>] 
+ws_11 ::= seq | 
+sep ::= [^)}{] seq sep_13 sep_15 
+sep_13 ::= [?] [<U+20AC>] | 
+sep_14 ::= seq seq seq 
+sep_15 ::= sep_14 sep_15 | 
+end print
+init 1

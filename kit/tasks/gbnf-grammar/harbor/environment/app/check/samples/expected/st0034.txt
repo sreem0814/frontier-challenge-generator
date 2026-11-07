@@ -1,0 +1,23 @@
+init 1
+state awaiting=0 stacks=4 empty=0 partial=0/0 buf=
+allowed 9485 45b8ba361c921cb8
+accept 17063
+state awaiting=0 stacks=3 empty=1 partial=28595/0 buf=
+allowed 9486 573aed9a25f439f1
+accept 27401
+state awaiting=0 stacks=3 empty=1 partial=25242/0 buf=
+allowed 9486 573aed9a25f439f1
+accept 25790
+state awaiting=0 stacks=3 empty=1 partial=20018/0 buf=
+token 4 allowed=1 of 9486
+accept 4
+state awaiting=0 stacks=4 empty=1 partial=37/0 buf=
+token 21043 allowed=1 of 9486
+accept 21043
+state awaiting=0 stacks=4 empty=1 partial=37/0 buf=
+token 8973 allowed=1 of 9486
+accept 8973
+state awaiting=0 stacks=3 empty=1 partial=123/0 buf=
+token 11413 allowed=1 of 9486
+accept 11413
+state awaiting=0 stacks=4 empty=1 partial=37/0 buf=

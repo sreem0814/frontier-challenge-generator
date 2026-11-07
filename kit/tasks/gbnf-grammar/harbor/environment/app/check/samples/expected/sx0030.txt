@@ -1,0 +1,5 @@
+schema 0
+null ::= "null"
+root ::= "[" space null space "]"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar

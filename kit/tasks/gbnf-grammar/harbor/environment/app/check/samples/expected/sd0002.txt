@@ -1,0 +1,15 @@
+schema 0
+root
+  kind 13 types 40 str 0 props 3 additional 0
+    prop 62 required 1
+      kind 5 types 12 str 1 n 2 2268656c6c6f22 66616c7365
+    prop 77697468207370616365 required 1
+      kind 12 types 20 str 0 n 2
+        kind 13 types 40 str 0 props 1 additional 0
+          prop 6261636b5c736c617368 required 0
+            kind 5 types 32 str 1 n 4 2231323322 74727565 5b5b5d5d 5b66616c73652c226e65775c6e6c696e65225d
+        kind 9 types 08 str 0 min -9223372036854775808 max 9223372036854775807
+    prop 6e6573746564 required 1
+      kind 13 types 40 str 0 props 0 additional 1
+        additional
+          kind 0 types 7f str 0

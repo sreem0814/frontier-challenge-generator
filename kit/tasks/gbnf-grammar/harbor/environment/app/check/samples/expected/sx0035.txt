@@ -1,0 +1,23 @@
+schema 0
+a ::= "\"" (("1"+ (a-1{0,2} "_z" "9"{0,2}) [^\]]) ([^ ] "x"{2,} "0@" | a-2{2,2} "1-" "x"{0,2} | ":" ("0b+ay" | [^ ]) "0c1")) "\""
+a-1 ::= [\x41-\x5A]
+a-2 ::= dot
+a-kv ::= "\"a\"" space ":" space a
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+decimal-part ::= [0-9]{1,16}
+dot ::= [^\x0A\x0D]
+id ::= "{" space  (id--n--kv id--n--rest | id-list-kv id-list-rest | id-additional-kv ( "," space id-additional-kv )* )? space "}"
+id--n- ::= ("[42,[]]" | "false")
+id--n--kv ::= "\"ünï\"" space ":" space id--n-
+id--n--rest ::= ( "," space id-list-kv )? id-list-rest
+id-additional-k ::= ["] ( [l] ([i] ([s] ([t] char+ | [^"t] char*) | [^"s] char*) | [^"i] char*) | [ü] ([n] ([ï] char+ | [^"ï] char*) | [^"n] char*) | [^"lü] char* )? ["]
+id-additional-kv ::= id-additional-k ":" space number
+id-kv ::= "\"id\"" space ":" space id
+id-list ::= "\"true\""
+id-list-kv ::= "\"list\"" space ":" space id-list
+id-list-rest ::= ( "," space id-additional-kv )*
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+number ::= ("-"? integral-part) ("." decimal-part)? ([eE] [-+]? integral-part)?
+root ::= "{" space id-kv "," space a-kv space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar

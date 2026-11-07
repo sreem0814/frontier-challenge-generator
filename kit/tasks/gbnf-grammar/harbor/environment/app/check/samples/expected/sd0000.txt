@@ -1,0 +1,3 @@
+schema 0
+root
+  kind 8 types 0c str 0

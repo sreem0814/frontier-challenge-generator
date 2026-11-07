@@ -1,0 +1,15 @@
+schema 0
+boolean ::= ("true" | "false")
+id ::= ref-definitions-a-b
+id-kv ::= "\"id\"" space ":" space id
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+q-uote ::= ref-definitions-Item
+q-uote-kv ::= "\"q\\\"uote\"" space ":" space q-uote
+q-uote-rest ::= ( "," space id-kv )?
+ref-definitions-Item ::= boolean | integer
+ref-definitions-a-b ::= ("-" [1-9] [0-9]{0,15} | [0-7])
+root ::= "{" space  (q-uote-kv q-uote-rest | id-kv )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar
+literal 222d5d22

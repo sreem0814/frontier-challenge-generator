@@ -1,0 +1,27 @@
+[task]
+name = "cg/gbnf-grammar"
+description = "Rebuild llama.cpp's GBNF grammar engine (parser, pushdown stacks, token-level constraint, lazy triggers), its JSON schema document builder and its JSON-schema-to-GBNF converter at commit 39da130, in a tree where those three implementations were removed, matching upstream behaviour on unseen grammars, token streams and schemas."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["cpp"]
+category = "parsers"
+difficulty = "frontier"
+tags = ["llama.cpp", "gbnf", "grammar", "json-schema", "constrained-decoding", "pushdown-automaton", "c++"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"

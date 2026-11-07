@@ -1,0 +1,14 @@
+schema 0
+root
+  kind 4 types 40 str 0 value 7b7d
+schema 1
+root
+  kind 13 types 40 str 0 props 2 additional 1
+    prop c3bc6ec3af required 0
+      kind 9 types 08 str 0 min -9223372036854775808 max 98999
+    prop 2478 required 0
+      kind 12 types 20 str 0 n 1
+        kind 11 types 20 str 0 items 1 -1
+          kind 10 types 10 str 1 pattern  format 0 len 0 -1
+    additional
+      kind 0 types 7f str 0

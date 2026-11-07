@@ -1,0 +1,8 @@
+schema 0
+root
+  kind 10 types 10 str 1 pattern 5e2d20637c6278627b302c327d28637939283f3a5bc3a4c3b6c3bc5d292b5c287c5b5e205d7b327d2924 format 0 len 0 -1
+schema 1
+root
+  kind 10 types 10 str 1 pattern  format 3 len 0 -1
+schema 2
+THROW

@@ -1,0 +1,100 @@
+grammar 0
+parse 1
+sym 0 ws
+sym 1 ws_1
+sym 2 ws_2
+sym 3 ws_3
+sym 4 ws_4
+sym 5 root
+sym 6 root_6
+sym 7 root_7
+rule 0: 2:1 2:4 1:0 4:55 6:45 4:49 5:53 1:0 3:42 3:36 3:42 3:66376 0:0
+rule 1: 3:97 1:0 2:2 2:3 0:0
+rule 2: 3:36 3:61 2:2 1:0 0:0
+rule 3: 3:99 4:241 0:0
+rule 4: 2:1 2:4 1:0 0:0
+rule 5: 3:65 5:70 3:122 2:6 7:0 2:7 0:0
+rule 6: 3:122 2:6 1:0 0:0
+rule 7: 2:5 1:0 0:0
+print:
+ws ::= ws_1 ws_4 | [^7-] [^1-5] | [*] [$] [*] [<U+10348>] 
+ws_1 ::= [a] | ws_2 ws_3 
+ws_2 ::= [$] [=] ws_2 | 
+ws_3 ::= [c] [^<U+00F1>] 
+ws_4 ::= ws_1 ws_4 | 
+root ::= [A-F] [z] root_6 .] root_7 
+root_6 ::= [z] root_6 | 
+root_7 ::= root | 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 kw
+sym 1 kw_1
+sym 2 kw_2
+sym 3 kw_3
+sym 4 kw_4
+sym 5 kw_5
+sym 6 kw_6
+sym 7 key
+sym 8 kw_8
+sym 9 kw_9
+sym 10 key_10
+sym 11 key_11
+sym 12 pair
+sym 13 pair_13
+sym 14 pair_14
+sym 15 pair_15
+sym 16 pair_16
+sym 17 pair_17
+sym 18 root
+sym 19 root_19
+sym 20 root_20
+rule 0: 3:46 2:1 4:36 2:9 2:0 1:0 7:0 0:0
+rule 1: 3:46 3:38 2:2 1:0 2:3 2:6 2:8 3:47 3:120 3:125 0:0
+rule 2: 3:46 3:38 2:2 1:0 0:0
+rule 3: 7:0 0:0
+rule 4: 2:5 1:0 4:65 0:0
+rule 5: 3:40 3:48 2:5 1:0 0:0
+rule 6: 2:4 2:6 1:0 0:0
+rule 7: 2:10 3:126 2:11 0:0
+rule 8: 2:7 1:0 0:0
+rule 9: 0:0
+rule 10: 4:98 5:100 2:10 1:0 0:0
+rule 11: 3:126 2:11 1:0 0:0
+rule 12: 2:13 2:16 3:20013 3:20013 3:20013 1:0 4:48 5:57 6:1024 5:1279 6:65 5:70 2:17 0:0
+rule 13: 3:61 6:1024 5:1279 2:13 1:0 0:0
+rule 14: 3:62 1:0 0:0
+rule 15: 3:62 2:14 1:0 0:0
+rule 16: 3:62 2:15 1:0 0:0
+rule 17: 4:48 5:57 6:1024 5:1279 6:65 5:70 2:17 1:0 0:0
+rule 18: 3:63 2:19 2:12 2:18 1:0 3:97 5:122 6:45 3:48 3:128512 3:128512 2:20 1:0 3:945 5:969 3:10 2:7 0:0
+rule 19: 3:1024 5:1279 6:64 6:59 1:0 0:0
+rule 20: 3:128512 2:20 1:0 0:0
+print:
+kw ::= [.] kw_1 [^$] kw_9 kw | .] 
+kw_1 ::= [.] [&] kw_2 | kw_3 kw_6 kw_8 [/] [x] [}] 
+kw_2 ::= [.] [&] kw_2 | 
+kw_3 ::= .] 
+kw_4 ::= kw_5 | [^A] 
+kw_5 ::= [(] [0] kw_5 | 
+kw_6 ::= kw_4 kw_6 | 
+key ::= key_10 [~] key_11 
+kw_8 ::= key | 
+kw_9 ::= 
+key_10 ::= [^b-d] key_10 | 
+key_11 ::= [~] key_11 | 
+pair ::= pair_13 pair_16 [<U+4E2D>] [<U+4E2D>] [<U+4E2D>] | [^0-9<U+0400>-<U+04FF>A-F] pair_17 
+pair_13 ::= [=<U+0400>-<U+04FF>] pair_13 | 
+pair_14 ::= [>] | 
+pair_15 ::= [>] pair_14 | 
+pair_16 ::= [>] pair_15 | 
+pair_17 ::= [^0-9<U+0400>-<U+04FF>A-F] pair_17 | 
+root ::= [?] root_19 pair root | [a-z-] [0] [<U+1F600>] [<U+1F600>] root_20 | [<U+03B1>-<U+03C9>] [<U+000A>] key 
+root_19 ::= [<U+0400>-<U+04FF>@;] | 
+root_20 ::= [<U+1F600>] root_20 | 
+end print
+init 1
+grammar 2
+parse 0
+init 0

@@ -1,0 +1,67 @@
+init 1
+state awaiting=0 stacks=3 empty=0 partial=0/0 buf=
+allowed 98 3ab0f8637d8d9079
+accept 8164
+state awaiting=0 stacks=2 empty=1 partial=1087/0 buf=
+allowed 5 09fefdaf5d3b9c1a 160 3574 16325 128001 128009
+accept 160
+state awaiting=0 stacks=1 empty=0 partial=4/2 buf=
+allowed 1 aeea3a6796fba2e7 116
+accept 116
+state awaiting=0 stacks=1 empty=0 partial=312/1 buf=
+allowed 1 d17992662b2a093c 255
+accept 255
+state awaiting=0 stacks=3 empty=1 partial=20013/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 160
+state awaiting=0 stacks=2 empty=0 partial=4/2 buf=
+clone
+state awaiting=0 stacks=2 empty=0 partial=4/2 buf=
+allowed 1 aeea3a6796fba2e7 116
+accept 116
+state awaiting=0 stacks=2 empty=0 partial=312/1 buf=
+allowed 1 d17992662b2a093c 255
+accept 255
+state awaiting=0 stacks=3 empty=1 partial=20013/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 16325
+state awaiting=0 stacks=3 empty=1 partial=20013/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 198
+state awaiting=0 stacks=1 empty=0 partial=10/0 buf=
+allowed 1 70f45f3696697365 22
+accept 22
+state awaiting=0 stacks=1 empty=0 partial=55/0 buf=
+allowed 1 9059dc285a7fcfd2 49
+accept 49
+state awaiting=0 stacks=3 empty=1 partial=82/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 16325
+state awaiting=0 stacks=3 empty=1 partial=20013/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 198
+state awaiting=0 stacks=1 empty=0 partial=10/0 buf=
+allowed 1 70f45f3696697365 22
+accept 22
+state awaiting=0 stacks=1 empty=0 partial=55/0 buf=
+allowed 1 9059dc285a7fcfd2 49
+accept 49
+state awaiting=0 stacks=3 empty=1 partial=82/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 160
+state awaiting=0 stacks=2 empty=0 partial=4/2 buf=
+allowed 1 aeea3a6796fba2e7 116
+accept 116
+state awaiting=0 stacks=2 empty=0 partial=312/1 buf=
+allowed 1 d17992662b2a093c 255
+accept 255
+state awaiting=0 stacks=3 empty=1 partial=20013/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 3574
+state awaiting=0 stacks=2 empty=0 partial=312/1 buf=
+allowed 1 d17992662b2a093c 255
+accept 255
+state awaiting=0 stacks=3 empty=1 partial=20013/0 buf=
+allowed 6 0db08b83edec8424 160 198 3574 16325 128001 128009
+accept 160
+state awaiting=0 stacks=2 empty=0 partial=4/2 buf=

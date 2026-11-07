@@ -1,0 +1,11 @@
+schema 0
+root
+  kind 10 types 10 str 1 pattern  format 0 len 0 -1
+schema 1
+root
+  kind 13 types 40 str 0 props 0 additional 1
+    additional
+      kind 0 types 7f str 0
+schema 2
+root
+  kind 9 types 08 str 0 min -9223372036854775808 max 9223372036854775807

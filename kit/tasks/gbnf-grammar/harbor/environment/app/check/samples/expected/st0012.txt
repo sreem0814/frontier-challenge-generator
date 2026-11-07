@@ -1,0 +1,39 @@
+init 1
+state awaiting=0 stacks=3 empty=0 partial=0/0 buf=
+allowed 1699 70bf03a6a013ca98
+accept 51234
+state awaiting=0 stacks=1 empty=0 partial=24537/0 buf=
+allowed 1 1099cbc44ffaf906 37
+accept 37
+state awaiting=0 stacks=1 empty=0 partial=58/0 buf=
+allowed 110 6afd348cd710df8b
+accept 24169
+state awaiting=0 stacks=3 empty=0 partial=55/0 buf=
+allowed 62523 51163665374ee964
+allowed 62523 51163665374ee964
+accept 20974
+state awaiting=0 stacks=3 empty=0 partial=110/0 buf=
+allowed 62523 51163665374ee964
+accept 54538
+state awaiting=0 stacks=3 empty=0 partial=102/0 buf=
+allowed 62523 51163665374ee964
+accept 34601
+state awaiting=0 stacks=3 empty=0 partial=115/0 buf=
+allowed 62523 51163665374ee964
+accept 23627
+state awaiting=0 stacks=3 empty=0 partial=110/0 buf=
+allowed 62523 51163665374ee964
+accept 18235
+state awaiting=0 stacks=3 empty=0 partial=111/0 buf=
+allowed 62523 51163665374ee964
+accept 3433
+state awaiting=0 stacks=3 empty=0 partial=115/0 buf=
+allowed 62523 51163665374ee964
+accept 19719
+state awaiting=0 stacks=3 empty=0 partial=122/0 buf=
+allowed 62523 51163665374ee964
+accept 21763
+state awaiting=0 stacks=3 empty=0 partial=121/0 buf=
+allowed 62523 51163665374ee964
+accept 5617
+state awaiting=0 stacks=3 empty=0 partial=99/0 buf=

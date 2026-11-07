@@ -1,0 +1,171 @@
+grammar 0
+parse 1
+sym 0 sep
+sym 1 item
+sym 2 sep_2
+sym 3 sep_3
+sym 4 sep_4
+sym 5 sep_5
+sym 6 item_6
+sym 7 root
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+sym 11 expr
+sym 12 root_12
+sym 13 root_13
+sym 14 expr_14
+rule 0: 2:2 3:49 1:0 2:5 4:945 5:969 6:55 0:0
+rule 1: 3:34 3:44 3:41 3:59 4:98 5:100 6:49 5:53 2:6 0:0
+rule 2: 2:1 1:0 0:0
+rule 3: 3:61 3:63 2:4 2:1 0:0
+rule 4: 3:61 3:63 2:4 1:0 0:0
+rule 5: 2:3 1:0 0:0
+rule 6: 3:32 5:126 6:48 5:57 6:125 1:0 0:0
+rule 7: 4:945 5:969 6:98 5:100 2:8 2:12 2:13 0:0
+rule 8: 4:98 5:100 6:97 5:102 6:47 2:9 2:10 1:0 2:11 1:0 3:48 5:57 6:92 6:49 5:53 3:82 3:10 3:126 2:0 3:97 5:122 6:8364 0:0
+rule 9: 4:9 1:0 0:0
+rule 10: 2:1 2:10 1:0 0:0
+rule 11: 7:0 2:14 3:47 3:241 3:63 0:0
+rule 12: 2:1 1:0 0:0
+rule 13: 2:7 1:0 0:0
+rule 14: 7:0 2:14 1:0 0:0
+print:
+sep ::= sep_2 [1] | sep_5 [^<U+03B1>-<U+03C9>7] 
+item ::= ["] [,] [)] [;] [^b-d1-5] item_6 
+sep_2 ::= item | 
+sep_3 ::= [=] [?] sep_4 item 
+sep_4 ::= [=] [?] sep_4 | 
+sep_5 ::= sep_3 | 
+item_6 ::= [ -~0-9}] | 
+root ::= [^<U+03B1>-<U+03C9>b-d] root_8 root_12 root_13 
+root_8 ::= [^b-da-f/] root_9 root_10 | expr | [0-9\1-5] [R] [<U+000A>] [~] sep [a-z<U+20AC>] 
+root_9 ::= [^<U+0009>] | 
+root_10 ::= item root_10 | 
+expr ::= .] expr_14 [/] [<U+00F1>] [?] 
+root_12 ::= item | 
+root_13 ::= root | 
+expr_14 ::= .] expr_14 | 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 root
+sym 1 elem
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 word
+sym 6 word_6
+sym 7 word_7
+sym 8 word_8
+sym 9 word_9
+sym 10 word_10
+sym 11 word_11
+sym 12 frac
+sym 13 frac_13
+sym 14 frac_14
+sym 15 frac_15
+sym 16 seq
+sym 17 elem_17
+rule 0: 3:45 3:83 1:0 3:223 6:45 2:2 3:125 3:38 3:65 3:58 2:3 2:4 0:0
+rule 1: 3:120 4:65 5:70 2:17 0:0
+rule 2: 2:1 2:2 1:0 0:0
+rule 3: 3:125 3:38 3:65 3:58 2:3 1:0 0:0
+rule 4: 2:0 1:0 0:0
+rule 5: 2:6 2:11 3:49 3:121 3:65 6:99 0:0
+rule 6: 3:83 3:45 3:62 3:93 2:7 3:233 3:9 3:128512 3:233 3:9 3:128512 2:8 3:61 2:9 2:10 0:0
+rule 7: 3:83 3:45 3:62 3:93 2:7 1:0 0:0
+rule 8: 3:233 3:9 3:128512 1:0 0:0
+rule 9: 3:65 5:70 3:945 5:969 6:65 5:70 0:0
+rule 10: 2:9 2:10 1:0 0:0
+rule 11: 2:6 2:11 1:0 0:0
+rule 12: 3:63 2:14 1:0 4:1024 5:1279 6:58 3:945 3:60 3:20013 3:120 2:15 0:0
+rule 13: 3:63 1:0 0:0
+rule 14: 3:63 2:13 1:0 0:0
+rule 15: 2:5 1:0 0:0
+rule 16: 3:97 5:102 6:43 6:98 5:100 3:121 6:45 2:0 0:0
+rule 17: 3:47 6:58 6:33 6:45 2:17 1:0 0:0
+print:
+root ::= [-] [S] | [<U+00DF>-] root_2 [}] [&] [A] [:] root_3 root_4 
+elem ::= [x] [^A-F] elem_17 
+root_2 ::= elem root_2 | 
+root_3 ::= [}] [&] [A] [:] root_3 | 
+root_4 ::= root | 
+word ::= word_6 word_11 [1] [y] [Ac] 
+word_6 ::= [S] [-] [>] []] word_7 [<U+00E9>] [<U+0009>] [<U+1F600>] [<U+00E9>] [<U+0009>] [<U+1F600>] word_8 [=] word_9 word_10 
+word_7 ::= [S] [-] [>] []] word_7 | 
+word_8 ::= [<U+00E9>] [<U+0009>] [<U+1F600>] | 
+word_9 ::= [A-F] [<U+03B1>-<U+03C9>A-F] 
+word_10 ::= word_9 word_10 | 
+word_11 ::= word_6 word_11 | 
+frac ::= [?] frac_14 | [^<U+0400>-<U+04FF>:] [<U+03B1>] [<] [<U+4E2D>] [x] frac_15 
+frac_13 ::= [?] | 
+frac_14 ::= [?] frac_13 | 
+frac_15 ::= word | 
+seq ::= [a-f+b-d] [y-] root 
+elem_17 ::= [/:!-] elem_17 | 
+end print
+init 1
+grammar 2
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 atom
+sym 5 atom_5
+sym 6 char
+sym 7 atom_7
+sym 8 op
+sym 9 op_9
+sym 10 sign
+sym 11 sign_11
+sym 12 sign_12
+sym 13 char_13
+sym 14 char_14
+sym 15 char_15
+sym 16 char_16
+sym 17 char_17
+rule 0: 3:58 3:36 1:0 7:0 3:241 6:65 6:97 5:122 6:45 2:1 2:2 3:120 3:38 3:33 2:3 0:0
+rule 1: 3:241 6:65 6:97 5:122 6:45 2:1 1:0 0:0
+rule 2: 7:0 1:0 0:0
+rule 3: 3:120 3:38 3:33 2:3 1:0 0:0
+rule 4: 3:44 6:95 3:44 6:95 3:44 6:95 2:5 2:7 0:0
+rule 5: 7:0 2:5 1:0 0:0
+rule 6: 2:13 2:17 0:0
+rule 7: 2:6 1:0 0:0
+rule 8: 2:9 0:0
+rule 9: 3:122 3:93 2:9 1:0 0:0
+rule 10: 3:121 6:48 5:57 6:48 5:57 3:121 6:48 5:57 6:48 5:57 2:11 1:0 3:122 3:120 3:35 3:55 3:223 4:97 6:49 5:53 3:8364 3:99 3:255 3:223 3:8364 3:99 3:255 3:223 2:12 0:0
+rule 11: 3:121 6:48 5:57 6:48 5:57 2:11 1:0 0:0
+rule 12: 3:8364 3:99 3:255 3:223 2:12 1:0 0:0
+rule 13: 4:945 5:969 2:16 3:126 3:97 3:47 0:0
+rule 14: 4:945 5:969 1:0 0:0
+rule 15: 4:945 5:969 2:14 1:0 0:0
+rule 16: 4:945 5:969 2:15 1:0 0:0
+rule 17: 3:49 5:53 6:45 1:0 0:0
+print:
+root ::= [:] [$] | .] [<U+00F1>Aa-z-] root_1 root_2 [x] [&] [!] root_3 
+root_1 ::= [<U+00F1>Aa-z-] root_1 | 
+root_2 ::= .] | 
+root_3 ::= [x] [&] [!] root_3 | 
+atom ::= [,_] [,_] [,_] atom_5 atom_7 
+atom_5 ::= .] atom_5 | 
+char ::= char_13 char_17 
+atom_7 ::= char | 
+op ::= op_9 
+op_9 ::= [z] []] op_9 | 
+sign ::= [y0-90-9] [y0-90-9] sign_11 | [z] [x] [#] [7] [<U+00DF>] [^a1-5] [<U+20AC>] [c] [<U+00FF>] [<U+00DF>] [<U+20AC>] [c] [<U+00FF>] [<U+00DF>] sign_12 
+sign_11 ::= [y0-90-9] sign_11 | 
+sign_12 ::= [<U+20AC>] [c] [<U+00FF>] [<U+00DF>] sign_12 | 
+char_13 ::= [^<U+03B1>-<U+03C9>] char_16 [~] [a] [/] 
+char_14 ::= [^<U+03B1>-<U+03C9>] | 
+char_15 ::= [^<U+03B1>-<U+03C9>] char_14 | 
+char_16 ::= [^<U+03B1>-<U+03C9>] char_15 | 
+char_17 ::= [1-5-] | 
+end print
+init 1
+grammar 3
+parse 0
+init 0

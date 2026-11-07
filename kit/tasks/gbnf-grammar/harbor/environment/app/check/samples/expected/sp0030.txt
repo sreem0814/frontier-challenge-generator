@@ -1,0 +1,207 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+sym 11 root_11
+sym 12 root_12
+sym 13 root_13
+sym 14 root_14
+sym 15 root_15
+sym 16 root_16
+sym 17 root_17
+sym 18 root_18
+sym 19 root_19
+rule 0: 2:1 3:65 5:70 1:0 3:97 5:122 2:10 1:0 2:12 2:19 3:955 3:955 3:955 3:55 3:99 3:123 3:955 3:223 3:99 3:60 0:0
+rule 1: 2:2 1:0 2:3 2:4 1:0 2:5 2:5 2:9 0:0
+rule 2: 3:120 3:9 0:0
+rule 3: 3:45 3:8364 3:58 3:61 3:13 1:0 3:60 0:0
+rule 4: 3:46 3:34 2:4 1:0 0:0
+rule 5: 3:13 3:36 3:98 3:223 4:1024 5:1279 6:1024 5:1279 6:98 5:100 6:45 1:0 3:41 1:0 2:6 2:7 0:0
+rule 6: 4:97 5:122 6:98 5:100 2:6 1:0 0:0
+rule 7: 3:121 6:60 6:32 1:0 0:0
+rule 8: 2:5 1:0 0:0
+rule 9: 2:5 2:8 1:0 0:0
+rule 10: 2:11 0:0
+rule 11: 3:83 3:45 4:123 6:58 6:65 5:70 0:0
+rule 12: 3:97 5:122 1:0 2:17 4:33 6:65 5:70 2:18 0:0
+rule 13: 3:32 5:126 1:0 3:45 6:61 6:65 5:70 2:14 3:83 3:233 3:93 0:0
+rule 14: 3:45 6:61 6:65 5:70 2:14 1:0 0:0
+rule 15: 3:98 5:100 6:10 2:16 0:0
+rule 16: 3:98 5:100 6:10 2:16 1:0 0:0
+rule 17: 2:15 1:0 0:0
+rule 18: 4:33 6:65 5:70 2:18 1:0 0:0
+rule 19: 2:12 2:19 1:0 0:0
+print:
+root ::= root_1 [A-F] | [a-z] root_10 | root_12 root_19 [<U+03BB>] [<U+03BB>] [<U+03BB>] [7] [c] [{] [<U+03BB>] [<U+00DF>] [c] [<] 
+root_1 ::= root_2 | root_3 root_4 | root_5 root_5 root_9 
+root_2 ::= [x] [<U+0009>] 
+root_3 ::= [-] [<U+20AC>] [:] [=] [<U+000D>] | [<] 
+root_4 ::= [.] ["] root_4 | 
+root_5 ::= [<U+000D>] [$] [b] [<U+00DF>] [^<U+0400>-<U+04FF><U+0400>-<U+04FF>b-d-] | [)] | root_6 root_7 
+root_6 ::= [^a-zb-d] root_6 | 
+root_7 ::= [y< ] | 
+root_8 ::= root_5 | 
+root_9 ::= root_5 root_8 | 
+root_10 ::= root_11 
+root_11 ::= [S] [-] [^{:A-F] 
+root_12 ::= [a-z] | root_17 [^!A-F] root_18 
+root_13 ::= [ -~] | [-=A-F] root_14 [S] [<U+00E9>] []] 
+root_14 ::= [-=A-F] root_14 | 
+root_15 ::= [b-d<U+000A>] root_16 
+root_16 ::= [b-d<U+000A>] root_16 | 
+root_17 ::= root_15 | 
+root_18 ::= [^!A-F] root_18 | 
+root_19 ::= root_12 root_19 | 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+sym 11 root_11
+sym 12 root_12
+sym 13 bad
+sym 14 bad_14
+rule 0: 2:1 1:0 3:120 2:10 2:10 2:12 0:0
+rule 1: 2:3 2:4 1:0 2:5 2:8 0:0
+rule 2: 4:64 6:82 0:0
+rule 3: 2:2 2:3 1:0 0:0
+rule 4: 3:9 6:98 5:100 1:0 0:0
+rule 5: 3:1024 5:1279 6:48 5:57 2:6 3:128512 3:46 3:55 2:7 3:223 3:128512 3:122 3:20013 1:0 3:46 3:38 3:32 3:93 0:0
+rule 6: 3:1024 5:1279 6:48 5:57 2:6 1:0 0:0
+rule 7: 7:0 2:7 1:0 0:0
+rule 8: 1:0 3:99 2:9 3:34 3:55 0:0
+rule 9: 3:99 2:9 1:0 0:0
+rule 10: 3:41 2:11 0:0
+rule 11: 3:98 2:11 1:0 0:0
+rule 12: 2:10 2:12 1:0 0:0
+rule 13: 2:14 0:0
+rule 14: 3:97 2:14 1:0 0:0
+print:
+root ::= root_1 | [x] root_10 root_10 root_12 
+root_1 ::= root_3 root_4 | root_5 root_8 
+root_2 ::= [^@R] 
+root_3 ::= root_2 root_3 | 
+root_4 ::= [<U+0009>b-d] | 
+root_5 ::= [<U+0400>-<U+04FF>0-9] root_6 [<U+1F600>] [.] [7] root_7 [<U+00DF>] [<U+1F600>] [z] [<U+4E2D>] | [.] [&] [ ] []] 
+root_6 ::= [<U+0400>-<U+04FF>0-9] root_6 | 
+root_7 ::= .] root_7 | 
+root_8 ::= | [c] root_9 ["] [7] 
+root_9 ::= [c] root_9 | 
+root_10 ::= [)] root_11 
+root_11 ::= [b] root_11 | 
+root_12 ::= root_10 root_12 | 
+bad ::= bad_14 
+bad_14 ::= [a] bad_14 | 
+end print
+init 1
+grammar 2
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 item
+sym 3 field
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 sep
+sym 10 sep_10
+sym 11 item_11
+sym 12 word
+sym 13 word_13
+sym 14 word_14
+sym 15 word_15
+sym 16 word_16
+sym 17 word_17
+sym 18 word_18
+sym 19 word_19
+sym 20 word_20
+sym 21 word_21
+sym 22 word_22
+sym 23 field_23
+sym 24 field_24
+sym 25 field_25
+sym 26 field_26
+sym 27 field_27
+sym 28 field_28
+rule 0: 2:6 3:123 3:10 3:122 1:0 3:955 3:95 6:35 2:2 2:2 2:2 2:7 2:8 0:0
+rule 1: 2:2 2:4 3:34 3:34 3:34 2:5 0:0
+rule 2: 3:92 7:0 2:11 3:97 5:102 1:0 3:33 3:48 3:121 3:33 3:38 3:60 3:81 3:60 0:0
+rule 3: 2:23 7:0 1:0 2:24 2:28 3:45 0:0
+rule 4: 2:3 2:4 1:0 0:0
+rule 5: 3:20013 6:49 5:53 1:0 0:0
+rule 6: 2:1 2:6 1:0 0:0
+rule 7: 2:2 2:7 1:0 0:0
+rule 8: 2:0 1:0 0:0
+rule 9: 3:233 2:10 3:33 3:97 5:122 6:93 6:126 0:0
+rule 10: 3:233 2:10 1:0 0:0
+rule 11: 3:128512 3:64 1:0 0:0
+rule 12: 2:3 2:13 3:34 1:0 2:14 2:15 2:21 2:3 2:3 1:0 3:45 3:91 3:120 3:97 3:42 2:3 2:22 0:0
+rule 13: 2:3 2:13 1:0 0:0
+rule 14: 3:122 2:14 1:0 0:0
+rule 15: 2:3 1:0 2:20 2:3 3:65 3:122 3:66376 3:62 3:65 3:122 3:66376 3:62 3:65 3:122 3:66376 3:62 0:0
+rule 16: 3:81 3:59 3:128512 3:48 5:57 6:97 5:102 3:48 5:57 6:97 5:102 2:17 2:18 0:0
+rule 17: 3:48 5:57 6:97 5:102 1:0 0:0
+rule 18: 4:123 6:32 5:126 1:0 0:0
+rule 19: 2:16 1:0 0:0
+rule 20: 2:16 2:19 1:0 0:0
+rule 21: 2:15 2:21 1:0 0:0
+rule 22: 2:3 2:22 1:0 0:0
+rule 23: 3:38 3:45 3:61 1:0 0:0
+rule 24: 3:945 5:969 3:82 3:38 2:25 0:0
+rule 25: 3:97 5:122 6:93 1:0 0:0
+rule 26: 3:55 3:97 1:0 0:0
+rule 27: 3:55 3:97 2:26 1:0 0:0
+rule 28: 3:55 3:97 2:27 1:0 0:0
+print:
+root ::= root_6 [{] [<U+000A>] [z] | [<U+03BB>] [_#] item item item root_7 root_8 
+root_1 ::= item root_4 ["] ["] ["] root_5 
+item ::= [\.] item_11 [a-f] | [!] [0] [y] [!] [&] [<] [Q] [<] 
+field ::= field_23 .] | field_24 field_28 [-] 
+root_4 ::= field root_4 | 
+root_5 ::= [<U+4E2D>1-5] | 
+root_6 ::= root_1 root_6 | 
+root_7 ::= item root_7 | 
+root_8 ::= root | 
+sep ::= [<U+00E9>] sep_10 [!] [a-z]~] 
+sep_10 ::= [<U+00E9>] sep_10 | 
+item_11 ::= [<U+1F600>] [@] | 
+word ::= field word_13 ["] | word_14 word_15 word_21 field field | [-] [[] [x] [a] [*] field word_22 
+word_13 ::= field word_13 | 
+word_14 ::= [z] word_14 | 
+word_15 ::= field | word_20 field [A] [z] [<U+10348>] [>] [A] [z] [<U+10348>] [>] [A] [z] [<U+10348>] [>] 
+word_16 ::= [Q] [;] [<U+1F600>] [0-9a-f] [0-9a-f] word_17 word_18 
+word_17 ::= [0-9a-f] | 
+word_18 ::= [^{ -~] | 
+word_19 ::= word_16 | 
+word_20 ::= word_16 word_19 | 
+word_21 ::= word_15 word_21 | 
+word_22 ::= field word_22 | 
+field_23 ::= [&] [-] [=] | 
+field_24 ::= [<U+03B1>-<U+03C9>] [R] [&] field_25 
+field_25 ::= [a-z]] | 
+field_26 ::= [7] [a] | 
+field_27 ::= [7] [a] field_26 | 
+field_28 ::= [7] [a] field_27 | 
+end print
+init 1

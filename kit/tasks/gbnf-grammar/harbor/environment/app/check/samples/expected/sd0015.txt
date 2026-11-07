@@ -1,0 +1,21 @@
+schema 0
+root
+  kind 5 types 30 str 1 n 2 2222 5b5b2264656570222c2264656570225d2c7b226c697374223a2261222c22715c22756f7465223a2d317d5d
+schema 1
+root
+  kind 12 types 20 str 0 n 3
+    kind 10 types 10 str 1 pattern  format 4 len 0 -1
+    kind 2 types 3e str 1 n 3
+      kind 2 types 22 str 0 n 2
+        kind 7 types 02 str 0
+        kind 11 types 20 str 0 items 0 -1
+          kind 0 types 7f str 0
+      kind 10 types 10 str 1 pattern  format 0 len 3 3
+      kind 2 types 1c str 1 n 2
+        kind 8 types 0c str 0
+        kind 10 types 10 str 1 pattern 5e5b5c2d2b5d5b5e205d28282e5b5e5c5d5d7b2c327d5b5e5c5d5d7b2c327d7c7a787b312c337d7c7a7939295b612d7a5d2b292a7c5b5c2d2b5d7b337d20786324 format 0 len 0 -1
+    kind 2 types 7f str 0 n 2
+      kind 7 types 02 str 0
+      kind 0 types 7f str 0
+schema 2
+THROW

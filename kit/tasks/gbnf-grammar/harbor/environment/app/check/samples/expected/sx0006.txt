@@ -1,0 +1,24 @@
+schema 0
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+dot ::= [^\x0A\x0D]
+root ::= "[" space tuple-0 "," space tuple-1 space "]"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+time ::= ([01] [0-9] | "2" [0-3]) ":" [0-5] [0-9] ":" [0-5] [0-9] ( "." [0-9]{3} )? ( "Z" | ( "+" | "-" ) ( [01] [0-9] | "2" [0-3] ) ":" [0-5] [0-9] )
+time-string ::= "\"" time "\""
+tuple-0 ::= "null"
+tuple-1 ::= "[" space tuple-1-item ("," space tuple-1-item){0,2} space "]"
+tuple-1-item ::= "{" space  (tuple-1-item-type-kv tuple-1-item-type-rest | tuple-1-item-items-kv tuple-1-item-items-rest | tuple-1-item-a-kv tuple-1-item-a-rest | tuple-1-item-additional-kv ( "," space tuple-1-item-additional-kv )* )? space "}"
+tuple-1-item-a ::= "\"" char{0,8} "\""
+tuple-1-item-a-kv ::= "\"a\"" space ":" space tuple-1-item-a
+tuple-1-item-a-rest ::= ( "," space tuple-1-item-additional-kv )*
+tuple-1-item-additional-k ::= ["] ( [a] char+ | [i] ([t] ([e] ([m] ([s] char+ | [^"s] char*) | [^"m] char*) | [^"e] char*) | [^"t] char*) | [t] ([y] ([p] ([e] char+ | [^"e] char*) | [^"p] char*) | [^"y] char*) | [^"ait] char* )? ["]
+tuple-1-item-additional-kv ::= tuple-1-item-additional-k ":" space tuple-1-item-additional-value
+tuple-1-item-additional-value ::= time-string
+tuple-1-item-items ::= "\"" (dot (".@") | "x" "@"{0,2}) "\""
+tuple-1-item-items-kv ::= "\"items\"" space ":" space tuple-1-item-items
+tuple-1-item-items-rest ::= ( "," space tuple-1-item-a-kv )? tuple-1-item-a-rest
+tuple-1-item-type ::= "\"" (dot (":" "1"+ "@c" | "+"? | tuple-1-item-type-1{2,} "$"{2,2}) [0-9] | "y" " "{0,2} | "$"{0,2}) "\""
+tuple-1-item-type-1 ::= [\x41-\x5A]
+tuple-1-item-type-kv ::= "\"type\"" space ":" space tuple-1-item-type
+tuple-1-item-type-rest ::= ( "," space tuple-1-item-items-kv )? tuple-1-item-items-rest
+end grammar

@@ -1,0 +1,46 @@
+grammar 0
+parse 0
+init 0
+grammar 1
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 term
+rule 0: 3:120 3:95 3:47 2:1 2:2 1:0 2:3 0:0
+rule 1: 3:95 3:47 2:1 1:0 0:0
+rule 2: 2:0 1:0 0:0
+rule 3: 3:1024 5:1279 1:0 0:0
+rule 4: 4:64 6:97 5:102 6:10 6:45 3:82 6:122 0:0
+print:
+root ::= [x] [_] [/] root_1 root_2 | root_3 
+root_1 ::= [_] [/] root_1 | 
+root_2 ::= root | 
+root_3 ::= [<U+0400>-<U+04FF>] | 
+term ::= [^@a-f<U+000A>-] [Rz] 
+end print
+init 1
+grammar 2
+parse 1
+sym 0 str
+sym 1 str_1
+sym 2 str_2
+sym 3 str_3
+sym 4 root
+sym 5 root_5
+rule 0: 3:48 5:57 6:38 2:1 2:1 3:32 5:126 6:58 6:38 2:0 0:0
+rule 1: 2:2 2:3 0:0
+rule 2: 3:255 0:0
+rule 3: 3:57 6:45 2:3 1:0 0:0
+rule 4: 4:97 5:102 2:5 0:0
+rule 5: 4:128512 2:5 1:0 0:0
+print:
+str ::= [0-9&] str_1 str_1 [ -~:&] str 
+str_1 ::= str_2 str_3 
+str_2 ::= [<U+00FF>] 
+str_3 ::= [9-] str_3 | 
+root ::= [^a-f] root_5 
+root_5 ::= [^<U+1F600>] root_5 | 
+end print
+init 1

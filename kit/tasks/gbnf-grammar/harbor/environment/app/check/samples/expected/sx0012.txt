@@ -1,0 +1,19 @@
+schema 0
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+root ::= "\"" char* "\""
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar
+schema 1
+THROW
+schema 746f6f6c2d63616c6c
+rule 726f6f74
+rule 726f6f7430
+root ::= item item
+root0 ::= space "x"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+tool-call ::= "[" space tool-call-item ("," space tool-call-item)+ space "]"
+tool-call-item ::= tool-call-item-0 | tool-call-item-1
+tool-call-item-0 ::= "{\"nested\":\"😀\"}"
+tool-call-item-1 ::= uuid
+uuid ::= "\"" [0-9a-fA-F]{8} "-" [0-9a-fA-F]{4} "-" [0-9a-fA-F]{4} "-" [0-9a-fA-F]{4} "-" [0-9a-fA-F]{12} "\""
+end grammar

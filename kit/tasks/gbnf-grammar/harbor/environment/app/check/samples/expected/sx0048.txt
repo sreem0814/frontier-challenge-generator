@@ -1,0 +1,23 @@
+schema 0
+alternative-0 ::= "[" space (alternative-0-item ("," space alternative-0-item){0,3})? space "]"
+alternative-0-item ::= "{" space alternative-0-item-list-kv ( "," space ( alternative-0-item-q-uote-kv alternative-0-item-q-uote-rest | alternative-0-item-additional-kv ( "," space alternative-0-item-additional-kv )* ) )? space "}"
+alternative-0-item-additional-k ::= ["] ( [l] ([i] ([s] ([t] char+ | [^"t] char*) | [^"s] char*) | [^"i] char*) | [q] (["] ([u] ([o] ([t] ([e] char+ | [^"e] char*) | [^"t] char*) | [^"o] char*) | [^"u] char*) | [^""] char*) | [^"lq] char* )? ["]
+alternative-0-item-additional-kv ::= alternative-0-item-additional-k ":" space value
+alternative-0-item-list ::= "\"" ("|" | "(" | ")" "b"{1,3} [a-c_]) "\""
+alternative-0-item-list-kv ::= "\"list\"" space ":" space alternative-0-item-list
+alternative-0-item-q-uote ::= "\"" ("y" "y"{3,3} "c"?) "\""
+alternative-0-item-q-uote-kv ::= "\"q\\\"uote\"" space ":" space alternative-0-item-q-uote
+alternative-0-item-q-uote-rest ::= ( "," space alternative-0-item-additional-kv )*
+array ::= "[" space ( value ("," space value)* )? space "]"
+boolean ::= ("true" | "false")
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+decimal-part ::= [0-9]{1,16}
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+null ::= "null"
+number ::= ("-"? integral-part) ("." decimal-part)? ([eE] [-+]? integral-part)?
+object ::= "{" space ( string ":" space value ("," space string ":" space value)* )? space "}"
+root ::= alternative-0 | number
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+string ::= "\"" char* "\""
+value ::= object | array | string | number | boolean | null
+end grammar

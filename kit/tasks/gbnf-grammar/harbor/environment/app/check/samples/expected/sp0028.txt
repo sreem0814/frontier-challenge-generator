@@ -1,0 +1,43 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 str
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 str_6
+sym 7 str_7
+sym 8 str_8
+rule 0: 2:1 3:44 2:2 1:0 3:98 1:0 2:3 3:10 2:4 2:1 2:5 0:0
+rule 1: 2:6 3:48 5:57 6:44 6:48 5:57 6:45 3:40 3:45 2:8 0:0
+rule 2: 3:223 3:43 3:57 2:2 1:0 0:0
+rule 3: 3:123 3:93 1:0 0:0
+rule 4: 2:1 1:0 0:0
+rule 5: 2:1 2:5 1:0 0:0
+rule 6: 2:7 0:0
+rule 7: 3:48 5:57 2:7 1:0 0:0
+rule 8: 3:40 3:45 2:8 1:0 0:0
+print:
+root ::= str [,] root_2 | [b] | root_3 [<U+000A>] root_4 str root_5 
+str ::= str_6 [0-9,0-9-] [(] [-] str_8 
+root_2 ::= [<U+00DF>] [+] [9] root_2 | 
+root_3 ::= [{] []] | 
+root_4 ::= str | 
+root_5 ::= str root_5 | 
+str_6 ::= str_7 
+str_7 ::= [0-9] str_7 | 
+str_8 ::= [(] [-] str_8 | 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 root
+sym 1 seq
+rule 0: 3:98 6:97 5:122 6:20013 3:223 3:48 3:955 2:1 0:0
+rule 1: 7:0 1:0 3:46 1:0 3:97 3:42 3:64 3:37 0:0
+print:
+root ::= [ba-z<U+4E2D>] [<U+00DF>] [0] [<U+03BB>] seq 
+seq ::= .] | [.] | [a] [*] [@] [%] 
+end print
+init 1

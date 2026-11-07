@@ -1,0 +1,13 @@
+schema 0
+additional-k ::= ["] ( [x] ([-] ([y] char+ | [^"y] char*) | [^"-] char*) | [^"x] char* )? ["]
+additional-kv ::= additional-k ":" space additional-value
+additional-value ::= ("-" ("9" [5-9] | "100"))
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+root ::= "{" space  (x-y-kv x-y-rest | additional-kv ( "," space additional-kv )* )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+x-y ::= "{" space "}"
+x-y-kv ::= "\"x-y\"" space ":" space x-y
+x-y-rest ::= ( "," space additional-kv )*
+end grammar
+schema 1
+THROW

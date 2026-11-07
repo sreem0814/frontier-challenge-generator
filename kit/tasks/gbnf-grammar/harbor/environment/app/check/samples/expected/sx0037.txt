@@ -1,0 +1,17 @@
+schema 0
+boolean ::= ("true" | "false")
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+ref-definitions-a-b ::= "{" space ref-definitions-a-b-value-kv "," space ref-definitions-a-b-b-kv ( "," space ( ref-definitions-a-b-c-kv ref-definitions-a-b-c-rest | ref-definitions-a-b-flag-kv ) )? space "}"
+ref-definitions-a-b-b ::= string
+ref-definitions-a-b-b-kv ::= "\"b\"" space ":" space ref-definitions-a-b-b
+ref-definitions-a-b-c-kv ::= "\"c\"" space ":" space boolean
+ref-definitions-a-b-c-rest ::= ( "," space ref-definitions-a-b-flag-kv )?
+ref-definitions-a-b-flag ::= "{" space ref-definitions-a-b-flag-value-kv space "}"
+ref-definitions-a-b-flag-kv ::= "\"flag\"" space ":" space ref-definitions-a-b-flag
+ref-definitions-a-b-flag-value ::= "\"" ("*"{2,}) "\""
+ref-definitions-a-b-flag-value-kv ::= "\"value\"" space ":" space ref-definitions-a-b-flag-value
+ref-definitions-a-b-value-kv ::= "\"value\"" space ":" space boolean
+root ::= ref-definitions-a-b
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+string ::= "\"" char* "\""
+end grammar

@@ -1,0 +1,52 @@
+schema 0
+-n--kv ::= "\"ünï\"" space ":" space uuid
+array ::= "[" space ( value ("," space value)* )? space "]"
+boolean ::= ("true" | "false")
+c ::= "{" space c-id-kv ( "," space ( c-value-kv ) )? space "}"
+c-id ::= value
+c-id-kv ::= "\"id\"" space ":" space c-id
+c-kv ::= "\"c\"" space ":" space c
+c-value ::= "[" space  space "]"
+c-value-item ::= ("-" [1-9] [0-9]{0,15} | [0-9] | ([1-8] [0-9] | [9] [0-9]) | ([1] [0-9]{2} | [2] ([0-2] [0-9] | [3] [0-4])))
+c-value-kv ::= "\"value\"" space ":" space c-value
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+decimal-part ::= [0-9]{1,16}
+dot ::= [^\x0A\x0D]
+flag ::= ([5-9] | ([1-8] [0-9] | [9] [0-9]) | ([1-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9])) | ([1-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9]))) | ([1-8] [0-9]{4} | [9] ([0-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9])))) | ([1-8] [0-9]{5} | [9] ([0-8] [0-9]{4} | [9] ([0-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9]))))) | ([1-8] [0-9]{6} | [9] ([0-8] [0-9]{5} | [9] ([0-8] [0-9]{4} | [9] ([0-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9])))))) | ([1-8] [0-9]{7} | [9] ([0-8] [0-9]{6} | [9] ([0-8] [0-9]{5} | [9] ([0-8] [0-9]{4} | [9] ([0-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9]))))))) | ([1-8] [0-9]{8} | [9] ([0-8] [0-9]{7} | [9] ([0-8] [0-9]{6} | [9] ([0-8] [0-9]{5} | [9] ([0-8] [0-9]{4} | [9] ([0-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9])))))))) | ([1-8] [0-9]{9} | [9] ([0-8] [0-9]{8} | [9] ([0-8] [0-9]{7} | [9] ([0-8] [0-9]{6} | [9] ([0-8] [0-9]{5} | [9] ([0-8] [0-9]{4} | [9] ([0-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9]))))))))) | ([1-,] [0-9]{10} | [-] ([0-1] [0-9]{9} | [2] ([0] [0-9]{8} | [1] ([0-3] [0-9]{7} | [4] ([0-6] [0-9]{6} | [7] ([0-3] [0-9]{5} | [4] ([0-7] [0-9]{4} | [8] ([0-2] [0-9]{3} | [3] ([0-5] [0-9]{2} | [6] ([0-3] [0-9] | [4] [0-8])))))))))))
+flag-kv ::= "\"flag\"" space ":" space flag
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+null ::= "null"
+number ::= ("-"? integral-part) ("." decimal-part)? ([eE] [-+]? integral-part)?
+object ::= "{" space ( string ":" space value ("," space string ":" space value)* )? space "}"
+root ::= "{" space -n--kv "," space z-kv "," space flag-kv "," space c-kv space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+string ::= "\"" char* "\""
+uuid ::= "\"" [0-9a-fA-F]{8} "-" [0-9a-fA-F]{4} "-" [0-9a-fA-F]{4} "-" [0-9a-fA-F]{4} "-" [0-9a-fA-F]{12} "\""
+value ::= object | array | string | number | boolean | null
+z ::= "{" space z-a-kv "," space z-x-y-kv ( "," space ( z-tags-kv ) )? space "}"
+z-a ::= "\"" ((dot "9" "c"{0,2} "_9:") | "1z" "a"+ [^ ]) "\""
+z-a-kv ::= "\"a\"" space ":" space z-a
+z-kv ::= "\"z\"" space ":" space z
+z-tags ::= "[" space (uuid ("," space uuid){0,3})? space "]"
+z-tags-kv ::= "\"tags\"" space ":" space z-tags
+z-x-y ::= "[" space z-x-y-item ("," space z-x-y-item)+ space "]"
+z-x-y-item ::= value
+z-x-y-kv ::= "\"x-y\"" space ":" space z-x-y
+end grammar
+rule 782d79
+schema 726f6f74
+schema 76616c75652d
+-x-kv ::= "\"$x\"" space ":" space integer
+1st-kv ::= "\"1st\"" space ":" space integer
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+nested ::= "[" space nested-item ("," space nested-item){1,1} space "]"
+nested-item ::= "\"" char{1,9} "\""
+nested-kv ::= "\"nested\"" space ":" space nested
+root ::= "{" space nested-kv "," space -x-kv "," space value-kv "," space 1st-kv space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+value- ::= (([1-8] [0-9] | [9] [0-9]) | ([1-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9])) | ([1-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9]))) | ([1-8] [0-9]{4} | [9] ([0-8] [0-9]{3} | [9] ([0-8] [0-9]{2} | [9] ([0-8] [0-9] | [9] [0-9])))) | "10000" [0-9])
+value-kv ::= "\"value\"" space ":" space integer
+x-y ::= item item
+end grammar

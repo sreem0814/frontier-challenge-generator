@@ -1,0 +1,110 @@
+init 1
+state awaiting=0 stacks=3 empty=0 partial=0/0 buf=
+token 49 allowed=1 of 2214
+accept 49
+state awaiting=0 stacks=3 empty=0 partial=70/0 buf=
+token 104 allowed=1 of 64834
+accept 104
+state awaiting=0 stacks=4 empty=0 partial=125/0 buf=
+token 14 allowed=1 of 64834
+accept 14
+state awaiting=0 stacks=3 empty=0 partial=35/0 buf=
+token 465 allowed=1 of 64834
+accept 465
+state awaiting=0 stacks=3 empty=0 partial=233/0 buf=
+token 205 allowed=1 of 64834
+accept 205
+state awaiting=0 stacks=3 empty=0 partial=127/0 buf=
+token 74 allowed=1 of 64834
+accept 74
+state awaiting=0 stacks=3 empty=0 partial=95/0 buf=
+token 20589 allowed=1 of 64834
+accept 20589
+state awaiting=0 stacks=3 empty=0 partial=2008/1 buf=
+token 206 allowed=1 of 162
+accept 206
+state awaiting=0 stacks=3 empty=0 partial=128512/0 buf=
+token 23 allowed=1 of 64834
+accept 23
+state awaiting=0 stacks=3 empty=0 partial=44/0 buf=
+token 35 allowed=1 of 64834
+accept 35
+state awaiting=0 stacks=3 empty=0 partial=56/0 buf=
+token 16483 allowed=1 of 64834
+accept 16483
+state awaiting=0 stacks=6 empty=0 partial=40/0 buf=
+token 15039 allowed=1 of 64834
+accept 15039
+state awaiting=0 stacks=5 empty=0 partial=945/0 buf=
+token 63796 allowed=1 of 64834
+accept 63796
+state awaiting=0 stacks=5 empty=0 partial=91/0 buf=
+token 99 allowed=1 of 64834
+accept 99
+state awaiting=0 stacks=5 empty=0 partial=120/0 buf=
+token 26 allowed=1 of 64834
+accept 26
+state awaiting=0 stacks=5 empty=0 partial=47/0 buf=
+token 8275 allowed=1 of 64834
+accept 8275
+state awaiting=0 stacks=5 empty=0 partial=60/0 buf=
+token 76 allowed=1 of 64834
+accept 76
+state awaiting=0 stacks=5 empty=0 partial=97/0 buf=
+token 71 allowed=1 of 64834
+accept 71
+state awaiting=0 stacks=9 empty=1 partial=92/0 buf=
+token 49 allowed=1 of 64835
+accept 49
+state awaiting=0 stacks=8 empty=0 partial=70/0 buf=
+token 104 allowed=1 of 64834
+accept 104
+state awaiting=0 stacks=6 empty=0 partial=125/0 buf=
+token 14 allowed=1 of 64834
+accept 14
+state awaiting=0 stacks=5 empty=0 partial=35/0 buf=
+token 465 allowed=1 of 64834
+accept 465
+state awaiting=0 stacks=5 empty=0 partial=233/0 buf=
+token 205 allowed=1 of 64834
+accept 205
+state awaiting=0 stacks=5 empty=0 partial=127/0 buf=
+token 74 allowed=1 of 64834
+accept 74
+state awaiting=0 stacks=5 empty=0 partial=95/0 buf=
+token 20589 allowed=1 of 64834
+accept 20589
+state awaiting=0 stacks=5 empty=0 partial=2008/1 buf=
+token 206 allowed=1 of 162
+accept 206
+state awaiting=0 stacks=5 empty=0 partial=128512/0 buf=
+token 23 allowed=1 of 64834
+accept 23
+state awaiting=0 stacks=5 empty=0 partial=44/0 buf=
+token 35 allowed=1 of 64834
+accept 35
+state awaiting=0 stacks=5 empty=0 partial=56/0 buf=
+token 16483 allowed=1 of 64834
+accept 16483
+state awaiting=0 stacks=6 empty=0 partial=40/0 buf=
+token 15039 allowed=1 of 64834
+accept 15039
+state awaiting=0 stacks=5 empty=0 partial=945/0 buf=
+token 63796 allowed=1 of 64834
+accept 63796
+state awaiting=0 stacks=5 empty=0 partial=91/0 buf=
+token 99 allowed=1 of 64834
+accept 99
+state awaiting=0 stacks=5 empty=0 partial=120/0 buf=
+token 26 allowed=1 of 64834
+accept 26
+state awaiting=0 stacks=5 empty=0 partial=47/0 buf=
+token 8275 allowed=1 of 64834
+accept 8275
+state awaiting=0 stacks=5 empty=0 partial=60/0 buf=
+token 76 allowed=1 of 64834
+accept 76
+state awaiting=0 stacks=5 empty=0 partial=97/0 buf=
+token 71 allowed=1 of 64834
+accept 71
+state awaiting=0 stacks=9 empty=1 partial=92/0 buf=

@@ -1,0 +1,41 @@
+grammar 0
+parse 0
+init 0
+grammar 1
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+rule 0: 3:123 2:1 1:0 3:34 3:58 2:10 7:0 0:0
+rule 1: 2:2 2:8 2:8 1:0 3:123 3:48 5:57 6:128512 0:0
+rule 2: 3:128512 2:3 7:0 1:0 3:98 3:49 3:123 2:4 1:0 3:93 6:945 5:969 3:93 6:945 5:969 2:7 0:0
+rule 3: 3:128512 2:3 1:0 0:0
+rule 4: 3:59 3:13 2:4 1:0 0:0
+rule 5: 3:93 6:945 5:969 1:0 0:0
+rule 6: 3:93 6:945 5:969 2:5 1:0 0:0
+rule 7: 3:93 6:945 5:969 2:6 1:0 0:0
+rule 8: 2:9 7:0 0:0
+rule 9: 7:0 2:9 1:0 0:0
+rule 10: 3:34 3:58 2:10 1:0 0:0
+print:
+root ::= [{] root_1 | ["] [:] root_10 .] 
+root_1 ::= root_2 root_8 root_8 | [{] [0-9<U+1F600>] 
+root_2 ::= [<U+1F600>] root_3 .] | [b] [1] [{] root_4 | []<U+03B1>-<U+03C9>] []<U+03B1>-<U+03C9>] root_7 
+root_3 ::= [<U+1F600>] root_3 | 
+root_4 ::= [;] [<U+000D>] root_4 | 
+root_5 ::= []<U+03B1>-<U+03C9>] | 
+root_6 ::= []<U+03B1>-<U+03C9>] root_5 | 
+root_7 ::= []<U+03B1>-<U+03C9>] root_6 | 
+root_8 ::= root_9 .] 
+root_9 ::= .] root_9 | 
+root_10 ::= ["] [:] root_10 | 
+end print
+init 1

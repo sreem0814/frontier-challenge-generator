@@ -1,0 +1,31 @@
+init 1
+state awaiting=0 stacks=4 empty=1 partial=0/0 buf=
+clone
+state awaiting=0 stacks=4 empty=1 partial=0/0 buf=
+token 891 allowed=1 of 25336
+accept 891
+state awaiting=0 stacks=3 empty=1 partial=124/0 buf=
+token 29984 allowed=1 of 25305
+accept 29984
+state awaiting=0 stacks=3 empty=1 partial=81/0 buf=
+allowed 25305 214fa6bd88099201
+accept 10620
+state awaiting=0 stacks=3 empty=1 partial=101/0 buf=
+allowed 25305 214fa6bd88099201
+accept 23676
+state awaiting=0 stacks=3 empty=1 partial=115/0 buf=
+allowed 25305 214fa6bd88099201
+accept 3736
+state awaiting=0 stacks=3 empty=1 partial=115/0 buf=
+allowed 25305 214fa6bd88099201
+accept 3166
+state awaiting=0 stacks=3 empty=1 partial=109/0 buf=
+allowed 25305 214fa6bd88099201
+accept 26769
+state awaiting=0 stacks=3 empty=1 partial=116/0 buf=
+token 891 allowed=1 of 25305
+accept 891
+state awaiting=0 stacks=3 empty=1 partial=124/0 buf=
+token 29984 allowed=1 of 25305
+accept 29984
+state awaiting=0 stacks=3 empty=1 partial=81/0 buf=

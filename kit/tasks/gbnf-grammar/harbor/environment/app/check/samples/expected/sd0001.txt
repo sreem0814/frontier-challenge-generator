@@ -1,0 +1,4 @@
+schema 0
+root
+  kind 11 types 20 str 0 items 0 4
+    kind 13 types 40 str 0 props 0 additional 0

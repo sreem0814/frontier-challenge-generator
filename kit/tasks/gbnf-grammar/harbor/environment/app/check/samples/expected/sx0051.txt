@@ -1,0 +1,12 @@
+schema 0
+q-uote ::= "{" space "}"
+q-uote-kv ::= "\"q\\\"uote\"" space ":" space q-uote
+root ::= "{" space  (q-uote-kv )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar
+schema 782d79
+rule 782d7930
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+x-y ::= ("true" | "\"a\"")
+x-y0 ::= "a" item?
+end grammar

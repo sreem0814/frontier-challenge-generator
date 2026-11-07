@@ -1,0 +1,20 @@
+schema 0
+root
+  kind 5 types 0c str 0 n 3 332e35 31652b3230 31
+schema 1
+THROW
+schema 2
+root
+  kind 1 types 68 str 0 ref 232f24646566732f6e6f6465 -> 232f24646566732f6e6f6465
+def 232f24646566732f6e6f6465
+  kind 2 types 68 str 0 n 3
+    kind 9 types 08 str 0 min -9223372036854775808 max 9223372036854775807
+    kind 11 types 20 str 0 items 2 2
+      kind 0 types 7f str 0
+    kind 13 types 40 str 0 props 3 additional 0
+      prop 62 required 0
+        kind 9 types 08 str 0 min -9223372036854775808 max 234
+      prop 77697468207370616365 required 0
+        kind 9 types 08 str 0 min -9223372036854775808 max -5000
+      prop 782d79 required 0
+        kind 4 types 10 str 1 value 2222

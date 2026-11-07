@@ -1,0 +1,16 @@
+schema 0
+root
+  kind 12 types 20 str 0 n 3
+    kind 5 types 10 str 1 n 1 226e65775c6e6c696e6522
+    kind 13 types 40 str 0 props 0 additional 1
+      additional
+        kind 0 types 7f str 0
+    kind 0 types 7f str 0
+schema 1
+THROW
+schema 2
+root
+  kind 2 types 2c str 0 n 2
+    kind 8 types 0c str 0
+    kind 11 types 20 str 0 items 0 -1
+      kind 0 types 7f str 0

@@ -1,0 +1,56 @@
+grammar 0
+parse 0
+init 0
+grammar 1
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 digit
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+sym 11 root_11
+sym 12 pair
+sym 13 digit_13
+sym 14 digit_14
+sym 15 pair_15
+rule 0: 2:1 7:0 1:0 4:1024 5:1279 2:8 7:0 2:3 2:9 2:0 1:0 2:11 0:0
+rule 1: 2:2 3:64 2:4 1:0 2:6 0:0
+rule 2: 2:3 3:32 3:97 5:122 6:1024 5:1279 0:0
+rule 3: 4:48 5:57 6:98 5:100 2:13 3:223 2:14 2:0 1:0 4:97 5:122 3:43 6:128512 1:0 3:48 5:57 6:57 6:32 5:126 0:0
+rule 4: 3:98 5:100 2:5 0:0
+rule 5: 3:98 5:100 2:5 1:0 0:0
+rule 6: 3:10 3:42 3:8364 3:91 3:98 3:9 2:7 1:0 3:40 3:120 3:93 0:0
+rule 7: 3:8364 3:91 3:98 3:9 2:7 1:0 0:0
+rule 8: 3:123 3:223 3:120 2:8 1:0 0:0
+rule 9: 7:0 1:0 0:0
+rule 10: 3:62 3:128512 3:45 0:0
+rule 11: 2:10 1:0 0:0
+rule 12: 3:99 3:121 3:40 3:65 3:125 3:120 2:15 3:121 0:0
+rule 13: 2:12 2:13 1:0 0:0
+rule 14: 2:12 1:0 0:0
+rule 15: 3:40 3:65 3:125 3:120 2:15 1:0 0:0
+print:
+root ::= root_1 .] | [^<U+0400>-<U+04FF>] root_8 .] digit root_9 root | root_11 
+root_1 ::= root_2 [@] root_4 | root_6 
+root_2 ::= digit [ ] [a-z<U+0400>-<U+04FF>] 
+digit ::= [^0-9b-d] digit_13 [<U+00DF>] digit_14 root | [^a-z] [+<U+1F600>] | [0-99 -~] 
+root_4 ::= [b-d] root_5 
+root_5 ::= [b-d] root_5 | 
+root_6 ::= [<U+000A>] [*] [<U+20AC>] [[] [b] [<U+0009>] root_7 | [(] [x] []] 
+root_7 ::= [<U+20AC>] [[] [b] [<U+0009>] root_7 | 
+root_8 ::= [{] [<U+00DF>] [x] root_8 | 
+root_9 ::= .] | 
+root_10 ::= [>] [<U+1F600>] [-] 
+root_11 ::= root_10 | 
+pair ::= [c] [y] [(] [A] [}] [x] pair_15 [y] 
+digit_13 ::= pair digit_13 | 
+digit_14 ::= pair | 
+pair_15 ::= [(] [A] [}] [x] pair_15 | 
+end print
+init 1

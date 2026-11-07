@@ -1,0 +1,142 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 arr
+sym 6 a1
+sym 7 root_7
+sym 8 value
+sym 9 root_9
+sym 10 kw
+sym 11 root_11
+sym 12 root_12
+sym 13 root_13
+sym 14 root_14
+sym 15 root_15
+sym 16 kw_16
+sym 17 value_17
+sym 18 value_18
+sym 19 value_19
+sym 20 value_20
+sym 21 arr_21
+sym 22 arr_22
+rule 0: 3:35 3:125 3:125 3:233 3:35 3:223 3:93 1:0 3:241 2:1 2:12 2:15 0:0
+rule 1: 2:2 1:0 2:3 2:9 3:32 6:32 5:126 6:42 2:10 0:0
+rule 2: 3:122 3:10 3:45 2:2 1:0 0:0
+rule 3: 3:48 5:57 6:121 6:65 5:70 2:3 1:0 0:0
+rule 4: 2:5 2:7 1:0 2:6 3:8364 3:47 3:123 3:35 3:58 3:8364 2:8 0:0
+rule 5: 4:97 3:99 3:10 3:93 3:40 2:21 1:0 3:945 5:969 3:8364 3:81 3:92 3:92 4:97 5:122 1:0 7:0 2:22 0:0
+rule 6: 2:5 3:32 5:126 6:945 5:969 3:49 3:66376 0:0
+rule 7: 2:6 1:0 0:0
+rule 8: 3:125 3:223 3:20013 2:17 1:0 2:5 2:5 2:5 3:49 5:53 6:32 5:126 1:0 3:97 5:102 6:65 6:98 5:100 2:20 0:0
+rule 9: 2:4 2:9 1:0 0:0
+rule 10: 3:64 2:16 3:9 3:241 2:5 1:0 3:10 0:0
+rule 11: 2:1 1:0 0:0
+rule 12: 2:1 2:11 1:0 0:0
+rule 13: 2:5 2:5 2:14 3:92 6:65 5:70 0:0
+rule 14: 2:5 2:14 1:0 0:0
+rule 15: 2:13 1:0 0:0
+rule 16: 3:64 2:16 1:0 0:0
+rule 17: 2:10 1:0 0:0
+rule 18: 3:97 5:102 6:65 6:98 5:100 1:0 0:0
+rule 19: 3:97 5:102 6:65 6:98 5:100 2:18 1:0 0:0
+rule 20: 3:97 5:102 6:65 6:98 5:100 2:19 1:0 0:0
+rule 21: 2:5 1:0 0:0
+rule 22: 3:62 0:0
+print:
+root ::= [#] [}] [}] [<U+00E9>] [#] [<U+00DF>] []] | [<U+00F1>] root_1 root_12 root_15 
+root_1 ::= root_2 | root_3 root_9 [  -~*] kw 
+root_2 ::= [z] [<U+000A>] [-] root_2 | 
+root_3 ::= [0-9yA-F] root_3 | 
+root_4 ::= arr root_7 | a1 [<U+20AC>] [/] [{] [#] [:] [<U+20AC>] value 
+arr ::= [^a] [c] [<U+000A>] []] [(] arr_21 | [<U+03B1>-<U+03C9>] [<U+20AC>] [Q] [\] [\] [^a-z] | .] arr_22 
+a1 ::= arr [ -~<U+03B1>-<U+03C9>] [1] [<U+10348>] 
+root_7 ::= a1 | 
+value ::= [}] [<U+00DF>] [<U+4E2D>] value_17 | arr arr arr [1-5 -~] | [a-fAb-d] value_20 
+root_9 ::= root_4 root_9 | 
+kw ::= [@] kw_16 [<U+0009>] [<U+00F1>] arr | [<U+000A>] 
+root_11 ::= root_1 | 
+root_12 ::= root_1 root_11 | 
+root_13 ::= arr arr root_14 [\A-F] 
+root_14 ::= arr root_14 | 
+root_15 ::= root_13 | 
+kw_16 ::= [@] kw_16 | 
+value_17 ::= kw | 
+value_18 ::= [a-fAb-d] | 
+value_19 ::= [a-fAb-d] value_18 | 
+value_20 ::= [a-fAb-d] value_19 | 
+arr_21 ::= arr | 
+arr_22 ::= [>] 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 op
+sym 4 head
+sym 5 op_5
+sym 6 op_6
+sym 7 op_7
+sym 8 op_8
+sym 9 head_9
+sym 10 head_10
+sym 11 head_11
+sym 12 head_12
+sym 13 head_13
+sym 14 head_14
+sym 15 head_15
+sym 16 head_16
+sym 17 head_17
+sym 18 head_18
+sym 19 head_19
+sym 20 head_20
+rule 0: 2:1 1:0 3:8364 3:42 2:2 0:0
+rule 1: 3:65 2:1 1:0 0:0
+rule 2: 2:0 1:0 0:0
+rule 3: 3:122 2:4 2:4 2:4 2:5 3:81 6:223 6:10 2:6 3:20013 3:83 2:7 2:8 0:0
+rule 4: 3:95 3:63 2:20 0:0
+rule 5: 2:4 2:5 1:0 0:0
+rule 6: 3:42 3:65 3:33 3:8364 2:6 1:0 0:0
+rule 7: 3:20013 3:83 2:7 1:0 0:0
+rule 8: 2:0 1:0 0:0
+rule 9: 2:10 4:97 5:102 2:17 1:0 3:36 6:128512 6:48 5:57 3:97 5:102 0:0
+rule 10: 3:61 3:66376 3:20013 3:91 2:11 2:12 1:0 3:49 3:98 4:65 5:70 6:45 2:13 7:0 2:14 2:15 1:0 3:83 0:0
+rule 11: 3:32 5:126 2:11 1:0 0:0
+rule 12: 3:63 6:63 1:0 0:0
+rule 13: 4:65 5:70 6:45 2:13 1:0 0:0
+rule 14: 7:0 2:14 1:0 0:0
+rule 15: 3:32 5:126 6:65 5:70 2:15 1:0 0:0
+rule 16: 3:58 3:44 3:95 3:58 0:0
+rule 17: 2:16 1:0 0:0
+rule 18: 2:9 1:0 0:0
+rule 19: 2:9 2:18 1:0 0:0
+rule 20: 2:9 2:19 1:0 0:0
+print:
+root ::= root_1 | [<U+20AC>] [*] root_2 
+root_1 ::= [A] root_1 | 
+root_2 ::= root | 
+op ::= [z] head head head op_5 [Q<U+00DF><U+000A>] op_6 [<U+4E2D>] [S] op_7 op_8 
+head ::= [_] [?] head_20 
+op_5 ::= head op_5 | 
+op_6 ::= [*] [A] [!] [<U+20AC>] op_6 | 
+op_7 ::= [<U+4E2D>] [S] op_7 | 
+op_8 ::= root | 
+head_9 ::= head_10 [^a-f] head_17 | [$<U+1F600>0-9] [a-f] 
+head_10 ::= [=] [<U+10348>] [<U+4E2D>] [[] head_11 head_12 | [1] [b] [^A-F-] head_13 .] head_14 head_15 | [S] 
+head_11 ::= [ -~] head_11 | 
+head_12 ::= [??] | 
+head_13 ::= [^A-F-] head_13 | 
+head_14 ::= .] head_14 | 
+head_15 ::= [ -~A-F] head_15 | 
+head_16 ::= [:] [,] [_] [:] 
+head_17 ::= head_16 | 
+head_18 ::= head_9 | 
+head_19 ::= head_9 head_18 | 
+head_20 ::= head_9 head_19 | 
+end print
+init 1

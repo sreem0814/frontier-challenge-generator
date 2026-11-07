@@ -1,0 +1,7 @@
+schema 0
+root
+  kind 11 types 20 str 0 items 0 -1
+    kind 9 types 08 str 0 min -9223372036854775808 max 9223372036854775807
+schema 1
+root
+  kind 6 types 01 str 0

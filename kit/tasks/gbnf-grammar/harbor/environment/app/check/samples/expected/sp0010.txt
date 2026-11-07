@@ -1,0 +1,228 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 root_1
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+rule 0: 3:49 2:1 1:0 4:32 5:126 6:945 5:969 6:20013 3:97 3:97 2:9 0:0
+rule 1: 3:47 3:55 3:64 2:1 1:0 0:0
+rule 2: 3:122 3:126 2:3 0:0
+rule 3: 2:4 1:0 3:59 2:7 2:8 3:60 3:43 3:20013 3:233 0:0
+rule 4: 7:0 1:0 0:0
+rule 5: 3:59 1:0 0:0
+rule 6: 3:59 2:5 1:0 0:0
+rule 7: 3:59 2:6 1:0 0:0
+rule 8: 3:99 2:8 1:0 0:0
+rule 9: 2:2 2:9 1:0 0:0
+print:
+root ::= [1] root_1 | [^ -~<U+03B1>-<U+03C9><U+4E2D>] [a] [a] root_9 
+root_1 ::= [/] [7] [@] root_1 | 
+root_2 ::= [z] [~] root_3 
+root_3 ::= root_4 | [;] root_7 root_8 [<] [+] [<U+4E2D>] [<U+00E9>] 
+root_4 ::= .] | 
+root_5 ::= [;] | 
+root_6 ::= [;] root_5 | 
+root_7 ::= [;] root_6 | 
+root_8 ::= [c] root_8 | 
+root_9 ::= root_2 root_9 | 
+end print
+init 1
+grammar 1
+parse 1
+sym 0 root
+sym 1 key
+sym 2 key_2
+sym 3 key_3
+sym 4 key_4
+sym 5 key_5
+sym 6 key_6
+sym 7 key_7
+sym 8 key_8
+sym 9 key_9
+sym 10 key_10
+sym 11 key_11
+sym 12 key_12
+sym 13 key_13
+sym 14 key_14
+sym 15 key_15
+sym 16 num
+sym 17 key_17
+sym 18 key_18
+sym 19 key_19
+sym 20 key_20
+sym 21 key_21
+sym 22 key_22
+sym 23 key_23
+sym 24 key_24
+sym 25 num_25
+sym 26 num_26
+sym 27 num_27
+rule 0: 3:97 6:65 5:70 2:1 0:0
+rule 1: 1:0 2:5 3:32 5:126 3:57 1:0 3:57 2:6 0:0
+rule 2: 2:3 3:97 5:102 6:97 6:92 0:0
+rule 3: 2:4 0:0
+rule 4: 7:0 2:4 1:0 0:0
+rule 5: 2:2 1:0 0:0
+rule 6: 2:7 3:38 2:9 1:0 3:98 2:10 1:0 3:41 2:24 3:1024 5:1279 3:49 5:53 6:65 5:70 6:65 5:70 7:0 0:0
+rule 7: 3:99 3:83 2:8 3:65 3:10 3:91 3:121 3:20013 0:0
+rule 8: 3:99 3:83 2:8 1:0 0:0
+rule 9: 3:38 2:9 1:0 0:0
+rule 10: 3:48 5:57 2:11 2:12 2:13 1:0 3:122 3:122 2:14 2:15 2:16 2:16 2:16 2:19 3:48 3:47 3:48 3:47 3:48 3:47 2:22 1:0 3:83 3:99 3:40 3:98 2:23 0:0
+rule 11: 3:48 5:57 2:11 1:0 0:0
+rule 12: 3:48 2:12 1:0 0:0
+rule 13: 3:95 2:13 1:0 0:0
+rule 14: 3:122 2:14 1:0 0:0
+rule 15: 4:945 5:969 2:15 1:0 0:0
+rule 16: 2:25 1:0 3:93 2:26 2:26 2:26 7:0 3:233 3:60 2:27 2:16 0:0
+rule 17: 2:16 1:0 0:0
+rule 18: 2:16 2:17 1:0 0:0
+rule 19: 2:16 2:18 1:0 0:0
+rule 20: 3:48 3:47 1:0 0:0
+rule 21: 3:48 3:47 2:20 1:0 0:0
+rule 22: 3:48 3:47 2:21 1:0 0:0
+rule 23: 3:40 3:45 2:23 1:0 0:0
+rule 24: 3:41 2:24 1:0 0:0
+rule 25: 3:61 3:93 1:0 0:0
+rule 26: 1:0 0:0
+rule 27: 3:955 2:27 1:0 0:0
+print:
+root ::= [aA-F] key 
+key ::= | key_5 [ -~] [9] | [9] key_6 
+key_2 ::= key_3 [a-fa\] 
+key_3 ::= key_4 
+key_4 ::= .] key_4 | 
+key_5 ::= key_2 | 
+key_6 ::= key_7 [&] key_9 | [b] key_10 | [)] key_24 [<U+0400>-<U+04FF>] [1-5A-FA-F.] 
+key_7 ::= [c] [S] key_8 [A] [<U+000A>] [[] [y] [<U+4E2D>] 
+key_8 ::= [c] [S] key_8 | 
+key_9 ::= [&] key_9 | 
+key_10 ::= [0-9] key_11 key_12 key_13 | [z] [z] key_14 key_15 num num num key_19 [0] [/] [0] [/] [0] [/] key_22 | [S] [c] [(] [b] key_23 
+key_11 ::= [0-9] key_11 | 
+key_12 ::= [0] key_12 | 
+key_13 ::= [_] key_13 | 
+key_14 ::= [z] key_14 | 
+key_15 ::= [^<U+03B1>-<U+03C9>] key_15 | 
+num ::= num_25 | []] num_26 num_26 num_26 .] [<U+00E9>] [<] num_27 num 
+key_17 ::= num | 
+key_18 ::= num key_17 | 
+key_19 ::= num key_18 | 
+key_20 ::= [0] [/] | 
+key_21 ::= [0] [/] key_20 | 
+key_22 ::= [0] [/] key_21 | 
+key_23 ::= [(] [-] key_23 | 
+key_24 ::= [)] key_24 | 
+num_25 ::= [=] []] | 
+num_26 ::= | 
+num_27 ::= [<U+03BB>] num_27 | 
+end print
+init 1
+grammar 2
+parse 1
+sym 0 arr
+sym 1 arr_1
+sym 2 list
+sym 3 list_3
+sym 4 list_4
+sym 5 list_5
+sym 6 list_6
+sym 7 list_7
+sym 8 list_8
+sym 9 list_9
+sym 10 list_10
+sym 11 list_11
+sym 12 list_12
+sym 13 list_13
+sym 14 list_14
+sym 15 list_15
+sym 16 list_16
+sym 17 list_17
+sym 18 list_18
+sym 19 opt
+sym 20 opt_20
+sym 21 opt_21
+sym 22 opt_22
+sym 23 root
+sym 24 root_24
+sym 25 root_25
+sym 26 root_26
+sym 27 root_27
+sym 28 root_28
+sym 29 root_29
+sym 30 root_30
+sym 31 root_31
+sym 32 root_32
+rule 0: 3:9 1:0 3:122 3:233 2:1 0:0
+rule 1: 3:92 3:92 1:0 0:0
+rule 2: 2:3 2:6 2:7 2:12 2:13 1:0 3:8364 2:14 2:16 3:59 2:17 2:18 0:0
+rule 3: 2:0 1:0 0:0
+rule 4: 4:10 2:5 0:0
+rule 5: 4:10 2:5 1:0 0:0
+rule 6: 2:4 2:6 1:0 0:0
+rule 7: 3:128512 2:11 0:0
+rule 8: 3:58 3:35 1:0 3:34 3:37 2:9 2:10 0:0
+rule 9: 3:122 3:38 3:37 3:93 2:9 1:0 0:0
+rule 10: 3:121 1:0 0:0
+rule 11: 2:8 1:0 0:0
+rule 12: 2:7 2:12 1:0 0:0
+rule 13: 3:48 2:13 1:0 0:0
+rule 14: 2:0 2:15 0:0
+rule 15: 2:0 2:15 1:0 0:0
+rule 16: 2:14 2:16 1:0 0:0
+rule 17: 3:59 2:17 1:0 0:0
+rule 18: 2:2 1:0 0:0
+rule 19: 2:20 2:2 1:0 2:22 3:98 5:100 6:98 5:100 6:97 5:102 3:98 5:100 6:98 5:100 6:97 5:102 3:98 5:100 6:98 5:100 6:97 5:102 0:0
+rule 20: 3:42 3:35 3:122 1:0 0:0
+rule 21: 2:2 2:2 2:2 3:98 3:241 3:58 1:0 4:43 3:35 3:33 3:8364 0:0
+rule 22: 2:21 1:0 0:0
+rule 23: 7:0 4:65 5:70 6:97 5:102 1:0 3:47 2:24 3:48 6:44 2:26 2:31 2:32 0:0
+rule 24: 2:25 0:0
+rule 25: 7:0 1:0 0:0
+rule 26: 2:0 2:29 2:30 2:0 1:0 3:33 3:43 3:34 3:55 0:0
+rule 27: 7:0 2:28 0:0
+rule 28: 7:0 2:28 1:0 0:0
+rule 29: 2:27 1:0 0:0
+rule 30: 3:122 2:30 1:0 0:0
+rule 31: 0:0
+rule 32: 2:23 1:0 0:0
+print:
+arr ::= [<U+0009>] | [z] [<U+00E9>] arr_1 
+arr_1 ::= [\] [\] | 
+list ::= list_3 list_6 list_7 list_12 list_13 | [<U+20AC>] list_14 list_16 [;] list_17 list_18 
+list_3 ::= arr | 
+list_4 ::= [^<U+000A>] list_5 
+list_5 ::= [^<U+000A>] list_5 | 
+list_6 ::= list_4 list_6 | 
+list_7 ::= [<U+1F600>] list_11 
+list_8 ::= [:] [#] | ["] [%] list_9 list_10 
+list_9 ::= [z] [&] [%] []] list_9 | 
+list_10 ::= [y] | 
+list_11 ::= list_8 | 
+list_12 ::= list_7 list_12 | 
+list_13 ::= [0] list_13 | 
+list_14 ::= arr list_15 
+list_15 ::= arr list_15 | 
+list_16 ::= list_14 list_16 | 
+list_17 ::= [;] list_17 | 
+list_18 ::= list | 
+opt ::= opt_20 list | opt_22 [b-db-da-f] [b-db-da-f] [b-db-da-f] 
+opt_20 ::= [*] [#] [z] | 
+opt_21 ::= list list list [b] [<U+00F1>] [:] | [^+] [#] [!] [<U+20AC>] 
+opt_22 ::= opt_21 | 
+root ::= .] [^A-Fa-f] | [/] root_24 [0,] root_26 root_31 root_32 
+root_24 ::= root_25 
+root_25 ::= .] | 
+root_26 ::= arr root_29 root_30 arr | [!] [+] ["] [7] 
+root_27 ::= .] root_28 
+root_28 ::= .] root_28 | 
+root_29 ::= root_27 | 
+root_30 ::= [z] root_30 | 
+root_31 ::= 
+root_32 ::= root | 
+end print
+init 1

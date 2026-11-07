@@ -1,0 +1,5 @@
+schema 0
+root ::= ("1" | "42" | "\"ünïcödé\"")
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar
+literal 222d5d22

@@ -1,0 +1,15 @@
+init 1
+state awaiting=0 stacks=3 empty=0 partial=0/0 buf=
+allowed 15 3f2e473cfe286fdb 15 16 17 18 19 20 21 22 23 24 60 65 66 67 2705
+allowed 15 3f2e473cfe286fdb 15 16 17 18 19 20 21 22 23 24 60 65 66 67 2705
+accept 24
+state awaiting=0 stacks=1 empty=0 partial=57/0 buf=
+allowed 1 1119aafc3af14b6e 13
+accept 13
+state awaiting=0 stacks=1 empty=0 partial=46/0 buf=
+allowed 2 1aa8567ea799e9a0 125 584
+accept 125
+state awaiting=0 stacks=1 empty=0 partial=3/1 buf=
+clone
+state awaiting=0 stacks=1 empty=0 partial=3/1 buf=
+allowed 1 6f4a21d1873460b5 102

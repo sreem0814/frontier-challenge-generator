@@ -1,0 +1,5 @@
+schema 0
+root ::= "\"" (root-1{2,2}) "\""
+root-1 ::= ("__" "-"+)
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar

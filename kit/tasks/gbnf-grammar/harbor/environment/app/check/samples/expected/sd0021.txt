@@ -1,0 +1,23 @@
+schema 0
+root
+  kind 2 types 7f str 0 n 3
+    kind 0 types 7f str 0
+    kind 3 types 40 str 0 n 1
+      kind 13 types 40 str 0 props 1 additional 0
+        prop 77697468207370616365 required 0
+          kind 10 types 10 str 1 pattern  format 0 len 0 -1
+    kind 13 types 40 str 0 props 0 additional 0
+schema 1
+root
+  kind 4 types 20 str 0 value 5b7b7d2c34325d
+schema 2
+root
+  kind 1 types 40 str 0 ref 232f646566696e6974696f6e732f4974656d -> 232f646566696e6974696f6e732f4974656d
+def 232f646566696e6974696f6e732f4974656d
+  kind 1 types 40 str 0 ref 232f646566696e6974696f6e732f546167 -> 232f646566696e6974696f6e732f546167
+def 232f646566696e6974696f6e732f546167
+  kind 13 types 40 str 0 props 1 additional 0
+    prop 6974656d73 required 0
+      kind 5 types 5c str 1 n 4 322e30 2268656c6c6f22 313233343536373839 7b7d
+schema 3
+THROW

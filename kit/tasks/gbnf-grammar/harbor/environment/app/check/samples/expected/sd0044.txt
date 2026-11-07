@@ -1,0 +1,10 @@
+schema 0
+root
+  kind 2 types 1e str 1 n 3
+    kind 8 types 0c str 0
+    kind 7 types 02 str 0
+    kind 10 types 10 str 1 pattern  format 0 len 0 -1
+schema 1
+root
+  kind 11 types 20 str 0 items 0 -1
+    kind 0 types 7f str 0

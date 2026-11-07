@@ -1,0 +1,28 @@
+schema 0
+array ::= "[" space ( value ("," space value)* )? space "]"
+boolean ::= ("true" | "false")
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+decimal-part ::= [0-9]{1,16}
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+list ::= value
+list-kv ::= "\"list\"" space ":" space list
+null ::= "null"
+number ::= ("-"? integral-part) ("." decimal-part)? ([eE] [-+]? integral-part)?
+object ::= "{" space ( string ":" space value ("," space string ":" space value)* )? space "}"
+root ::= "{" space  (list-kv )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+string ::= "\"" char* "\""
+value ::= object | array | string | number | boolean | null
+end grammar
+literal 2278207922
+schema 61726773
+args ::= ref-defs-node
+null ::= "null"
+ref-defs-node ::= "{" space ref-defs-node-v-kv ( "," space ( ref-defs-node-next-kv ) )? space "}"
+ref-defs-node-next ::= ref-defs-node-next-0 | null
+ref-defs-node-next-0 ::= ref-defs-node
+ref-defs-node-next-kv ::= "\"next\"" space ":" space ref-defs-node-next
+ref-defs-node-v ::= ([0] | [1-9] [0-9]{0,15})
+ref-defs-node-v-kv ::= "\"v\"" space ":" space ref-defs-node-v
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar

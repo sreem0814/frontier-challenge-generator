@@ -1,0 +1,32 @@
+init 1
+state awaiting=0 stacks=1 empty=0 partial=0/0 buf=
+clone
+state awaiting=0 stacks=1 empty=0 partial=0/0 buf=
+token 150 allowed=1 of 10222
+accept 150
+state awaiting=0 stacks=1 empty=0 partial=16/1 buf=
+token 133 allowed=1 of 160
+accept 133
+state awaiting=0 stacks=9 empty=0 partial=1085/0 buf=
+token 999 allowed=1 of 40764
+accept 999
+state awaiting=0 stacks=9 empty=0 partial=95/0 buf=
+token 27 allowed=1 of 40764
+accept 27
+state awaiting=0 stacks=1 empty=0 partial=48/0 buf=
+token 48190 allowed=1 of 2
+accept 48190
+state awaiting=0 stacks=1 empty=0 partial=58/0 buf=
+token 6175 allowed=1 of 3
+accept 6175
+state awaiting=0 stacks=1 empty=0 partial=8364/0 buf=
+token 14 allowed=1 of 1
+accept 14
+state awaiting=0 stacks=2 empty=1 partial=35/0 buf=
+token 2034 allowed=1 of 14
+accept 2034
+state awaiting=0 stacks=2 empty=1 partial=100/0 buf=
+token 79 allowed=1 of 4
+accept 79
+state awaiting=0 stacks=1 empty=1 partial=100/0 buf=
+token 76 allowed=0 of 1

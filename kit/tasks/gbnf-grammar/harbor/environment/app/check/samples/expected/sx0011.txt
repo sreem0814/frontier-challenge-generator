@@ -1,0 +1,15 @@
+schema 0
+age ::= "{" space age-a-kv "," space age-value-kv space "}"
+age-a ::= "\"" ([a-z] | ":" dot* "\-" | "b") "\""
+age-a-kv ::= "\"a\"" space ":" space age-a
+age-kv ::= "\"age\"" space ":" space age
+age-value ::= "\"" (dot | [a-c_]* age-value-1{3,3} [äöü]?) "\""
+age-value-1 ::= ([a-c_]* ":_-" [^\]]+)
+age-value-kv ::= "\"value\"" space ":" space age-value
+dot ::= [^\x0A\x0D]
+root ::= "{" space  (age-kv )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar
+schema 1
+THROW
+literal 2278207922

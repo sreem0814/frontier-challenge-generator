@@ -1,0 +1,10 @@
+init 1
+state awaiting=0 stacks=1 empty=0 partial=0/0 buf=
+allowed 2 e7dcac79c6b135ce 86 29903
+accept 29903
+state awaiting=0 stacks=1 empty=0 partial=83/0 buf=
+allowed 2 7034115a60065531 62 29936
+accept 29936
+state awaiting=0 stacks=1 empty=1 partial=59/0 buf=
+allowed 3 58487a50ffe2964e 2 32000 32007
+token 317 allowed=0 of 3

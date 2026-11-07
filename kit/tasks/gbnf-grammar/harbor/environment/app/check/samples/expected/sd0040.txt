@@ -1,0 +1,47 @@
+schema 0
+root
+  kind 13 types 40 str 0 props 4 additional 0
+    prop 74797065 required 1
+      kind 13 types 40 str 0 props 2 additional 0
+        prop 2478 required 0
+          kind 1 types 10 str 1 ref 232f24646566732f612062 -> 232f24646566732f612062
+        prop 7122756f7465 required 1
+          kind 2 types 19 str 1 n 3
+            kind 10 types 10 str 1 pattern 5e5b612d7a5d7b302c327d3039317c287a207b302c327d297b312c337d5b5e5c5d5d2b7c5b5e5c5d5d2a6124 format 0 len 0 -1
+            kind 9 types 08 str 0 min -9223372036854775808 max -991
+            kind 6 types 01 str 0
+    prop 61 required 0
+      kind 5 types 40 str 0 n 1 7b22616765223a747275657d
+    prop 2478 required 1
+      kind 5 types 18 str 1 n 2 2222 2d31
+    prop 6e616d65 required 1
+      kind 13 types 40 str 0 props 3 additional 1
+        prop 74797065 required 0
+          kind 13 types 40 str 0 props 3 additional 0
+            prop 6c697374 required 0
+              kind 10 types 10 str 1 pattern 5e283f3a2d3a20392b28717b327d5b412d46612d66302d395d71292b297b2c327d7c5b612d7a5d7b322c7d7c283f3a3a5b612d7a5d5b5c2d2b5d297b2c327d24 format 0 len 0 -1
+            prop 6e6573746564 required 1
+              kind 10 types 10 str 1 pattern 5e5c2d24 format 0 len 0 -1
+            prop 6964 required 1
+              kind 6 types 01 str 0
+        prop 616765 required 0
+          kind 2 types 11 str 1 n 3
+            kind 10 types 10 str 1 pattern 5e2e2e24 format 0 len 0 -1
+            kind 5 types 01 str 0 n 1 6e756c6c
+            kind 10 types 10 str 1 pattern 5e2861787c39203a287a787a5b78797a5d5c2e297b302c327d2e295c2a7b312c337d7c5c245b612d7a5d24 format 0 len 0 -1
+        prop 2478 required 0
+          kind 13 types 40 str 0 props 3 additional 1
+            prop c3bc6ec3af required 1
+              kind 8 types 0c str 0
+            prop 7122756f7465 required 0
+              kind 6 types 01 str 0
+            prop 6c697374 required 0
+              kind 10 types 10 str 1 pattern  format 1 len 0 -1
+            additional
+              kind 6 types 01 str 0
+        additional
+          kind 0 types 7f str 0
+def 232f24646566732f612062
+  kind 10 types 10 str 1 pattern 5e5b302d395d28283f3a5c282b717b312c337d31797b337d293f793a317b2c327d613a3f7c5c3f286262715bc3a4c3b6c3bc5d7b312c337d29613a297c2e2e24 format 0 len 0 -1
+schema 1
+THROW

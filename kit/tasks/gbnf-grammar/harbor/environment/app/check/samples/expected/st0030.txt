@@ -1,0 +1,5 @@
+init 1
+state awaiting=0 stacks=2 empty=0 partial=0/0 buf=
+allowed 2 ce662d8219c38160 31 60
+clone
+state awaiting=0 stacks=2 empty=0 partial=0/0 buf=

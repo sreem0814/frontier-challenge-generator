@@ -1,0 +1,6 @@
+init 1
+state awaiting=0 stacks=4 empty=0 partial=0/0 buf=
+token 29871 allowed=1 of 2324
+accept 29871
+state awaiting=0 stacks=1 empty=0 partial=32/0 buf=
+token 30370 allowed=0 of 20

@@ -1,0 +1,13 @@
+schema 0
+additional-k ::= ["] ( [i] ([d] char+ | [^"d] char*) | [^"i] char* )? ["]
+additional-kv ::= additional-k ":" space number
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+decimal-part ::= [0-9]{1,16}
+id ::= "[" space id-item? space "]"
+id-item ::= "\"a\""
+id-kv ::= "\"id\"" space ":" space id
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+number ::= ("-"? integral-part) ("." decimal-part)? ([eE] [-+]? integral-part)?
+root ::= "{" space id-kv ( "," space ( additional-kv ( "," space additional-kv )* ) )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar

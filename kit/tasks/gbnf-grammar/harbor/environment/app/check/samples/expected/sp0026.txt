@@ -1,0 +1,79 @@
+grammar 0
+parse 1
+sym 0 root
+sym 1 b-2
+sym 2 root_2
+sym 3 root_3
+sym 4 root_4
+sym 5 root_5
+sym 6 root_6
+sym 7 root_7
+sym 8 root_8
+sym 9 root_9
+sym 10 root_10
+sym 11 root_11
+sym 12 root_12
+sym 13 root_13
+sym 14 root_14
+sym 15 b-2_15
+sym 16 b-2_16
+rule 0: 2:1 1:0 2:11 3:37 3:82 2:14 0:0
+rule 1: 2:15 2:16 0:0
+rule 2: 1:0 3:48 2:3 3:123 3:44 2:6 3:97 5:102 1:0 3:93 6:45 2:1 1:0 3:98 3:65 3:122 3:82 3:42 3:128512 4:1024 5:1279 2:7 0:0
+rule 3: 3:48 2:3 1:0 0:0
+rule 4: 3:123 3:44 1:0 0:0
+rule 5: 3:123 3:44 2:4 1:0 0:0
+rule 6: 3:123 3:44 2:5 1:0 0:0
+rule 7: 3:49 3:98 3:93 3:98 3:98 3:93 3:98 2:8 3:20013 6:92 3:20013 6:92 2:9 4:60 6:241 1:0 2:1 2:1 2:1 2:10 3:33 3:40 3:35 3:49 3:122 3:63 3:41 0:0
+rule 8: 3:98 3:93 3:98 1:0 0:0
+rule 9: 3:20013 6:92 2:9 1:0 0:0
+rule 10: 2:1 2:10 1:0 0:0
+rule 11: 2:2 2:11 1:0 0:0
+rule 12: 3:37 3:82 1:0 0:0
+rule 13: 3:37 3:82 2:12 1:0 0:0
+rule 14: 3:37 3:82 2:13 1:0 0:0
+rule 15: 3:48 5:57 6:32 5:126 2:15 1:0 0:0
+rule 16: 7:0 2:16 1:0 0:0
+print:
+root ::= b-2 | root_11 [%] [R] root_14 
+b-2 ::= b-2_15 b-2_16 
+root_2 ::= | [0] root_3 [{] [,] root_6 [a-f] | []-] b-2 | [b] [A] [z] [R] [*] [<U+1F600>] [^<U+0400>-<U+04FF>] root_7 
+root_3 ::= [0] root_3 | 
+root_4 ::= [{] [,] | 
+root_5 ::= [{] [,] root_4 | 
+root_6 ::= [{] [,] root_5 | 
+root_7 ::= [1] [b] []] [b] [b] []] [b] root_8 [<U+4E2D>\] [<U+4E2D>\] root_9 [^<<U+00F1>] | b-2 b-2 b-2 root_10 [!] [(] [#] [1] [z] [?] [)] 
+root_8 ::= [b] []] [b] | 
+root_9 ::= [<U+4E2D>\] root_9 | 
+root_10 ::= b-2 root_10 | 
+root_11 ::= root_2 root_11 | 
+root_12 ::= [%] [R] | 
+root_13 ::= [%] [R] root_12 | 
+root_14 ::= [%] [R] root_13 | 
+b-2_15 ::= [0-9 -~] b-2_15 | 
+b-2_16 ::= .] b-2_16 | 
+end print
+init 0
+grammar 1
+parse 0
+init 0
+grammar 2
+parse 1
+sym 0 root
+sym 1 expr
+sym 2 root_2
+sym 3 root_3
+sym 4 expr_4
+rule 0: 2:2 3:97 5:102 1:0 2:3 3:61 3:40 3:955 1:0 2:1 0:0
+rule 1: 3:55 3:60 2:4 0:0
+rule 2: 2:1 1:0 0:0
+rule 3: 2:1 1:0 0:0
+rule 4: 3:55 2:4 1:0 0:0
+print:
+root ::= root_2 [a-f] | root_3 [=] [(] [<U+03BB>] | expr 
+expr ::= [7] [<] expr_4 
+root_2 ::= expr | 
+root_3 ::= expr | 
+expr_4 ::= [7] expr_4 | 
+end print
+init 1

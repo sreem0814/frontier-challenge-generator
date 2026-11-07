@@ -1,0 +1,21 @@
+schema 0
+age ::= "{" space  (age-list-kv age-list-rest | age-count-kv age-count-rest | age--n--kv )? space "}"
+age--n- ::= string
+age--n--kv ::= "\"ünï\"" space ":" space age--n-
+age-count ::= "[" space (integer ("," space integer)*)? space "]"
+age-count-kv ::= "\"count\"" space ":" space age-count
+age-count-rest ::= ( "," space age--n--kv )?
+age-kv ::= "\"age\"" space ":" space age
+age-list-kv ::= "\"list\"" space ":" space boolean
+age-list-rest ::= ( "," space age-count-kv )? age-count-rest
+boolean ::= ("true" | "false")
+char ::= [^"\\\x7F\x00-\x1F] | [\\] (["\\bfnrt] | "u" [0-9a-fA-F]{4})
+integer ::= ("-"? integral-part)
+integral-part ::= [0] | [1-9] [0-9]{0,15}
+root ::= "{" space  (age-kv )? space "}"
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+string ::= "\"" char* "\""
+end grammar
+schema 1
+THROW
+literal 225c5c5c2222

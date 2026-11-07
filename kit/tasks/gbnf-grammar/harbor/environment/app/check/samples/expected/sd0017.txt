@@ -1,0 +1,3 @@
+schema 0
+root
+  kind 9 types 08 str 0 min -2147483648 max 9223372036854775807

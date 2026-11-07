@@ -1,0 +1,12 @@
+schema 0
+root
+  kind 7 types 02 str 0
+schema 1
+root
+  kind 2 types 0e str 0 n 3
+    kind 7 types 02 str 0
+    kind 8 types 0c str 0
+    kind 9 types 08 str 0 min -4 max 9223372036854775807
+schema 2
+root
+  kind 9 types 08 str 0 min -9223372036854775808 max 9223372036854775807

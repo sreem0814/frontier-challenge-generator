@@ -1,0 +1,4 @@
+schema 0
+root ::= ("true" | "false")
+space ::= | " " | "\n"{1,2} [ \t]{0,20}
+end grammar
