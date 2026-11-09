@@ -1,0 +1,28 @@
+[task]
+name = "cg/httplib-wire"
+description = "Rebuild the HTTP/1.1 message layer of cpp-httplib 0.62.0 (request and status lines, header fields, Content-Length and chunked bodies, URLs and query strings, multipart/form-data, byte ranges, content negotiation) inside its single header; scored on the upstream test suite and frozen library, client and raw-socket server cases against the released header."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["cpp"]
+category = "networking"
+difficulty = "frontier"
+tags = ["c++", "http", "http1.1", "parser", "multipart", "range-requests", "chunked-encoding", "header-only"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+user = "agent"
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"
