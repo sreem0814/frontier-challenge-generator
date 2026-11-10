@@ -1,0 +1,28 @@
+[task]
+name = "cg/fluentbit-modify-paths"
+description = "Add record-accessor paths ($a['b'][0]) to every rule and condition of Fluent Bit's modify filter, with nested creation, array indexes, destination paths and scoped key sets, graded on exact filter output."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["c"]
+category = "log-processing"
+difficulty = "frontier"
+tags = ["fluent-bit", "msgpack", "record-accessor", "c", "feature"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 28800
+user = "agent"
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"

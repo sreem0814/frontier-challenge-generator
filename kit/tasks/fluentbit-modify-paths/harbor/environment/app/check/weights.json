@@ -1,0 +1,11 @@
+{
+ "set_add": 0.14,
+ "remove": 0.06,
+ "rename": 0.13,
+ "copy": 0.13,
+ "keysets": 0.13,
+ "conditions": 0.09,
+ "cond_keysets": 0.1,
+ "config": 0.06,
+ "chains": 0.16
+}
