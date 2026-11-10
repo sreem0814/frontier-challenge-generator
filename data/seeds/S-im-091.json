@@ -1,0 +1,217 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "4h. Frontier agents get the YIQ math and PNG right; the anti-aliasing heuristic, JPEG and TIFF decoding exactness and diff-mask details separate trials. Buckets by format and option. A weaker model fails on non-PNG formats and anti-aliasing.",
+  "cheat": "Per-pixel RGB equality fails the threshold and anti-aliasing cases. Wrapping an installed image library is blocked because none ships in the image, and the odiff binary is sealed.",
+  "grading": "Hidden pairs of generated images with controlled perturbations and the real odiff outputs recorded offline: exit code, differing-pixel count and diff-mask PNG pixels (exact). The pair count is in the hundreds, from a generator.",
+  "reference": "Upstream odiff gives the expected outputs; our reference is a port of its core and decoders (about 1500 lines).",
+  "source": "https://github.com/dmtrKovalenko/odiff @ v4.5.0, MIT",
+  "task": "/app ships a stub CLI and a spec. The agent builds an image comparison tool in C or Rust, with no external image libraries. It needs PNG/JPEG/BMP/TIFF decoders, YIQ perceptual delta with a threshold, anti-aliasing detection, ignore regions, layout-difference handling, a diff-image writer and exit codes.",
+  "title": "Image diff CLI matched to odiff"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-090 0.26"
+  ],
+  [
+   "2026-10-21T03:12:39Z",
+   "v1",
+   "killed:K4",
+   "As seeded, exact JPEG/TIFF pixel masks depend on libjpeg-turbo/libtiff decoder arithmetic (imgz wraps C libraries). A different valid decoder would fail the hidden cases, so the gate that a different valid solution must pass fails. Revivable if the spec pins the decoder arithmetic exactly or JPEG/TI"
+  ]
+ ],
+ "id": "S-im-091",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.264,
+    "S-im-090"
+   ],
+   [
+    0.209,
+    "S-im-015"
+   ],
+   [
+    0.206,
+    "S-im-038"
+   ],
+   [
+    0.178,
+    "png-generation [original]"
+   ],
+   [
+    0.146,
+    "delta [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "6dd1e9629810042c03a81fc787f37b245772970a",
+  "kb": 142744,
+  "lang": "Zig",
+  "open_prs": 3,
+  "pushed": "2026-10-13",
+  "release": "v4.5.0",
+  "spdx": "MIT",
+  "stars": 3278,
+  "test_files": 89,
+  "test_kb": 17261,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/dmtrkovalenko/odiff|4-5-0",
+ "source_notes": "Very fast SIMD-first image comparison library (with nodejs API)",
+ "source_url": "https://github.com/dmtrKovalenko/odiff",
+ "source_version": "4.5.0",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/dmtrKovalenko/odiff",
+  "facts": [
+   {
+    "claim": "odiff repo is MIT-licensed, written in Zig with SIMD (SSE2/AVX2/AVX512/NEON), originally OCaml",
+    "status": "confirmed",
+    "url": "https://github.com/dmtrKovalenko/odiff"
+   },
+   {
+    "claim": "odiff README lists input support for .png, .jpeg, .jpg, .webp, .tiff; diff output only .png",
+    "status": "confirmed",
+    "url": "https://github.com/dmtrKovalenko/odiff"
+   },
+   {
+    "claim": "odiff supports BMP input",
+    "status": "not_found",
+    "url": "https://github.com/dmtrKovalenko/odiff"
+   },
+   {
+    "claim": "YIQ NTSC perceptual difference, antialiasing option (AA pixels not counted), threshold 0-1 option",
+    "status": "confirmed",
+    "url": "https://github.com/dmtrKovalenko/odiff"
+   },
+   {
+    "claim": "odiff build.zig.zon declares a single dependency, imgz pinned at commit 4d77943",
+    "status": "confirmed",
+    "url": "https://github.com/dmtrKovalenko/odiff/blob/v4.5.0/build.zig.zon"
+   },
+   {
+    "claim": "Reference decoders are an in-house port of about 1500 lines covering PNG/JPEG/BMP/TIFF",
+    "status": "contradicted",
+    "url": "https://github.com/shreyassanthu77/imgz"
+   },
+   {
+    "claim": "imgz (the only odiff dependency) wraps libjpeg-turbo, libspng, libtiff and libwebp, not hand-written decoders",
+    "status": "confirmed",
+    "url": "https://github.com/shreyassanthu77/imgz"
+   },
+   {
+    "claim": "imgz documents bit-exact output or its IDCT / chroma upsampling method",
+    "status": "not_found",
+    "url": "https://github.com/shreyassanthu77/imgz"
+   },
+   {
+    "claim": "odiff is distributed as an npm CLI binary (odiff-bin) and GitHub release binaries",
+    "status": "confirmed",
+    "url": "https://www.linuxlinks.com/odiff-native-image-comparison-tool/"
+   }
+  ],
+  "frontier_hours": 12,
+  "full_card": {
+   "band": "Seed says 4h. Scope (4 decoders, YIQ, AA, ignore regions, layout, PNG writer, options) is about 3000 lines; excellent frontier agent est. 12 h. Tier 20 fits. Band 3 without dated public evidence.",
+   "build_cost": "About 3 days: build odiff, record outputs for a generator, pin decoder behaviour. smoke_build was empty ({}), so no offline build result exists.",
+   "deliverable": "C or Rust CLI: PNG/JPEG/BMP/TIFF decoders, YIQ delta with threshold, AA detection, ignore regions, layout-difference handling, diff-PNG writer, exit codes.",
+   "gates_anticheat": "Per-pixel RGB equality fails threshold/AA cases. No image library in the image. odiff binary sealed: the npm package is not installable offline. Grading uses recorded outputs, so an agent cannot call odiff at run time.",
+   "grading_surface": "Hundreds of generated image pairs with recorded odiff outputs: exit code, differing-pixel count, diff-mask PNG pixels (exact). Good surface size, but exact JPEG/TIFF pixels depend on libjpeg-turbo/libtiff arithmetic.",
+   "local_fit": "gVisor fine: CPU-only, no network at run time, under 8 cores/16 GB. Zig/C/Rust toolchain needed.",
+   "lookup": "partial: odiff source and npm binary are public; the algorithm is known in outline; not offline-installable; 3 open PRs unchecked.",
+   "provenance": "github.com/dmtrKovalenko/odiff @ v4.5.0 (MIT, Zig, 3278 stars, not fork, not archived). Reference decoders come from the imgz dependency, which wraps C libraries.",
+   "reference": "Upstream odiff (Zig) plus imgz. A port must reproduce libjpeg-turbo and libtiff decoding exactly. The claimed 1500-line port is unverified and does not match the wrapper structure.",
+   "ships": "Stub CLI, spec, and a history-less snapshot of odiff source is NOT advisable: the public repo makes the algorithm recallable in outline. The bundle would need to ship a pinned spec and generator only.",
+   "similarity": "Nearest l0: S-im-090 0.264, S-im-015 0.209, S-im-038 0.206, png-generation 0.178. Not crowded. Differs by a multi-format image diff tool with exact odiff parity."
+  },
+  "kill_code": "K4",
+  "kill_reason": "As seeded, exact JPEG/TIFF pixel masks depend on libjpeg-turbo/libtiff decoder arithmetic (imgz wraps C libraries). A different valid decoder would fail the hidden cases, so the gate that a different valid solution must pass fails. Revivable if the spec pins the decoder arithmetic exactly or JPEG/TIFF are graded with a tolerance. Also: the seed's reference-size and 4h band claims are contradicted.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Large scope, but no dated public evidence; the seed's 4h tier is too short."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days; the smoke build was not run and wrapped C decoders add cost."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, offline-capable, fits 8 cores/16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-module, about 12 h of frontier work; needs a tier 20 budget."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "MIT for odiff; imgz's wrapped C libs are permissive; wrapper licence needs a check."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Formats, options and diff outputs give many partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.264 (S-im-090), above 0.15; not crowded."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Popular MIT repo at a release tag with real source and tests."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is a Zig port that wraps C decoders; the 1500-line claim is contradicted by imgz."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Binary sealed and grading offline, but the public Zig source is recallable in outline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hundreds of generated pairs with recorded outputs, exact pixel masks."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Outputs are non-deterministic, or no spec-pinnable decoder arithmetic gives exact agreement for JPEG/TIFF.",
+   "pass_if": "odiff builds offline-reproducibly, outputs are deterministic, and one pinned decoder arithmetic reproduces the recorded outputs exactly for PNG and JPEG/TIFF.",
+   "steps": [
+    "In a throwaway networked container, clone odiff at v4.5.0 and build the CLI with Zig (smoke_build was empty, so this is the first build).",
+    "Generate about 50 PNG/JPEG/TIFF pairs with controlled perturbations and record odiff exit code, diff count and diff-mask PNG pixels.",
+    "Run the build twice on the same pairs and confirm byte-identical outputs (determinism).",
+    "Check the JPEG path: decode 20 JPEGs with libjpeg-turbo ISLOW IDCT and no fancy upsampling, and with the default settings, and count per-pixel mismatches against imgz output.",
+    "Check the TIFF path the same way with libtiff for 10 files (compression variants).",
+    "Decide: if JPEG/TIFF mismatches are zero only under one pinned arithmetic, write that arithmetic into the spec; otherwise grade JPEG/TIFF with a tolerance or drop exact pixel masks for those formats."
+   ]
+  },
+  "summary": "The idea is a real, MIT-licensed odiff parity task with a large, recordable grading surface, but the seed's reference description is wrong: the decoders come from imgz, which wraps libjpeg-turbo, libspng, libtiff and libwebp, so exact JPEG/TIFF masks are not a spec-defined target. It also needs a tier 20 budget (about 12 frontier hours), not 4h, and the smoke build is empty, so the spike must confirm offline build and decoder determinism before revival.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 69
+}

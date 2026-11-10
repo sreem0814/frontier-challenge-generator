@@ -1,0 +1,345 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. A frontier agent gets basic grammars and schema conversion working, but loses cases on repetition, nested rules, UTF-8 ranges, $ref and oneOf handling and stack-pruning edge cases. A weaker model stops at parsing without correct sampling-stack behaviour.",
+  "cheat": "Recalling upstream from memory is only a partial shortcut. The hidden generated grammars and schemas are not in the image, and exact stack states are checked, so a simplified matcher fails.",
+  "grading": "Hidden ctest cases: the upstream grammar parser, integration and schema-converter tests plus generated grammars and schemas. The checks compare accepted/rejected strings, stack states and emitted GBNF text against outputs recorded from the reference. Score is the fraction passed; a build failure scores 0.",
+  "reference": "The upstream implementation at the pinned commit (a few thousand lines in total). It passes every case, so the ceiling is 1.",
+  "source": "https://github.com/ggml-org/llama.cpp @ head 39da130 (v0.7.0 release listed), MIT",
+  "task": "Ship a history-less snapshot with the grammar parser, grammar stacks and grammar-constrained sampling (llama-grammar), plus the JSON-schema-to-GBNF converter, stubbed out. The agent rebuilds them in C++ behind the existing headers so the project builds and the grammar/schema test binaries run.",
+  "title": "Rebuild llama.cpp GBNF grammar engine and JSON-schema converter"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "compiler-toolchain",
+ "final": 77,
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-070 0.26"
+  ],
+  [
+   "2026-10-21T03:16:35Z",
+   "v1",
+   "pass",
+   "score 77; dead links []"
+  ],
+  [
+   "2026-10-21T03:19:48Z",
+   "v2",
+   "pass",
+   "final 77"
+  ],
+  [
+   "2026-10-21T03:50:02Z",
+   "smoke",
+   "amber",
+   "cmake: build ok, 59 tests, 5 failing, NOT deterministic over 3 runs"
+  ],
+  [
+   "2026-10-21T03:51:53Z",
+   "spike",
+   "validated",
+   "The reference builds. I ran the five grammar and schema test binaries (test-grammar-integration, test-grammar-parser, test-llama-grammar, test-json-schema-to-grammar, test-json-schema) three times, and all passed each time. The five stable suite failures from the probe are in arg-parser, download-mo"
+  ]
+ ],
+ "id": "S-im-096",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.255,
+    "S-im-070"
+   ],
+   [
+    0.245,
+    "S-im-075"
+   ],
+   [
+    0.231,
+    "S-im-065"
+   ],
+   [
+    0.177,
+    "schema [NL2Repo-Bench]"
+   ],
+   [
+    0.166,
+    "abetlen__llama-cpp-python-2bc1d97 [GSO]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 1,
+ "smoke": {
+  "apt_failed": false,
+  "apt_hint": "build-essential cmake git python3 python3-pip",
+  "build_ok": true,
+  "build_s": 520,
+  "ci_files": 60,
+  "clone_ok": true,
+  "cmd_build": "cmake --build build -j 4",
+  "cmd_fetch": "cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=ON -DLLAMA_BUILD_TESTS=ON -DLLAMA_TESTS_INSTALL=ON  -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache",
+  "cmd_test": "ctest --test-dir build --no-tests=error -j 4 --timeout 300 --output-junit $OUT/run$i.xml",
+  "commit": "339f3242c761f16c27e5ffcde1d35dcc31933a55",
+  "deterministic": false,
+  "eco": "cmake",
+  "fetch_ok": true,
+  "fetch_s": 2,
+  "flaky_names": [
+   "test-barrier::test-barrier"
+  ],
+  "flaky_tests": 1,
+  "log": "3] Building CXX object tools/export-lora/CMakeFiles/llama-export-lora.dir/export-lora.cpp.o\n[436/443] Linking CXX shared library bin/libllama-fit-params-impl.so\n[437/443] Linking CXX executable bin/llama-export-lora\n[438/443] Building CXX object app/CMakeFiles/llama-app.dir/__/license.cpp.o\n[439/443] Linking CXX executable bin/llama-fit-params\n[440/443] Building CXX object tools/results/CMakeFiles/llama-results.dir/results.cpp.o\n[441/443] Linking CXX executable bin/llama-results\n[442/443] Building CXX object app/CMakeFiles/llama-app.dir/download.cpp.o\n[443/443] Linking CXX executable bin/llama",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   8,
+   8,
+   8
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "test-arg-parser::test-arg-parser",
+   "test-download-model::test-download-model",
+   "test-eval-callback-download-model::test-eval-callback-download-model",
+   "test-jinja-py::test-jinja-py",
+   "test-llama-context::test-llama-context"
+  ],
+  "stable_failures": 5,
+  "subdir": "",
+  "suite_s": 364,
+  "test_files": 288,
+  "tests_fail": 5,
+  "tests_listed": 59,
+  "tests_pass": 51,
+  "tests_skip": 3,
+  "tests_total": 59,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": "cgp-work-1db3faaa265c"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "39da130fcd1b6ca47d3c0522a40eccff41ea3dfb",
+  "kb": 460405,
+  "lang": "C++",
+  "open_prs": 1766,
+  "pushed": "2026-10-20",
+  "release": "v0.7.0",
+  "spdx": "MIT",
+  "stars": 131826,
+  "test_files": 288,
+  "test_kb": 5736,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/ggml-org/llama.cpp|ggml-org-llama-cpp",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: cd build && ctest --verbose --output-on-failure --rerun-failed --repeat until-pass:1. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/ggml-org/llama.cpp",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "The probe tree is at 339f324, not the seed's 39da130 or 4a45de4. A single pin must be chosen; I did not compare the two seed commits.",
+   "The grammar parser is now part of src/llama-grammar.cpp. There is no separate grammar-parser source, so the stub boundary is that file plus common/json-schema-to-grammar.cpp.",
+   "I did not compile a stubbed tree, so the stub boundary is unproven.",
+   "The shipped test files hold the expected outputs and must be removed or replaced with hidden ones. Hidden expectations would have to be regenerated from the reference.",
+   "The grammar code is widely known and mirrored, so the K8 risk is high."
+  ],
+  "build_minutes": 9,
+  "cases_sampled": 165,
+  "commands_log": "Reused the built tree at /p/src (commit 339f324). Ran `ctest --test-dir build -R \"grammar|json-schema\"` three times: 5 of 5 pass each time, with timings of 0.01-0.02 s per test. Counted file sizes and test blocks with wc and grep.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Ceiling is the full upstream implementation (~2550 lines in src/llama-grammar.cpp + common/json-schema-to-grammar.cpp). A stubbed start fails all cases by construction. I did not run it.",
+  "headroom_ok": true,
+  "image_gb_estimate": 3,
+  "kill_code": "",
+  "notes": "The reference builds. I ran the five grammar and schema test binaries (test-grammar-integration, test-grammar-parser, test-llama-grammar, test-json-schema-to-grammar, test-json-schema) three times, and all passed each time. The five stable suite failures from the probe are in arg-parser, download-model, eval-callback-download-model, jinja-py and llama-context, none of them grammar tests. Case counts come from rough grep matches on test calls, so treat them as an estimate: about 61 in test-grammar-integration, 83 in test-json-schema-to-grammar, 19 in test-grammar-parser and none matched in test-llama-grammar. That gives about 165 cases. The hidden surface needs a generator for grammars, schemas and strings, using the reference binaries as the oracle. The build is cached, so no network was needed. test-grammar-llguidance exists but I did not check whether it is built or what it needs. Reference scale is about 1530 lines in src/llama-grammar.cpp plus 1028 in common/json-schema-to-grammar.cpp. The Band score depends on how well agents recall llama.cpp, which is a real K8 risk. Build cost looks moderate.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 165,
+  "reference_lines": 2300,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 3
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ggml-org/llama.cpp/tree/master/tests",
+  "facts": [
+   {
+    "claim": "Commit 39da130fcd1b6ca47d3c0522a40eccff41ea3dfb exists in ggml-org/llama.cpp (title 'ggml-cuda : support ssm_conv kernel size 7 (#30873)'); it does not touch grammar files",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/commit/39da130fcd1b6ca47d3c0522a40eccff41ea3dfb"
+   },
+   {
+    "claim": "The smoke-build commit 4a45de4f2c68f3d144f6c2431ad7c1da7e53c99e exists (title 'mtmd : lfm2 tiles and layout match transformers (#30261)'); it differs from the seed's pinned head 39da130, so the pin is inconsistent between source_facts and smoke_build",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/commit/4a45de4f2c68f3d144f6c2431ad7c1da7e53c99e"
+   },
+   {
+    "claim": "Release v0.7.0 exists (released 15 Oct, with release notes and a changelog since v0.6.0); the grammar code at v0.7.0 has not been compared with the pinned commit",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/v0.7.0"
+   },
+   {
+    "claim": "tests/ contains test-grammar-parser.cpp, test-grammar-integration.cpp, test-json-schema-to-grammar.cpp and test-llama-grammar.cpp (also test-gbnf-validator.cpp, test-grammar-llguidance.cpp, test-json-schema.cpp)",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/tree/master/tests"
+   },
+   {
+    "claim": "src/ contains llama-grammar.cpp and llama-grammar.h",
+    "status": "confirmed",
+    "url": "https://github.com/ggml-org/llama.cpp/tree/master/src"
+   },
+   {
+    "claim": "common/json-schema-to-grammar.cpp exists at the pinned commit",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp/tree/master/common"
+   },
+   {
+    "claim": "Number of cases in the grammar and schema test files (hidden-case surface size) and their line counts",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp/tree/master/tests"
+   },
+   {
+    "claim": "A public GBNF guide states that tests/test-json-schema-to-grammar.cpp documents which JSON Schema features the converter supports, so the test file encodes expected GBNF output",
+    "status": "confirmed",
+    "url": "https://raw.github.com/ggerganov/llama.cpp/master/./grammars/README.md"
+   },
+   {
+    "claim": "Public copies of llama.cpp grammar code exist outside ggml-org (e.g. a gitcode mirror with grammars/, a Hugging Face Space snapshot, the LlamaCppEx wrapper that calls json_schema_to_grammar)",
+    "status": "confirmed",
+    "url": "https://gitcode.com/SparkLLM/llama.cpp/tree/master/grammars"
+   },
+   {
+    "claim": "MIT licence (spdx from source_facts; LICENSE file not separately fetched)",
+    "status": "not_found",
+    "url": "https://github.com/ggml-org/llama.cpp"
+   },
+   {
+    "claim": "Dated public evidence of agents attempting or passing this rebuild or a similar grammar-engine rebuild",
+    "status": "not_found",
+    "url": "https://blog.dlang.org/2026/06/07/teaching-an-ai-to-know-itself-building-a-local-llm-agent-in-d/"
+   }
+  ],
+  "frontier_hours": 9,
+  "full_card": {
+   "band": "Expected 8h tier. Excellent agent estimate ~9h for full scope (parser, stacks, UTF-8 ranges, repetition, $ref, oneOf, schema converter, exact GBNF text match). Weaker model stalls at parsing. No dated evidence, so Band capped at 3.",
+   "build_cost": "Reference is in-repo, so snapshot prep is cheap; the work is stub harness plus recording expected outputs and checking that the stubbed build compiles. Estimate 3-5 days.",
+   "deliverable": "C++ rebuild of llama-grammar, grammar parser and json-schema-to-grammar; cmake build plus ctest binaries for grammar parser, integration, schema converter.",
+   "gates_anticheat": "Remove visible expected outputs (test-json-schema-to-grammar.cpp encodes them); hidden tests replace test files; build config and CMakeLists locked; no network at run time so mirrors and PyPI copies are unreachable; graders reject wrapping external tools.",
+   "grading_surface": "Hidden ctest cases from upstream test files plus generated grammars/schemas; compare accepted/rejected strings, stack states, emitted GBNF text. Case count not verified.",
+   "local_fit": "CPU-only, 8 cores, 16 GB; smoke build 361 s at -j4, suite 281 s; fits.",
+   "lookup": "partial: upstream and mirrors (gitcode, HF Space, wrappers) publish the same code; a frontier model knows the grammar design in outline, not the exact emitted text.",
+   "provenance": "ggml-org/llama.cpp, MIT, ~131.8k stars, pushed 2026-10-20; grammar files src/llama-grammar.{cpp,h}, tests/test-{grammar-parser,grammar-integration,json-schema-to-grammar,llama-grammar}.cpp confirmed. Pin is ambiguous: source_facts head 39da130 (CUDA commit) vs smoke commit 4a45de4 (mtmd commit).",
+   "reference": "Upstream llama.cpp grammar code at the pinned commit (complete, MIT). Reference scale not measured; seed says a few thousand lines.",
+   "ships": "History-less snapshot at a single pinned commit with grammar parser, stacks/sampling and JSON-schema-to-GBNF converter bodies stubbed behind existing headers; visible expected-output test files must be removed or replaced by hidden ones.",
+   "similarity": "Nearest l0 neighbour 0.255 (S-im-070); no public task found on llama.cpp grammar rebuild; not CROWDED."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier plausibly finishes in some trials at 8h, but no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Reference is in-repo; snapshot and stub harness are a few days of work."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only C++ build fits 8 cores, 16 GB; smoke build green."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Parser, stacks, sampling, converter and exact output matching need sustained 8h work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per source_facts; shipping is permitted."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Separate buckets: parser, stack states, sampling, UTF-8 ranges, repetition, $ref, oneOf, converter output."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max l0 neighbour 0.255; no public task found on this subject, but not clearly novel."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT repo with 131k stars; grammar files and test files confirmed at master."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Upstream implementation is complete and permissive; it passes all cases by construction."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public mirrors exist, but the snapshot is offline and history-less; expected outputs in visible tests must be removed."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Test-file case count not verified; generated grammars/schemas plus stack-state checks suggest hundreds of cases, but unconfirmed."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "The grammar code differs materially between 39da130 and 4a45de4 with no single pin possible, or the grammar test binaries cannot be built offline, or the case count is under 30.",
+   "pass_if": "The pinned commit builds offline with the three grammar test binaries, the case count is at least 100, and the stubbed tree compiles against the headers.",
+   "steps": [
+    "In a networked throwaway Linux container, clone ggml-org/llama.cpp and check out the seed's pinned head 39da130; record whether 4a45de4 (smoke commit) differs in src/llama-grammar.cpp and common/json-schema-to-grammar.cpp, and pin one commit.",
+    "Count the cases in tests/test-grammar-parser.cpp, test-llama-grammar.cpp and test-json-schema-to-grammar.cpp (wc and grep for test-case blocks) to fix the grading surface size.",
+    "Build the reference with cmake and run ctest for the three grammar binaries; confirm pass rate and runtime, and that the 4 stable failures in the smoke run are unrelated to grammar.",
+    "Copy the tree, stub the bodies of src/llama-grammar.cpp, grammar-parser and json-schema-to-grammar behind the same headers, and check the stubbed tree still compiles; this proves the stub boundary.",
+    "Check that the expected GBNF strings in test-json-schema-to-grammar.cpp are the only oracle in the image; plan removing them and regenerating hidden expectations from the reference.",
+    "Time a rough frontier-style rebuild of the parser alone to calibrate frontier_hours."
+   ]
+  },
+  "summary": "The llama.cpp grammar rebuild is real and MIT-licensed, with the grammar sources and four grammar test files confirmed at master, but the seed pins two different commits (39da130 in source_facts, 4a45de4 in smoke_build) and the case count is unverified. Lookup is partial because the code is mirrored publicly, so sealing depends on a history-less snapshot with visible expected outputs removed; I estimate about 9 h of frontier work against an 8 h tier, so the spike must confirm the case count and the single pin before build.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 10,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 77,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-096",
+  "kill_code": "",
+  "note": "Strong real subject: the upstream llama-grammar and json-schema-to-grammar code is a complete MIT oracle, and generated grammars and schemas give an unlimited differential surface. Fixes needed: (1) pick one pin, since 39da130 and smoke 4a45de4 differ; (2) confirm where json-schema-to-grammar.cpp sits at that pin (not_found under common/); (3) remove the other in-image oracle copies: examples/json_schema_to_grammar.py, the server webui .mjs converter and the expected GBNF strings in the tests. Stack-state checks are fair because the headers fix the internal data structures. Accepted/rejected-string checks should outweigh exact GBNF text so other valid emitters are not penalised too hard. Band is capped at 3: the code is famous enough that a frontier model may recall large parts of it (K8 risk), so the spike should time a parser-only rebuild.",
+  "scores": {
+   "Band": 3,
+   "Build": 4,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 82
+}

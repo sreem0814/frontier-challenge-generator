@@ -1,0 +1,244 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. Levers: model class, per-frequency tuning, ensembling, vectorized fits. A frontier agent beats the baseline clearly but stays below the reference ensemble; a weaker model barely beats Seasonal Naive.",
+  "cheat": "Memorizing the test series is closed by hidden dataset configurations and no network access. Only the training data ships in the image.",
+  "grading": "MASE and CRPS are computed on hidden dataset configurations that were not used for training, normalized between the baseline and the reference. Metric code is deterministic and exact.",
+  "reference": "An AutoETS-class and global-model ensemble that we write. Its score defines the ceiling.",
+  "source": "https://github.com/SalesforceAIResearch/gift-eval @ head 3c7be6d, Apache-2.0; dataset licences vary per source and must be checked",
+  "task": "The agent gets a Python harness and a Seasonal Naive baseline. It trains or fits a global or statistical forecaster on a subset of the datasets within a CPU budget and ships a predict function.",
+  "title": "Zero-shot forecasting on GIFT-Eval with a CPU budget"
+ },
+ "class": "research",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-020 0.30"
+  ],
+  [
+   "2026-10-21T03:18:57Z",
+   "v1",
+   "killed:K1",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 3, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 2, 'Lic': 2, 'Fit': 3, 'Build': 3}"
+  ]
+ ],
+ "id": "S-rs-021",
+ "kill": "K1",
+ "l0": {
+  "neighbours": [
+   [
+    0.301,
+    "S-rs-020"
+   ],
+   [
+    0.148,
+    "add-benchmark-lm-eval-harness [original]"
+   ],
+   [
+    0.125,
+    "S-im-097"
+   ],
+   [
+    0.12,
+    "S-im-037"
+   ],
+   [
+    0.113,
+    "embedding-eval [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "3c7be6deffb0046e1c08f9103db8bc84b3cf7ebd",
+  "kb": 3450,
+  "lang": "Jupyter Notebook",
+  "open_prs": 3,
+  "pushed": "2026-10-17",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 275
+ },
+ "source_key": "github.com/salesforceairesearch/gift-eval; https://huggingface.co/datasets/salesforce/gifteval|baseline-naive-seasonal-naive-sample-notebooks-reference-aut",
+ "source_notes": "Page facts: 97 dataset configurations, 7 domains, frequencies 'Secondly ~ Yearly'; HF card says 23 datasets, ~144,000 series, 177M points, 1.59 GB. Hardware for runs not stated. OOD: use leaderboard-style zero-shot held-out datasets; train only on non-test datasets. INFERRED run time on 8 CPUs: full 97-config eval of AutoETS-class models hours; a sampled 10-config subset 10-30 min. Levers: model class, per-frequency tuning, ensembling, caching/vectorized statistical fits.",
+ "source_url": "https://github.com/SalesforceAIResearch/gift-eval; https://huggingface.co/datasets/Salesforce/GiftEval",
+ "source_version": "Baseline: Naive / Seasonal Naive (sample notebooks) -> Reference: AutoETS / statistical or a trained global model; foundation models (Chronos, Moirai) are the leaderboard top but need heavy compute",
+ "status": "killed:K1",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/html/2410.10393v2",
+  "facts": [
+   {
+    "claim": "GIFT-Eval repository exists at SalesforceAIResearch/gift-eval, Apache-2.0 licence, active (pushed 2026-10-17 per seed source_facts)",
+    "status": "confirmed",
+    "url": "https://github.com/SalesforceAIResearch/gift-eval"
+   },
+   {
+    "claim": "Repo states 97 dataset configurations (97 unique dataset/frequency/length triplets) in the test set",
+    "status": "confirmed",
+    "url": "https://github.com/SalesforceAIResearch/gift-eval"
+   },
+   {
+    "claim": "Benchmark covers 23 datasets, ~144,000 series, ~177 million data points",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/Salesforce/GiftEval"
+   },
+   {
+    "claim": "HF dataset total size 1.59 GB, licence tag apache-2.0, single train split listed on card",
+    "status": "confirmed",
+    "url": "https://huggingface.co/datasets/Salesforce/GiftEval"
+   },
+   {
+    "claim": "Per-source dataset licences vary and are listed per source (Appendix D / Table 13)",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2410.10393v2"
+   },
+   {
+    "claim": "Repo states it is intended for research purposes only; no dataset licence stated in README",
+    "status": "confirmed",
+    "url": "https://github.com/SalesforceAIResearch/gift-eval/blob/main/README.md"
+   },
+   {
+    "claim": "Test split is the final 10% of each dataset; evaluation uses non-overlapping rolling windows; test data downloadable publicly with the train split via 'hf download Salesforce/GiftEval'",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2410.10393v2"
+   },
+   {
+    "claim": "Test data download is public (single hf download command, no access restriction stated)",
+    "status": "confirmed",
+    "url": "https://github.com/SalesforceAIResearch/gift-eval/blob/main/README.md"
+   },
+   {
+    "claim": "Seasonal Naive is the normalisation reference for MASE and CRPS in the benchmark",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2410.10393v2"
+   },
+   {
+    "claim": "AutoETS is in the statistical baseline set but its results are omitted from main tables and reported in Appendix F; 17 baselines total",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/2410.10393v2"
+   },
+   {
+    "claim": "Benchmark paper arXiv 2410.10393 by Aksu, Woo et al. (Salesforce AI Research)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2410.10393"
+   },
+   {
+    "claim": "Leaderboard values for Seasonal Naive, AutoETS and any global-model ensemble (MASE/CRPS) are viewable",
+    "status": "not_found",
+    "url": "https://huggingface.co/spaces/Salesforce/GIFT-Eval"
+   },
+   {
+    "claim": "An ensemble of global models is among public GIFT-Eval baselines",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2410.10393v2"
+   },
+   {
+    "claim": "Metric conventions follow gluonts evaluate_model (axis=None, mask_invalid_label=True, allow_nan_forecast=False)",
+    "status": "confirmed",
+    "url": "https://github.com/SalesforceAIResearch/gift-eval/blob/main/README.md"
+   },
+   {
+    "claim": "Pretraining corpus size is stated inconsistently (230B vs 240B points)",
+    "status": "contradicted",
+    "url": "https://arxiv.org/html/2410.10393v2"
+   }
+  ],
+  "frontier_hours": 10,
+  "full_card": {
+   "band": "Seed says 8 h. The full scope (ETS-class + global ensemble + per-frequency tuning + CPU-budget compliance) is about 10 frontier-hours, so 8 h requires trimming to ETS plus one global model. Recommended tier 20 h for the full scope.",
+   "build_cost": "About 3-5 days: harness, data re-cut, grader, reference ensemble, leakage check.",
+   "deliverable": "A fit/predict module (statistical and/or global model, per-frequency tuning, ensembling) that runs under a CPU budget on hidden GIFT-Eval configs.",
+   "gates_anticheat": "Hidden configs excluded from the image; no network at run time; test windows (final 10% of each series) must not ship. Cheat paths to close: reading test files, pulling HF at run time, editing the harness or metric, hard-coding per-config outputs.",
+   "grading_surface": "MASE and CRPS over hidden dataset configurations (up to 97 triplets); exact gluonts-style metric code, normalised to Seasonal Naive.",
+   "local_fit": "8 CPU, 16 GB fits, but a full 97-config AutoETS run takes hours, so the grader must sample configs and use wall-clock budgets.",
+   "lookup": "partial: statsforecast-style AutoETS and Seasonal Naive are famous and recallable; no complete ensemble reference is public.",
+   "provenance": "GIFT-Eval (Salesforce, arXiv 2410.10393), Apache-2.0 repo, HF dataset Salesforce/GiftEval; real public benchmark with harness and metric conventions.",
+   "reference": "AutoETS-class plus global-model ensemble, to be written by CG. No public reference found; AutoETS appears only as an omitted baseline in paper Appendix F.",
+   "ships": "Python harness, Seasonal Naive baseline, and a training subset of non-test data. Full HF data is 1.59 GB; the shipped subset must be re-cut and its licence cleared first.",
+   "similarity": "GIFT-Eval is a public benchmark, not a task. l0 max 0.301 to S-rs-020 (sibling seed, content not reviewed). Nothing above 0.15 in the CROWDED list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier-feasible in 8-20 h, but no dated public evidence on agents solving this task, so it stays at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-5 days for harness, data re-cut, grader and reference ensemble."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Fits CPU and memory, but full evaluation takes hours, so the grader needs sampling."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multiple model families, tuning and budgets over many hours."
+   },
+   "Lic": {
+    "v": 2,
+    "why": "Repo is Apache-2.0 and HF tag is apache-2.0, but per-source licences were not found and the README says research only. Shipping data is unverified."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-config buckets, several levers (model class, per-frequency tuning, ensembling, vectorised fits)."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "l0 neighbour 0.301 (S-rs-020) is above 0.15, and the subject is a public benchmark, so novelty is limited."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public Salesforce benchmark with paper, repo at a pinned head, and HF data."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "The reference is to be written by CG, and its strength is not yet measured; the ensemble ceiling is uncertain."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Test split is publicly downloadable from HF, so sealing depends on the image excluding it. Train/test split is per-series, so leakage is a risk."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Up to 97 hidden configs with MASE and CRPS; executable metric code, generator is limited to the configs."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Any source forbids redistribution in the bundle; test windows leak into the shipped subset and cannot be cut out; or ETS-class does not beat Seasonal Naive on a majority of sampled configs.",
+   "pass_if": "Licence audit allows redistribution of the re-cut training subset; the shipped subset contains no test windows; Seasonal Naive reproduces the paper's normalised values; ETS-class beats Seasonal Naive on at least 60% of sampled configs; two runs match exactly.",
+   "steps": [
+    "Audit per-source licences: read GIFT-Eval paper Appendix D / Table 13 and the HF dataset cards for each of the 23 sources; list which may be redistributed inside a bundle.",
+    "In a throwaway networked container, run hf download Salesforce/GiftEval and confirm the test windows are the final 10% of each series.",
+    "Re-cut a training subset that excludes all test windows and all held-out datasets; confirm no test-window values are present in the shipped files.",
+    "Run Seasonal Naive with the repo's gluonts-style evaluation on ~10 sampled configs and check it is deterministic across two runs.",
+    "Fit a vectorised ETS-class model (statsmodels or a hand-written numpy version) on the same 10 configs and compare MASE/CRPS with Seasonal Naive.",
+    "Time the full 10-config run on 8 CPUs to set the CPU budget for grading."
+   ]
+  },
+  "summary": "GIFT-Eval is real, Apache-2.0 with a public 97-config test set, and it supports a MASE/CRPS grader normalised to Seasonal Naive. The card is not yet ready: per-source dataset licences are unverified, the zero-shot hold-out and the final-10% test split can leak into shipped training data, the leaderboard could not be read to confirm baseline numbers, and the 8 h budget looks short for the full scope.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 69
+}

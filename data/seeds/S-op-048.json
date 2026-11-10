@@ -1,0 +1,247 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "4 h. Several levers (queue structure, group removal, child bookkeeping). Frontier agents take one or two in some trials. The weaker model gets only micro-gains.",
+  "cheat": "Dropping notifications fails the sequence gate. Hidden shapes block special-casing.",
+  "grading": "Hard gate: identical deletion order, notification and signal sequences, and identical resulting tree on generated scenarios. Score is the median wall-clock speedup against the reference.",
+  "reference": "The merged PR plus the later upstream changes that touch the same path, measured on the harness.",
+  "source": "https://github.com/godotengine/godot/pull/62444 (3.x faster queue free) and later 4.x deletion code, MIT",
+  "task": "/app ships Godot at the pre-PR base, history-less, with a headless benchmark that frees tens of thousands of nodes in different tree shapes (flat, deep, group-heavy, signal-heavy). The agent speeds up queue_free, deferred deletion and node removal.",
+  "title": "Godot queue_free and deletion-queue cost reduction"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-046 0.36"
+  ],
+  [
+   "2026-10-21T07:07:52Z",
+   "smoke",
+   "amber",
+   "python: build ok, 1 tests, 1 failing, deterministic over 3 runs"
+  ],
+  [
+   "2026-10-21T07:08:59Z",
+   "v1",
+   "killed:K5",
+   "No strong reference is obtainable. The verifiable reference is the 67+/5- merged PR, which the seed's own identical-deletion-order gate conflicts with (the PR reorders deletions and documents that order as non-guaranteed, so a valid alternative fails). The 'later 4.x deletion code' was not found. Se"
+  ]
+ ],
+ "id": "S-op-048",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.361,
+    "S-op-046"
+   ],
+   [
+    0.352,
+    "S-op-047"
+   ],
+   [
+    0.304,
+    "S-op-045"
+   ],
+   [
+    0.114,
+    "kd_tree [AlgoTune]"
+   ],
+   [
+    0.109,
+    "add-benchmark-lm-eval-harness [original]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 9,
+  "clone_ok": true,
+  "cmd_build": ". /p/venv/bin/activate && python -c \"import sys; print(sys.version)\"",
+  "cmd_fetch": "python3 -m venv /p/venv && . /p/venv/bin/activate && pip install -q -U pip &&\n         ex=$(python3 - <<\"EOF\"\nimport tomllib\nx=[]\ntry:\n  d=tomllib.load(open(\"pyproject.toml\",\"rb\")); x=list(((d.get(\"project\") or {}).get(\"optional-dependencies\") or {}).keys())\nexcept Exception: pass\nprint(\",\".join(e for e in x if not any(b in e.lower() for b in (\"doc\",\"gpu\",\"cuda\",\"win\",\"mac\"))))\nEOF\n);\n         grp",
+  "cmd_test": ". /p/venv/bin/activate && pytest -p no:cacheprovider -q -o junit_family=xunit2 --junitxml=$OUT/run$i.xml",
+  "commit": "679066724352c12673001d692d41dc2dab9314c0",
+  "deterministic": true,
+  "eco": "python",
+  "fetch_ok": true,
+  "fetch_s": 20,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "      To find more information, look for \"package discovery\" on setuptools docs.\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nERROR: Failed to build 'file:///p/src' when getting requirements to build wheel\nREPAIR pip install methods\nERROR: Could not find a version that satisfies the requirement methods (from versions: none)\nERROR: No matching distribution found for methods\n3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   2,
+   2,
+   2
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "::tests.test_builders"
+  ],
+  "stable_failures": 1,
+  "subdir": "",
+  "suite_s": 1,
+  "test_files": 1651,
+  "tests_fail": 1,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 1,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/pull/62444|godotengine-godot-62444-3-x-faster-queue-free",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/pull/62444",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/pull/62444",
+  "facts": [
+   {
+    "claim": "Godot PR #62444 '[3.x] Faster queue free' exists and is merged (merged 2023-01-10 into the 3.x branch, merge commit 1ee7c5a62c2a51a168e6355e6a6b667cd2d9bbb8)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/62444"
+   },
+   {
+    "claim": "The PR diff is 67 added and 5 deleted lines across 3 files (doc/classes/Node.xml, scene/main/scene_tree.cpp, scene/main/scene_tree.h); the core change replaces the List-based delete queue with a LocalVector of ObjectID plus child_list_id and sorts it in _flush_delete_queue",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/62444/files"
+   },
+   {
+    "claim": "The PR author reports deleting 50,000 nodes dropped from about 137,017 ms to 422 ms",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/62444"
+   },
+   {
+    "claim": "The PR documents that deletion order is not guaranteed, so the change alters the observable deletion order (reverse child order), which conflicts with the seed's gate of identical deletion order",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/62444"
+   },
+   {
+    "claim": "A later 4.x merged change to the same deletion path (the 'later 4.x deletion code' the reference relies on) exists",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/pull/62444"
+   },
+   {
+    "claim": "The seed's smoke_build exercised a Godot build and Godot's test suite",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot"
+   }
+  ],
+  "frontier_hours": 3,
+  "full_card": {
+   "band": "PR-scale change (one data-structure swap plus sort) plus possibly group removal and child bookkeeping; a strong agent probably reaches most of the reward in hours, so Band 3 at most",
+   "build_cost": "Build cost is Godot's scons template build, roughly tens of minutes on 8 cores; the reference and oracle are not yet built, so cost is 2-4 days including the harness",
+   "deliverable": "Faster queue_free / flush-delete-queue / node removal in scene_tree.cpp, graded on identical deletion order, notification and signal sequences and final tree",
+   "gates_anticheat": "Hidden shapes block special-casing; cannot edit the harness or build config; but the gate pins deletion order to the reference, which the PR itself changes and calls non-guaranteed",
+   "grading_surface": "Generated scenarios over flat, deep, group-heavy, signal-heavy trees at tens of thousands of nodes; hard equivalence gate plus median wall-clock speedup. Harness not yet written; shape count is the seed's four",
+   "local_fit": "C++ scons build; gVisor fine on 8 cores / 16 GB headless; the smoke probe was a Python placeholder, not a Godot build",
+   "lookup": "partial: merged PR is in public git history of the 3.x branch; the idea (sort deletions by child index) is recallable in outline by Godot-familiar models; history-less snapshot would hide the diff",
+   "provenance": "Godot PR #62444 (3.x 'Faster queue free', merged 2023-01-10, lawnjelly); MIT; public git history",
+   "reference": "Only the 67+/5- PR is verified; the 'later 4.x deletion code' is not found (no merged 4.x PR located). Reference is far below the 150-line bar",
+   "ships": "Godot 3.x source at the pre-PR parent commit, history-less snapshot, plus headless deletion benchmark (not yet built)",
+   "similarity": "l0 neighbours max 0.361 (S-op-046), 0.352 (S-op-047), 0.304 (S-op-045); none crowded; not a K1 duplicate"
+  },
+  "kill_code": "K5",
+  "kill_reason": "No strong reference is obtainable. The verifiable reference is the 67+/5- merged PR, which the seed's own identical-deletion-order gate conflicts with (the PR reorders deletions and documents that order as non-guaranteed, so a valid alternative fails). The 'later 4.x deletion code' was not found. Secondary risk: K10, since the verified scope is one data-structure change in one file.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier agents likely get the PR-level gain within hours; the extra levers are unmeasured; weaker model micro-gains is plausible"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Godot template build is tens of minutes, but writing a deterministic equivalence harness plus the reference costs days"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Headless C++ build fits 8 cores and 16 GB; memory for linking not yet measured"
+   },
+   "Hor": {
+    "v": 2,
+    "why": "The verified scope is one data-structure swap; a 4 h tier is not justified by the work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, shippable"
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Levers (queue, group removal, child bookkeeping) all touch the same ~70 lines of scene_tree.cpp; few independent buckets"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Highest neighbour cosine 0.361 among the same-batch operations; no crowded overlap"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Merged upstream PR in a 118k-star MIT repo, but the verifiable change is only ~70 lines"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "The PR is a 67-line change whose order semantics conflict with the gate; the later 4.x code was not found, so the reference cannot be shown to be strong or complete"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Harness and hidden shapes can be sealed, but the reference diff is public in history and recallable in outline"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Scenario generator over four tree shapes gives an executable oracle, but the harness is not written; surface is a few shapes times sizes"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The PR shows no reorder, or the order differs run-to-run so the gate cannot be deterministic, or no 4.x later change exists to justify a reference larger than the PR",
+   "pass_if": "Base build works in under 40 minutes, the driver is deterministic across 3 runs, and the PR gives at least 10x on the flat shape with a visible order difference from base",
+   "steps": [
+    "Clone godotengine/godot in a throwaway container with network; check out the parent of merge commit 1ee7c5a62c2a51a168e6355e6a6b667cd2d9bbb8 on the 3.x line (base) and record its commit hash.",
+    "Build the base headless with scons (platform=linuxbsd target=template_release tools=no, -j8) and time it.",
+    "Write a small GDScript or C++ driver that creates 50k nodes in flat, deep, group-heavy and signal-heavy shapes, then calls queue_free and flushes; log deletion order, notifications and signals to a file.",
+    "Repeat with the PR cherry-picked (edc85d2) and diff the logs; this tests whether the PR changes the order the seed's gate requires to be identical.",
+    "Measure median wall-clock over 5 runs per shape for base and PR.",
+    "Search the 4.x branch history for any later change to the deletion path; record the result either way."
+   ]
+  },
+  "summary": "Godot PR #62444 is real, merged, MIT, and small (67 added and 5 deleted lines across 3 files, which the seed's claimed reference cannot exceed without unverified 4.x code). The seed is killed as K5 because the gate pins deletion order to a reordering the PR itself calls non-guaranteed, and the smoke probe ran a Python placeholder rather than a Godot build.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 60
+}

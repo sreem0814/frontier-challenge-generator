@@ -1,0 +1,239 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "8 h. Rules are easy to add. A frontier agent improves over the baseline in some trials, but it rarely reaches the reference quality on the unseen families. A weaker model lags because it overfits to the visible families.",
+  "cheat": "Hardcoding rewrites for visible benchmarks: the hidden families differ, and the real-number equivalence gate rejects constant answers.",
+  "grading": "A hidden split of FPCore benchmarks from held-back families and operator mixes. Average bits of error are measured on fixed-seed sampled inputs with MPFR-style high-precision ground truth. A hard gate requires equivalence in the real-number semantics on sampled inputs. The score is normalised between the baseline and our reference.",
+  "reference": "Our reference is a Herbie-style search of about 1500 lines built by us. Herbie itself is not used or shipped.",
+  "source": "https://github.com/FPBench/FPBench @ head d7ade34, MIT",
+  "task": "/app ships FPCore benchmarks from some families (e.g. Herbie, FPTaylor) with a shipped baseline rewriter and an error evaluator in Python. The agent trains or tunes a rewrite search (rule scoring, ordering, regime splitting) that produces more accurate expressions. Output is a program that maps FPCore to a rewritten FPCore.",
+  "title": "Floating-point accuracy rewriting on FPBench for unseen benchmark families"
+ },
+ "class": "research",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "numeric-scientific",
+ "final": 66,
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-043 0.15"
+  ],
+  [
+   "2026-10-21T03:26:08Z",
+   "v1",
+   "pass",
+   "score 71; dead links []"
+  ],
+  [
+   "2026-10-21T03:27:09Z",
+   "v2",
+   "killed:K3",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-rs-022",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.145,
+    "S-op-043"
+   ],
+   [
+    0.142,
+    "S-op-044"
+   ],
+   [
+    0.136,
+    "S-im-107"
+   ],
+   [
+    0.107,
+    "i3-style [ProgramBench]"
+   ],
+   [
+    0.06,
+    "recover-accuracy-log [original]"
+   ]
+  ]
+ },
+ "method": "research",
+ "rank": 4,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "d7ade34ebfe76622ef1b3c9265d4736e14335355",
+  "kb": 2243,
+  "lang": "Racket",
+  "open_prs": 0,
+  "pushed": "2026-09-14",
+  "release": "",
+  "spdx": "MIT",
+  "stars": 66
+ },
+ "source_key": "github.com/fpbench/fpbench|not-found-no-release-tag-stated-repo-at-1-289-commits",
+ "source_notes": "Grading would be error on sampled inputs, which is deterministic only with fixed seeds and a fixed sampler; needs Racket 8.0+ and is CPU-only. Herbie suite is a strong, public-paper-backed subject (PLDI 2015) but not verified as artifact-evaluated; memorization risk moderate. Candidate is weak on objective clarity: accuracy, not speed. Needs check of Herbie licence before use.",
+ "source_url": "https://github.com/FPBench/FPBench",
+ "source_version": "not found (no release tag stated; repo at 1,289 commits)",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://pldi15.sigplan.org/event/pldi2015-papers-automatically-improving-accuracy-for-floating-point-expressions",
+  "facts": [
+   {
+    "claim": "FPBench/FPBench repository is MIT licensed (LICENSE.txt)",
+    "status": "confirmed",
+    "url": "https://github.com/FPBench/FPBench"
+   },
+   {
+    "claim": "FPBench benchmarks/ holds FPCore files from apron, daisy, fptaylor (3 files), graphics, hamming, herbie, precimonious, rosa, rump, salsa (12 .fpcore files shown; 'view all files' link means there may be more)",
+    "status": "confirmed",
+    "url": "https://github.com/FPBench/FPBench/tree/main/benchmarks"
+   },
+   {
+    "claim": "FPBench README states 98 benchmarks from FPTaylor, Herbie, Salsa and Rosa",
+    "status": "not_found",
+    "url": "https://github.com/FPBench/FPBench"
+   },
+   {
+    "claim": "Herbie (herbie-fp/herbie) is MIT licensed, copyright 2015-2024 Herbie Project",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/herbie-fp/herbie/main/LICENSE.md"
+   },
+   {
+    "claim": "Herbie is written in Racket, needs Racket 8.0+ and Rust 1.87+ for source builds, and includes an egg-herbie directory",
+    "status": "confirmed",
+    "url": "https://github.com/herbie-fp/herbie"
+   },
+   {
+    "claim": "Herbie paper 'Automatically Improving Accuracy for Floating Point Expressions' was published at PLDI 2015",
+    "status": "confirmed",
+    "url": "https://pldi15.sigplan.org/event/pldi2015-papers-automatically-improving-accuracy-for-floating-point-expressions"
+   },
+   {
+    "claim": "Herbie uses equality saturation (egg) over a hand-written rule database of about 325 rules",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2304.04332"
+   },
+   {
+    "claim": "Seed reference is a ~1500-line Herbie-style search built by the authors, Herbie not shipped",
+    "status": "not_found",
+    "url": "https://github.com/herbie-fp/herbie"
+   }
+  ],
+  "frontier_hours": 8,
+  "full_card": {
+   "band": "research; frontier improves over baseline in some trials, rarely reaches reference; weaker model overfits visible families; evidence E0 only",
+   "build_cost": "Estimated 3-5 days: evaluator with high-precision ground truth, held-out family split, baseline, fixed-seed sampler, equivalence gate; reference already exists",
+   "deliverable": "Python rewrite-search program mapping FPCore to a rewritten FPCore, scored on held-out families",
+   "gates_anticheat": "Equivalence gate on sampled real-number semantics rejects constant or hardcoded answers; hidden families and reference kept out of /app; no network at run time",
+   "grading_surface": "Hidden FPCore families and operator mixes, fixed-seed sampled inputs, MPFR-style ground truth, real-number equivalence gate; tens of benchmarks, many sampled points",
+   "local_fit": "Racket 8.0+ only needed for FPBench tooling; MPFR-grade ground truth needs libmpfr or a vendored high-precision evaluator; CPU-only and fits 8 cores / 16 GB, but image install unverified",
+   "lookup": "Herbie is a complete public MIT implementation of the same subject (equality saturation plus rule DB, regime splitting), recallable in outline; not installable offline",
+   "provenance": "FPBench/FPBench @ d7ade34, MIT; Herbie PLDI 2015 paper (MIT Herbie repo), FPCore benchmark families",
+   "reference": "Our ~1500-line Herbie-style search (not public, not shipped); Herbie itself is public MIT Racket code",
+   "ships": "Visible FPCore benchmark families, Python baseline rewriter and error evaluator; no Herbie, no hidden families, no reference",
+   "similarity": "Nearest l0 neighbours 0.145 (S-op-043), 0.142 (S-op-044), 0.136 (S-im-107); not in CROWDED list; differs in subject (floating-point accuracy rewriting)"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Research band claim unverified; no dated public agent evidence found, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-5 days for evaluator, split, baseline and gate; reference exists."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Racket 8+ and high-precision arithmetic need to be confirmed in the image; CPU-only otherwise fine."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Evaluator, search, rule scoring, ordering and regime splitting support sustained 8 h work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "FPBench and Herbie both MIT; Herbie is not shipped anyway."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers (rules, ordering, regimes) and per-family buckets, but one scalar accuracy metric."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max l0 neighbour 0.145 (<0.15) and not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "MIT FPBench repo with 12 FPCore benchmark files; Herbie PLDI 2015 paper and MIT repo confirmed."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is our own ~1500-line Herbie-style search, not a complete permissive upstream implementation scoring exactly 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference and hidden families can stay out of /app; but Herbie is public MIT and its rule set is partly recallable, handled under Band."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Tens of hidden benchmarks with many fixed-seed sampled points; not thousands of hand-written cases, but an executable evaluator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Ground truth or sampler is not reproducible, baseline is already near-optimal (under 0.5 bits headroom), or the equivalence gate cannot be made deterministic offline.",
+   "pass_if": "Ground truth and sampler are bit-identical across 3 runs; baseline has at least 1 bit of average error on at least half the sampled benchmarks; simple search improves mean error by at least 1 bit on the held-out family.",
+   "steps": [
+    "In a throwaway container with network, clone FPBench at d7ade34 and confirm the 12 visible benchmark files and the MIT licence.",
+    "Install Racket 8.0+ and libmpfr (or mpmath) and confirm the high-precision evaluator runs one FPCore benchmark from each family.",
+    "Write a fixed-seed sampler (e.g. seed 1234) and compute MPFR-style ground truth at ~1000 bits for 8 benchmarks spread over at least 4 families.",
+    "Measure the shipped baseline rewriter's average bits of error on those benchmarks.",
+    "Add 2-3 hand-written rewrite rules (e.g. sqrt difference, cancellation) and one simple regime split, then re-measure on a held-out family not used for tuning.",
+    "Re-run the whole pipeline 3 times with the same seed and check outputs and error numbers are bit-identical.",
+    "Record headroom (baseline error minus simple-search error) per benchmark and the time per benchmark."
+   ]
+  },
+  "summary": "The seed is a real, MIT-licensed research task on FPBench (12 visible FPCore files, Herbie paper confirmed), and it passes the similarity and licence gates. The main risk is lookup: Herbie is a complete public MIT system for this same subject, so Band is capped at 3 and the spike should confirm headroom and determinism before committing 3-5 days of build.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-rs-022",
+  "kill_code": "",
+  "note": "FPBench and Herbie are both MIT and confirmed, with a PLDI 2015 paper trail. The hidden split is only tens of benchmarks from held-back families, so the metric may be noisy. Fix the sampler seeds and use enough sample points. The reference is a planned 1500-line search that is not yet built, so the ceiling is unproven. A frontier agent can recall the Herbie rule set and regime splitting, so it might exceed our reference; normalisation needs a cap. The spike must confirm at least 1 bit of headroom on the held-out families.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 5,
+   "Real": 4,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 66
+}

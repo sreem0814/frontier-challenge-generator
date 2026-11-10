@@ -1,0 +1,256 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "8 h. Buckets are bidi reorder, joining, mirrored punctuation, alignment, line-wrapping and extraction. A frontier agent gets Hebrew-style reorder but misses shaping and wrap. A weaker model gives a simple string reversal.",
+  "cheat": "Reversing every string passes only pure RTL samples. Hidden fixtures mix directions and numbers and use shaped scripts, checked on positions and extracted logical order.",
+  "grading": "Hidden tests generate PDFs through public APIs, then a verifier parses them with its own content-stream reader and compares glyph order, positions within tolerance, and text extraction with expected results for fixtures with bundled fonts. The existing suite (188 test files) is a regression gate. Fraction passed.",
+  "reference": "Our own implementation, expected 1200-2000 changed lines.",
+  "source": "https://github.com/foliojs/pdfkit @ v0.20.2 (head f973e25d), MIT. Specific upstream issue number not found.",
+  "task": "/app ships a snapshot of pdfkit at the base. The agent adds right-to-left and mixed-direction text layout to text(), including UAX #9 reordering, Arabic joining via font GSUB features, mirrored brackets, alignment and justification in RTL, and ToUnicode maps that stay logical. Delivered through the existing public API and options.",
+  "title": "Bidirectional and complex-script text layout in PDFKit"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:08:13Z",
+ "family": "font-text",
+ "final": 67,
+ "history": [
+  [
+   "2026-10-21T03:08:13Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:13Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-082 0.30"
+  ],
+  [
+   "2026-10-21T03:10:51Z",
+   "v1",
+   "pass",
+   "score 72; dead links []"
+  ],
+  [
+   "2026-10-21T03:24:47Z",
+   "v2",
+   "killed:K3",
+   "The grading is hand-rolled: expected glyph positions, wrap points and RTL justification come from an unwritten team reference, and those layouts are design choices, so a different valid implementation would fail. Only the reorder bucket could use a conformance oracle (BidiCharacterTest). Open PR #17"
+  ]
+ ],
+ "id": "S-im-088",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.299,
+    "S-im-082"
+   ],
+   [
+    0.261,
+    "S-im-016"
+   ],
+   [
+    0.252,
+    "S-im-006"
+   ],
+   [
+    0.084,
+    "speech-to-text [original]"
+   ],
+   [
+    0.082,
+    "gcode-to-text [archive]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f973e25d077b5f10a9c785396d33a470f6076bb1",
+  "kb": 60313,
+  "lang": "JavaScript",
+  "open_prs": 30,
+  "pushed": "2026-10-18",
+  "release": "v0.20.2",
+  "spdx": "MIT",
+  "stars": 10720,
+  "test_files": 188,
+  "test_kb": 22747,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/foliojs/pdfkit|foliojs-pdfkit",
+ "source_notes": "SWE-smith profile (javascript): its suite runs in a container; test command: yarn test --verbose. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/foliojs/pdfkit",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/foliojs/pdfkit/pull/1722",
+  "facts": [
+   {
+    "claim": "foliojs/pdfkit tag v0.20.2 exists and is the current tag",
+    "status": "confirmed",
+    "url": "https://github.com/foliojs/pdfkit/tree/v0.20.2"
+   },
+   {
+    "claim": "PDFKit is MIT licensed (LICENSE file and README)",
+    "status": "confirmed",
+    "url": "https://github.com/foliojs/pdfkit/tree/v0.20.2"
+   },
+   {
+    "claim": "Repo has tests/ directory, package.json, vitest.config.js and yarn.lock at the tag",
+    "status": "confirmed",
+    "url": "https://github.com/foliojs/pdfkit/tree/v0.20.2"
+   },
+   {
+    "claim": "188 test files in the suite",
+    "status": "not_found",
+    "url": "https://github.com/foliojs/pdfkit/tree/v0.20.2"
+   },
+   {
+    "claim": "No open or merged PR implements RTL/bidi layout (seed's method-feature precondition)",
+    "status": "contradicted",
+    "url": "https://github.com/foliojs/pdfkit/pull/1722"
+   },
+   {
+    "claim": "Open PR #1722 'feat: native RTL text support via Unicode Bidirectional Algorithm' (opened 2026-05-07, unmerged) adds lib/bidi.js on bidi-js, a direction option in lib/mixins/text.js, and 23 tests",
+    "status": "confirmed",
+    "url": "https://github.com/foliojs/pdfkit/pull/1722"
+   },
+   {
+    "claim": "Closed PR #583 'Bugfix with text align in rtl languages' exists, so RTL alignment has prior upstream attempts",
+    "status": "confirmed",
+    "url": "https://github.com/foliojs/pdfkit/pulls?q=is%3Apr+bidi+OR+rtl+OR+arabic"
+   },
+   {
+    "claim": "bidi-js is an MIT-licensed pure-JS UAX #9 implementation (v13.0.0 conformance)",
+    "status": "confirmed",
+    "url": "https://cdn.jsdelivr.net/npm/bidi-js@1.1.0/README.md"
+   },
+   {
+    "claim": "fontkit ships an Arabic shaper applying GSUB isol/init/medi/fina joining",
+    "status": "not_found",
+    "url": "https://github.com/foliojs/fontkit"
+   },
+   {
+    "claim": "Specific upstream issue number for this feature",
+    "status": "not_found",
+    "url": "https://github.com/foliojs/pdfkit/pulls?q=is%3Apr+bidi+OR+rtl+OR+arabic"
+   },
+   {
+    "claim": "smoke_build offline build and suite run result",
+    "status": "not_found",
+    "url": "https://github.com/foliojs/pdfkit/tree/v0.20.2"
+   }
+  ],
+  "frontier_hours": 14,
+  "full_card": {
+   "band": "Seed says 8h; my estimate tier 20h; frontier likely gets bidi reorder, misses joining and wrap",
+   "build_cost": "3 (about 3-5 days to write the reference and hidden fixtures; smoke_build empty so install/build unverified)",
+   "deliverable": "RTL/mixed-direction, UAX#9, Arabic joining via GSUB, mirroring, RTL alignment/justification, line wrap, logical ToUnicode, all through text() options",
+   "gates_anticheat": "Hidden fixtures mixing directions/numbers; reversing all strings fails; must edit no tests or build config; verifier is sealed",
+   "grading_surface": "Hidden generated PDFs parsed by own content-stream reader: glyph order, positions within tolerance, extraction vs expected; bundled fonts; plus existing suite as regression gate; fraction passed",
+   "local_fit": "Node/yarn project, CPU-only, PDF generation; fits 8 cores/16GB if node_modules installs offline in base",
+   "lookup": "partial: UAX#9 reorder in open PR #1722 and bidi-js (MIT); joining/alignment/wrap not shown",
+   "provenance": "foliojs/pdfkit v0.20.2 (MIT, 10.7k stars, head f973e25d); no upstream issue found; open PR #1722 covers UAX#9 bidi reorder only",
+   "reference": "Team-written, expected 1200-2000 changed lines; none public as a complete solution (PR #1722 is partial)",
+   "ships": "history-less snapshot of pdfkit at base; must exclude PR #1722 branch, bidi-js and any newer copy",
+   "similarity": "Nearest l0 neighbour 0.299 (S-im-082); not a CROWDED subject; differs in being a PDF text-layout library feature"
+  },
+  "kill_code": "",
+  "kill_reason": "No kill code. The method-feature gate fails: open PR #1722 (opened 2026-05-07) already implements UAX#9 RTL layout in pdfkit, so the seed's no-open-PR precondition is contradicted. Keep the idea only if rescoped (the PR is treated as public upstream direction; the snapshot must be history-less; the scope must rest on joining, alignment, wrap and extraction, not bidi alone).",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this work, so capped at 3 by the rule."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference of 1200-2000 lines plus hidden PDF fixtures and parser, several days of work."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU Node project fits the sandbox if offline install works; not yet verified."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several modules (bidi, shaping, layout, alignment, wrap, ToUnicode), 1200-2000 lines."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT for pdfkit and bidi-js; shipping allowed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five-plus buckets (reorder, joining, mirroring, alignment, wrap, extraction) give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest l0 neighbour 0.299 (above the 0.15 threshold); not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT project at a pinned tag with an open upstream PR on the same subject."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "No complete public reference; reference is to be written by us; PR #1722 covers only the bidi part."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Snapshot can hide the reference and fixtures, but open PR #1722 and bidi-js are public, so leakage of bucket 1 is possible."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden PDF fixtures across directions and scripts, but test count is unverified and fixtures are fixed rather than an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Suite is nondeterministic or red after install, or joining is absent from fontkit so the whole shaping bucket must be written from scratch (then re-scope to bidi, alignment and wrap).",
+   "pass_if": "Suite runs green offline-equivalent with deterministic per-test output, fontkit layout yields joined Arabic glyphs with script arab, and the PR covers only the reorder bucket.",
+   "steps": [
+    "In a throwaway container with network, clone foliojs/pdfkit at v0.20.2 and run yarn install and yarn test; record whether it is green and whether per-test results are deterministic over three runs (the seed's smoke_build is empty).",
+    "Count test files under tests/ to check the 188 figure.",
+    "Check whether fontkit (pdfkit's dependency) exposes joined glyph output: layout an Arabic string with script 'arab' and direction 'rtl' using a bundled Arabic font (e.g. Noto Sans Arabic) and compare with isolated glyph IDs.",
+    "Fetch PR #1722 branch, apply it on a scratch copy, and run its bidi tests and a few mixed-direction samples to see which buckets it already covers.",
+    "Write one fixture: a mixed Hebrew/English/number line with parentheses and an Arabic word; check what the existing text() path emits for glyph order and ToUnicode.",
+    "Decide: if joining is available through fontkit and the suite is deterministic, keep the seed; otherwise rescope to bidi plus wrap and alignment only."
+   ]
+  },
+  "summary": "The seed is a real, MIT-licensed pdfkit feature with a plausible 20h-tier scope, but open upstream PR #1722 already implements UAX#9 RTL reordering, which contradicts the method-feature precondition and must be handled by rescoping before acceptance. The smoke build is empty, so build cost, the suite's determinism and fontkit's joining support are unverified, and the spike should check these first.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-088",
+  "kill_code": "K3",
+  "note": "The grading is hand-rolled: expected glyph positions, wrap points and RTL justification come from an unwritten team reference, and those layouts are design choices, so a different valid implementation would fail. Only the reorder bucket could use a conformance oracle (BidiCharacterTest). Open PR #1722 and bidi-js already cover UAX #9 reorder publicly. Fontkit Arabic joining is unverified, and the smoke build is empty.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 5,
+   "Real": 4,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 67
+}

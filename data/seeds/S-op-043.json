@@ -1,0 +1,213 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "4 h. A frontier agent usually finds the loser tree and gets part of the speedup. The remaining gains need stride-based key layout and a cache-friendly design. A weaker model stays near the baseline.",
+  "cheat": "Caching results or skipping the merge: the inputs are hidden and fresh per run, and equality is checked on the full stream.",
+  "grading": "Hard gate: output equal to the baseline on a generated hidden set of runs (duplicates, ties, nulls, varied k from 2 to 4096). Reward from the wall-clock median speedup over several k and key-width cases against our reference speedup.",
+  "reference": "The upstream merged PR (about 600 lines), whose measured speedup defines S. Measured by us in the container.",
+  "source": "https://github.com/apache/druid/pull/15661 @ pre-PR parent commit, Apache-2.0",
+  "task": "/app ships the pre-PR Druid merge code, an isolated Java module for sorted-run and row-iterator k-way merging, with a build and a microbenchmark harness. The agent keeps behaviour identical and makes merging of many sorted runs faster, for example with a tournament/loser tree and compact key strides.",
+  "title": "Druid k-way merge speedup via tournament trees"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-042 0.24"
+  ],
+  [
+   "2026-10-21T03:25:07Z",
+   "v1",
+   "killed:K10",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 4, 'Band': 3, 'Hor': 3, 'Multi': 2, 'Seal': 3, 'Nov': 4, 'Lic': 5, 'Fit': 3, 'Build': 2}"
+  ]
+ ],
+ "id": "S-op-043",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.241,
+    "S-op-042"
+   ],
+   [
+    0.217,
+    "S-op-041"
+   ],
+   [
+    0.207,
+    "S-im-037"
+   ],
+   [
+    0.089,
+    "helm-array-merge-strategies [DeepSWE]"
+   ],
+   [
+    0.086,
+    "kd_tree [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "d61f8cf93527d914d0750b3c06a7a24162bf5830",
+  "kb": 437652,
+  "lang": "Java",
+  "open_prs": 123,
+  "pushed": "2026-10-20",
+  "release": "druid-38.0.0",
+  "spdx": "Apache-2.0",
+  "stars": 14089
+ },
+ "source_key": "github.com/apache/druid/pull/15661|apache-druid-15661-faster-k-way-merging-using-tournament-tre",
+ "source_notes": "repo https://github.com/apache/druid; merged PR or fixed issue",
+ "source_url": "https://github.com/apache/druid/pull/15661",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/apache/druid/pull/15661",
+  "facts": [
+   {
+    "claim": "Druid PR #15661 exists and is merged: 'Faster k-way merging using tournament trees, 8-byte key strides', merged 2024-01-11, merge commit 2231cb30a4d76244c1f81ce71ff73120b5e99cd2",
+    "status": "confirmed",
+    "url": "https://github.com/apache/druid/pull/15661"
+   },
+   {
+    "claim": "PR changes the k-way merge in processing/frame (FrameChannelMerger, new TournamentTree, FrameComparisonWidgetImpl, FrameReaderUtils) with a new FrameChannelMergerBenchmark; the seed's 'isolated Java module' description does not match this",
+    "status": "contradicted",
+    "url": "https://github.com/apache/druid/pull/15661/files"
+   },
+   {
+    "claim": "PR is 5 commits touching 7 Java files; benchmark file adds 353 lines; the total added code is about 600 lines",
+    "status": "not_found",
+    "url": "https://github.com/apache/druid/pull/15661/files"
+   },
+   {
+    "claim": "Seed's 'pre-PR parent commit' is pinned: source_facts head d61f8cf93527d914d0750b3c06a7a24162bf5830 is the current master HEAD (pushed 2026-10-20), and the parent SHA of PR 15661 is not stated",
+    "status": "not_found",
+    "url": "https://github.com/apache/druid/pull/15661"
+   },
+   {
+    "claim": "Row-iterator k-way merging is part of the upstream PR",
+    "status": "not_found",
+    "url": "https://github.com/apache/druid/pull/15661/files"
+   },
+   {
+    "claim": "PR's own benchmark (5M rows, 20-char keys): 2 channels 662.988 -> 602.409 ms/op (1.10x); 16 channels 1513.897 -> 943.311 ms/op (1.60x) for tree plus 8-byte stride",
+    "status": "confirmed",
+    "url": "https://github.com/apache/druid/pull/15661"
+   },
+   {
+    "claim": "Tag druid-38.0.0 exists, marked Latest, published 1 Oct (year not shown), so the later release already contains this code path",
+    "status": "confirmed",
+    "url": "https://github.com/apache/druid/releases/tag/druid-38.0.0"
+   },
+   {
+    "claim": "Druid 38.0.0 release notes: over 250 changes from 37 contributors, Java 25 support, Java 17 dropped",
+    "status": "confirmed",
+    "url": "https://newreleases.io/project/github/apache/druid/release/druid-38.0.0"
+   },
+   {
+    "claim": "Repository is Apache-2.0 and not a fork, not archived (taken from the GitHub API facts supplied)",
+    "status": "not_found",
+    "url": "https://github.com/apache/druid"
+   }
+  ],
+  "frontier_hours": 3.5,
+  "full_card": {
+   "band": "4 h tier. Frontier finds the tournament tree (about 1.3x at 16 channels by the PR's own numbers) and must add stride key layout for the rest; weaker model stays near baseline (not verified).",
+   "build_cost": "3-4 days: extract the module from frame code, make it build offline, write the sealed grader and baseline, and calibrate the speedup.",
+   "deliverable": "A standalone Java k-way merge (sorted runs and key compare) that is output-identical to the baseline and faster, with a benchmark harness.",
+   "gates_anticheat": "Hidden inputs fresh per run, so caching fails; full-stream equality so skipping the merge fails; grader uses its own harness and baseline outside /app.",
+   "grading_surface": "Generated hidden runs: duplicates, ties, nulls, k from 2 to 4096, varied key widths; full output stream equality as the gate; speedup as wall-clock median.",
+   "local_fit": "Java 8-core CPU, offline; Druid Maven build must be made offline-buildable with pre-fetched deps, and the 437 MB repo is too big to ship whole.",
+   "lookup": "direct: the PR is public and its design is named in the task text.",
+   "provenance": "Upstream apache/druid PR #15661 merged 2024-01-11 (merge commit 2231cb3); Apache-2.0; public git history contains the reference.",
+   "reference": "Upstream merged PR 15661 (TournamentTree plus 8-byte key strides); PR's own bench gives 1.10x at 2 channels and 1.60x at 16 channels.",
+   "ships": "Druid processing and benchmark code at the pre-PR parent as a history-less snapshot, with no later release jars or sources and no ~/.m2 copy of newer druid-processing. Not an isolated module today; the agent or the task must extract a standalone merge module with a defined API.",
+   "similarity": "Nearest seeds S-op-042 (0.241), S-op-041 (0.217), S-im-037 (0.207); no public task neighbour above 0.15 and not crowded."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed's band is plausible but unverified; PR numbers (1.6x at 16 channels) suggest a frontier agent with the tree gets much of S; no dated public evidence."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Module extraction from Druid frame code, offline build and sealed grader cost roughly 3-4 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Java CPU offline is fine, but a Maven build from a huge repo needs offline dependency pre-fetch."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "About 400-600 lines of real work in a 4 h tier; too short for 8 h, so tier fits but scope is modest."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the source and reference."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Two levers (tree, strides) and k/key-width buckets; little independent surface."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Neighbours are seeds, not public tasks; no public task neighbour above 0.15."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Merged upstream PR with a public number trail, release tag and benchmark numbers."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Measured upstream speedup defines S; a complete implementation exists."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public history must be stripped and later release code excluded; agent can recall the design, which is a Band issue."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated differential runs against a baseline oracle with an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Speedup at 16 channels is under 1.2x or varies by more than 20% across repeats, or the offline build cannot be made to work without network.",
+   "pass_if": "Parent SHA is pinned, the offline build works, speedups reproduce within about 10%, and output equality holds across k and key widths.",
+   "steps": [
+    "In a throwaway container with network, clone apache/druid, record the parent SHA of 2231cb3 and check out that parent.",
+    "Build processing and the benchmarks module with Maven, pre-fetching dependencies; record whether the build works offline afterwards.",
+    "Run FrameChannelMergerBenchmark at the parent, and at 2231cb3, at 2 and 16 channels, with 3 repeats each; confirm the ratios are near 1.10x and 1.60x and the noise is small.",
+    "Write a 50-line harness that generates random sorted runs with duplicates, ties and nulls at k=2 and k=4096, and checks that the parent output equals the merged output on the full stream.",
+    "Check determinism: rerun the same seed three times and confirm identical output hashes and stable timing medians."
+   ]
+  },
+  "summary": "The upstream reference is real and merged (Druid PR #15661, Jan 2024), but the seed misstates its shape: it is not an isolated module, the parent SHA is not pinned (the head given is current master), and the 600-line size is unverified. The design is public and named in the task, so lookup is direct and the task only works with a history-less snapshot that excludes later release code, with an API the spec defines; the card is not killed, but the spike must confirm the speedup and the offline build before it goes further.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71
+}

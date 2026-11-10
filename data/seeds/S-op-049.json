@@ -1,0 +1,200 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "4 h. Many small levers add up. A frontier agent gets some of them. The weaker model manages one function.",
+  "cheat": "Memoising results across calls is wrong after mutation, and the differential workload mutates trees between queries.",
+  "grading": "Hard gate: identical results for a differential workload of generated trees and operations, plus a trimmed set of Godot's own unit tests. Score is the median speedup.",
+  "reference": "The merged PR and neighbouring upstream optimisations of Node, measured on the same workload.",
+  "source": "https://github.com/godotengine/godot/pull/106226 (faster Node::get_child_count) at its base commit, MIT",
+  "task": "/app ships Godot at the PR's parent, history-less, and a headless benchmark of tree-heavy operations: child count and index, get_node by path, groups, find_children and tree walks over large generated trees. The agent speeds up the whole set, not just one function.",
+  "title": "Godot scene tree traversal and child access speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-048 0.47"
+  ],
+  [
+   "2026-10-21T07:08:24Z",
+   "v1",
+   "killed:K10",
+   "The reference is a one-line upstream semantic change (PR #106226) plus two public neighbouring commits, far below the required hundreds of lines and too small for a 4 h tier. Its core fix is merged in public history and recallable, so the scope is one lever in disguise. A redesign with a larger real"
+  ]
+ ],
+ "id": "S-op-049",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.472,
+    "S-op-048"
+   ],
+   [
+    0.367,
+    "S-op-047"
+   ],
+   [
+    0.365,
+    "S-op-046"
+   ],
+   [
+    0.148,
+    "kd_tree [AlgoTune]"
+   ],
+   [
+    0.12,
+    "dep-tree [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/pull/106226|godotengine-godot-106226-faster-node-get-child-count",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/pull/106226",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/pull/106226",
+  "facts": [
+   {
+    "claim": "PR #106226 'Faster Node::get_child_count()' exists in godotengine/godot and is merged (commit a377f50, merged May 12, 2025, opened May 10, 2025 by lawnjelly)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/106226"
+   },
+   {
+    "claim": "The PR changes get_child_count(include_internal=true) to return the children HashMap size without first updating the children cache; it adds no cache or invalidation logic",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/106226"
+   },
+   {
+    "claim": "Godot is licensed MIT (LICENSE.txt, Copyright 2014-present Godot Engine contributors)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/blob/master/LICENSE.txt"
+   },
+   {
+    "claim": "Neighbouring upstream child-access optimisations are public: PR #107369 added Node::iterate_children; PR #110571 rewrote Node::get_children to fill from the children cache",
+    "status": "confirmed",
+    "url": "https://remotebranch.eu/Stowage/godot/commit/e5bf31b170d2a5d1a9648f7e527a227086dfc211"
+   },
+   {
+    "claim": "The seed's PR number 106226 is the source of the 'merged PR' reference; the file-level diff size (lines changed) could not be read from the PR page",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/pull/106226"
+   },
+   {
+    "claim": "Headless build of Godot at the PR parent succeeds offline on this box (smoke_build was empty, so no probe result)",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot"
+   }
+  ],
+  "frontier_hours": 1.5,
+  "full_card": {
+   "band": "Seed claims 4 h; the public reference is a few lines, so a frontier agent can plausibly match it in well under an hour",
+   "build_cost": "about 2-4 days including a headless build and harness; smoke_build not run (empty), so unknown",
+   "deliverable": "Speed up tree-heavy Node operations (child count/index, get_node by path, groups, find_children, tree walks) keeping results identical",
+   "gates_anticheat": "Memoisation across calls is invalid under mutation; need the workload to mutate trees between queries; sealing of reference weak because the commits are in public history",
+   "grading_surface": "Differential workload of generated trees and operations (hard gate) plus trimmed Godot unit tests; score = median speedup",
+   "local_fit": "gVisor-compatible single-process C++ build, 8 cores/16 GB likely fine but a full Godot build is long",
+   "lookup": "direct: the core change and neighbours are merged upstream and recallable",
+   "provenance": "Godot 4.x C++ engine, real MIT repo; source PR #106226 is merged upstream (May 2025), so the base is public git history",
+   "reference": "Upstream PR #106226 (one-line semantic change) plus PRs #107369 and #110571 (public, merged)",
+   "ships": "history-less snapshot of Godot at PR parent plus headless benchmark harness; needs ~full engine build (not verified offline)",
+   "similarity": "Nearest l0 neighbours S-op-048 (0.472), S-op-047 (0.367), S-op-046 (0.365); none crowded; siblings in same optimisation family"
+  },
+  "kill_code": "K10",
+  "kill_reason": "The reference is a one-line upstream semantic change (PR #106226) plus two public neighbouring commits, far below the required hundreds of lines and too small for a 4 h tier. Its core fix is merged in public history and recallable, so the scope is one lever in disguise. A redesign with a larger real surface would be needed to pass.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Core change is tiny and recallable, so a frontier agent likely reaches the reference in minutes to an hour; no dated evidence of a harder band"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Full Godot headless build plus harness is multi-day work; smoke_build not run"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "C++ build is CPU heavy but within 8 cores and 16 GB; long compile time"
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Scope of the stated levers is small and does not sustain 4 h of work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT licence verified on LICENSE.txt"
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Several listed operations but most share one cache path, so buckets collapse to one lever"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max l0 neighbour 0.472 is under 0.5 and not crowded, but same optimisation family as siblings"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real merged upstream PR with a commit hash and an MIT repo"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is one changed condition plus two public neighbouring commits, far below the hundreds-of-lines bar"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Reference commits are in public upstream history and later releases; a snapshot would not hide the recallable fix"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Differential generated workload can be large, but the reference lever set is tiny so the surface is mostly one function"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build fails or exceeds 2 hours, or the only measurable gain is the one-line get_child_count change with nothing else to optimise (confirming K10).",
+   "pass_if": "Build completes in under 90 minutes and the PR's change plus neighbours yields a measurable speedup while the unit tests stay green, AND a credible set of 10+ further tree operations exists with separable gains.",
+   "steps": [
+    "In a throwaway networked container, clone godotengine/godot and check out a377f50^ (the PR parent); do not keep history in /app.",
+    "Run a headless scons build (target=template_release, tests=yes) with -j8 and record wall time and whether it completes.",
+    "Write a 50-line microbenchmark: build a tree of ~10k nodes, loop get_child_count(true) and get_child_count(false) plus get_node by path, time before and after applying the PR's one-line change.",
+    "Run the trimmed Godot scene/node unit tests on both builds to confirm they pass identically.",
+    "Check whether the measured speedup from the PR alone exceeds noise (median of 5 runs); if it does, sketch 3-5 further tree operations to see whether a larger scope exists."
+   ]
+  },
+  "summary": "The source PR #106226 exists and is merged upstream (commit a377f50, MIT repo), so the reference is public history and its core change is a one-line semantic tweak. The seed's 4 h tier and multi-operation framing are not supported by a reference this small, and the smoke build was never run, so I kill it as K10 (one lever, reference too small) unless the scope is rebuilt around a larger real surface.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [
+   "https://remotebranch.eu/Stowage/godot/commit/e5bf31b170d2a5d1a9648f7e527a227086dfc211"
+  ],
+  "ratio": 0.25
+ },
+ "v1_score": 52
+}

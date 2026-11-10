@@ -1,0 +1,219 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "4 h. Narrow, but it needs a real C++ build and profiling. Frontier agents get the main fix in some trials, but the secondary hotspots limit the average. Weaker models stall on the build.",
+  "cheat": "Persisting an index file between runs is closed because each run starts from fresh packs. The file-tree equality gate catches dropped override semantics.",
+  "grading": "Hard gate: the resulting virtual file tree and the bytes read must be identical on generated packs, plus a conflicting-override test. Score is the median speedup on hidden pack sizes and layouts.",
+  "reference": "The upstream fix measured on the same harness, which sets the ceiling.",
+  "source": "https://github.com/godotengine/godot/issues/102998 @ commit before the fix, MIT",
+  "task": "/app ships Godot's PCK/file-access and resource-pack code at the pinned base. The agent speeds up loading of a patch pack over a base pack with a very large file table (hundreds of thousands of entries), covering directory registration, path normalisation and lookup. A headless harness builds packs with the packer and times the load.",
+  "title": "Godot patch PCK loading slowdown on large projects"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-045 0.22"
+  ],
+  [
+   "2026-10-21T07:07:42Z",
+   "v1",
+   "killed:K5",
+   "No strong reference obtainable for the seed as written: the public fix (PR #105984) is an Android export-format change, not a loader speedup, and was never measured on a headless pack harness; the reference would have to be built by us, and the Linux hotspot is unverified."
+  ]
+ ],
+ "id": "S-op-046",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.222,
+    "S-op-045"
+   ],
+   [
+    0.2,
+    "S-im-075"
+   ],
+   [
+    0.189,
+    "S-im-037"
+   ],
+   [
+    0.101,
+    "tree-directory-parser [original]"
+   ],
+   [
+    0.1,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/issues/102998|godotengine-godot-102998-loading-patch-pck-on-android-with-b",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/issues/102998",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/issues/102998",
+  "facts": [
+   {
+    "claim": "Godot issue #102998 exists and is titled 'Loading patch PCK on Android with big project is slow'; closed as completed on 2025-06-25",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/issues/102998"
+   },
+   {
+    "claim": "The reported slowdown is Android-specific: it runs through DirAccessJAndroid (dir_exists, current_is_dir) and android::ZipAssetsProvider, not generic PCK loading on desktop",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot/issues/102998"
+   },
+   {
+    "claim": "The seed's framing (generic patch-pack over base-pack load, path normalisation and lookup, timed by a headless harness) matches the upstream incident",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot/issues/102998"
+   },
+   {
+    "claim": "Upstream fix PR #105984 ('Android: Implement sparse bundle PCK support') was merged on 2025-06-25 into master, milestone 4.5",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/105984"
+   },
+   {
+    "claim": "The upstream fix changes the export format: a {name}.sparsepck header/directory plus hashed sibling files, which is an export-side change rather than a loader speedup on a given pack",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/105984"
+   },
+   {
+    "claim": "Upstream PR #105984 reports load time dropping from 8570 ms to 10 ms on its minimal reproduction",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/105984"
+   },
+   {
+    "claim": "PR #105984 file count and additions/deletions (needed to check the 150+ line reference requirement)",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/pull/105984"
+   },
+   {
+    "claim": "A headless harness that builds packs with the packer and times the load exists in the repo or anywhere public",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot"
+   },
+   {
+    "claim": "Repository is MIT licensed, C++, stars 118744, release 4.7.2-stable (as given in source_facts; not re-fetched)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot"
+   },
+   {
+    "claim": "Smoke build verdict for the source (seed smoke_build is empty, so no offline build or test result exists)",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot"
+   }
+  ],
+  "frontier_hours": 4,
+  "full_card": {
+   "band": "Seed claims 4 h with main fix in some trials; no dated evidence found",
+   "build_cost": "Full Godot template build plus harness wiring, likely 1-3 days; smoke_build empty so cost is unverified",
+   "deliverable": "Faster patch-PCK load over a large base pack in the packed file access and directory code; no export-format change assumed",
+   "gates_anticheat": "Fresh packs each run closes persisted index; tree-equality gate catches dropped override semantics; history-less snapshot needed because the fix is public",
+   "grading_surface": "Hidden generated packs of varied sizes and layouts; hard gate on identical virtual file tree and bytes read; conflicting-override test; median speedup score",
+   "local_fit": "C++ Godot build with scons on 8 cores, 16 GB; the Android path cannot run headless here, so the Linux harness may not show the reported hotspot",
+   "lookup": "direct: the fix is public in merged PR #105984 and later git history",
+   "provenance": "Godot issue #102998 (closed via PR #105984, merged 2025-06-25) on godotengine/godot; MIT",
+   "reference": "Upstream fix is a sparse-bundle export format (PR #105984), not a loader speedup on the same harness; no reference measured on the seed's harness exists",
+   "ships": "Godot C++ tree at the pre-fix base, history-less snapshot required (repo ~1.9 GB, pushed 2026-10-20, head 1b16fd1)",
+   "similarity": "Max l0 neighbour 0.222 (S-op-045); not crowded; not a public task"
+  },
+  "kill_code": "K5",
+  "kill_reason": "No strong reference obtainable for the seed as written: the public fix (PR #105984) is an Android export-format change, not a loader speedup, and was never measured on a headless pack harness; the reference would have to be built by us, and the Linux hotspot is unverified.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Narrow scope with no dated evidence; the 4 h band claim is unsupported and the scope looks small"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Godot template build plus harness is multi-hour to a couple of days; not verified"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "C++ build fits 8 cores and 16 GB, but the Android-specific hotspot cannot be reproduced headless"
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Seed itself calls the scope narrow; likely a few hours of work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT allows shipping source and reference"
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Few levers (dir registration, normalisation, lookup); the seed says secondary hotspots limit the average"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour 0.222 (S-op-045), above 0.15 but not crowded"
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real issue and merged PR exist, but the seed's generic headless framing does not match the Android-specific incident"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Upstream fix is a format change measured on Android, not on the seed's harness; reference must be rebuilt"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "A history-less snapshot can hide PR #105984, but a frontier agent that knows upstream's sparse PCK could reproduce the format direction"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden pack trees could reach hundreds of cases, but no grader exists yet"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The build takes over a day, or the Linux load shows no hotspot distinct from I/O, so no reference can be measured on the seed's harness",
+   "pass_if": "Template builds offline and a measurable hotspot in patch load (directory registration or lookup) appears on Linux with hundreds of thousands of entries",
+   "steps": [
+    "Clone godotengine/godot at the parent commit of PR #105984 into a throwaway container with network; do not keep history for the bundle",
+    "Build the Linux editor-free export template with scons (target=template_release, 8 jobs) and time it",
+    "Generate a base PCK and a patch PCK with ~200k-entry file tables using the packer (pck export or a script writing the PCK format)",
+    "Time ProjectSettings.load_resource_pack on the patch over the base, 5 runs each, and profile with gprof or perf-free sampling to see whether PackedSourceDirectory::try_open_pack dominates",
+    "Check whether the reported slowdown reproduces on Linux at all; if not, the headless harness does not match the incident",
+    "Repeat the build and timing twice to check determinism of the tree and bytes read"
+   ]
+  },
+  "summary": "The seed's source issue #102998 is real and fixed upstream by merged PR #105984, but the reported slowdown is Android-specific (Kotlin directory checks) and the fix changes the export format to a sparse bundle, so the seed's generic headless-harness framing does not match it. Killed as K5: no reference can be obtained for the seed as written, and the public fix is directly visible in git history, which would need a history-less snapshot.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 56
+}

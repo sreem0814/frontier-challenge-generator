@@ -1,0 +1,249 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. Frontier finds the redundant hashing quickly but must preserve correctness under mtime/inode edge cases and across commands; buckets are status, diff, commit, repro, cold vs warm cache. Weaker models break equivalence or only cache in-process.",
+  "cheat": "Caching results on disk keyed by path only or skipping hashing; closed by hidden scenarios that edit content with same size/mtime, and by a fresh-process-per-call harness with a reset state dir.",
+  "grading": "Generated workspaces (sizes, mutated subsets, touched-mtime-only files, renames, symlinks, partial edits). Gate: stdout/exit code and .dvc/lock files byte-equal to the reference on every scenario. Score: median wall time of repeated status/diff calls, 2^u-1 against the reference speedup.",
+  "reference": "The upstream fix for the issue (merged PR, size not verified) plus follow-on state-DB work in later releases; speedup measured on the same generator.",
+  "source": "https://github.com/treeverse/dvc/issues/7390 @ repo snapshot at pre-fix commit (exact hash not found), Apache-2.0",
+  "task": "/app ships a history-less snapshot of dvc plus its dvc-data/dvc-objects deps at the commit before the fix, with a generator that builds workspaces of tens of thousands of tracked files across many stages. Agent makes `dvc status`, `dvc diff`, `dvc commit` and `dvc repro` skip rehashing unchanged files (state/cache DB use, stat fingerprints) while output stays identical.",
+  "title": "DVC status and commit repeated-hashing slowdown"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:08:50Z",
+ "family": "build-system",
+ "final": 57,
+ "history": [
+  [
+   "2026-10-21T07:08:50Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-045 0.25"
+  ],
+  [
+   "2026-10-21T07:10:20Z",
+   "v1",
+   "pass",
+   "score 74; dead links []"
+  ],
+  [
+   "2026-10-21T07:12:52Z",
+   "v2",
+   "killed:K10",
+   "The regression and fix are real (#7390, fixed by PR #7597 as commit 7a795f7), but the fix is one lever: save and reload raw dir objects to avoid rehashing. The reported effect is only about 0.65s vs 1.8s. The 'state-DB follow-on work' meant to scale up the reference was not found, the pre-fix hash i"
+  ]
+ ],
+ "id": "S-op-050",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.255,
+    "S-op-045"
+   ],
+   [
+    0.236,
+    "S-op-048"
+   ],
+   [
+    0.19,
+    "S-op-041"
+   ],
+   [
+    0.086,
+    "koota-entity-snapshot-rollback [DeepSWE]"
+   ],
+   [
+    0.078,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "56e59829512ff134aa269099a2099587b810b4dd",
+  "kb": 21006,
+  "lang": "Python",
+  "open_prs": 35,
+  "pushed": "2026-10-19",
+  "release": "3.67.1",
+  "spdx": "Apache-2.0",
+  "stars": 15931
+ },
+ "source_key": "github.com/treeverse/dvc/issues/7390|treeverse-dvc-7390-status-recalculating-hashes-each-call",
+ "source_notes": "repo https://github.com/treeverse/dvc; merged PR or fixed issue",
+ "source_url": "https://github.com/treeverse/dvc/issues/7390",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/treeverse/dvc/issues/7390",
+  "facts": [
+   {
+    "claim": "treeverse/dvc issue #7390 exists: 'status: recalculating hashes each call', a regression report with performance label, closed May 12, 2022",
+    "status": "confirmed",
+    "url": "https://github.com/treeverse/dvc/issues/7390"
+   },
+   {
+    "claim": "The issue's regression traced to commit 114a07e; runtime rose from about 0.65s to 1.8s in the reporter's test (per commenters)",
+    "status": "confirmed",
+    "url": "https://github.com/treeverse/dvc/issues/7390"
+   },
+   {
+    "claim": "Fix PR #7597 'dvc.data: save and try loading raw dir objects' was merged as commit 7a795f7 on May 12, 2022",
+    "status": "confirmed",
+    "url": "https://github.com/treeverse/dvc/pull/7597"
+   },
+   {
+    "claim": "PR #7597 lines changed (additions/deletions) and file count",
+    "status": "not_found",
+    "url": "https://github.com/treeverse/dvc/pull/7597"
+   },
+   {
+    "claim": "Linked follow-up dvc-data PR #34 with commits d3c74ec and 4b4c034 (typo fix to the same change)",
+    "status": "confirmed",
+    "url": "https://github.com/treeverse/dvc/pull/7597"
+   },
+   {
+    "claim": "A specific later release or PR implementing the 'state-DB work' that the reference is said to include",
+    "status": "not_found",
+    "url": "https://github.com/treeverse/dvc/pull/7597"
+   },
+   {
+    "claim": "DVC repository licence is Apache License 2.0 (SPDX Apache-2.0)",
+    "status": "confirmed",
+    "url": "https://github.com/treeverse/dvc/blob/main/LICENSE"
+   },
+   {
+    "claim": "Licences of dvc-data and dvc-objects (the seed's other shipped deps)",
+    "status": "not_found",
+    "url": "https://github.com/treeverse/dvc"
+   },
+   {
+    "claim": "Pre-fix commit hash of the snapshot (parent of 7a795f7)",
+    "status": "not_found",
+    "url": "https://github.com/treeverse/dvc/pull/7597"
+   },
+   {
+    "claim": "A zero-token smoke build result for this repo",
+    "status": "not_found",
+    "url": "https://github.com/treeverse/dvc"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "8h tier. Frontier finds the redundant hashing quickly; difficulty is correctness under mtime/inode edge cases across four commands and cold vs warm cache. Weaker models cache only in-process or break equivalence. Band capped at 3: no dated public evidence.",
+   "build_cost": "Estimated 3 (2-5 days): dvc plus two deps, offline venv, generator, reference build, timing harness. smoke_build is empty, so no offline build is confirmed.",
+   "deliverable": "Agent-side change so dvc status, diff, commit and repro skip rehashing unchanged files (stat-keyed state/cache DB) while stdout, exit code and .dvc/lock bytes stay identical.",
+   "gates_anticheat": "Gate: byte-equal output on every scenario; fresh process per call with reset state dir. Closes path-only caching and skipping hashing. Risk: a pure stat (size, mtime_ns, inode) fingerprint would fail the same-size same-mtime edit scenario; the reference must pass every scenario it is graded on.",
+   "grading_surface": "Generated workspaces (sizes, mutated subsets, touched-mtime-only files, renames, symlinks, partial edits) across cold and warm cache; byte-equal gate against reference plus median wall time for status/diff.",
+   "local_fit": "Pure Python, CPU only, no network at run time. Tens of thousands of files fit 16 GB. gVisor mtime and inode semantics may differ from host and must be checked before fingerprinting is trusted.",
+   "lookup": "partial: fix merged publicly in 2022 and later DVC state code is public; the snapshot is history-less; a frontier model may recall parts of DVC's State class but not the whole.",
+   "provenance": "Real regression report treeverse/dvc#7390 (Feb 2022, closed May 12 2022); fix PR #7597 merged as 7a795f7 with dvc-data PR #34 follow-up. Apache-2.0.",
+   "reference": "Our own reference built on the snapshot: the 7a795f7 fix plus a back-ported state-DB change from a later release. Not yet built; speedup S unmeasured. Scope and size of the reference unverified.",
+   "ships": "History-less dvc snapshot at parent of 7a795f7 (hash to pin in spike) plus pinned dvc-data/dvc-objects, offline Python deps vendored, and a seeded workspace generator.",
+   "similarity": "Max l0 neighbour S-op-045 at 0.255, then S-op-048 at 0.236 and S-op-041 at 0.19 (internal seeds, not public tasks); koota 0.086; no CROWDED overlap."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8h tier and correctness-heavy, but no dated public agent evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 2-5 days including reference, generator and harness; smoke build is empty."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Pure Python, CPU, fits 8 cores and 16 GB; gVisor stat semantics are a risk to fingerprinting."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Four commands, cold and warm cache, many edge cases; sustained multi-hour work."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "DVC is Apache-2.0 (confirmed); dvc-data and dvc-objects licences not yet checked."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Buckets exist (status, diff, commit, repro, cold, warm) but they share one caching mechanism, so levers are correlated."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public-task neighbour above 0.15; the 0.19-0.255 neighbours are internal seeds to check for overlap."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real regression report and merged fix PR with commit hashes."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "No built reference yet; reference mixes the 2022 fix with later state-DB work and spans dvc and dvc-data, so its strength and size are undefined."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Fix and later state code are public, so the snapshot must be history-less; the agent could recall parts of DVC from memory."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generator-driven workspaces with byte-equal gate against an executable reference; scenario count unbounded but timing is noisy."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Base cannot be built or tested offline in about 60 minutes; outputs differ across runs; or no change reaches 1.5x status speedup on the generator; or the reference cannot pass the same-size same-mtime scenario without hashing.",
+   "pass_if": "Base builds offline and tests are deterministic; outputs are byte-identical across 3 runs; the 7a795f7 change or a stat-keyed cache gives at least 1.5x median speedup on status with the reference passing every scenario.",
+   "steps": [
+    "Clone treeverse/dvc and dvc-data in a throwaway network container; confirm 7a795f7 and its parent and pin the parent as the base commit.",
+    "Create an offline venv of the base with pinned dvc-data and dvc-objects; confirm `dvc --version` and `pytest` (or a subset) run and record per-test results.",
+    "Write a small generator: 20k files across 5 stages, then run status on a warm tree, a mutated subset, touched-mtime-only files, and same-size same-mtime edits; capture stdout, exit code and .dvc/lock bytes.",
+    "Run the same workload 3 times on base and check the outputs are byte-identical across runs (determinism).",
+    "Apply 7a795f7 (or its equivalent) on top of base and rerun timing; if it fails to apply, port the raw-dir-object change by hand.",
+    "Check whether a naive stat-keyed cache breaks the same-size same-mtime scenario and whether the fixed reference passes it; if the reference fails, drop that scenario.",
+    "Test gVisor-like behaviour: run the generator and status in a sandboxed container and confirm mtime_ns and inode are stable across runs."
+   ]
+  },
+  "summary": "The seed is real: treeverse/dvc#7390 is a closed regression report and its fix PR #7597 merged as 7a795f7 on May 12 2022, with Apache-2.0 licensing confirmed. It is not killed, but it is conditional: the reference is undefined (2022 fix plus unspecified later state-DB work), smoke_build is empty so there is no offline build evidence, and a stat-keyed cache may contradict the same-size same-mtime hidden scenario, so the spike must settle these before the card is accepted.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-050",
+  "kill_code": "K10",
+  "note": "The regression and fix are real (#7390, fixed by PR #7597 as commit 7a795f7), but the fix is one lever: save and reload raw dir objects to avoid rehashing. The reported effect is only about 0.65s vs 1.8s. The 'state-DB follow-on work' meant to scale up the reference was not found, the pre-fix hash is unpinned, and the dvc-data/dvc-objects licences are unverified. The same-size, same-mtime edit scenario conflicts with DVC's own stat-keyed state: a correct reference would report that file unchanged while the base reports it changed, so the gate is ill-defined. At 6h frontier for an 8h tier with a single fix, the task is short and one-lever.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 3,
+   "Hor": 2,
+   "Lic": 4,
+   "Multi": 2,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 2,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 57
+}

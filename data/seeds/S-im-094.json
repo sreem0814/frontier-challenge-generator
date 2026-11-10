@@ -1,0 +1,278 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "8h. Rust compiler internals are poorly documented and the HIR API is unstable. Frontier agents get the simple lints with the exact message format but fail the corner-case suggestions, the macro-expansion handling and the applicability levels. A weaker model lands only a few lints.",
+  "cheat": "Copying lint code from a cargo registry copy: none in the image, and the vendored crates exclude clippy_lints. Fixtures for graded lints are sealed.",
+  "grading": "Hidden UI-test fixtures (.rs inputs with .stderr and .fixed expected files) for the removed lints are run through the test harness. Exact diagnostics and applied fixes are compared per fixture; credit is the fraction of fixtures passed. The rest of the suite is a regression gate.",
+  "reference": "Upstream lint implementations at this commit (expected 3000+ lines).",
+  "source": "https://github.com/rust-lang/rust-clippy @ head 3583eb8 (no release tag), Apache-2.0",
+  "task": "/app ships a history-less Clippy snapshot with a pinned offline toolchain and vendored crates. About 20 lints from the style and complexity groups have their rule bodies removed (registration and declarations stay). The agent re-implements the HIR/MIR analysis and suggestions.",
+  "title": "Rebuild a Clippy style and complexity lint group against UI fixtures"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "compiler-toolchain",
+ "final": 78,
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-089 0.27"
+  ],
+  [
+   "2026-10-21T03:13:58Z",
+   "v1",
+   "pass",
+   "score 82; dead links []"
+  ],
+  [
+   "2026-10-21T03:16:14Z",
+   "v2",
+   "pass",
+   "final 78"
+  ],
+  [
+   "2026-10-21T03:36:18Z",
+   "spike",
+   "validated",
+   "The build is cheap (5 min). The UI harness works per lint through the TESTNAME filter. The second test run was cached, so determinism is only weakly shown. The whole tests/ui has 1008 .rs files. A rough count of 192 .rs files matches common style/complexity name prefixes, which is a proxy, not an ex"
+  ]
+ ],
+ "id": "S-im-094",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.27,
+    "S-im-089"
+   ],
+   [
+    0.265,
+    "S-im-065"
+   ],
+   [
+    0.255,
+    "S-im-087"
+   ],
+   [
+    0.128,
+    "i3-style [ProgramBench]"
+   ],
+   [
+    0.11,
+    "pytest [Commit0]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 2,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "3583eb8a9ae1161bd7d80907acfa09b3612a93f9",
+  "kb": 98471,
+  "lang": "Rust",
+  "open_prs": 364,
+  "pushed": "2026-10-19",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 13587,
+  "test_files": 3743,
+  "test_kb": 8810,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/rust-lang/rust-clippy|rust-lang-rust-clippy",
+ "source_notes": "SWE-smith profile (rust): its suite runs in a container; test command: the language default. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/rust-lang/rust-clippy",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Hidden surface size: about 7 fixtures per lint, so about 140 .rs files for 20 lints, near the 150 threshold. Choose more lints or ones with many fixtures.",
+   "Built target dir is 5.8 GB, so the shipped target must be stripped or rebuilt. The clippy-driver binary must not ship with the removed lints. The minimal-profile toolchain has no clippy, so no leak there."
+  ],
+  "build_minutes": 5.2,
+  "cases_sampled": 28,
+  "commands_log": "git clone rust-clippy; git checkout 3583eb8; rust-toolchain pins nightly-2026-10-15, auto-installed with rustc-dev. cargo build -j3 took 5m11s. TESTNAME=needless_return,collapsible_if,redundant_closure cargo test --test compile-test: 14+6 passed, run twice with the same result (the second run was cached, 3s). Blanked needless_return::check_fn (if true || ...): both fixtures FAILED after 1m. cargo build --offline OK. Network was on, so a run with the network off was not tested.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Blanking needless_return check_fn makes needless_return.rs and needless_return_with_question_mark.rs fail (lint output missing, unfulfilled expectation). Reference passes.",
+  "headroom_ok": true,
+  "image_gb_estimate": 8,
+  "kill_code": "",
+  "notes": "The build is cheap (5 min). The UI harness works per lint through the TESTNAME filter. The second test run was cached, so determinism is only weakly shown. The whole tests/ui has 1008 .rs files. A rough count of 192 .rs files matches common style/complexity name prefixes, which is a proxy, not an exact count for the candidate lints. Only 1 of the 2 planned lints was blanked and re-run (needless_return, not collapsible_if). I did not run an offline test with the network off, only cargo build --offline. The first compile-test run took 4 min, from compiling test dependencies.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 28,
+  "reference_lines": 3000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 10
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/pdf/2607.02684",
+  "facts": [
+   {
+    "claim": "rust-lang/rust-clippy repository exists and is Apache-2.0 licensed (LICENSE-APACHE shows the Apache License 2.0 text)",
+    "status": "confirmed",
+    "url": "https://github.com/rust-lang/rust-clippy/blob/master/LICENSE-APACHE"
+   },
+   {
+    "claim": "tests/ui holds the UI fixtures: about 1,700 entries, of which 88 are visible in the first listing page, with 34 .stderr and 18 .fixed files among them (the listing is truncated)",
+    "status": "confirmed",
+    "url": "https://github.com/rust-lang/rust-clippy/tree/master/tests/ui"
+   },
+   {
+    "claim": "Clippy publishes 840 lints in total",
+    "status": "confirmed",
+    "url": "https://clippy.rust-lang.org/master/index.html"
+   },
+   {
+    "claim": "Exact style-group and complexity-group lint counts (only the first 100k characters were read: at least 14 style and at least 6 complexity lints visible)",
+    "status": "not_found",
+    "url": "https://clippy.rust-lang.org/master/index.html"
+   },
+   {
+    "claim": "clippy_lints is published on crates.io as a standalone crate (search returned only googlesource mirrors of the clippy_lints README; crates.io not checked directly)",
+    "status": "not_found",
+    "url": "https://rust.googlesource.com/rust-clippy/+/27789b00ab72b8dc6d6d957d9751b02d6f19a679/clippy_lints"
+   },
+   {
+    "claim": "Upstream clippy_lints lint implementations are in the public git history (mirrored on googlesource), so the reference is public and must be kept out of the snapshot",
+    "status": "confirmed",
+    "url": "https://rust.googlesource.com/rust-clippy/+/27789b00ab72b8dc6d6d957d9751b02d6f19a679/clippy_lints"
+   },
+   {
+    "claim": "A dated public study (July 2026) evaluates coding agents on compiler peephole implementations (LLVM InstCombine, 19 tasks); it is adjacent, not Clippy, and its success numbers could not be read from the fetched PDF",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2607.02684"
+   },
+   {
+    "claim": "Agent benchmarks specifically implementing Clippy lints or HIR-level suggestions exist",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2607.00700"
+   },
+   {
+    "claim": "Repo head 3583eb8, 364 open PRs, no release tag, 3743 test files, pushed 2026-10-19 (from GitHub API source_facts, not re-fetched per instructions)",
+    "status": "confirmed",
+    "url": "https://github.com/rust-lang/rust-clippy"
+   }
+  ],
+  "frontier_hours": 12,
+  "full_card": {
+   "band": "Claimed 8h (seed). Scope of ~20 lints with suggestions, applicability and macro-expansion handling is likely 12+ hours for an excellent agent, so the tier should be 20h, or 8h with about 8 to 10 lints. No dated public evidence for this exact task (E0), so Band capped at 3.",
+   "build_cost": "About 3 to 5 days: pinned nightly with rustc-dev and llvm-tools offline, vendored dependency tree, snapshot with removed bodies, harness that compares per-fixture stderr and fixed output. smoke_build was empty ({}), so no offline build is confirmed.",
+   "deliverable": "Re-implemented lint bodies for the removed style and complexity lints, with exact diagnostics, suggestions and applicability levels.",
+   "gates_anticheat": "Hidden fixtures and reference sealed. Cheat paths to close: shipping a toolchain whose clippy-driver binary still contains the removed lints (black-box oracle, consider stripping it or accepting it as legitimate behaviour observation); copying from a cargo registry copy (none, clippy_lints excluded); editing tests or the harness (grader owns the harness); vendoring a newer clippy (forbidden by history-less snapshot).",
+   "grading_surface": "Hidden UI fixtures (.rs with .stderr and .fixed) for the removed lints, scored per fixture; plus a regression gate over the rest of the suite. Visible tests/ui is about 1,700 entries, so the hidden set is likely hundreds of fixtures (not counted).",
+   "local_fit": "CPU only, 8 cores, 16 GB: a rustc-dev-linked clippy build and UI test runs fit, though the build is heavy. No network needed at run time if the toolchain and vendoring are shipped.",
+   "lookup": "Upstream implementations are public in git history and widely known; the style lints are partly recallable in outline. A history-less snapshot removes the direct path. lookup_verdict direct.",
+   "provenance": "rust-lang/rust-clippy, Apache-2.0, 13.6k stars; pinned at head 3583eb8 (no release tag). Real upstream project used by a SWE-bench-family dataset.",
+   "reference": "Upstream lint implementations at head 3583eb8 (Apache-2.0), expected 3000+ lines; a complete implementation that would score 1.",
+   "ships": "History-less Clippy snapshot at the base commit, pinned offline nightly toolchain with rustc-dev, vendored crates. About 20 style/complexity lint bodies removed; registration and declarations kept.",
+   "similarity": "Nearest public-task neighbour cosine 0.128 (i3-style, ProgramBench). Seed neighbours S-im-089 (0.27), S-im-065 (0.265), S-im-087 (0.255) are other seeds, not public tasks; no K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier difficulty plausible but no dated public evidence for this task (E0), so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 2 to 5 days: pinned nightly with rustc-dev, offline vendoring, and a fixture harness."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits 8 cores and 16 GB CPU; the rustc-dev build is heavy but feasible offline."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Roughly 12+ hours of sustained work across about 20 lints with a heavy toolchain."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the code, reference and fixtures."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "About 20 independent lint buckets give steady per-fixture credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Public-task neighbour max 0.128; seed-neighbour overlap at 0.27 is not a near-duplicate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Apache-2.0 upstream rust-clippy, pinned commit, real lint history."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Upstream implementation is complete and permissive; it would score exactly 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference is public in git history; a history-less snapshot seals it, but a shipped clippy-driver binary and famous style lints leak behaviour and outline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden per-lint UI fixtures across about 20 lints, likely hundreds of fixtures; not thousands."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The pinned toolchain cannot be built offline or the build exceeds 5 days of effort (K12), or the removed lints remain fully observable through a shipped binary with no way to strip it.",
+   "pass_if": "Build succeeds within about 30 minutes, per-lint fixture runs are deterministic, blanked lints fail their fixtures, and the candidate lint set has at least 150 fixtures in total.",
+   "steps": [
+    "In a networked throwaway container, clone rust-lang/rust-clippy at 3583eb8 and check out the pinned nightly it names (rust-toolchain file).",
+    "Install the pinned toolchain with rustc-dev and llvm-tools; run cargo build for clippy-driver and cargo-clippy. Record wall-clock time and peak memory.",
+    "Run the UI test harness (tests/compile-test) on the fixtures for 3 of the candidate style/complexity lints. Confirm the run is deterministic across 2 repeats.",
+    "Count the fixtures per candidate lint (.rs, .stderr, .fixed) to size the hidden surface.",
+    "Blank the rule bodies of 2 lints in a copy, then rerun their fixtures to confirm they fail (the start must fail). Confirm registration still compiles.",
+    "Check whether the pinned toolchain's clippy-driver contains the removed lints; decide whether to strip it from the shipped image.",
+    "Note the seed's smoke_build was empty; if the build fails here, that is a K7/K12 signal."
+   ]
+  },
+  "summary": "The seed is real and sound: upstream rust-clippy is Apache-2.0 with a large public UI-fixture suite and a complete reference, so it passes the real, licence and reference gates. The main risks are that the lints are public and recallable and that the pinned toolchain may ship a clippy-driver binary that exposes the removed lints' behaviour. Recommend a 20h tier, since the full scope is roughly 12 frontier hours, and a spike to confirm the build and fixture counts before committing.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 82,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-094",
+  "kill_code": "",
+  "note": "Real, with a complete upstream reference and natural per-lint buckets; use the 20h tier (12 frontier hours). Risks: 1) Exact .stderr matching needs the message text, so ship at least one visible fixture per removed lint or the grading tests guessing. 2) The clippy-driver in the pinned toolchain still contains the lints and must be stripped. 3) The fixtures for the removed lints must also be removed from the snapshot. 4) The nightly with rustc-dev offline is costly to build, and no smoke build has been run. Fixture count is unmeasured (likely low hundreds). The evidence_url is an adjacent paper, not Clippy evidence.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 5,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 78
+}

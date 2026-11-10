@@ -1,0 +1,280 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "8h. Many formats, each with validation edge cases; frontier agents cover mainstream formats but miss the false-positive suppression rules and exact size computation on corrupt data. Buckets by format. A weaker model detects only magic bytes.",
+  "cheat": "Magic-byte-only matching passes clean samples but fails the corrupted and false-positive images; the oracle binary and expected outputs are sealed.",
+  "grading": "Hidden generated firmware images (concatenated, truncated, corrupted and noise-padded blobs) are scanned. The JSON scan results (offset, type, size) are compared against recorded output of the real binwalk, which is not in the image. Extracted file hashes are also compared. Scored per image and per field.",
+  "reference": "Upstream binwalk 3.1.0 gives the expected outputs; our reference is a port of the relevant signature and parser modules (expected 2000+ lines).",
+  "source": "https://github.com/ReFirmLabs/binwalk @ v3.1.0, MIT",
+  "task": "/app ships a CLI skeleton and a spec for scan output. The agent implements signature detection with offset, size and description fields for a defined subset of formats (gzip, zip, tar, squashfs, cramfs, jffs2, ELF, PNG/JPEG, uImage, bzip2, xz, lzma) with structure validation, plus extraction to a directory tree.",
+  "title": "Firmware signature scanner and extractor matched to binwalk 3"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "data-format",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-014 0.20"
+  ],
+  [
+   "2026-10-21T03:12:34Z",
+   "v1",
+   "pass",
+   "score 81; dead links []"
+  ],
+  [
+   "2026-10-21T03:16:14Z",
+   "v2",
+   "pass",
+   "final 75"
+  ],
+  [
+   "2026-10-21T03:57:12Z",
+   "spike",
+   "validated",
+   "The \"30 of 31 passed\" figure means 30 images ran deterministically and 1 (bz2_trunc) hung. It is not a pass count against an independent oracle. The scan-only portion is viable. Squashfs, cramfs, jffs2, tar, uImage, lzma and jpeg were not sampled. Extraction was tested only on zip and failed for lac"
+  ]
+ ],
+ "id": "S-im-090",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.196,
+    "S-im-014"
+   ],
+   [
+    0.185,
+    "S-im-038"
+   ],
+   [
+    0.165,
+    "S-im-075"
+   ],
+   [
+    0.125,
+    "tree-directory-parser [original]"
+   ],
+   [
+    0.102,
+    "png-generation [original]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 3,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "26713972e3f9f52dc37d4a421c4554b0bd9e82ef",
+  "kb": 53121,
+  "lang": "Rust",
+  "open_prs": 36,
+  "pushed": "2026-08-11",
+  "release": "v3.1.0",
+  "spdx": "MIT",
+  "stars": 14519,
+  "test_files": 45,
+  "test_kb": 6055,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/refirmlabs/binwalk|3-1-0",
+ "source_notes": "Searches a binary image for embedded files and executable code",
+ "source_url": "https://github.com/ReFirmLabs/binwalk",
+ "source_version": "3.1.0",
+ "spike": {
+  "blockers": [
+   "Upstream hangs on truncated bz2 (>10s timeout); exclude from the graded set.",
+   "Extraction shells out to external tools (7z, and probably sasquatch/unsquashfs etc.). Extracted-file hashes need those tools when recording expected outputs. I only saw the 7z failure.",
+   "JSON output has per-run random UUIDs and embeds the gzip timestamp; graders must normalise the UUIDs.",
+   "The reference is a subset port that I did not write. The 2000-line figure is my estimate, from about 4964 signature lines and 3588 extractor lines upstream."
+  ],
+  "build_minutes": 1,
+  "cases_sampled": 31,
+  "commands_log": "git clone --depth 1 --branch v3.1.0 ReFirmLabs/binwalk; apt install libfontconfig1-dev pkg-config; cargo build --release -j3 (44s); generated 31 images with python (gz, bz2, xz, zip, png, elf, each clean, trunc, pad, corrupt and magic-only, plus concat and fp); binwalk -q -t 1 -l out.json img.bin, run twice, UUIDs stripped before comparing; -e on zip_pad failed because 7z is missing.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Magic-only fails: truncated, corrupt-magic and random-magic images yield empty results upstream (e.g. fp.bin, all truncated gz/xz/png/zip). About 20 of 31 images differ from a magic-only detector.",
+  "headroom_ok": true,
+  "image_gb_estimate": 2,
+  "kill_code": "",
+  "notes": "The \"30 of 31 passed\" figure means 30 images ran deterministically and 1 (bz2_trunc) hung. It is not a pass count against an independent oracle. The scan-only portion is viable. Squashfs, cramfs, jffs2, tar, uImage, lzma and jpeg were not sampled. Extraction was tested only on zip and failed for lack of 7z; the extraction-hash part needs a tooling decision. Notes are in /work/SPIKE.md.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 30,
+  "reference_lines": 2000,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 10
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ReFirmLabs/binwalk/releases/tag/v3.1.0",
+  "facts": [
+   {
+    "claim": "ReFirmLabs/binwalk tag v3.1.0 exists (Rust rewrite release, commit 4fdab3d)",
+    "status": "confirmed",
+    "url": "https://github.com/ReFirmLabs/binwalk/releases/tag/v3.1.0"
+   },
+   {
+    "claim": "Repository licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/ReFirmLabs/binwalk"
+   },
+   {
+    "claim": "Primary language is Rust (README: re-written in Rust)",
+    "status": "confirmed",
+    "url": "https://github.com/ReFirmLabs/binwalk"
+   },
+   {
+    "claim": "v3.1.0 release notes add extractor/format support (NTFS, APFS, Btrfs, LUKS header, Autel) and claim fewer false positives",
+    "status": "confirmed",
+    "url": "https://github.com/ReFirmLabs/binwalk/releases/tag/v3.1.0"
+   },
+   {
+    "claim": "Seed's 45 test files / 6055 KB test size",
+    "status": "not_found",
+    "url": "https://github.com/ReFirmLabs/binwalk"
+   },
+   {
+    "claim": "Signature set includes gzip, zip, tar, squashfs, cramfs, jffs2, ELF, PNG/JPEG, uImage, bzip2, xz, lzma as separate definitions",
+    "status": "not_found",
+    "url": "https://github.com/ReFirmLabs/binwalk"
+   },
+   {
+    "claim": "Debian ships binwalk v2 (2.4.3) as apt package, so a v2 Python binwalk could be installed in an image unless excluded",
+    "status": "confirmed",
+    "url": "https://tracker.debian.org/pkg/binwalk"
+   },
+   {
+    "claim": "Upstream v2 is end-of-life and maintainers direct users to v3",
+    "status": "confirmed",
+    "url": "https://tracker.debian.org/pkg/src:binwalk"
+   },
+   {
+    "claim": "Nixpkgs has moved to binwalk 3.1.0",
+    "status": "confirmed",
+    "url": "https://code.ornl.gov/nix/nixpkgs/-/commit/796556ce8df48691cd4036ff7ffe4173d15f8012"
+   }
+  ],
+  "frontier_hours": 11,
+  "full_card": {
+   "band": "Tier 20h recommended (frontier needs about 11h for the full 12-format scope; 8h tier would leave near-zero full-pass trials). The seed's 8h tier is viable only if the scope is cut to about 6-8 formats. Buckets by format give partial credit. Weaker model stops at magic-byte detection.",
+   "build_cost": "Estimate 2-5 days: reference is a port of signature tables plus validators for 12 formats, and exact v3 output parity on corrupt data is the slow part. smoke_build was not provided (empty object), so no offline build verdict exists yet.",
+   "deliverable": "Rust (or other) CLI that scans a blob for the 12 listed formats with structure validation, emits JSON scan results, and extracts files into a directory tree.",
+   "gates_anticheat": "Oracle outputs and binwalk binary absent from image; tests and build config read-only for grading; magic-byte-only detectors fail corrupted and false-positive images; wrapping system binwalk or extraction tools is blocked by removing them from the image and by a scrubbed PATH; vendoring upstream is prevented by the history-less snapshot.",
+   "grading_surface": "Hidden generated firmware blobs (concatenated, truncated, corrupted, noise-padded); compared per image and per field against recorded real binwalk v3.1.0 output, plus extracted-file hashes. Thousands of cases are possible from a generator, but the expected output is recorded, not computed by a live oracle.",
+   "local_fit": "CPU-only, offline, file I/O and zlib/lzma-type decoders; no kernel features; fits gVisor and 8 CPU / 16 GB.",
+   "lookup": "partial: the upstream code is public and the v2 Python version is apt-installable; a strong agent may recall the general magic values but not v3's exact description strings and size rules. Lookup verdict partial, not direct, provided the snapshot is history-less and v2 is excluded.",
+   "provenance": "ReFirmLabs/binwalk v3.1.0, MIT, Rust, 14.5k stars, pushed 2026-08-11; v3.1.0 release tag confirmed. Upstream repo is public with full git history, so it is not sealable by itself; /app must get a history-less snapshot with no signatures/extractors source, or the reference is the upstream the agent can read.",
+   "reference": "Our port of the relevant signature and parser modules of upstream v3.1.0 (2000+ lines, scoped to the 12 formats). Reference is a subset of a public MIT project, not a complete port.",
+   "ships": "CLI skeleton, scan-output JSON spec (offset, type, size, description), extraction-tree spec, and the sample image generator. No upstream source, no v2 Python, no binwalk or unsquashfs/cpio helpers in the image.",
+   "similarity": "Closest l0 neighbours: S-im-014 0.196, S-im-038 0.185, S-im-075 0.165, tree-directory-parser 0.125, png-generation 0.102. None above 0.2, none on the CROWDED list. Firmware scanning is a distinct subject."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this task found; capped at 3 without evidence."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 2-5 days for the reference because exact v3 parity on corrupt data is slow to match."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only, offline, no special kernel features."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "12 formats with validation, extraction tree, and parity debugging needs sustained multi-hour work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT allows shipping the code, reference and data."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Per-format buckets and per-field scoring give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour cosine 0.196 (above 0.15 threshold), no crowded overlap."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public MIT Rust project, release v3.1.0 tag confirmed, 14.5k stars, Nixpkgs packaged."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Reference is a 2000+ line subset port of a complete MIT tool; it would score 1 but covers only part of upstream."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle outputs are sealable, but the public upstream and apt-installable v2 are a leak path that the snapshot must close."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated images with recorded output per field, thousands possible, but expected output is recorded rather than an executable oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Non-deterministic output, or corrupt-case size/offset results depend on undocumented upstream internals that cannot be specified (K4), or the 12 formats cannot be found in v3.1.0 signature data.",
+   "pass_if": "Build finishes under 15 minutes; two runs are byte-identical; at least 30% of corrupt or false-positive images differ from magic-only output; size rules for truncated data are describable in a short spec.",
+   "steps": [
+    "In a networked throwaway container, clone ReFirmLabs/binwalk at tag v3.1.0 and time cargo build --release (smoke_build was not provided, so this is the first build check).",
+    "Run the built binary with --help and list the signature definitions it loads; record which of the 12 target formats appear and their exact description strings.",
+    "Generate about 30 images: clean gzip/zip/squashfs/ELF/PNG, truncated, corrupted-header, noise-padded, and concatenated blobs.",
+    "Scan each with JSON output, record offset/type/size/description, and run each twice to check determinism.",
+    "Extract one squashfs and one zip to check the extraction-tree output and file hashes.",
+    "Compare against a naive magic-byte-only detector on the same images to confirm the discriminating power of corrupt and false-positive cases.",
+    "Check whether size on truncated/corrupt data follows a rule that can be written in the spec, or depends on upstream internals."
+   ]
+  },
+  "summary": "Firmware scanner matched to binwalk v3.1.0 is a real MIT Rust project with a confirmed v3.1.0 tag and a dense per-field grading surface, so it passes the paper-trail and licence gates. The main risks are exact output parity on corrupt data (which could become K4 if the spec cannot pin size rules), the public upstream and apt-installable v2 that the snapshot must exclude, and an 8h tier that is too short for the full 12-format scope, so tier 20h is recommended.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 81,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-090",
+  "kill_code": "",
+  "note": "A distinct subject with a generator-based surface, but the reference is our own partial port, and expected output is recorded binwalk v3 behaviour on corrupt data. That risks grading undocumented internals (K4) unless the spec fixes the description strings and the size rules. That the 12 formats appear in v3.1.0 signatures is not_found. Upstream v3 appears to hand many extractions to external tools, so the extraction parity scope needs re-checking. Debian binwalk v2 must be excluded. Use the 20h tier or cut to 6-8 formats.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 5,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 75
+}

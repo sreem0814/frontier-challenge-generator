@@ -1,0 +1,232 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "8 h. Many interacting plugins and a very large fixture surface mean partial credit per bucket. A frontier agent gets basic usage flags but misses inner-graph and side-effect edge cases. A weaker model breaks the build.",
+  "cheat": "Disabling optimisation passes everything that only checks runtime output, so the hidden checks also compare the pruned export sets and mangled names against reference results. No upstream webpack package is left in node_modules.",
+  "grading": "The repo's own test/configCases and statsCases (thousands of fixtures) are split into hidden bucket subsets, with built bundle output executed and checked. Extra generated module graphs are compared with a sealed reference build for pruned export sets. Fraction passed.",
+  "reference": "The upstream implementation at the same commit, which scores 1. The removed code is expected to be about 2500+ lines.",
+  "source": "https://github.com/webpack/webpack @ v5.112.0 (head e048c158), MIT",
+  "task": "/app ships a snapshot of webpack at the base with the inner-graph, export-usage analysis (FlagDependencyUsagePlugin, InnerGraphPlugin) and export mangling plugins stubbed out. The agent rebuilds them so unused exports are pruned and mangled with correct output.",
+  "title": "Rebuild webpack's export usage and inner-graph tree shaking"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:08:13Z",
+ "family": "compiler-toolchain",
+ "history": [
+  [
+   "2026-10-21T03:08:13Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:13Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-084 0.30"
+  ],
+  [
+   "2026-10-21T03:10:04Z",
+   "v1",
+   "killed:K11",
+   "The named hidden cases are the repo's own test/configCases and statsCases, which must ship in /app for any local loop, so the oracle is in the image. The mangled-name comparison also encodes the reference's internal naming, so acceptance is narrow. Salvage: drop the upstream test tree from /app and "
+  ]
+ ],
+ "id": "S-im-086",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.304,
+    "S-im-084"
+   ],
+   [
+    0.277,
+    "S-im-075"
+   ],
+   [
+    0.272,
+    "S-im-083"
+   ],
+   [
+    0.16,
+    "task-task-graph-export [DeepSWE]"
+   ],
+   [
+    0.115,
+    "parallel-disk-usage [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "e048c15822aa2c2c79fad8ef796b94fd44d44313",
+  "kb": 129547,
+  "lang": "JavaScript",
+  "open_prs": 65,
+  "pushed": "2026-10-20",
+  "release": "v5.112.0",
+  "spdx": "MIT",
+  "stars": 65979,
+  "test_files": 19711,
+  "test_kb": 40481,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/webpack/webpack|webpack-webpack",
+ "source_notes": "SWE-smith profile (javascript): its suite runs in a container; test command: yarn test:base --verbose --testMatch '<rootDir>/test/*.basictest.js'. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/webpack/webpack",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/webpack/webpack/releases/tag/v5.112.0",
+  "facts": [
+   {
+    "claim": "webpack v5.112.0 release exists (marked Latest, dated 15 Oct)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack/releases/tag/v5.112.0"
+   },
+   {
+    "claim": "lib/optimize/InnerGraphPlugin.js exists at v5.112.0 (589 lines, 551 code)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack/blob/v5.112.0/lib/optimize/InnerGraphPlugin.js"
+   },
+   {
+    "claim": "lib/optimize/InnerGraph.js exists at v5.112.0 (488 lines, 438 code)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack/blob/v5.112.0/lib/optimize/InnerGraph.js"
+   },
+   {
+    "claim": "lib/optimize/FlagDependencyUsagePlugin.js exists at v5.112.0 (442 lines, 421 code)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack/blob/v5.112.0/lib/optimize/FlagDependencyUsagePlugin.js"
+   },
+   {
+    "claim": "lib/optimize/MangleExportsPlugin.js exists at v5.112.0 (206 lines, 194 code)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack/blob/v5.112.0/lib/optimize/MangleExportsPlugin.js"
+   },
+   {
+    "claim": "The card's 2500+ removed-line figure: the four named files total about 1,600 code lines, so the figure is not supported by these files alone (FlagDependencyExportsPlugin and parser hooks not measured)",
+    "status": "contradicted",
+    "url": "https://github.com/webpack/webpack/tree/v5.112.0/lib/optimize"
+   },
+   {
+    "claim": "test/configCases has about 100 case category directories at v5.112.0 (individual case count not measured)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack/tree/v5.112.0/test/configCases"
+   },
+   {
+    "claim": "test/statsCases has 100+ case directories (listing truncated)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack/tree/v5.112.0/test/statsCases"
+   },
+   {
+    "claim": "test/__snapshots__ contains a StatsTestCases snapshot holding expected stats (the oracle for statsCases)",
+    "status": "not_found",
+    "url": "https://github.com/webpack/webpack/tree/v5.112.0/test/__snapshots__"
+   },
+   {
+    "claim": "MIT licence (repo SPDX from GitHub API)",
+    "status": "confirmed",
+    "url": "https://github.com/webpack/webpack"
+   },
+   {
+    "claim": "webpack 5.112.0 is published on npm",
+    "status": "not_found",
+    "url": "https://www.npmjs.com/package/webpack"
+   },
+   {
+    "claim": "smoke_build probe result for this repo",
+    "status": "not_found",
+    "url": "https://github.com/webpack/webpack"
+   }
+  ],
+  "frontier_hours": 7,
+  "full_card": {
+   "band": "8 h. Frontier can get basic usage flags; inner-graph and side-effect edges and mangling need deep work. Weaker model breaks the build. No dated public evidence.",
+   "build_cost": "Medium: prepare node_modules offline and run the configCases harness. Probe was empty, so the build is unverified.",
+   "deliverable": "Working InnerGraph, FlagDependencyUsage and MangleExports logic that gives correct pruned export sets and mangled names for bundles.",
+   "gates_anticheat": "Not closed by the card: shipped test/ fixtures are the hidden cases themselves. Disabling optimisation is caught only by export-set and mangle comparisons, which must be sealed.",
+   "grading_surface": "Repo configCases (about 100 category dirs) and statsCases (100+ dirs) split into hidden buckets, plus generated module graphs compared with a sealed reference build. Fraction passed.",
+   "local_fit": "JavaScript on Node, CPU only; offline needs a pre-installed node_modules; the test suite is heavy but fits 8 CPU/16 GB.",
+   "lookup": "direct: the complete upstream code is public (GitHub and npm at this release); the snapshot must be history-less.",
+   "provenance": "webpack/webpack v5.112.0 (head e048c158), MIT; release page confirmed; four target files confirmed at the tag.",
+   "reference": "Upstream v5.112.0 at the same commit; complete and MIT. Public on GitHub and npm, so it must stay out of the image.",
+   "ships": "Full repo snapshot at base with the four optimisation modules stubbed. The repo's test/ tree (configCases, statsCases, snapshots) would also ship, which exposes the oracle.",
+   "similarity": "l0 neighbours max 0.304 (S-im-084), 0.277 (S-im-075), 0.272 (S-im-083); DeepSWE task-graph-export 0.16. Not on the CROWDED list; differs in subject (bundler tree-shaking)."
+  },
+  "kill_code": "K11",
+  "kill_reason": "The named hidden cases are the repo's own test/configCases and statsCases, which must ship in /app for any local loop, so the oracle is in the image. The mangled-name comparison also encodes the reference's internal naming, so acceptance is narrow. Salvage: drop the upstream test tree from /app and grade only on a sealed generated-graph set, with names checked by behaviour rather than exact text.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier agents can recall much of webpack's structure, and no dated evidence of partial success was found, so cap at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Medium cost: an offline node_modules build plus a heavy test harness; the probe result is missing."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only JS, but the offline dependency install and the large test suite must be prepared in advance."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Sustained multi-module work across parser hooks and optimisation passes fits an 8 h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT permits shipping."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Many config categories give natural partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top l0 neighbour is 0.304, above the 0.15 bar, though those are internal seeds; not on the CROWDED list."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Released upstream tag v5.112.0 with the four named files confirmed."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "The complete upstream MIT implementation at the same commit."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The repo's own tests and fixture assertions ship in /app, so the oracle is in reach. Exact mangled names also encode the reference's internals."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hundreds of configCases and statsCases fixtures, but they are the visible repo tests, so the surface is nominally large and effectively known."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "The suite is non-deterministic across three runs, needs network, or the stub failures do not map to the four files.",
+   "pass_if": "Unmodified suite passes deterministically on the chosen subsets; stubbed files produce clear, repeatable failures; the no-optimisation cheat fails the export-set checks.",
+   "steps": [
+    "In a throwaway networked Linux container, clone webpack at v5.112.0 and run yarn install to produce node_modules.",
+    "Run the unmodified test harness on test/configCases/inner-graph, test/configCases/mangle and test/configCases/side-effects, plus a sample of test/statsCases. Record pass counts over three runs to check determinism.",
+    "Copy the repo and replace the four target files (InnerGraphPlugin.js, InnerGraph.js, FlagDependencyUsagePlugin.js, MangleExportsPlugin.js) with stubs that do nothing. Rerun the same subsets and confirm that the failures are real and not harness noise.",
+    "Check the 'disable optimisation' cheat: with optimization.usedExports, innerGraph and mangleExports off, see which fixtures still pass, and confirm that stats or export-set comparisons catch it.",
+    "Confirm no webpack copy is present elsewhere in the image (global npm, caches) that the agent could read.",
+    "Measure the test wall time per bucket to check the 8 h tier is reachable."
+   ]
+  },
+  "summary": "The repo, release and the four named optimisation files are confirmed, but the four files total about 1,600 code lines, not 2500+. The hidden cases are the repo's own test fixtures, which would ship in /app, and exact mangled-name matching encodes the reference, so the seed fails sealing (K11) unless the test tree is withheld and grading moves to a sealed generated-graph set.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 11,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 76
+}

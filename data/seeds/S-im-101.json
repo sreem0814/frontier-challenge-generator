@@ -1,0 +1,236 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. Buckets: transports, lifecycle, tool translation, chat-loop integration, commands, errors. A frontier agent covers stdio and basic calls but misses protocol edge cases such as notifications, cancellation, pagination and timeouts. A weaker model fails the integration.",
+  "cheat": "Faking tool calls without a real protocol exchange fails the mock servers, which check the exact messages. The hidden servers are not shipped.",
+  "grading": "Hidden pytest tests drive the public Coder and CLI with scripted mock MCP servers and a fake model. They check the JSON-RPC handshake, tool schemas passed to the model, call results, error handling and config parsing. The existing suite is a regression gate. Score is the fraction passed.",
+  "reference": "Our own implementation, about 1.5-2.5k lines. It scores 1 on the hidden tests.",
+  "source": "https://github.com/Aider-AI/aider issue #2525 @ head 5dc9490, Apache-2.0",
+  "task": "Add an MCP client to aider covering stdio and streamable HTTP transports, tool discovery, tool-call execution inside the chat loop, per-server config and /mcp commands. It must work offline against local mock servers.",
+  "title": "Model Context Protocol client and tool loop for aider"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "protocol",
+ "final": 62,
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-100 0.25"
+  ],
+  [
+   "2026-10-21T03:17:27Z",
+   "v1",
+   "pass",
+   "score 76; dead links []"
+  ],
+  [
+   "2026-10-21T03:19:48Z",
+   "v2",
+   "killed:K3",
+   "Real open issue #2525 and a real MCP spec, but the whole grading surface is our own 60-150 hand-written mock-server tests, and the config keys, /mcp subcommands and tool naming are interface choices we would invent, so other valid designs fail. Aider has no native tool-call loop, so the hidden tests"
+  ]
+ ],
+ "id": "S-im-101",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.245,
+    "S-im-100"
+   ],
+   [
+    0.237,
+    "S-im-095"
+   ],
+   [
+    0.22,
+    "S-im-093"
+   ],
+   [
+    0.171,
+    "arxiv-mcp-server [NL2Repo-Bench]"
+   ],
+   [
+    0.17,
+    "loop [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c",
+  "kb": 140356,
+  "lang": "Python",
+  "open_prs": 529,
+  "pushed": "2026-05-22",
+  "release": "v0.86.0",
+  "spdx": "Apache-2.0",
+  "stars": 49664,
+  "test_files": 87,
+  "test_kb": 5501,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/aider-ai/aider/issues/2525|aider-ai-aider-2525-please-add-support-for-model-context-pro",
+ "source_notes": "repo https://github.com/Aider-AI/aider; opened 2024-12-03",
+ "source_url": "https://github.com/Aider-AI/aider/issues/2525",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Aider-AI/aider/issues/2525",
+  "facts": [
+   {
+    "claim": "Aider issue #2525 exists, is open, and requests MCP support (opened 2024-12-03, label enhancement)",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/issues/2525"
+   },
+   {
+    "claim": "Aider latest release is v0.86.0, and no release note from v0.77.0 to v0.86.0 mentions MCP",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/releases"
+   },
+   {
+    "claim": "PR #3672 'Add MCP support' (stdio only, rough) is closed and not merged (closed Jul 4 2025 after its head repo was deleted)",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/pull/3672"
+   },
+   {
+    "claim": "PR #3937 'Add MCP Support with LiteLLM' (stdio only, LiteLLM bridge, per-request connections) is closed and not merged (closed 2025-11-25)",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/pull/3937"
+   },
+   {
+    "claim": "A community fork (aider-ce) incorporates PR #3937 and adds streamable HTTP transport support, so public code covering part of the scope exists outside upstream",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/pull/3937"
+   },
+   {
+    "claim": "MCP spec 2025-06-18 defines two standard transports: stdio (newline-delimited JSON-RPC over stdin/stdout) and Streamable HTTP (single endpoint with POST and GET, SSE, Mcp-Session-Id, MCP-Protocol-Version headers)",
+    "status": "confirmed",
+    "url": "https://modelcontextprotocol.io/specification/2025-06-18/basic/transports"
+   },
+   {
+    "claim": "Seed smoke_build is empty: no offline build or test-suite probe was run, so build cost and suite determinism are unverified",
+    "status": "not_found",
+    "url": "https://github.com/Aider-AI/aider"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "8 h tier; buckets: transports, lifecycle, tool translation, chat-loop integration, commands, errors; frontier covers stdio and basic calls, misses notifications, cancellation, pagination, timeouts; weaker model fails integration",
+   "build_cost": "Unknown: smoke_build not run; estimate 2-4 days including harness setup and hidden-style mock servers",
+   "deliverable": "MCP client in aider: stdio and streamable HTTP transports, initialize handshake, tool discovery, tool-call execution in chat loop, per-server config, /mcp commands, error handling",
+   "gates_anticheat": "Hidden servers unshipped; fake model scripted; mock servers check exact message sequences so faked tool calls fail; edits to tests or config are re-overwritten by grader",
+   "grading_surface": "Hidden pytest driving public Coder and CLI with scripted mock MCP servers and a fake model; checks JSON-RPC handshake, tool schemas, results, errors, config parsing; existing suite as regression gate; est. 60-150 cases (not counted)",
+   "local_fit": "Pure Python; stdio subprocesses and localhost HTTP servers are fine under gVisor; offline by design",
+   "lookup": "partial: closed PR #3672 (stdio), closed PR #3937 (stdio via LiteLLM), aider-ce fork (stdio + streamable HTTP); no merged upstream code",
+   "provenance": "Aider-AI/aider issue #2525 (open, MCP request) at head 5dc9490, Apache-2.0; pinned snapshot needed at base; no upstream MCP merge found",
+   "reference": "Own implementation ~1.5-2.5k lines, scores 1 on hidden tests; no upstream reference; not measured",
+   "ships": "Python aider repo snapshot (~140 MB KB, 87 test files) with no git history past base; hidden mock servers and fake model not shipped",
+   "similarity": "Nearest l0 neighbour S-im-100 at 0.245, all below 0.25; MCP not on CROWDED list; differs from arxiv-mcp-server (server-side, 0.171)"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier likely covers stdio basics but misses protocol edges; no dated public agent evidence, so capped at 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Smoke build not run; estimated 2-4 days, uncertain"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Python, offline, subprocess and localhost HTTP fit gVisor"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier with six buckets and a multi-module chat-loop integration"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 per source facts; permissive for shipping"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Six independent buckets (transports, lifecycle, translation, integration, commands, errors) give steady partial credit"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbour 0.245, not crowded; MCP client in aider is not a public task"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real open aider issue #2525 on a 49k-star Apache-2.0 repo, plus published MCP spec 2025-06-18"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Own complete implementation scoring 1 on hidden tests, but not a measured upstream artifact"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden servers and fake model unshipped, but public closed PRs and aider-ce fork exist, so the snapshot must have no history"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden pytest with scripted mock servers; est. 60-150 cases, not thousands"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The suite is non-deterministic, or the chat loop cannot take a tool result without a large rewrite of the Coder core (more than 1 day of work).",
+   "pass_if": "Suite runs green offline in under 10 minutes, the stdio round trip works end to end with a fake model, and the message log is identical across 5 runs.",
+   "steps": [
+    "Clone the pinned head 5dc9490 into a scratch container with network; check that the existing pytest suite runs offline and record its pass count and any flakiness across 3 runs (also resolves the empty smoke_build).",
+    "Check whether the mcp Python SDK is installed in the image; if not, confirm the agent must hand-roll JSON-RPC (decide whether to ship it or not).",
+    "Write a 60-line stdio mock MCP server answering initialize, tools/list and tools/call, and check it with a raw subprocess JSON-RPC exchange.",
+    "Write a scripted fake model that returns one tool call, then run one aider chat turn in the test harness with the mock server attached; check that the tool result returns to the model.",
+    "Check determinism: run the same scripted turn 5 times and confirm identical message logs.",
+    "Read PR #3937 diff only for the config schema and fork's streamable HTTP approach, to decide what the task text must specify (config keys, flags, /mcp subcommands, tool naming) so hidden tests don't encode one internal structure."
+   ]
+  },
+  "summary": "The seed is real and sealable: aider issue #2525 is open, Apache-2.0, and MCP is not merged upstream, though closed PR #3672, closed PR #3937 and the aider-ce fork give partial public lookup, so the snapshot must exclude all history. Before build, the task text must pin config keys, CLI flags, /mcp subcommands and tool naming, and the smoke build must be run because it is empty and build cost is unknown.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 76,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-101",
+  "kill_code": "K3",
+  "note": "Real open issue #2525 and a real MCP spec, but the whole grading surface is our own 60-150 hand-written mock-server tests, and the config keys, /mcp subcommands and tool naming are interface choices we would invent, so other valid designs fail. Aider has no native tool-call loop, so the hidden tests must encode one integration shape. Public partial code exists (closed PRs #3672 and #3937, the aider-ce fork with streamable HTTP), and MCP clients are well known to frontier models (frontier_hours 6), so this also leans K8. No smoke build.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 62
+}

@@ -1,0 +1,217 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. The scope is large but well specified by the visible tests. A frontier agent covers most operators but loses cases on null and overflow semantics, date/time functions and list operations; a weaker model stalls at the build and linkage stage.",
+  "cheat": "Hardcoding visible test values fails the generated trees. The upstream implementation is not in the snapshot, which has no history.",
+  "grading": "Hidden ctest binaries from the upstream expression and function tests, extended with generated expression trees. Values and null/error propagation are checked for exact equality against reference outputs. Score is the fraction of cases passed.",
+  "reference": "The upstream source at the pinned commit (roughly 4-6k lines in the removed area). It scores 1.",
+  "source": "https://github.com/vesoft-inc/nebula @ head 426266b (v3.8.0 release listed), Apache-2.0",
+  "task": "Remove the common expression evaluation layer (arithmetic, comparison, logical, container, list-comprehension, predicate and reduce expressions) and the built-in function table. The agent rebuilds them in C++ so the common ctest binaries link and pass.",
+  "title": "Rebuild NebulaGraph expression evaluator and function library"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-096 0.26"
+  ],
+  [
+   "2026-10-21T03:16:09Z",
+   "v1",
+   "killed:K7",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 5, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 4, 'Lic': 5, 'Fit': 2, 'Build': 2}"
+  ]
+ ],
+ "id": "S-im-097",
+ "kill": "K7",
+ "l0": {
+  "neighbours": [
+   [
+    0.264,
+    "S-im-096"
+   ],
+   [
+    0.228,
+    "S-im-065"
+   ],
+   [
+    0.218,
+    "S-im-087"
+   ],
+   [
+    0.113,
+    "max_common_subgraph [AlgoTune]"
+   ],
+   [
+    0.108,
+    "predicate-pushdown-bench [original]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "426266b5c3df856d27f747b55b916dec542b7b59",
+  "kb": 123416,
+  "lang": "C++",
+  "open_prs": 40,
+  "pushed": "2026-09-08",
+  "release": "v3.8.0",
+  "spdx": "Apache-2.0",
+  "stars": 12437,
+  "test_files": 728,
+  "test_kb": 8794,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/vesoft-inc/nebula|vesoft-inc-nebula",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: cd build && ctest --verbose --output-on-failure. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/vesoft-inc/nebula",
+ "source_version": "",
+ "status": "killed:K7",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0/src/common/expression",
+  "facts": [
+   {
+    "claim": "vesoft-inc/nebula repository exists at tag v3.8.0 (source tree browsable at that tag)",
+    "status": "confirmed",
+    "url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0/src/common/expression"
+   },
+   {
+    "claim": "Repository licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/vesoft-inc/nebula/blob/v3.8.0/LICENSE"
+   },
+   {
+    "claim": "src/common/expression has 60 files outside test/ (29 .cpp, 30 .h, 1 CMakeLists.txt) and a test/ subdirectory",
+    "status": "confirmed",
+    "url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0/src/common/expression"
+   },
+   {
+    "claim": "Named expression classes Arithmetic, Relational, Logical, Container, ListComprehension, Predicate, Reduce and FunctionCall exist as .cpp/.h pairs in src/common/expression",
+    "status": "confirmed",
+    "url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0/src/common/expression"
+   },
+   {
+    "claim": "src/common/function contains FunctionManager.cpp/.h, GraphFunction.h, plus AggFunctionManager and FunctionUdfManager, with a test/ subdirectory",
+    "status": "confirmed",
+    "url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0/src/common/function"
+   },
+   {
+    "claim": "Test file count inside src/common/expression/test and src/common/function/test",
+    "status": "not_found",
+    "url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0/src/common/expression"
+   },
+   {
+    "claim": "Removed area is roughly 4-6k lines of C++",
+    "status": "not_found",
+    "url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0/src/common/expression"
+   },
+   {
+    "claim": "Third-party dependencies are fetched by third-party/install-third-party.sh, which needs network access at build setup, so an offline build needs them pre-staged",
+    "status": "confirmed",
+    "url": "https://docs.nebula-graph.io/3.6.0/4.deployment-and-installation/2.compile-and-install-nebula-graph/1.install-nebula-graph-by-compiling-the-source-code/"
+   },
+   {
+    "claim": "Offline build of the upstream tree at 426266b succeeds (smoke_build)",
+    "status": "not_found",
+    "url": "https://github.com/vesoft-inc/nebula/tree/v3.8.0"
+   }
+  ],
+  "frontier_hours": 12,
+  "full_card": {
+   "band": "Tier 20h (seed proposed 8h, too tight: frontier estimate ~12h plus build iteration). Partial credit per operator family and per function family. Weaker model stalls at build/link stage.",
+   "build_cost": "Unverified. Estimate: pre-stage third-party bundle at image build (network allowed there), then full build around 1-3 h on 8 cores; memory peak unknown; probably 3-5 days of harness work",
+   "deliverable": "Restored C++ expression evaluators (arithmetic, relational, logical, container, list comprehension, predicate, reduce, function call) and FunctionManager built-in table so common ctest binaries link and pass",
+   "gates_anticheat": "Hidden ctest binaries and generated trees kept outside image; purge any built nebula libs or ccache from image; reject edits to test or CMake config; forbid vendoring libnebula; history-less snapshot blocks upstream recovery",
+   "grading_surface": "Upstream expression/function ctest binaries plus generated expression trees; exact value and null/error propagation match; fraction of cases passed",
+   "local_fit": "Build not verified offline. Full NebulaGraph needs pre-staged third-party bundle; 8 cores and 16 GB at link time is a risk and is unverified",
+   "lookup": "partial: upstream is public in git history and the code is widely seen, so a model may recall outline; history-less snapshot closes direct lookup",
+   "provenance": "vesoft-inc/nebula, Apache-2.0, v3.8.0 release at head 426266b; 12.4k stars, not archived, not a fork",
+   "reference": "Upstream source at 426266b for the removed area; scores 1 by definition; size 4-6k lines per seed (not verified)",
+   "ships": "Snapshot of nebula at base with the expression layer and function table removed; no git history; no prebuilt libraries or build dirs (must be purged)",
+   "similarity": "Nearest neighbours: S-im-096 (0.264, another seed, same family, must confirm distinct scope), S-im-065 (0.228), S-im-087 (0.218); public max_common_subgraph 0.113 and predicate-pushdown-bench 0.108, both below threshold. Not K1 on evidence available"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this task, so capped at 3; seed's 8h band claim is unverified"
+   },
+   "Build": {
+    "v": 2,
+    "why": "Third-party pre-staging and a multi-hour full build put cost at several days, not under 2"
+   },
+   "Fit": {
+    "v": 2,
+    "why": "Full NebulaGraph offline build with third-party bundle at 8 cores and 16 GB is unverified and at risk"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Frontier estimate about 12h of real work across many modules, needs a 20h tier"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 verified at LICENSE; allows shipping"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Many operator and function families give natural partial-credit buckets"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task neighbour above 0.15; highest neighbour is another seed at 0.264 that needs a scope check"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real Apache-2.0 vesoft-inc/nebula repo at v3.8.0; expression and function directories verified"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Upstream source is a complete permissive implementation at the pinned commit that scores 1"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream lives in public git history, sealable by history-less snapshot; hidden generated cases stay out of image"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Upstream ctest suite plus generated expression trees gives thousands of cases with exact-equality checks"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Third-party bundle cannot be staged for offline use, or the common lib build exceeds 16 GB or cannot finish in about 3 h wall time, which would trigger K7 or K12.",
+   "pass_if": "Third-party staging completes offline-reproducible, common lib builds within 16 GB peak, and expression ctest runs deterministically on the untouched tree.",
+   "steps": [
+    "In a throwaway networked Linux container, clone vesoft-inc/nebula at 426266b (no further fetches to the pipeline platform).",
+    "Run third-party/install-third-party.sh to stage the dependency bundle; record size and wall time. This is the offline-build prerequisite.",
+    "Configure with -DENABLE_TESTING=ON -DCMAKE_BUILD_TYPE=Release and build only the common library target with -j8; record wall time and peak RSS (/usr/bin/time -v).",
+    "Delete src/common/expression/*.cpp and the FunctionManager sources in a copy; rebuild the common lib and one ctest binary; confirm link failure is the only failure.",
+    "Check whether the expression ctest binaries build and run on the untouched tree and record pass count, to confirm the suite is deterministic across three runs.",
+    "Check the image does not retain build outputs that expose the removed code (object files, ccache, install prefix)."
+   ]
+  },
+  "summary": "The source is real: the upstream nebula v3.8.0 tree is Apache-2.0 and the expression and function directories exist as described, but the seed's 4-6k line size, 8h band and offline build are unverified and the smoke build is empty. The idea survives with a build-feasibility spike, and the tier should be 20h rather than 8h because the frontier estimate is about 12h.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 77
+}

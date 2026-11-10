@@ -1,0 +1,246 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "20h. The scope is wide and independent, giving steady credit. Frontier agents finish symmetric and hash primitives but vary on public-key, OCB/SIV and scrypt performance within test timeouts. A weaker model stops after hashes and AES.",
+  "cheat": "Linking a system libcrypto or OpenSSL: absent from the image and the linker is restricted. Vectors for graded families are hidden, so hard-coding fails.",
+  "grading": "A hidden split of Botan's own vector files (thousands of vectors) is run through the runner. The score is the fraction of vectors passed per primitive family, weighted evenly, over what the reference passes. A visible sample of vectors is shipped.",
+  "reference": "Botan's own implementation, from which we build a trimmed reference exposing the same ABI (several thousand lines).",
+  "source": "https://github.com/randombit/botan @ head 78ae60a (no release tag found), BSD-2-Clause",
+  "task": "/app ships the Botan test-vector data format and a runner that calls a C ABI the agent must provide. The agent implements a crypto library in C or Rust: hashes (SHA-2/3, BLAKE2, SM3), block ciphers (AES, Camellia, ARIA), modes (CBC, CTR, GCM, OCB, SIV), MACs, HKDF/PBKDF2/scrypt, and bignum RSA/ECDSA over several curves.",
+  "title": "Crypto primitive library against Botan test vector files"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "other",
+ "final": 79,
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-012 0.20"
+  ],
+  [
+   "2026-10-21T03:13:05Z",
+   "v1",
+   "pass",
+   "score 84; dead links []"
+  ],
+  [
+   "2026-10-21T03:16:14Z",
+   "v2",
+   "killed:K9",
+   "V1 estimates 30 frontier hours against the 20h maximum tier, so no trial would cover the full scope to 0.9 of the reference. Per-file licences of third-party vectors are not_found. Individual primitives (AES, SHA, HKDF) are recallable, so a re-scoped version would split into easy recall plus a bignu"
+  ]
+ ],
+ "id": "S-im-092",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.204,
+    "S-im-012"
+   ],
+   [
+    0.18,
+    "S-im-087"
+   ],
+   [
+    0.159,
+    "S-im-032"
+   ],
+   [
+    0.14,
+    "vector_quantization [AlgoTune]"
+   ],
+   [
+    0.135,
+    "aes_gcm_encryption [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "78ae60a81727449a16118aceeab606b981b8d9cd",
+  "kb": 127245,
+  "lang": "C++",
+  "open_prs": 59,
+  "pushed": "2026-10-20",
+  "release": "",
+  "spdx": "BSD-2-Clause",
+  "stars": 3335,
+  "test_files": 2169,
+  "test_kb": 34365,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/randombit/botan|oss-fuzz-botan",
+ "source_notes": "OSS-Fuzz project, language c++",
+ "source_url": "https://github.com/randombit/botan",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/randombit/botan/tree/78ae60a81727449a16118aceeab606b981b8d9cd/src/tests/data",
+  "facts": [
+   {
+    "claim": "Botan repo at pinned commit 78ae60a81727449a16118aceeab606b981b8d9cd exists and is the source named in the seed",
+    "status": "confirmed",
+    "url": "https://github.com/randombit/botan/tree/78ae60a81727449a16118aceeab606b981b8d9cd/src/tests/data"
+   },
+   {
+    "claim": "Licence is the Simplified BSD (BSD-2-Clause) text, permitting source and binary redistribution with notice conditions; file is license.txt, copyright 1999-2026 The Botan Authors",
+    "status": "confirmed",
+    "url": "https://github.com/randombit/botan/blob/78ae60a81727449a16118aceeab606b981b8d9cd/license.txt"
+   },
+   {
+    "claim": "src/tests/data holds 33 family subdirectories and 29 top-level .vec files (grading surface is in-repo vector data)",
+    "status": "confirmed",
+    "url": "https://github.com/randombit/botan/tree/78ae60a81727449a16118aceeab606b981b8d9cd/src/tests/data"
+   },
+   {
+    "claim": "pubkey vector directory holds about 100 unique .vec files: 9 RSA, 8 ECDSA, ~9 ECC/EC-H2C, plus ECDH, ECGDSA, ECKCDSA, ECIES, Ed25519/Ed448/X25519/X448",
+    "status": "confirmed",
+    "url": "https://github.com/randombit/botan/tree/78ae60a81727449a16118aceeab606b981b8d9cd/src/tests/data/pubkey"
+   },
+   {
+    "claim": "modes directory holds only cbc.vec, cfb.vec, ctr.vec, xts.vec; OCB, SIV and GCM vectors live in sibling directories (ocb/, etc.), not in modes/",
+    "status": "confirmed",
+    "url": "https://github.com/randombit/botan/tree/78ae60a81727449a16118aceeab606b981b8d9cd/src/tests/data/modes"
+   },
+   {
+    "claim": "Botan has no published release tag (releases page shows none), so the reference is a head commit, not a tagged release",
+    "status": "confirmed",
+    "url": "https://github.com/randombit/botan/releases"
+   },
+   {
+    "claim": "Wycheproof vectors are fetched at run time by Botan scripts from the C2SP repo, not stored in the Botan tree, so their licence does not bind the shipped data",
+    "status": "not_found",
+    "url": "https://searchfox.org/comm-central/source/third_party/botan/src/scripts/wycheproof/README.md"
+   },
+   {
+    "claim": "Licence terms of the in-repo .vec files that came from third parties (NIST, RFCs, etc.) are stated per file or in a data README",
+    "status": "not_found",
+    "url": "https://github.com/randombit/botan/tree/78ae60a81727449a16118aceeab606b981b8d9cd/src/tests/data"
+   },
+   {
+    "claim": "A public benchmark measures an AI agent implementing AES, SHA-3, scrypt or similar primitives from scratch against vectors",
+    "status": "not_found",
+    "url": "https://arxiv.org/html/2507.09580v4"
+   }
+  ],
+  "frontier_hours": 30,
+  "full_card": {
+   "band": "20h tier. Scope is wide and independent. Frontier agents likely finish symmetric and hash families but vary on public-key, OCB/SIV and scrypt. Weaker model stops after hashes and AES. No dated public evidence found, so Band capped at 3.",
+   "build_cost": "about 3 days: trimmed Botan reference with ABI, vector-format runner, per-family scoring, and a visible sample. smoke_build is empty ({}), so the offline build is unverified.",
+   "deliverable": "C or Rust crypto library exposing the runner's C ABI covering hashes (SHA-2/3, BLAKE2, SM3), ciphers (AES, Camellia, ARIA), modes (CBC, CTR, GCM, OCB, SIV), MACs, HKDF/PBKDF2/scrypt, RSA/ECDSA over several curves",
+   "gates_anticheat": "no system libcrypto/OpenSSL in image and linker restricted; hidden vectors absent from image so hard-coding fails; runner and tests are sealed; need an explicit rule that the agent cannot link to any installed crypto library",
+   "grading_surface": "hidden split of Botan's own vector files, thousands of vectors, pass/fail per vector, per-family score weighted evenly over what the reference passes",
+   "local_fit": "CPU only, C or Rust, 8 cores and 16 GB enough; no kernel features needed. Fits.",
+   "lookup": "partial: algorithms are standard and widely re-implemented (OpenSSL, libtomcrypt, RustCrypto, Monocypher) and recallable in outline. No single complete implementation of this ABI is public, and none is installable offline.",
+   "provenance": "randombit/botan @78ae60a (head, no release), BSD-2-Clause, C++, OSS-Fuzz project; 2169 test files / 34 MB under src/tests/data",
+   "reference": "trimmed Botan build (several thousand lines of C++) behind the same ABI; Botan itself is a complete BSD-2 implementation",
+   "ships": "Botan vector data format (.vec) visible sample, a runner, and a C ABI spec the agent implements; no Botan source, no hidden vectors, no reference build",
+   "similarity": "closest l0 neighbour S-im-012 at 0.204, then S-im-087 0.18; no neighbour above 0.25; not on CROWDED list. Not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "no dated public evidence of agents building this kind of library; the band text is an assertion, so capped at 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "about 3 days for the trimmed reference, runner and ABI; more if the trimmed build fights the Python configure"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU only, plain C or Rust, fits 8 cores and 16 GB, no network or kernel features needed"
+   },
+   "Hor": {
+    "v": 5,
+    "why": "many hours of sustained work across families, with 20h tier justified"
+   },
+   "Lic": {
+    "v": 4,
+    "why": "BSD-2 for code; third-party .vec files may carry their own terms and need a per-file check"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "each family (hash, cipher, mode, MAC, KDF, pubkey) is an independent bucket with even weights"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "max neighbour 0.204 is modest, and no crowded-list subject matches"
+   },
+   "Real": {
+    "v": 5,
+    "why": "real BSD-2 repo at pinned head with 2169 vector files; the paper trail is the Botan project itself"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Botan is a complete permissive implementation, and a trimmed build of it would score 1"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "hidden vectors are absent from the image, but they sit in a public repo and NIST KATs are partly memorable, so hard-coding of famous vectors is a path to close"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "thousands of per-vector pass/fail checks across about 100+ public-key and many symmetric files; not an executable generator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "the reference needs network or more than 1 day to build, results vary between runs, or per-file licences forbid shipping the sample vectors.",
+   "pass_if": "trimmed reference builds offline in under 30 minutes, the runner gives identical per-vector output over three runs, family counts are stable, and the stub gets nonzero credit on SHA-256.",
+   "steps": [
+    "In a throwaway container with network, clone randombit/botan at 78ae60a81727449a16118aceeab606b981b8d9cd and record the offline build time of a trimmed configure (only AES, SHA-2, SHA-3, BLAKE2, HKDF, PBKDF2, scrypt, OCB, SIV, RSA, ECDSA).",
+    "Confirm the smoke_build gap: the seed's probe result is empty, so run the full build and the test suite once to get a per-test verdict.",
+    "Count vectors per family in src/tests/data (aes, sha2, sha3, blake2, modes/cbc, ocb, siv, scrypt, rsa_sig, ecdsa_verify) with a small parser, to set the family weights and check the total against 2169 files.",
+    "Draft the C ABI header and a stub that passes only SHA-256 vectors through the runner, to show the runner works end to end and that partial credit moves.",
+    "Run the trimmed reference runner three times on the visible sample and diff the per-vector results to check determinism.",
+    "Read the per-file headers of the third-party .vec files (NIST, RFC, Wycheproof-derived) and record any licence text that limits shipping."
+   ]
+  },
+  "summary": "The seed is real and sealable: the Botan repo is BSD-2 at a pinned head, the vectors are in-tree, and a trimmed Botan reference gives a strong ceiling, so no hard gate fails. The main risk is K9 at 20h: my estimate is about 30h for the whole scope, and the smoke build is unverified, so the spike should confirm the build and either narrow the scope (drop bignum RSA/ECDSA into a second task) or keep the 20h tier.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 84,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-092",
+  "kill_code": "K9",
+  "note": "V1 estimates 30 frontier hours against the 20h maximum tier, so no trial would cover the full scope to 0.9 of the reference. Per-file licences of third-party vectors are not_found. Individual primitives (AES, SHA, HKDF) are recallable, so a re-scoped version would split into easy recall plus a bignum/EC tail. Re-seed with a narrower scope if desired.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 5,
+   "Lic": 4,
+   "Multi": 5,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 4,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 79
+}

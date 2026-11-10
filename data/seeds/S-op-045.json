@@ -1,0 +1,227 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "8 h. A Rust build is slow and finding the quadratic path needs profiling. Frontier agents find the headline cause in some trials, but the secondary shapes keep averages low. Weaker models time out on builds.",
+  "cheat": "Caching or skipping optimisation changes the plans, so the plan-equality gate fails. A different query shape set at grading time stops special-casing.",
+  "grading": "Hard gate: identical collected output and identical explain() plans on hidden generated queries, plus a trimmed upstream Python test subset. Score is the median wall-clock speedup on hidden shapes, scaled against our reference speedup.",
+  "reference": "The upstream fix or the pre-regression code path, measured on the same shapes. Exact speedup not found until measured.",
+  "source": "https://github.com/pola-rs/polars/issues/26469 @ the 1.38 release and its parent, MIT; plus repo head 8512c7e for context",
+  "task": "/app ships Polars at the regressed commit as a history-less snapshot with a build recipe for a cut-down Python wheel. The agent finds why query optimisation or plan construction of wide or deep lazy queries became slow, and fixes it without changing results. Beyond the report's case, a suite of generated query shapes (many columns, chained with_columns, joins, unions) is shipped as a profile harness.",
+  "title": "Polars 1.38 LazyFrame planning slowdown recovery"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "database-query",
+ "final": 58,
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-041 0.20"
+  ],
+  [
+   "2026-10-21T07:07:37Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-21T07:09:32Z",
+   "v2",
+   "killed:K10",
+   "Issue #26469, the fix PR #26501 and the MIT licence are confirmed. The fetched issue contradicts the seed's framing: the regression is streaming-engine sink concurrency and collect_all/engine-affinity scheduling, not plan construction for wide or deep queries. The actual fix is one lever (the sink c"
+  ]
+ ],
+ "id": "S-op-045",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.204,
+    "S-op-041"
+   ],
+   [
+    0.19,
+    "S-im-075"
+   ],
+   [
+    0.172,
+    "S-im-094"
+   ],
+   [
+    0.093,
+    "query-optimize [archive]"
+   ],
+   [
+    0.079,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "rank": 1,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "8512c7e385be1a48cfaf0bbdd91e4f390a475fb1",
+  "kb": 232932,
+  "lang": "Rust",
+  "open_prs": 395,
+  "pushed": "2026-10-20",
+  "release": "py-2.0.0",
+  "spdx": "MIT",
+  "stars": 40134
+ },
+ "source_key": "github.com/pola-rs/polars/issues/26469|pola-rs-polars-26469-polars-1-38-lazyframe-becomes-slow",
+ "source_notes": "repo https://github.com/pola-rs/polars; merged PR or fixed issue",
+ "source_url": "https://github.com/pola-rs/polars/issues/26469",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/pola-rs/polars/issues/26469",
+  "facts": [
+   {
+    "claim": "Issue #26469 exists in pola-rs/polars, titled 'Polars-1.38: LazyFrame becomes slow', and reports slowdowns on 1.38.0 and 1.38.1 versus 1.37.1",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/26469"
+   },
+   {
+    "claim": "The issue's diagnosed causes are set_engine_affinity now affecting collect_all, CSPE not applying to the streaming engine under collect_all, and the streaming engine refusing to run two or more memory-intensive sinks at once. The seed's framing (plan construction or query optimisation of wide or deep lazy queries) is not what the issue diagnoses",
+    "status": "contradicted",
+    "url": "https://github.com/pola-rs/polars/issues/26469"
+   },
+   {
+    "claim": "The issue was closed as completed on Feb 10, 2026 by a commit linked to PR #26501, which resolved the streaming sink-concurrency cause; the CSPE cause was moved to issue #26502 and is not addressed by that PR",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/26469"
+   },
+   {
+    "claim": "The repository is licensed under the MIT License (copyright Ritchie Vink, and NVIDIA for some portions)",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/blob/main/LICENSE"
+   },
+   {
+    "claim": "Python Polars release py-2.0.0 exists (dated 06 Oct) and its notes list a performance fix for plan-time regressions in projection pushdown on wide frames (#28724), a later public fix relevant to wide-query planning",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/releases"
+   },
+   {
+    "claim": "The measured speedup of the upstream fix on the seed's shapes",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars/issues/26469"
+   }
+  ],
+  "frontier_hours": 7,
+  "full_card": {
+   "band": "Optimization; 8 h tier. Frontier agents find a headline cause in some trials; secondary shapes hold averages down. No dated public evidence, so Band capped at 3.",
+   "build_cost": "Unknown: smoke_build was not run ({}). Expect a multi-hour Rust build for a cut-down wheel; estimated effort 2-4 days to build, pin, snapshot and write the harness.",
+   "deliverable": "Patch to Rust planning/execution code so the regressed shapes match the pre-regression timing and plans, with identical collected output and explain() output on hidden generated shapes.",
+   "gates_anticheat": "Plan-equality and output-equality hard gates; hidden shapes generated at grading time so special-casing fails; caching or skipping optimisation changes plans and fails. Acceptance risk: requiring identical plans to the pre-regression code may reject valid alternative fixes that change plan shape, so the gate should be tied to the restored plan only where it is semantically required.",
+   "grading_surface": "Hidden generated lazy-query shapes (wide, chained with_columns, joins, unions) with output equality and explain() plan equality, plus a trimmed upstream Python test subset; median wall-clock speedup scored against reference.",
+   "local_fit": "CPU-only; Rust build of Polars with LTO may need hours and significant RAM on 8 cores/16 GB; gVisor has no perf counters, so profiling must use wall clock and py-spy or cargo flamegraph style sampling if available.",
+   "lookup": "partial: the fix diff is public in merged PR #26501 and #28724 history and py-2.0.0; a model may recall Polars internals in outline but not the exact diff. Snapshot must be history-less at the pinned base.",
+   "provenance": "pola-rs/polars issue #26469 (closed Feb 10 2026, fix PR #26501 public in history); later fix #28724 shipped in py-2.0.0; MIT licence confirmed. Repo head 8512c7e not re-checked.",
+   "reference": "Upstream fix (PR #26501 for the sink cause; #28724 for wide-frame projection planning in py-2.0.0) or pre-regression path; speedup not yet measured.",
+   "ships": "Polars Python bindings at the regressed 1.38 commit (or its parent) as a history-less snapshot, plus a cut-down wheel build recipe, plus a generated-shape profile harness.",
+   "similarity": "Nearest seeds S-op-041 (0.204), S-im-075 (0.19), S-im-094 (0.172); query-optimize archive (0.093), SWE-bench family (0.079). Crowded-adjacent: Python-library speedups matching an expert commit (SWE-Perf/GSO), though the subject is Rust-core."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results on this kind of work, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Multi-hour Rust build and a cut-down wheel recipe; not over 5 days."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only but a large Rust build with LTO may strain 16 GB and needs wall-clock-only timing."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Profiling, several shape families and rebuilds fit an 8 h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT confirmed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several shape families give steady partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest seeds 0.17-0.20 and SWE-Perf-style speedup adjacency keep it below 5."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real issue #26469 and public fix PRs in MIT repo."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream fix is complete and public; speedup not yet measured, so not 5."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public fix must be closed off by a history-less snapshot; hidden shapes are generated at grading time."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated shapes with output and plan equality form an executable oracle with an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "No shape family shows a stable slowdown at the pinned parent, or the build exceeds about 3 hours or 16 GB (then K7 or K12-scale cost).",
+   "pass_if": "Parent is at least 1.5x slower than the fix on at least two shape families, outputs match, and the wheel builds in under 2 hours with under 16 GB RAM.",
+   "steps": [
+    "Before any build, reconcile the pin: the issue's diagnosed cause is streaming and collect_all scheduling, not plan construction. Find the commit where wide-frame plan-time slowdown exists (parent of #28724) and confirm which one the task targets.",
+    "In a networked throwaway container, check out the parent of PR #26501 and the parent of #28724, and build the Python wheel with maturin, timing the build and peak RAM (cap at 16 GB). Record the build time; smoke_build was not run.",
+    "Write a 20-line generator of wide (500+ columns) and deep (many chained with_columns, when/then nesting) lazy queries; time build-plus-explain() and collect() for each shape at both commits.",
+    "Check that the parent commit is measurably slower than the fixed commit on at least two shape families, and that outputs and explain() strings are identical after the fix.",
+    "Run three repeats to check determinism of wall-clock medians and record the speedup of the upstream fix over the parent as the reference."
+   ]
+  },
+  "summary": "Polars is a real MIT-licensed repo, and issue #26469 and its fix PR #26501 exist, but the issue's diagnosed cause is streaming/collect_all scheduling rather than the wide/deep plan construction the seed describes, so the pin and target must be reconciled (the wide-frame planning fix is #28724 in py-2.0.0). The fixes are public, so the snapshot must be history-less, and build cost is unknown because smoke_build was not run; the spike must confirm the target and build time before the card is trusted.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-045",
+  "kill_code": "K10",
+  "note": "Issue #26469, the fix PR #26501 and the MIT licence are confirmed. The fetched issue contradicts the seed's framing: the regression is streaming-engine sink concurrency and collect_all/engine-affinity scheduling, not plan construction for wide or deep queries. The actual fix is one lever (the sink concurrency limit), and the CSPE part was split off to #26502. Wall-clock timing of concurrent sinks is noisy. The reference speedup has not been measured. Full Polars Rust rebuilds in 16 GB under gVisor make every iteration slow, and the build is unsmoked. The plan-equality gate would reject valid fixes that change the plan shape. A possible rescue would be re-pinning to the parent of #28724 (plan-time slowdown in projection pushdown on wide frames) and measuring several shape families, but as written the seed is one-lever and mis-pinned.",
+  "scores": {
+   "Band": 2,
+   "Build": 2,
+   "Fit": 2,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 2,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 58
+}

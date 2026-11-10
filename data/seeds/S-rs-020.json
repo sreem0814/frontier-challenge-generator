@@ -1,0 +1,222 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "8h. Frontier agents improve on the baseline by ensembling and normalisation, but the family shift limits gains. The partial-credit curve is continuous. A weaker model overfits the tuning families.",
+  "cheat": "Looking up evaluation series: the evaluation families are not in the image. Labels are not available at run time.",
+  "grading": "A hidden evaluation split built by whole dataset family (OOD) is scored with VUS-PR or AUC-PR, normalised between the shipped best baseline and our reference. Deterministic scoring code.",
+  "reference": "Our reference is a tuned ensemble built from the repo's detectors, with its OOD score measured. Dataset licences and size must be checked before bundling.",
+  "source": "https://github.com/TheDatumOrg/TSB-AD @ head 303dffb (no release tag), Apache-2.0; dataset licences not verified",
+  "task": "/app ships the tuning split of series and the repo's baseline detectors and evaluation code. The agent trains or designs a detector ensemble under a CPU budget, with a wrapper that returns anomaly scores for any series.",
+  "title": "Time-series anomaly detector tuned on unseen dataset families (TSB-AD)"
+ },
+ "class": "research",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-019 0.45"
+  ],
+  [
+   "2026-10-21T03:15:17Z",
+   "v1",
+   "killed:K6",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 3, 'Band': 3, 'Hor': 3, 'Multi': 3, 'Seal': 3, 'Nov': 3, 'Lic': 2, 'Fit': 3, 'Build': 3}; dead cited links ['https://thedatum.org/datasets/TSB-AD/']"
+  ]
+ ],
+ "id": "S-rs-020",
+ "kill": "K6",
+ "l0": {
+  "neighbours": [
+   [
+    0.448,
+    "S-rs-019"
+   ],
+   [
+    0.142,
+    "S-op-039"
+   ],
+   [
+    0.127,
+    "S-im-085"
+   ],
+   [
+    0.087,
+    "symbolic_regression [METR]"
+   ],
+   [
+    0.081,
+    "count-dataset-tokens [archive]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "303dffbfc11612995b17b06633f8c9d0ea0e38e5",
+  "kb": 16522,
+  "lang": "Python",
+  "open_prs": 4,
+  "pushed": "2026-10-20",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 339
+ },
+ "source_key": "github.com/thedatumorg/tsb-ad|no-release-tag-shown-repo-head-at-fetch-time-pip-package-tsb",
+ "source_notes": "Not in already_known (Monash/GIFT/ETT are forecasting). Split lists give a natural tune/eval partition; a true OOD split would need to be built by dataset family. Data is large-ish and downloaded, so check per-dataset licences and size before sealing. CPU-feasible. Crowding low.",
+ "source_url": "https://github.com/TheDatumOrg/TSB-AD",
+ "source_version": "no release tag shown; repo HEAD at fetch time (pip package TSB-AD 1.2\u20131.4 on PyPI)",
+ "status": "killed:K6",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/c3f3c690b7a99fba16d0efd35cb83b2c-Paper-Datasets_and_Benchmarks_Track.pdf",
+  "facts": [
+   {
+    "claim": "TSB-AD repo exists at github.com/TheDatumOrg/TSB-AD and its LICENSE file is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/TheDatumOrg/TSB-AD/blob/main/LICENSE"
+   },
+   {
+    "claim": "Benchmark contains 1070 high-quality time series from 40 datasets",
+    "status": "confirmed",
+    "url": "https://github.com/TheDatumOrg/TSB-AD"
+   },
+   {
+    "claim": "Benchmark paper 'The Elephant in the Room: Towards A Reliable Time-Series Anomaly Detection Benchmark' (Liu and Paparrizos) is in the NeurIPS 2024 Datasets and Benchmarks track",
+    "status": "confirmed",
+    "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/c3f3c690b7a99fba16d0efd35cb83b2c-Paper-Datasets_and_Benchmarks_Track.pdf"
+   },
+   {
+    "claim": "README recommends VUS-PR as the most reliable measure for time-series anomaly detection (AUC-PR not named)",
+    "status": "confirmed",
+    "url": "https://github.com/TheDatumOrg/TSB-AD"
+   },
+   {
+    "claim": "Datasets are hosted outside GitHub at thedatum.org (zip files for TSB-AD-U and TSB-AD-M)",
+    "status": "confirmed",
+    "url": "https://github.com/TheDatumOrg/TSB-AD"
+   },
+   {
+    "claim": "README claims 40 detection algorithms, but its tables name 35 entries (18 statistical, 12 neural, 5 foundation-model)",
+    "status": "contradicted",
+    "url": "https://github.com/TheDatumOrg/TSB-AD"
+   },
+   {
+    "claim": "Official evaluation lists have 350 univariate and 180 multivariate series, tuning lists 48 and 20",
+    "status": "not_found",
+    "url": "https://www.wizwand.com/dataset/tsb-ad"
+   },
+   {
+    "claim": "Per-dataset licences for the 40 source collections are published and permit redistribution",
+    "status": "not_found",
+    "url": "https://thedatum.org/datasets/TSB-AD/"
+   },
+   {
+    "claim": "Dataset preprocessing and curation are Apache-2.0 (per README disclaimer; the per-dataset licence page it cites returned 404)",
+    "status": "not_found",
+    "url": "https://www.sourcepulse.org/projects/28351364"
+   },
+   {
+    "claim": "Leaderboard univariate VUS-PR about 0.42 and multivariate about 0.35",
+    "status": "not_found",
+    "url": "https://www.wizwand.com/dataset/tsb-ad"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Research; 8h tier; frontier ensembling likely gains but family shift caps them; continuous partial credit; weaker model overfits tuning families. Unverified: no measured agent trials.",
+   "build_cost": "3 days est.: data packaging, licence clearance, wrapper, held-out family split; smoke_build was empty (not run)",
+   "deliverable": "A CPU-budgeted detector ensemble (combination and normalisation of repo detectors, optionally tuned) exposed through the wrapper",
+   "gates_anticheat": "Eval families and labels absent from image and from offline runtime; wrapper and tests read-only; agent cannot reach upstream data (no network); no edits to scorer",
+   "grading_surface": "Hidden OOD split built by dataset family, scored with VUS-PR (or AUC-PR) by deterministic code; normalised between shipped best baseline and reference",
+   "local_fit": "CPU-only, 8 cores, 16 GB; the five foundation-model detectors may exceed the CPU budget on 1070 series and must be timed",
+   "lookup": "partial: detectors and benchmark code are public and in-repo; ensembling of TSB-AD detectors is a natural approach; 2026 papers (arXiv 2604.02445, 2602.01359, 2608.03926, 2609.21801) study this benchmark but no shared solution to the task found",
+   "provenance": "TSB-AD (TheDatumOrg), NeurIPS 2024 D&B, Apache-2.0 code, 1070 series / 40 datasets; repo pushed 2026-10-20, head 303dffb, no tag",
+   "reference": "Tuned ensemble of repo detectors; OOD score not yet measured; no complete public implementation",
+   "ships": "Tuning split of series, the repo's 35+ baseline detectors, evaluation code, and a wrapper returning anomaly scores; hidden held-out dataset families withheld",
+   "similarity": "Closest l0 neighbour S-rs-019 at 0.448 (seed, subject not verified here; check it is not the same ensemble task); other neighbours <=0.142; not on CROWDED list; 2026 TSB-AD papers are research, not benchmark tasks"
+  },
+  "kill_code": "",
+  "kill_reason": "Not killed. Blocking condition: dataset licences are not found (Lic 2). Shipping the tuning split and eval data cannot be cleared until the per-dataset licences are checked. If any source forbids redistribution, this becomes K6.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public agent trials on this task; family shift limits gains; cannot confirm frontier vs reference band"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days: licence clearance, data packaging, wrapper, family split"
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only fit plausible; foundation-model detectors may exceed the CPU budget"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Detector runs and tuning are long, but the core engineering is ensembling plus a wrapper"
+   },
+   "Lic": {
+    "v": 2,
+    "why": "Code Apache-2.0 confirmed; dataset licences not found, so shipping data is unverified"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Per-family and per-detector buckets give continuous credit, but the main lever is one (ensembling)"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Closest seed neighbour 0.448 (S-rs-019, subject unverified); 2026 TSB-AD papers are research, not tasks; not crowded"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real NeurIPS 2024 D&B repo, Apache-2.0 code, active; dataset provenance mixed and unverified"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is a tuned ensemble of public detectors, not a complete implementation; OOD score unmeasured"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden families are public upstream; sealing relies on withholding them from the image"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "1070 series, but the held-out family split is coarse (about 9 domains), so the graded set is small and noisy"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Any source dataset forbids redistribution (then K6), or no ensemble beats the best single detector on the held-out domain, or scoring is non-deterministic.",
+   "pass_if": "All sampled dataset licences permit redistribution, the ensemble beats the best single detector on the held-out domain, and the foundation-model detector fits the CPU budget.",
+   "steps": [
+    "Locate per-dataset licences for the 40 TSB-AD source collections (LICENSE of TSB-AD dataset zips or the cited homepage); record any that forbid redistribution.",
+    "Clone TheDatumOrg/TSB-AD at 303dffb in a throwaway container with network; install deps; run the test suite once to get a build verdict.",
+    "Download the univariate tuning split only; choose ~10 series across 3-4 domains.",
+    "Run 5 cheap detectors and 1 foundation-model detector on those series; time each on 8 CPU cores.",
+    "Compute VUS-PR per detector per series; build a naive rank- or z-normalised mean ensemble; compare with the best single detector.",
+    "Hold out one whole domain as a pseudo-family and check the ensemble still beats the best single detector on it.",
+    "Run the scoring twice to confirm determinism."
+   ]
+  },
+  "summary": "TSB-AD is a real, Apache-2.0 NeurIPS 2024 benchmark (1070 series, 40 datasets) with VUS-PR as its recommended metric, so a family-held-out ensemble task is well grounded. The main risks are unverified per-dataset licences (blocks bundling data) and an unmeasured reference, so this is a conditional pass pending the licence check and the 55-minute spike.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [
+   "https://thedatum.org/datasets/TSB-AD/"
+  ],
+  "ratio": 0.16666666666666666
+ },
+ "v1_score": 62
+}

@@ -1,0 +1,209 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "4 h. Cause finding needs profiling a large C++ codebase. Frontier agents do this in some trials. The weaker model rarely isolates the cause.",
+  "cheat": "Skipping the refresh fails the byte-identical save and reload gate. The hidden scenes differ from the shipped ones.",
+  "grading": "Hard gate: the saved .tscn bytes are identical and reload to an identical tree on hidden generated scenes. Score is the median speedup against our reference.",
+  "reference": "The upstream fix, with the speedup measured on generated scenes. Size not found until measured.",
+  "source": "https://github.com/godotengine/godot/issues/93104 @ pre-fix commit, MIT",
+  "task": "/app ships Godot's scene save path (ResourceSaver, PackedScene packing, resource UID or dependency update) at the pinned base with a headless harness. The harness saves large generated scenes with many sub-resources and nodes and times the save and the post-save refresh. The agent removes the stall.",
+  "title": "Godot freeze after saving a scene"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-046 0.41"
+  ],
+  [
+   "2026-10-21T07:07:47Z",
+   "v1",
+   "killed:K10",
+   "Not long-horizon and one-lever: the upstream cause is a single stale icon-cache lookup in editor/editor_file_system.cpp fixed by one small PR, so the reference is far below the 150-line floor and a strong agent finishes in about 2 h. The card's described surface (ResourceSaver, PackedScene, UID, byt"
+  ]
+ ],
+ "id": "S-op-047",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.406,
+    "S-op-046"
+   ],
+   [
+    0.281,
+    "S-op-045"
+   ],
+   [
+    0.16,
+    "S-im-075"
+   ],
+   [
+    0.101,
+    "add-benchmark-lm-eval-harness [original]"
+   ],
+   [
+    0.088,
+    "post-train-ifeval-gpu [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/issues/93104|godotengine-godot-93104-noticeable-freeze-after-saving-a-sce",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/issues/93104",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/issues/93104",
+  "facts": [
+   {
+    "claim": "Godot issue #93104 exists: 'Noticeable freeze after saving a scene', opened 2024-06-12, closed 2024-06-21 as completed by PR #93147 (milestone 4.3)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/issues/93104"
+   },
+   {
+    "claim": "PR #93147 'Fix noticeable freeze after saving a scene' was merged into godotengine:master as a single commit on 2024-06-21",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/93147"
+   },
+   {
+    "claim": "The upstream fix changes the save serialization path (ResourceSaver, PackedScene packing, UID or dependency update) as the seed describes",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot/pull/93147"
+   },
+   {
+    "claim": "The upstream fix touches editor/editor_file_system.cpp: it adds a clear_icon_cache method so the script-icon cache is cleared only on icon or resource change, not on every _update_tree",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/93147"
+   },
+   {
+    "claim": "PR author measured saving 3,000 resources drop from about 4-4.5 s to 1.5-2 s; the remaining delay is in the Tree, which the PR does not touch",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/93147"
+   },
+   {
+    "claim": "Total files changed and additions/deletions of PR #93147 (the reference size the seed says is not found)",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/pull/93147"
+   },
+   {
+    "claim": "Repository licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot"
+   },
+   {
+    "claim": "A later Godot release or public fork contains the fix; the fix is in public git history on master since 2024-06-21",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/93147"
+   }
+  ],
+  "frontier_hours": 2,
+  "full_card": {
+   "band": "2. One cause with a known small fix; a strong agent can profile and fix it in about 1-2 h. Seed's claim that frontier agents do this in some trials has no dated evidence.",
+   "build_cost": "Full Godot editor build from source (scons, tens of minutes on 8 cores) plus a harness; no smoke build result.",
+   "deliverable": "Patch that removes the post-save stall in the scene-save path, measured as median speedup on generated scenes with byte-identical save and reload.",
+   "gates_anticheat": "Byte-compare gate and reload-tree check. Skipping the refresh is caught only if the gate covers editor-side state; the card's cheat claim is unverified against the real cause.",
+   "grading_surface": "Byte-identical .tscn save and reload gate plus median timing on hidden generated scenes. Real fix is in the editor FileSystem icon lookup, not the save path, so the card's surface does not match the upstream cause.",
+   "local_fit": "Godot editor build is large but CPU-only and offline-buildable in principle; gVisor fine. Headless editor run of the FileSystem dock path is unverified.",
+   "lookup": "Direct: the fix is public in PR #93147 on master and in any release after 4.3.",
+   "provenance": "Godot issue #93104 (fixed by merged PR #93147, 2024-06-21, MIT). Public issue and PR; the fix is in upstream master history.",
+   "reference": "Upstream PR #93147: one file (editor/editor_file_system.cpp), a cache-invalidation change, far below 150 changed lines. Diff size not found.",
+   "ships": "Godot C++ source at a pre-fix commit as a history-less snapshot, plus a headless save harness. Not yet built; smoke_build is empty.",
+   "similarity": "l0 neighbours S-op-046 (0.406) and S-op-045 (0.281) are other seeds, not public tasks; highest public neighbour 0.101 (lm-eval harness). No CROWDED overlap."
+  },
+  "kill_code": "K10",
+  "kill_reason": "Not long-horizon and one-lever: the upstream cause is a single stale icon-cache lookup in editor/editor_file_system.cpp fixed by one small PR, so the reference is far below the 150-line floor and a strong agent finishes in about 2 h. The card's described surface (ResourceSaver, PackedScene, UID, byte-identical save) does not match the real fix, which the reference would have to be rebuilt around.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Single known cause with a small fix; frontier agent likely finishes in 1-2 h. No dated evidence supports the seed's band claim."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Full Godot build plus a custom harness is a few days at most; smoke_build is empty so no evidence."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Large C++ editor build is CPU-feasible, but the headless FileSystem-dock path is unverified."
+   },
+   "Hor": {
+    "v": 1,
+    "why": "One lever, finishable in about 2 h; not a long-horizon scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, shippable."
+   },
+   "Multi": {
+    "v": 1,
+    "why": "One lever with a single timing metric; no parallel buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Neighbours above 0.15 are other seeds, not public tasks; highest public neighbour is 0.101."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real issue and merged PR with a dated paper trail, but the card's described cause (ResourceSaver/PackedScene/UID) does not match the actual fix in the editor FileSystem dock."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is a one-file change, far under the 150-line floor, and its speedup on the card's harness has not been measured."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Fix is public in upstream history and small enough that a model knowing Godot could recall the approach; history-less snapshot needed."
+   },
+   "Surf": {
+    "v": 2,
+    "why": "Generated scenes could be many, but the only lever is one stall with a timing metric, so few independent buckets."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "The stall does not reproduce headless, or the save path has no stall and the only fix is the editor icon cache (one file, far under 150 lines).",
+   "pass_if": "The headless harness reproduces a save stall on the pre-fix commit that the PR #93147 change removes, and the cause sits outside the ResourceSaver/PackedScene path.",
+   "steps": [
+    "Clone godotengine/godot in a throwaway container; checkout the parent of the PR #93147 merge commit (pre-fix) and confirm the head is not the 2026 master.",
+    "Build the editor with scons (target=editor, tools=yes, debug off) and time it; record build minutes.",
+    "Create a project with about 3,000 small resources and a scene referencing them; run a headless editor script that triggers EditorFileSystem update and times a scene save.",
+    "Repeat on the parent and on the PR merge commit; compare save times and check whether the time is in _get_entry_script_icon or elsewhere (profile with a simple timer or gprof).",
+    "Check whether the save is byte-identical with and without the change, and whether a headless run reproduces the stall at all (the reporter's case was the editor UI).",
+    "Only if the stall does reproduce headless, check whether a non-editor ResourceSaver or PackedScene path stalls at all."
+   ]
+  },
+  "summary": "The card's claimed cause (a save-path stall in ResourceSaver/PackedScene) is contradicted: the upstream fix for issue #93104 is PR #93147, a one-file editor FileSystem icon-cache change that is already public in master history, so lookup is direct. The idea fails as a one-lever, under-sized task (K10) with a reference far below the 150-line floor.",
+  "tier_hours": 2
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 50
+}

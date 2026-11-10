@@ -1,0 +1,212 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. Each rule is an independent bucket, which gives steady partial credit. A frontier agent gets the core rules right but misses the many type-coercion and simplification identities. A weaker model gets only qualify.",
+  "cheat": "Returning the input SQL passes only the trivial cases. The fixture outputs encode precise rewrites, and the hidden queries are not shipped.",
+  "grading": "The upstream optimizer fixture suites (several thousand SQL-in/SQL-out pairs) plus hidden generated queries. Output SQL is compared as exact text against reference outputs. Score is the fraction of cases passed.",
+  "reference": "The upstream optimizer modules at the pinned commit (about 5k lines). It scores 1.",
+  "source": "https://github.com/tobymao/sqlglot @ head 5d588c0, MIT",
+  "task": "Ship a history-less snapshot with the optimizer rules (qualify_tables/columns, annotate_types, simplify, normalize, pushdown, unnest_subqueries and merge_subqueries) removed. The agent rebuilds them in Python so the parser and generator still work.",
+  "title": "Rebuild sqlglot optimizer passes (qualify, annotate types, simplify)"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-096 0.29"
+  ],
+  [
+   "2026-10-21T03:16:03Z",
+   "v1",
+   "killed:K11",
+   "Cannot be sealed as specified: the reference is the public MIT sqlglot optimizer on PyPI and GitHub, the parser in the same package would sit beside any copy left in the image, and the upstream tests/fixtures holding the expected outputs are in the repo tree. Exact-text matching also rejects valid a"
+  ]
+ ],
+ "id": "S-im-098",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.287,
+    "S-im-096"
+   ],
+   [
+    0.278,
+    "S-im-075"
+   ],
+   [
+    0.248,
+    "S-im-065"
+   ],
+   [
+    0.173,
+    "optimizer-design [FrontierSWE]"
+   ],
+   [
+    0.126,
+    "query-optimize [archive]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "5d588c0f32d17a08191898638f67ff27bb0a13ff",
+  "kb": 47132,
+  "lang": "Python",
+  "open_prs": 6,
+  "pushed": "2026-10-20",
+  "release": "",
+  "spdx": "MIT",
+  "stars": 9703,
+  "test_files": 127,
+  "test_kb": 8198,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/tobymao/sqlglot|tobymao-sqlglot",
+ "source_notes": "SWE-smith profile (python): its suite runs in a container; test command: the language default. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/tobymao/sqlglot",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/tobymao/sqlglot/tree/5d588c0f32d17a08191898638f67ff27bb0a13ff/sqlglot/optimizer",
+  "facts": [
+   {
+    "claim": "tobymao/sqlglot at commit 5d588c0 contains sqlglot/optimizer with the 24 modules named in the seed (qualify, qualify_columns, qualify_tables, annotate_types, simplify, normalize, pushdown_predicates, unnest_subqueries, merge_subqueries, etc.)",
+    "status": "confirmed",
+    "url": "https://github.com/tobymao/sqlglot/tree/5d588c0f32d17a08191898638f67ff27bb0a13ff/sqlglot/optimizer"
+   },
+   {
+    "claim": "The repo's tests/fixtures/optimizer SQL suite exists at the pinned commit and holds the several-thousand SQL-in/SQL-out pairs the seed says it grades on",
+    "status": "not_found",
+    "url": "https://github.com/tobymao/sqlglot/tree/5d588c0f32d17a08191898638f67ff27bb0a13ff/sqlglot/optimizer"
+   },
+   {
+    "claim": "Licence is MIT (checked on the main branch LICENSE file, not the pinned commit)",
+    "status": "confirmed",
+    "url": "https://github.com/tobymao/sqlglot/blob/main/LICENSE"
+   },
+   {
+    "claim": "A PyPI release of sqlglot is public, MIT, latest 30.24.0 dated Oct 20, 2026, so the full optimizer is installable and recallable outside the task",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/sqlglot/"
+   },
+   {
+    "claim": "The PyPI release is confirmed to include the sqlglot.optimizer subpackage (page does not state it explicitly; the subpackage is inferred from the library's own description and source link)",
+    "status": "not_found",
+    "url": "https://pypi.org/project/sqlglot/"
+   },
+   {
+    "claim": "A public Go port of sqlglot with an optimizer (simplify, normalize, pushdown, qualify) exists, so the subject is implemented in more than one public language",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/ridi-oss/sqlglot-go"
+   },
+   {
+    "claim": "Dated public evidence of agents attempting this optimizer rebuild, or any benchmark on it, exists",
+    "status": "not_found",
+    "url": "https://pypi.org/project/sqlglot/"
+   },
+   {
+    "claim": "Test-file count (127) and size (8198 KB) from source_facts",
+    "status": "not_found",
+    "url": "https://github.com/tobymao/sqlglot/tree/5d588c0f32d17a08191898638f67ff27bb0a13ff"
+   }
+  ],
+  "frontier_hours": 30,
+  "full_card": {
+   "band": "Seed says 8 h; scope as written (about 5k lines matching exact text across all rules) looks like 20 h tier with partial credit per rule; no dated evidence",
+   "build_cost": "About 3-5 days: scrub site-packages copies, hold out fixtures, write semantic AST comparison, verify reference scores 1; smoke_build was empty ({}) so no build verdict exists",
+   "deliverable": "Python rebuild of qualify_tables/columns, annotate_types, simplify, normalize, pushdown, unnest/merge_subqueries so generated SQL text matches upstream outputs",
+   "gates_anticheat": "Not closed: fixtures with expected outputs sit in the repo tests tree; the same package is on PyPI; exact text match rejects valid alternative rewrites",
+   "grading_surface": "Several thousand upstream fixture pairs plus hidden generated queries; exact text match against reference output",
+   "local_fit": "Python, CPU-only, pure library; fits 8 cores and 16 GB; no network needed at run time",
+   "lookup": "direct: full MIT implementation is on PyPI and GitHub, and the upstream history holds it; a history-less snapshot is needed but does not stop recall",
+   "provenance": "tobymao/sqlglot @ 5d588c0 (MIT, 9.7k stars, pushed 2026-10-20); optimizer package is public on GitHub and PyPI",
+   "reference": "Upstream sqlglot/optimizer at the pinned commit, about 5k lines, MIT, Python; would score 1 by definition",
+   "ships": "Parser and generator of the same package, with the optimizer modules removed in a history-less snapshot; tests/ fixtures would be in the image unless removed",
+   "similarity": "Max l0 neighbour 0.287 (S-im-096); 0.173 optimizer-design [FrontierSWE]; 0.126 query-optimize [archive]; no public task with the same subject found; not crowded"
+  },
+  "kill_code": "K11",
+  "kill_reason": "Cannot be sealed as specified: the reference is the public MIT sqlglot optimizer on PyPI and GitHub, the parser in the same package would sit beside any copy left in the image, and the upstream tests/fixtures holding the expected outputs are in the repo tree. Exact-text matching also rejects valid alternative rewrites. A redesign could revive it: hold out the fixtures, scrub every installed copy, and compare at the AST level.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Large scope with partial credit per rule, but no dated public evidence and the 8 h tier looks short for about 5k lines with exact text match"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-5 days to scrub, hold out fixtures, and build a semantic comparator"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Python library, CPU-only, fits 8 cores and 16 GB"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Many modules and rule interactions; sustained multi-hour work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT allows shipping the system and reference"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Each rule is an independent bucket with steady partial credit"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public task with the same subject and deliverable among neighbours; nearest neighbours at 0.287 and 0.173 are above the 0.15 bar"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT project at a pinned commit with optimizer modules present"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete upstream implementation at the pinned commit would score exactly 1"
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Reference is on PyPI and GitHub, fixtures are in the repo tree, and the parser package in the image is the same library"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of upstream fixture pairs plus generated queries, though the fixtures are shipped in-repo"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Any copy of the optimizer survives in the image or base environment, or the held-out fixtures cannot be separated from the snapshot.",
+   "pass_if": "Fixtures can be held out of the image, no copy of sqlglot/optimizer remains in the image, the snapshot imports, and AST-level comparison of the reference is 100% stable across two runs.",
+   "steps": [
+    "In a throwaway networked container, clone tobymao/sqlglot at 5d588c0 and run the test suite offline to confirm the per-test results and the fixture count under tests/fixtures/optimizer.",
+    "Check whether pip install sqlglot (the release that matches the pinned commit) ships sqlglot/optimizer; list the installed files.",
+    "Build a snapshot with the optimizer modules removed and the fixtures moved out; confirm the parser and generator still import and round-trip queries.",
+    "Scan the base image and any site-packages or pip cache for a second copy of sqlglot/optimizer; record every hit.",
+    "Run a sample of 200 fixture pairs against the upstream reference through a semantic AST comparison and through exact text; check the pass rate and whether the two differ.",
+    "Run the reference twice and confirm identical output (determinism)."
+   ]
+  },
+  "summary": "The sqlglot optimizer rebuild is real, MIT-licensed and has a large grading surface, but its reference is public on PyPI and GitHub, so it is directly recallable and hard to seal. The seed's exact-text grading and in-repo fixtures would leak the expected outputs and reject valid alternative rewrites, so it is killed as K11 unless the fixtures are held out, every copy is scrubbed, and grading moves to AST comparison.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 79
+}

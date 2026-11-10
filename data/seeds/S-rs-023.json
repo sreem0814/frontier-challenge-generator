@@ -1,0 +1,229 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "8 h. Many levers (SWAP*, granularity, population). Frontier agents close part of the gap in some trials but lag HGS. The weaker model stops at 2-opt.",
+  "cheat": "BKS files are not shipped for the hidden instances, which are not in the image. Fixed per-instance time and a seeded feasibility checker stop precomputed tours.",
+  "grading": "Mean percent gap to BKS on hidden X instances n>=500 and other families (Golden, Li), integer-rounded. Infeasible routes score 0. Normalised between the shipped baseline and our reference.",
+  "reference": "HGS-CVRP at the same time limit sets the ceiling. Gap figures not found, to be measured.",
+  "source": "https://github.com/PyVRP/Instances (X, XXL CVRP .sol BKS), MIT; HGS-CVRP MIT (Vidal); CVRPLIB terms not verified",
+  "task": "/app ships a simple savings plus local search CVRP code in C++ or Python, a loader and a scorer. The agent designs, tunes and implements better neighbourhoods, granular lists and a population scheme using only X instances n<=300. The final program runs under a fixed CPU limit per instance.",
+  "title": "CVRP heuristic design with an instance-size and family split"
+ },
+ "class": "research",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour CVRP [FrontierCO] 0.22"
+  ],
+  [
+   "2026-10-21T07:08:45Z",
+   "v1",
+   "killed:K8",
+   "The reference is the public MIT HGS-CVRP with SWAP*, and its method is described in a widely read paper; a frontier agent can recall or reproduce it and approach the reference inside 8 h, leaving the mean gap near the ceiling and no room for a 0.05 to 0.85 window. Also, the XXL set named in the seed"
+  ]
+ ],
+ "id": "S-rs-023",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.217,
+    "CVRP [FrontierCO]"
+   ],
+   [
+    0.214,
+    "S-im-062"
+   ],
+   [
+    0.173,
+    "S-op-045"
+   ],
+   [
+    0.156,
+    "S-op-047"
+   ],
+   [
+    0.084,
+    "family (7 competitions) [MLRC-Bench]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "7474b068a8effa7f39448b241314b615c9271525",
+  "kb": 27624,
+  "lang": "",
+  "open_prs": 0,
+  "pushed": "2026-08-19",
+  "release": "",
+  "spdx": "MIT",
+  "stars": 28
+ },
+ "source_key": "github.com/pyvrp/instances|baseline-simple-savings-local-search-or-pyvrp-hgs-with-very-",
+ "source_notes": "Repo dirs: CVRP (X instances, Uchoa 2017, and XXL, Arnold 2019), VRPTW, PDPTW, MDVRPTW, VRPB, TSP, etc. q:\"BKS in this folder are taken from CVRPLIB; please do not report new BKS to us!\" CVRPLIB main page counts: X 100, XL 100, about 375 CVRP overall. HGS-CVRP README: designed for q:\"medium-scale instances with up to 1,000 customers\"; no gap numbers on pages opened. OOD split: tune on X n<=300, hidden on X n>=500 plus clustered or other families (Golden, Li). Levers: neighbourhood design (SWAP*), granular neighbours, population management, parallel restarts, data layout. PyVRP last push 2026-10-17 (active). INFERRED: 40 hidden instances x 10-60 s / 8 cores about 1-5 min. Overlap: none known.",
+ "source_url": "https://github.com/PyVRP/Instances",
+ "source_version": "Baseline: simple savings + local search (or PyVRP/HGS with very short time limit, e.g. 1 s) we ship. -> Reference: HGS-CVRP or PyVRP at a fixed time limit; BKS from the .sol files in the repo.",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/abs/2012.10384",
+  "facts": [
+   {
+    "claim": "PyVRP/Instances repository is MIT licensed",
+    "status": "confirmed",
+    "url": "https://github.com/PyVRP/Instances"
+   },
+   {
+    "claim": "HGS-CVRP (Vidal) is MIT licensed",
+    "status": "confirmed",
+    "url": "https://github.com/vidalt/HGS-CVRP"
+   },
+   {
+    "claim": "HGS-CVRP is designed for instances up to about 1,000 customers and includes the SWAP* neighbourhood",
+    "status": "confirmed",
+    "url": "https://github.com/vidalt/HGS-CVRP"
+   },
+   {
+    "claim": "HGS-CVRP README quotes no gap or benchmark numbers",
+    "status": "confirmed",
+    "url": "https://github.com/vidalt/HGS-CVRP"
+   },
+   {
+    "claim": "CVRPLIB lists 100 X instances (X-n101-k25 to X-n1001-k43)",
+    "status": "confirmed",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/"
+   },
+   {
+    "claim": "Seed names an XXL set (Arnold 2019) with BKS; CVRPLIB lists this set as XL with 100 instances and no XXL set",
+    "status": "contradicted",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/"
+   },
+   {
+    "claim": "Golden set has 20 instances and Li set has 12 instances",
+    "status": "confirmed",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/"
+   },
+   {
+    "claim": "CVRPLIB terms of use or instance/BKS licence permit shipping the instances and BKS in a bundle",
+    "status": "not_found",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/"
+   },
+   {
+    "claim": "PyVRP/Instances page says BKS come from CVRPLIB and asks users not to report new BKS",
+    "status": "not_found",
+    "url": "https://github.com/PyVRP/Instances"
+   },
+   {
+    "claim": "CVRPLIB has about 375 CVRP instances overall",
+    "status": "not_found",
+    "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/"
+   },
+   {
+    "claim": "HGS-CVRP gap to BKS on X instances (Vidal 2022, COR 140:105643) is measured in the paper",
+    "status": "not_found",
+    "url": "https://arxiv.org/abs/2012.10384"
+   },
+   {
+    "claim": "Vidal 2022 HGS paper: HGS remains a leading metaheuristic on the Uchoa 2017 classical instances",
+    "status": "confirmed",
+    "url": "https://arxiv.org/abs/2012.10384"
+   }
+  ],
+  "frontier_hours": 4,
+  "full_card": {
+   "band": "Frontier agent can likely recall or reproduce HGS-with-SWAP* from the paper and reach near the reference, so the reference is not a stretch ceiling (K8 risk); no dated public evidence",
+   "build_cost": "About 3 days: baseline, loader, scorer, instance and BKS staging with licence check, time-limited harness, reference build",
+   "deliverable": "Improved CVRP heuristic program (neighbourhoods, granular lists, population) run under a fixed CPU limit per instance",
+   "gates_anticheat": "BKS and hidden instances withheld; per-instance time limit; seeded feasibility checker blocks precomputed tours; reference is public and must not be shipped in /app",
+   "grading_surface": "About 40 hidden instances (X n>=500 plus Golden and Li), mean percent gap to BKS, integer-rounded; infeasible routes score 0; normalised between baseline and reference",
+   "local_fit": "CPU-only, 8 cores, 16 GB; fits the sandbox; no network needed at run time",
+   "lookup": "direct: full HGS-CVRP (MIT) public on GitHub and pip-installable via PyVRP; the method is in a paper and recallable",
+   "provenance": "Vidal, Hybrid Genetic Search for the CVRP (arXiv 2012.10384; COR 2022, 140:105643); HGS-CVRP MIT repo vidalt/HGS-CVRP; X instances from Uchoa et al. 2017 via CVRPLIB and PyVRP/Instances",
+   "reference": "HGS-CVRP at the same time limit (MIT, C++, includes SWAP*); gap figures not found, to be measured",
+   "ships": "/app: a simple savings plus local search CVRP solver in C++ or Python, a loader and a scorer; hidden X n>=500, Golden and Li instances not in image",
+   "similarity": "FrontierCO CVRP (0.217) is the same subject and deliverable (a CVRP solver); S-im-062 0.214; S-op-045 0.173; not a near duplicate, but Nov is low"
+  },
+  "kill_code": "K8",
+  "kill_reason": "The reference is the public MIT HGS-CVRP with SWAP*, and its method is described in a widely read paper; a frontier agent can recall or reproduce it and approach the reference inside 8 h, leaving the mean gap near the ceiling and no room for a 0.05 to 0.85 window. Also, the XXL set named in the seed is listed on CVRPLIB as XL, and the instance and BKS terms are unverified.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Famous, recallable HGS with SWAP* that a frontier agent likely reaches near the ceiling; scope is one method family, so K8"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Roughly 3 days for harness, staging and reference; smoke_build is empty so unprobed"
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only C++/Python, offline, within 8 cores and 16 GB"
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8 h tier fits, but a recalled HGS collapses the horizon"
+   },
+   "Lic": {
+    "v": 3,
+    "why": "Code MIT; instance and BKS terms not verified on CVRPLIB"
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers (SWAP*, granularity, population) give partial buckets, but each is a known HGS component"
+   },
+   "Nov": {
+    "v": 2,
+    "why": "FrontierCO CVRP is a public task with the same subject and deliverable (0.217 cosine)"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real MIT HGS-CVRP repo and CVRPLIB X/Golden/Li instances from published papers"
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive HGS-CVRP would score 1 at the same limit"
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden instances and BKS withheld, but HGS is public and recallable; the approach cannot be hidden"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "About 40 hidden instances with a continuous gap metric; executable scorer but small hidden set"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "The recalled HGS reaches the reference gap in one shot or within a single agent hour (K8), or the instance terms forbid shipping the BKS (K6).",
+   "pass_if": "HGS gap is far below the baseline gap on n>=500 and the recalled version reaches within about 1 percentage point of HGS, so a frontier agent could not be held below the ceiling.",
+   "steps": [
+    "In a throwaway networked container, clone vidalt/HGS-CVRP at HEAD and build with CMake; record the build time and any errors.",
+    "Fetch X-n101 to X-n1001 .sol BKS and .vrp files from CVRPLIB or PyVRP/Instances; check the file licence terms and record them.",
+    "Run HGS-CVRP at a fixed time limit (10 s and 60 s) on 8 X instances with n<=300 and 8 with n>=500, plus 2 Golden and 2 Li; compute percent gap to BKS.",
+    "Run a simple savings plus 2-opt baseline at the same limits to bound the normalised scale.",
+    "Repeat one HGS run with a fixed seed to check determinism within the time limit.",
+    "Ask a tool-less model call to write an HGS-with-SWAP* core from memory in one shot; build and run it on 3 X instances at 10 s to see whether a recalled version approaches the reference gap."
+   ]
+  },
+  "summary": "The idea is a real, MIT-licensed CVRP research task with a public HGS-CVRP reference, but the reference's method is famous and recallable, so frontier agents would likely reach the ceiling and the task fails as too easy (K8). The seed's XXL claim is contradicted (CVRPLIB lists XL), and the instance and BKS terms remain unverified.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 64
+}

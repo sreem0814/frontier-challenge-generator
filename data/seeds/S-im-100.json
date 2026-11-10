@@ -1,0 +1,251 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. Buckets: containers, text styles, lists/tables, tracked changes, offset mapping. A frontier agent finishes the basics but misses nested spans and offset edge cases. A weaker model stops at plain-text extraction.",
+  "cheat": "Stripping tags with a regex breaks the offset mapping that the hidden tests check. No upstream parser exists to copy.",
+  "grading": "Hidden Rust tests through the public API on generated and sample ODF files, checking exact prose-span offsets and lint output. The existing cargo suite is a regression gate. Score is the fraction of cases passed.",
+  "reference": "Our own implementation, about 1.2-1.8k lines including the zip/XML handling and offset mapping. It is validated against the hidden tests.",
+  "source": "https://github.com/Automattic/harper issue #1427 @ head 37d344c (v2.13.0 release listed), Apache-2.0",
+  "task": "Add an OpenDocument (.odt and flat .fodt) text parser to harper-core. It must extract prose spans with exact source offsets, skip code/metadata/tracked-change content and keep lint spans mapping back to the file. It needs a public Document constructor, a CLI input mode and offset-preserving suggestion application.",
+  "title": "OpenDocument text parsing for the Harper grammar checker"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "data-format",
+ "final": 61,
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-088 0.24"
+  ],
+  [
+   "2026-10-21T03:17:22Z",
+   "v1",
+   "pass",
+   "score 73; dead links []"
+  ],
+  [
+   "2026-10-21T03:19:48Z",
+   "v2",
+   "killed:K2",
+   "The cited paper trail is contradicted: issue #1427 asks for LibreOffice/Linux app integration, not ODT/FODT parsing, and no PR or release note mentions OpenDocument. The feature and its exact-offset contract (offsets into what: zipped content.xml bytes or chars?) are our own design, so hidden tests "
+  ]
+ ],
+ "id": "S-im-100",
+ "kill": "K2",
+ "l0": {
+  "neighbours": [
+   [
+    0.241,
+    "S-im-088"
+   ],
+   [
+    0.196,
+    "S-im-006"
+   ],
+   [
+    0.19,
+    "S-im-094"
+   ],
+   [
+    0.1,
+    "katex-multicolumn-array-spans [DeepSWE]"
+   ],
+   [
+    0.096,
+    "7zip [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "37d344cd6e41b0465f542d6a477483f26a734001",
+  "kb": 44315,
+  "lang": "Rust",
+  "open_prs": 174,
+  "pushed": "2026-10-20",
+  "release": "v2.13.0",
+  "spdx": "Apache-2.0",
+  "stars": 16889,
+  "test_files": 251,
+  "test_kb": 7802,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/automattic/harper/issues/1427|automattic-harper-1427-libreoffice",
+ "source_notes": "repo https://github.com/Automattic/harper; opened 2025-06-22",
+ "source_url": "https://github.com/Automattic/harper/issues/1427",
+ "source_version": "",
+ "status": "killed:K2",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Automattic/harper/issues/1427",
+  "facts": [
+   {
+    "claim": "Automattic/harper repo exists, Apache-2.0 licence at LICENSE (Copyright 2024 Automattic Inc.)",
+    "status": "confirmed",
+    "url": "https://github.com/Automattic/harper/blob/master/LICENSE"
+   },
+   {
+    "claim": "Issue #1427 is about Harper working in LibreOffice and Linux apps; it does not request ODT/FODT parsing, so the seed's cited source is contradicted as a paper trail for the ODT feature",
+    "status": "contradicted",
+    "url": "https://github.com/Automattic/harper/issues/1427"
+   },
+   {
+    "claim": "Issue #1427 is open with no linked PRs (no merged or open PR implementing ODT via that issue)",
+    "status": "confirmed",
+    "url": "https://github.com/Automattic/harper/issues/1427"
+   },
+   {
+    "claim": "v2.13.0 release exists (16 Oct) and no visible release note from v2.5.0 to v2.13.0 mentions OpenDocument/ODT/FODT",
+    "status": "confirmed",
+    "url": "https://github.com/Automattic/harper/releases"
+   },
+   {
+    "claim": "No Harper PR or public ODT parser found by web search; search is not exhaustive over the 174 open PRs",
+    "status": "not_found",
+    "url": "https://github.com/Automattic/harper/pulls"
+   },
+   {
+    "claim": "harper-core depends on the zip crate (deflate feature) and has no XML parser crate (no quick-xml, roxmltree, xml), so ODT XML parsing needs a new dependency available offline",
+    "status": "confirmed",
+    "url": "https://github.com/Automattic/harper/blob/master/harper-core/Cargo.toml"
+   },
+   {
+    "claim": "Test-file count 251 and test size 7802 KB from source_facts; not independently counted",
+    "status": "not_found",
+    "url": "https://github.com/Automattic/harper"
+   },
+   {
+    "claim": "Harper has no rust-version (MSRV) declared in harper-core; edition 2024",
+    "status": "confirmed",
+    "url": "https://github.com/Automattic/harper/blob/master/harper-core/Cargo.toml"
+   },
+   {
+    "claim": "ODF/OpenDocument specification (OASIS) used as the public standard for the grading format; not fetched",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Third-party LibreOffice extension WriterAgent/LibreHarper integrates Harper via harper-ls (outside the repo, not an ODT parser)",
+    "status": "not_found",
+    "url": "https://git.joshthomas.dev/language-servers/harper/src/branch/latex-parsing"
+   }
+  ],
+  "frontier_hours": 9,
+  "full_card": {
+   "band": "Tier 8 h; buckets: containers (zip/content.xml), text styles/spans, lists and tables, tracked changes, offset mapping; frontier finishes basics and misses nested spans and offset edges; weaker model stops at plain-text extraction",
+   "build_cost": "Unknown until probe; Rust build of harper-core plus new XML/zip code and an agreed public API; estimate 3-5 days including hidden-case harness",
+   "deliverable": "harper-core ODT/FODT text parser with exact prose-span offsets, skip of code/metadata/tracked-change content, public Document constructor, CLI input mode, offset-preserving suggestion application",
+   "gates_anticheat": "Hidden tests and reference sealed outside /app; no public ODT Harper code found; anti-cheat: forbid editing tests and build config, verify hidden test harness uses only public API; reject regex-only tag stripping by offset tests",
+   "grading_surface": "Hidden Rust tests through the public API on generated and sample .odt/.fodt files checking exact span offsets and lint output, plus existing cargo suite as regression gate; fraction of cases passed",
+   "local_fit": "CPU only; zip crate already a dependency; XML parser crate not present and must be verified in the offline cargo cache; smoke_build not provided so build status unknown",
+   "lookup": "none for Harper-specific ODT code; generic ODF parsing is public-spec knowledge, not Harper code; no PR in searched results",
+   "provenance": "Automattic/harper, Apache-2.0, v2.13.0 (16 Oct 2026), head 37d344c; the cited issue #1427 is a LibreOffice-integration request, not an ODT request",
+   "reference": "Own implementation, about 1.2-1.8k lines including zip/XML handling and offset mapping; validated against hidden tests; not public",
+   "ships": "Rust workspace; harper-core is the target; the bundle would ship a history-less snapshot at 37d344c",
+   "similarity": "Max l0 neighbour S-im-088 at 0.241 (above 0.15); not on CROWDED list; differs by target (ODF text offsets in a grammar checker)"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agents on this work, so capped at 3 even though the 8 h tier looks plausible"
+   },
+   "Build": {
+    "v": 3,
+    "why": "smoke_build is empty so the build cost is unknown; likely several days with harness and CLI work"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and zip already present; an XML crate must be confirmed in the offline cache"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Containers, styles, lists, tables, tracked changes and offset mapping justify 8 h of sustained work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at LICENSE"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five named buckets with partial credit per bucket and per case"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest l0 neighbour is 0.241 (S-im-088), above the 0.15 threshold, so not fully novel"
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real repo at pinned commit and Apache-2.0, but the cited issue #1427 is about LibreOffice and does not request ODT; the paper trail must be replaced with the ODF spec and the repo"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Complete own implementation at 1.2-1.8k lines validated against hidden tests, though not yet public or measured"
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and hidden cases are private; ODF is public but the exact offset mapping is not recallable verbatim"
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated ODT/FODT files with exact offsets allow hundreds to thousands of cases; executable oracle plausible"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "harper-core cannot build offline with the needed XML dependency; or the Document model cannot carry non-contiguous source offsets without rewriting the core; or hand-computed offsets cannot be reproduced for the nested-span and tracked-change cases within 60 minutes.",
+   "pass_if": "Build succeeds offline or with vendored deps; extractor reproduces hand-computed offsets on all 5 generated files including nested spans and tracked-change skipping; lint spans map back to the file on one planted error; output is deterministic across 3 runs.",
+   "steps": [
+    "Clone Automattic/harper at 37d344c into a throwaway container with network; check out and run cargo build -p harper-core and the existing test suite to get a real build time and status (smoke_build was not supplied).",
+    "Check whether an XML crate (quick-xml or similar) and zip are in the local cargo registry cache usable offline; if not, the card must ship vendored deps or drop the XML crate.",
+    "Write a throwaway ODT extractor: unzip content.xml with the existing zip crate, walk text:p, text:h, text:span, text:s, text:tab and text:line-break, and record a source-offset map for each prose character.",
+    "Generate 5 small .odt and .fodt files with known spans (nested spans, a list, a table cell, a tracked change, a code block) and check the offsets against hand-computed expected values.",
+    "Run harper-core's existing Document path on the extracted text and confirm lint spans map back to the file offsets for one planted error.",
+    "Re-run the extractor 3 times and confirm deterministic output."
+   ]
+  },
+  "summary": "The Harper repo and Apache-2.0 licence check out, and no public ODT parser or PR exists, but the cited issue #1427 is a LibreOffice-integration request that never mentions ODT, so the card needs a new paper trail (the ODF spec and the repo) before acceptance. The seed's smoke_build is empty, so build cost and offline XML-crate availability are unverified and must be settled in the spike before the card is accepted.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-100",
+  "kill_code": "K2",
+  "note": "The cited paper trail is contradicted: issue #1427 asks for LibreOffice/Linux app integration, not ODT/FODT parsing, and no PR or release note mentions OpenDocument. The feature and its exact-offset contract (offsets into what: zipped content.xml bytes or chars?) are our own design, so hidden tests risk rejecting other valid implementations. At about 1.5k lines it sits close to the DeepSWE single-feature calibration. Not built (smoke_build empty), and no XML crate is available offline.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 2,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 61
+}

@@ -1,0 +1,213 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "8 h. Build time is considerable. A frontier agent finds some hotspots (member init, call path) and gets partial speedup, but not the full measured one. A weaker model fails to complete the build loop.",
+  "cheat": "Disabling the checks or caching instances: semantics tests with side effects and hidden benchmarks block this.",
+  "grading": "Hard gate: the GDScript test suite subset in the repo plus hidden scripts compared on output. Reward from the wall-clock median speedup of a hidden instantiation benchmark set (many classes, inheritance depth, typed/untyped members) against our reference speedup.",
+  "reference": "The upstream fix commits that closed the issue, measured by us. Sealed because the merged commits are not in the snapshot.",
+  "source": "https://github.com/godotengine/godot/issues/73936 @ the 4.0 era commit before the fix, MIT",
+  "task": "/app ships a trimmed headless build recipe for the GDScript module and the VM at a pre-fix commit. The agent speeds up script instance creation (new(), _init, member initialisation, constructor call path) without changing semantics. Delivery is a patch to the module sources.",
+  "title": "Godot GDScript object instantiation slowdown recovery"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "emulator-vm",
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-043 0.25"
+  ],
+  [
+   "2026-10-21T03:25:28Z",
+   "v1",
+   "killed:K10",
+   "One-lever scope: the closing upstream fix (PR #81037, 4.1.2) is a single allocation mistake in core Object creation, not a GDScript VM member-init or constructor-path change. The reference cannot reach the 150-line, multi-lever bar that the seed's framing requires, and the seed's own reference is no"
+  ]
+ ],
+ "id": "S-op-044",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.25,
+    "S-op-043"
+   ],
+   [
+    0.231,
+    "S-op-042"
+   ],
+   [
+    0.223,
+    "S-op-041"
+   ],
+   [
+    0.12,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ],
+   [
+    0.09,
+    "abs-module-cache-flags [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/issues/73936|godotengine-godot-73936-custom-objects-are-slower-to-instant",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/issues/73936",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/issues/73936",
+  "facts": [
+   {
+    "claim": "Godot issue #73936 exists, is closed, was opened 2023-02-25, and reports .new() on custom Object classes about 76x slower in 4.0 RC5 than 3.5.1 (about 15 ms vs 1,147 ms for 10,000 instances)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/issues/73936"
+   },
+   {
+    "claim": "Issue #73936 was closed as completed by PR #81037 (merged 2023-08-28 as commit 75bc686)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/81037"
+   },
+   {
+    "claim": "PR #81037 is a GDScript member-init / constructor-path speedup",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot/pull/81037"
+   },
+   {
+    "claim": "PR #81037 is titled 'Ensure OpenXR classes are declared properly' and its review discusses OpenXR class declarations and doc files, not the instantiation path",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/81037"
+   },
+   {
+    "claim": "The instantiation fix is a single mistake in plain-Object allocation in engine core, described as a bug that caused major unexpected behaviour differences, shipped in 4.1.2",
+    "status": "confirmed",
+    "url": "https://godotengine.org/article/maintenance-release-godot-4-1-2/"
+   },
+   {
+    "claim": "The 4.1.2 release notes do not mention GDScript for this fix",
+    "status": "confirmed",
+    "url": "https://godotengine.org/article/maintenance-release-godot-4-1-2/"
+   },
+   {
+    "claim": "Repository licence is MIT (LICENSE text is the MIT permission notice; copyright 2014-present Godot Engine contributors and 2007-2014 Juan Linietsky, Ariel Manzur)",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/blob/master/LICENSE.txt"
+   },
+   {
+    "claim": "The pre-fix 4.0-era commit hash named in the seed is pinned",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/issues/73936"
+   },
+   {
+    "claim": "Offline smoke build of the trimmed GDScript headless recipe is green",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot"
+   }
+  ],
+  "frontier_hours": 5,
+  "full_card": {
+   "band": "8 h tier. Frontier agent likely finds allocation hotspots and gets partial speedup; the fix itself is one lever, so the top of the band is not a multi-lever scope.",
+   "build_cost": "3 (2-5 days): full Godot scons build plus trimming recipe; smoke build unverified.",
+   "deliverable": "Patch to the module sources speeding up script instance creation (new, _init, member init, constructor path) with unchanged semantics.",
+   "gates_anticheat": "Hidden semantics tests with side effects; benchmark on unseen classes. Caching instances is blocked by side-effect tests. Editing tests or build config is not closed by the seed.",
+   "grading_surface": "GDScript test subset in repo plus hidden scripts compared on output, and a hidden instantiation benchmark (wall-clock median). Moderate surface, about tens to low hundreds of cases.",
+   "local_fit": "C++ build of Godot on 8 cores / 16 GB is heavy but plausibly fits; gVisor has no kernel feature needs.",
+   "lookup": "partial. Public fix in 4.1.2 and git history; a frontier model may recall the Godot allocation code in outline. History-less snapshot required.",
+   "provenance": "Issue #73936 (closed, MIT repo, reported on 4.0 RC3/RC5). Closing PR #81037 is public and shipped in 4.1.2; its title and scope are OpenXR declarations, with the allocation fix described only in release notes as a small mistake in plain-object allocation.",
+   "reference": "Upstream fix commits, but the closing PR is a small allocation fix in core. A reference of 150+ non-blank lines in the GDScript VM is not supported by the evidence.",
+   "ships": "Trimmed headless Godot recipe at a pre-fix commit (hash not pinned in seed). Smoke build not run (empty). Build is a full scons C++ build, so the cost is not verified offline.",
+   "similarity": "Neighbours S-op-041/042/043 (0.22-0.25) are sibling seeds, not public tasks. Public neighbours 0.12 and 0.09 are under 0.15. Not crowded."
+  },
+  "kill_code": "K10",
+  "kill_reason": "One-lever scope: the closing upstream fix (PR #81037, 4.1.2) is a single allocation mistake in core Object creation, not a GDScript VM member-init or constructor-path change. The reference cannot reach the 150-line, multi-lever bar that the seed's framing requires, and the seed's own reference is not substantial.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8 h band is plausible for partial speedup, but no dated public evidence of agent performance; band cannot reach 4 or 5."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Full Godot build plus trimming is estimated at 2-5 days; smoke build not run."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "C++ build is heavy but within 8 CPU / 16 GB in principle; not verified."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "A full build and iterative benchmarking exist, but the lever is narrow, so sustained work is limited."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, verified on LICENSE."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Essentially one lever (instance allocation and init); partial-credit buckets are weak."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Public neighbours are 0.12 and 0.09 and not crowded; sibling seeds are not public tasks."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT Godot issue #73936 with closing PR #81037 and a 4.1.2 release."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "The public closing fix is a small allocation change, far below the 150-line reference bar, and its scope differs from the seed's VM framing."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The fix is public in 4.1.2 and in history, and a frontier model may recall it in outline; a snapshot is needed but reconstruction is likely."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden benchmark plus GDScript subset gives moderate surface; not thousands of cases."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The pre-fix/fixed ratio is under 1.5x, or the trimmed build cannot be produced offline within 90 minutes, or the fix turns out to be a single line with no GDScript-side lever.",
+   "pass_if": "The pre-fix build is at least 3x slower than the 4.1.2 build on the 10k-instance benchmark, the test subset is identical on both, and the trimmed build finishes in under 90 minutes.",
+   "steps": [
+    "In a throwaway Linux container with network, clone godot at the 4.0-era parent of the 4.1.2-era allocation fix (locate the pre-fix commit by bisecting the PR #81037 range, since the seed gives no hash).",
+    "Build headless template_release with only the gdscript module kept (scons platform=linuxbsd target=template_release, module_*_enabled=no for non-essential modules); run in background and record wall time.",
+    "Build the same tag with the closing fix applied (4.1.2 tag) as the upstream comparison.",
+    "Write a 10,000-instance benchmark of a custom Object subclass with .new(), a typed-member variant and an inheritance-depth-3 variant; run each 5 times and take the median.",
+    "Check determinism: the median spread across 5 runs and the test subset pass/fail on both builds."
+   ]
+  },
+  "summary": "Issue #73936 and its closing PR #81037 are real and MIT-licensed, but PR #81037 is a small OpenXR-titled change whose allocation fix is a single core mistake, not a GDScript instantiation rewrite. The seed's scope is a one-lever, narrow optimization with a weak reference and an unverified build, so it is killed as K10 unless the scope is widened to a multi-lever set.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 64
+}

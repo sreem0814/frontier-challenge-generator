@@ -1,0 +1,213 @@
+{
+ "batch": 20,
+ "card": {
+  "band": "8 h. The build is heavy and the rules are intricate. A frontier agent gets simple turns and roundabouts but misses collapsing of short steps, merges and name-change rules. A weaker model fails to get the build running.",
+  "cheat": "A route API that skips guidance fails the exact step comparisons. Hidden extracts are not in the image.",
+  "grading": "The upstream cucumber guidance features and unit tests run offline on bundled OSM data. Hidden extra scenarios are generated on other small OSM extracts. Maneuver type, modifier, bearings and step order are compared exactly to reference output.",
+  "reference": "The upstream guidance code at the pinned commit (several thousand lines). It scores 1.",
+  "source": "https://github.com/Project-OSRM/osrm-backend @ head f2147ea (v26.10.0 release listed), BSD-2-Clause",
+  "task": "Remove the guidance layer of the engine: intersection classification, turn analysis, roundabout and rotary handling, and the instruction post-processing that produces route steps. The agent rebuilds it in C++ so the extractor and route API produce correct steps on a small bundled OSM extract.",
+  "title": "Rebuild OSRM guidance turn-instruction post-processing"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:15:11Z",
+ "family": "geo",
+ "history": [
+  [
+   "2026-10-21T03:15:11Z",
+   "write",
+   "short",
+   "batch 20"
+  ],
+  [
+   "2026-10-21T03:15:11Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-097 0.17"
+  ],
+  [
+   "2026-10-21T03:16:56Z",
+   "v1",
+   "killed:K9",
+   "As specified (whole guidance layer, 8h tier), no frontier trial should finish the scope to 0.9 of the reference: estimated 20h of work versus an 8h tier. The seed would need rescoping to a feature subset (e.g. turn, roundabout, collapse, merge and name-change files, about 5-8 features) sized to the "
+  ]
+ ],
+ "id": "S-im-099",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.167,
+    "S-im-097"
+   ],
+   [
+    0.155,
+    "S-im-098"
+   ],
+   [
+    0.153,
+    "S-im-096"
+   ],
+   [
+    0.118,
+    "post-train-ifeval-gpu [SWE-Marathon]"
+   ],
+   [
+    0.114,
+    "stay-on-topic-with-classifier-free-guidance [PaperBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f2147ead8d9c6a2c724120113d9c56ab85963262",
+  "kb": 52612,
+  "lang": "C++",
+  "open_prs": 17,
+  "pushed": "2026-10-17",
+  "release": "v26.10.0",
+  "spdx": "BSD-2-Clause",
+  "stars": 8159,
+  "test_files": 45,
+  "test_kb": 9032,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/project-osrm/osrm-backend|project-osrm-osrm-backend",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: cd build && ctest --verbose --output-on-failure. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/Project-OSRM/osrm-backend",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Project-OSRM/osrm-backend/releases/tag/v26.10.0",
+  "facts": [
+   {
+    "claim": "Project-OSRM/osrm-backend exists at the pinned commit f2147ead8d9c6a2c724120113d9c56ab85963262 (short f2147ea)",
+    "status": "confirmed",
+    "url": "https://github.com/Project-OSRM/osrm-backend/tree/f2147ead8d9c6a2c724120113d9c56ab85963262/src/guidance"
+   },
+   {
+    "claim": "Release 26.10.0 exists and is marked Latest",
+    "status": "confirmed",
+    "url": "https://github.com/Project-OSRM/osrm-backend/releases/tag/v26.10.0"
+   },
+   {
+    "claim": "src/guidance holds the guidance sources (turn_handler, roundabout_handler, turn_analysis, turn_lane_*, guidance_processing, etc.); the page shows 16 .cpp files and truncates with a 'View all files' link, so the full count is not confirmed",
+    "status": "confirmed",
+    "url": "https://github.com/Project-OSRM/osrm-backend/tree/f2147ead8d9c6a2c724120113d9c56ab85963262/src/guidance"
+   },
+   {
+    "claim": "features/guidance contains 47 .feature files (e.g. turn, roundabout, collapse, merge, new-name, post-processing, suffix-changes, rotary), with no step-definition subfolders shown",
+    "status": "confirmed",
+    "url": "https://github.com/Project-OSRM/osrm-backend/tree/f2147ead8d9c6a2c724120113d9c56ab85963262/features/guidance"
+   },
+   {
+    "claim": "Licence is BSD 2-Clause (repo page does not show it; confirmed through secondary sources naming Project-OSRM/osrm-backend under BSD-2-Clause)",
+    "status": "confirmed",
+    "url": "https://cran.nics.utk.edu/cran/web/packages/osrm.backend/COPYRIGHTS"
+   },
+   {
+    "claim": "Upstream source is packaged in Debian (osrm-backend 26.4.1 under DFSG NEW review), so a full public copy of the source sits in package archives",
+    "status": "confirmed",
+    "url": "https://dfsg-new-queue.debian.org/reviews/osrm-backend/26.4.1+dfsg1-1"
+   },
+   {
+    "claim": "The turn-by-turn wording library (OSRM Text Instructions) lives in a separate third-party repository, not in Project-OSRM",
+    "status": "confirmed",
+    "url": "https://github.com/JaGallup/osrm-text-instructions"
+   },
+   {
+    "claim": "Offline smoke build and suite run for this repo (smoke_build is empty)",
+    "status": "not_found",
+    "url": "https://github.com/Project-OSRM/osrm-backend"
+   }
+  ],
+  "frontier_hours": 20,
+  "full_card": {
+   "band": "Seed claims 8h; not supported for the full scope: estimated 20h for an excellent frontier agent; no dated public evidence (E0)",
+   "build_cost": "Estimated 3-5 days: heavy C++ build plus offline cucumber/node dependency bundling and reference harness (not verified)",
+   "deliverable": "C++ guidance layer (turn classification, turn analysis, roundabouts, collapse/merge/name-change post-processing) that makes extract and route API emit correct steps",
+   "gates_anticheat": "Hidden extracts and expected outputs outside image; block route APIs that skip guidance; freeze test features and build config; no vendored OSRM binaries",
+   "grading_surface": "47 guidance .feature files run via cucumber on bundled OSM data plus generated scenarios on other small extracts; exact comparison of maneuver, modifier, bearings, step order",
+   "local_fit": "C++ with Boost/TBB/expat/Lua deps and node cucumber harness; must be installable offline at build time; smoke build not run",
+   "lookup": "partial: upstream guidance code is public in git history, Debian source and well-known to models in outline; history-less snapshot needed",
+   "provenance": "Project-OSRM/osrm-backend @ f2147ea (v26.10.0 release), BSD-2-Clause, 8.1k stars, pushed 2026-10-17; upstream source also in Debian archive (26.4.1)",
+   "reference": "Upstream src/guidance at the pinned commit, several thousand lines, scores 1",
+   "ships": "Stripped snapshot at base with src/guidance and guidance headers removed, no .git history, cucumber features kept as visible samples; hidden extracts and reference outputs withheld",
+   "similarity": "Neighbours max cosine 0.167 (other seeds S-im-096..098); no public task with the same subject; not K1"
+  },
+  "kill_code": "K9",
+  "kill_reason": "As specified (whole guidance layer, 8h tier), no frontier trial should finish the scope to 0.9 of the reference: estimated 20h of work versus an 8h tier. The seed would need rescoping to a feature subset (e.g. turn, roundabout, collapse, merge and name-change files, about 5-8 features) sized to the 8h or 20h tier before it can be re-validated. Smoke build is empty, so build cost is unverified.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Whole guidance layer is ~20h for an excellent frontier agent, beyond the 8h tier; no dated evidence; the seed's 8h claim is unsupported."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 3-5 days to set up the offline build, harness and reference; unverified."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "C++ build plus cucumber/node harness offline is heavy but fits 8 cores and 16 GB if deps are bundled."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Many interacting modules; long work once the scope is reduced to tier size."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSD-2-Clause permits shipping source, data and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Feature files split into many independent buckets with steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbours are at most 0.167 and none is a public task on this subject; not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned upstream repo, 8k stars, BSD-2-Clause, Debian-packaged; real release v26.10.0."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation scores exactly 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream code sits in git history and Debian source; only a history-less snapshot plus withheld extracts keep it out of reach."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "47 feature files plus generated scenarios on other extracts give an executable oracle with a generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build needs network or cannot be made offline; the cucumber suite is nondeterministic; or the reference cannot reproduce the feature outputs.",
+   "pass_if": "Build finishes offline in under 1h; feature suite is deterministic across two runs; removing guidance drops the pass rate to near zero; a reduced subset of about 5-8 feature files runs cleanly.",
+   "steps": [
+    "In a throwaway networked Linux container, clone the repo at f2147ea and run the offline build (cmake, Boost, TBB, expat, Lua, bz2, zlib deps via apt).",
+    "Run the cucumber guidance features on a single small bundled extract (e.g. features/guidance/turn.feature and roundabout.feature) and record the pass/fail counts per feature file.",
+    "Run the same features twice and diff outputs to check determinism.",
+    "Remove src/guidance and its headers in a scratch copy, rebuild, and confirm the features fail (non-trivial base score of 0).",
+    "Check whether the reduced scope (turn, roundabout, collapse, merge, new-name features) can be run with the reference alone and time the full cucumber pass."
+   ]
+  },
+  "summary": "The upstream OSRM guidance code is real, pinned, BSD-2-Clause and has a 47-file cucumber suite, so Real, Ref and Surf are strong. The whole guidance layer is about 20 frontier hours against an 8h tier and the public source is recallable and in Debian, so it fails K9 as specified; a rescoped subset of the feature files would be the path to a valid seed.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [
+   "https://github.com/JaGallup/osrm-text-instructions"
+  ],
+  "ratio": 0.14285714285714285
+ },
+ "v1_score": 70
+}

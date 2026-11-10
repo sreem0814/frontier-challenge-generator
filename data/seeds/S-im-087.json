@@ -1,0 +1,323 @@
+{
+ "batch": 18,
+ "card": {
+  "band": "4 h. Buckets are Int/Uint, Dec rounding, exponent and root, encodings and overflow behaviour. A frontier agent gets most of it in some trials but misses exact rounding and bounds. A weaker model gets wrong rounding on half the ops.",
+  "cheat": "Wrapping math/big naively fails the exact rounding, overflow and bit-size bounds. The reference binary is not in the image and hidden operands are random.",
+  "grading": "The module's own test files (hidden, split by type) plus a differential property suite generating random operands, comparing against a sealed Go reference binary that is bit-exact. Fraction passed.",
+  "reference": "The upstream code at the same commit, which scores 1. The removed code is expected to be about 2000-3000 lines.",
+  "source": "https://github.com/cosmos/cosmos-sdk @ head f0fcee24 (math module), Apache-2.0",
+  "task": "/app ships the math module with LegacyDec, Dec, Int, Uint and their sdk-compatible helpers (rounding modes, power, sqrt, marshalling, JSON/amino/proto encoding, overflow panics) removed. The agent rebuilds them with the same exported API.",
+  "title": "Rebuild cosmossdk.io/math decimal and integer arithmetic"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:08:13Z",
+ "family": "numeric-scientific",
+ "final": 65,
+ "history": [
+  [
+   "2026-10-21T03:08:13Z",
+   "write",
+   "short",
+   "batch 18"
+  ],
+  [
+   "2026-10-21T03:08:13Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-084 0.37"
+  ],
+  [
+   "2026-10-21T03:24:01Z",
+   "v1",
+   "pass",
+   "score 78; dead links ['https://docs.cosmos.network/main/build/building-modules/decimal-handling']"
+  ],
+  [
+   "2026-10-21T03:24:47Z",
+   "v2",
+   "killed:K8",
+   "Lookup is direct. LegacyDec/Int/Uint is famous code copied into many forks and chain repos, and its tests are public. Its semantics are defined (chop precision, banker's rounding on top of math/big), so a frontier agent rebuilds it near bit-exact well inside 8 h (estimate 5 h). The Dec type named in"
+  ],
+  [
+   "2026-10-21T03:53:09Z",
+   "smoke",
+   "amber",
+   "go: build ok, 20707 tests, 5 failing, NOT deterministic over 3 runs"
+  ]
+ ],
+ "id": "S-im-087",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.369,
+    "S-im-084"
+   ],
+   [
+    0.314,
+    "S-im-086"
+   ],
+   [
+    0.314,
+    "S-im-083"
+   ],
+   [
+    0.141,
+    "math-verify [NL2Repo-Bench]"
+   ],
+   [
+    0.095,
+    "power_control [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": null,
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 270,
+  "ci_files": 23,
+  "clone_ok": true,
+  "cmd_build": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -run '^$' ./... >/dev/null",
+  "cmd_fetch": "go mod download all",
+  "cmd_test": "GOPROXY=off GOFLAGS=-mod=mod go test -count=1 -json -p 4 ./...",
+  "commit": "f0fcee24d9381c90d4bbcffe2076fc0b47409670",
+  "deterministic": false,
+  "eco": "go",
+  "fetch_ok": true,
+  "fetch_s": 1,
+  "flaky_names": [
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestProposalContents",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestProposalMsgs",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestRandomizedGenState",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestRandomizedGenState1",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgCancelProposal",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgDeposit",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgSubmitLegacyProposal",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgSubmitProposal",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgSubmitProposalFutureVotes",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgSubmitProposalFutureVotesInactive",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgSubmitProposalFutureVotesWithinVotingPeriod",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgSubmitProposalSchedulesVotesRarely",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgVote",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestSimulateMsgVoteWeighted",
+   "github.com/cosmos/cosmos-sdk/x/gov/simulation::TestWeightedOperations",
+   "github.com/cosmos/cosmos-sdk/x/gov/types/v1::TestEmptyGenesis",
+   "github.com/cosmos/cosmos-sdk/x/gov/types/v1::TestMsgDepositGetSignBytes",
+   "github.com/cosmos/cosmos-sdk/x/gov/types/v1::TestMsgSubmitProposal_GetSignBytes",
+   "github.com/cosmos/cosmos-sdk/x/gov/types/v1::TestMsgSubmitProposal_GetSignBytes/MsgSend",
+   "github.com/cosmos/cosmos-sdk/x/gov/types/v1::TestMsgSubmitProposal_GetSignBytes/MsgVote"
+  ],
+  "flaky_tests": 16073,
+  "log": "",
+  "oom": false,
+  "ref": "default",
+  "report_format": "go-json",
+  "run_rcs": [
+   1,
+   1,
+   124
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "github.com/cosmos/cosmos-sdk/crypto/keyring::<package>",
+   "github.com/cosmos/cosmos-sdk/crypto/keyring::TestNewKeyctlKeyring",
+   "github.com/cosmos/cosmos-sdk/crypto/keyring::TestNewKeyctlKeyring/keyctl_backend",
+   "github.com/cosmos/cosmos-sdk/server::<package>",
+   "github.com/cosmos/cosmos-sdk/server::TestInterceptConfigsWithBadPermissions"
+  ],
+  "stable_failures": 5,
+  "subdir": "",
+  "suite_s": 416,
+  "test_files": 1191,
+  "tests_fail": 5,
+  "tests_listed": 1131,
+  "tests_pass": 20698,
+  "tests_skip": 4,
+  "tests_total": 20707,
+  "timeouts": [
+   "run3"
+  ],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f0fcee24d9381c90d4bbcffe2076fc0b47409670",
+  "kb": 377149,
+  "lang": "Go",
+  "open_prs": 60,
+  "pushed": "2026-10-20",
+  "release": "cosmovisor/v1.7.3",
+  "spdx": "Apache-2.0",
+  "stars": 7078,
+  "test_files": 1191,
+  "test_kb": 8870,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/cosmos/cosmos-sdk|oss-fuzz-cosmos-sdk",
+ "source_notes": "OSS-Fuzz project, language go",
+ "source_url": "https://github.com/cosmos/cosmos-sdk",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/cosmos/cosmos-sdk/tree/main/math",
+  "facts": [
+   {
+    "claim": "cosmos-sdk main has a math/ directory with int.go, uint.go, legacy_dec.go, max_min.go, proto.go, doc.go and 8 *_test.go files (incl. legacy_dec_fuzz_test.go)",
+    "status": "confirmed",
+    "url": "https://github.com/cosmos/cosmos-sdk/tree/main/math"
+   },
+   {
+    "claim": "Repository licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/cosmos/cosmos-sdk/blob/main/LICENSE"
+   },
+   {
+    "claim": "cosmossdk.io/math is published under Apache-2.0 with exported types Int, LegacyDec and Uint",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/cosmossdk.io/math"
+   },
+   {
+    "claim": "A newer cosmossdk.io/math release exists beyond v1.5.3 (pkg.go.dev flags v1.5.3 as not the latest), so the upstream direction is public",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/cosmossdk.io/math"
+   },
+   {
+    "claim": "The math module at head f0fcee24 exports a Dec type (seed task names LegacyDec, Dec, Int, Uint)",
+    "status": "not_found",
+    "url": "https://github.com/cosmos/cosmos-sdk/tree/main/math"
+   },
+   {
+    "claim": "Dec is a newer decimal type with up to 34 decimal places, separate from LegacyDec (18 places)",
+    "status": "not_found",
+    "url": "https://docs.cosmos.network/main/build/building-modules/decimal-handling"
+   },
+   {
+    "claim": "Int/Dec bit-length mismatch panic advisory (GHSA-7225-m954-23v7) affects <=1.3.0 and is fixed in 1.4.0, so overflow and bit-size behaviour changed across public releases",
+    "status": "confirmed",
+    "url": "https://www.miggo.io/vulnerability-database/cve/GHSA-7225-m954-23v7"
+   },
+   {
+    "claim": "Removed code is about 2000-3000 lines",
+    "status": "not_found",
+    "url": "https://github.com/cosmos/cosmos-sdk/tree/main/math"
+   },
+   {
+    "claim": "Upstream math module builds offline and its suite is deterministic (smoke_build)",
+    "status": "not_found",
+    "url": "https://github.com/cosmos/cosmos-sdk/tree/main/math"
+   }
+  ],
+  "frontier_hours": 5,
+  "full_card": {
+   "band": "Budget 8h tier. Partial buckets: Int/Uint arithmetic, LegacyDec rounding (banker's), power/root, encodings, overflow panics. Frontier agent likely gets Int/Uint and most encodings, misses exact rounding and bounds. Weaker model fails about half the rounding ops. No dated public evidence, so Band capped at 3.",
+   "build_cost": "Unknown: smoke_build empty. Estimate 3-4 days: vendor deps, carve out code, write oracle binary and differential harness, calibrate.",
+   "deliverable": "Go package cosmossdk.io/math rebuilt with exported Int, Uint, LegacyDec (and Dec only if confirmed at head) plus rounding, power, root, marshal/JSON/proto helpers and overflow panics.",
+   "gates_anticheat": "Hidden tests and oracle not in image; no network at run; forbid vendoring any cosmossdk.io/math copy from the module cache (check GOPATH/pkg/mod absent or scrubbed); history-less snapshot; grader rebuilds from a clean module tree.",
+   "grading_surface": "Hidden package tests split by type plus a differential property suite on random operands against a sealed bit-exact Go reference binary. Fraction passed.",
+   "local_fit": "Go, CPU, offline. Needs gogoproto/cosmossdk.io/errors deps vendored into the image; fits 8 CPU/16 GB.",
+   "lookup": "Full upstream source is public (GitHub, pkg.go.dev) in the same language and is widely recalled in outline; exact rounding code is recallable only in part.",
+   "provenance": "cosmos-sdk main @ f0fcee24 math/ (Apache-2.0, 7k stars, OSS-Fuzz). Module cosmossdk.io/math is public on pkg.go.dev and the Go proxy; later releases exist.",
+   "reference": "Upstream math/ at f0fcee24 (scores 1 by construction). Not verified to build offline (smoke_build empty).",
+   "ships": "Go module skeleton with int.go/uint.go/legacy_dec.go/max_min.go/proto.go removed or stubbed, plus the 8 existing test files and a history-less snapshot at base. Reference and sealed Go oracle binary stay outside the image.",
+   "similarity": "Sibling seeds S-im-083/084/086 (cosine 0.31-0.37) may be other slices of the same math module; scope overlap must be checked. math-verify 0.14 and power_control 0.10 are distinct. No public task neighbour above 0.15."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Capped at 3: no dated public evidence of agents on this work; recall of the famous code is the main unknown and is tested in the spike."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Smoke build is empty, so dependency vendoring and oracle construction add days; estimated 3-4 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Go on CPU and offline works only if gogoproto and cosmos deps are vendored."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "About 2000-3000 lines across several files; sustained work but not a multi-day scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed; shipping allowed."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Int, Uint, LegacyDec rounding, power/root, encodings and overflow are independent buckets with partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task neighbour above 0.15; siblings S-im-083/084/086 overlap in subject and need a scope check."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Upstream Apache-2.0 cosmos-sdk math module, real commit and real test files."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation at the same commit scores 1 by construction."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle and hidden tests can be kept out of the image, but the upstream code is public and largely recallable in outline."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden tests plus a differential random-operand suite with an unlimited generator against a Go oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Recall-only attempt is bit-exact on over 0.9 of operations (K8), or the deps cannot be vendored offline (K7/K12), or the removed scope is under 1000 lines (K3).",
+   "pass_if": "Upstream builds offline from vendored deps with a deterministic suite, and the recall-only attempt is bit-exact on well under 0.9 of random operations (rounding and bounds fail), so the task is not recallable.",
+   "steps": [
+    "In a networked throwaway container, clone cosmos-sdk at f0fcee24 and cd into math/. Record go.mod deps and run go test ./... to see whether the suite passes and how many tests exist.",
+    "Count non-test lines in int.go, uint.go, legacy_dec.go, max_min.go, proto.go to confirm the 2000-3000 line scope. Check whether a Dec type exists at head (grep for exported Dec, not as grading).",
+    "Vendor the module deps and build offline with GOFLAGS=-mod=vendor and GOPROXY=off to confirm the build cost.",
+    "Write a Go harness that generates about 1000 seeded random operands for Int, Uint and LegacyDec ops and prints outputs; run it twice and diff to confirm determinism.",
+    "Recall test: give a frontier model only the exported API signatures (no code) and ask for LegacyDec rounding and Int/Uint implementations; compile and diff against upstream on the same random operands. Record bit-exact rate per op family.",
+    "Compare the recall-only bit-exact rate with the Band expectation."
+   ]
+  },
+  "summary": "The seed is a real, Apache-2.0 upstream math module with a plausible 2000-3000 line rebuild scope and a sealable differential oracle, but the Dec type named in the task is not confirmed at head and the build is unverified (smoke_build empty). The main risk is K8: the full upstream code is public and famous, so the spike must measure recall before the Band score is trusted.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [
+   "https://docs.cosmos.network/main/build/building-modules/decimal-handling"
+  ],
+  "ratio": 0.2
+ },
+ "v1_score": 78,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-087",
+  "kill_code": "K8",
+  "note": "Lookup is direct. LegacyDec/Int/Uint is famous code copied into many forks and chain repos, and its tests are public. Its semantics are defined (chop precision, banker's rounding on top of math/big), so a frontier agent rebuilds it near bit-exact well inside 8 h (estimate 5 h). The Dec type named in the task was not found at head, and the decimal-handling doc link is dead. The 2000-3000 line scope and the offline build are unverified.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 4,
+   "Ref": 4,
+   "Seal": 2,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 65
+}

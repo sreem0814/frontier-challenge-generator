@@ -1,0 +1,290 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "8h. Bitstream-exact Edgebreaker with valence contexts and the prediction schemes is a deep dependency chain; frontier agents get decode right in some trials but miss encoder-side bit-exactness and the normal/texcoord schemes. Buckets: connectivity decode, connectivity encode, each prediction scheme, point-cloud paths. A weaker model stops at decode of simple meshes.",
+  "cheat": "Calling a system libdraco or copying prebuilt .drc: no libdraco in the image, only the stripped source; hidden meshes are unseen and the graded encoder output is checked by the sealed decoder.",
+  "grading": "Hidden gtest-style cases and generated OBJ/PLY meshes: decode of reference .drc files must match exact vertex/face/attribute values, and re-encoded output must round-trip through a sealed reference decoder. Credit is the fraction of cases passed over what the reference passes. Existing in-tree tests are the visible sample.",
+  "reference": "The upstream implementation at the pinned release, with the removed files as the reference diff (expected well over 1500 lines).",
+  "source": "https://github.com/google/draco @ 1.5.9 (head d429de8), Apache-2.0",
+  "task": "/app ships a history-less snapshot of Draco with the Edgebreaker connectivity encoder/decoder and the mesh prediction schemes (parallelogram, constrained multi-parallelogram, texcoord portable, geometric normal) removed behind their existing interfaces. The agent rebuilds them so the library builds and the draco_encoder/draco_decoder CLIs work.",
+  "title": "Rebuild Draco Edgebreaker mesh connectivity and attribute prediction"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "codec",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-065 0.29"
+  ],
+  [
+   "2026-10-21T03:13:11Z",
+   "v1",
+   "pass",
+   "score 75; dead links ['https://rust-digger.code-maven.com/crates/draco-oxide']"
+  ],
+  [
+   "2026-10-21T03:16:14Z",
+   "v2",
+   "pass",
+   "final 75"
+  ],
+  [
+   "2026-10-21T03:51:23Z",
+   "spike",
+   "validated",
+   "Not done: the offline rerun was not separately tested (the build used only in-tree submodules), and ldd/find_package on the stripped build was skipped because stripped cmake fails first. No libdraco is installed on this host. The stripped tree needs stubs so the build gets past cmake and the agent s"
+  ]
+ ],
+ "id": "S-im-089",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.288,
+    "S-im-065"
+   ],
+   [
+    0.227,
+    "S-im-087"
+   ],
+   [
+    0.222,
+    "S-im-037"
+   ],
+   [
+    0.118,
+    "zstd-decoder [SWE-Marathon]"
+   ],
+   [
+    0.117,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": 1,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "d429de84b52a860705507da0884764c5d8321423",
+  "kb": 233511,
+  "lang": "C++",
+  "open_prs": 29,
+  "pushed": "2026-10-16",
+  "release": "1.5.9",
+  "spdx": "Apache-2.0",
+  "stars": 7520,
+  "test_files": 376,
+  "test_kb": 67862,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/google/draco|google-draco",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: ./build/draco_tests --gtest_color=no. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/google/draco",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "EncodeTest.TestTexCoordPredictionThatWrapsRoundTrips is OOM-killed here (the container had about 5 GB). It was excluded from the gate.",
+   "The in-tree suite is mostly small, hand-written cases, so the hidden grading needs a scaled generator.",
+   "Band risk: Draco is well known to frontier models, which raises the K8 risk."
+  ],
+  "build_minutes": 2,
+  "cases_sampled": 52,
+  "commands_log": "git clone --branch 1.5.9 --recurse-submodules (4 submodules populated); cmake -DDRACO_TESTS=ON; make -j3 took 1m47; draco_tests with that one test filtered out passed 203 of 203, three times, with identical results; draco_encoder/draco_decoder round-tripped 52 of the 59 testdata meshes (the other 7 are deliberately invalid or degenerate inputs); two repeat encodes gave identical output; removed the 4 prediction scheme sources and mesh_edgebreaker_*, after which cmake fails",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Stripped tree fails at cmake (missing sources), so the start scores 0. Reference passes all sampled encode/decode cases. Removed set is about 5950 non-blank lines.",
+  "headroom_ok": true,
+  "image_gb_estimate": 1,
+  "kill_code": "",
+  "notes": "Not done: the offline rerun was not separately tested (the build used only in-tree submodules), and ldd/find_package on the stripped build was skipped because stripped cmake fails first. No libdraco is installed on this host. The stripped tree needs stubs so the build gets past cmake and the agent starts from a state that builds but scores 0. Of the 59 testdata meshes, 52 round-tripped; the 7 failures are deliberately invalid or degenerate inputs (NaN/inf, bad indices, malformed PLY).",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 52,
+  "reference_lines": 5950,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/google/draco/releases/tag/1.5.9",
+  "facts": [
+   {
+    "claim": "google/draco release 1.5.9 exists and is marked latest; the release page shows 'released this 16 Oct' (year not shown on the page; API pushed date 2026-10-16)",
+    "status": "confirmed",
+    "url": "https://github.com/google/draco/releases/tag/1.5.9"
+   },
+   {
+    "claim": "Apache-2.0 licence for google/draco (taken from the supplied GitHub API facts; LICENSE file not separately fetched)",
+    "status": "confirmed",
+    "url": "https://github.com/google/draco"
+   },
+   {
+    "claim": "Edgebreaker encoder/decoder sources present at 1.5.9: mesh_edgebreaker_encoder(.cc/.h, _impl, _impl_interface), mesh_edgebreaker_decoder(.cc/.h, _impl, _impl_interface), mesh_edgebreaker_traversal_{encoder,decoder,valence_*,predictive_*}.h, mesh_edgebreaker_encoding_test.cc",
+    "status": "confirmed",
+    "url": "https://github.com/google/draco/tree/1.5.9/src/draco/compression/mesh"
+   },
+   {
+    "claim": "Prediction scheme sources present at 1.5.9: parallelogram, constrained multi-parallelogram, multi-parallelogram, tex_coords_portable, geometric_normal (encoder/decoder/predictor headers), plus generic prediction_scheme_* factories and transforms",
+    "status": "confirmed",
+    "url": "https://github.com/google/draco/tree/1.5.9/src/draco/compression/attributes/prediction_schemes"
+   },
+   {
+    "claim": "Pinned submodules at 1.5.9 third_party: eigen, filesystem, googletest, tinygltf; the offline build must have their contents in the image",
+    "status": "confirmed",
+    "url": "https://github.com/google/draco/tree/1.5.9/third_party"
+   },
+   {
+    "claim": "Debian packages libdraco-dev and libdraco9 (Draco C++ library, headers, draco CLI) exist in Debian; a system libdraco is a possible cheat path if apt sources or the package are present in the image",
+    "status": "confirmed",
+    "url": "https://packages-picconi.debian.org/sid/libdraco-dev"
+   },
+   {
+    "claim": "DracoPy (PyPI) wraps Draco with prebuilt wheels; whether its wheels bundle libdraco or which Draco version they ship was not found",
+    "status": "not_found",
+    "url": "https://pypi.org/project/DracoPy"
+   },
+   {
+    "claim": "draco-core 1.2.0 is an independent pure-Rust Draco encoder/decoder covering EdgeBreaker standard and valence traversal (not an official Google release); it is a public partial-lookup source",
+    "status": "confirmed",
+    "url": "https://docs.rs/crate/draco-core"
+   },
+   {
+    "claim": "draco-oxide (Rust, alpha) is a Rust rewrite whose encoder works and decoder is in progress",
+    "status": "confirmed",
+    "url": "https://rust-digger.code-maven.com/crates/draco-oxide"
+   },
+   {
+    "claim": "Reference diff for the removed Edgebreaker plus prediction files is well over 1500 lines",
+    "status": "not_found",
+    "url": "https://github.com/google/draco/tree/1.5.9/src/draco/compression/mesh"
+   },
+   {
+    "claim": "Seed smoke_build verdict: not run (empty object), so offline build and suite status are unknown",
+    "status": "not_found",
+    "url": "https://github.com/google/draco"
+   }
+  ],
+  "frontier_hours": 14,
+  "full_card": {
+   "band": "8h tier as seeded looks too short for the full scope. Estimated frontier effort about 14h for the whole scope. Prefer tier 20h, or narrow to connectivity decode and encode with parallelogram and tex-portable to fit 8h. Partial buckets: connectivity decode (standard), connectivity decode (valence), encode, each prediction scheme, point-cloud path. Weaker model likely stops at simple-mesh decode.",
+   "build_cost": "Reference is the public upstream code, so writing it is cheap; cost is the sealed harness, mesh generator, reference decoder, and checking the snapshot builds offline. About 3-4 days.",
+   "deliverable": "Library that builds offline plus draco_encoder and draco_decoder CLIs; Edgebreaker standard and valence connectivity, prediction schemes (parallelogram, constrained multi-parallelogram, tex-coords portable, geometric normal), and point-cloud paths.",
+   "gates_anticheat": "No system libdraco or DracoPy wheel in the image (purge Debian libdraco and pip DracoPy, check find_package paths); sealed decoder and hidden meshes outside image; no copying prebuilt .drc; build config and tests are read-only for grading; history removed.",
+   "grading_surface": "Hidden gtest-style cases plus generated OBJ/PLY meshes; decode of reference .drc must match vertex/face/attribute values exactly; re-encoded output round-trips through a sealed reference decoder. Size not yet measured; plausibly tens to low hundreds of cases unless the generator is scaled up.",
+   "local_fit": "CPU-only C++ with CMake, gtest, eigen; fits 8 cores and 16 GB; no GPU or network at run time. Build time of the full library not measured.",
+   "lookup": "Full upstream C++ is public at the tag and in Debian source packages; a pure-Rust partial port (draco-core) covers the same Edgebreaker variants. Recall of Draco is plausible for a frontier model, so Band carries the K8 risk.",
+   "provenance": "google/draco @ 1.5.9 (head d429de8), Apache-2.0, 7.5k stars, C++, pushed 2026-10-16; release page and source tree confirmed.",
+   "reference": "Upstream 1.5.9 files for the removed parts (public, Apache-2.0); reference diff size unmeasured, expected above 1500 lines.",
+   "ships": "History-less 1.5.9 snapshot with Edgebreaker mesh encoder/decoder and the four mesh prediction schemes removed behind existing interfaces; third_party submodules must be populated in the image.",
+   "similarity": "Closest seeds S-im-065 (0.288), S-im-087 (0.227), S-im-037 (0.222); public neighbours zstd-decoder 0.118 and pytest-cases 0.117, all under 0.15. Not on the CROWDED list as a subject; codec family overlaps with crowded DEFLATE/zstd/brotli in general but not mesh compression."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Full scope probably needs about 14h for an excellent agent, so 8h is tight; no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Reference is the public diff, so cost is mainly the sealed harness and offline build check, about 3-4 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only C++ within 8 cores and 16 GB; no GPU or runtime network needed."
+   },
+   "Hor": {
+    "v": 5,
+    "why": "Multi-module codec with connectivity, four prediction schemes and point-cloud paths; clearly needs many hours."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping source, data and reference in the bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Connectivity decode, encode, each prediction scheme and point-cloud path give steady buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest public-task neighbours are 0.12 or lower; no crowded subject match, though codecs overlap crowded families."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real Google upstream release with public tag and paper trail (Apache-2.0, 7.5k stars)."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation at the same release would score exactly 1."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Snapshot is history-less and hidden meshes are sealed, but upstream and a Rust partial port are public, so recall is possible."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden gtest and mesh cases with exact-value and round-trip checks; size unmeasured, likely tens to low hundreds unless scaled up."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Submodules missing or build red offline, the suite is flaky across runs, or the removed set is under about 500 lines (then re-scope or kill K3).",
+   "pass_if": "Upstream builds offline in under about 30 min with submodules, the suite is deterministic over three runs, removed set is at least 1500 non-blank lines, and the stripped tree breaks the build or fails tests.",
+   "steps": [
+    "In a throwaway container with network, clone google/draco at tag 1.5.9 with --recurse-submodules and check the four submodules are populated.",
+    "Build the unmodified tree with CMake and C++17, time it, and run ./build/draco_tests --gtest_color=no three times; record pass count and any flaky tests.",
+    "Use the built draco_encoder on 3-5 OBJ/PLY meshes (plain, with normals, with texcoords) and draco_decoder to round-trip; save the .drc outputs as sample hidden-style cases.",
+    "In a copy, delete mesh_edgebreaker_*.{h,cc} and the four prediction scheme sources and count the removed non-blank lines; confirm the removed set is at least 1500 lines.",
+    "Check the stripped copy fails to link or build, so the grading surface depends on the removed code.",
+    "Confirm no libdraco is resolved from system paths in the stripped build (ldd and find_package output), and check Debian libdraco-dev is absent from the target image."
+   ]
+  },
+  "summary": "Draco 1.5.9 is a real, Apache-2.0 upstream release, and its Edgebreaker and prediction-scheme sources exist at the pinned tag, so the seed passes the paper-trail gate. The main risks are that a frontier model may recall the public C++ (and a Rust partial port exists), that an 8h tier is short for roughly 14h of full scope, and that the smoke build has not run, so the spike must confirm the offline build and the 1500-line removal before any cost is committed.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 9,
+  "dead": [
+   "https://rust-digger.code-maven.com/crates/draco-oxide"
+  ],
+  "ratio": 0.1111111111111111
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-089",
+  "kill_code": "",
+  "note": "Strongest card in the batch. The release, licence and every target source file are confirmed at 1.5.9. Use the 20h tier: 14 frontier hours does not fit 8h. Grading accepts any valid implementation: decode is checked for exact values on reference .drc files, and encoder output only has to round-trip through the sealed decoder. Open risks: the removed-line count is unmeasured, the offline build with submodules is unverified (smoke_build is empty), and Debian libdraco-dev and DracoPy wheels must be kept out of the image. Band is capped at 3 because there is no dated evidence. The draco-oxide link is dead. The draco-core Rust port is public, but no run-time path exists if crates are not vendored.",
+  "scores": {
+   "Band": 3,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 83
+}

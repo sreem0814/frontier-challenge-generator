@@ -1,0 +1,240 @@
+{
+ "batch": 19,
+ "card": {
+  "band": "8h. Frontier agents implement the basic limiter but miss the config surface, signal-specific behaviour, the metrics and the fake-clock semantics. Buckets by signal, algorithm and config. A weaker model stops at a single-key traces limiter.",
+  "cheat": "A no-op passthrough passes none of the drop-count cases. Hidden tests use only public APIs, so special-casing is impossible.",
+  "grading": "Hidden Go tests use public factory/config/consumer APIs with a fake clock and check admitted and dropped counts, error codes, per-key isolation, concurrency and config errors. Several hundred table cases. The existing suites of neighbouring processors are the regression gate.",
+  "reference": "Our own implementation, expected 1500+ lines including tests and docs, modelled on the upstream issue discussion. It is not merged upstream in this form.",
+  "source": "https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35204 @ v0.163.0 (head a7e7ca4), Apache-2.0",
+  "task": "/app ships a pruned snapshot at the pinned commit. The agent adds a ratelimitprocessor component covering traces, logs and metrics. It needs per-key (attribute-derived) token-bucket and sliding-window limits, burst, a throttle-or-drop mode that returns the right errors, a dynamic-rate hook, telemetry metrics, config validation and a factory registered in the builder.",
+  "title": "Rate limit processor for the OpenTelemetry Collector contrib"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:11:32Z",
+ "family": "protocol",
+ "final": 61,
+ "history": [
+  [
+   "2026-10-21T03:11:32Z",
+   "write",
+   "short",
+   "batch 19"
+  ],
+  [
+   "2026-10-21T03:11:32Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-088 0.23"
+  ],
+  [
+   "2026-10-21T03:13:32Z",
+   "v1",
+   "pass",
+   "score 71; dead links []"
+  ],
+  [
+   "2026-10-21T03:16:14Z",
+   "v2",
+   "killed:K8",
+   "A single feature of roughly 1500 lines including tests and docs, with 6 frontier hours in an 8h tier, sits at the DeepSWE calibration point. The tail_sampling rate-limiting policy is in the snapshot as a template. The issue is design-only, so the config schema, error semantics and fake-clock hook ar"
+  ]
+ ],
+ "id": "S-im-093",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.23,
+    "S-im-088"
+   ],
+   [
+    0.22,
+    "S-im-073"
+   ],
+   [
+    0.189,
+    "S-im-065"
+   ],
+   [
+    0.093,
+    "returns-validated-error-accumulation [DeepSWE]"
+   ],
+   [
+    0.083,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "a7e7ca4792ed50b382d9f9ba1b3241095343b3a7",
+  "kb": 929184,
+  "lang": "Go",
+  "open_prs": 314,
+  "pushed": "2026-10-20",
+  "release": "v0.163.0",
+  "spdx": "Apache-2.0",
+  "stars": 5008,
+  "test_files": 3170,
+  "test_kb": 11692,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/open-telemetry/opentelemetry-collector-contrib/issues/35204|open-telemetry-opentelemetry-collector-contrib-35204-rate-li",
+ "source_notes": "repo https://github.com/open-telemetry/opentelemetry-collector-contrib; opened 2024-09-16",
+ "source_url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35204",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35204",
+  "facts": [
+   {
+    "claim": "Issue #35204 'Rate Limit Processor' exists in opentelemetry-collector-contrib, opened 2024-09-16, still open, labelled Accepted Component",
+    "status": "confirmed",
+    "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35204"
+   },
+   {
+    "claim": "Issue #35204 has no linked branches or pull requests, so no upstream implementation exists to copy",
+    "status": "confirmed",
+    "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35204"
+   },
+   {
+    "claim": "The issue is a design discussion: proposed ratelimit processor with per-signal sections, a grouping block (strict/relaxed), tbf settings, and no fixed config schema; maintainer suggested error, discard or backpressure and rate-limit metrics",
+    "status": "confirmed",
+    "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/35204"
+   },
+   {
+    "claim": "Release v0.163.0 exists (released 14 Oct, per GitHub release page)",
+    "status": "confirmed",
+    "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/releases/tag/v0.163.0"
+   },
+   {
+    "claim": "The v0.163.0 changelog contains no rate limit processor or ratelimit component (only a yang_grpc receiver security.rate_limiting fix)",
+    "status": "confirmed",
+    "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/releases/tag/v0.163.0"
+   },
+   {
+    "claim": "No ratelimit processor is listed in the official OpenTelemetry processor index",
+    "status": "not_found",
+    "url": "https://opentelemetry.io/docs/collector/components/processor"
+   },
+   {
+    "claim": "Contrib tail_sampling has a rate_limiting policy (token bucket, spans_per_second), a partial analogue the agent could read in the snapshot",
+    "status": "not_found",
+    "url": "https://oneuptime.com/blog/post/2026-02-06-rate-limiting-samplers-opentelemetry/markdown"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (taken from GitHub API source_facts; not re-fetched)",
+    "status": "confirmed",
+    "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Frontier estimate ~6 h of an 8 h tier; basic limiter easy, config surface, signal-specific behaviour, metrics and fake-clock semantics are where credit is lost; weaker model stops at a single-key traces limiter",
+   "build_cost": "About 3 days: pruned contrib snapshot with vendored modules must build offline; smoke_build was not run (empty), so cost is unverified",
+   "deliverable": "New ratelimitprocessor for traces, logs and metrics: per-key token bucket and sliding window, burst, throttle-or-drop with errors, dynamic-rate hook, telemetry, config validation, factory in builder",
+   "gates_anticheat": "Passthrough fails all drop-count cases; hidden tests use public APIs only; config names must be fixed by a written spec in /app or acceptance fails; fake-clock injection must be a public hook",
+   "grading_surface": "Hidden Go table tests (several hundred cases) through public factory/config/consumer APIs with fake clock: admitted/dropped counts, error codes, per-key isolation, concurrency, config errors, plus neighbouring processors' suites as regression",
+   "local_fit": "Go, CPU only, offline; full contrib build is heavy but a pruned module set fits 8 cores / 16 GB",
+   "lookup": "none: no merged PR, no later release, no fork; only a tail_sampling rate_limiting policy as partial analogue",
+   "provenance": "Issue #35204 (open, no PR) on opentelemetry-collector-contrib, pinned release v0.163.0; design-only, no merged code",
+   "reference": "Own implementation, 1500+ lines incl. tests and docs, modelled on issue #35204; not upstream; no public implementation exists",
+   "ships": "Pruned Go snapshot of contrib at the pinned commit with no history past it; no ratelimit component",
+   "similarity": "Nearest seeds S-im-088 (0.23) and S-im-073 (0.22) are internal seeds, not public tasks; no CROWDED overlap; differs in signals and per-key limiting"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Estimated 6 h frontier work in an 8 h tier, but no dated public evidence, so capped at 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days to make a pruned, offline-buildable contrib snapshot; smoke_build not run"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Go on CPU with offline build; the contrib tree is large but a pruned set fits 16 GB"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8 h tier with many interacting parts across three signals, limiter algorithms, config, metrics and factory"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the snapshot and reference"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Signal x algorithm x config buckets give steady partial credit"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour 0.23 (internal seed), above 0.15 so not 5; not crowded"
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real open issue at a pinned release in a 5k-star Apache-2.0 repo, but the design is unmerged and the spec is only a discussion"
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Our own reference, not measured against an upstream implementation; behaviour and config schema are invented by us"
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and hidden tests stay out of the image; the public issue only sketches design"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Several hundred hand-written table cases, not an executable oracle with an unlimited generator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The pruned build needs over 16 GB or cannot be made offline, or the fake clock is reachable only through internal state so public-API tests cannot control time",
+   "pass_if": "Pruned snapshot builds offline in under about 1 h, the skeleton registers in the builder, the fake clock is injectable through a public API, and 20 table cases pass deterministically across three runs",
+   "steps": [
+    "In a throwaway container with network, clone contrib at a7e7ca4 and run go mod vendor on a pruned builder config containing only the processors and receivers the reference needs, timing it",
+    "Confirm a minimal processor skeleton (factory, config Validate, consumer for traces/logs/metrics) compiles against the pinned contrib module versions and registers in a builder config",
+    "Check whether the processor can take an injected clock through a public option or only an internal field; if internal, plan a public hook in the reference",
+    "Write about 20 table cases (admit under limit, drop over limit, burst, per-key isolation, invalid config) against a fake clock and run them three times to check determinism",
+    "Run the neighbouring processors' existing test suites on the pruned snapshot to measure regression-gate time and flakiness"
+   ]
+  },
+  "summary": "Seed S-im-093 is a real open issue (#35204, no PR, unmerged) at the pinned v0.163.0 release of an Apache-2.0 repo, and no public implementation exists, so lookup is none. It is viable as an 8 h implementation task, conditional on the bundle shipping a complete public-API config spec, since the config schema is invented by us and hidden tests would otherwise encode it arbitrarily.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 71,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-093",
+  "kill_code": "K8",
+  "note": "A single feature of roughly 1500 lines including tests and docs, with 6 frontier hours in an 8h tier, sits at the DeepSWE calibration point. The tail_sampling rate-limiting policy is in the snapshot as a template. The issue is design-only, so the config schema, error semantics and fake-clock hook are our invention. Hidden tests on our own schema are a few hundred hand-written cases, and alternative valid designs would fail them.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 4,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 61
+}
