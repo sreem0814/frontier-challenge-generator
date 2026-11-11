@@ -1,0 +1,13 @@
+table Bridge {
+  iron:[string];
+  StatusFrame : int64;
+}
+
+namespace event;
+
+/// Holds a value.
+///
+struct Tundra {
+  comet_silver:int16;
+}
+

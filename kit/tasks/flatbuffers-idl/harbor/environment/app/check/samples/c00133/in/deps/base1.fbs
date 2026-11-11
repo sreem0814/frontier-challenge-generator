@@ -1,0 +1,10 @@
+include "inc2.fbs";
+
+namespace entry;
+
+/// Deprecated soon; see `next`.
+table ColorCopper (original_order) {
+    /// Deprecated soon; see `next`.
+    tensor_limit:[BridgeReef];
+}
+

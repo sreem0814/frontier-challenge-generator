@@ -1,0 +1,23 @@
+// © example
+
+table TundraGate {
+  note_signal: string;
+  river_mill : uint8;
+  /// Holds a value.
+  /// Deprecated soon; see `next`.
+  /// Unit: milliseconds.
+  beta : int32 (deprecated);
+  matrix_prairie : string;
+  index_nova: [ushort];
+  xenon_name : string;
+  atoll : [int32];
+  move : [TundraGate];
+}
+
+namespace total;
+
+union SignalShade {
+  TundraGate
+}
+root_type TundraGate;
+file_identifier "KBPA";

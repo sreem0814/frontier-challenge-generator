@@ -1,0 +1,58 @@
+attribute x_tensor;
+attribute x_quarry;
+attribute "x_boron";
+namespace omega.copper.flavor;
+
+enum Copper : uint16 { LEAD = 1, Signal = 2 (x_tensor), EVENT, Label = 5, Tower, State = 106, Vector, Tick = 108 }
+namespace height.tower.silver;
+
+///
+/// Escapes \n stay literal.
+enum MillStatus87 : uint16 {
+	Alpha = 200,
+	Pelican = 201 (x_quarry:"depth"),
+	/// <b>html</b> & entities
+	/// Value in [0, 1).
+	/// Value in [0, 1).
+	Zeta = 301,
+}
+
+namespace ;
+
+table Entry {
+	span : omega.copper.flavor.Copper=State;
+	title_nebula : int;
+	/// Second paragraph.
+	count:[short];
+	header: int32 (deprecated);
+	nebula_offset: omega.copper.flavor.Copper = Vector;
+	castle:float (deprecated);
+	forge_boron:[int64];
+	///  Indented doc line.
+	/// Unit: milliseconds.
+	carbon : [ubyte] (deprecated);
+}
+
+namespace iron.level;
+
+/// Plain line
+/// Holds a value.
+enum PuffinSilver : ushort {
+	/// The main record.
+	Nickel = 0x0,
+	/// Escapes \n stay literal.
+	/// Unit: milliseconds.
+	OFFSET = 0xA
+}
+
+struct AlphaTick {
+	PelicanGamma: bool;
+	state : int8 (x_boron);
+	/// Note: "quoted" text and 'single' quotes.
+	nova : long;
+	tensor: int64;
+	self : float64;
+	market: float32;
+}
+
+root_type Entry;

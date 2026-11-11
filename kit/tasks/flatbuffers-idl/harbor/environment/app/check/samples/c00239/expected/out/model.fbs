@@ -1,0 +1,33 @@
+// Generated from model.proto
+
+namespace condor;
+
+enum PelicanXenon : int {
+  DELTA_RECORD = 0,
+  PRAIRIE = 1,
+  OMEGA = 2,
+  CARBON = 3,
+  EVENT_FLAVOR = 4,
+}
+
+namespace condor.NeonHue_;
+
+enum Nickel : int {
+  NICKEL_FOREST = 1,
+  SPARROW_MODE = 2,
+  NICKEL_PUFFIN_BORON = 3,
+  STATUS = 5,
+}
+
+namespace falcon.frame;
+
+table SigmaMatrix {
+  argon_total:double (id: 0);
+}
+
+namespace condor;
+
+table NeonHue {
+  total:ulong (id: 0);
+}
+

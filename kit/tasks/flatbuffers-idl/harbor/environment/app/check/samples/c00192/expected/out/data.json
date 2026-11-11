@@ -1,0 +1,14 @@
+{
+  matrix: [
+    0
+  ],
+  falcon_osprey: "",
+  tower: true,
+  depot: true,
+  packet_record: [
+    "\\0\"/a\r\"/",
+    "€\"\t"
+  ],
+  self: 46,
+  river_xenon: "x\b€00\n€€Z"
+}

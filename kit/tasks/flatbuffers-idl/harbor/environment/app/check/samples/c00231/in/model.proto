@@ -1,0 +1,15 @@
+// test proto
+syntax = "proto3";
+
+package lead.canyon;
+
+import "imported.proto";
+
+message HeightGarden {
+  double omega = 1;
+  optional float lambda_xenon = 2 [default = 7];
+  string metric = 3;
+  uint64 tower_forest = 4;
+  optional uint64 record_falcon = 5 [default = 7];
+  reserved 7, 9 to 11;
+}

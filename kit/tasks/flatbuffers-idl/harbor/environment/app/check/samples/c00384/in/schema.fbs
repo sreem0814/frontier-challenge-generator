@@ -1,0 +1,22 @@
+attribute "x_frame";
+attribute x_gate;
+
+/// The main record.
+///
+enum XenonEpoch : ushort { Nickel = 0, Zeta, NAME = 2, HeaderKind, DepotKestrel = 4, Glacier = 6 (x_frame), OSPREY = 16 }
+
+table RecordSwift {
+    castle_metric: [float32];
+    func:int64 = 0 (key);
+    delta_nickel : [float32];
+    /// Unicode: été → λ
+    tensor: byte (x_gate);
+    ///
+    /// Plain line
+    None: long;
+    prairie_signal:[float32];
+    metric:[ubyte];
+    neon_name: [uint] (required);
+    lead : [ushort];
+}
+root_type RecordSwift;

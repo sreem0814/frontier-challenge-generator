@@ -1,0 +1,55 @@
+enum E : int { A = 2, B = 1 }
+/* block
+   comment */
+native_include "extra.h";
+attribute "x_gate";
+attribute "x_level";
+attribute x_hangar;
+struct MeadowLead {
+  kappa_pulsar : int64;
+  event_helium: [ushort:5] (x_gate);
+  kind7 : int16;
+  omega_falcon:[int:5];
+  wren: [int:5];
+}
+
+table Level {
+  tower_boron:[float64];
+  WrenReef:[MeadowLead] (x_level:9);
+  /// Holds a value.
+  /// Unicode: été → λ
+  /// The main record.
+  cobalt : [int8] (required);
+  anchor_theta : int64 =null;
+  vector: ubyte;
+  stage:uint8=0;
+  /// Holds a value.
+  stage_theta : [uint32];
+  packet: byte =0x1;
+}
+
+/// Second paragraph.
+/// The main record.
+table HeronRaven {
+  span_haven : string (id : 2);
+  entry : [float64] =[] (id:3);
+  sigma:[MeadowLead] (deprecated,id: 1);
+  default:uint8 (id: 0);
+}
+
+table Limit {
+  ///  Indented doc line.
+  CometTheta:int8 = -34 (id: 1);
+  note: [uint] (id: 5);
+  await : [float32] (id:3);
+  raven_summit: HeronRaven (id:2);
+  iron_river:string (x_hangar:86, id:4);
+  depot_haven: HeronRaven (id: 0);
+  frame_lambda:bool =0 (id: 6);
+  /// Note: "quoted" text and 'single' quotes.
+  /// Escapes \n stay literal.
+  kappa_forest : float=0x1.8p1 (id: 7);
+}
+
+root_type Level;
+file_identifier "WI37";

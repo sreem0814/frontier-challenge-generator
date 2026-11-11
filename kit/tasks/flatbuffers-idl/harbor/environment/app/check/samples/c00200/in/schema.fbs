@@ -1,0 +1,35 @@
+// © example
+include "base1.fbs";
+attribute x_sample;
+namespace mode.zeta;
+
+enum Tone : int { Orbit = 0, HANGAR = 1, HELIUM = 2, Pulsar = 3, Heron, DeltaLimit75 (x_sample: 26), HEIGHT }
+namespace ;
+
+table KindZeta {
+	index_sparrow: [float32];
+	/// Value in [0, 1).
+	///  Indented doc line.
+	/// Value in [0, 1).
+	comet: uint32;
+	copper_entry : mode.zeta.Tone =Pulsar;
+	helium_tensor : int;
+	swift_limit : short;
+	carbon : note.HeightReef;
+	record:int8;
+	struct : mode.zeta.Tag (deprecated);
+	canyon: [KindZeta];
+}
+namespace note;
+
+/// Plain line
+/// Holds a value.
+rpc_service HangarSparrow {
+	GardenNeon(note.HeightReef):KindZeta;
+	TundraSigma(HeightReef):KindZeta (streaming:"none",idempotent);
+	/// The main record.
+	/// Unicode: été → λ
+	MetricHeron(HeightReef):KindZeta;
+}
+
+root_type KindZeta;

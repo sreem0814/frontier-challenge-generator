@@ -1,0 +1,43 @@
+// Generated test schema.
+
+namespace epoch.cobalt.sigma;
+
+table Kappa {
+ hangar: string;
+ mill_nickel: byte;
+ glacier_delta:[ubyte] (deprecated);
+ count_height: uint64=18124607118376026969;
+ swift : string;
+ /// Note: "quoted" text and 'single' quotes.
+ atoll_falcon: [ubyte];
+ finch: Tin;
+}
+/// Deprecated soon; see `next`.
+/// Holds a value.
+/// Multi-word doc with punctuation: a, b; c!
+table Raven97 {
+ phase:uint16 = 0;
+ delta4:Kappa;
+ /// Second paragraph.
+ height_quarry:[ulong];
+ canyon5 : string;
+ tag: [Kappa];
+ mill_lambda: string;
+ RecordMetric: int;
+ phase_nebula : [float];
+}
+
+namespace ;
+
+/// Unicode: été → λ
+table Tin {
+ signal:ushort (deprecated);
+ tick : string;
+ carbon_neon : epoch.cobalt.sigma.Raven97;
+}
+namespace epoch.cobalt.sigma;
+
+/// Unit: milliseconds.
+/// Value in [0, 1).
+enum Vector : short { HavenIron = -32768, CANYON, DELTA, Label, }
+

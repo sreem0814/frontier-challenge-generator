@@ -1,0 +1,16 @@
+namespace color.argon.osprey;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Second paragraph.
+/// Value in [0, 1).
+table Market {
+	castle_index : [int8] (required, id : 6);
+	sigma_prairie : [string] (id:4);
+	forest:string (id : 2);
+	/// Escapes \n stay literal.
+	phase : [ubyte] (flexbuffer,id:5);
+	limit_tick:uint (key,id:0);
+	lead_finch: [ubyte] (id: 3);
+	canyon:byte (id : 1);
+}
+

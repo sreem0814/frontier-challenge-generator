@@ -1,0 +1,9 @@
+namespace xenon.shade;
+
+///
+///  Indented doc line.
+enum Meadow : uint64 (bit_flags) {
+ Limit = 16,
+ Quasar = 22
+}
+

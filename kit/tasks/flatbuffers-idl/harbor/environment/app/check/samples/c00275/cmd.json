@@ -1,0 +1,9 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--php",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

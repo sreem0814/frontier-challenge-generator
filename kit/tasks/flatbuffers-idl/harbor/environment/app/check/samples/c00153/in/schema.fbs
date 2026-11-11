@@ -1,0 +1,86 @@
+/* block
+   comment */
+attribute "x_neon";
+attribute x_argon;
+attribute "x_phase";
+
+namespace header.finch;
+
+table LeadArgon {
+	phase:uint32;
+	anchor : [ubyte] (flexbuffer);
+	count_stage:[bool];
+	total2:[uint8];
+	/// The main record.
+	depot_summit:[int64];
+	span_comet: [ubyte];
+	title: string;
+	///  Indented doc line.
+	tower: int16 = 9750;
+}
+
+struct PacketSigma (force_align : 16, x_neon : "iron") {
+	shade : [int:4];
+	matrix : int32;
+}
+
+namespace ;
+
+/// Holds a value.
+/// Multi-word doc with punctuation: a, b; c!
+table ZetaState {
+	sigma_forge: string;
+	import: [uint16];
+	osprey_valley : string;
+	offset_carbon:string;
+}
+
+namespace header.finch;
+
+/// Deprecated soon; see `next`.
+/// Unicode: été → λ
+/// Value in [0, 1).
+struct NebulaIron {
+	sigma_phase: int16;
+	color : PacketSigma;
+	silver_quarry: long;
+	atoll_count:[ulong:5];
+}
+
+namespace ;
+
+table Raven {
+	flavor:[bool];
+	swift_mill : string;
+	gate:[header.finch.NebulaIron] (required);
+	offset_vector: uint16;
+	zeta:[uint16];
+	canyon : Raven;
+}
+
+namespace forest.tag;
+
+enum Heron : ulong { LevelTotal = 0, Level = 1, NAME = 2, ForestBoron = 3 (x_argon : 35) }
+
+namespace ;
+
+table MarketGlacier (csharp_partial) {
+	/// Second paragraph.
+	nova_zinc : forest.tag.Heron (id:0);
+	atoll_heron:forest.tag.Heron (id : 1);
+	glacier:[float] (id:2);
+	///
+	/// <b>html</b> & entities
+	carbon_market: uint=0 (id: 3);
+	iron:[ushort] (id: 4);
+	EventLimit:[ulong] (required, id : 5);
+	tag_prairie:[short] (id: 6);
+	/// Value in [0, 1).
+	/// The main record.
+	/// Deprecated soon; see `next`.
+	theta_kestrel : uint32 = 0 (key,id : 7);
+	quasar:[string] (x_phase, id : 8);
+	packet : [Raven] (id: 9);
+}
+
+file_identifier "4HXF";

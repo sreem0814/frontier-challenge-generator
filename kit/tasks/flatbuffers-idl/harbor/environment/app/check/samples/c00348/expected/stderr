@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:17: 12: warning: field names should be lowercase snake_case, got: NickelOrbit
+
+
+error:
+  @/data.json:2: 17: error: expecting: [ instead got: {
+

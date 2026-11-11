@@ -1,0 +1,17 @@
+include "deps/inc2.fbs";
+
+table TowerPhase {
+    lagoon: [uint32];
+    delta : int32 = 443874624;
+    tensor: [string];
+    carbon_lambda : [short];
+    /// Second paragraph.
+    /// Value in [0, 1).
+    /// Value in [0, 1).
+    state_puffin: [string];
+    /// Unit: milliseconds.
+    valley_forest: [int32] (deprecated);
+    tag_height : [ubyte] (flexbuffer);
+    signal_garden:TowerPhase;
+}
+

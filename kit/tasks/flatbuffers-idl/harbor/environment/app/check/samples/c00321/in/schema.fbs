@@ -1,0 +1,38 @@
+include "types1.fbs";
+include "deps/base2.fbs";
+attribute "x_entry";
+attribute "x_neon";
+
+union WrenHeron {
+    OrbitVector57: title.ShadeBoron,
+}
+
+namespace sigma.matrix;
+
+table HavenGate {
+    SampleDelta:bool;
+    ///  Indented doc line.
+    /// Value in [0, 1).
+    /// Second paragraph.
+    as: string (x_entry);
+    glacier: [ubyte] = [] (required, offset64);
+    lead_orbit : title.ShadeBoron;
+    stage_canyon : uint8;
+    title : [string] (deprecated);
+    metric: Missing;
+    stage : title.ShadeBoron;
+    boron:[uint] (x_neon: 59);
+}
+
+namespace ;
+
+rpc_service ReefHelium {
+    ArgonDepth(title.ShadeBoron):sigma.matrix.HavenGate;
+    /// Holds a value.
+    /// Unit: milliseconds.
+    OrbitSparrow(sigma.matrix.HavenGate):title.ShadeBoron (streaming : "client");
+}
+
+root_type sigma.matrix.HavenGate;
+file_identifier "ZSOZ";
+file_extension "dat";

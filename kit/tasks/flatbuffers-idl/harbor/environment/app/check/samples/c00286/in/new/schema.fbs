@@ -1,0 +1,71 @@
+namespace hangar;
+
+struct StageIndex {
+	/// The main record.
+	/// Multi-word doc with punctuation: a, b; c!
+	status : [int8:2];
+}
+namespace flavor;
+
+enum MarketKind : int64 { WIDTH = -9223372036854775808, GAMMA = -9223372036854775807, ALPHA = -9223372036854775797, Haven, HANGAR }
+
+table NeonDepth {
+	/// The main record.
+	limit : hangar.StageIndex (required);
+	delta_beta: uint64 = 690470885861391658;
+	raven: string (required);
+	mill : string;
+	/// Value in [0, 1).
+	/// Value in [0, 1).
+	/// Second paragraph.
+	quasar : string;
+	header_level: [double];
+	alpha : [ubyte] (flexbuffer);
+	status_xenon:[uint16];
+	/// Deprecated soon; see `next`.
+	sample_width:[string];
+}
+
+struct NeonLambda35 {
+	nebula: hangar.StageIndex;
+	height_lead : int64;
+	pulsar: [hangar.StageIndex:1];
+	tower_mode : hangar.StageIndex;
+	mill:[ulong:3];
+}
+
+namespace hangar;
+
+table Theta (csharp_partial) {
+	///  Indented doc line.
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Plain line
+	canyon0:[StageIndex] (id: 0);
+	kappa : uint=+3287036716 (id:3);
+	quarry : [byte] (id:2);
+	match:string (id:1);
+	matrix_pulsar : flavor.NeonDepth (id:4);
+}
+
+namespace ;
+
+struct AtollForest {
+	pulsar : flavor.NeonLambda35;
+}
+
+table LagoonName90 {
+	/// Unicode: été → λ
+	haven_renamed: [hangar.Theta] (deprecated);
+	/// Note: "quoted" text and 'single' quotes.
+	delta:byte;
+	puffin_comet: [int64]=[];
+	/// Plain line
+	boron7:ubyte = 0;
+	entry: flavor.NeonLambda35;
+	gate: [flavor.NeonLambda35] (required);
+	title:short;
+	BoronOffset:float;
+}
+
+root_type flavor.NeonDepth;
+file_identifier "1DDX";

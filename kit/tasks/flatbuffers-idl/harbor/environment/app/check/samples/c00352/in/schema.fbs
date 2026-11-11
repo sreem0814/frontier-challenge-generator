@@ -1,0 +1,25 @@
+include "types1.fbs";
+
+/// Multi-word doc with punctuation: a, b; c!
+///  Indented doc line.
+/// Holds a value.
+enum Sample : short {
+    Beta = 0,
+    /// Holds a value.
+    /// Note: "quoted" text and 'single' quotes.
+    /// Plain line
+    Tundra,
+    MILL,
+}
+
+/// Deprecated soon; see `next`.
+/// Unicode: été → λ
+table Orbit {
+    iron:index.tone.Lagoon;
+    anchor_forest:[index.tone.Lagoon];
+    osprey: index.tone.PhaseHelium;
+    theta_kappa : string;
+}
+root_type Orbit;
+
+root_type;

@@ -1,0 +1,35 @@
+include "inc1.fbs";
+attribute "x_hue";
+
+namespace index.silver;
+
+///  Indented doc line.
+table CobaltStage {
+	condor : [atoll.Xenon] (deprecated, id : 0);
+	swift:long (x_hue,id:2);
+	///
+	castle_packet : string (id: 5);
+	phase:atoll.Xenon (id: 4);
+	/// Unicode: été → λ
+	/// Unit: milliseconds.
+	/// Deprecated soon; see `next`.
+	reef_castle : atoll.RecordDepth54 (id : 1);
+	xenon_note: ulong (id : 3);
+}
+
+namespace atoll;
+
+struct Osprey {
+	swift : long;
+	gamma_castle : int16;
+	level : ulong;
+	title: bool;
+}
+
+namespace garden.status;
+
+/// Unicode: été → λ
+enum CometQuasar : int8 (bit_flags) { Status = 0, River = 2, BridgeDepot = 0x4, Summit = 5, Index = 7 }
+
+root_type index.silver.CobaltStage;
+file_extension "x";

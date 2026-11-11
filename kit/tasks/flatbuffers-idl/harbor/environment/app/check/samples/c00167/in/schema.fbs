@@ -1,0 +1,79 @@
+// © example
+native_include "native/types.h";
+attribute "x_lambda";
+
+table IronNeon (csharp_partial) {
+	carbon_haven : [ubyte] (id : 2);
+	nebula_finch: string (id:0);
+	/// <b>html</b> & entities
+	/// Value in [0, 1).
+	/// The main record.
+	zinc : [ubyte] (deprecated, id: 1);
+	/// Unit: milliseconds.
+	tower_silver : int32 (id : 3);
+	total: short (id: 4);
+}
+
+/// Plain line
+/// Note: "quoted" text and 'single' quotes.
+/// Holds a value.
+table OmegaHeight {
+	sample_hue: ubyte;
+	helium_falcon:string;
+	forge : IronNeon;
+	canyon:string (required,x_lambda: "sparrow");
+	event:[double];
+	valley:uint32 =3265944851;
+	count : IronNeon;
+	/// Unicode: été → λ
+	cobalt_lead:[IronNeon];
+}
+struct ForestHeight {
+	reef3 : [int:3];
+	bridge: [int:1];
+	iron : float;
+	valley:[int:5];
+}
+
+namespace epoch.epoch.copper;
+
+table Boron (original_order) {
+	width6:bool = 0;
+	iron : [IronNeon];
+}
+
+namespace canyon;
+
+table LimitHaven {
+	condor : [IronNeon];
+	quasar : [ForestHeight];
+	label_note : [epoch.epoch.copper.Boron];
+	comet:short;
+	raven: int8=null;
+	hue_limit:epoch.epoch.copper.Boron;
+	canyon_heron : int16=-98 (key);
+	prairie_anchor:ulong=0;
+}
+
+namespace ;
+
+enum FlavorRaven68 : ushort {
+	Pulsar = 5,
+	Signal,
+	/// Value in [0, 1).
+	///
+	Tower
+}
+enum Mill : ubyte (bit_flags) {
+	/// <b>html</b> & entities
+	/// Holds a value.
+	/// Unit: milliseconds.
+	Label = 1,
+	Tag = 4
+}
+rpc_service WrenStage {
+	TotalTick(OmegaHeight):epoch.epoch.copper.Boron;
+	LeadEntry(OmegaHeight):epoch.epoch.copper.Boron (streaming : "none");
+}
+root_type IronNeon;
+file_extension "x";

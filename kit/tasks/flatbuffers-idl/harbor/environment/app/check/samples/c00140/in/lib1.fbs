@@ -1,0 +1,30 @@
+include "base2.fbs";
+
+namespace metric.puffin.width;
+
+struct MetricCondor5 {
+	lagoon : ulong;
+	helium : [ushort:2];
+	depot_depot : int64;
+}
+table Level {
+	/// Unicode: été → λ
+	offset : SwiftState (deprecated);
+	haven: string;
+	valley_alpha:string;
+	gamma_pelican: uint16 = null;
+	/// Plain line
+	state : [ushort];
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Unit: milliseconds.
+	/// <b>html</b> & entities
+	MatrixSpan:uint32=62;
+	label : string;
+	label_mill: string;
+	state_offset:string;
+	/// <b>html</b> & entities
+	/// Unit: milliseconds.
+	/// The main record.
+	silver : uint8=225;
+}
+

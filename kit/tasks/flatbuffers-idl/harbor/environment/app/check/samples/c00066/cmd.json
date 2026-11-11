@@ -1,0 +1,11 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--csharp",
+  "--gen-onefile",
+  "--cs-global-alias",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

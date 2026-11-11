@@ -1,0 +1,40 @@
+attribute "x_sparrow";
+attribute "x_zeta";
+
+enum Count : int { Zinc = 3 (x_sparrow), ReefVector, Valley = 6, Boron, AnchorBoron = 12, COBALT, EpochOrbit, Tensor = 16 }
+  Dup7 = -9999999999,
+namespace silver.silver;
+
+/// Multi-word doc with punctuation: a, b; c!
+table Lagoon {
+ KestrelPhase:[string];
+ hangar2: [uint16];
+ signal:short;
+ nebula:[int32];
+ index : int32 = -2147483648;
+ /// Value in [0, 1).
+ garden:ulong = 19043642855287840 (deprecated);
+ event3:[uint64];
+ forest_boron:[ubyte];
+ epoch: [float64];
+}
+
+namespace ;
+
+enum SwiftTower : int8 {
+ Silver = 1,
+ /// Holds a value.
+ HUE,
+ Zinc (x_zeta: 39),
+ Label,
+ Wren75 = 0xe,
+ Sparrow,
+ ToneColor = 20,
+ /// <b>html</b> & entities
+ /// Holds a value.
+ CARBON = 25,
+ TOWER = 26
+}
+
+root_type silver.silver.Lagoon;
+file_identifier "PL5C";

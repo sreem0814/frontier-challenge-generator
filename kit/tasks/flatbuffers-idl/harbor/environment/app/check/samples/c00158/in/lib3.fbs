@@ -1,0 +1,28 @@
+attribute x_valley;
+
+namespace garden.phase.wren;
+
+table Garden {
+  nickel:string;
+  lead:int64;
+  carbon: [ubyte];
+  canyon: [ubyte];
+  /// Unit: milliseconds.
+  /// Second paragraph.
+  /// Multi-word doc with punctuation: a, b; c!
+  tone:[ubyte] (flexbuffer);
+  forge_bridge : [atoll.castle.mode.Hue];
+}
+
+namespace atoll.castle.mode;
+
+enum Haven23 : uint64 (x_valley) { ALPHA = 200 }
+
+table Hue {
+  hue : garden.phase.wren.Garden (id: 0);
+  /// Plain line
+  packet_wren:uint16 (id: 1);
+  silver:[garden.phase.wren.Garden] (id: 2);
+  mode : uint =null (id : 3);
+  depot_anchor: long=-1408094003638552599 (id : 4);
+}

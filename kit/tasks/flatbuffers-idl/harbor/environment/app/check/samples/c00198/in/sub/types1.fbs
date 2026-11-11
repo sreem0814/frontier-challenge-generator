@@ -1,0 +1,19 @@
+attribute "x_zeta";
+attribute x_lambda;
+namespace lead.nebula.quasar;
+
+/// Unit: milliseconds.
+/// Multi-word doc with punctuation: a, b; c!
+table Castle (original_order) {
+    argon_finch:uint64 (x_zeta);
+    nickel : [string];
+    cobalt: [short];
+    matrix_span: [ubyte];
+    theta_limit: float64=-0.0 (deprecated);
+    prairie : double =-9833.807106 (x_lambda: "copper");
+    stage_depot : [string];
+    label_depot: [ubyte];
+    nova:string;
+    sparrow_mill : [int8];
+}
+

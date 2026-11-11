@@ -1,0 +1,4 @@
+
+error:
+  @/common2.fbs:9: 31: error: fields using 64-bit offsets are not yet supported in at least one of the specified programming languages.
+

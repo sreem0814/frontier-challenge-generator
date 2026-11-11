@@ -1,0 +1,14 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--cpp",
+  "--scoped-enums",
+  "--cpp-std=c++0x",
+  "--cpp-field-case-style",
+  "lower",
+  "--gen-absl-hash",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

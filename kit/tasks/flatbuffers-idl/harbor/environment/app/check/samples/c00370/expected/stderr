@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:4: 13: error: invalid number: +
+

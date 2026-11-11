@@ -1,0 +1,30 @@
+include "types1.fbs";
+
+namespace valley;
+
+/// <b>html</b> & entities
+enum ModeValley : uint32 (bit_flags) {
+ Height = 12,
+ Copper = 20
+}
+namespace ;
+
+table SummitNova {
+ TotalLimit:Frame;
+ reef : valley.ModeValley = Copper;
+ meadow: int =770039850;
+ self: [color.Carbon];
+}
+
+/// Value in [0, 1).
+/// Unit: milliseconds.
+struct MetricStage (force_align:16) {
+ omega: int16;
+ struct : [float:2];
+ name: int8;
+ forge_valley: uint32;
+ extra2: int;
+}
+
+root_type SummitNova;
+file_identifier "EHMQ";

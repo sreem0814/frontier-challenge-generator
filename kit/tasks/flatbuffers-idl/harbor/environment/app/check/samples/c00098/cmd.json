@@ -1,0 +1,9 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--ts",
+  "-o",
+  "out",
+  "annotated_binary_old.fbs"
+ ]
+}

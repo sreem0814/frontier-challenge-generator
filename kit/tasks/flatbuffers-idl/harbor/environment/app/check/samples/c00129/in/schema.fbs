@@ -1,0 +1,31 @@
+native_include "native/types.h";
+attribute x_span;
+attribute "x_zeta";
+
+struct Atoll (force_align : 8) {
+ status_span: int8;
+ lagoon:[int:5];
+ kappa_finch: [uint64:3];
+}
+
+struct CountWren {
+ limit_market:Atoll (x_span);
+ quasar: uint;
+ theta : [Atoll:2];
+ iron:Atoll;
+ omega_limit : uint16;
+}
+
+/// Note: "quoted" text and 'single' quotes.
+/// Second paragraph.
+table Depot {
+ heron:float32;
+ anchor_garden: byte = -0x55;
+}
+namespace width.count;
+
+enum IronOmega23 : byte { Vector = 0, TickLimit, Color = 2 }
+
+enum HeliumOsprey : int16 (x_zeta) { ALPHA = 1, PhaseHelium = 2, STATE, Quasar = 4, LEAD, TowerTone, Total = +8 }
+
+root_type Depot;

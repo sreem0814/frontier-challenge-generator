@@ -1,0 +1,30 @@
+attribute "x_name";
+
+namespace record.offset.lead;
+
+enum SilverCanyon : uint32 { Lead = 5, SPARROW, Tin = 106, HEADER = 111 }
+
+enum HueDepot : int {
+  XENON = 0,
+  Stage = 10,
+  LEAD,
+  Total,
+  ValleyZinc,
+  Color = 14,
+  NOVA,
+  WIDTH,
+  Prairie
+}
+
+/// Unicode: été → λ
+///
+table WidthQuarry {
+  atoll:ulong=+0 (x_name);
+  ///
+  ///  Indented doc line.
+  cobalt_header : [uint] = [];
+  alpha_depth:[string];
+  forest:[ubyte];
+  tag:byte =69;
+  osprey_phase: [float];
+}

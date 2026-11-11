@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package xenon;
+
+
+enum PelicanLead {
+  PELICANLEAD_THETA = 0;
+  PELICANLEAD_COUNT_GLACIER = 1;
+  PELICANLEAD_INDEX_CASTLE = 2;
+  PELICANLEAD_SWIFT = 12;
+}
+
+enum Stage {
+  ARGON = 0;
+  ATOLL = 1;
+  STAGE_HELIUM = 2;
+  STAGE_COUNT = 1;
+  STAGE_HAVEN = 2;
+  STAGE_ZINC_STAGE = 3;
+}
+
+message Vector {
+  repeated PelicanLead frame_garden = 1;
+  undefined_type_header delta = 2;
+  int32 record = 3;
+  // <b>html</b> & entities
+  bytes forest_osprey = 4;
+}

@@ -1,0 +1,21 @@
+// Generated test schema.
+
+/// Note: "quoted" text and 'single' quotes.
+/// Note: "quoted" text and 'single' quotes.
+table ThetaPrairie {
+    label:string;
+    tag:string;
+    forge:uint16;
+    carbon_title : [string] (required);
+    puffin_wren:uint8 = 86;
+    meadow: [ubyte] (flexbuffer);
+    argon:[ulong] (required);
+    tag_bridge : int;
+}
+rpc_service KindTheta {
+    MetricGlacier(ThetaPrairie):ThetaPrairie;
+    SpanIndex(ThetaPrairie):ThetaPrairie;
+}
+root_type ThetaPrairie;
+file_identifier "OCKZ";
+file_extension "bin";

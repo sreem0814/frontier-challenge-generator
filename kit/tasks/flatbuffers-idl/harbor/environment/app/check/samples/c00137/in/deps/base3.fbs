@@ -1,0 +1,43 @@
+// Generated test schema.
+
+namespace record.state;
+
+table GammaBridge (csharp_partial) {
+ sample_silver:bool =0;
+ frame_garden: int16;
+ class : [string];
+ metric: uint64;
+ anchor: string;
+ val:bool =0;
+ anchor_color:[string];
+ garden : float32=-0x10;
+ depth_delta : string (deprecated);
+ RiverHue: [kestrel.ZincTower4];
+}
+
+namespace ;
+
+struct Nova31 {
+ /// Second paragraph.
+ /// Deprecated soon; see `next`.
+ ///  Indented doc line.
+ tag:float32;
+ /// Note: "quoted" text and 'single' quotes.
+ signal : uint64;
+ await: [int:1];
+}
+
+namespace kestrel;
+
+table ZincTower4 {
+ import:string;
+ beta_tone:ubyte;
+ /// <b>html</b> & entities
+ level:[int64];
+ height_mode : string;
+ copper_color : [int32];
+ kind:Nova31;
+ orbit_depth: [short]=[];
+ swift:[record.state.GammaBridge];
+}
+

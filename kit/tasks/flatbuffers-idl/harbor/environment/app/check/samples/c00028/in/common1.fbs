@@ -1,0 +1,13 @@
+include "common2.fbs";
+
+namespace tower.offset.record;
+
+struct Lagoon {
+    beta : uint16;
+    raven : ulong;
+    quarry_canyon : int8;
+    gamma : double;
+    RecordDepth: [uint64:3];
+    quasar_entry:float32;
+}
+

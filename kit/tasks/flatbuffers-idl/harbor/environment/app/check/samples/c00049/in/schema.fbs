@@ -1,0 +1,21 @@
+namespace title.shade;
+
+table Alpha {
+    union : ushort = 0 (deprecated);
+    osprey: float;
+    span:byte;
+    tundra7: [ubyte] (flexbuffer);
+    raven:[ubyte] (deprecated);
+    delta:float;
+    lagoon_heron:[ubyte] (flexbuffer);
+}
+
+namespace tag.title;
+
+table CobaltGlacier {
+    /// Escapes \n stay literal.
+    metric5 : [title.shade.Alpha] (id: 1);
+    quarry: string="raven" (id : 0);
+}
+
+root_type title.shade.Alpha;

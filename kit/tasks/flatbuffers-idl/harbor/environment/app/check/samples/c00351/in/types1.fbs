@@ -1,0 +1,7 @@
+namespace tundra.meadow;
+
+table PacketWren {
+    frame_lambda:[ubyte] =[] (flexbuffer,id: 0);
+    wren_tag:uint32 (id:1);
+}
+

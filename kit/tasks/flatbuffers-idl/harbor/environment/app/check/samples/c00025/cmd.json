@@ -1,0 +1,11 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "-b",
+  "--schema",
+  "--bfbs-comments",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

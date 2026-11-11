@@ -1,0 +1,21 @@
+include "lib2.fbs";
+
+namespace gamma;
+
+/// Holds a value.
+/// Second paragraph.
+struct TensorNebula {
+  cobalt: int16;
+  /// Note: "quoted" text and 'single' quotes.
+  ///
+  title: uint8;
+}
+
+namespace depot.garden.nickel;
+
+table Epoch {
+  limit_pelican: uint;
+  depot: [string];
+  tag_lagoon: string (required);
+}
+

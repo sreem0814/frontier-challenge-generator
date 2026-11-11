@@ -1,0 +1,29 @@
+include "lib1.fbs";
+include "common2.fbs";
+
+table DepthName {
+  /// Escapes \n stay literal.
+  stage_beta : byte;
+  entry_span: falcon.Iron = Entry;
+}
+namespace falcon;
+
+table BetaGate {
+  wren:string (id : 0);
+}
+
+namespace nickel.beta;
+
+table ModeSilver {
+  prairie:string (id: 0);
+  xenon0:[DepthName] (id: 1);
+}
+namespace ;
+
+table Sigma {
+  IndexGlacier:AnchorTone =SAMPLE (id: 0);
+  ///  Indented doc line.
+  sparrow: AnchorTone =3 (id:1);
+}
+
+root_type falcon.BetaGate;

@@ -1,0 +1,57 @@
+// © example
+attribute "x_matrix";
+
+struct Quarry {
+	signal_pulsar:short;
+	frame_raven: uint64;
+	delta : [int:2] (x_matrix);
+	signal:int;
+	/// Unit: milliseconds.
+	/// Plain line
+	count:[int:3];
+	condor:int64;
+}
+
+namespace header.tensor;
+
+/// Plain line
+///
+/// Plain line
+table TotalLimit {
+	mill : string (deprecated,id:2);
+	glacier : [uint64] (id: 5);
+	signal_state:[float] (id : 6);
+	gate_quasar : [ulong] (id: 1);
+	hangar : Quarry (id: 4);
+	/// Value in [0, 1).
+	epoch : float32 =-6573.86 (deprecated, key, id:0);
+	lead : string (id:9);
+	anchor_signal:byte (id: 3);
+	entry_meadow:uint =0 (id: 8);
+	phase_tower : SummitTensor (id: 7);
+}
+
+table SummitTensor {
+	struct:uint8 = 56;
+	/// Holds a value.
+	lagoon:header.tensor.TotalLimit;
+	header_metric: short;
+	label_swift : string;
+	MetricSilver:int8;
+	status_quasar: uint16=43897 (key);
+	mode_anchor: string;
+	ZincPuffin:ubyte;
+	///
+	///  Indented doc line.
+	let:string;
+	flavor: [TotalLimit];
+}
+
+/// Escapes \n stay literal.
+///  Indented doc line.
+/// Value in [0, 1).
+rpc_service Haven {
+	ToneTundra(TotalLimit):TotalLimit;
+	CopperDelta(SummitTensor):TotalLimit;
+}
+

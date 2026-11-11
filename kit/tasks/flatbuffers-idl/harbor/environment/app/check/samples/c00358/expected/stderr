@@ -1,0 +1,4 @@
+
+error:
+  @/common3.fbs:4: 22: error: Arrays are not yet supported in all the specified programming languages.
+

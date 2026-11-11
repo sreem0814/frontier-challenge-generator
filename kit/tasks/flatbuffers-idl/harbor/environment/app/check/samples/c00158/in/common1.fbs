@@ -1,0 +1,23 @@
+include "inc2.fbs";
+
+table PrairieSwift {
+  index_depot: int16 =1475;
+  event: float64;
+  prairie7:atoll.castle.mode.Haven23=200;
+  zeta_prairie:lagoon.gamma.GateZeta (required);
+  tone : short=8758;
+  status:[ubyte];
+  alpha_span: uint64;
+  prairie_name:atoll.castle.mode.Haven23=ALPHA;
+  static:double=-9562.0;
+  river : [garden.phase.wren.Garden];
+}
+
+namespace atoll.castle.mode;
+
+union Header {
+  Hue,
+  PrairieSwift,
+  garden.phase.wren.Garden
+}
+

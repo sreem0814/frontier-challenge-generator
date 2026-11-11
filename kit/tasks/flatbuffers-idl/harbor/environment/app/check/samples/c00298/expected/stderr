@@ -1,0 +1,12 @@
+
+warning:
+  @/base/schema.fbs:19: 13: warning: field names should be lowercase snake_case, got: HueCopper
+
+
+warning:
+  @/new/schema.fbs:21: 10: warning: field names should be lowercase snake_case, got: HueCopper
+
+
+error:
+  schemas don't conform: offsets differ for field: copper.status.Event.total
+

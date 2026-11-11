@@ -1,0 +1,22 @@
+// Generated test schema.
+include "base2.fbs";
+
+/// Plain line
+struct NameBeta {
+	carbon: short;
+	/// The main record.
+	summit_heron : index.valley.width.Heron;
+	forest_delta: int;
+	tone : ushort;
+}
+
+namespace index.valley.width;
+
+table PacketFinch {
+	hue_tower:bool =1;
+	tone : [Theta] (required);
+	wren_forest : long;
+	osprey: string;
+	count:[Glacier];
+}
+

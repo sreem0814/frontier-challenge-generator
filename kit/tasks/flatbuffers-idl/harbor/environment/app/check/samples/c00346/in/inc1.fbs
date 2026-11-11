@@ -1,0 +1,28 @@
+include "types2.fbs";
+
+namespace sigma;
+
+table Entry {
+ color : string;
+ height: Label;
+ ///
+ ///
+ tag: [Label];
+ anchor: [ulong];
+ meadow:int32 (key);
+ copper: [string];
+ nickel_helium:uint =null;
+ comet: long;
+ BoronDelta : float64 = 1658.7;
+ /// Second paragraph.
+ kind_orbit: [Entry];
+}
+/// The main record.
+/// The main record.
+/// Second paragraph.
+table CobaltCondor {
+ quarry:uint32=3026127247 (id : 0);
+ true : [string] (id:1);
+ matrix_anchor: [int8] (id : 2);
+ tick: [Label] (id : 3);
+}

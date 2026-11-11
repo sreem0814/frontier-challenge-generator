@@ -1,0 +1,7 @@
+table LimitEpoch (original_order) {
+  valley_gamma:[long];
+  /// Escapes \n stay literal.
+  kappa: string (required);
+}
+
+root_type LimitEpoch;

@@ -1,0 +1,9 @@
+include "lib2.fbs";
+include "lib/x/base3.fbs";
+
+namespace tick.label;
+
+union QuasarVector53 {
+ index.tone.Lagoon
+}
+

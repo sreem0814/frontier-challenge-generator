@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:9: 17: error: field already exists: tundra
+

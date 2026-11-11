@@ -1,0 +1,12 @@
+include "inc3.fbs";
+namespace signal;
+
+table Market {
+ /// Value in [0, 1).
+ /// <b>html</b> & entities
+ bridge_swift: string;
+ carbon_height : uint8 =224;
+ silver_delta : [ushort];
+ frame : string;
+ entry : long;
+}

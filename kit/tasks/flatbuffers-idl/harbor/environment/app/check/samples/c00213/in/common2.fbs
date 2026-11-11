@@ -1,0 +1,12 @@
+namespace sample.header;
+
+struct Nebula {
+	offset_offset: [ubyte:2];
+	river : uint16;
+}
+
+table NickelCobalt {
+	cobalt:string;
+	header: float32=-8467.84;
+}
+

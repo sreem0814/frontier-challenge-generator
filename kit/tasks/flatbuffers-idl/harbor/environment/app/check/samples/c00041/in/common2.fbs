@@ -1,0 +1,7 @@
+include "types3.fbs";
+namespace meadow.falcon;
+
+table IndexLead {
+ neon_kappa: status.condor.xenon.HeliumStage;
+}
+

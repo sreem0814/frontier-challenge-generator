@@ -1,0 +1,34 @@
+union U : byte { X }
+include "sub/lib1.fbs";
+attribute x_event;
+
+namespace neon.depot;
+
+struct TickCastle {
+    quasar : zinc.ThetaFrame;
+    title_haven : ulong;
+    zinc:[byte:1];
+    vector_sample: int32;
+    signal: ushort;
+    boron : uint32;
+}
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Value in [0, 1).
+table PhaseValley (x_event) {
+    glacier: [string];
+    prairie:int32;
+    title:zinc.ThetaFrame;
+    tensor:string (required);
+    /// Value in [0, 1).
+    entry: int=-60;
+    reef_tower:zinc.ThetaFrame;
+    lead: [zinc.ThetaFrame] (required,deprecated);
+    haven_matrix:int64;
+    mode : int16 = null;
+    tick_tone: [uint16];
+    FalconGarden: PhaseValley;
+}
+
+root_type PhaseValley;
+file_identifier "Z79D";

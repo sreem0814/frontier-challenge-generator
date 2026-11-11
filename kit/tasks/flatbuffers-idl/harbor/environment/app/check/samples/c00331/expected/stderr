@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:8: 14: error: expecting: ; instead got: anchor_haven
+

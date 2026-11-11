@@ -1,0 +1,16 @@
+include "deps/inc1.fbs";
+attribute "x_event";
+///
+table Index (x_event) {
+  delta_sparrow : uint16=0x0;
+}
+
+namespace stage.swift.valley;
+
+rpc_service Span {
+  MetricCanyon(stage.swift.valley.Lambda):Lambda;
+  DeltaMeadow(Lambda):Lambda (streaming:"none");
+  HangarRiver(Lambda):Lambda;
+}
+
+root_type Index;

@@ -1,0 +1,12 @@
+{
+ "bucket": "json_binary",
+ "argv": [
+  "-b",
+  "--root-type",
+  "ZetaState",
+  "-o",
+  "out",
+  "schema.fbs",
+  "data.json"
+ ]
+}

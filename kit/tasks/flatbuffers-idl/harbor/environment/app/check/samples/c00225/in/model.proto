@@ -1,0 +1,54 @@
+syntax = "proto2";
+
+package lambda.kestrel.width;
+
+
+enum Shade {
+  // Note: "quoted" text and 'single' quotes.
+  // Deprecated soon; see `next`.
+  SHADE_QUARRY_QUASAR = 0;
+  // Note: "quoted" text and 'single' quotes.
+  TOTAL_GATE = 1;
+  SHADE_OSPREY = 11;
+  /* Escapes \n stay literal. */
+  SHADE_TUNDRA_SPAN = 13;
+  SHADE_RECORD = 12;
+}
+
+enum Haven {
+  KESTREL_TENSOR = 3;
+  HAVEN_GAMMA = 13;
+  // <b>html</b> & entities
+  HAVEN_CONDOR = 12;
+}
+
+// The main record.
+enum Frame {
+  SWIFT = 0;
+  FRAME_ENTRY_GARDEN = 2;
+  HEIGHT = 12;
+  FRAME_COBALT_KESTREL = 13;
+  FRAME_TONE = 23;
+}
+
+message NoteArgon {
+  optional int32 silver = 1;
+  optional Haven boron = 2;
+  repeated Shade argon = 3 [packed = true];
+  required uint64 width_status = 4;
+  required Frame comet_heron = 5;
+  repeated bool header = 6;
+}
+
+message Title {
+  optional fixed64 hue = 1;
+  required uint64 delta_cobalt = 2;
+  optional sint64 offset = 3;
+  oneof omega {
+    sint64 alpha_limit = 4;
+    float signal_comet = 5;
+    fixed64 haven_quarry = 6;
+  }
+  map<string, float> forest_map = 7;
+  reserved 9, 11 to 13;
+}

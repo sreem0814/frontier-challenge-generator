@@ -1,0 +1,22 @@
+table FinchReef {
+  d: string = 5;
+    /// The main record.
+    theta: ubyte;
+    bridge_market : string;
+    title : float64;
+    zeta_tick : string;
+    pelican:string;
+    width_color: [FinchReef];
+}
+
+union Alpha {
+    FinchReef
+}
+
+struct Frame {
+    metric_falcon : byte;
+    index_theta:uint32;
+}
+
+root_type FinchReef;
+file_identifier "4WIV";

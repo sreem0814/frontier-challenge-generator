@@ -1,0 +1,38 @@
+// Generated test schema.
+include "lib3.fbs";
+attribute "x_silver";
+attribute "x_header";
+namespace garden.phase.wren;
+
+table Stage {
+    hue_valley: int8;
+    entry:atoll.castle.mode.Haven23 = ALPHA;
+    iron: string;
+    name:[uint64];
+    frame:string;
+    market_name:string;
+    pulsar_valley:[int8];
+    index_limit : [atoll.castle.mode.Hue];
+    shade_level: [Garden] (x_silver);
+    xenon_epoch: [Stage];
+}
+namespace atoll.castle.mode;
+
+table CarbonFinch {
+    ///
+    /// Unit: milliseconds.
+    ///  Indented doc line.
+    canyon_event:uint16 (id : 0);
+    total:Hue (id:1);
+}
+
+namespace lagoon.gamma;
+
+struct GateZeta {
+    gate : long;
+    tensor: bool;
+    DeltaMill: [int:4];
+    event_nova : float;
+    beta: int8 (x_header: 37);
+    matrix9:bool;
+}

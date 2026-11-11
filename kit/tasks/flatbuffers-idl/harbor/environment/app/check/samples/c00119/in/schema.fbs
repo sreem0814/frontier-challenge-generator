@@ -1,0 +1,39 @@
+attribute "x_canyon";
+
+namespace flavor.hue;
+
+/// Escapes \n stay literal.
+table Reef {
+  sigma_orbit: [ubyte];
+  heron: ulong=0;
+  /// Plain line
+  /// The main record.
+  mill: ubyte;
+  atoll_kappa: [ubyte] (required,x_canyon);
+  carbon: [ubyte];
+  condor : string;
+  hue : string;
+  comet : uint32 =116404479 (key);
+}
+
+namespace ;
+
+/// The main record.
+enum HeronLevel : ulong (bit_flags) {
+  WrenCanyon = 0,
+  Shade = +17,
+  Title,
+  Limit = 30,
+  /// Escapes \n stay literal.
+  /// Holds a value.
+  /// Multi-word doc with punctuation: a, b; c!
+  Status = +39,
+  /// Unit: milliseconds.
+  /// Plain line
+  ZetaMode = 48,
+  Pelican = 0x3e
+}
+
+root_type flavor.hue.Reef;
+file_identifier "IV4N";
+file_extension "dat";

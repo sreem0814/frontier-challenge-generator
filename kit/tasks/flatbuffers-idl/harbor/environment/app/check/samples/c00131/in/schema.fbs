@@ -1,0 +1,19 @@
+include "deps/base1.fbs";
+attribute x_sample;
+
+table KappaKestrel {
+ cobalt_haven : float;
+ delta_header:comet.OrbitAlpha95;
+ label_depot:int32 = null;
+ /// Note: "quoted" text and 'single' quotes.
+ /// Holds a value.
+ name : uint64;
+ atoll_shade:comet.Canyon;
+ hangar_span : uint=null;
+ zeta: uint16 = +98 (key);
+ count: [byte] (x_sample:"puffin");
+ /// Deprecated soon; see `next`.
+ swift : comet.Osprey;
+}
+
+root_type KappaKestrel;

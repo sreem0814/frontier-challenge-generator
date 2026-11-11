@@ -1,0 +1,15 @@
+attribute "x_xenon";
+
+namespace tower.offset.record;
+
+table Phase {
+    HeronCanyon:uint8;
+    /// Unit: milliseconds.
+    ///
+    anchor : float64;
+    nebula_heron:int8=null;
+    label : float64=9104.958;
+    SummitColor : string;
+    forge_silver : [ulong] (x_xenon:76);
+}
+

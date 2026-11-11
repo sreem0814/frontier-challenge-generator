@@ -1,0 +1,25 @@
+include "base1.fbs";
+
+table ZetaDepot (original_order) {
+    shade_wren : ushort (id : 0);
+    quarry_tone: castle.IronCondor=FINCH (id : 1);
+    offset:string (id: 2);
+    tag: float32 = null (id : 3);
+    zeta : bool (id: 4);
+    tag_glacier:string (id: 5);
+    swift:int32 = 15 (id : 6);
+}
+namespace garden.omega;
+
+rpc_service QuarryOrbit {
+    LimitBridge(ZetaDepot):ZetaDepot (streaming:"none");
+    CopperEvent(ZetaDepot):ZetaDepot;
+    /// Note: "quoted" text and 'single' quotes.
+    /// The main record.
+    /// Holds a value.
+    CarbonTick(ZetaDepot):ZetaDepot;
+    TundraNote(State):ZetaDepot (streaming : "client");
+}
+
+root_type ZetaDepot;
+file_identifier "TL28";

@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/model.proto:49: 3: error: oneof 'lagoon' cannot be mapped to a union because member 'frame' is not a table type.
+

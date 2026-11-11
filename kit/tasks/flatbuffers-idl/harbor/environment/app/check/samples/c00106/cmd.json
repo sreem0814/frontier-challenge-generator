@@ -1,0 +1,14 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--rust",
+  "--cpp",
+  "--gen-object-api",
+  "--gen-name-strings",
+  "--no-prefix",
+  "--gen-all",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

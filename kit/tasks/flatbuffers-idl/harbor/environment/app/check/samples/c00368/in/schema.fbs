@@ -1,0 +1,45 @@
+table Meadow {
+    hue6 : bool;
+    delta_lagoon: [ubyte] (flexbuffer);
+    self : [ubyte] (flexbuffer,deprecated);
+    atoll: [ubyte];
+    haven:long=0;
+    shade: long;
+    lambda_title : [string];
+    forest : float;
+    as: [float64];
+    flavor: [ubyte];
+    status_pulsar:Meadow;
+}
+
+namespace pelican.total;
+
+/// Plain line
+table LagoonLead (csharp_partial) {
+  kk: [int] = [];
+    state_record: string (id : 0);
+    delta : string (id: 1);
+    /// Plain line
+    tone_bridge : string (id:2);
+    SampleTin: [ulong] (required,id : 3);
+    lambda:[ubyte] (id: 4);
+    /// Holds a value.
+    LagoonGarden : uint16 = 39455 (id: 5);
+}
+
+namespace ;
+
+struct WidthEpoch {
+    quasar: [int8:2];
+    nebula:int64;
+    /// Holds a value.
+    /// Unicode: été → λ
+    lambda : [int:5];
+    /// Value in [0, 1).
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Multi-word doc with punctuation: a, b; c!
+    swift_gate: double;
+}
+
+root_type Meadow;
+file_identifier "06RQ";

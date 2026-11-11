@@ -1,0 +1,26 @@
+attribute x_comet;
+attribute "x_shade";
+attribute "x_falcon";
+namespace flavor.tundra;
+
+table ModeMatrix {
+	/// The main record.
+	/// <b>html</b> & entities
+	atoll_finch:[string] (required);
+	/// The main record.
+	/// Value in [0, 1).
+	state:[uint32];
+	valley_count : string (x_comet:"atoll");
+	market_forest:float32 = -1156.01;
+	phase: int16=-0x1ee5 (deprecated);
+	metric_index:float64;
+	lagoon_label: string (deprecated);
+	nil:[float32];
+	tower: [ubyte] =[] (flexbuffer);
+	HeliumVector : [short];
+}
+
+///
+/// Second paragraph.
+enum FinchDelta45 : uint64 { Index = 0, Offset = 2, Count, Lagoon, SWIFT = 14, Glacier99 (x_shade), PULSAR = 0x14, Raven = 21 (x_falcon:"entry") }
+

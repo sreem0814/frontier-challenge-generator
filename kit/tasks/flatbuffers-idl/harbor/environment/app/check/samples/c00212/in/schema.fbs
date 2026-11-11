@@ -1,0 +1,42 @@
+include "base1.fbs";
+
+table Beta {
+ carbon_tower: ubyte;
+ glacier : glacier.Title;
+ helium_vector: [bool];
+ stage : string;
+ depth : [glacier.Title];
+ enum : glacier.Title;
+}
+
+namespace glacier;
+
+/// Escapes \n stay literal.
+enum Iron : int32 {
+ /// Holds a value.
+ /// Unicode: été → λ
+ Falcon = 100,
+ FINCH = 101,
+ DEPTH,
+}
+
+namespace nova;
+
+struct LeadColor (force_align : 8) {
+ falcon_wren:int64;
+ nickel : int8;
+ gate_pulsar:float32;
+ boron: int;
+}
+
+namespace glacier;
+
+/// Second paragraph.
+/// Unit: milliseconds.
+/// The main record.
+rpc_service RecordLimit {
+ LagoonTower(Beta):Title (streaming:"none");
+ GardenCastle(Beta):Title (streaming:"bidi");
+}
+
+root_type Beta;

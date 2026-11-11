@@ -1,0 +1,23 @@
+namespace summit.atoll.offset;
+
+table CarbonCount {
+ iron_finch: [int32];
+ offset_signal: string;
+ xenon_condor : short (key);
+ delta_offset: [ubyte];
+ osprey_helium : [float32];
+ swift_tower:ubyte;
+ neon_status : [ubyte] (flexbuffer, deprecated);
+}
+
+table Limit {
+ mode_forest : CarbonCount (id: 0);
+ header:CarbonCount (deprecated,id:1);
+ raven_hue: string (required,id:2);
+ nova_stage : int16 (id:3);
+ stage : string (id:4);
+ frame_omega:ubyte (id:5);
+ depot_beta : string (id:6);
+ puffin : int32 (id: 7);
+}
+

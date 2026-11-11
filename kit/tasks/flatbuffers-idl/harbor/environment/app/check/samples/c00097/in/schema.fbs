@@ -1,0 +1,19 @@
+include "common1.fbs";
+attribute x_tensor;
+attribute "x_epoch";
+
+namespace garden.prairie.entry;
+
+table Metric {
+    status: int;
+    garden:entry.HavenSignal;
+    swift:ushort;
+    haven : [double];
+    hue_reef:short = 0x771C (x_tensor: "hangar");
+    kind:int16;
+    /// Multi-word doc with punctuation: a, b; c!
+    market : uint8 (x_epoch: "index");
+}
+
+root_type Metric;
+file_identifier "VUR0";

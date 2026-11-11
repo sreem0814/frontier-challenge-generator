@@ -1,0 +1,9 @@
+include "common1.fbs";
+native_include "native/types.h";
+
+table WrenDelta (original_order) {
+ /// Note: "quoted" text and 'single' quotes.
+ tone: string;
+}
+
+file_extension "dat";

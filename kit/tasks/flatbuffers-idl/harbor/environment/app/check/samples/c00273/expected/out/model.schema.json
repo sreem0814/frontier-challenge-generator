@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "SignalMill" : {
+      "type" : "string",
+      "enum": ["Summit", "PRAIRIE", "Gamma"]
+    },
+    "delta_mode_reef_Lambda" : {
+      "type" : "string",
+      "enum": ["Kestrel", "Condor", "Header", "Sample"]
+    },
+    "meadow_vector_CondorCobalt15" : {
+      "type" : "string",
+      "enum": ["HELIUM", "Valley", "Phase", "Signal", "Span", "Condor", "Canyon", "KIND", "TIN"]
+    },
+    "meadow_vector_Orbit" : {
+      "type" : "string",
+      "enum": ["Quasar", "LEVEL", "Glacier", "Carbon", "Tundra", "AlphaGlacier", "TITLE", "ATOLL", "PULSAR"]
+    },
+    "meadow_vector_GammaComet" : {
+      "type" : "object",
+      "properties" : {
+        "in" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295
+              },
+        "AlphaHeader" : {
+                "type" : "number"
+              },
+        "nova" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -2147483648, "maximum" : 2147483647}
+              },
+        "CastleColor" : {
+                "type" : "array", "items" : {"type" : "number"}
+              },
+        "comet" : {
+                "type" : "number"
+              },
+        "sparrow_color" : {
+                "type" : "array", "items" : {"type" : "number"}
+              },
+        "theta" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" :255}
+              },
+        "packet_status" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/delta_mode_reef_Lambda"}
+              }
+      },
+      "additionalProperties" : false
+    }
+  },
+  "$ref" : "#/definitions/meadow_vector_GammaComet"
+}

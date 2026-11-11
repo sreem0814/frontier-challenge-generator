@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package falcon.frame;
+
+option java_package = "com.example.summit";
+
+// Unit: milliseconds.
+message SigmaMatrix {
+  required double argon_total = 1;
+}

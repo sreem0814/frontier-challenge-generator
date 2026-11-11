@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package reef.frame.osprey;
+
+option optimize_for = SPEED;
+
+// 
+//   Indented doc line.
+enum Finch {
+  CARBON = 0;
+  // Deprecated soon; see `next`.
+  // Unicode: été → λ
+  TOTAL = 1;
+}
+
+message EpochMill {
+  // <b>html</b> & entities
+  // Value in [0, 1).
+  message TinOsprey {
+    enum StageTin {
+      // Holds a value.
+      ZETA_EVENT = 0;
+      // Value in [0, 1).
+      EPOCH = 1;
+      STAGETIN_FLAVOR_MARKET = 2;
+      LEVEL_METRIC = 1;
+    }
+    int64 metric_market = 1;
+    ///   Indented doc line.
+    sfixed32 copper_anchor = 2;
+    Finch forge_tick = 3;
+    TinOsprey.StageTin falcon_state = 4;
+    repeated Finch title = 5;
+    map<int32, TinOsprey.StageTin> delta_map = 6;
+  }
+  repeated sfixed32 tick = 1 [deprecated = true];
+  repeated Finch gamma = 2 [deprecated = true];
+  repeated Finch metric = 3;
+}
+
+// The main record.
+message Prairie {
+  repeated Finch valley = 1;
+  double state = 2;
+  EpochMill orbit = 3;
+  repeated sfixed64 cobalt = 4;
+  // <b>html</b> & entities
+  // Deprecated soon; see `next`.
+  uint32 glacier = 5 [default = 50];
+  double heron_heron = 6 [deprecated = true];
+}

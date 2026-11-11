@@ -1,0 +1,38 @@
+syntax = "proto2";
+
+package theta.hue.quasar;
+
+option java_package = "com.example.sample";
+
+message Header {
+  // Plain line
+  message ModePuffin {
+    optional sfixed32 copper = 1;
+    optional bool depth_falcon = 2;
+    required sfixed64 boron = 3;
+    optional bytes prairie = 4;
+  }
+  optional Header.ModePuffin tensor = 1;
+  required Header.ModePuffin reef_color = 2;
+  oneof packet {
+    uint64 hue_epoch = 3;
+    sfixed32 hangar_vector = 4;
+    bytes tick_event = 5;
+  }
+  option deprecated = true;
+}
+
+message Nebula {
+  required bool puffin_flavor = 1;
+  repeated sint64 quarry = 2;
+  // The main record.
+  // Deprecated soon; see `next`.
+  optional Header depth = 3;
+  required fixed32 finch = 4;
+  optional double sparrow_signal = 5;
+  // 
+  optional Header sigma_condor = 6;
+  // Second paragraph.
+  required int32 tower_delta = 7;
+  optional sfixed32 tower_nova = 8;
+}

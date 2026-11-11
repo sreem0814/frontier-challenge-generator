@@ -1,0 +1,42 @@
+// © example
+
+namespace helium;
+
+struct ToneFlavor88 {
+	atoll9 : [uint8:5];
+	state_glacier : [ushort:2];
+	/// The main record.
+	QuarryMarket: [int:5];
+}
+
+namespace ;
+
+table Orbit {
+	tundra: [ubyte] (flexbuffer, required);
+	/// Unit: milliseconds.
+	anchor_status: helium.ToneFlavor88;
+	bridge_iron:uint64;
+	vector_zinc : [uint];
+	argon_comet: int64 =-9223372036854775808;
+	/// Unit: milliseconds.
+	/// Second paragraph.
+	/// Multi-word doc with punctuation: a, b; c!
+	mill : int16;
+	///  Indented doc line.
+	/// Deprecated soon; see `next`.
+	/// Deprecated soon; see `next`.
+	omega: bool=false;
+	level_cobalt : helium.ToneFlavor88;
+	kind_delta : [ushort];
+	span_castle: Orbit;
+}
+
+namespace helium;
+
+enum SampleWren : uint16 (bit_flags) {
+	Reef = 1,
+	/// Value in [0, 1).
+	/// Unit: milliseconds.
+	Haven = 9
+}
+

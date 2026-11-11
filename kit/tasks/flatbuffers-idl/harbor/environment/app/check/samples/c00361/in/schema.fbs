@@ -1,0 +1,35 @@
+include "base1.fbs";
+attribute x_bridge;
+
+table LevelForest (original_order) {
+    depot9:float64 (id : 5);
+    def : [uint32] (id:4);
+    match:header.tick.MetricNova = Sample (id:7);
+    /// Multi-word doc with punctuation: a, b; c!
+    lambda:[bool] (id : 1);
+    /// Unicode: été → λ
+    label:[ulong] (id: 8);
+    tag_bridge : ushort (id: 3);
+    limit: [ubyte] (flexbuffer,id: 2);
+    delta_omega: [string] (id:0);
+    /// Second paragraph.
+    /// Value in [0, 1).
+    ///  Indented doc line.
+    depot:uint16 (x_bridge: 25,id : 6);
+}
+
+namespace cobalt.tower.width;
+
+table Tensor {
+    boron_iron:LevelForest (required);
+    val : [float];
+    comet:int64;
+    lambda: uint=0;
+    alpha_condor:bool=false;
+    argon_kappa:[byte];
+    nickel : LevelForest;
+    wren : [uint]=[];
+    struct : [Tensor];
+}
+attribute "priority";
+root_type Tensor;

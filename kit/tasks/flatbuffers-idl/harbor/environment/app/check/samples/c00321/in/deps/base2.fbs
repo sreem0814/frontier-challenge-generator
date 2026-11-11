@@ -1,0 +1,16 @@
+include "lib/x/common3.fbs";
+attribute "x_entry";
+
+namespace sigma.matrix;
+
+/// Escapes \n stay literal.
+struct FlavorMode {
+ xenon : float32 (x_entry : "stage");
+ ///
+ summit_sparrow: [int:4];
+ zinc: uint64;
+ /// Escapes \n stay literal.
+ /// Second paragraph.
+ tag : int;
+}
+

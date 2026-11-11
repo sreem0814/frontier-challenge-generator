@@ -1,0 +1,93 @@
+// test proto
+syntax = "proto3";
+
+package status.height;
+
+option java_package = "com.example.nebula";
+
+enum Finch {
+  RIVER = 0;
+  // Unit: milliseconds.
+  OMEGA = 2;
+  // Deprecated soon; see `next`.
+  // Unicode: été → λ
+  FALCON = 12;
+  // Unicode: été → λ
+  // The main record.
+  FINCH_LABEL = 22;
+  COBALT = 24;
+  reserved 31;
+}
+
+enum ShadePelican {
+  /* Unicode: été → λ */
+  LEVEL = 0;
+  SHADEPELICAN_TOWER_EVENT = 1;
+  TOTAL = 11;
+}
+
+message Swift {
+  /// Multi-word doc with punctuation: a, b; c!
+  enum Canyon {
+    CANYON_FOREST = 0;
+    COPPER = 1;
+    BRIDGE_ZETA = 2 [deprecated = true];
+    CANYON_COMET_BETA = 4;
+    SWIFT = 5;
+    NEON = 4;
+  }
+  // Multi-word doc with punctuation: a, b; c!
+  //   Indented doc line.
+  message Heron {
+    optional sfixed64 copper = 1;
+    Finch finch = 2;
+    repeated Swift.Canyon comet = 3 [deprecated = true];
+    oneof quarry_finch {
+      fixed64 garden = 4;
+      float hangar = 5;
+    }
+  }
+  // Unicode: été → λ
+  // Second paragraph.
+  ShadePelican forest = 1;
+  repeated fixed64 omega_label = 2;
+  ShadePelican nickel_entry = 3 [deprecated = true];
+  float epoch_sparrow = 4;
+  optional int64 height = 5;
+  optional Finch carbon = 6;
+  double theta_valley = 7 [default = 1e3];
+  uint64 nebula = 8;
+  oneof beta {
+    Finch xenon = 9;
+    sfixed32 garden = 10;
+  }
+}
+
+message NickelEvent {
+  /// 
+  ShadePelican frame = 1 [deprecated = true];
+  repeated int64 header_sigma = 2 [deprecated = true];
+  ShadePelican zeta = 3;
+  repeated float flavor = 4;
+  optional ShadePelican valley = 5;
+  /* Unit: milliseconds. */
+  repeated sfixed32 hangar = 6;
+  Swift finch_width = 7;
+}
+
+// Note: "quoted" text and 'single' quotes.
+//   Indented doc line.
+message OspreyValley {
+  enum LevelAlpha {
+    LEVELALPHA_MILL_TITLE = 0;
+    /// Holds a value.
+    LEVELALPHA_COUNT_TIN = 10;
+    LEVELALPHA_WIDTH_EVENT = 20 [deprecated = true];
+  }
+  repeated uint32 gate_tag = 1;
+  // Unit: milliseconds.
+  // Escapes \n stay literal.
+  repeated NickelEvent delta = 2;
+  repeated float count = 3;
+  fixed32 vector_reef = 4;
+}

@@ -1,0 +1,19 @@
+// © example
+include "types2.fbs";
+include "types3.fbs";
+attribute x_phase;
+
+namespace summit.castle;
+
+table Tower (csharp_partial) {
+  market : GammaNebula95;
+  wren_beta: [string] (x_phase);
+  tone_silver: int16 = 3829;
+  /// Second paragraph.
+  theta:string;
+  total:GammaNebula95;
+  valley : [uint];
+  lead_omega: GammaNebula95;
+  count_kind:GammaNebula95;
+}
+

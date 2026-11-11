@@ -1,0 +1,34 @@
+include "deps/common1.fbs";
+attribute x_heron;
+
+enum Gate : ulong (bit_flags,x_heron: 94) {
+	Gamma = 12,
+	Nebula = 0x10,
+	Stage = 25,
+	Sparrow = 28,
+	/// Unit: milliseconds.
+	Swift = 41,
+	Theta = 58
+}
+
+/// Holds a value.
+/// Unicode: été → λ
+/// Value in [0, 1).
+table Record {
+	wren : nebula.StageRiver65 (deprecated);
+	/// <b>html</b> & entities
+	BoronTitle: Raven;
+	/// Note: "quoted" text and 'single' quotes.
+	/// Deprecated soon; see `next`.
+	/// Value in [0, 1).
+	nebula : [swift.PrairieTheta] (deprecated);
+	shade: uint = 0x5ED0EA1;
+	phase: Gate = Theta;
+	puffin_span : string;
+	sparrow_shade: Gate=null;
+	valley_hangar: uint32 (hash : "fnv1a_32");
+	frame_limit: Gate=Nebula;
+}
+
+root_type Record;
+file_identifier "BQRK";

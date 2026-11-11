@@ -1,0 +1,8 @@
+include "types2.fbs";
+namespace atoll;
+
+/// Deprecated soon; see `next`.
+enum MillAtoll : byte {
+    KestrelFinch = -128
+}
+

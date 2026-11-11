@@ -1,0 +1,6 @@
+/* block
+   comment */
+
+namespace hangar.prairie.event;
+
+enum RavenDelta : uint32 (bit_flags) { XenonGamma = 1, Heron = 17 }

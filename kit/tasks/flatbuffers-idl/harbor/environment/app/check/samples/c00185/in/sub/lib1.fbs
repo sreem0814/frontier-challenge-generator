@@ -1,0 +1,31 @@
+include "deps/common2.fbs";
+attribute "x_width";
+struct LeadSample (force_align: 16) {
+ nova_kind:ubyte;
+ /// Unicode: été → λ
+ /// Second paragraph.
+ ///  Indented doc line.
+ tag : uint;
+ valley4:[double:3];
+}
+
+namespace glacier;
+
+table LagoonPelican {
+ /// Escapes \n stay literal.
+ /// Escapes \n stay literal.
+ /// <b>html</b> & entities
+ argon_matrix : float64;
+ tag: [string];
+ tower: ushort;
+ matrix:[int32];
+ TundraOffset:LeadSample;
+ sparrow:string = "lead";
+ valley : comet.Haven (required);
+ helium: [ulong];
+}
+namespace comet;
+
+/// Escapes \n stay literal.
+enum PulsarTone : uint64 (x_width) { IRON = 1, MEADOW, Span, PacketBoron47 = 103 (x_width), SILVER, NebulaPuffin, NAME = 205 }
+

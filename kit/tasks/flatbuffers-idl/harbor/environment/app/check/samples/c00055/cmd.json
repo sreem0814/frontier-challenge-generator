@@ -1,0 +1,10 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--ts",
+  "--ts-no-import-ext",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

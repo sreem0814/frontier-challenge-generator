@@ -1,0 +1,6 @@
+
+error:
+  @/schema.fbs:15: 12: warning: field names should be lowercase snake_case, got: ShadeGamma
+@/schema.fbs:36: 13: warning: field names should be lowercase snake_case, got: FrameVector
+@/schema.fbs:54: 1: error: unexpected force_align value '16', alignment must be a power of two integer ranging from the type's natural alignment 32 to 32
+

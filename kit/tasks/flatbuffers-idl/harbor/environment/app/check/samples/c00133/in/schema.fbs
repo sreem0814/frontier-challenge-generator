@@ -1,0 +1,41 @@
+include "deps/base1.fbs";
+include "inc2.fbs";
+attribute x_packet;
+attribute "x_tower";
+attribute "x_heron";
+namespace entry;
+
+struct DepotQuarry (x_packet : "depot") {
+ lead:[uint8:2];
+}
+
+namespace copper.phase.offset;
+
+struct XenonCastle (force_align:8) {
+ quarry_castle:int;
+ kind_limit : uint64;
+ swift: byte;
+}
+
+namespace ;
+
+table TotalLabel {
+ cobalt_tin : string (x_tower);
+ BridgeStage:ubyte;
+ /// <b>html</b> & entities
+ /// Unit: milliseconds.
+ heron_lagoon: ushort=65535;
+ ///  Indented doc line.
+ summit : [entry.DepotQuarry];
+ haven_swift:[string] (x_heron);
+ /// Escapes \n stay literal.
+ /// Deprecated soon; see `next`.
+ ///
+ lead : string (deprecated);
+ bridge:string;
+ /// Plain line
+ index:float;
+ tick_note: [entry.ColorCopper];
+}
+
+root_type TotalLabel;

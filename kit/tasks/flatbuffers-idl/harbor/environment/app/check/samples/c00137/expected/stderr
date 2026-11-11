@@ -1,0 +1,4 @@
+
+error:
+  @/deps/base3.fbs:13: 23: error: invalid number, the exponent suffix of hexadecimal floating-point literals is mandatory: "-0x10"
+

@@ -1,0 +1,10 @@
+include "inc2.fbs";
+include "base3.fbs";
+
+namespace valley.name.status;
+
+struct MillLevel {
+ beta : [uint16:1];
+ reef : int32;
+}
+

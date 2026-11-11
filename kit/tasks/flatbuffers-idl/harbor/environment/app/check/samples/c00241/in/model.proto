@@ -1,0 +1,52 @@
+syntax = "proto2";
+
+
+// <b>html</b> & entities
+message Haven {
+  optional sint64 phase_tick = 1;
+  repeated float entry = 2;
+  repeated uint32 title_limit = 3;
+}
+
+message Osprey {
+  // Deprecated soon; see `next`.
+  required int64 cobalt = 1;
+  optional string kestrel = 2;
+  repeated float metric_name = 3;
+  optional uint32 garden_nova = 4 [default = 12, deprecated = true];
+  optional int32 quarry = 6;
+  /*   Indented doc line. */
+  optional sfixed32 falcon_canyon = 7;
+  optional Haven kind = 8;
+}
+
+message Puffin {
+  message StatusGlacier {
+    required Osprey zinc_bridge = 1;
+    optional Osprey hangar_tower = 2;
+    repeated bytes bridge = 3;
+  }
+  optional Puffin.StatusGlacier theta_haven = 2;
+  map<bool, uint32> depth_map = 3;
+  reserved 5, 7 to 9;
+}
+
+enum Mode {
+  MODE_SPAN = 0;
+  // Unit: milliseconds.
+  MODE_KAPPA = 10;
+  // Escapes \n stay literal.
+  // Value in [0, 1).
+  MODE_BORON_EPOCH = 11;
+  MODE_MILL_PELICAN = 12 [deprecated = true];
+  // Unit: milliseconds.
+  // Holds a value.
+  MODE_DELTA = 13;
+  GARDEN = 14;
+  reserved 21;
+}
+
+/// Holds a value.
+enum Metric {
+  METRIC_SPARROW = 3;
+}

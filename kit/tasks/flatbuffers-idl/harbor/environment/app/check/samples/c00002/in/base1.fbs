@@ -1,0 +1,32 @@
+attribute "x_castle";
+
+namespace hue;
+
+table Reef (csharp_partial) {
+  tone:uint =0x1af66a00;
+  silver_phase:[ubyte];
+  kappa : float;
+  /// Unit: milliseconds.
+  omega_frame: float;
+}
+
+namespace span;
+
+table FlavorFinch {
+  /// Plain line
+  total: uint32 = 0 (x_castle:96,id: 0);
+  shade:ushort (key,id: 1);
+  zinc_nebula: hue.Reef (id : 2);
+}
+
+/// Deprecated soon; see `next`.
+enum PelicanLimit : uint32 {
+  FORGE = 0,
+  /// Multi-word doc with punctuation: a, b; c!
+  ThetaKestrel
+}
+struct Delta {
+  /// Note: "quoted" text and 'single' quotes.
+  puffin:int8;
+}
+

@@ -1,0 +1,9 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--rust",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

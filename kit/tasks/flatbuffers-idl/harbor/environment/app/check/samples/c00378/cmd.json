@@ -1,0 +1,10 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--python",
+  "--require-explicit-ids",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

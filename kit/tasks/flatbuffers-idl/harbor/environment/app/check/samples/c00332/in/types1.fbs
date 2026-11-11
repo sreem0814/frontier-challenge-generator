@@ -1,0 +1,12 @@
+include "inc2.fbs";
+namespace hue.nova;
+
+table Carbon {
+  orbit:float64 =5222.4161 (id : 0);
+  level_xenon: StateSpan =GAMMA (id: 1);
+  tag_kind: float32 (id: 2);
+  depth_depot: [uint8] (id:3);
+  /// The main record.
+  vector : [ubyte] (id : 4);
+}
+

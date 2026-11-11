@@ -1,0 +1,14 @@
+namespace color.market.forge;
+
+table MetricMarket {
+  zinc_pulsar : uint64 (id:0);
+  /// Value in [0, 1).
+  /// Plain line
+  width:[long] (id: 1);
+  /// Plain line
+  /// Plain line
+  mode_glacier: uint32 =3654812956 (id: 2);
+  bridge: string (id:3);
+  name:[MetricMarket] (id: 4);
+}
+

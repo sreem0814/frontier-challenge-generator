@@ -1,0 +1,10 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--kotlin-kmp",
+  "--no-warnings",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

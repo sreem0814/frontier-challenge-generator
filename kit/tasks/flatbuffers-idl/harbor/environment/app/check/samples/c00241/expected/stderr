@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/model.proto:46: 13: error: expecting: } instead got: integer constant
+

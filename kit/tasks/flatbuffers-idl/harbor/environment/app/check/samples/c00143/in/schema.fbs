@@ -1,0 +1,13 @@
+include "base1.fbs";
+attribute "x_entry";
+
+/// Holds a value.
+table GlacierReef {
+  depot:string;
+  sparrow:[ubyte];
+  height:string;
+  tensor: [byte] (x_entry);
+  limit:string;
+}
+
+root_type GlacierReef;

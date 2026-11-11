@@ -1,0 +1,4 @@
+
+error:
+  schemas don't conform: field renamed to different type: wren.level.tin.Xenon.count (renamed from wren.level.tin.Xenon.kind)
+

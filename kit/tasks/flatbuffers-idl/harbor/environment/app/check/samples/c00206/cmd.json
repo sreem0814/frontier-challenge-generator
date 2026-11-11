@@ -1,0 +1,13 @@
+{
+ "bucket": "json_text",
+ "argv": [
+  "--json",
+  "--root-type",
+  "TinEntry57",
+  "-o",
+  "out",
+  "schema.fbs",
+  "--",
+  "data.bin"
+ ]
+}

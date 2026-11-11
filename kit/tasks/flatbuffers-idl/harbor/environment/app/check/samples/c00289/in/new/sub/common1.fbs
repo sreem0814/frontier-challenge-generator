@@ -1,0 +1,13 @@
+include "common2.fbs";
+
+namespace glacier;
+
+struct Orbit {
+	signal_height:TinLead;
+	LagoonNote:[TinLead:1];
+	packet : double;
+	neon:TinLead;
+	total:int8;
+	glacier_tag : int32;
+}
+

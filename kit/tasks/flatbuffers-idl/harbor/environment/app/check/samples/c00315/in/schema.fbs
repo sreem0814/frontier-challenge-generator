@@ -1,0 +1,15 @@
+include "deps/types1.fbs";
+
+namespace glacier;
+
+table LambdaTitle (original_order) {
+ neon_lead: uint8 =0x7F;
+ flavor : prairie.helium.CometKestrel;
+ flavor : prairie.helium.CometKestrel;
+ name : prairie.helium.CometKestrel;
+ helium:prairie.helium.CometKestrel;
+ silver : string;
+ quasar_sigma : uint (hash: "fnv1a_32");
+}
+
+file_identifier "CNOK";

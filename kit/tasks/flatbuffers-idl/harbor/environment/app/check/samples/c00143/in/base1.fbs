@@ -1,0 +1,13 @@
+include "base2.fbs";
+
+table PacketTin (original_order) {
+    vector_neon : string (id : 6);
+    garden : uint16 =0x0 (id: 3);
+    nickel:vector.gamma.Sparrow70 (id: 7);
+    limit: ubyte =null (id:0);
+    name_orbit: double=9945.23957 (id:2);
+    nickel_castle:string (id : 5);
+    record : string (required,id : 4);
+    metric_zinc: string (deprecated,id: 1);
+}
+

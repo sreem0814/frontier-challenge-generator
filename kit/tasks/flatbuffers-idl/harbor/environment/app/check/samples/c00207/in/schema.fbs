@@ -1,0 +1,58 @@
+include "base1.fbs";
+
+/// The main record.
+/// Unicode: été → λ
+enum Total : ubyte {
+	/// Plain line
+	/// Second paragraph.
+	Lagoon = 0xC8,
+	SamplePuffin87,
+	DELTA = 206,
+	CarbonPhase,
+	///
+	Omega,
+	Zinc = 213,
+	///  Indented doc line.
+	/// Deprecated soon; see `next`.
+	/// The main record.
+	Tundra,
+	WIDTH,
+	Copper = 216
+}
+
+/// Unit: milliseconds.
+table SparrowCount (csharp_partial) {
+	///  Indented doc line.
+	tone:string;
+	nickel : ushort;
+	atoll:[header.StateReef];
+	None: string (key);
+	/// Note: "quoted" text and 'single' quotes.
+	/// Note: "quoted" text and 'single' quotes.
+	/// <b>html</b> & entities
+	string: SparrowCount;
+}
+struct Alpha {
+	/// The main record.
+	/// Unit: milliseconds.
+	/// Unicode: été → λ
+	title: Event;
+	/// Escapes \n stay literal.
+	/// Escapes \n stay literal.
+	wren_pulsar: ushort;
+	ref : int;
+	glacier: int8;
+	swift : long;
+	puffin:header.StateReef;
+}
+
+/// Note: "quoted" text and 'single' quotes.
+rpc_service Status {
+	///  Indented doc line.
+	/// Escapes \n stay literal.
+	/// Deprecated soon; see `next`.
+	GateTag(SparrowCount):level.valley.puffin.ToneValley (idempotent);
+}
+
+root_type SparrowCount;
+file_extension "mon";

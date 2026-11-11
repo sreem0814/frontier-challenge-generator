@@ -1,0 +1,14 @@
+// Generated test schema.
+attribute "x_limit";
+
+namespace tin;
+
+/// Value in [0, 1).
+table Index {
+  label_zinc : [string] (required);
+  signal_omega:[byte] (required, deprecated, x_limit);
+  nickel_title: [uint64];
+  packet_depot:int64;
+}
+
+root_type Index;

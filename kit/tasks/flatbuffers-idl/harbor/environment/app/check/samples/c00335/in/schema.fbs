@@ -1,0 +1,34 @@
+include "inc1.fbs";
+attribute "x_name";
+
+enum Quarry : int8 {
+    Condor = 0,
+    Helium = 1,
+    /// Plain line
+    /// Note: "quoted" text and 'single' quotes.
+    /// The main record.
+    NEBULA,
+    LeadMatrix,
+    Hue,
+    RiverLagoon = 5,
+    ALPHA,
+}
+
+/// Holds a value.
+/// Note: "quoted" text and 'single' quotes.
+/// Deprecated soon; see `next`.
+table Tower71 {
+    ///
+    /// Holds a value.
+    /// Escapes \n stay literal.
+    kestrel:uint32;
+    cobalt: [uint8] (x_name : "zinc");
+    finch_tensor : int16 (key);
+    enum:[string];
+    width_glacier:int16=0x4c83;
+    condor_quarry:string;
+    hangar_matrix:int16;
+}
+
+root_type Tower71;
+file_extension "x";

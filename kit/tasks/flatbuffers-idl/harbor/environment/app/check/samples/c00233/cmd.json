@@ -1,0 +1,14 @@
+{
+ "bucket": "proto",
+ "argv": [
+  "--proto",
+  "--keep-proto-id",
+  "--proto-namespace-suffix",
+  "gen.v1",
+  "--no-warnings",
+  "--gen-all",
+  "-o",
+  "out",
+  "model.proto"
+ ]
+}

@@ -1,0 +1,23 @@
+attribute x_count;
+attribute "x_pelican";
+
+namespace name.pelican;
+
+enum Garden : uint64 {
+  FlavorEpoch = 5,
+  FLAVOR,
+  ANCHOR,
+  NICKEL,
+  /// Escapes \n stay literal.
+  ///  Indented doc line.
+  /// Value in [0, 1).
+  XENON,
+  Depth = 0xa,
+  Helium,
+  RECORD = 13 (x_count),
+}
+
+enum River : uint16 {
+  BORON = 5,
+  TUNDRA (x_pelican : 22)
+}

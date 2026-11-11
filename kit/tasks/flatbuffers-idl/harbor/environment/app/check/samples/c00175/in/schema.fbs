@@ -1,0 +1,24 @@
+include "types1.fbs";
+
+namespace summit.castle;
+
+enum PhaseHelium : int8 (bit_flags) {
+ TotalTensor = 2,
+ Delta = 6,
+ EntryComet = 7
+}
+
+namespace ;
+
+table Forest {
+ puffin_delta : GammaNebula95;
+ valley:summit.castle.PhaseHelium = Delta (deprecated);
+ label: string;
+ count:[string];
+ river_tick : uint64 =null;
+ atoll : [GammaNebula95];
+ forest: [summit.castle.Tower];
+}
+
+root_type Forest;
+file_identifier "CLS4";

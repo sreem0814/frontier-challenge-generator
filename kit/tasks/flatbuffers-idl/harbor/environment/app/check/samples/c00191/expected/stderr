@@ -1,0 +1,4 @@
+
+warning:
+  @/schema.fbs:31: 10: warning: field names should be lowercase snake_case, got: ColorIron
+

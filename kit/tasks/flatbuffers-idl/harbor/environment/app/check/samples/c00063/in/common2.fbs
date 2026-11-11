@@ -1,0 +1,20 @@
+// © example
+attribute x_forge;
+attribute "x_tone";
+
+///  Indented doc line.
+enum Forge : uint64 { EPOCH = 5, Metric14, Argon = 7, LAGOON, LABEL (x_forge), Total, Beta, ORBIT, Tag, }
+
+namespace signal.mill.label;
+
+table DeltaForest {
+    hangar:[string] (deprecated);
+    forge:int=null (x_tone);
+    CastleBoron:uint8=160;
+    mode_tower : [ubyte];
+    /// Escapes \n stay literal.
+    /// Unicode: été → λ
+    /// The main record.
+    kestrel:[long];
+    omega_prairie : DeltaForest;
+}

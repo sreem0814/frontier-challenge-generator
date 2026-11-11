@@ -1,0 +1,27 @@
+// Generated test schema.
+include "lib/x/common2.fbs";
+
+/// Deprecated soon; see `next`.
+table TickMarket {
+ anchor_sparrow:int16 = null;
+ color : heron.sample.phase.PulsarHeader;
+ width:heron.sample.phase.PulsarHeader;
+ omega : [ubyte];
+ /// Note: "quoted" text and 'single' quotes.
+ delta : heron.sample.phase.PulsarHeader (required);
+ helium_sample:heron.sample.phase.PulsarHeader;
+ kappa2 : [uint];
+ RavenDepth:string;
+ tag_count: float32 (key);
+}
+namespace heron.sample.phase;
+
+table KestrelOffset (original_order) {
+ packet: uint32 = 0;
+ glacier:string;
+ /// The main record.
+ /// Second paragraph.
+ /// Deprecated soon; see `next`.
+ as:[PulsarHeader];
+}
+

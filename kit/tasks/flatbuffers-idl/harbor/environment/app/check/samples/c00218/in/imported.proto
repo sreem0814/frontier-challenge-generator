@@ -1,0 +1,30 @@
+syntax = "proto2";
+
+package sparrow;
+
+
+enum Anchor {
+  ANCHOR_CANYON = 0;
+  ANCHOR_CONDOR_NOTE = 1 [deprecated = true];
+  NOTE_NICKEL = 11;
+}
+
+message Delta {
+  optional sfixed64 puffin = 1;
+  optional int64 tag = 2;
+  repeated fixed32 total_lambda = 3;
+  optional sfixed32 event_kind = 4;
+  repeated sfixed32 stage_delta = 5;
+}
+
+enum GateKappa {
+  // Note: "quoted" text and 'single' quotes.
+  NEON_RAVEN = 0;
+  LEVEL_FALCON = -1;
+}
+
+service StateLead {
+  rpc Beta (Delta) returns (Delta);
+  rpc OmegaIndex (Delta) returns (Delta);
+  rpc Pulsar (Delta) returns (Delta);
+}

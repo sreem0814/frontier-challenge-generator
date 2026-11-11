@@ -1,0 +1,81 @@
+/* block
+   comment */
+attribute x_record;
+attribute "x_color";
+attribute "x_canyon";
+enum EpochNickel : int { IndexHeron = -1, VectorNickel }
+
+namespace sample;
+
+table AlphaLead (original_order, x_record) {
+  class:string;
+  level:int32;
+  raven: EpochNickel;
+  reef: [ubyte];
+  haven_quarry: [ubyte];
+  condor_sparrow : float;
+  /// Multi-word doc with punctuation: a, b; c!
+  /// Escapes \n stay literal.
+  /// Note: "quoted" text and 'single' quotes.
+  iron: [string];
+  copper_cobalt:int =534687567;
+  flavor: string;
+  is: ubyte;
+}
+
+namespace comet.raven;
+
+table TickSigma1 {
+  tundra:ushort (x_color: 97);
+  carbon_kappa : string;
+  /// <b>html</b> & entities
+  ///  Indented doc line.
+  /// Escapes \n stay literal.
+  lambda_lambda: EpochNickel = VectorNickel;
+  raven_phase:int;
+  event_sparrow:[ubyte] (nested_flatbuffer : "sample.AlphaLead");
+  count: EpochNickel (deprecated);
+  /// Deprecated soon; see `next`.
+  ///  Indented doc line.
+  /// Escapes \n stay literal.
+  name_cobalt : long;
+  castle: sample.AlphaLead (x_canyon);
+  mode_garden:[Quasar];
+}
+
+/// Note: "quoted" text and 'single' quotes.
+table CarbonPuffin {
+  /// Holds a value.
+  xenon_lambda: ulong (id:5);
+  entry:[uint8] (id : 0);
+  summit_falcon:[float32] (deprecated,id:2);
+  flavor : EpochNickel = VectorNickel (id:4);
+  theta_sparrow:string (id : 3);
+  cobalt : int64 =-6313536147624100858 (deprecated, id : 1);
+}
+
+union Glacier {
+  sample.AlphaLead,
+  comet.raven.TickSigma1,
+  CarbonPuffin
+}
+
+table Quasar {
+  prairie7:[string] (required);
+  gate: string (required, deprecated);
+  /// The main record.
+  reef : Glacier;
+  stage2: TickSigma1;
+  atoll_tower: Glacier;
+  color_sample:[ubyte] (flexbuffer);
+  move : [CarbonPuffin];
+}
+
+/// Unicode: été → λ
+table Haven {
+  lead:[string] (id : 0);
+  /// Escapes \n stay literal.
+  /// Note: "quoted" text and 'single' quotes.
+  /// Escapes \n stay literal.
+  sparrow : [sample.AlphaLead] (id: 1);
+}

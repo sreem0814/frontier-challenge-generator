@@ -1,0 +1,63 @@
+attribute "x_label";
+attribute x_shade;
+namespace nebula.offset;
+
+table HavenHelium {
+	///  Indented doc line.
+	///  Indented doc line.
+	/// Note: "quoted" text and 'single' quotes.
+	orbit_tag:uint8 (id:0);
+}
+enum CanyonVector : uint32 {
+	Lambda = 1,
+	State (x_label:"color"),
+	Record,
+	HeightCount,
+}
+
+table Total {
+	nickel_mill: HavenHelium (id:0);
+	index:[short] (id: 1);
+	market0 : string (required, id : 2);
+	atoll_total:[HavenHelium] (id: 3);
+	silver : uint32 =+87 (id: 4);
+	import:ubyte = 0 (key,id:5);
+}
+
+namespace tick.xenon;
+
+/// Value in [0, 1).
+/// Multi-word doc with punctuation: a, b; c!
+/// Plain line
+struct MillBridge {
+	osprey : int16;
+	canyon_entry: ushort;
+	DeltaHelium : [int:1];
+	width_tag: ubyte;
+	flavor : long;
+	wren_canyon : [bool:1];
+}
+namespace ;
+
+table ReefFrame {
+	matrix:[uint8] (deprecated);
+	gamma: nebula.offset.HavenHelium;
+	index:string;
+}
+
+namespace nebula.offset;
+
+table PrairieEvent {
+	omega_record : [uint64];
+	cobalt: double;
+}
+
+namespace tick.xenon;
+
+struct RecordAlpha (x_shade) {
+	entry_depth:MillBridge;
+	delta_name : uint32;
+	entry_prairie : [float:3];
+	summit_tick : ubyte;
+}
+

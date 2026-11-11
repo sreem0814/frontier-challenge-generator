@@ -1,0 +1,13 @@
+namespace iron.prairie.zinc;
+
+enum NickelLagoon : uint16 { NovaCastle = 1, DEPOT, ZINC, Kind, Pulsar = +14 }
+
+/// Value in [0, 1).
+/// Plain line
+struct HueOsprey {
+	span_level:int32;
+	summit:uint32;
+	atoll_omega:int16;
+	lagoon:[int:3];
+}
+

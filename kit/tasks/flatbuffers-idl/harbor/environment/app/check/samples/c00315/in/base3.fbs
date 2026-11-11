@@ -1,0 +1,6 @@
+namespace glacier;
+
+table StatePelican32 {
+    packet9:[float32];
+}
+

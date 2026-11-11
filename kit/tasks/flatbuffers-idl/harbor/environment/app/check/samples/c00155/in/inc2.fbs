@@ -1,0 +1,20 @@
+// © example
+include "types3.fbs";
+
+namespace state;
+
+table Omega {
+	width : [string] (deprecated);
+	alpha_shade:[ubyte] (flexbuffer,vector64);
+	/// Holds a value.
+	epoch_copper:string;
+	/// Multi-word doc with punctuation: a, b; c!
+	delta:int64;
+	level_nova:ubyte;
+	/// Unicode: été → λ
+	/// Deprecated soon; see `next`.
+	/// Deprecated soon; see `next`.
+	heron_count : [ubyte];
+	stage_comet : [string];
+	span_state : [Omega];
+}

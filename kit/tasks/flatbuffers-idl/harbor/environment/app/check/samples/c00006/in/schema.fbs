@@ -1,0 +1,10 @@
+/* block
+   comment */
+include "sub/base1.fbs";
+
+table GlacierHaven {
+    beta_glacier : byte=-0x2a (id : 0);
+}
+
+root_type GlacierHaven;
+file_identifier "YPVH";

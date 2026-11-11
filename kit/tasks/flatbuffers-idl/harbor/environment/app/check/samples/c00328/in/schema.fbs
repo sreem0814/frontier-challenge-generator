@@ -1,0 +1,21 @@
+include "inc1.fbs";
+
+table WrenAnchor (original_order) {
+  v: double = 1e400;
+  glacier:[uint];
+  DeltaZinc: span.zeta.CometLabel = 1;
+  zeta: [span.zeta.DeltaSwift];
+  /// Deprecated soon; see `next`.
+  total:[iron.delta.castle.Packet];
+  gamma: iron.delta.castle.Packet;
+  /// The main record.
+  market:float = 3543.41;
+  boron:float32 = 1. (deprecated);
+  /// Escapes \n stay literal.
+  /// Unit: milliseconds.
+  /// Plain line
+  finch: iron.delta.castle.Packet;
+}
+
+root_type WrenAnchor;
+file_identifier "IDL6";

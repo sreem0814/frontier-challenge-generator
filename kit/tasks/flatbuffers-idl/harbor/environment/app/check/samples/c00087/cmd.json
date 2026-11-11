@@ -1,0 +1,11 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--java",
+  "--gen-nullable",
+  "--grpc",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

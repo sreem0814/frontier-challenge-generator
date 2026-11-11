@@ -1,0 +1,57 @@
+/* block
+   comment */
+native_include "extra.h";
+attribute x_tundra;
+attribute "x_xenon";
+attribute "x_metric";
+attribute "x_prairie";
+
+enum MatrixGamma : int32 {
+    Boron = 1,
+    NeonBeta,
+    Metric (x_tundra: "status"),
+    Gamma,
+    Carbon = 9 (x_xenon),
+    PHASE
+}
+
+namespace nova.shade.zeta;
+
+table LimitFinch47 {
+native_include 3;
+    tensor : [string];
+}
+
+namespace ;
+
+table TotalNickel {
+    self:nova.shade.zeta.LimitFinch47 (deprecated);
+    union : [nova.shade.zeta.LimitFinch47];
+    sigma_silver : nova.shade.zeta.LimitFinch47;
+    count3 : nova.shade.zeta.LimitFinch47;
+    tensor: [nova.shade.zeta.LimitFinch47];
+    pelican_tundra: uint32;
+    neon_shade:string (required);
+    /// Unit: milliseconds.
+    /// Note: "quoted" text and 'single' quotes.
+    /// Value in [0, 1).
+    silver_glacier:ubyte (deprecated);
+    depot_lead: uint64;
+    sample : [TotalNickel];
+}
+
+namespace hue.kestrel;
+
+enum OspreyBeta : int { Cobalt = -1 (x_metric) }
+
+///  Indented doc line.
+///  Indented doc line.
+/// <b>html</b> & entities
+enum ZincMarket : byte {
+    /// Second paragraph.
+    HAVEN = -128,
+    Condor (x_prairie: "nova"),
+    CometGlacier,
+}
+root_type nova.shade.zeta.LimitFinch47;
+file_identifier "OAAT";

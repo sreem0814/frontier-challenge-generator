@@ -1,0 +1,53 @@
+// Generated test schema.
+attribute x_hangar;
+attribute "x_argon";
+attribute "x_theta";
+
+table Swift {
+ count_height:string;
+ boron_glacier:bool (deprecated);
+ canyon:[ubyte] (required,x_hangar:3);
+ market: [int64];
+ header_height:float;
+}
+
+table Note {
+ WrenGamma : uint32 (x_argon,id:0);
+ height: [ubyte] (id:1);
+ metric_height : Swift (deprecated, id : 2);
+ tick : Swift (id : 4);
+ lead : [ubyte] (nested_flatbuffer: "Swift", id:4);
+ /// Holds a value.
+ /// Unicode: été → λ
+ hue: string = "neon" (id: 5);
+ /// Second paragraph.
+ LagoonPuffin : [byte] (id: 6);
+}
+
+namespace zinc.osprey;
+
+struct Glacier {
+ sparrow : [ulong:3];
+ heron : uint8;
+ record: int8;
+ NoteTitle: [short:2] (x_theta);
+ status_reef : ubyte;
+ /// Multi-word doc with punctuation: a, b; c!
+ pulsar5 : [ulong:1];
+}
+
+namespace tag;
+
+table ToneIndex {
+ atoll: string (required);
+ osprey : zinc.osprey.Glacier;
+ /// The main record.
+ sigma: double;
+ kind_prairie:string;
+ tick_metric : uint16;
+ shade_hue : [string] (required);
+ lagoon_garden: uint8;
+}
+
+root_type Swift;
+file_identifier "2RUI";

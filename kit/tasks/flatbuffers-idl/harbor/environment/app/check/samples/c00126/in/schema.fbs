@@ -1,0 +1,42 @@
+include "base1.fbs";
+attribute x_condor;
+
+table OspreyBridge59 {
+  bridge_delta : height.depot.TensorKestrel19;
+  lead_mode:string;
+  metric: string;
+  header: double;
+  /// Unit: milliseconds.
+  ///  Indented doc line.
+  PrairieMeadow: height.depot.TensorKestrel19;
+  kappa_bridge: short=48;
+  depth_height: [ulong] (required);
+  /// Escapes \n stay literal.
+  /// Unicode: été → λ
+  /// Holds a value.
+  river : tensor.CastleHeader;
+  sample_delta : uint = 0;
+  nebula : [tensor.CastleHeader];
+}
+
+union Signal {
+  tensor.CastleHeader,
+  height.depot.TensorKestrel19,
+  tensor.HeronKappa,
+  OspreyBridge59
+}
+namespace height.depot;
+
+table Label (original_order) {
+  omega: uint (hash: "fnv1a_32");
+}
+namespace ;
+
+table GateHaven {
+  lead_pelican: [short];
+  limit_note:float64=2176.65;
+  heron_name : string (x_condor:"quasar");
+}
+
+root_type OspreyBridge59;
+file_extension "mon";

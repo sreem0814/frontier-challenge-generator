@@ -1,0 +1,25 @@
+// © example
+include "inc1.fbs";
+include "base2.fbs";
+native_include "extra.h";
+attribute "x_wren";
+
+namespace hangar.stage.castle;
+
+table Color {
+ ///  Indented doc line.
+ /// Second paragraph.
+ /// Multi-word doc with punctuation: a, b; c!
+ hue: uint32=388851400 (deprecated,x_wren);
+ market_silver: short;
+ beta: uint64=18446744073709551615;
+ /// Escapes \n stay literal.
+ /// <b>html</b> & entities
+ ///  Indented doc line.
+ kind: Anchor;
+ /// Holds a value.
+ lambda:[Color];
+}
+
+root_type Color;
+file_extension "dat";

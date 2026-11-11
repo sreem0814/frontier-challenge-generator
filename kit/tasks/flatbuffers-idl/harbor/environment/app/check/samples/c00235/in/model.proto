@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package gamma.phase;
+
+
+message DepthCanyon {
+  optional int64 frame = 1;
+  optional sfixed32 xenon = 2;
+  optional uint64 level = 3 [default = 24];
+  // <b>html</b> & entities
+  // Deprecated soon; see `next`.
+  optional uint64 tag = 4;
+  oneof color_canyon {
+    sint32 mill_orbit = 5;
+    sfixed32 cobalt_carbon = 6;
+    string boron_height = 7;
+  }
+}

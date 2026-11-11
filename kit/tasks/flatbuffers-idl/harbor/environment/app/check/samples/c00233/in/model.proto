@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+import "imported.proto";
+
+// Plain line
+// Unicode: été → λ
+message Omega {
+  optional bytes nova = 1;
+  optional sint32 orbit_label = 3 [default = 16];
+}

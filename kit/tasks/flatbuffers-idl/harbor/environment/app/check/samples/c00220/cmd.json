@@ -1,0 +1,12 @@
+{
+ "bucket": "proto",
+ "argv": [
+  "--proto",
+  "--proto-namespace-suffix",
+  "fbs",
+  "--no-warnings",
+  "-o",
+  "out",
+  "model.proto"
+ ]
+}

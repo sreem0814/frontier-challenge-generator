@@ -1,0 +1,14 @@
+include "deps/inc1.fbs";
+include "base2.fbs";
+namespace state.tensor;
+
+table Valley {
+    offset : ushort;
+    garden_iron:[byte] =[];
+    /// Holds a value.
+    pelican:int;
+    valley:string;
+}
+
+root_type Valley;
+file_identifier "MF34";

@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/model.proto:16: 1: error: oneof 'pulsar' cannot be mapped to a union because member 'note' is not a table type.
+

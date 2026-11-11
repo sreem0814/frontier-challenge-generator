@@ -1,0 +1,10 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--ts",
+  "--gen-all",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

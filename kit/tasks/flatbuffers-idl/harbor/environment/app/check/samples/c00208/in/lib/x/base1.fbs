@@ -1,0 +1,14 @@
+attribute "x_beta";
+
+table Tag {
+	kind7 : string (x_beta : "count");
+	wren_reef: [ubyte];
+	mode : short;
+}
+
+namespace width.copper;
+
+union Tin {
+	Tag
+}
+

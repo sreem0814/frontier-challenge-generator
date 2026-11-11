@@ -1,0 +1,35 @@
+include "lib/x/inc1.fbs";
+attribute "x_delta";
+namespace metric.carbon.silver;
+
+enum Span : uint {
+  SwiftShade = 200,
+  Lead = 210,
+  PELICAN = 211,
+  Copper = 311,
+  Name (x_delta: 52)
+}
+
+namespace lagoon.status.zinc;
+
+/// Unit: milliseconds.
+/// Note: "quoted" text and 'single' quotes.
+/// Unicode: été → λ
+union ValleyPacket {
+  /// The main record.
+  SilverPuffin,
+  metric.carbon.silver.CometValley
+}
+
+namespace ;
+
+/// Note: "quoted" text and 'single' quotes.
+table PrairieArgon (original_order) {
+  copper_iron: float=-5755.35;
+  /// Plain line
+  count_omega: short (deprecated);
+  lead_depth: [uint8];
+}
+
+root_type PrairieArgon;
+file_extension "x";

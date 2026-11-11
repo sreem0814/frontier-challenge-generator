@@ -1,0 +1,7 @@
+namespace falcon;
+
+struct Prairie {
+    quasar_title : [int:5];
+    forge_argon:int32;
+}
+

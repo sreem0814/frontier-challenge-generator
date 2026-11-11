@@ -1,0 +1,58 @@
+// © example
+include "base3.fbs";
+
+namespace nickel.beta;
+
+/// Second paragraph.
+table PuffinBeta (original_order) {
+    /// Second paragraph.
+    atoll : [falcon.LambdaPacket] = [];
+    river: AnchorTone=Finch;
+    copper : uint16;
+    glacier_forge:[LevelPelican];
+}
+
+/// Note: "quoted" text and 'single' quotes.
+table GlacierSummit {
+    lambda:ushort;
+    lagoon:LevelPelican;
+    iron: AnchorTone = Finch;
+    tag_swift:[string];
+    delta:float32;
+}
+namespace falcon;
+
+enum Iron : long (bit_flags) {
+    /// Plain line
+    /// <b>html</b> & entities
+    Omega = 17,
+    Sparrow = 0x1e,
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Escapes \n stay literal.
+    Entry = 36,
+    /// Note: "quoted" text and 'single' quotes.
+    /// Escapes \n stay literal.
+    /// Unit: milliseconds.
+    Stage = 50,
+    LabelTitle = 60
+}
+
+namespace nova;
+
+/// Multi-word doc with punctuation: a, b; c!
+table MetricOmega {
+    helium:float;
+    puffin : [uint8];
+    mode_castle: [bool];
+    note:AnchorTone =Finch;
+    struct: long;
+    /// Unicode: été → λ
+    /// Holds a value.
+    tundra_prairie:[float] (deprecated);
+    ///  Indented doc line.
+    ///  Indented doc line.
+    /// Plain line
+    river : string;
+    total:[nickel.beta.PuffinBeta];
+}
+

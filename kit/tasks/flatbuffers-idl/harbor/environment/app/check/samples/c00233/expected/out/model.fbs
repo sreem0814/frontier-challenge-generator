@@ -1,0 +1,101 @@
+// Generated from model.proto
+
+namespace argon.argon.gen.v1.Gate_;
+
+enum Cobalt : int {
+  NOVA = 0,
+  SIGNAL = 2,
+  COBALT_SHADE = 12,
+}
+
+namespace argon.argon.gen.v1.NameColor_;
+
+enum Stage : int {
+  SILVER_ENTRY = 0,
+  STAGE_OSPREY = 1,
+}
+
+namespace argon.argon.gen.v1;
+
+table Label {
+  tundra_sparrow:[argon.argon.gen.v1.Label_.EventTick] (id: 0);
+  epoch_pelican:[ubyte] (id: 1);
+  /// 
+  neon:argon.argon.gen.v1.Label_.EventTick (id: 2);
+  matrix:[uint] (id: 3);
+  tick_nova:[argon.argon.gen.v1.Label_.EventTick] (id: 4);
+}
+
+namespace argon.argon.gen.v1.Label_;
+
+table EventTick {
+  reef:[ulong] (id: 0);
+  alpha:argon.argon.gen.v1.Label_.EventTick_.River (id: 1);
+  depth:double (id: 2);
+  pulsar:argon.argon.gen.v1.Label_.EventTick_.River (id: 3);
+  tick:[double] (id: 4);
+  falcon:[argon.argon.gen.v1.Label_.EventTick_.River] (id: 5);
+  kappa_vector:long (id: 6);
+  orbit:[argon.argon.gen.v1.Label_.EventTick_.River] (id: 7);
+}
+
+namespace argon.argon.gen.v1.Label_.EventTick_;
+
+table River {
+  gamma_tensor:int (id: 0);
+  theta:[string] (id: 1);
+  lambda_garden:int (id: 2);
+  depot:[long] (id: 3);
+  matrix:[string] (id: 4);
+  frame:bool (id: 5);
+  tag:[string] (id: 6);
+  lambda:long (id: 7);
+}
+
+namespace argon.argon.gen.v1;
+
+table Gate {
+  pelican_sparrow:argon.argon.gen.v1.Gate_.Anonymous0;
+}
+
+namespace argon.argon.gen.v1.Gate_;
+
+table Anonymous0 {
+  depth_delta:uint (id: 0);
+  summit:uint (id: 1);
+  gate:ulong (id: 2);
+}
+
+namespace argon.argon.gen.v1;
+
+table NameColor {
+}
+
+namespace argon.argon.gen.v1.NameColor_;
+
+table Vector {
+  cobalt:argon.argon.gen.v1.Gate (id: 1);
+  nebula:[argon.argon.gen.v1.Gate] (id: 2);
+  /// <b>html</b> & entities
+  summit_entry:argon.argon.gen.v1.Label (id: 3);
+  summit_signal:uint (id: 4);
+  tag:argon.argon.gen.v1.Gate (id: 5);
+  mill:[int] (id: 6);
+  neon_vector:argon.argon.gen.v1.NameColor_.Vector_.Anonymous1 (id: 0);
+}
+
+namespace argon.argon.gen.v1.NameColor_.Vector_;
+
+table Anonymous1 {
+  wren:float (id: 0);
+  quasar:[ubyte] (id: 1);
+  alpha_atoll:uint (id: 2);
+}
+
+namespace gen.v1;
+
+table Omega {
+  nova:[ubyte] (id: 0);
+  orbit_label:int = 16 (id: 1);
+}
+

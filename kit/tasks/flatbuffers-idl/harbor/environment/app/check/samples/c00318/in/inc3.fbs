@@ -1,0 +1,7 @@
+namespace signal;
+
+///
+struct SpanKind (force_align : 8) {
+  total_kappa: [uint64:4];
+}
+

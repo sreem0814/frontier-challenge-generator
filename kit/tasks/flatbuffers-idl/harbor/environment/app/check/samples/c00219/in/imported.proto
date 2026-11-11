@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package tensor;
+
+option java_package = "com.example.tone";
+
+// Plain line
+// Multi-word doc with punctuation: a, b; c!
+message Raven {
+}
+
+enum CastleForge {
+  CASTLEFORGE_LABEL = 0;
+  //   Indented doc line.
+  CASTLEFORGE_STATE = 1;
+  CASTLEFORGE_CANYON = 2;
+  SHADE_KAPPA = 12;
+  CASTLEFORGE_HAVEN_DEPTH = 22;
+  /* Holds a value. */
+  CASTLEFORGE_NEON = 24;
+}
+
+message Canyon {
+  // <b>html</b> & entities
+  // <b>html</b> & entities
+  optional CastleForge valley_valley = 1;
+}

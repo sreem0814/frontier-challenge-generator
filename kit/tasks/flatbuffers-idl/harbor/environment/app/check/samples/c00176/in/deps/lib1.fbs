@@ -1,0 +1,22 @@
+namespace garden.beta;
+
+/// Unit: milliseconds.
+/// Unicode: été → λ
+struct TagLimit {
+    tensor : [int:2];
+    metric : float32;
+}
+
+namespace bridge.pulsar.tundra;
+
+/// Value in [0, 1).
+enum Record : byte {
+    Kappa = 0x1,
+    SHADE,
+    Carbon,
+    /// Second paragraph.
+    Index,
+    Tower,
+    Limit = 15,
+    Helium
+}

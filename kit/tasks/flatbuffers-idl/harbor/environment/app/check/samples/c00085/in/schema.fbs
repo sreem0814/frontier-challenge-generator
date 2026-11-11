@@ -1,0 +1,9 @@
+// © example
+include "inc1.fbs";
+
+table Depth {
+  name: [ubyte] (nested_flatbuffer : "offset.XenonEntry", id : 0);
+  note_meadow : int32 =null (id : 1);
+}
+root_type Depth;
+file_extension "dat";

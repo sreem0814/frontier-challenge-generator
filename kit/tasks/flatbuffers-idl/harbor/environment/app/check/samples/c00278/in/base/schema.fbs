@@ -1,0 +1,18 @@
+include "lib1.fbs";
+
+///
+enum Nickel : uint (bit_flags) { Condor, Kestrel = 7, Alpha = 13, PulsarCobalt = 22, Span = 24, StatusNebula = 0x1C }
+
+/// Plain line
+/// Unicode: été → λ
+table ToneBoron {
+    orbit: bool (deprecated);
+    CastleOsprey:[string] (required);
+    cobalt : [uint32] (deprecated);
+    AnchorCobalt : double = 4898.93447;
+    namespace: pelican.packet.QuasarGamma;
+    table: pelican.packet.QuasarGamma;
+}
+
+root_type ToneBoron;
+file_identifier "U0OD";

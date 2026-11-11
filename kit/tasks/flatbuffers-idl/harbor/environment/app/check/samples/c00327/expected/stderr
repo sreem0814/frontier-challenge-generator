@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:33: 1: error: field id's must be consecutive from 0, id 0 missing or set twice, field: package, id: 1
+

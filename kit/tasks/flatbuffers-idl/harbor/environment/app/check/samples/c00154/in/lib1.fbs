@@ -1,0 +1,4 @@
+include "base2.fbs";
+
+enum SampleOmega : ubyte { NickelPrairie = 1, }
+

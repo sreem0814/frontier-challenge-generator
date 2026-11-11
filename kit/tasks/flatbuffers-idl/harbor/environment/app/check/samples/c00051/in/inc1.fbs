@@ -1,0 +1,22 @@
+// Generated test schema.
+
+namespace frame.span;
+
+table SummitCobalt55 {
+ copper : int = null;
+ /// The main record.
+ metric_zeta: int64=-16;
+ theta:uint16=0;
+ market_neon: string;
+}
+namespace comet.alpha.metric;
+
+/// Value in [0, 1).
+table PrairieWidth {
+ glacier : int64 = -40;
+ raven: ulong =null;
+ count : uint64 = 11394406823573345871;
+ index_omega:string (required);
+ gate_canyon: uint=0;
+}
+

@@ -1,0 +1,25 @@
+// test proto
+syntax = "proto3";
+
+package hangar;
+
+option java_package = "com.example.lambda";
+
+message Pulsar {
+  double color = 1;
+  repeated sfixed64 condor = 2;
+  uint64 wren = 3;
+  int32 haven_hangar = 5;
+  repeated sint64 quasar = 6;
+  uint64 argon = 7 [default = 37, deprecated = true];
+  bool index = 8;
+  /// Holds a value.
+  optional float event_color = 9;
+  map<int32, uint64> phase_wren_map = 10;
+}
+
+service Width {
+  rpc Label (Pulsar) returns (Pulsar);
+  rpc Lambda (Pulsar) returns (Pulsar);
+  rpc Sigma (Pulsar) returns (Pulsar);
+}

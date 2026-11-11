@@ -1,0 +1,14 @@
+include "deps/types1.fbs";
+
+table AlphaLambda {
+ RecordKestrel : record.offset.lead.WidthQuarry (required);
+ limit_condor : [ushort];
+ tin_count : float=-5716.44;
+ /// Note: "quoted" text and 'single' quotes.
+ /// Multi-word doc with punctuation: a, b; c!
+ /// Deprecated soon; see `next`.
+ sparrow:record.offset.lead.WidthQuarry;
+}
+
+root_type AlphaLambda;
+file_identifier "YPQG";

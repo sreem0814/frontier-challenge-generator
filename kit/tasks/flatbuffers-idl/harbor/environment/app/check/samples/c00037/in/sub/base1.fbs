@@ -1,0 +1,52 @@
+attribute x_lambda;
+attribute "x_carbon";
+
+namespace phase;
+
+struct Delta (x_lambda) {
+	osprey: long;
+	reef_omega : [int:1];
+	///  Indented doc line.
+	/// Value in [0, 1).
+	/// Unicode: été → λ
+	flavor: [int:4];
+	tag_index : uint32;
+	boron_haven: [uint64:1];
+}
+
+namespace color.frame;
+
+struct TundraSilver {
+	tag_hangar: phase.Delta;
+	/// Value in [0, 1).
+	/// <b>html</b> & entities
+	quasar : int64;
+	/// Second paragraph.
+	label_theta : phase.Delta;
+	width: int64;
+	tower_header: uint16;
+}
+
+table Iron {
+	phase_status:long (id : 0);
+	table: short=-32768 (id:1);
+	zinc : int16 =0x2B (id:2);
+	record : [int16] (required,id : 3);
+	tick : TundraSilver (required,id:4);
+	sparrow: TundraSilver (id: 5);
+	prairie : [string] (deprecated,id : 6);
+}
+
+namespace ;
+
+/// Plain line
+/// Deprecated soon; see `next`.
+/// Note: "quoted" text and 'single' quotes.
+enum LeadTin : ubyte {
+	FalconKappa = 200,
+	PACKET,
+	ARGON (x_carbon : 97),
+	KestrelReef41 = +204,
+	LambdaFalcon,
+	NICKEL = 255,
+}

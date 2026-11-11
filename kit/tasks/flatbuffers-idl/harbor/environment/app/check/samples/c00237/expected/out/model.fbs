@@ -1,0 +1,19 @@
+// Generated from model.proto
+
+namespace metric.omega.epoch;
+
+table KappaSignal {
+  atoll_tundra:bool = true;
+  glacier_offset:long;
+  wren:[long];
+  hue:[int];
+  packet_map:[metric.omega.epoch.KappaSignal_.PacketMapEntry];
+}
+
+namespace metric.omega.epoch.KappaSignal_;
+
+table PacketMapEntry {
+  key:bool (key);
+  value:bool;
+}
+

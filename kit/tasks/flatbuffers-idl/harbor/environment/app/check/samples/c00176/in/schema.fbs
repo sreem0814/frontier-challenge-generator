@@ -1,0 +1,19 @@
+// © example
+include "deps/lib1.fbs";
+attribute "x_canyon";
+
+table Neon {
+	end: [int32];
+	iron: [string]=[];
+	forest_beta : short;
+	/// Escapes \n stay literal.
+	note: [ubyte] (flexbuffer);
+	nova_neon: bridge.pulsar.tundra.Record =Kappa (x_canyon);
+	///
+	flavor : string;
+	lead : ubyte=0;
+	mill_canyon:byte =-77;
+	delta_name : Neon;
+}
+
+file_identifier "Z940";

@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/imported.proto:35: 1: error: oneof 'carbon' cannot be mapped to a union because member 'offset_forest' is not a table type.
+

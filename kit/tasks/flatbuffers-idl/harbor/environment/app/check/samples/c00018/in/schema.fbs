@@ -1,0 +1,36 @@
+/* block
+   comment */
+attribute "x_osprey";
+
+enum CanyonTundra : uint64 (x_osprey) {
+    Epoch = 200,
+    /// Holds a value.
+    /// The main record.
+    /// Value in [0, 1).
+    MILL = 0xd2
+}
+
+///  Indented doc line.
+enum AnchorLevel66 : int64 (bit_flags) {
+    Glacier = 5,
+    Vector = 0x16
+}
+///  Indented doc line.
+/// Value in [0, 1).
+/// Unit: milliseconds.
+table AtollMode (original_order) {
+    /// Deprecated soon; see `next`.
+    /// Deprecated soon; see `next`.
+    TundraState: short;
+    gate_anchor : string (deprecated,shared);
+    zeta : string;
+    label_carbon : [int8];
+    hangar_name: uint32;
+    comet: string;
+    /// Deprecated soon; see `next`.
+    valley_signal: [string] (deprecated);
+    meadow: [int8];
+}
+root_type AtollMode;
+file_identifier "GQCL";
+file_extension "x";

@@ -1,0 +1,4 @@
+
+error:
+  @/deps/types2.fbs:23: 19: error: Arrays are not yet supported in all the specified programming languages.
+

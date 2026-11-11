@@ -1,0 +1,22 @@
+/* block
+   comment */
+include "base2.fbs";
+
+namespace pelican.nebula;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Value in [0, 1).
+table CastleGate {
+  /// Escapes \n stay literal.
+  tick_stage: kind.copper.condor.Lambda;
+  label : [kind.copper.condor.Lambda];
+  /// Second paragraph.
+  garden : int8 =0x4D;
+  forest: int = -90;
+  record : string;
+  meadow: ubyte;
+  gamma:string (deprecated, key);
+  /// Value in [0, 1).
+  heron:short;
+}
+

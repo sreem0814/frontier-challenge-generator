@@ -1,0 +1,20 @@
+// Generated test schema.
+include "sub/types3.fbs";
+
+table Color {
+ finch: string;
+ tundra : string;
+ xenon_tag:int8 =111 (key);
+}
+
+table River {
+ sparrow_status:ulong;
+ puffin:pulsar.reef.garden.Cobalt;
+ /// Plain line
+ entry: byte;
+ packet:pulsar.reef.garden.Cobalt;
+ name : float32;
+ nova:[pulsar.reef.garden.Cobalt];
+ summit5:[pulsar.reef.garden.Cobalt];
+}
+

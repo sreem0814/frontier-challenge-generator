@@ -1,0 +1,11 @@
+{
+ "bucket": "schema_bfbs",
+ "argv": [
+  "-b",
+  "--schema",
+  "--bfbs-builtins",
+  "-o",
+  "out",
+  "vector_has_test.fbs"
+ ]
+}

@@ -1,0 +1,28 @@
+include "base1.fbs";
+attribute "x_nebula";
+attribute "x_delta";
+
+struct KappaHeight (force_align: 4) {
+    TowerQuasar:span.limit.TowerPacket (x_nebula);
+    /// Deprecated soon; see `next`.
+    valley_name: short;
+    span_signal:float;
+}
+
+namespace span.limit;
+
+table LagoonState6 {
+    haven:float64 (x_delta:74);
+    epoch : [KappaHeight];
+    matrix_hangar : double =-6842.91;
+}
+
+namespace ;
+
+/// Deprecated soon; see `next`.
+rpc_service PuffinTotal {
+    TitleShade(span.limit.LagoonState6):span.limit.Header (streaming:"none");
+}
+
+root_type span.limit.LagoonState6;
+file_identifier "0LA4";

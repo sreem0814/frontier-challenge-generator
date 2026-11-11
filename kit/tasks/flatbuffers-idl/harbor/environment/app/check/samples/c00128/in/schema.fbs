@@ -1,0 +1,17 @@
+include "base1.fbs";
+attribute x_index;
+
+namespace title;
+
+enum Finch : short {
+    Status = -32768,
+}
+
+namespace tick.atoll.depot;
+
+table GardenLevel (x_index) {
+    finch_color:pulsar.reef.garden.Cobalt (id:0);
+}
+
+root_type GardenLevel;
+file_identifier "2QAI";

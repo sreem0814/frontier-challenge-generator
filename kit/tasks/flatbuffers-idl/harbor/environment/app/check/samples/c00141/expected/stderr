@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:19: 1: error: field id's must be consecutive from 0, id 5 missing or set twice, field: river_carbon, id: 6
+

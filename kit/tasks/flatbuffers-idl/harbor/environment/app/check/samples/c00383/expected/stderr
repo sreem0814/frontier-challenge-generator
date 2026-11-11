@@ -1,0 +1,9 @@
+
+warning:
+  @/schema.fbs:22: 6: warning: field names should be lowercase snake_case, got: None
+@/schema.fbs:30: 12: warning: field names should be lowercase snake_case, got: CondorZinc
+
+
+error:
+  @/data.json:1: 287: error: required field is missing: record_entry in Metric
+

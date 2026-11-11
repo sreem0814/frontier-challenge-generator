@@ -1,0 +1,10 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--lobster",
+  "--no-warnings",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

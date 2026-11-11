@@ -1,0 +1,49 @@
+// © example
+include "common1.fbs";
+native_include "native/types.h";
+attribute "x_state";
+
+/// Unicode: été → λ
+/// The main record.
+/// Plain line
+union WrenVector84 {
+    /// Deprecated soon; see `next`.
+    /// <b>html</b> & entities
+    SampleWren34: sample.AlphaLead,
+    comet.raven.CarbonPuffin
+}
+
+union Width {
+    comet.raven.TickSigma1,
+    comet.raven.Haven
+}
+
+namespace tin;
+
+table TitleSigma {
+    mode : WrenVector84;
+    valley : comet.raven.CarbonPuffin;
+}
+
+namespace comet.raven;
+
+enum LagoonSignal : int8 { ORBIT = 100, Castle, Nova, PACKET, TUNDRA, Condor (x_state) }
+namespace tin;
+
+/// Escapes \n stay literal.
+/// Unicode: été → λ
+///  Indented doc line.
+table OffsetMill {
+    pelican : Width;
+    PhaseAnchor:bool;
+    market : WrenVector84;
+    kind: uint16;
+    beta_nova : comet.raven.Quasar;
+    quarry_lagoon: comet.raven.LagoonSignal = Condor;
+    boron_matrix:[EpochNickel];
+    delta_zeta: string;
+    nova: comet.raven.Quasar;
+}
+
+root_type tin.TitleSigma;
+file_identifier "SBC6";

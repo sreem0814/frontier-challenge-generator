@@ -1,0 +1,20 @@
+/* block
+   comment */
+
+namespace tick;
+
+table Gamma {
+	frame : float64;
+	reef2 : [ubyte];
+	/// The main record.
+	/// Unicode: été → λ
+	boron:[string];
+	/// <b>html</b> & entities
+	/// Escapes \n stay literal.
+	/// The main record.
+	flavor_pulsar : uint=0 (deprecated);
+	BridgeArgon : [uint32];
+}
+
+root_type Gamma;
+file_identifier "0AU3";

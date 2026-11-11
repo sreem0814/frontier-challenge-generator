@@ -1,0 +1,37 @@
+include "deps/types1.fbs";
+/// Second paragraph.
+/// The main record.
+table Label {
+    class : uint8;
+    quasar: stage.zinc.FalconNebula;
+    swift:Reef;
+}
+
+table Status (csharp_partial) {
+    sigma_total:float =null (id: 3);
+    /// Holds a value.
+    /// <b>html</b> & entities
+    /// Deprecated soon; see `next`.
+    forge_index:float64=null (id : 0);
+    /// Deprecated soon; see `next`.
+    summit: int64 (id: 1);
+    kind:Reef (id : 7);
+    river_falcon: float =-723.44 (id:2);
+    silver : index.event.epoch.Flavor (id: 5);
+    forest:stage.zinc.FalconNebula (id : 4);
+}
+
+table PuffinTower {
+    helium:string (id: 1);
+    state_quarry : stage.zinc.FalconNebula (id: 2);
+    neon : index.event.epoch.Lagoon35 (id:0);
+}
+
+namespace index.event.epoch;
+
+table Lagoon35 {
+    hangar_theta : Status;
+    iron_total:[Label];
+}
+root_type PuffinTower;
+file_identifier "N5U4";

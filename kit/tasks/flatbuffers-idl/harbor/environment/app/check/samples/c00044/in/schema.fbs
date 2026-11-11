@@ -1,0 +1,27 @@
+include "base1.fbs";
+attribute "x_forge";
+union Beta38 {
+    depot.BetaSample,
+}
+
+table CometTower {
+    /// Second paragraph.
+    /// Deprecated soon; see `next`.
+    label:[string] (required);
+    tundra: [ushort];
+    /// Unicode: été → λ
+    /// Note: "quoted" text and 'single' quotes.
+    ///  Indented doc line.
+    summit:int16=null;
+    FrameMatrix : int (x_forge : "forge");
+    pulsar_theta:[tone.nebula.hue.LimitCount];
+    theta: uint8 (key);
+    beta: [string];
+    tag_pulsar: string;
+    /// Multi-word doc with punctuation: a, b; c!
+    entry:[byte] (vector64);
+    CobaltTone : [ubyte] (flexbuffer);
+}
+
+root_type CometTower;
+file_identifier "36YQ";

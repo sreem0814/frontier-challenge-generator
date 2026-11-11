@@ -1,0 +1,18 @@
+// © example
+include "sub/common1.fbs";
+native_include "native/types.h";
+
+enum Canyon : int { Orbit = 100, ARGON = 0x66 }
+table ReefHue {
+ xenon:int32;
+ StageBridge: short;
+ metric_lambda:int64;
+ entry_stage: int8=68;
+ kappa: Canyon =ARGON;
+ shade_total : long = null;
+ garden_valley: [ushort];
+ quasar:ushort =34585;
+ finch5: [hangar.epoch.LevelValley];
+}
+
+root_type ReefHue;

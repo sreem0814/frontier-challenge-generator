@@ -1,0 +1,4 @@
+namespace hue.nova;
+
+/// Value in [0, 1).
+enum StateSpan : short { GAMMA = 0x64 }

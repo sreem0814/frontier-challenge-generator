@@ -1,0 +1,22 @@
+include "lib2.fbs";
+include "common3.fbs";
+attribute "x_depot";
+
+namespace kappa;
+
+/// The main record.
+///
+enum Sample : byte {
+ Sample = 0x3,
+ /// Unicode: été → λ
+ /// Unit: milliseconds.
+ /// Unicode: été → λ
+ COBALT,
+ /// <b>html</b> & entities
+ COMET (x_depot:"osprey"),
+ ValleyBoron = 0x6,
+ NickelMarket = 106,
+ /// Value in [0, 1).
+ LagoonPacket,
+}
+

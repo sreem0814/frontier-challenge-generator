@@ -1,0 +1,56 @@
+// Generated from model.proto
+
+namespace lambda.kestrel.width;
+
+enum Shade : int {
+  SHADE_QUARRY_QUASAR = 0,
+  TOTAL_GATE = 1,
+  SHADE_OSPREY = 11,
+  SHADE_RECORD = 12,
+  SHADE_TUNDRA_SPAN = 13,
+}
+
+enum Haven : int {
+  KESTREL_TENSOR = 3,
+  HAVEN_CONDOR = 12,
+  HAVEN_GAMMA = 13,
+}
+
+enum Frame : int {
+  SWIFT = 0,
+  FRAME_ENTRY_GARDEN = 2,
+  HEIGHT = 12,
+  FRAME_COBALT_KESTREL = 13,
+  FRAME_TONE = 23,
+}
+
+table NoteArgon {
+  silver:int;
+  boron:lambda.kestrel.width.Haven;
+  argon:[lambda.kestrel.width.Shade];
+  width_status:ulong;
+  comet_heron:lambda.kestrel.width.Frame;
+  header:[bool];
+}
+
+table Title {
+  hue:ulong;
+  delta_cobalt:ulong;
+  offset:long;
+  omega:lambda.kestrel.width.Title_.Anonymous0;
+  forest_map:[lambda.kestrel.width.Title_.ForestMapEntry];
+}
+
+namespace lambda.kestrel.width.Title_;
+
+table Anonymous0 {
+  alpha_limit:long;
+  signal_comet:float;
+  haven_quarry:ulong;
+}
+
+table ForestMapEntry {
+  key:string (key);
+  value:float;
+}
+

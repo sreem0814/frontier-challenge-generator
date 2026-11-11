@@ -1,0 +1,27 @@
+[task]
+name = "cg/flatbuffers-idl"
+description = "Rebuild the FlatBuffers schema compiler front end (src/idl_parser.cpp at v25.12.19): the .fbs and .proto parser, JSON and FlexBuffers data parsing, the binary schema (.bfbs) writer and reader and the schema evolution check, so that flatc matches upstream byte for byte on unseen schemas and data."
+
+[metadata]
+paradigm = "implementation"
+compute = "cpu"
+languages = ["cpp"]
+category = "compilers"
+difficulty = "frontier"
+tags = ["flatbuffers", "flatc", "schema-compiler", "parser", "serialization", "protobuf", "c++"]
+oracle_reward_threshold = 1.0
+
+[agent]
+timeout_sec = 72000
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "72000"

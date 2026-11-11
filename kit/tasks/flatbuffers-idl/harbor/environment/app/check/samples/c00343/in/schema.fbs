@@ -1,0 +1,44 @@
+include "base1.fbs";
+
+struct HueNova {
+    forge : uint64;
+    silver9 : double;
+}
+
+namespace market.anchor.nickel;
+
+table Sample {
+    ///
+    /// Second paragraph.
+    swift : summit.tensor.nova.SpanXenon;
+    copper_falcon : float32;
+    orbit_beta : [ubyte];
+    tag_iron: uint8;
+    canyon_note: [float64];
+}
+namespace ;
+
+union Kestrel {
+    ToneFalcon: summit.tensor.nova.SpanXenon,
+}
+table KestrelCopper {
+    header_cobalt: float32;
+    span_flavor: short;
+    heron_canyon:summit.tensor.nova.Mode;
+    forge_gate: uint64;
+    omega_meadow : int8;
+    /// Value in [0, 1).
+    carbon: [summit.tensor.nova.Mode];
+    event_cobalt:Kestrel;
+    phase : Kestrel;
+    delta:Kestrel (deprecated);
+    def: uint64 = +13806235800080751291;
+}
+
+table MatrixCarbon {
+    sparrow: int8 =-128 (id:0);
+    anchor:float32=-459 (id: 1);
+    quarry : [summit.tensor.nova.Mode] (id:2);
+}
+
+root_type MatrixCarbon;

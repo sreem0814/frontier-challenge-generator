@@ -1,0 +1,46 @@
+attribute x_condor;
+attribute "x_tower";
+
+namespace haven.alpha;
+
+/// Plain line
+table Vector {
+    /// Note: "quoted" text and 'single' quotes.
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Escapes \n stay literal.
+    width_alpha:[string] (x_condor: "tower", id:0);
+    tower : int32 (id:1);
+    /// Multi-word doc with punctuation: a, b; c!
+    castle: [ubyte] (flexbuffer, required, id:2);
+    ///  Indented doc line.
+    copper_haven:[long] (deprecated,id:3);
+    delta : string (id: 4);
+    /// Unicode: été → λ
+    kappa_theta : [ubyte] (id: 5);
+    ///  Indented doc line.
+    /// Deprecated soon; see `next`.
+    /// Multi-word doc with punctuation: a, b; c!
+    tower_matrix: [ubyte] (flexbuffer, id:6);
+    pelican_nova:[haven.alpha.Vector] (id: 7);
+}
+
+namespace xenon;
+
+struct Prairie33 {
+    osprey_forge:uint (x_tower: "kappa");
+    comet: [int32:5];
+    lead:[int:2];
+    NeonState:[int:1];
+    /// Unit: milliseconds.
+    garden_depth:[int:2];
+    xenon : [int:4];
+}
+
+namespace haven.alpha;
+
+union ZincCanyon {
+    Vector,
+}
+
+root_type haven.alpha.Vector;
+file_identifier "BRJF";

@@ -1,0 +1,16 @@
+include "lib1.fbs";
+table ZetaKappa (original_order) {
+    WidthOmega:hangar.argon.LevelGarden;
+    tag: byte =77;
+    quarry : [ubyte] (offset64);
+    gate : int16;
+    haven: ushort=39812 (deprecated);
+    pelican : [ubyte];
+    silver_neon: string;
+    /// Note: "quoted" text and 'single' quotes.
+    flavor_event : [ubyte];
+    ///  Indented doc line.
+    label_nebula: short=10441;
+    carbon_event:ZetaKappa;
+}
+root_type ZetaKappa;

@@ -1,0 +1,14 @@
+// © example
+include "base1.fbs";
+
+enum LambdaBeta : int {
+    State = 0x64
+}
+
+table SummitQuasar {
+    haven : 	signal.argon.shade.GardenXenon (id: 0);
+    /// <b>html</b> & entities
+    carbon_swift : signal.argon.shade.GardenXenon (id : 1);
+}
+
+root_type SummitQuasar;

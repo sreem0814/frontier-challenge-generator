@@ -1,0 +1,45 @@
+/* block
+   comment */
+attribute x_alpha;
+attribute "x_gate";
+
+table TowerFinch {
+	beta : string;
+}
+
+namespace depot.pelican.kestrel;
+
+table SparrowRecord {
+	header:ulong;
+	kestrel_width : ushort =3252 (deprecated);
+	/// The main record.
+	helium : [TowerFinch];
+	zeta : string;
+	kestrel_mode : TowerFinch (x_alpha:"vector");
+	RecordOsprey: string;
+	forge:int64 = null;
+	width_osprey:depot.pelican.kestrel.Omega;
+}
+namespace record;
+
+table Falcon (x_gate) {
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Holds a value.
+	width: TowerFinch (required);
+	metric: TowerFinch;
+	tin: bool = 0;
+	sigma:[ubyte];
+}
+
+namespace depot.pelican.kestrel;
+
+/// Deprecated soon; see `next`.
+table Omega {
+	total_sparrow : uint32 =78;
+	anchor_kestrel : [int8];
+	iron: SparrowRecord;
+	count_puffin:byte;
+	meadow: [double] (required);
+	carbon:SparrowRecord;
+}
+

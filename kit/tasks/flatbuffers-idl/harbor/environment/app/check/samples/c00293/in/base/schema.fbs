@@ -1,0 +1,52 @@
+attribute x_sigma;
+attribute "x_packet";
+attribute "x_hangar";
+
+table ForgeCastle {
+	canyon_label:string (required, deprecated, id : 0);
+	packet:[float] (id: 1);
+	signal_argon : [ubyte] (flexbuffer, required, id:2);
+	neon: long (id:3);
+	puffin : ForgeCastle (id : 4);
+}
+struct NameComet {
+	phase: [uint8:3];
+	tag : uint16;
+	swift_valley:ulong (x_sigma: "width");
+	/// Unit: milliseconds.
+	/// Escapes \n stay literal.
+	/// Unit: milliseconds.
+	tone : ubyte;
+	entry: float;
+	CarbonKestrel:[ubyte:2];
+}
+
+namespace iron;
+
+table Summit (x_packet:"zeta") {
+	nebula:float64;
+	limit3: string ="nova";
+	hangar : [ForgeCastle];
+}
+
+namespace ;
+
+table Metric (original_order) {
+	/// Value in [0, 1).
+	namespace : string;
+	tag3 : string;
+	sample : iron.Summit;
+	market : [string] (x_hangar);
+	delta_delta:float;
+	label_summit : [NameComet];
+}
+
+rpc_service LevelHeron23 {
+	TowerWidth(iron.Summit):iron.Summit (streaming: "none");
+	PuffinLevel(iron.Summit):ForgeCastle;
+	TickAnchor(ForgeCastle):Metric (streaming : "server");
+	PrairieSwift(Metric):iron.Summit;
+}
+
+root_type ForgeCastle;
+file_identifier "93GC";

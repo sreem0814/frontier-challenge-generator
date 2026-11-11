@@ -1,0 +1,15 @@
+// Generated test schema.
+include "common3.fbs";
+
+/// Second paragraph.
+/// Multi-word doc with punctuation: a, b; c!
+struct KestrelSigma (force_align:8) {
+  /// Unicode: été → λ
+  cobalt:uint32;
+  /// Plain line
+  /// Multi-word doc with punctuation: a, b; c!
+  prairie : uint16;
+  osprey_nebula: [short:3];
+  state:[int:5];
+}
+

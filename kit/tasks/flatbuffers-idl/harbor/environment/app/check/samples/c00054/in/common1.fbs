@@ -1,0 +1,9 @@
+include "types2.fbs";
+
+namespace tag.orbit.tag;
+
+table Header {
+	tag:[uint];
+	mode:Mill;
+}
+

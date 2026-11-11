@@ -1,0 +1,17 @@
+// © example
+
+namespace width.gamma;
+
+table WidthHue {
+	meadow_limit:[ubyte] (flexbuffer);
+	metric : [string];
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Multi-word doc with punctuation: a, b; c!
+	garden:string;
+	flavor:float64;
+	kestrel_stage:uint=null;
+	hue:[uint] = [];
+	/// Note: "quoted" text and 'single' quotes.
+	label_gate : uint32;
+}
+

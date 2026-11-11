@@ -1,0 +1,11 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "-b",
+  "--schema",
+  "--bfbs-comments",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

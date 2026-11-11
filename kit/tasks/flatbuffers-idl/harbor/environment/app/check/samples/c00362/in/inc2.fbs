@@ -1,0 +1,9 @@
+/* block
+   comment */
+namespace title.frame.boron;
+
+struct Iron {
+    /// Plain line
+    /// Multi-word doc with punctuation: a, b; c!
+    title_beta:uint64;
+}

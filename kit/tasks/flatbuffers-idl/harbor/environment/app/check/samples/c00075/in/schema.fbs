@@ -1,0 +1,45 @@
+/* block
+   comment */
+attribute "x_depot";
+attribute "x_index";
+namespace cobalt.beta;
+
+struct AnchorGlacier (force_align: 8) {
+    nebula:uint16;
+    xenon: double (x_depot);
+}
+namespace vector.mode.swift;
+
+/// Value in [0, 1).
+table GardenQuasar {
+    tundra: int32 (x_index, id : 0);
+    theta_sample : int8 (id:4);
+    sample:int (id: 5);
+    span: string (id : 2);
+    event_color:float64 (id: 3);
+    tick_lagoon:double =+inf (id : 1);
+}
+
+namespace ;
+
+table Canyon {
+    height_mode : int32 =5 (id : 1);
+    static : [float64] (id : 2);
+    helium: int8 =+29 (id : 3);
+    vector:[vector.mode.swift.GardenQuasar] (id:0);
+}
+
+enum Offset : ushort (bit_flags) {
+    Span = 0,
+    Lagoon = 0x4,
+    /// The main record.
+    /// Holds a value.
+    /// Multi-word doc with punctuation: a, b; c!
+    Anchor = 5,
+    Zinc,
+    /// Plain line
+    Record = 7
+}
+root_type Canyon;
+file_identifier "10OM";
+file_extension "x";

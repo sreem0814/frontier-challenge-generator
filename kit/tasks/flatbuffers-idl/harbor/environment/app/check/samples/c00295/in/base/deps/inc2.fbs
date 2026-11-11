@@ -1,0 +1,19 @@
+attribute "x_total";
+namespace kestrel.depth;
+
+/// Unicode: été → λ
+struct CanyonTone {
+    offset:uint8;
+    bridge : ushort;
+    status:uint8;
+    event: int64;
+    sample: float64;
+}
+
+namespace index.packet.iron;
+
+table DeltaTheta {
+    ///  Indented doc line.
+    TowerName: byte (deprecated, x_total: 9);
+    carbon: [uint64];
+}

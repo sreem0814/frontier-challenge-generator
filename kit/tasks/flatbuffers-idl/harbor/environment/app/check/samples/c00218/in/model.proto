@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+package index.stage.lagoon;
+
+import "imported.proto";
+
+// Multi-word doc with punctuation: a, b; c!
+// Second paragraph.
+message BridgeLabel {
+  optional string neon = 1;
+  optional sfixed64 beta = 2;
+  repeated uint32 limit = 3;
+  // Multi-word doc with punctuation: a, b; c!
+  required uint64 gate = 4;
+  // Holds a value.
+  repeated fixed64 raven = 5;
+  repeated fixed64 iron = 6 [deprecated = true];
+  // Unicode: été → λ
+  optional string metric = 7;
+  repeated fixed64 color_copper = 8;
+}
+
+enum Forge {
+  FORGE_HANGAR = 0;
+  // Multi-word doc with punctuation: a, b; c!
+  TOTAL_SPAN = 2;
+  //   Indented doc line.
+  FORGE_STATE_SPARROW = 3 [deprecated = true];
+  /// Deprecated soon; see `next`.
+  FORGE_NOVA_GARDEN = 4;
+  /* Value in [0, 1). */
+  DEPOT = 5;
+  CARBON = 7;
+}
+
+// Plain line
+// Escapes \n stay literal.
+message Canyon {
+  repeated int32 total = 1;
+  /* Second paragraph. */
+  optional BridgeLabel swift_delta = 2;
+  required BridgeLabel silver_width = 3;
+  optional float orbit = 4;
+  optional uint64 zinc_depot = 5;
+  required BridgeLabel castle = 6;
+  required BridgeLabel condor_offset = 7;
+  map<bool, uint32> mode_map = 8;
+}
+
+// Plain line
+message Color {
+  optional Forge boron_name = 1;
+  optional int32 comet = 2;
+  // <b>html</b> & entities
+  // Second paragraph.
+  repeated string frame = 3;
+  // Plain line
+  // Holds a value.
+  repeated sfixed32 gamma_zeta = 4;
+  optional Canyon puffin = 5;
+  option deprecated = true;
+}

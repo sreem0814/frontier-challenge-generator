@@ -1,0 +1,12 @@
+table SwiftState {
+    carbon : float32 (id : 0);
+    mill_entry:string (id:1);
+    glacier_finch: [ushort] (id: 2);
+    depth_phase:bool=null (id:3);
+    count_boron:int (id : 4);
+    iron:string (id: 6);
+    forge: ushort = 0 (id:6);
+    PulsarName: string (id : 7);
+    nova: [ushort] (id: 8);
+}
+

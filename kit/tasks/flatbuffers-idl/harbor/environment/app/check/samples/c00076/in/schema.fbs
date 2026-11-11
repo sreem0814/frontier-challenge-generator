@@ -1,0 +1,43 @@
+attribute "x_delta";
+attribute "x_index";
+attribute "x_gamma";
+attribute x_finch;
+
+namespace depth.frame;
+
+///
+/// Plain line
+table Count {
+    delta : uint64 =13346773284365565509;
+    metric: string;
+    /// Holds a value.
+    /// Value in [0, 1).
+    /// <b>html</b> & entities
+    river_swift : [Count];
+}
+
+namespace ;
+
+struct NameDepot {
+    sigma : [int8:2];
+    forge: [int8:3];
+    boron: int32 (x_delta);
+    cobalt_sparrow: float (x_index : 74);
+}
+
+/// Second paragraph.
+/// Multi-word doc with punctuation: a, b; c!
+/// Note: "quoted" text and 'single' quotes.
+enum StatusColor : uint8 { Omega = 5, Depth = 10, Theta (x_gamma), Packet86 = 12 (x_finch : 43), FrameMarket, CANYON, MARKET, SIGMA, Sigma }
+
+struct Delta {
+    pelican_depth:[int8:2];
+    limit: [int8:3];
+    OffsetState:[NameDepot:2];
+}
+
+enum LimitHue : byte (bit_flags) {
+    Depot = 1,
+    Signal = 3,
+}
+

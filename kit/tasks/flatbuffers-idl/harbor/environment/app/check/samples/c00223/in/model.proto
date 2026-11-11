@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package delta;
+
+option java_package = "com.example.kestrel";
+
+// Multi-word doc with punctuation: a, b; c!
+message Canyon {
+  // Unit: milliseconds.
+  // Multi-word doc with punctuation: a, b; c!
+  uint32 heron = 1;
+}
+
+message Anchor {
+  message Phase {
+    optional float kestrel = 1;
+    optional fixed32 hangar = 2;
+    repeated int32 valley = 3;
+  }
+  oneof wren {
+    fixed64 stage = 1;
+    float finch = 2;
+    string atoll_bridge = 3;
+  }
+}
+
+// Note: "quoted" text and 'single' quotes.
+// 
+message BoronNote {
+  Anchor depth = 1;
+  // Multi-word doc with punctuation: a, b; c!
+  // Holds a value.
+  sint32 level_offset = 2;
+  Canyon iron_castle = 3;
+  Canyon quasar = 4;
+  int64 total = 5 [default = 80];
+}
+
+enum Glacier {
+  option allow_alias = true;
+  //   Indented doc line.
+  // Value in [0, 1).
+  GLACIER_PACKET = 0
+  WIDTH = 1;
+  // The main record.
+  GLACIER_TONE = 2;
+}
+
+message Limit {
+  optional BoronNote puffin = 1;
+  optional BoronNote summit = 2;
+  Glacier zeta_glacier = 3;
+  oneof offset {
+    Canyon castle = 4;
+    Glacier signal_tower = 5;
+    fixed64 mode_omega = 6;
+  }
+}

@@ -1,0 +1,29 @@
+// Generated test schema.
+
+///  Indented doc line.
+///
+struct ZincHeight {
+ shade_note: int8;
+ river_valley: double;
+}
+
+namespace reef;
+
+table GardenCobalt {
+ tin:[ZincHeight] (id:0);
+ depth : [string] (id: 1);
+ cobalt:[ubyte] (flexbuffer,id : 2);
+ /// Deprecated soon; see `next`.
+ /// Note: "quoted" text and 'single' quotes.
+ TensorHaven : [ubyte] (flexbuffer, id: 3);
+ limit : [ubyte] (flexbuffer,id : 4);
+ mill_iron:double = 691.3 (id:5);
+ iron:[string] (id:6);
+}
+/// Multi-word doc with punctuation: a, b; c!
+/// Value in [0, 1).
+/// The main record.
+union Offset {
+ GardenCobalt
+}
+

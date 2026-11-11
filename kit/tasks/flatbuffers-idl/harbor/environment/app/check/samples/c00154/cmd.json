@@ -1,0 +1,12 @@
+{
+ "bucket": "json_binary",
+ "argv": [
+  "-b",
+  "--size-prefixed",
+  "--unknown-json",
+  "-o",
+  "out",
+  "schema.fbs",
+  "input.json"
+ ]
+}

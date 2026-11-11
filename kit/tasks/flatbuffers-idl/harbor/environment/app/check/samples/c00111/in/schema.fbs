@@ -1,0 +1,129 @@
+namespace forest;
+
+///  Indented doc line.
+enum KappaOffset : ulong (bit_flags) {
+    Depot = 0x9,
+    /// Note: "quoted" text and 'single' quotes.
+    /// Deprecated soon; see `next`.
+    NovaTag = 11,
+    LambdaTower = 16,
+    /// Value in [0, 1).
+    Canyon33 = 28,
+    Comet86 = 35,
+    ZetaGamma = 0x28,
+    /// Second paragraph.
+    /// Unit: milliseconds.
+    /// Second paragraph.
+    Alpha = 50,
+    Theta = 0x3a,
+    TickQuasar = 59
+}
+
+namespace count.kestrel;
+
+enum Swift : int32 {
+    DEPTH = 100,
+    /// Unit: milliseconds.
+    BETA,
+    TIN = 111,
+    WREN = 112
+}
+
+namespace castle.condor.anchor;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// The main record.
+/// Unit: milliseconds.
+table SamplePacket55 {
+    hangar: count.kestrel.Swift =TIN;
+    pulsar : string;
+    haven_orbit: float64=-259;
+    nebula_garden : int = 9;
+    wren: [ubyte];
+    lambda_count: string;
+    index : [ubyte];
+    sample_swift:SamplePacket55;
+}
+
+/// The main record.
+/// <b>html</b> & entities
+table Index {
+    nickel : [string];
+    shade_kappa : [SamplePacket55];
+    market_hue: [uint64];
+    delta:[uint16];
+    flavor_beta : uint8;
+}
+
+namespace forest;
+
+enum Canyon : long {
+    KestrelStage = 3,
+    Xenon = 0xd,
+    ZincForge = 14,
+    ToneGarden = 114,
+    GARDEN,
+    ZINC,
+    /// Plain line
+    Quarry,
+    Note = 0x7A,
+    Meadow
+}
+
+namespace ;
+
+/// Escapes \n stay literal.
+/// Note: "quoted" text and 'single' quotes.
+/// Note: "quoted" text and 'single' quotes.
+struct Nickel {
+    /// Deprecated soon; see `next`.
+    /// Value in [0, 1).
+    count : ubyte;
+    kind_osprey:[int:4];
+    zinc_matrix:uint32;
+    entry : [float32:2];
+}
+
+namespace castle.condor.anchor;
+
+struct OspreySpan {
+    sparrow_lambda: Nickel;
+}
+namespace forest;
+
+///  Indented doc line.
+/// The main record.
+struct Wren {
+    count: KappaOffset;
+    canyon: KappaOffset;
+    /// Deprecated soon; see `next`.
+    boron:[castle.condor.anchor.OspreySpan:4];
+    comet:castle.condor.anchor.OspreySpan;
+    castle_anchor:uint8;
+    name_heron:float64;
+}
+
+namespace count.kestrel;
+
+/// Unicode: été → λ
+/// The main record.
+struct ForgeMatrix {
+    tundra_frame:bool;
+    quasar:Nickel;
+    metric_orbit : castle.condor.anchor.OspreySpan;
+    nova: float;
+}
+
+namespace forest;
+
+struct LimitPelican {
+    kind: byte;
+    pelican : [Wren:4];
+}
+
+namespace count.kestrel;
+
+enum DepthEpoch : short { Market = -0x1, }
+
+root_type castle.condor.anchor.Index;
+file_identifier "IE1I";

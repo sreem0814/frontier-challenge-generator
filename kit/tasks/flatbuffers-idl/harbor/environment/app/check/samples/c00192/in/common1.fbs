@@ -1,0 +1,8 @@
+// © example
+namespace meadow;
+
+table PuffinRaven {
+    hue9:string;
+    title_silver: [string];
+    RavenHeron: [ubyte];
+}

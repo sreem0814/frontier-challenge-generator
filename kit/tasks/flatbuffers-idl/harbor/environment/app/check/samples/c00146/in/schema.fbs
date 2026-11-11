@@ -1,0 +1,26 @@
+namespace puffin.gamma.tundra;
+
+table ReefPhase {
+ note_tick: uint8;
+ /// Second paragraph.
+ sigma1: [uint] = [] (required);
+ quarry:string = "reef";
+ flavor : [ubyte];
+}
+
+namespace mill.label;
+
+struct Xenon (force_align : 16) {
+ pulsar0:uint16;
+ tower: uint64;
+ ///  Indented doc line.
+ /// Plain line
+ /// Second paragraph.
+ depot : long;
+ heron : [int32:5];
+ tick_kestrel: ubyte;
+ boron: float64;
+}
+
+root_type puffin.gamma.tundra.ReefPhase;
+file_extension "x";

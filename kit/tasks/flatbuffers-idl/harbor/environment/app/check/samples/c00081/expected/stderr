@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:59: 20: error: Optional scalars are not yet supported in at least one of the specified programming languages.
+

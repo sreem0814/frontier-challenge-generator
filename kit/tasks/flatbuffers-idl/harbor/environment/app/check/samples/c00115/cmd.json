@@ -1,0 +1,16 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--jsonschema",
+  "--cpp",
+  "--gen-object-api",
+  "--reflect-types",
+  "--no-prefix",
+  "--gen-nullable",
+  "--cpp-std=c++0x",
+  "--force-empty",
+  "-o",
+  "out",
+  "alignment_test.fbs"
+ ]
+}

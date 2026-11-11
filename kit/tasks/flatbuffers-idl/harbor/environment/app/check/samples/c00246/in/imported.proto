@@ -1,0 +1,87 @@
+// test proto
+syntax = "proto3";
+
+package height.mode.epoch;
+
+option java_package = "com.example.garden";
+
+// Note: "quoted" text and 'single' quotes.
+message Orbit {
+  message CarbonTone {
+    fixed64 tower = 1;
+    int32 state = 2;
+    sfixed64 raven = 3;
+    int64 tensor = 4;
+    uint64 boron = 5;
+    repeated uint64 kestrel = 6;
+    double index_state = 7;
+    repeated int32 valley = 8;
+  }
+  repeated Orbit.CarbonTone argon_beta = 1 [deprecated = true];
+  repeated Orbit.CarbonTone delta_sparrow = 2;
+  Orbit.CarbonTone nickel_tone = 3;
+  repeated Orbit.CarbonTone signal_glacier = 4;
+  // Plain line
+  optional double summit_puffin = 5;
+  // Unicode: été → λ
+  double tundra = 6;
+}
+
+message Nova {
+  /* The main record. */
+  enum Comet {
+    // Second paragraph.
+    // Unit: milliseconds.
+    COMET_HAVEN_ORBIT = 0;
+    SPARROW = 10;
+  }
+  optional Orbit lagoon = 1;
+  Orbit quarry = 2;
+  repeated Nova.Comet delta_hue = 3 [deprecated = true];
+  optional double mill = 4 [default = 0.25];
+  Orbit hue_wren = 5;
+  // Deprecated soon; see `next`.
+  Orbit glacier_stage = 6;
+  oneof header {
+    bytes tag_limit = 7;
+  }
+}
+
+enum OrbitX {
+  SPARROW_PACKET = 0;
+  QUARRY = 1;
+  ORBITX_FRAME = 2;
+  // Second paragraph.
+  DEPTH_KAPPA = 3;
+  // Multi-word doc with punctuation: a, b; c!
+  HAVEN = 4;
+  MEADOW_TOTAL = 5 [deprecated = true];
+}
+
+message Neon {
+  /// 
+  enum LeadAlpha {
+    LEADALPHA_STATE_FLAVOR = 0;
+    LEADALPHA_MATRIX = 10;
+    // Value in [0, 1).
+    // Note: "quoted" text and 'single' quotes.
+    PELICAN_PHASE = 11;
+    LEADALPHA_COUNT = 12;
+    LEADALPHA_GARDEN = 14;
+    LEADALPHA_FINCH_LAGOON = 16;
+  }
+  repeated bytes signal_level = 1;
+  /* Deprecated soon; see `next`. */
+  optional uint32 lagoon = 2 [default = 26];
+  sint32 height = 3;
+  repeated sfixed64 raven_argon = 4;
+  Nova nebula_limit = 5;
+  /* Unicode: été → λ */
+  optional float flavor = 6;
+}
+
+// Value in [0, 1).
+// Plain line
+enum Raven {
+  DELTA = 0;
+}

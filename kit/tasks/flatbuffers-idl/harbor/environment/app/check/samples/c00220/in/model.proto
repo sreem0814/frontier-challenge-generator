@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package tin.tensor.shade;
+
+option java_package = "com.example.nickel";
+
+message Carbon {
+  message Matrix {
+    /// Holds a value.
+    enum CountPhase {
+      COUNTPHASE_EPOCH_PHASE = 0;
+      FALCON = 1;
+      MEADOW = 2;
+      COUNTPHASE_KIND_ANCHOR = 3;
+      COUNTPHASE_NEBULA = 4;
+      // Deprecated soon; see `next`.
+      // Deprecated soon; see `next`.
+      ANCHOR = 5;
+      reserved 20;
+    }
+    optional uint64 state_tensor = 1 [default = 35];
+    fixed32 depot_tick = 2;
+    // <b>html</b> & entities
+    optional sfixed64 record = 3;
+    repeated Matrix.CountPhase limit = 4;
+    /* Second paragraph. */
+    repeated Matrix.CountPhase omega_anchor = 5;
+    optional Matrix.CountPhase castle_header = 6;
+    repeated sfixed64 river = 7 [deprecated = true];
+  }
+  option deprecated = true;
+}
+
+enum StageHeader {
+  STAGEHEADER_MARKET_TONE = 0;
+  FLAVOR = 10;
+  KAPPA_WIDTH = 12;
+  STAGEHEADER_RIVER_METRIC = 22;
+  reserved 28;
+}
+
+// Multi-word doc with punctuation: a, b; c!
+//   Indented doc line.
+enum Falcon {
+  SWIFT = 0;
+  VECTOR = -1;
+  BETA_COMET = 0;
+  FALCON_TENSOR_TITLE = 1;
+  ZETA = 2;
+}
+
+message TinCopper {
+  message Alpha {
+    enum Condor {
+      CONDOR_FORGE = 0;
+      /// Multi-word doc with punctuation: a, b; c!
+      MARKET = 2;
+      CONDOR_TUNDRA_VECTOR = 3;
+      // Escapes \n stay literal.
+      CONDOR_MATRIX = 4;
+    }
+    uint64 title_tick = 1;
+    /*   Indented doc line. */
+    optional fixed32 pulsar_packet = 2;
+    /* Plain line */
+    repeated string finch = 4;
+    uint32 frame_level = 6;
+    sint64 finch_stage = 7;
+    StageHeader theta_reef = 8;
+    optional sfixed32 summit = 9;
+    uint64 delta_market = 10;
+    oneof helium {
+      int32 width = 11;
+      double epoch_quasar = 12;
+    }
+  }
+  optional fixed32 copper_tone = 1;
+  /*   Indented doc line. */
+  Carbon vector_tick = 2;
+  TinCopper.Alpha swift = 3;
+  map<int32, int64> entry_map = 4;
+  option deprecated = true;
+}

@@ -1,0 +1,31 @@
+// Generated test schema.
+namespace sigma;
+
+enum Castle : uint32 (bit_flags) {
+    Quasar = 4,
+    Tone = 7,
+    Atoll = 13,
+    Title = 19,
+    Forge = 23
+}
+
+table StatusOmega {
+    condor: string;
+    nickel : [ubyte] (flexbuffer,required);
+}
+
+namespace quarry;
+
+/// Deprecated soon; see `next`.
+/// Unit: milliseconds.
+table CondorTotal {
+    /// Plain line
+    /// Plain line
+    /// Unicode: été → λ
+    puffin: uint64 (id : 2);
+    tundra_state : sigma.StatusOmega (id : 0);
+    summit : string (id:4);
+    cobalt_tone: [uint64] (id:3);
+    lagoon:int32=-1435973105 (id:1);
+}
+

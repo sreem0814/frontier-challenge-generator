@@ -1,0 +1,15 @@
+include "deps/lib1.fbs";
+union Canyon {
+ sample.garden.Argon
+}
+
+table HeaderArgon {
+ theta:[ushort];
+ depot : [string];
+}
+rpc_service CanyonColor {
+ NickelDelta(HeaderArgon):sample.garden.Argon;
+ MatrixForest(HeaderArgon):sample.garden.Argon (streaming : "bidi");
+}
+
+root_type HeaderArgon;

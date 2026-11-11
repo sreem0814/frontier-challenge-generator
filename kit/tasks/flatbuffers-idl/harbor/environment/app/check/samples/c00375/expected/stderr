@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:7: 34: error: fields using 64-bit offsets are not yet supported in at least one of the specified programming languages.
+

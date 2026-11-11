@@ -1,0 +1,100 @@
+// test proto
+syntax = "proto3";
+
+package garden.flavor;
+
+
+enum Quasar {
+  MILL_GATE = 0;
+  KAPPA = 1;
+  STAGE = 11 [deprecated = true];
+}
+
+message Haven {
+  // Holds a value.
+  // <b>html</b> & entities
+  optional Quasar epoch_forest = 1;
+  oneof theta {
+    uint32 offset_nickel = 2;
+  }
+  option deprecated = true;
+}
+
+message HeronGate {
+  // Second paragraph.
+  string tensor = 1;
+  string hue_state = 2;
+  //   Indented doc line.
+  repeated bool title_pelican = 3 [packed = true];
+  repeated uint64 beta_sample = 4;
+  // Multi-word doc with punctuation: a, b; c!
+  string heron = 5;
+  // Unicode: été → λ
+  // Deprecated soon; see `next`.
+  double kind = 6;
+  Haven mill_kappa = 7;
+  Quasar count = 8;
+  map<uint64, fixed64> header_comet_map = 9;
+}
+
+message Title {
+  // Unicode: été → λ
+  enum Sigma {
+    SIGMA_NICKEL_PRAIRIE = 0;
+    // Plain line
+    DELTA_ARGON = 1;
+    BORON_EPOCH = 3;
+    SIGMA_FOREST = 4;
+    SIGMA_PACKET_DEPOT = 14;
+  }
+  message Header {
+    /// The main record.
+    message Anchor {
+      double tag = 1;
+      bool heron = 2;
+      optional sint32 beta = 3;
+    }
+    int32 castle_index = 1;
+    Title.Sigma pulsar = 2;
+    /* Unicode: été → λ */
+    repeated Haven label_silver = 3;
+    // Multi-word doc with punctuation: a, b; c!
+    optional sint64 kappa = 4;
+    optional Quasar tone = 5;
+  }
+  sint32 label = 1 [default = 97, deprecated = true];
+  // Unicode: été → λ
+  sint32 tundra_comet = 2;
+  optional int32 market_kind = 3;
+  repeated Title.Sigma sparrow_nebula = 4;
+  // <b>html</b> & entities
+  // Deprecated soon; see `next`.
+  optional int32 tag_anchor = 5;
+  optional Title.Sigma name = 6;
+  float heron_theta = 7;
+  oneof finch_finch {
+    sfixed32 market_osprey = 8;
+    fixed32 argon_iron = 9;
+    Quasar tone = 10;
+  }
+  map<uint64, fixed64> falcon_map = 11;
+}
+
+// Unit: milliseconds.
+// Value in [0, 1).
+message TickStage {
+  enum Title {
+    TITLE_SHADE_RIVER = 0;
+    TITLE_GAMMA_QUARRY = 1;
+    TITLE_QUASAR_EVENT = 2;
+  }
+  Haven span = 1;
+  repeated uint32 packet = 2;
+  // Value in [0, 1).
+  int64 stage_matrix = 3;
+  // Second paragraph.
+  // Second paragraph.
+  int32 anchor = 4;
+  int32 tone_kestrel = 5;
+  optional fixed32 hue = 6;
+}

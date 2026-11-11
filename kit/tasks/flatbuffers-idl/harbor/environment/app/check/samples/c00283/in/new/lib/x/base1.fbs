@@ -1,0 +1,13 @@
+namespace garden.delta;
+
+table Forest {
+    carbon_hue:int (id : 0);
+    zeta_raven : [ubyte] (id: 1);
+}
+
+/// Holds a value.
+union State {
+    Forest,
+    GateAnchor,
+}
+

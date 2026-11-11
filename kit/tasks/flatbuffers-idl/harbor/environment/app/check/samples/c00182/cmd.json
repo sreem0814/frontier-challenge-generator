@@ -1,0 +1,14 @@
+{
+ "bucket": "json_text",
+ "argv": [
+  "--json",
+  "--strict-json",
+  "--defaults-json",
+  "--raw-binary",
+  "-o",
+  "out",
+  "schema.fbs",
+  "--",
+  "data.bin"
+ ]
+}

@@ -1,0 +1,58 @@
+native_include "native/types.h";
+table ForestHeader16 (original_order) {
+  tin : string;
+  epoch_helium : uint64;
+  state:string (key);
+  width : long=-5798388885631775332;
+}
+
+namespace finch.alpha;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Second paragraph.
+/// Second paragraph.
+struct QuarryKind0 (force_align : 16) {
+  depth:[ubyte:2];
+  gamma_tundra: short;
+  sigma_gamma: uint32;
+  finch_title:uint16;
+}
+
+namespace ;
+
+/// Plain line
+table Flavor {
+  prairie:float=0.0 (deprecated,id: 2);
+  anchor:ForestHeader16 (id: 7);
+  ///  Indented doc line.
+  garden : [string] (id: 4);
+  atoll:int8 (key,id: 0);
+  wren_kestrel : [finch.alpha.QuarryKind0] (id : 3);
+  limit_nickel:float32 (id : 6);
+  wren:int32 (id:8);
+  /// Unicode: été → λ
+  lead_lead:[finch.alpha.QuarryKind0] (id: 9);
+  bridge_wren: uint64=null (id:5);
+  /// Note: "quoted" text and 'single' quotes.
+  /// Deprecated soon; see `next`.
+  boron : [long] (id:1);
+}
+
+table PulsarLevel {
+  mode_forge: int32=null (id: 0);
+  kappa:int32 = 56 (id : 1);
+  /// Deprecated soon; see `next`.
+  /// The main record.
+  /// The main record.
+  xenon:int (id: 2);
+}
+
+namespace osprey.forest.beta;
+
+rpc_service SpanGlacier33 {
+  /// Multi-word doc with punctuation: a, b; c!
+  FinchStage(ForestHeader16):Flavor;
+}
+
+root_type PulsarLevel;
+file_extension "x";

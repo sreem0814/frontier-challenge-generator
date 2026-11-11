@@ -1,0 +1,13 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "-b",
+  "--allow-non-utf8",
+  "--root-type",
+  "Hangar",
+  "-o",
+  "out",
+  "schema.fbs",
+  "input.json"
+ ]
+}

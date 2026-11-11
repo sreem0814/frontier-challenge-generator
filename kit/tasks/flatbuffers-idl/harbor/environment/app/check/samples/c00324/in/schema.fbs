@@ -1,0 +1,41 @@
+/* block
+   comment */
+
+namespace span;
+
+/// <b>html</b> & entities
+table CountMatrix (original_order) {
+ cobalt_forge : uint;
+ /// <b>html</b> & entities
+ atoll6: [ubyte];
+ gate_gamma : [short];
+ kind: uint =465849147;
+ lambda: [uint];
+ /// Unicode: été → λ
+ /// <b>html</b> & entities
+ /// Plain line
+ lambda_falcon: [uint] (deprecated);
+ depth: [ushort];
+ quarry_stage: string (key);
+}
+
+namespace ;
+
+union Beta {
+ span.CountMatrix
+}
+namespace reef;
+
+///
+enum NickelHeader : float {
+ /// <b>html</b> & entities
+ /// Value in [0, 1).
+ ///
+ River = 0,
+ TITLE,
+ Orbit,
+ Label = 7,
+ Beta = 17
+}
+
+root_type span.CountMatrix;

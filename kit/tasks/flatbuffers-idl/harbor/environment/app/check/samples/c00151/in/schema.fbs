@@ -1,0 +1,113 @@
+attribute x_prairie;
+attribute x_shade;
+attribute "x_color";
+attribute "x_epoch";
+namespace castle;
+
+/// Escapes \n stay literal.
+/// Deprecated soon; see `next`.
+table HeliumNeon {
+	///
+	/// Note: "quoted" text and 'single' quotes.
+	/// Second paragraph.
+	forge : [ubyte] (required);
+	end:long;
+	garden : [ubyte] (required);
+	castle: int32 (deprecated);
+	copper_quarry: string (x_prairie:"tone");
+	vector : [float32];
+	cobalt:[double];
+	index_level: FlavorMill;
+}
+
+namespace ;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Plain line
+///  Indented doc line.
+enum CastleForest : uint16 {
+	Status = 200,
+	EPOCH = 202
+}
+
+table DepotQuasar (x_shade) {
+	frame:castle.HeliumNeon;
+	alpha_sample:uint16 = 65535;
+	market:string ="entry";
+	width_lagoon : castle.HeliumNeon (required);
+	iron : short =null;
+	quarry : [castle.HeliumNeon];
+	tone_header: CastleForest=EPOCH;
+	sparrow : [DepotQuasar];
+}
+
+struct Title (force_align:32) {
+	kestrel_epoch: ubyte;
+	/// Unicode: été → λ
+	/// Unit: milliseconds.
+	/// Multi-word doc with punctuation: a, b; c!
+	record_zeta:[int:4];
+	tundra_cobalt:[uint32:4] (x_color);
+	hue:byte;
+	condor : [int8:4];
+}
+
+/// Escapes \n stay literal.
+table ForgeLevel {
+	orbit:float32;
+	puffin_finch:[Title];
+	/// The main record.
+	/// Value in [0, 1).
+	/// Second paragraph.
+	flavor : Title;
+	falcon_state: ushort;
+	sparrow: uint16;
+	signal_matrix: castle.HeliumNeon;
+	xenon_count:uint32;
+	swift:int32;
+	count: ushort =33;
+	valley : float32;
+}
+
+struct Osprey {
+	sigma_gamma : ushort;
+	/// Second paragraph.
+	matrix: uint8 (x_epoch);
+}
+
+namespace color.width;
+
+table Delta {
+	total_puffin: string;
+	zeta_raven:[Title] (required);
+	bridge:[DepotQuasar];
+	xenon:[string];
+	matrix:int = -134389799;
+	forge4: string;
+	boron:CastleForest =Status;
+	garden : [uint16];
+	limit_gate:[Osprey];
+	tundra : long;
+	limit:Delta;
+}
+
+table AlphaHeron {
+	TundraGarden : ushort=90;
+	/// Second paragraph.
+	sparrow_vector:int8=null;
+	kind_quarry: Delta;
+	nova_summit : string;
+	flavor:[Osprey];
+	haven: int8 = -89 (deprecated);
+}
+
+namespace ;
+
+/// Unit: milliseconds.
+table FlavorMill {
+	record_neon : [castle.HeliumNeon];
+	index_lead: uint64=null;
+	index : CastleForest=Status;
+}
+
+root_type ForgeLevel;

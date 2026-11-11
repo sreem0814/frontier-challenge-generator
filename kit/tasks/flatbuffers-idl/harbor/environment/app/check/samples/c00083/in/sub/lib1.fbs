@@ -1,0 +1,39 @@
+include "inc2.fbs";
+
+table Width {
+  tundra: int;
+  var: ValleyHaven = Index;
+  /// Value in [0, 1).
+  /// Deprecated soon; see `next`.
+  ///  Indented doc line.
+  ColorCanyon:bool;
+  packet_iron : bool;
+  default: ValleyHaven=Index;
+  /// Holds a value.
+  /// <b>html</b> & entities
+  heron6 : byte;
+  ///
+  nebula : bool=1;
+  mill: uint64=0xf (key);
+  span:span.matrix.ValleyNeon;
+  flavor:span.matrix.ValleyNeon;
+  finch : [packet.bridge.GardenLagoon];
+}
+namespace span.matrix;
+
+union DeltaNeon {
+  Meadow91,
+  Orbit: packet.bridge.GardenLagoon,
+  ///
+  /// Multi-word doc with punctuation: a, b; c!
+  /// Deprecated soon; see `next`.
+  HeliumTower: bridge.mode.kappa.TickPuffin,
+  /// Multi-word doc with punctuation: a, b; c!
+  HeliumSignal: Width,
+}
+
+/// Second paragraph.
+/// Unit: milliseconds.
+/// Multi-word doc with punctuation: a, b; c!
+enum OffsetQuarry : int8 { TOWER = 100, QuarryOrbit = 127 }
+

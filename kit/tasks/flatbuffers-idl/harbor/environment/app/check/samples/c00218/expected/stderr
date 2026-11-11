@@ -1,0 +1,5 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+When you use --proto, that you should check for conformity yourself, using the existing --conform

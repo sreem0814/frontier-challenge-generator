@@ -1,0 +1,38 @@
+/* block
+   comment */
+include "base1.fbs";
+attribute "x_kestrel";
+attribute "x_hangar";
+table MeadowOffset {
+    height:[int64];
+    haven: [span.FlavorFinch];
+}
+
+namespace lead.entry.height;
+
+table Castle {
+    /// Second paragraph.
+    beta: span.FlavorFinch;
+    signal : [int8];
+    sigma : [span.FlavorFinch] (deprecated,x_kestrel);
+    /// Deprecated soon; see `next`.
+    /// Plain line
+    omega_neon: ulong;
+    quasar_nova: [span.Delta];
+    theta_sample : span.Delta (x_hangar:62);
+    orbit: hue.Reef;
+    index_stage: MeadowOffset;
+    wren_stage:[ubyte];
+    iron : span.PelicanLimit;
+}
+
+enum DepotHaven : uint {
+    NovaForge = 1,
+    Sparrow = 2,
+    Valley,
+    LABEL,
+    PHASE,
+    Kestrel = 7
+}
+
+file_identifier "AWD2";

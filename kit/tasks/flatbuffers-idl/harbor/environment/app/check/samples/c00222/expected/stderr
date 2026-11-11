@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/imported.proto:20: 1: error: oneof 'hangar' cannot be mapped to a union because member 'valley_argon' is not a table type.
+

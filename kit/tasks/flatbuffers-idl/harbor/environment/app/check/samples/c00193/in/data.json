@@ -1,0 +1,23 @@
+{
+  "SilverForge": 7991655424759969485,
+  "alpha": -90249.0,
+  kappa: 31,
+  "note": "Quasar",
+  "depth": {
+    "anchor0": ["count", 631426630848, 0.1660204927330451, 9.66826785640096],
+    "tundra1": [],
+    tin2: {
+      "iron0": [null, 3.4492379002592557, "metric", "\"\r\tx中"],
+      "orbit1": null,
+      "width2": [true],
+      "delta3": "reef",
+    }
+  },
+  sparrow_metric: [73, 0, 193],
+  "heron_forest": {
+    "alpha": 6.02214076e23,
+    note: "Quasar",
+    "stage5": 22,
+    "depth": [-3837, {"depot0": {},count1: 565801660793,"vector2": [-2732],limit3: 502349080122}, [{"depot0": 342703034466,"shade1": null,"market2": -279}], {}]
+  }
+}

@@ -1,0 +1,20 @@
+include "lib/x/base1.fbs";
+attribute "x_hangar";
+attribute "x_falcon";
+table KestrelHeron (x_hangar : "wren",csharp_partial) {
+    market_status : [string] (x_falcon : 44);
+    lambda: width.copper.Tin;
+    boron:double=4483.8366192;
+    swift_silver : uint=null;
+    state_sample : float64 =-976;
+    depot_iron:width.copper.Tin;
+}
+
+rpc_service FinchQuasar {
+    /// The main record.
+    /// Unit: milliseconds.
+    OspreyMeadow(Tag):KestrelHeron;
+}
+root_type KestrelHeron;
+file_identifier "0U7P";
+file_extension "x";

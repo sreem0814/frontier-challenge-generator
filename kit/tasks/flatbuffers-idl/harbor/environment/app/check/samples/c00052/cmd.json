@@ -1,0 +1,9 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--jsonschema",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

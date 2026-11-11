@@ -1,0 +1,74 @@
+// Generated test schema.
+include "base1.fbs";
+attribute "x_hangar";
+attribute "x_hue";
+/// Value in [0, 1).
+/// Note: "quoted" text and 'single' quotes.
+table ReefQuarry (original_order) {
+  title_canyon:double = -6979.7443 (id : 0);
+  nebula:comet.DeltaEpoch (id:1);
+  is: uint (id : 2);
+  /// Holds a value.
+  frame:string (id:3);
+  argon : matrix.garden.TickHelium (id: 4);
+  stage_swift: kind.GardenLagoon =AtollZinc (deprecated,id : 5);
+  kind: byte (id: 6);
+  puffin_tone:uint (id: 7);
+  self : string (id : 8);
+}
+
+table WidthSpan {
+  beta:[matrix.garden.TickHelium];
+  mill_kappa: matrix.garden.TickHelium (required);
+  tin_carbon:double;
+  span_omega: kind.GardenLagoon = Hangar;
+  func: [comet.Meadow];
+  name:matrix.garden.TickHelium;
+}
+/// Deprecated soon; see `next`.
+struct QuasarLabel47 {
+  sample : int16;
+  comet_swift: uint8;
+  bridge:matrix.garden.TickHelium (x_hangar);
+  /// Escapes \n stay literal.
+  /// <b>html</b> & entities
+  meadow_orbit: uint16;
+  xenon: long;
+}
+
+///  Indented doc line.
+/// Plain line
+table Comet {
+  sparrow_river:kind.GardenLagoon =null (x_hue);
+  kappa_phase: matrix.garden.TickHelium;
+  /// <b>html</b> & entities
+  PuffinIron : matrix.garden.TickHelium;
+  depot : [comet.Meadow];
+}
+table ReefTheta (original_order) {
+  width_nebula: float32;
+  /// The main record.
+  beta : uint = 1132353699;
+  stage_anchor: uint16 =0;
+  kind_comet: [QuasarLabel47] = [];
+  span_vector : string;
+  BridgeSilver: uint32;
+  ref:kind.GlacierVector;
+}
+namespace comet;
+
+/// Second paragraph.
+/// Unicode: été → λ
+/// Note: "quoted" text and 'single' quotes.
+enum Entry : uint8 { CASTLE = 0, Span }
+
+namespace ;
+
+struct FinchRaven {
+  pelican_orbit : matrix.garden.TickHelium;
+  castle : int64;
+  raven:comet.Entry;
+}
+
+root_type WidthSpan;
+file_identifier "KNKV";

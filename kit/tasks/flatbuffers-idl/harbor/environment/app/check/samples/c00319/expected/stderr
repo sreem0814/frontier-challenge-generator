@@ -1,0 +1,5 @@
+
+error:
+  @/schema.fbs:17: 12: warning: field names should be lowercase snake_case, got: CondorStage
+@/schema.fbs:24: 18: error: Arrays are not yet supported in all the specified programming languages.
+

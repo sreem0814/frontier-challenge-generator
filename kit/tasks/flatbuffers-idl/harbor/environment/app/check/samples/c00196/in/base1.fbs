@@ -1,0 +1,12 @@
+attribute "x_comet";
+
+namespace comet;
+
+/// Plain line
+table TinTheta (x_comet:"raven") {
+    zinc_depot:[ubyte];
+    limit_garden : float32 =-2520.16;
+    phase_finch : bool =true;
+    argon:uint64;
+}
+

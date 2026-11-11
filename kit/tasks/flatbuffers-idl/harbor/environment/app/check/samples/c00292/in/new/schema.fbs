@@ -1,0 +1,31 @@
+include "types1.fbs";
+
+enum LabelEvent : int32 {
+  Neon = 1,
+  ///
+  /// Second paragraph.
+  /// Value in [0, 1).
+  Castle
+}
+
+namespace kappa.condor.lambda;
+
+/// Plain line
+table Nova {
+  tower_quarry:ulong;
+  orbit : LabelEvent = Neon;
+  /// <b>html</b> & entities
+  bridge : int=null;
+  is:[ubyte];
+  orbit_flavor : float64 =1.;
+  /// Note: "quoted" text and 'single' quotes.
+  union:[Castle];
+  prairie: LabelEvent=Neon;
+  argon_reef : Castle;
+  hue_summit : ulong=0x0;
+  gate_offset:[Nova];
+}
+
+root_type kappa.condor.lambda.Nova;
+file_identifier "37LX";
+file_extension "x";

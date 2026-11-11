@@ -1,0 +1,37 @@
+attribute "x_kestrel";
+namespace index.event.epoch;
+
+enum Flavor : ushort {
+	FlavorAlpha = 0,
+	/// Note: "quoted" text and 'single' quotes.
+	/// Unit: milliseconds.
+	/// Note: "quoted" text and 'single' quotes.
+	MEADOW
+}
+namespace stage.zinc;
+
+table FalconNebula (original_order) {
+	theta:int64 = 5925717131935791559;
+	iron_orbit:[ubyte] (deprecated);
+	summit : long = 54;
+	/// Note: "quoted" text and 'single' quotes.
+	copper_frame : [string];
+}
+
+namespace ;
+
+/// <b>html</b> & entities
+union Reef : ubyte {
+	stage.zinc.FalconNebula
+}
+
+namespace span.sigma;
+
+struct Metric (x_kestrel:"epoch") {
+	lambda2 : ushort;
+	gate_tin:[uint16:4];
+	phase : [uint32:5];
+	anchor6:int64;
+	tin_color:ushort;
+}
+

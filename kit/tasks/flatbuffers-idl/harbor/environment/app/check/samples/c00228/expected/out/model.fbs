@@ -1,0 +1,131 @@
+// Generated from model.proto
+
+namespace reef.StageTower_;
+
+enum Name : int {
+  SHADE = 0,
+  NEBULA_DELTA = 1,
+  NEBULA = 3,
+  NAME_VECTOR = 5,
+  HAVEN_FRAME = 6,
+}
+
+namespace reef;
+
+enum Tin : int {
+  FALCON_BORON = 0,
+  MODE = 1,
+  KAPPA = 2,
+  TIN_TOWER = 12,
+  TIN_GARDEN = 13,
+  TIN_LAMBDA = 15,
+}
+
+namespace reef.Quarry_;
+
+enum Orbit : int {
+  ORBIT_QUARRY = 0,
+  ORBIT_LABEL_GATE = 10,
+  TENSOR = 11,
+}
+
+namespace reef.SummitNote_;
+
+enum PuffinMeadow : int {
+  PUFFINMEADOW_KAPPA = 0,
+  CONDOR = 1,
+  SUMMIT_PELICAN = 2,
+  PUFFINMEADOW_FALCON = 12,
+}
+
+namespace reef.SummitNote_.Comet_;
+
+enum DeltaNeon : int {
+  DELTANEON_QUASAR_NEON = 0,
+  HAVEN = 2,
+  DELTANEON_QUARRY_BETA = 4,
+  QUARRY = 5,
+}
+
+namespace theta.hue.quasar;
+
+table Header {
+  tensor:theta.hue.quasar.Header_.ModePuffin;
+  reef_color:theta.hue.quasar.Header_.ModePuffin (required);
+  packet:theta.hue.quasar.Header_.Anonymous0;
+}
+
+namespace theta.hue.quasar.Header_;
+
+table ModePuffin {
+  copper:int;
+  depth_falcon:bool;
+  boron:long;
+  prairie:[ubyte];
+}
+
+table Anonymous0 {
+  hue_epoch:ulong;
+  hangar_vector:int;
+  tick_event:[ubyte];
+}
+
+namespace theta.hue.quasar;
+
+table Nebula {
+  puffin_flavor:bool;
+  quarry:[long];
+  depth:theta.hue.quasar.Header;
+  finch:uint;
+  sparrow_signal:double;
+  sigma_condor:theta.hue.quasar.Header;
+  tower_delta:int;
+  tower_nova:int;
+}
+
+namespace reef;
+
+table StageTower {
+  stage_lagoon:[reef.StageTower_.Name];
+  theta_hue:[reef.StageTower_.Name];
+}
+
+namespace reef.StageTower_;
+
+table TickName {
+  /// Unit: milliseconds.
+  tundra:reef.StageTower_.Name;
+  offset_theta:reef.StageTower_.TickName_.WidthForest;
+  lagoon_packet:[ulong];
+  gamma:[reef.StageTower_.TickName_.WidthForest];
+  omega_title:reef.StageTower_.TickName_.WidthForest;
+  prairie:reef.StageTower_.Name;
+}
+
+namespace reef.StageTower_.TickName_;
+
+table WidthForest {
+  silver:bool;
+  signal:reef.StageTower_.Name;
+  sample_packet:[ubyte] (required);
+  lead_sparrow:[uint];
+}
+
+namespace reef;
+
+table Quarry {
+}
+
+table SummitNote {
+  tundra:reef.SummitNote_.PuffinMeadow;
+  color:long;
+}
+
+namespace reef.SummitNote_;
+
+table Comet {
+  index:bool;
+  helium_kappa:string;
+  sparrow:double;
+}
+

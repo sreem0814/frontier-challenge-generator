@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:12: 50: error: Default values for strings and vectors are not supported in one of the specified programming languages
+

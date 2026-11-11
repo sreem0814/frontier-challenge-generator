@@ -1,0 +1,8 @@
+// © example
+include "common2.fbs";
+namespace shade.castle.atoll;
+
+enum SpanGate : uint64 {
+ RiverNickel = 0x1
+}
+

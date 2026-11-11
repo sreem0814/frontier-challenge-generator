@@ -1,0 +1,6 @@
+
+error:
+  @/schema.fbs:40: 11: warning: field names should be lowercase snake_case, got: MillLagoon
+@/schema.fbs:62: 12: warning: field names should be lowercase snake_case, got: RiverSilver
+@/schema.fbs:72: 21: error: invalid number, the exponent suffix of hexadecimal floating-point literals is mandatory: "-0x10"
+

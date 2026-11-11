@@ -1,0 +1,68 @@
+include "lib1.fbs";
+attribute "x_river";
+attribute "x_span";
+attribute "x_mode";
+
+table TickGamma {
+ packet_lambda:[short] (deprecated);
+ sample_entry : [ubyte];
+ nova : GlacierStatus;
+}
+
+namespace nebula.offset;
+
+struct Lagoon48 {
+ phase_tower: uint8;
+ pulsar_nova : [tick.xenon.RecordAlpha:4];
+ entry: [bool:4];
+ depot : ulong (x_river);
+}
+
+namespace tick.xenon;
+
+table SummitLabel {
+ signal_delta : double;
+ pelican: uint8;
+ iron: bool (deprecated);
+ entry: uint32;
+ /// Holds a value.
+ vector_lagoon: string;
+ copper : [GlacierStatus];
+}
+
+namespace nebula.offset;
+
+///
+table PuffinForge {
+ height : HavenHelium (id:0);
+ kappa_finch : [nebula.offset.Total] (id:1);
+ delta:int32 (x_span, id:2);
+ offset_summit : ushort (id:3);
+ swift_gamma: [tick.xenon.MillBridge] (required, id:4);
+ glacier_record: ReefFrame (id : 5);
+}
+
+namespace ;
+
+/// Note: "quoted" text and 'single' quotes.
+///
+/// Unicode: été → λ
+table GlacierStatus {
+ market : float32 (id: 3);
+ frame_epoch:string (id: 2);
+ flavor_offset:string (id : 4);
+ status_forge : uint32 (id : 5);
+ tone : int64=null (id : 0);
+ table : uint64 (id:1);
+}
+
+/// Note: "quoted" text and 'single' quotes.
+/// Unicode: été → λ
+/// Escapes \n stay literal.
+struct HeliumCanyon {
+ import:float64 (x_mode);
+ ZincCount : byte;
+ haven_nova: bool;
+}
+
+file_identifier "HFW5";

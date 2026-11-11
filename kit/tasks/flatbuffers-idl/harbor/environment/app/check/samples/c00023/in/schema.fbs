@@ -1,0 +1,23 @@
+include "types1.fbs";
+///
+/// Holds a value.
+/// The main record.
+table Bridge {
+	lambda_status:string (id : 7);
+	theta : [valley.forge.matrix.Height] (id : 2);
+	anchor:int64 =-4817491859499215473 (id : 6);
+	pelican:uint32 (id: 5);
+	struct: int=670021113 (id : 4);
+	offset_finch : [valley.forge.matrix.Epoch] (id : 9);
+	/// Deprecated soon; see `next`.
+	matrix_mode: short = -22 (id: 8);
+	/// Unit: milliseconds.
+	/// Unit: milliseconds.
+	xenon_packet: valley.forge.matrix.Epoch (id : 0);
+	IronNote: string (id: 1);
+	castle_osprey : valley.forge.matrix.Epoch (id : 3);
+}
+
+root_type Bridge;
+file_identifier "I3PN";
+file_extension "x";

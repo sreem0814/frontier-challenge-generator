@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:8: 19: error: Arrays are not yet supported in all the specified programming languages.
+

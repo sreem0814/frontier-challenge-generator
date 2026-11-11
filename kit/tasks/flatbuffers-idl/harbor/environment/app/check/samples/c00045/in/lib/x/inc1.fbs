@@ -1,0 +1,41 @@
+attribute "x_shade";
+attribute x_iron;
+attribute "x_nebula";
+attribute x_kind;
+/// Second paragraph.
+/// Plain line
+/// The main record.
+table ColorIron {
+	/// Holds a value.
+	/// Deprecated soon; see `next`.
+	///
+	true: [uint];
+	tower_metric:bool;
+	anchor_hue:string;
+	metric:[ubyte];
+	SummitAnchor : string;
+	forest:string (required);
+	record : [ubyte] (flexbuffer);
+	delta : [string];
+	hangar : ColorIron;
+}
+
+namespace index.raven.name;
+
+/// Plain line
+struct Xenon {
+	kappa_omega: float32;
+	forest : uint16 (x_shade: "gamma");
+	color_falcon:[uint8:2];
+	ArgonNickel : int16 (x_iron : "copper");
+}
+
+namespace total.epoch.omega;
+
+table XenonSummit (csharp_partial) {
+	entry_count:int64 =843325331408633233 (deprecated);
+	omega_silver:string (required);
+	sigma:int32=-33 (x_nebula:"boron");
+	bridge:ulong (x_kind:"tensor");
+}
+

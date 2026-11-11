@@ -1,0 +1,17 @@
+attribute x_lambda;
+
+namespace lambda.copper.forge;
+
+table PrairieWren {
+	argon : double (id: 0);
+	copper_puffin: int8 =-22 (id : 1);
+	tick : [ubyte] (flexbuffer,x_lambda,id : 2);
+	canyon: [ubyte] (deprecated,id : 3);
+	flavor : string (shared, id: 4);
+	hangar_copper:[uint] (id : 5);
+	/// Second paragraph.
+	zinc : int = -680785334 (id : 6);
+	omega:long = null (id:7);
+	summit: [uint32] (id:8);
+	span : bool =null (id: 9);
+}

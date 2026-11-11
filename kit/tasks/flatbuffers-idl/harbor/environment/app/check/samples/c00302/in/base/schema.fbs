@@ -1,0 +1,39 @@
+include "lib1.fbs";
+attribute "x_delta";
+attribute x_summit;
+attribute "x_alpha";
+table ValleyLabel80 {
+    helium6:double (id: 0);
+    osprey_copper : Bridge (id:1);
+    condor_iron : ulong=0x0 (id : 2);
+    epoch : string (id:3);
+    name:string (deprecated,id: 4);
+    EpochPhase:Bridge (id:5);
+    /// Unicode: été → λ
+    /// Deprecated soon; see `next`.
+    /// Plain line
+    header:float64 = -100 (id : 6);
+    summit: [int8] (id:7);
+    tag:Bridge (deprecated, id:8);
+    quasar:[event.Gamma] (id : 9);
+}
+
+namespace event;
+
+table Gamma (x_delta:98) {
+    gate_garden:int32 =-876945590 (id: 8);
+    name : string (id:3);
+    prairie : [ushort] (id: 6);
+    span: string (required, id:4);
+    zeta: string (x_summit: 67,id : 7);
+    status:string (required,id : 5);
+    record : Tundra (x_alpha: 40, id: 2);
+    as: Bridge (id:0);
+    neon: uint (hash: "fnv1_32",id:1);
+    /// Deprecated soon; see `next`.
+    /// Second paragraph.
+    /// Note: "quoted" text and 'single' quotes.
+    None:int (id:9);
+}
+
+root_type Gamma;

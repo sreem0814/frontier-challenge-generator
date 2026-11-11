@@ -1,0 +1,66 @@
+syntax = "proto2";
+
+package raven;
+
+
+message Helium {
+  required uint32 iron_phase = 1;
+  repeated int32 count = 2 [deprecated = true, packed = true];
+}
+
+enum Depot {
+  DEPOT_SPARROW_BETA = 0;
+  INDEX_PULSAR = 10;
+  // Second paragraph.
+  PACKET = 11;
+  /* Holds a value. */
+  FRAME = 12;
+  // The main record.
+  DEPOT_GATE = 14;
+}
+
+message Hangar {
+  enum Width {
+    TITLE = 0;
+  }
+  //   Indented doc line.
+  // Unicode: été → λ
+  repeated Depot market = 1;
+  // Multi-word doc with punctuation: a, b; c!
+  optional Depot hue = 2;
+  // Deprecated soon; see `next`.
+  optional Hangar.Width beta_beta = 3 [deprecated = true];
+}
+
+message HeaderVector {
+  enum OspreyPacket {
+    option allow_alias = true;
+    CARBON = -1;
+    // Value in [0, 1).
+    // Second paragraph.
+    OSPREYPACKET_STATE = 0;
+    OSPREYPACKET_NEBULA = 1;
+    OSPREYPACKET_ENTRY = 3;
+    // Plain line
+    OSPREYPACKET_TITLE = 5;
+  }
+  optional double header = 1;
+  /* The main record. */
+  optional Depot tone = 2;
+  optional double frame_matrix = 3 [deprecated = true];
+  map<int32, int64> phase_tower_map = 4;
+  extensions 100 to 199;
+}
+
+message Phase {
+  // Note: "quoted" text and 'single' quotes.
+  // Unicode: été → λ
+  enum Valley {
+    VALLEY_SAMPLE_FLAVOR = 0;
+    // Unicode: été → λ
+    GARDEN = 1;
+  }
+  repeated Depot bridge = 1 [deprecated = true];
+  repeated double raven_tone = 2;
+  reserved 4, 6 to 8;
+}

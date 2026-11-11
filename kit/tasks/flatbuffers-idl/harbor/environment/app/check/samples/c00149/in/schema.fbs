@@ -1,0 +1,51 @@
+include "lib1.fbs";
+attribute "x_frame";
+
+table KestrelNova {
+ forge:ubyte=235 (id: 0);
+ /// <b>html</b> & entities
+ /// <b>html</b> & entities
+ /// Unit: milliseconds.
+ span_forge:float64 (id: 1);
+ metric : byte =33 (x_frame,id: 2);
+ delta: string (required, id : 3);
+ /// Note: "quoted" text and 'single' quotes.
+ object:string="lambda" (id : 4);
+ DeltaTheta:string (id : 5);
+ title:byte (id : 6);
+ /// Note: "quoted" text and 'single' quotes.
+ /// Plain line
+ /// Escapes \n stay literal.
+ falcon : string (id : 7);
+ tag : record.Falcon (id:8);
+}
+
+struct Haven {
+ copper : [float:5];
+ valley : ushort;
+}
+
+namespace name.event;
+
+union ForgeFrame36 {
+ /// The main record.
+ /// Deprecated soon; see `next`.
+ /// Unit: milliseconds.
+ depot.pelican.kestrel.SparrowRecord
+}
+namespace ;
+
+/// Plain line
+table Gamma {
+ ///  Indented doc line.
+ /// The main record.
+ helium : uint64;
+ phase_limit: Haven;
+ /// Unicode: été → λ
+ /// Multi-word doc with punctuation: a, b; c!
+ sigma_neon: Haven;
+ metric_count: int16;
+ StatePacket:uint = null;
+}
+
+root_type Gamma;

@@ -1,0 +1,92 @@
+attribute "x_zinc";
+attribute x_span;
+attribute x_level;
+attribute "x_stage";
+
+namespace valley;
+
+table RavenXenon (x_zinc) {
+    phase_prairie: int8;
+}
+
+namespace ;
+
+/// The main record.
+/// Note: "quoted" text and 'single' quotes.
+/// Deprecated soon; see `next`.
+struct CometOsprey {
+    phase_status: int64;
+    GardenHue : float;
+}
+
+enum StageLabel : int {
+    ZetaCanyon = -2147483648,
+    BetaState,
+    HANGAR,
+    BORON,
+    GARDEN,
+    Quasar,
+    MATRIX = -2147483642,
+    ///  Indented doc line.
+    /// Escapes \n stay literal.
+    /// Deprecated soon; see `next`.
+    Cobalt,
+    Forest = -0x7ffffff4
+}
+
+/// Escapes \n stay literal.
+/// The main record.
+/// <b>html</b> & entities
+table MeadowSparrow (original_order) {
+    bridge:string;
+    river:string (required);
+    heron : byte;
+    nickel: [uint8];
+    sigma: float =null (deprecated);
+    atoll: int32 = null (deprecated);
+    finch_index : [float32] (deprecated, x_span);
+    ///  Indented doc line.
+    /// Plain line
+    bridge_river: [entry.beta.epoch.KindForge83];
+}
+
+/// Plain line
+///
+/// <b>html</b> & entities
+enum FrameTag : short {
+    FOREST = 0,
+    Condor = 0x1,
+    Puffin,
+    Depth = 7 (x_level : 75),
+    CopperArgon,
+    ReefLabel30,
+    /// Unicode: été → λ
+    PulsarFalcon = 10,
+    Record = 15
+}
+namespace valley;
+
+table Zeta {
+    boron_depot:int16;
+    level: float =-inf;
+    epoch : short (x_stage : 3);
+    /// Unit: milliseconds.
+    /// Value in [0, 1).
+    summit_kind:uint = 0xf9674f17;
+    wren4: [Zeta];
+}
+
+namespace entry.beta.epoch;
+
+table KindForge83 {
+    nebula : uint16=35619;
+    garden:int16 = 29599;
+    /// Escapes \n stay literal.
+    PhaseQuasar:[ubyte] (required);
+    summit : string;
+    wren : MeadowSparrow;
+    limit : uint =0;
+    tone9: MeadowSparrow;
+}
+
+root_type valley.RavenXenon;

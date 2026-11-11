@@ -1,0 +1,11 @@
+{
+ "bucket": "proto",
+ "argv": [
+  "--proto",
+  "--oneof-union",
+  "--gen-all",
+  "-o",
+  "out",
+  "model.proto"
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--cpp",
+  "--gen-object-api",
+  "--gen-compare",
+  "--gen-name-strings",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

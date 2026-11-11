@@ -1,0 +1,16 @@
+include "lib1.fbs";
+attribute "x_prairie";
+enum Beta : ubyte (x_prairie : 68) {
+ ArgonCopper = 200
+}
+
+namespace status.count;
+
+table Glacier {
+ forest_delta : [state.tin.Gate];
+ pulsar_iron:long=-49 (key,x_prairie : 57);
+ raven: uint64;
+ carbon:double = 161;
+ cobalt_garden: int8 (deprecated);
+}
+root_type Glacier;

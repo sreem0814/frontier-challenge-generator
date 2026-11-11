@@ -1,0 +1,10 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--swift",
+  "--swift-implementation-only",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

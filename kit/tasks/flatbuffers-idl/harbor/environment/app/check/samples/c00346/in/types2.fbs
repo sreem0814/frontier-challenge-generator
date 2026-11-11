@@ -1,0 +1,15 @@
+include "lib/x/common3.fbs";
+
+namespace sigma;
+
+struct Label {
+    frame:uint8;
+    shade:[Level:5];
+    omega : [Level:3];
+    event : [int:4];
+    /// Unit: milliseconds.
+    /// Note: "quoted" text and 'single' quotes.
+    entry:long;
+    xenon : [int:3];
+}
+

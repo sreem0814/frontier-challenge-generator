@@ -1,0 +1,6 @@
+namespace zinc.delta.color;
+
+struct CondorMill {
+ finch_finch:[int8:1];
+}
+

@@ -1,0 +1,40 @@
+attribute x_nova;
+enum TowerHangar : uint16 {
+ Helium = 200 (x_nova: "signal"),
+ EventAnchor,
+ Tone = 202,
+}
+
+table DepthOsprey {
+ total_name:float=8857.89 (id : 2);
+ puffin_vector: double (id : 1);
+ alpha : [int32] (id : 5);
+ /// Plain line
+ tick : [float64] (id:3);
+ /// Note: "quoted" text and 'single' quotes.
+ ///  Indented doc line.
+ /// Plain line
+ note : [ubyte] =[] (flexbuffer,id: 9);
+ CobaltCobalt:TowerHangar = Tone (id:8);
+ /// Note: "quoted" text and 'single' quotes.
+ ///
+ /// Plain line
+ ZetaMarket: uint32 (id:7);
+ prairie_height : [int16] (id: 4);
+ matrix:[uint] (id:6);
+ prairie_span : ubyte (id:0);
+}
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Deprecated soon; see `next`.
+/// Unicode: été → λ
+rpc_service CopperQuasar92 {
+ HueCastle(DepthOsprey):DepthOsprey;
+ /// Value in [0, 1).
+ /// Second paragraph.
+ OrbitRaven(DepthOsprey):DepthOsprey (streaming : "bidi");
+ OffsetNote(DepthOsprey):DepthOsprey;
+}
+
+root_type DepthOsprey;
+file_identifier "VM8Q";

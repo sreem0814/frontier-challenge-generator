@@ -1,0 +1,144 @@
+// Generated test schema.
+attribute "x_forest";
+attribute x_orbit;
+namespace note.event;
+
+enum HueTag : ubyte (bit_flags) { PacketLimit = 0, KestrelPelican, Delta = 3, Theta, LevelBeta = 5, Wren, Total = 7 }
+
+namespace ;
+
+/// Unit: milliseconds.
+/// Multi-word doc with punctuation: a, b; c!
+table Nova {
+  /// Deprecated soon; see `next`.
+  /// Note: "quoted" text and 'single' quotes.
+  tower : double;
+}
+
+enum Stage : uint8 (bit_flags) {
+  NoteMarket,
+  Hangar,
+  Event = 3,
+  Atoll,
+  Depot,
+  Span = 6,
+}
+
+namespace title;
+
+/// Unit: milliseconds.
+/// The main record.
+table Meadow {
+  osprey: uint8 =29;
+  mode: string;
+  /// Second paragraph.
+  /// Deprecated soon; see `next`.
+  /// <b>html</b> & entities
+  lagoon_title: string;
+  tin_boron: [uint8];
+  index_entry : [Stage];
+  gate: float;
+  falcon8 : [ushort];
+  sparrow_helium : [string];
+  quarry:[uint];
+  fn: Stage;
+}
+
+namespace finch.river;
+
+table Omega {
+  boron: [short];
+  ///  Indented doc line.
+  signal:[Nova];
+  object : Stage;
+  /// <b>html</b> & entities
+  kind : uint64;
+  shade: double=nan;
+  /// Unit: milliseconds.
+  span : string ="carbon";
+  tensor:string (required, shared);
+  quasar:[ubyte] (flexbuffer);
+  /// Unicode: été → λ
+  /// Multi-word doc with punctuation: a, b; c!
+  zinc_xenon:int64 = 0x797bc68fdd833592;
+}
+
+namespace note.event;
+
+/// <b>html</b> & entities
+table Event {
+  kind:uint32=null;
+  atoll: finch.river.Omega;
+}
+
+namespace title;
+
+enum ForestForest : int8 {
+  Quarry = -1,
+  CONDOR = 0x9,
+  LEAD,
+  Omega = 12,
+  Forge,
+  /// Escapes \n stay literal.
+  /// The main record.
+  Gate = 18
+}
+
+namespace ;
+
+table NeonQuarry (original_order, x_forest) {
+  /// <b>html</b> & entities
+  count_xenon : float64;
+  anchor:title.ForestForest = LEAD;
+  /// Second paragraph.
+  /// Deprecated soon; see `next`.
+  /// Plain line
+  forge_condor: int64;
+  index: string (key,shared);
+}
+
+namespace finch.river;
+
+enum DepthLimit : int32 { HavenTotal = 0, Matrix = 1, TitleOmega, MEADOW, ReefCobalt12 }
+namespace note.event;
+
+table OrbitWidth (x_orbit) {
+  index: [title.Meadow];
+  reef_index: int32 = null;
+  comet:byte;
+  event:uint16 =null;
+  gamma:finch.river.DepthLimit;
+  span_state:[Nova];
+  pulsar:[ubyte];
+  xenon_nickel : uint8 =null;
+  iron: [short];
+  heron5:ubyte (key);
+  matrix_metric : finch.river.Omega;
+}
+namespace finch.river;
+
+struct Raven {
+  phase : long;
+  pelican_quarry:int;
+}
+
+namespace ;
+
+enum QuarryCopper : uint32 (bit_flags) {
+  /// Escapes \n stay literal.
+  /// Holds a value.
+  /// Escapes \n stay literal.
+  Depot = 1,
+  /// Escapes \n stay literal.
+  Index = 6,
+  CountDelta = +7,
+  ///  Indented doc line.
+  Bridge = 9,
+  Boron = 10,
+  Height = 12,
+  Kind = 14,
+  Comet = 17,
+  Iron = +29
+}
+
+root_type Nova;

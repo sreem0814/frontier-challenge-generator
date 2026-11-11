@@ -1,0 +1,16 @@
+include "common2.fbs";
+include "base3.fbs";
+namespace prairie.helium;
+
+/// Deprecated soon; see `next`.
+/// Escapes \n stay literal.
+table CometKestrel {
+  /// Note: "quoted" text and 'single' quotes.
+  /// <b>html</b> & entities
+  ///
+  comet_height:string;
+  /// Note: "quoted" text and 'single' quotes.
+  /// The main record.
+  pelican_silver:[prairie.helium.CometKestrel];
+}
+

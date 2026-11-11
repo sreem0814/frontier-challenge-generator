@@ -1,0 +1,13 @@
+{
+ "bucket": "json_text",
+ "argv": [
+  "--json",
+  "--defaults-json",
+  "--root-type",
+  "Argon7",
+  "-o",
+  "out",
+  "schema.fbs",
+  "data.json"
+ ]
+}

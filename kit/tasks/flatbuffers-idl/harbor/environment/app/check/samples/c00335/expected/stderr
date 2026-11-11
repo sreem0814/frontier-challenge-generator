@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:2: 50: error: unknown field: x
+

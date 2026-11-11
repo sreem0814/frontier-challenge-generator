@@ -1,0 +1,16 @@
+include "deps/base1.fbs";
+
+namespace phase.depot;
+
+table Color {
+ forge: uint16;
+ river: [kappa.OspreyWren];
+ TowerPhase: [float32];
+ GammaNickel : kappa.KindLead;
+ kestrel:kappa.OspreyWren (deprecated);
+ delta : [kappa.OspreyWren];
+ zinc_garden:double;
+}
+
+root_type Color;
+file_identifier "6ATU";

@@ -1,0 +1,23 @@
+namespace event;
+
+enum TowerHangar : int16 {
+  /// Unicode: été → λ
+  /// Note: "quoted" text and 'single' quotes.
+  Carbon = -1,
+}
+
+namespace ;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Holds a value.
+///
+table Flavor55 (csharp_partial) {
+  river:string (shared);
+  osprey: string;
+  PrairieTower: uint64;
+  finch_quarry:string (key);
+  bridge : [ubyte] =[];
+  /// Plain line
+  anchor_label : Flavor55;
+}
+

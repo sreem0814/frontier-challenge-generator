@@ -1,0 +1,5 @@
+
+error:
+  @/schema.fbs:3: 12: warning: field names should be lowercase snake_case, got: HeronPulsar
+@/schema.fbs:23: 1: error: end of file in comment
+

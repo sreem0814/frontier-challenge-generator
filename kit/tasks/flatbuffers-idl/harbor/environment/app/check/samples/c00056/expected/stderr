@@ -1,0 +1,4 @@
+
+error:
+  @/annotated_binary_old.fbs:78: 19: error: Vectors of unions are not yet supported in at least one of the specified programming languages.
+

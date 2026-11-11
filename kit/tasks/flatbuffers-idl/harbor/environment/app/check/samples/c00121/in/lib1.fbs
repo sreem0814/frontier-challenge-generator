@@ -1,0 +1,39 @@
+// © example
+include "sub/common2.fbs";
+attribute "x_count";
+attribute "x_sample";
+
+namespace alpha.pulsar.lambda;
+
+table Bridge {
+ offset : [uint16];
+ label : ubyte=null;
+ ///  Indented doc line.
+ /// Value in [0, 1).
+ ///  Indented doc line.
+ theta_anchor:ulong;
+ lead:ushort =13329;
+ raven_anchor:string;
+ zinc : long;
+ /// Holds a value.
+ meadow:flavor.tundra.FinchDelta45;
+ color : [flavor.tundra.FinchDelta45];
+ finch: [string];
+}
+
+/// Escapes \n stay literal.
+enum FrameMetric : long {
+ Delta = 3,
+ TickPacket,
+ Swift (x_count:"sigma"),
+ Gate = 10,
+ ValleyMode = 15,
+ /// Holds a value.
+ /// Holds a value.
+ /// Note: "quoted" text and 'single' quotes.
+ XenonComet = 16,
+ Valley = 0x11 (x_sample),
+ ///
+ Kind
+}
+

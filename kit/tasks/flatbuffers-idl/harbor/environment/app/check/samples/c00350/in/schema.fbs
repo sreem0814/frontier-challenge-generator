@@ -1,0 +1,28 @@
+// Generated test schema.
+include "sub/types1.fbs";
+native_include "extra.h";
+attribute "x_hue";
+
+/// The main record.
+/// Holds a value.
+enum WidthKind : ushort {
+	TitleTitle = 0xc8,
+	Summit = +201,
+	/// Holds a value.
+	HERON,
+	PACKET,
+	RECORD = 213,
+	FLAVOR,
+}
+
+namespace reef.omega;
+attribute "priority";
+
+union Beta {
+	Tower
+}
+
+table DepotWidth (csharp_partial) {
+	alpha_event : uint8 =+59 (x_hue);
+}
+root_type DepotWidth;

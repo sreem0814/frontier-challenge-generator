@@ -1,0 +1,6 @@
+namespace reef.pulsar;
+
+/// Unicode: été → λ
+table HeightSparrow {
+	level_boron:[uint32];
+}

@@ -1,0 +1,36 @@
+namespace level.valley.puffin;
+
+struct Condor {
+  gamma_phase: double;
+  canyon: [uint16:5];
+  frame_signal : [int:5];
+  /// Second paragraph.
+  swift:ulong;
+  bridge : [int:5];
+  event_finch : [float:4];
+}
+
+namespace ;
+
+/// Second paragraph.
+/// Plain line
+/// <b>html</b> & entities
+struct Event {
+  reef_cobalt: double;
+  copper_title: [uint64:1];
+}
+namespace level.valley.puffin;
+
+/// The main record.
+/// Deprecated soon; see `next`.
+/// Second paragraph.
+table ToneValley {
+  TundraFlavor : int32 (id : 0);
+  color: uint16=92 (id: 1);
+  neon_total: string (id : 2);
+  stage_nickel: [float64] (id:3);
+  nebula : [string] (id : 4);
+  xenon:string (id:5);
+  condor : string (id: 6);
+}
+

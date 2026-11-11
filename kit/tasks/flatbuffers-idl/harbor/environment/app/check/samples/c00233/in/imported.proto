@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package argon.argon;
+
+option optimize_for = SPEED;
+
+message Label {
+  message EventTick {
+    message River {
+      int32 gamma_tensor = 1;
+      repeated string theta = 2;
+      // Unicode: été → λ
+      // Deprecated soon; see `next`.
+      sint32 lambda_garden = 3;
+      // Note: "quoted" text and 'single' quotes.
+      repeated sfixed64 depot = 4;
+      repeated string matrix = 5;
+      optional bool frame = 6;
+      repeated string tag = 7;
+      sint64 lambda = 9;
+    }
+    repeated uint64 reef = 1;
+    EventTick.River alpha = 2;
+    optional double depth = 3;
+    EventTick.River pulsar = 4 [deprecated = true];
+    repeated double tick = 5 [deprecated = true];
+    repeated EventTick.River falcon = 6;
+    // The main record.
+    sint64 kappa_vector = 7;
+    /* Note: "quoted" text and 'single' quotes. */
+    repeated EventTick.River orbit = 8;
+  }
+  repeated Label.EventTick tundra_sparrow = 1;
+  bytes epoch_pelican = 2;
+  /// 
+  Label.EventTick neon = 3;
+  repeated fixed32 matrix = 4 [deprecated = true];
+  repeated Label.EventTick tick_nova = 5;
+}
+
+message Gate {
+  enum Cobalt {
+    NOVA = 0;
+    SIGNAL = 2;
+    COBALT_SHADE = 12;
+  }
+  oneof pelican_sparrow {
+    uint32 depth_delta = 1;
+    uint32 summit = 2;
+    fixed64 gate = 3;
+  }
+}
+
+message NameColor {
+  enum Stage {
+    SILVER_ENTRY = 0;
+    STAGE_OSPREY = 1;
+  }
+  // The main record.
+  // 
+  message Vector {
+    // 
+    Gate cobalt = 1;
+    repeated Gate nebula = 2;
+    /// <b>html</b> & entities
+    optional Label summit_entry = 3;
+    fixed32 summit_signal = 4;
+    // Escapes \n stay literal.
+    Gate tag = 5;
+    repeated sint32 mill = 6;
+    oneof neon_vector {
+      float wren = 7;
+      bytes quasar = 8;
+      uint32 alpha_atoll = 9;
+    }
+  }
+}

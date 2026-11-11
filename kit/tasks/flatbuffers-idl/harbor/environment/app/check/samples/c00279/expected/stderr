@@ -1,0 +1,4 @@
+
+error:
+  schemas don't conform: field renamed to different type: AnchorComet.condor_meadow_renamed (renamed from AnchorComet.atoll_condor)
+

@@ -1,0 +1,45 @@
+syntax = "proto2";
+
+package zinc;
+
+
+message IndexLimit {
+  message Count {
+    message Condor {
+      optional fixed64 kappa_condor = 1;
+      repeated sfixed32 glacier = 2;
+      optional string reef = 3 [default = "carbon"];
+      required sint32 lambda_offset = 4;
+      repeated fixed32 name_boron = 5;
+      optional sfixed32 index = 6;
+      repeated string neon = 7;
+      required uint64 metric = 8;
+      map<bool, bytes> atoll_map = 9;
+      reserved 11, 13 to 15;
+    }
+    optional int64 phase = 1;
+    optional uint32 nova = 2;
+    /* The main record. */
+    repeated Count.Condor market = 3;
+    optional Count.Condor anchor = 4 [deprecated = true];
+    repeated Count.Condor zeta = 5;
+    optional uint32 index = 6;
+    // Plain line
+    optional Count.Condor tone = 7;
+    /// Unicode: été → λ
+    repeated sint32 alpha_mode = 8 [deprecated = true];
+    extensions 100 to 199;
+  }
+  repeated uint64 forge = 1;
+  required uint32 castle = 2;
+  optional IndexLimit.Count span_osprey = 3;
+}
+
+enum Copper {
+  COPPER_VALLEY_STATUS = 0;
+  COPPER_STAGE = 1;
+  FLAVOR = 2;
+  ATOLL_DEPOT = 3;
+  /* Multi-word doc with punctuation: a, b; c! */
+  HELIUM = 4;
+}

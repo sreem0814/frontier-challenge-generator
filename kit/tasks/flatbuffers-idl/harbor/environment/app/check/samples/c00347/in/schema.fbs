@@ -1,0 +1,20 @@
+union U : byte { X }
+// Generated test schema.
+include "lib1.fbs";
+
+union IndexFlavor {
+  quarry.packet.tick.Swift,
+  StrEpoch: string
+}
+
+namespace quarry.packet.tick;
+
+table GammaNebula {
+  tone : string (required);
+  mill : [uint32];
+  /// Unit: milliseconds.
+  /// <b>html</b> & entities
+  /// Value in [0, 1).
+  carbon:[quarry.packet.tick.Tag];
+}
+root_type GammaNebula;

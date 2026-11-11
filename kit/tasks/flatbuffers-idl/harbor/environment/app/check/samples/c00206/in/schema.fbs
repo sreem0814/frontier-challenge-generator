@@ -1,0 +1,53 @@
+attribute "x_total";
+attribute "x_kind";
+
+enum Header : uint32 (bit_flags) {
+	Silver = 22
+}
+/// Unicode: été → λ
+/// Unicode: été → λ
+///  Indented doc line.
+enum Quarry : int {
+	Quasar = -1,
+	/// Escapes \n stay literal.
+	LAMBDA = 4,
+	Frame (x_total : "forest"),
+	Haven,
+	PHASE = 11
+}
+
+table TinEntry57 {
+	epoch: [string] (required);
+	packet_valley: [byte];
+	finch:bool=1;
+}
+
+namespace pulsar.alpha.level;
+
+/// Plain line
+/// Multi-word doc with punctuation: a, b; c!
+struct Depth {
+	comet:[ubyte:3];
+	tag_span: float32;
+	sigma:long (x_kind);
+	/// Unit: milliseconds.
+	height: [float:3];
+}
+
+namespace ;
+
+struct Count {
+	zinc: float64;
+	status: Header;
+}
+
+rpc_service TagAlpha {
+	/// Deprecated soon; see `next`.
+	CountHue(TinEntry57):TinEntry57;
+	LambdaValley(TinEntry57):TinEntry57 (streaming: "bidi");
+	/// Deprecated soon; see `next`.
+	VectorTensor(TinEntry57):TinEntry57;
+	EntryRecord(TinEntry57):TinEntry57 (streaming : "client");
+}
+
+file_identifier "W7IJ";

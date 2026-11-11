@@ -1,0 +1,4 @@
+namespace lead.summit;
+
+enum FinchQuasar : ulong { Meadow = 0xc8, Frame, TUNDRA, Level = 212, Status }
+

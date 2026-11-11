@@ -1,0 +1,36 @@
+include "types1.fbs";
+
+namespace prairie.flavor.pelican;
+
+/// Value in [0, 1).
+enum ForestCopper : ushort (bit_flags) {
+  Hangar = 2,
+  /// <b>html</b> & entities
+  Osprey = 8,
+}
+table Tag {
+  ee4: [prairie.flavor.pelican.ForestCopper] = []; 
+  haven: ushort;
+  mode_omega:uint64 (hash : "fnv1a_64");
+  ///  Indented doc line.
+  /// Unicode: été → λ
+  tick: sparrow.wren.Nickel;
+  quasar: ushort;
+  /// Multi-word doc with punctuation: a, b; c!
+  depth: uint32 = 0x27C95775;
+  quarry_matrix : uint64;
+  /// Plain line
+  frame:sparrow.wren.Nickel (deprecated);
+  packet : string;
+}
+
+rpc_service Label {
+  PacketSignal(sparrow.wren.Nickel):sparrow.wren.Nickel;
+  OrbitHaven(sparrow.wren.Nickel):sparrow.wren.Nickel;
+  AtollSpan(Tag):sparrow.wren.Nickel;
+  NameKestrel(Tag):Tag;
+}
+
+root_type Tag;
+file_identifier "F0MV";
+file_extension "dat";

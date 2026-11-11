@@ -1,0 +1,27 @@
+include "base1.fbs";
+attribute x_packet;
+
+namespace theta.epoch;
+
+/// Second paragraph.
+/// Unicode: été → λ
+table Signal {
+  index_haven: string;
+  raven: long (deprecated);
+  finch: short = 0x1A;
+  /// Multi-word doc with punctuation: a, b; c!
+  /// Unit: milliseconds.
+  /// Escapes \n stay literal.
+  carbon: [bridge.tensor.ToneGamma];
+  anchor: [uint16] (deprecated, offset64);
+  xenon0: [string];
+  mill_canyon : int8;
+  /// Plain line
+  /// Note: "quoted" text and 'single' quotes.
+  note: float64 (key);
+  quasar_epoch: byte =null;
+  union : bridge.tensor.ToneGamma (x_packet);
+}
+
+root_type Signal;
+file_extension "x";

@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:9: 14: error: illegal character: code: 1
+

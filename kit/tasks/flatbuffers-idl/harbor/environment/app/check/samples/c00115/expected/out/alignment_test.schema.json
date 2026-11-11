@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "BadAlignmentSmall" : {
+      "type" : "object",
+      "properties" : {
+        "var_0" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295
+              },
+        "var_1" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295
+              },
+        "var_2" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295
+              }
+      },
+      "additionalProperties" : false
+    },
+    "BadAlignmentLarge" : {
+      "type" : "object",
+      "properties" : {
+        "var_0" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 18446744073709551615
+              }
+      },
+      "additionalProperties" : false
+    },
+    "OuterLarge" : {
+      "type" : "object",
+      "properties" : {
+        "large" : {
+                "$ref" : "#/definitions/BadAlignmentLarge"
+              }
+      },
+      "additionalProperties" : false
+    },
+    "BadAlignmentRoot" : {
+      "type" : "object",
+      "properties" : {
+        "large" : {
+                "$ref" : "#/definitions/OuterLarge"
+              },
+        "small" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/BadAlignmentSmall"}
+              }
+      },
+      "additionalProperties" : false
+    },
+    "EvenSmallStruct" : {
+      "type" : "object",
+      "properties" : {
+        "var_0" : {
+                "type" : "integer", "minimum" : 0, "maximum" :255
+              },
+        "var_1" : {
+                "type" : "integer", "minimum" : 0, "maximum" :255
+              }
+      },
+      "additionalProperties" : false
+    },
+    "OddSmallStruct" : {
+      "type" : "object",
+      "properties" : {
+        "var_0" : {
+                "type" : "integer", "minimum" : 0, "maximum" :255
+              },
+        "var_1" : {
+                "type" : "integer", "minimum" : 0, "maximum" :255
+              },
+        "var_2" : {
+                "type" : "integer", "minimum" : 0, "maximum" :255
+              }
+      },
+      "additionalProperties" : false
+    },
+    "SmallStructs" : {
+      "type" : "object",
+      "properties" : {
+        "even_structs" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/EvenSmallStruct"}
+              },
+        "odd_structs" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/OddSmallStruct"}
+              }
+      },
+      "additionalProperties" : false
+    }
+  },
+  "$ref" : "#/definitions/SmallStructs"
+}

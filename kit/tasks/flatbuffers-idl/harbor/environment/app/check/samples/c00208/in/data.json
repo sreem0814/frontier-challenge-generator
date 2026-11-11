@@ -1,0 +1,10 @@
+// data
+{
+  "market_status": ["\t\f\f", "neon"],
+  "lambda_type": "Tag",
+  lambda: {},
+  boron: 188,
+  state_sample: inf,
+  "depot_iron_type": "Tag",
+  depot_iron: {}
+}

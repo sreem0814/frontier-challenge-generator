@@ -1,0 +1,31 @@
+include "inc1.fbs";
+attribute x_level;
+attribute "x_falcon";
+
+namespace shade;
+
+/// Escapes \n stay literal.
+table SpanDelta {
+    carbon : SilverQuarry (id : 6);
+    reef_osprey: string (id : 0);
+    /// Note: "quoted" text and 'single' quotes.
+    meadow:uint64 (id: 2);
+    /// Value in [0, 1).
+    beta_packet : [uint64] (id: 8);
+    ///
+    silver: int32=null (id : 5);
+    boron_castle:[ubyte] (id : 7);
+    xenon : float (x_level,id:4);
+    /// Unicode: été → λ
+    kappa:ushort (id: 3);
+    beta : uint8 (x_falcon:"bridge",id: 9);
+    river : string (key, id:1);
+}
+
+namespace finch.helium;
+
+table Delta97 (original_order) {
+    glacier : shade.SpanDelta;
+}
+root_type shade.SpanDelta;
+file_identifier "O7KA";

@@ -1,0 +1,12 @@
+include "types2.fbs";
+
+namespace index;
+
+/// <b>html</b> & entities
+/// Unicode: été → λ
+/// Unit: milliseconds.
+enum SigmaSpan : ushort (bit_flags) {
+  Puffin = 0,
+  KappaValley = 0x4
+}
+

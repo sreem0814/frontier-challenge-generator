@@ -1,0 +1,34 @@
+/* block
+   comment */
+include "types1.fbs";
+
+namespace kappa;
+
+table MarketLambda {
+ matrix_tundra:uint64;
+}
+
+table Name {
+ tone_osprey:[float];
+ sparrow : uint64=null;
+ silver_swift : short (key);
+ swift_tone : double =null;
+}
+namespace reef;
+
+table Forest {
+ argon: ZincHeight (id: 10);
+ /// Second paragraph.
+ /// Value in [0, 1).
+ limit_helium: [double] =[] (id : 4);
+ hangar : uint64 =null (id: 6);
+ finch:[ubyte] (id : 7);
+ falcon_omega: ZincHeight (id: 3);
+ epoch_glacier : Offset (id: 1);
+ river_stage:Reef (id:9);
+ osprey_puffin : string (required, id : 3);
+ name: ZincHeight (id:5);
+}
+
+root_type kappa.Name;
+file_extension "mon";

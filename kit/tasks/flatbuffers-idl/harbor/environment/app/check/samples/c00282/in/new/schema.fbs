@@ -1,0 +1,26 @@
+include "base1.fbs";
+include "common2.fbs";
+
+namespace depot.hue;
+
+/// Plain line
+struct MatrixEvent {
+  /// Escapes \n stay literal.
+  /// Holds a value.
+  fn: [int:5];
+  orbit:[int16:4];
+  extra7: int;
+}
+
+/// Unicode: été → λ
+/// Value in [0, 1).
+/// Value in [0, 1).
+table Event {
+  comet:[MatrixEvent] (id:3);
+  sample_note: [int64] (deprecated, id: 0);
+  state:string (id : 2);
+  count: short=28103 (id: 1);
+}
+
+root_type Event;
+file_identifier "V5UU";

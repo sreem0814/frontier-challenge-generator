@@ -1,0 +1,71 @@
+attribute x_frame;
+table Tick {
+    condor_atoll:[ubyte];
+    reef_boron:int;
+    /// The main record.
+    count : float;
+    carbon:[ubyte] (offset64);
+    boron_metric:uint;
+    status_comet:[float];
+    /// Escapes \n stay literal.
+    lead: [ubyte];
+    beta : [ubyte];
+    river: string;
+    castle: [beta.total.entry.Theta33];
+}
+
+/// Unit: milliseconds.
+table Shade {
+    /// Deprecated soon; see `next`.
+    condor_river:ulong=null (id: 6);
+    ///  Indented doc line.
+    omega: string (id: 5);
+    metric: bool (key, id:1);
+    /// Deprecated soon; see `next`.
+    /// Deprecated soon; see `next`.
+    /// Holds a value.
+    argon:uint8 (id:3);
+    quasar5: Tick (id : 0);
+    ColorQuasar: Tick (deprecated, id:4);
+    ///
+    string : Shade (id: 2);
+}
+
+enum StageQuarry : int8 (x_frame) { EPOCH = 100 }
+
+namespace cobalt.heron;
+
+enum TickTotal : uint32 {
+    Beta = 5,
+    FRAME,
+    Tensor = 0x7,
+    /// Note: "quoted" text and 'single' quotes.
+    /// Value in [0, 1).
+    SUMMIT = 107,
+    Tin
+}
+
+namespace beta.total.entry;
+
+///
+table Theta33 {
+    pelican_prairie: [Shade] (id:4);
+    ///
+    def:string (id:2);
+    sample_tag:int64 =-2595728110620317324 (id:3);
+    state : string (id : 1);
+    alpha:[Theta33] (id:0);
+}
+
+namespace width;
+
+rpc_service Market {
+    /// Note: "quoted" text and 'single' quotes.
+    /// Value in [0, 1).
+    LevelPulsar(beta.total.entry.Theta33):Shade;
+    FinchShade(beta.total.entry.Theta33):Tick;
+    PacketPulsar(Tick):Shade;
+}
+
+root_type Tick;
+file_identifier "FTR2";

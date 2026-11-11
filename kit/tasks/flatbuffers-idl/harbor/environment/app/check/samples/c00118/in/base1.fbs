@@ -1,0 +1,8 @@
+namespace bridge.tensor;
+
+/// Holds a value.
+table ToneGamma {
+    summit_offset:ushort;
+    meadow:[ushort];
+}
+

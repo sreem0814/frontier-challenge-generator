@@ -1,0 +1,23 @@
+include "lib2.fbs";
+
+namespace copper.sigma;
+
+union ReefHaven {
+ phase.tin.glacier.HeaderColor,
+ StrCanyon: string
+}
+
+namespace ;
+
+enum Nova : uint64 (bit_flags) {
+ /// Note: "quoted" text and 'single' quotes.
+ Silver = 0x5,
+ VectorDelta = 0xd,
+ Record = 22,
+ Shade = +28,
+ Tundra = 53,
+ ///  Indented doc line.
+ Count = 55,
+ Gamma = 60
+}
+

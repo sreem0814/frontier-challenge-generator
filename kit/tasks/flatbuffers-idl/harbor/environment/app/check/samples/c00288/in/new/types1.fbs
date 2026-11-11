@@ -1,0 +1,23 @@
+attribute "x_xenon";
+attribute x_width;
+
+namespace color;
+
+table Carbon {
+	market: string (x_xenon,id: 5);
+	offset : uint64 =0 (id : 1);
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Holds a value.
+	tag_atoll: [ubyte] =[] (x_width:"name",id:0);
+	event:string (id:3);
+	/// Value in [0, 1).
+	mill: double (id: 2);
+	/// Holds a value.
+	prairie_tone:[ubyte] (flexbuffer, required, id : 4);
+}
+namespace ;
+
+union Frame {
+	color.Carbon
+}
+

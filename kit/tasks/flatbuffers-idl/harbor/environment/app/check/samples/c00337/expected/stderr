@@ -1,0 +1,5 @@
+
+error:
+  @/schema.fbs:6: 15: warning: field names should be lowercase snake_case, got: TowerQuasar
+@/schema.fbs:10: 1: error: unexpected force_align value '4', alignment must be a power of two integer ranging from the type's natural alignment 16 to 32
+

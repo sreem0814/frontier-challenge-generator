@@ -1,0 +1,11 @@
+include "base3.fbs";
+
+namespace nebula.omega;
+
+table Alpha {
+ zinc_title: uint8 =177;
+ lagoon : int32 (key);
+ glacier: [int];
+ argon_color:[glacier.StatePelican32];
+}
+

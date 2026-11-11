@@ -1,0 +1,14 @@
+/* block
+   comment */
+include "common2.fbs";
+
+namespace quarry.packet.tick;
+
+table Swift {
+	quarry_copper:long;
+	cobalt_tick: string;
+	delta_level:[ubyte];
+	nebula_tick:[Tag];
+	wren_nickel : [uint32] (vector64);
+}
+

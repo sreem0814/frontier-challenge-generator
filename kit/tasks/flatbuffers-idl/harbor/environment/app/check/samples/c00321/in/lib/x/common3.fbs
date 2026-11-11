@@ -1,0 +1,22 @@
+// Generated test schema.
+attribute "x_iron";
+
+namespace title;
+
+table ShadeBoron (x_iron:7) {
+  condor_phase : [float32] (id:0);
+  atoll:float32 (id: 1);
+  market:[uint] (required, id : 2);
+  default: int64=0xf (id: 3);
+  /// Multi-word doc with punctuation: a, b; c!
+  forge: string (id: 4);
+  anchor : string (id: 5);
+  mode_packet : short (id: 6);
+  wren_xenon:float64 =-inf (id: 7);
+  kestrel:[float64] (id : 8);
+  /// Unicode: été → λ
+  ///
+  limit_mode : [int32] (id : 9);
+  raven_iron: [ShadeBoron] (id: 10);
+}
+

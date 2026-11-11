@@ -1,0 +1,15 @@
+include "lib1.fbs";
+
+table DepthMetric {
+ name:string (id : 0);
+ /// Plain line
+ kestrel_tensor:string (id : 1);
+ tensor:[header.puffin.valley.MarketNickel] (id:2);
+ default: string (id : 3);
+ osprey : header.puffin.valley.MarketNickel (id : 4);
+ market : condor.cobalt.SignalCobalt4 =Level (id : 5);
+ garden:float (id : 6);
+ osprey_event:header.puffin.valley.MarketNickel (id: 7);
+}
+
+file_extension "x";

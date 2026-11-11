@@ -1,0 +1,25 @@
+attribute "x_event";
+/// <b>html</b> & entities
+struct Prairie (x_event: 60) {
+  castle: [int8:1];
+  VectorEntry:[int32:5];
+  kind_tag:[long:4];
+  await: uint32;
+  signal_omega: uint;
+  ///
+  osprey_note : float64;
+}
+
+table Metric29 (original_order) {
+  header_heron:ulong;
+  summit : string;
+  label : [string];
+  gate: string;
+  zeta3: int32;
+  packet : [byte];
+  tower:double;
+  SigmaHue: [uint16];
+  canyon_garden : Metric29;
+}
+
+root_type Metric29;

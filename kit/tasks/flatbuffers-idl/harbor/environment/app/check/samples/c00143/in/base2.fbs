@@ -1,0 +1,22 @@
+namespace vector.gamma;
+
+/// Second paragraph.
+/// Value in [0, 1).
+/// Multi-word doc with punctuation: a, b; c!
+struct Sparrow70 {
+  puffin: [uint8:1];
+}
+
+namespace summit.span.hangar;
+
+table TickSample (csharp_partial) {
+  frame: [string];
+  /// Unit: milliseconds.
+  /// Plain line
+  argon:int16 =null;
+  beta: [ubyte];
+  tone: [vector.gamma.Sparrow70];
+  entry_count : [string];
+  level:TickSample;
+}
+

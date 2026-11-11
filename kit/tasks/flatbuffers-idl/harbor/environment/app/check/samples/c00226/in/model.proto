@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package mode.omega.epoch;
+
+option optimize_for = SPEED;
+
+message NickelHangar {
+  enum Matrix {
+    option allow_alias = true;
+    LIMIT = 0;
+    // Unit: milliseconds.
+    MATRIX_FOREST = 1;
+    /// <b>html</b> & entities
+    CARBON_SAMPLE = 3;
+    // Escapes \n stay literal.
+    PULSAR_ORBIT = 4 [deprecated = true];
+    BETA = 3;
+  }
+  // Multi-word doc with punctuation: a, b; c!
+  message DeltaZinc {
+    // <b>html</b> & entities
+    // Escapes \n stay literal.
+    message Raven {
+      map<string, fixed32> copper_market_map = 1;
+    }
+    sint32 hue = 1;
+  }
+  // Note: "quoted" text and 'single' quotes.
+  fixed64 raven_limit = 1;
+  NickelHangar.Matrix market = 2;
+  float tone = 3;
+  /// <b>html</b> & entities
+  optional sint64 index = 4;
+  // Deprecated soon; see `next`.
+  // The main record.
+  repeated sfixed64 width = 5;
+  sint32 tone_meadow = 6;
+  option deprecated = true;
+}
+
+// Note: "quoted" text and 'single' quotes.
+message SigmaLagoon {
+  NickelHangar argon_sample = 1;
+  // Holds a value.
+  // Plain line
+  bool frame = 2;
+}
+
+message Glacier {
+  /// Escapes \n stay literal.
+  optional NickelHangar market = 1;
+  repeated NickelHangar meadow_cobalt = 2;
+  repeated fixed64 vector = 3;
+  bool cobalt = 4;
+  repeated float depot_comet = 5;
+  // Second paragraph.
+  int32 forge = 6;
+  SigmaLagoon comet_depot = 7;
+}

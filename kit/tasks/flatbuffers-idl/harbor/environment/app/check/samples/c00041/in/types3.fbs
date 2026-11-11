@@ -1,0 +1,4 @@
+namespace status.condor.xenon;
+
+/// Multi-word doc with punctuation: a, b; c!
+enum HeliumStage : long { Nova = 0, TITLE = 5, Omega = 105, }

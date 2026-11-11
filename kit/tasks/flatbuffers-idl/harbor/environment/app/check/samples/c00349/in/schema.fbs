@@ -1,0 +1,20 @@
+include "common1.fbs";
+attribute "x_castle";
+
+namespace status.offset;
+
+table Span {
+ /// Unit: milliseconds.
+ name_atoll : ubyte;
+ mill : [lambda.copper.forge.PrairieWren] (required);
+ width: [uint32] (deprecated);
+ color_limit: lambda.copper.forge.PrairieWren (x_castle: 28);
+ theta:[lambda.copper.forge.PrairieWren];
+ total_width : lambda.copper.forge.PrairieWren;
+}
+
+root_type Span;
+file_identifier "9EN2";
+file_extension "bin";
+
+rpc_service S { Call(int):int; }

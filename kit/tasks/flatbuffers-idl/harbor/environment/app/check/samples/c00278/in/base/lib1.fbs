@@ -1,0 +1,13 @@
+namespace pelican.packet;
+
+/// Value in [0, 1).
+/// Unit: milliseconds.
+table QuasarGamma {
+  mill_bridge : string;
+  silver_span: [uint32];
+  glacier : string;
+  tundra_quasar:double;
+  true : int16=-43;
+  shade_glacier: [string] (deprecated);
+  reef_tone: string;
+}

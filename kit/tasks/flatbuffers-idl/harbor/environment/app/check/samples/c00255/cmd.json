@@ -1,0 +1,12 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "-b",
+  "--root-type",
+  "Anchor",
+  "-o",
+  "out",
+  "model.bfbs",
+  "data.json"
+ ]
+}

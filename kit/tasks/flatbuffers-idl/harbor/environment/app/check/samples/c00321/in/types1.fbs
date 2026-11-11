@@ -1,0 +1,10 @@
+include "deps/base2.fbs";
+include "lib/x/common3.fbs";
+
+namespace canyon.epoch.gate;
+
+enum Index : short {
+	Limit = -1,
+	Level20
+}
+

@@ -1,0 +1,17 @@
+// test proto
+syntax = "proto3";
+
+import "imported.proto";
+
+enum Comet {
+  ZINC = 0;
+  //   Indented doc line.
+  // 
+  TUNDRA_STAGE = 2;
+  COMET_DEPTH_EVENT = 3;
+  COMET_FRAME = 4;
+  // Note: "quoted" text and 'single' quotes.
+  // Unit: milliseconds.
+  EVENT_CARBON = 5;
+  COMET_SILVER_SIGMA = 6;
+}

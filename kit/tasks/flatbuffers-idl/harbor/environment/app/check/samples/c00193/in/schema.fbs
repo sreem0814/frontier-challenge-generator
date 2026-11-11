@@ -1,0 +1,28 @@
+// Generated test schema.
+include "base1.fbs";
+
+namespace delta.index;
+
+struct Finch {
+    kind : uint;
+    title:[short:2];
+}
+
+namespace ;
+
+table PuffinOmega {
+    SilverForge: long;
+    alpha : float64;
+    state : delta.index.Finch;
+    kappa:uint = 2902640367;
+    note : xenon.shade.Meadow=Quasar;
+    stage5 : xenon.shade.Meadow =Limit;
+    ///  Indented doc line.
+    depth: [ubyte] (flexbuffer);
+    puffin_theta:[delta.index.Finch] (deprecated);
+    sparrow_metric:[ubyte];
+    heron_forest:PuffinOmega;
+}
+
+root_type PuffinOmega;
+file_extension "mon";

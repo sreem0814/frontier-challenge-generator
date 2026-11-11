@@ -1,0 +1,57 @@
+// test proto
+syntax = "proto2";
+
+package height.falcon;
+
+
+// 
+message Total {
+  /* Note: "quoted" text and 'single' quotes. */
+  enum Forest {
+    NEBULA = 5 [deprecated = true];
+    // 
+    // Multi-word doc with punctuation: a, b; c!
+    FOREST_SPAN_COBALT = 6;
+    FOREST_MARKET_ANCHOR = 7;
+    FOREST_WREN = 8;
+    reserved 14;
+  }
+  optional Total.Forest level_height = 1;
+  optional Total.Forest xenon_tensor = 2;
+}
+
+enum Kappa {
+  // 
+  MARKET = 0;
+  // Holds a value.
+  KAPPA_DEPTH = 10;
+  KAPPA_HEADER_XENON = 11;
+  TAG_COPPER = 12;
+  // <b>html</b> & entities
+  XENON_EVENT = 22;
+  // Escapes \n stay literal.
+  ENTRY_METRIC = 23;
+}
+
+// Escapes \n stay literal.
+// Plain line
+message River {
+  // Second paragraph.
+  repeated Kappa tundra = 1;
+  required Total copper = 2;
+  /* Value in [0, 1). */
+  required float osprey = 3 [default = -2];
+  optional Total total_theta = 4;
+  required Kappa wren_pelican = 5 [deprecated = true];
+  // Multi-word doc with punctuation: a, b; c!
+  optional Kappa metric = 6;
+  //   Indented doc line.
+  // The main record.
+  optional Total nova = 7;
+  repeated Total falcon = 8;
+  oneof index_level {
+    float packet = 9;
+    Kappa argon_valley = 10;
+    uint32 width = 11;
+  }
+}

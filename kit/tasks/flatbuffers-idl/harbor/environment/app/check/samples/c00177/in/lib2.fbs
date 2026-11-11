@@ -1,0 +1,7 @@
+namespace mode.haven;
+
+struct Boron (force_align : 16) {
+ wren_orbit : [long:2];
+ pulsar_river:double;
+}
+

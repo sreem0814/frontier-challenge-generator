@@ -1,0 +1,90 @@
+// Generated test schema.
+attribute "x_omega";
+attribute "x_comet";
+attribute "x_tin";
+attribute "x_neon";
+attribute "x_glacier";
+attribute x_nickel;
+namespace frame.matrix.depot;
+
+struct AtollLimit (force_align:32) {
+  /// Note: "quoted" text and 'single' quotes.
+  /// <b>html</b> & entities
+  tick_label: uint32;
+  kestrel_kestrel:uint8;
+  ShadeGamma : uint8;
+}
+
+namespace frame.note.mode;
+
+/// Plain line
+enum Sparrow : uint (bit_flags) {
+  ///
+  TensorQuarry35 = 0x4,
+  /// Second paragraph.
+  DepthKestrel = 0xa,
+  Header = 17
+}
+
+namespace ;
+
+table ArgonCanyon {
+  nebula:frame.note.mode.Sparrow = 4;
+  /// Escapes \n stay literal.
+  copper: frame.note.mode.Sparrow = DepthKestrel;
+  offset : [ubyte];
+  FrameVector:frame.note.mode.Sparrow = Header (x_omega);
+  /// Second paragraph.
+  /// Second paragraph.
+  header : [frame.note.mode.Sparrow];
+  helium: uint32;
+  vector:[string];
+}
+/// Unit: milliseconds.
+/// Escapes \n stay literal.
+/// Multi-word doc with punctuation: a, b; c!
+struct DeltaLabel (force_align: 16) {
+  argon:frame.note.mode.Sparrow (x_comet);
+  epoch_glacier : float;
+  ///
+  /// Multi-word doc with punctuation: a, b; c!
+  signal: int8 (x_tin);
+  tower:float64;
+  heron_total: frame.matrix.depot.AtollLimit (x_neon:"tensor");
+}
+
+struct FrameAlpha {
+  alpha_name : frame.matrix.depot.AtollLimit;
+  frame_castle : [bool:1];
+  packet_tin: ushort;
+  helium : int32;
+  delta:uint16;
+  /// Deprecated soon; see `next`.
+  copper : int16;
+}
+
+union EpochQuasar {
+  /// The main record.
+  /// Escapes \n stay literal.
+  ArgonCanyon
+}
+
+namespace frame.note.mode;
+
+table FinchLagoon {
+  helium:[frame.matrix.depot.AtollLimit] (id: 0);
+  argon_cobalt: [string] (id : 1);
+  tower:[Sparrow] (id:2);
+  /// The main record.
+  /// Plain line
+  color: [DeltaLabel] (id:3);
+  lead_index : string ="metric" (id:4);
+  /// Unit: milliseconds.
+  ///
+  neon_nebula: string (x_glacier : 49,id: 5);
+  carbon_height:Sparrow =Header (x_nickel, id : 6);
+  mode : [uint] (id:7);
+  reef : EpochQuasar (id:9);
+}
+root_type FinchLagoon;
+file_identifier "DZ0N";

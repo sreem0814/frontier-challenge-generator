@@ -1,0 +1,25 @@
+include "types1.fbs";
+
+/// Plain line
+table CopperDelta {
+  z: long = 9223372036854775808;
+ flavor : string (id : 0);
+ matrix: uint (id:1);
+ tone:[int64] (id:2);
+ nebula: int = null (id: 3);
+ ///  Indented doc line.
+ record_tensor : [string] (id: 4);
+ signal_haven:int32 =-0x551622E (id:5);
+ lambda_index : string (id: 6);
+ heron_orbit:uint8=217 (key, id: 7);
+ sparrow: string (id: 8);
+}
+/// Holds a value.
+/// The main record.
+struct ValleyMeadow {
+ FinchPhase:[byte:4];
+ nickel : uint;
+}
+
+root_type CopperDelta;
+file_extension "mon";

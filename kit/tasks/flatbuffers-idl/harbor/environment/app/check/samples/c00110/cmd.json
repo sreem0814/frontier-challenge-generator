@@ -1,0 +1,16 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--cpp",
+  "--gen-compare",
+  "--scoped-enums",
+  "--no-prefix",
+  "--bfbs-gen-embed",
+  "--cpp-std=c++0x",
+  "--no-emit-min-max-enum-values",
+  "--gen-absl-hash",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

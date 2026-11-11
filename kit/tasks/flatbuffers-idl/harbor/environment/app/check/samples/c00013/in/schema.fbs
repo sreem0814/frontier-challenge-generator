@@ -1,0 +1,71 @@
+attribute x_tensor;
+attribute x_orbit;
+/// Note: "quoted" text and 'single' quotes.
+/// The main record.
+/// Unit: milliseconds.
+table HeaderMarket (x_tensor) {
+ osprey: uint32 =null;
+ kappa2: uint32;
+}
+
+table Level {
+ /// Multi-word doc with punctuation: a, b; c!
+ /// Deprecated soon; see `next`.
+ /// Note: "quoted" text and 'single' quotes.
+ prairie_river:short;
+ kappa_color:uint8;
+ tensor_osprey : string;
+}
+
+namespace span.tower;
+
+table TonePuffin96 {
+ depth: Level;
+ header:float64=2287.300902;
+ silver_height : HeaderMarket;
+ tensor_span: string;
+ market: [float32];
+ delta: anchor.depot.Index;
+}
+
+namespace anchor.depot;
+
+/// Escapes \n stay literal.
+table Index (original_order) {
+ def:float32;
+ /// Unicode: été → λ
+ /// Unicode: été → λ
+ theta:[ushort];
+ xenon_index : float (deprecated);
+ /// Second paragraph.
+ SigmaColor: int64;
+ gate : float = 6583.4;
+}
+
+namespace ;
+
+table FrameDepot (original_order) {
+ package : string;
+ limit: span.tower.TowerKestrel;
+}
+namespace span.tower;
+
+/// Unit: milliseconds.
+/// Holds a value.
+table TowerKestrel {
+ ///
+ /// Value in [0, 1).
+ /// Holds a value.
+ zinc4 : string;
+ /// <b>html</b> & entities
+ glacier_bridge:ulong;
+ swift_nickel:ulong = 4344007111239736862;
+ zinc_depot: anchor.depot.Index;
+ cobalt_lead: uint32=0 (x_orbit:"span");
+ tensor_finch:ubyte=199;
+ stage_vector : uint64=4426759899867366138;
+ ///  Indented doc line.
+ cobalt_mode : string;
+}
+
+file_identifier "02E2";

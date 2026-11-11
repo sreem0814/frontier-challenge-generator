@@ -1,0 +1,24 @@
+include "base3.fbs";
+
+namespace name.note.entry;
+
+///  Indented doc line.
+/// Plain line
+struct SummitBridge (force_align : 8) {
+ castle: short;
+}
+
+namespace event;
+
+enum TotalGarden : int8 {
+ /// Plain line
+ /// Unicode: été → λ
+ /// Second paragraph.
+ QuarryVector = 0,
+ LAMBDA = 10,
+ /// Note: "quoted" text and 'single' quotes.
+ /// Holds a value.
+ ///  Indented doc line.
+ FLAVOR
+}
+

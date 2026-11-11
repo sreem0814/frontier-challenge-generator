@@ -1,0 +1,25 @@
+// Generated test schema.
+attribute "x_title";
+namespace note.pelican;
+
+struct SwiftAnchor (x_title:8) {
+	height : uint32;
+	depth_copper: uint16;
+	///
+	/// Multi-word doc with punctuation: a, b; c!
+	tag : [float64:2];
+}
+
+namespace ;
+
+table NamePuffin (csharp_partial) {
+	/// Plain line
+	/// Second paragraph.
+	name : string (deprecated);
+	glacier: [NamePuffin];
+}
+
+root_type NamePuffin;
+file_identifier "IX9P";
+
+file_extension "";

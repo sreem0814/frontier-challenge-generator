@@ -1,0 +1,39 @@
+attribute "x_gamma";
+attribute x_quasar;
+attribute x_lead;
+attribute "x_header";
+
+table CountDelta (original_order) {
+  kestrel: [int8] (x_gamma);
+  cobalt : uint64 (hash:"fnv1_64");
+  delta : [uint8] (deprecated, x_quasar);
+  tundra_color : [CountDelta];
+}
+enum CometOmega : int { QUARRY = -1, Garden = 0x0, ZETA, CASTLE = 6, TIN = 106, HEADER = 0x74, Argon = 216, ForestDelta = 226, XenonRaven }
+
+namespace record;
+
+enum Stage : int (x_lead) {
+  Quasar = 100
+}
+
+namespace header;
+
+table ShadeZeta {
+  xenon_anchor: CountDelta;
+  osprey_quasar:[byte];
+  argon_zinc: CountDelta;
+  omega:[CountDelta] (required);
+  osprey : [ubyte]=[] (nested_flatbuffer:"CountDelta", x_header: "index");
+  class:CountDelta;
+  /// Note: "quoted" text and 'single' quotes.
+  sparrow: ubyte =46;
+  nickel_matrix : float;
+}
+
+///  Indented doc line.
+table Tundra (original_order) {
+}
+
+root_type CountDelta;
+file_identifier "MX2V";

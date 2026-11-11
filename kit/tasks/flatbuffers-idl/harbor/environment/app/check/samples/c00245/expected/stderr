@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/model.proto:17: 1: error: oneof 'castle_tone' cannot be mapped to a union because member 'packet_osprey' is not a table type.
+

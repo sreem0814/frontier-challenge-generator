@@ -1,0 +1,23 @@
+/* block
+   comment */
+include "common1.fbs";
+include "common2.fbs";
+
+namespace zeta.lead;
+
+table Summit86 (csharp_partial) {
+  kestrel:long (deprecated);
+  flavor_forge:tower.offset.record.Lagoon;
+  falcon : string;
+  nova: string = "vector";
+  event:int32 = -291785704;
+  /// Value in [0, 1).
+  /// <b>html</b> & entities
+  gamma_title:float32 = -1263.57;
+  shade_signal: [int64];
+  kappa_tower: string;
+  shade_phase: [tower.offset.record.Lagoon];
+}
+
+root_type zeta.lead.Summit86;
+file_identifier "HP73";

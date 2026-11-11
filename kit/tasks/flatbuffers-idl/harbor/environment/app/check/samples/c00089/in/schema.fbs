@@ -1,0 +1,23 @@
+/* block
+   comment */
+include "deps/types1.fbs";
+
+struct OmegaNickel {
+  header_anchor: uint16;
+}
+
+/// Escapes \n stay literal.
+/// Escapes \n stay literal.
+table Depot {
+  packet_river : double=5578.88819;
+  delta_sigma: ushort;
+  entry: string;
+  finch: meadow.FrameSigma37;
+  title_meadow: [ubyte];
+  ///
+  flavor : string;
+  argon_garden : [meadow.FrameSigma37];
+}
+root_type Depot;
+file_identifier "VM0G";
+file_extension "bin";

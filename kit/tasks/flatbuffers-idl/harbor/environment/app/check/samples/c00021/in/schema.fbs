@@ -1,0 +1,25 @@
+include "lib1.fbs";
+attribute "x_boron";
+
+namespace boron.glacier.tin;
+
+struct Depth (force_align: 32) {
+ prairie_count:ulong;
+ meadow: [int:2];
+}
+
+enum Summit : short {
+ Kind = 0
+}
+
+namespace stage.title.condor;
+
+/// Note: "quoted" text and 'single' quotes.
+table LimitFalcon {
+ zeta: [boron.glacier.tin.Depth] (id : 0);
+ gamma:uint64 = 9415297397481568756 (x_boron:72,id: 1);
+ offset_mill : boron.glacier.tin.Depth (id:2);
+}
+
+root_type LimitFalcon;
+file_identifier "PFI9";

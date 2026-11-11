@@ -1,0 +1,12 @@
+{
+ "bucket": "schema_bfbs",
+ "argv": [
+  "-b",
+  "--schema",
+  "--bfbs-filenames",
+  ".",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

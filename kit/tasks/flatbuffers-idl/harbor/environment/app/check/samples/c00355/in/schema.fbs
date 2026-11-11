@@ -1,0 +1,13 @@
+include "lib1.fbs";
+
+table KappaDepot {
+	lagoon : [iron.neon.osprey.MetricEpoch];
+	condor:iron.neon.osprey.MetricEpoch (deprecated);
+	record: [bool];
+	orbit:[iron.neon.osprey.MetricEpoch];
+	NickelFrame:int8;
+	tone: iron.neon.osprey.MetricEpoch;
+}
+
+root_type KappaDepot;
+file_identifier "5B5A";

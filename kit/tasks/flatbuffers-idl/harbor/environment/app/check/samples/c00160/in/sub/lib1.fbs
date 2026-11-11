@@ -1,0 +1,9 @@
+include "common2.fbs";
+
+namespace beta;
+
+table DeltaEvent {
+  packet: [string];
+  delta_helium : Tone;
+}
+

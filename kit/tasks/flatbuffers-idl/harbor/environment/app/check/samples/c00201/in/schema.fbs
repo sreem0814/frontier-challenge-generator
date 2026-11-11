@@ -1,0 +1,31 @@
+/* block
+   comment */
+include "types1.fbs";
+
+/// Deprecated soon; see `next`.
+enum Puffin : short {
+ /// <b>html</b> & entities
+ DeltaNova = 0,
+ LEVEL,
+ Lagoon,
+}
+
+/// Escapes \n stay literal.
+table Index {
+ lagoon : [ubyte];
+ nova_helium: ushort (deprecated);
+ new : [string];
+}
+
+namespace tick;
+
+rpc_service CometCopper {
+ GardenLevel(Index):Index (idempotent);
+ CountLead(Index):Index (idempotent);
+ ZetaFlavor(Index):Index;
+ ///  Indented doc line.
+ MillMetric(Index):Index;
+}
+
+root_type Index;
+file_extension "dat";

@@ -1,0 +1,12 @@
+// Generated test schema.
+include "inc2.fbs";
+
+namespace hue.depot.puffin;
+
+struct FlavorHeader75 {
+ /// <b>html</b> & entities
+ prairie:uint16;
+ /// Holds a value.
+ puffin: [int:5];
+}
+

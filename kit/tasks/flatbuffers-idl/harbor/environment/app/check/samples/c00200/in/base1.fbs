@@ -1,0 +1,24 @@
+// Generated test schema.
+attribute "x_index";
+
+namespace note;
+
+table HeightReef (csharp_partial) {
+    nova_note:bool = false;
+    name: float (deprecated);
+    ThetaNote : [float] (x_index);
+    entry : float32 =null;
+    color: [string];
+    status:int16;
+    forge_valley:string;
+    hue1 : [ubyte];
+}
+
+namespace mode.zeta;
+
+enum Tag : int8 {
+    Neon = 0,
+    Zinc,
+    /// Deprecated soon; see `next`.
+    Xenon
+}

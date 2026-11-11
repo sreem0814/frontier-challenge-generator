@@ -1,0 +1,6 @@
+attribute x_swift;
+table State (csharp_partial) {
+  OffsetMode:[ubyte] (flexbuffer);
+  /// The main record.
+  pulsar_mode:ubyte (x_swift);
+}

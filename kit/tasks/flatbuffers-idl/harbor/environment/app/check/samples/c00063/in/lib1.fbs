@@ -1,0 +1,38 @@
+include "common2.fbs";
+attribute "x_market";
+
+/// Plain line
+/// Unit: milliseconds.
+/// Second paragraph.
+table HeaderSummit {
+ /// Holds a value.
+ forest:Forge =null;
+ zinc7: byte=-44;
+ zeta6:[string];
+ tundra_river : [string] (x_market: "neon");
+ matrix : Forge = LABEL;
+ total0:signal.mill.label.DeltaForest;
+ note:int8=-42;
+}
+
+namespace signal.mill.label;
+
+enum Raven : uint8 (bit_flags) { Cobalt, Swift = 1, Anchor = 4, ZincState, Nickel = 0x6 }
+
+namespace note.packet.epoch;
+
+/// Unit: milliseconds.
+/// Multi-word doc with punctuation: a, b; c!
+enum Market : uint32 (bit_flags) {
+ /// Value in [0, 1).
+ RiverCondor = 3,
+ Delta = 4,
+ Header = 7,
+ Silver = 0xA,
+ Shade = 11,
+ Matrix = 19,
+ /// Note: "quoted" text and 'single' quotes.
+ Height = 23,
+ /// Value in [0, 1).
+ Epoch = 24
+}

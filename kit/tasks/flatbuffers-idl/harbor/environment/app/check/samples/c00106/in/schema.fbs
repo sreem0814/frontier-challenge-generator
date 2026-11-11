@@ -1,0 +1,11 @@
+// Generated test schema.
+
+/// The main record.
+table HeaderLimit (original_order) {
+ haven: long (deprecated);
+ forest:[string];
+ frame_osprey: [bool];
+ orbit : ushort =0;
+}
+root_type HeaderLimit;
+file_identifier "4YA5";

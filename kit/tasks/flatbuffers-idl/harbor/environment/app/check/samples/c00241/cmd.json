@@ -1,0 +1,13 @@
+{
+ "bucket": "proto",
+ "argv": [
+  "--proto",
+  "--oneof-union",
+  "--keep-proto-id",
+  "--proto-id-gap",
+  "warn",
+  "-o",
+  "out",
+  "model.proto"
+ ]
+}

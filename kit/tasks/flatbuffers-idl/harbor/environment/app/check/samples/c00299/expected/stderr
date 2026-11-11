@@ -1,0 +1,8 @@
+
+warning:
+  @/new/schema.fbs:20: 11: warning: field names should be lowercase snake_case, got: BoronTitle
+
+
+error:
+  schemas don't conform: defaults differ for field: CanyonQuarry.neon
+

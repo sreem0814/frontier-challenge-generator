@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:6: 11: error: expecting: string constant instead got: nova_neon
+

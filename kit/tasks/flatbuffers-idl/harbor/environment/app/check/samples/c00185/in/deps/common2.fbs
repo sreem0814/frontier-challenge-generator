@@ -1,0 +1,15 @@
+namespace comet;
+
+table Haven {
+ atoll: long=null;
+ vector_boron: string = "metric";
+ /// Escapes \n stay literal.
+ package:int64=-7798319676525949903;
+ ///
+ wren_beta : ubyte=21;
+ reef : [ubyte] (flexbuffer);
+ lagoon_entry: string="valley";
+ falcon: string (required);
+ matrix6 : string (key);
+}
+

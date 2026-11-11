@@ -1,0 +1,7 @@
+include "sub/lib2.fbs";
+
+namespace atoll.raven.height;
+
+enum MillZinc : uint64 {
+    Reef = 200
+}

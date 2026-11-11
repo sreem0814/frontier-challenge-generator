@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:1: 9: error: Underlying type for union is not yet supported in at least one of the specified programming languages.
+

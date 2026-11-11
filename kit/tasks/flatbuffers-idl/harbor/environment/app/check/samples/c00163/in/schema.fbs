@@ -1,0 +1,34 @@
+include "deps/base1.fbs";
+
+namespace falcon.atoll;
+
+enum HeaderSample : int8 {
+  Garden = 1,
+  Frame,
+  Metric = 12
+}
+
+namespace ;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Plain line
+/// Unit: milliseconds.
+table CarbonWidth (csharp_partial) {
+  level_label : falcon.atoll.HeaderSample = Garden;
+  tag:int;
+  /// Second paragraph.
+  canyon: byte (deprecated);
+  tick_tensor: [falcon.atoll.MatrixBridge27];
+  state : bool=null;
+  meadow: [total.Nova];
+  height: [falcon.atoll.MatrixBridge27];
+  ZincRaven: int64 =-9065161819004192264 (key);
+  condor : [falcon.atoll.MatrixBridge27];
+}
+
+rpc_service CondorName {
+  FalconForest(total.Nova):CarbonWidth (streaming: "none");
+  ///
+  TotalName(total.Nova):falcon.atoll.MatrixBridge27;
+}
+file_identifier "Y2ZK";

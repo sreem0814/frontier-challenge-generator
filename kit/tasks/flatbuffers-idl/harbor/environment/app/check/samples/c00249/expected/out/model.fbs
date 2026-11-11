@@ -1,0 +1,65 @@
+// Generated from model.proto
+
+namespace DeltaEntry_;
+
+enum ValleyKappa : int {
+  NOVA_VALLEY = 0,
+  CONDOR = 2,
+  LAMBDA_ORBIT = 3,
+  HUE_ATOLL = 5,
+  VALLEYKAPPA_NEON_MODE = 7,
+  COLOR = 8,
+}
+
+namespace ;
+
+enum Entry : int {
+  ENTRY_DELTA = 0,
+  ENTRY_ALPHA = 10,
+  NICKEL = 11,
+}
+
+namespace OffsetDepot_;
+
+enum Prairie : int {
+  TAG = -1,
+  PRAIRIE_DEPTH = 0,
+  PRAIRIE_VECTOR_MATRIX = 9,
+  WIDTH = 10,
+  MEADOW = 20,
+  PRAIRIE_ENTRY = 21,
+}
+
+namespace ;
+
+table FlavorArgon {
+  phase:[int] (id: 0);
+  delta_swift:uint (id: 1);
+}
+
+table DeltaEntry {
+  color_kestrel:long (id: 0);
+  atoll_boron:string (id: 1);
+  finch_glacier:[FlavorArgon] (id: 2);
+  zeta_note:FlavorArgon (id: 3);
+  falcon:DeltaEntry_.ValleyKappa (id: 4);
+  quasar_level:DeltaEntry_.ValleyKappa (id: 5);
+  color:DeltaEntry_.ValleyKappa (id: 6);
+}
+
+table PhaseGlacier {
+  color:FlavorArgon (id: 0);
+  carbon_hangar:FlavorArgon (id: 1);
+}
+
+table OffsetDepot {
+  signal:PhaseGlacier (id: 0);
+  kind:[long] (id: 1);
+  level:[PhaseGlacier] (id: 2);
+  tag_frame:FlavorArgon (id: 3);
+  copper:uint (id: 4);
+  puffin_title:[ulong] (id: 5);
+  offset_nebula:int (id: 6);
+  finch_omega:double (id: 7);
+}
+

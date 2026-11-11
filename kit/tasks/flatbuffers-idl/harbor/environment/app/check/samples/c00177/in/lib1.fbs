@@ -1,0 +1,15 @@
+include "lib2.fbs";
+attribute "x_nova";
+namespace mode.haven;
+
+/// Deprecated soon; see `next`.
+/// Deprecated soon; see `next`.
+/// The main record.
+struct Nickel (force_align: 16) {
+	frame: Boron;
+	castle: short;
+	omega_nickel:Boron;
+	metric:short;
+	vector : uint32;
+	limit:float32 (x_nova);
+}

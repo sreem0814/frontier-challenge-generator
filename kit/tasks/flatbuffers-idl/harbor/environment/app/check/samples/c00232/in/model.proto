@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package sparrow;
+
+
+message BridgeState {
+  message MetricMill {
+    fixed32 quasar_argon = 1;
+    repeated fixed64 pulsar = 2;
+    map<int32, sfixed64> neon_map = 3;
+  }
+  // Unit: milliseconds.
+  // Unicode: été → λ
+  repeated BridgeState.MetricMill comet_prairie = 1;
+  BridgeState.MetricMill xenon_forge = 2;
+  sfixed32 entry_stage = 3;
+  repeated BridgeState.MetricMill metric = 4;
+  /* Second paragraph. */
+  float kestrel = 5;
+  double nickel = 6;
+  optional sfixed64 event = 7;
+  repeated int64 valley = 8;
+  reserved 10, 12 to 14;
+}
+
+message Title {
+  repeated BridgeState event = 1;
+  // Escapes \n stay literal.
+  //   Indented doc line.
+  BridgeState metric = 2 [deprecated = true];
+}
+
+message StateRiver {
+  message Mill {
+    // Escapes \n stay literal.
+    //   Indented doc line.
+    Title sigma = 1;
+    oneof summit {
+      string falcon_meadow = 2;
+      bytes quarry = 3;
+      fixed32 atoll_zeta = 4;
+    }
+  }
+  sfixed32 packet_mill = 1;
+  repeated string height_limit = 3;
+  // <b>html</b> & entities
+  Title garden = 4;
+  map<int32, float> limit_kestrel_map = 5;
+}

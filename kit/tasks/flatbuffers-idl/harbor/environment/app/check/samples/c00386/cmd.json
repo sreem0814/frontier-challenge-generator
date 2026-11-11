@@ -1,0 +1,12 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "-b",
+  "--root-type",
+  "WrenDelta",
+  "-o",
+  "out",
+  "schema.fbs",
+  "data.json"
+ ]
+}

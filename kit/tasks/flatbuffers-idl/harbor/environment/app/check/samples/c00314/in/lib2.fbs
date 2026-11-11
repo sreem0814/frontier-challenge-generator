@@ -1,0 +1,18 @@
+// Generated test schema.
+attribute "x_count";
+attribute "x_zinc";
+
+namespace phase.tin.glacier;
+
+/// Escapes \n stay literal.
+table HeaderColor {
+  zeta_sigma:[ubyte] (required);
+  comet_theta : string (x_count);
+  /// <b>html</b> & entities
+  sigma_swift: string;
+  level_silver:string (x_zinc : 30);
+  mill: [ubyte] (deprecated);
+}
+
+table ReefPrairie {
+}

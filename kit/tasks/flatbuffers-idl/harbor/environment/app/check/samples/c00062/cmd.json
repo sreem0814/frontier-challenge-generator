@@ -1,0 +1,12 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--rust",
+  "--rust-serialize",
+  "--rust-module-root-file",
+  "--gen-name-strings",
+  "-o",
+  "out",
+  "baz_with_ns.fbs"
+ ]
+}

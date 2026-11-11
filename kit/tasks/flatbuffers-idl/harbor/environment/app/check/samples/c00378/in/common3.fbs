@@ -1,0 +1,10 @@
+namespace hangar.argon;
+
+/// The main record.
+struct MeadowPacket {
+	packet: int64;
+	tick_market: uint32;
+	pulsar: [int:1];
+	beta : [byte:4];
+}
+

@@ -1,0 +1,15 @@
+include "inc2.fbs";
+include "common3.fbs";
+
+namespace epoch.label.metric;
+
+/// Multi-word doc with punctuation: a, b; c!
+table Bridge36 {
+  ///  Indented doc line.
+  swift_neon: int = -16;
+  limit_swift: int;
+  class: stage.summit.Hangar = PuffinTick;
+  raven_epoch:[float32];
+  osprey: int;
+  vector_quasar: [int32];
+}

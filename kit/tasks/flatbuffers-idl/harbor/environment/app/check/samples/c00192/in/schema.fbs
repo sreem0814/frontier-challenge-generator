@@ -1,0 +1,28 @@
+// © example
+include "common1.fbs";
+attribute "x_span";
+attribute "x_width";
+attribute x_wren;
+
+namespace shade.sparrow;
+
+table Orbit7 {
+  matrix: [ushort];
+  falcon_osprey : string (x_span);
+  tower: bool (x_width: "stage");
+  depot: bool;
+  packet_record : [string];
+  signal:meadow.PuffinRaven;
+  nova_tower: string (deprecated);
+  self : uint = 4294967295 (x_wren : 55);
+  beta_packet:int8;
+  river_xenon: string (required,key);
+}
+
+rpc_service Quarry {
+  DepthMeadow(Orbit7):meadow.PuffinRaven;
+  /// Unicode: été → λ
+  QuasarKestrel(meadow.PuffinRaven):meadow.PuffinRaven;
+  PulsarLagoon(Orbit7):meadow.PuffinRaven (streaming:"client",idempotent);
+}
+root_type Orbit7;

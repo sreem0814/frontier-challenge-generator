@@ -1,0 +1,23 @@
+include "common1.fbs";
+
+table River {
+	vector : float;
+	lambda_anchor:float=-1735.2;
+	/// Escapes \n stay literal.
+	/// The main record.
+	/// Plain line
+	reef: string;
+	glacier : short=93;
+	note : bool;
+	/// Plain line
+	offset:string;
+	/// Deprecated soon; see `next`.
+	theta_copper: tag.orbit.tag.Mill;
+}
+
+struct HeaderHaven {
+	river_frame: [byte:2];
+	count_sample: tin.RavenMatrix;
+}
+
+file_identifier "HCPW";

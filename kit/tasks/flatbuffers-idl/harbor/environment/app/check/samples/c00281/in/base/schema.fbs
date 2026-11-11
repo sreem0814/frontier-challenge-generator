@@ -1,0 +1,71 @@
+// © example
+attribute x_sample;
+attribute "x_limit";
+
+/// Escapes \n stay literal.
+/// Note: "quoted" text and 'single' quotes.
+table CobaltLevel {
+  sample: [int32];
+}
+
+/// Plain line
+/// Holds a value.
+/// Value in [0, 1).
+table WrenWidth (original_order) {
+  prairie_anchor: [string];
+  puffin_label : float32 (key);
+  pelican_tag: uint32;
+  vector_canyon : [string];
+  orbit_limit:CobaltLevel;
+  flavor_finch: CobaltLevel;
+}
+
+namespace bridge;
+
+table StatusTone {
+  /// Escapes \n stay literal.
+  carbon: [int8] (required,id:5);
+  tag_beta : [ushort] (deprecated,id:2);
+  entry: string (key,id: 4);
+  heron_alpha: uint =0 (id: 6);
+  sparrow : [int] (id: 7);
+  lagoon:short=0x6415 (id: 1);
+  header_shade : string (required, id : 3);
+  nova_frame : [WrenWidth] (x_sample:77,id: 9);
+  NameBridge:int8 (id: 0);
+  /// Plain line
+  ///
+  /// The main record.
+  delta:uint64 (id : 8);
+}
+union Flavor {
+  WrenWidth,
+  /// <b>html</b> & entities
+  ///
+  CondorPulsar: StatusTone
+}
+
+namespace garden;
+
+enum Zinc : ulong {
+  Summit = 1,
+  Zinc24 = 6,
+  EPOCH = 7 (x_limit: 1),
+  /// Value in [0, 1).
+  Entry,
+}
+
+namespace ;
+
+struct OrbitIndex {
+  /// <b>html</b> & entities
+  /// Multi-word doc with punctuation: a, b; c!
+  count: uint8;
+  tower : uint64;
+  tag : int;
+  depth_quarry : [int:3];
+  alpha:[int:5];
+}
+root_type CobaltLevel;
+file_identifier "ICEI";
+file_extension "x";

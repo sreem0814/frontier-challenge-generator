@@ -1,0 +1,28 @@
+attribute "x_zeta";
+attribute "x_name";
+
+namespace atoll;
+
+table RecordDepth54 {
+  quasar_status : [ubyte] (flexbuffer);
+  /// Escapes \n stay literal.
+  /// Unicode: été → λ
+  epoch:[ubyte];
+  reef_orbit : ushort;
+  /// Value in [0, 1).
+  flavor:[byte] (x_zeta: "zeta");
+}
+
+struct Valley {
+  raven: ushort;
+}
+
+/// Multi-word doc with punctuation: a, b; c!
+struct Xenon {
+  /// Multi-word doc with punctuation: a, b; c!
+  span: uint32 (x_name);
+  condor_meadow : [ushort:5];
+  /// <b>html</b> & entities
+  carbon : [float64:5];
+}
+

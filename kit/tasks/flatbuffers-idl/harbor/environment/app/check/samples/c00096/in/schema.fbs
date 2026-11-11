@@ -1,0 +1,51 @@
+include "common1.fbs";
+attribute "x_forge";
+attribute "x_beta";
+
+namespace omega.kind;
+
+table Castle {
+  /// The main record.
+  /// Unicode: été → λ
+  mill: string (required);
+  note: double (key);
+  /// Deprecated soon; see `next`.
+  event_tundra:string;
+  shade : [string] (required);
+  phase: [DeltaPrairie];
+  /// Second paragraph.
+  glacier:[kestrel.forest.RecordWidth];
+  neon : HeliumPacket;
+}
+
+namespace ;
+
+/// Multi-word doc with punctuation: a, b; c!
+///  Indented doc line.
+enum CondorForge : uint64 {
+  COUNT = 0,
+  RAVEN,
+  SampleDelta,
+  DepthForge (x_forge),
+  OmegaSample = 4,
+  DELTA,
+  Phase = 7
+}
+
+/// Note: "quoted" text and 'single' quotes.
+struct PrairieTheta {
+  hue_osprey:double;
+  tower : ulong;
+  /// Plain line
+  nil : int64;
+  carbon: [ubyte:5];
+  castle: float (x_beta : "epoch");
+  forge:CondorForge;
+}
+
+rpc_service KindTheta {
+  CobaltComet(omega.kind.DeltaPrairie):ZetaTin (idempotent);
+  MetricNova(omega.kind.Castle):omega.kind.Castle;
+}
+
+root_type omega.kind.Castle;

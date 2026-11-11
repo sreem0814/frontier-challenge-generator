@@ -1,0 +1,23 @@
+include "types2.fbs";
+include "deps/lib3.fbs";
+attribute x_meadow;
+/// Holds a value.
+/// Escapes \n stay literal.
+table StatePhase {
+  kestrel_tower:string;
+  nebula : int8 = 93;
+  /// Unit: milliseconds.
+  /// Value in [0, 1).
+  /// The main record.
+  count_label : uint8 = 0;
+  atoll_offset: AnchorBeta (deprecated);
+  zinc_tundra: [string];
+  forest: [AnchorBeta] (required);
+  zinc_label : ubyte;
+  delta_haven : [ubyte] (flexbuffer);
+  /// Multi-word doc with punctuation: a, b; c!
+  /// The main record.
+  anchor : float64=8971.11;
+  canyon4 : [ushort] (x_meadow: 56);
+  IndexFinch:StatePhase;
+}

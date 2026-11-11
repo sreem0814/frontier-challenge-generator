@@ -1,0 +1,12 @@
+// © example
+include "lib/x/base2.fbs";
+
+struct TowerSummit53 {
+    /// Second paragraph.
+    silver: uint32;
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Holds a value.
+    ///  Indented doc line.
+    depot_condor:haven.matrix.LagoonMeadow;
+}
+

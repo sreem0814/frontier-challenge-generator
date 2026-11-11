@@ -1,0 +1,11 @@
+namespace matrix;
+
+struct MillSample {
+	osprey_boron:[int32:2];
+	alpha : [double:3];
+	/// The main record.
+	entry: uint8;
+	iron_tin : int16;
+	carbon_epoch : [short:5];
+}
+

@@ -1,0 +1,27 @@
+/* block
+   comment */
+attribute "x_bridge";
+attribute "x_note";
+
+namespace tone.gate;
+
+/// Note: "quoted" text and 'single' quotes.
+struct Stage (x_bridge) {
+	cobalt_sparrow : int;
+}
+
+namespace ;
+
+table Bridge {
+	/// Unit: milliseconds.
+	/// Unicode: été → λ
+	lambda_index : [bool];
+	///  Indented doc line.
+	xenon_nebula : bool = null;
+	carbon_kestrel : [string];
+}
+
+/// Plain line
+enum Header : ubyte (bit_flags,x_note) { Quasar, Helium = 1, Condor = 2, OmegaNeon = 3, River = 4, Level, Theta, Mill = 0x7 }
+
+root_type Bridge;

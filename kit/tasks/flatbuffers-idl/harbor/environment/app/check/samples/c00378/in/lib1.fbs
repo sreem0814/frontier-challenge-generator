@@ -1,0 +1,15 @@
+include "types2.fbs";
+
+namespace hangar.argon;
+
+struct HavenHaven {
+    gamma_shade:int;
+    alpha_phase: float64;
+    helium : int16;
+}
+
+/// Value in [0, 1).
+enum BoronStage : ulong (bit_flags) {
+    Level = 41
+}
+

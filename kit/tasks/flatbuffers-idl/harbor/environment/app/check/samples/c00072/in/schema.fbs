@@ -1,0 +1,46 @@
+// Generated test schema.
+include "lib1.fbs";
+table Lagoon (original_order) {
+  tick_signal: raven.lead.theta.KappaCount =Header (id:0);
+  meadow:double =1623.0715301 (id:1);
+  TundraCount : uint8 = 65 (deprecated,id: 2);
+  limit:float (key, id: 3);
+  metric: [QuasarTin] (id : 4);
+  shade_cobalt : raven.lead.theta.KappaCount =11 (id : 5);
+}
+
+namespace alpha.beta;
+
+table GammaMode {
+  depth: int64=null;
+  event : int16;
+  condor_entry: raven.lead.theta.NebulaRaven;
+  gamma_gate : uint8 = 25;
+  state : [float32];
+}
+
+namespace ;
+
+table Orbit (csharp_partial) {
+  total:raven.lead.theta.KappaCount = null (deprecated);
+  /// Unit: milliseconds.
+  /// The main record.
+  tick:raven.lead.theta.NebulaRaven;
+  quarry_limit: [QuasarTin] (deprecated);
+  summit:string;
+  nova:Lagoon;
+  ///  Indented doc line.
+  /// Unit: milliseconds.
+  hangar_prairie:Orbit;
+}
+
+/// Deprecated soon; see `next`.
+union Comet92 {
+  alpha.beta.GammaMode,
+  Lagoon,
+  Entry36: Orbit,
+  raven.lead.theta.NebulaRaven
+}
+
+root_type Orbit;
+file_identifier "3G5A";

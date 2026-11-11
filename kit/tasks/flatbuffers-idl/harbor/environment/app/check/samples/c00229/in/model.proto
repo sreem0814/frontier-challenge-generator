@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "com.example.argon";
+
+enum Height {
+  FINCH = 0;
+  // Deprecated soon; see `next`.
+  // 
+  PACKET = 1;
+  HEIGHT_FLAVOR = 2;
+  HEIGHT_GARDEN = 3 [deprecated = true];
+  /* Value in [0, 1). */
+  TIN = 4;
+  HEIGHT_BETA = 5;
+}

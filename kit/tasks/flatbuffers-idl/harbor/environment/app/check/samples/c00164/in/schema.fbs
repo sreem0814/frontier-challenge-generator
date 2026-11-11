@@ -1,0 +1,99 @@
+// Generated test schema.
+attribute "x_valley";
+attribute x_record;
+attribute "x_beta";
+attribute "x_vector";
+namespace mill.depth.cobalt;
+
+/// <b>html</b> & entities
+table PelicanBeta {
+	zeta_name:bool = true (id: 4);
+	atoll:ushort (x_valley,id : 3);
+	mode_shade : [string] (id: 0);
+	stage:string (required, id: 1);
+	lambda:long (id:2);
+	status_shade : string (id:5);
+}
+
+namespace ;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Multi-word doc with punctuation: a, b; c!
+/// Note: "quoted" text and 'single' quotes.
+table DepthName18 {
+	xenon_name : [ubyte];
+	copper_xenon: string;
+	/// Value in [0, 1).
+	tower:string (deprecated);
+}
+
+/// Holds a value.
+table AtollWren {
+	orbit_flavor:ubyte = 0xFF;
+	heron_meadow: string;
+	orbit : string;
+	val : int64;
+	condor : string;
+	event : [DepthName18];
+}
+
+namespace mill.depth.cobalt;
+
+/// Multi-word doc with punctuation: a, b; c!
+table ForgePacket {
+	river: uint64 =null;
+	color_orbit: uint=0;
+	falcon_beta : AtollWren;
+	hue : [mill.depth.cobalt.PelicanBeta];
+	tower:[ForgePacket];
+}
+namespace ;
+
+enum PelicanHeader83 : uint (bit_flags) {
+	MarketHaven = 0x5,
+	Raven = 11,
+	Tundra = 20,
+	Width,
+	DepotMarket = 22,
+	Valley = 28
+}
+
+namespace mill.depth.cobalt;
+
+struct PhaseWren (force_align:32) {
+	entry: [PelicanHeader83:4];
+	header: int8;
+	color: PelicanHeader83;
+	orbit:double (x_record:39);
+	depth_swift : PelicanHeader83 (x_beta);
+	delta_pulsar : int;
+}
+
+namespace ;
+
+struct WidthState {
+	puffin: int;
+	depth5: [PelicanHeader83:5];
+	/// The main record.
+	cobalt_status:mill.depth.cobalt.PhaseWren;
+	glacier:[ulong:4] (x_vector);
+	argon:[ubyte:4];
+}
+
+/// Plain line
+/// Plain line
+struct Index (force_align:4) {
+	TickLimit:PelicanHeader83;
+	meadow: int8;
+	title_packet:[int16:1];
+	osprey:PelicanHeader83;
+}
+
+/// Multi-word doc with punctuation: a, b; c!
+enum Argon : uint32 (bit_flags) {
+	/// Unicode: été → λ
+	SilverReef = 28
+}
+
+root_type AtollWren;
+file_extension "mon";

@@ -1,0 +1,6 @@
+
+error:
+  @/schema.fbs:9: 12: warning: field names should be lowercase snake_case, got: NebulaTower
+@/schema.fbs:11: 10: warning: field names should be lowercase snake_case, got: ZincFinch
+@/schema.fbs:20: 24: error: flexbuffer attribute may only apply to a vector of ubyte
+

@@ -1,0 +1,9 @@
+
+warning:
+  @/new/schema.fbs:8: 14: warning: field names should be lowercase snake_case, got: CountEntry
+@/new/schema.fbs:16: 36: warning: underlying type of bit_flags enum must be unsigned
+
+
+error:
+  schemas don't conform: defaults differ for field: LimitRaven.state_count
+

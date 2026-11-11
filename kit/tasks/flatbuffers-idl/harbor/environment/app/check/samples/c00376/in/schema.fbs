@@ -1,0 +1,31 @@
+include "common1.fbs";
+include "deps/base2.fbs";
+native_include "native/types.h";
+
+table XenonValley {
+ theta_raven : string;
+ IronSignal: uint64;
+ osprey_river: string;
+ flavor_height : [ReefKappa];
+}
+
+namespace stage.delta;
+
+/// The main record.
+table OmegaReef {
+ stage0 : int64=3630628657506208926 (id : 0);
+ /// Unit: milliseconds.
+ /// Value in [0, 1).
+ /// The main record.
+ delta_hangar:ulong (id:3);
+ phase:int16 (id : 1);
+ kind_mode: byte (id: 2);
+ note:SparrowColor (id : 4);
+ gate:float32 (id:5);
+}
+
+root_type OmegaReef;
+file_identifier "R7GI";
+file_extension "bin";
+
+root_type Missing;

@@ -1,0 +1,4 @@
+
+error:
+  @/new/schema.fbs:32: 25: error: only non-scalar fields in tables may be 'required'
+

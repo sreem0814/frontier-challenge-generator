@@ -1,0 +1,13 @@
+namespace cobalt.gamma;
+
+table EpochOrbit {
+    event:[float64];
+    tundra : string (deprecated);
+    delta_sparrow : bool;
+    IndexHue:[ubyte];
+    vector : string;
+    None:[ubyte] (flexbuffer, required);
+    market: string;
+    count_packet : [ubyte] (flexbuffer);
+}
+

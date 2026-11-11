@@ -1,0 +1,45 @@
+syntax = "proto2";
+
+import "imported.proto";
+
+/*  */
+message DeltaCarbon {
+  optional int32 index_zeta = 1;
+  repeated string hue_entry = 2 [packed = true];
+  reserved 4, 6 to 8;
+}
+
+// Value in [0, 1).
+message NoteCondor {
+  enum MillGate {
+    CASTLE_HANGAR = 0;
+    // Plain line
+    ORBIT = 1;
+    REEF_ALPHA = 11;
+  }
+  optional NoteCondor.MillGate lambda_copper = 1;
+  optional sint64 span = 2;
+}
+
+enum River {
+  // Multi-word doc with punctuation: a, b; c!
+  // Escapes \n stay literal.
+  HAVEN = 3;
+  RIVER_SIGNAL_TENSOR = 5;
+}
+
+/// Second paragraph.
+message Mode {
+  enum Stage {
+    MATRIX_SAMPLE = 0 [deprecated = true];
+    NOTE = 1;
+    TICK_PRAIRIE = 2;
+    LABEL = 3;
+    /* Multi-word doc with punctuation: a, b; c! */
+    HANGAR = 4;
+    GATE_MILL = 5;
+  }
+  optional DeltaCarbon flavor = 1;
+  optional double copper_cobalt = 2;
+  required double zinc = 3;
+}

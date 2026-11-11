@@ -1,0 +1,97 @@
+attribute "x_tundra";
+attribute x_total;
+
+/// <b>html</b> & entities
+table Flavor {
+ comet : int32;
+ lambda_quarry : [ubyte] =[];
+ mode: ushort =14998;
+ string:string (required);
+ condor_raven : [ubyte] (flexbuffer,x_tundra);
+}
+
+table VectorTheta {
+ summit_sample:string (required, deprecated, id : 3);
+ orbit: [string] (id : 0);
+ stage:string (id: 4);
+ tensor : [ubyte] (id:1);
+ mill_depot:uint8=122 (id:6);
+ bridge: string (id : 5);
+ river : short (deprecated,x_total:77,id: 2);
+}
+namespace tundra.total;
+
+struct Delta (force_align:16) {
+ boron_omega: int8;
+ lead : uint16;
+ status_wren: [int:5];
+ state : short;
+ HeightHue : [int:5];
+ /// Holds a value.
+ zeta_delta: int;
+}
+namespace ;
+
+/// Holds a value.
+enum BridgeHeight : ubyte (bit_flags) {
+ Color = 2
+}
+
+namespace color;
+
+/// The main record.
+/// Note: "quoted" text and 'single' quotes.
+table Omega (csharp_partial) {
+ tag_matrix:uint8=65;
+ lagoon: int32;
+ gate: BridgeHeight =Color;
+ GlacierReef: int8=-0x4F;
+ market_frame: [tundra.total.Delta];
+ zeta_color:string;
+ in : [Flavor];
+}
+
+namespace ;
+
+/// Unit: milliseconds.
+struct Osprey {
+ forest_argon: double;
+ /// <b>html</b> & entities
+ index_boron: tundra.total.Delta;
+}
+/// Value in [0, 1).
+enum Kind : uint16 {
+ Matrix = 200,
+ Falcon = 210,
+ Quarry = 215,
+ HeronFalcon = 225,
+ Kestrel,
+ Cobalt,
+ Nickel
+}
+
+namespace label.flavor.kappa;
+
+table Tin {
+ OspreyTitle : float32 (id: 0);
+ tensor_mill: int32 (id: 1);
+ tag_silver:uint32=0 (id : 2);
+ kappa_phase:[BridgeHeight] (id:3);
+ tin : float64 (id : 4);
+ castle_boron: byte (id: 5);
+ stage_vector : uint16 =17480 (id:6);
+ stage_glacier : tundra.total.Delta (id : 7);
+ hangar_boron : color.Omega (id:8);
+}
+namespace ;
+
+rpc_service LambdaHeight {
+ ToneIron(color.Omega):VectorTheta (streaming: "server");
+ WrenMetric(label.flavor.kappa.Tin):label.flavor.kappa.Tin (streaming:"server");
+ ZincLead(VectorTheta):label.flavor.kappa.Tin;
+ TundraCount(VectorTheta):color.Omega;
+}
+
+root_type Flavor;
+file_identifier "MEXM";
+file_extension "x";

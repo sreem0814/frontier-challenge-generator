@@ -1,0 +1,32 @@
+attribute "x_bridge";
+
+namespace width.nova;
+
+enum WidthEpoch : uint32 (bit_flags,x_bridge: "matrix") { ColorPacket = 6, Color, Title = 16, Omega = 17, }
+
+namespace ;
+
+enum MarketTotal : ubyte {
+  Alpha = 0,
+  Helium = 1
+}
+
+table Quasar {
+  canyon : short = 5835 (id: 2);
+  nil: float64 (id:0);
+}
+namespace width.nova;
+
+/// Holds a value.
+union Stage {
+  Quasar
+}
+
+namespace orbit.glacier;
+
+rpc_service CobaltIron {
+  IronStatus(Quasar):Quasar;
+  LambdaXenon(Quasar):Quasar (streaming : "client",idempotent);
+}
+
+root_type Quasar;

@@ -1,0 +1,22 @@
+include "base3.fbs";
+attribute x_garden;
+
+namespace hangar.stage.castle;
+
+/// Value in [0, 1).
+///  Indented doc line.
+/// Multi-word doc with punctuation: a, b; c!
+table Anchor (csharp_partial) {
+ /// Plain line
+ bridge: [OrbitForest] (id: 0);
+ /// Holds a value.
+ forest : float64 = null (id: 1);
+ phase : float64 (id:2);
+ pelican:int64 = 22 (id:3);
+ metric_record:[uint64] (id: 4);
+ tundra_condor:string (id:5);
+ /// Unit: milliseconds.
+ /// Plain line
+ swift: [OrbitForest] (required, x_garden, id: 6);
+}
+

@@ -1,0 +1,43 @@
+include "lib/x/base1.fbs";
+native_include "extra.h";
+attribute "x_omega";
+
+union Wren {
+  garden.delta.Forest,
+}
+
+namespace nickel;
+
+enum PrairieCobalt : int64 {
+  Tundra = 3 (x_omega : 17),
+  ColorSample,
+  HERON,
+  Falcon,
+  FORGE = 0xB
+}
+
+namespace ;
+
+/// <b>html</b> & entities
+///  Indented doc line.
+///  Indented doc line.
+table GateAnchor {
+  gate_valley : string (id:3);
+  height:[uint32] (required,id:1);
+  GardenTick:long = -6044090184024179794 (id:0);
+  /// Second paragraph.
+  record_tundra : [garden.delta.Forest] (id:2);
+}
+/// Escapes \n stay literal.
+///  Indented doc line.
+rpc_service NoteTundra58 {
+  /// Unit: milliseconds.
+  FalconHangar(garden.delta.Forest):GateAnchor (streaming: "bidi");
+  ShadeHelium(garden.delta.Forest):GateAnchor (streaming:"server");
+  HueLevel(GateAnchor):garden.delta.Forest;
+  /// Deprecated soon; see `next`.
+  SilverPulsar(GateAnchor):GateAnchor;
+}
+
+root_type GateAnchor;
+file_identifier "T1GN";

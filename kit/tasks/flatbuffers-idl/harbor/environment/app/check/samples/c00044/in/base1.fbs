@@ -1,0 +1,27 @@
+namespace depot;
+
+table BetaSample {
+	delta: long;
+	/// The main record.
+	/// Deprecated soon; see `next`.
+	/// Multi-word doc with punctuation: a, b; c!
+	gamma: [ubyte] (flexbuffer);
+	level_nebula:int8 = 114;
+	omega:[int];
+	osprey: string (required);
+	condor4 : [BetaSample];
+}
+
+namespace tone.nebula.hue;
+
+struct LimitCount {
+	width : double;
+	/// Holds a value.
+	///  Indented doc line.
+	/// Holds a value.
+	zinc: int16;
+	pulsar_epoch:byte;
+	quarry:float64;
+	table : int8;
+	garden: ubyte;
+}

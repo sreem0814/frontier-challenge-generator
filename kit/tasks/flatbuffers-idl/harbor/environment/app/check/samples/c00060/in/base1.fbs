@@ -1,0 +1,17 @@
+include "common2.fbs";
+attribute "x_carbon";
+attribute x_castle;
+
+namespace castle;
+
+enum IronCondor : int64 {
+	River = 0,
+	Helium,
+	RecordPulsar,
+	OrbitKind,
+	WREN = 103 (x_carbon:"frame"),
+	FINCH = 108,
+	LEVEL = 113,
+	Swift (x_castle)
+}
+

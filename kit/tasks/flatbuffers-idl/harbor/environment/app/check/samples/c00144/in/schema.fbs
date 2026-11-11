@@ -1,0 +1,34 @@
+table HangarCopper {
+  gate:string;
+  level_zeta: [short];
+  market: float =inf (deprecated,key);
+  level_status: float64 = null;
+  header : [ubyte];
+}
+
+enum PrairiePacket : uint64 (bit_flags) { Carbon = 2, Count = 8, Xenon = 12, Mill = 17, Hangar = 48, Vector = 55, Finch = 0x38, Bridge = 63, }
+
+namespace state.copper.valley;
+
+enum Carbon22 : ushort {
+  NickelDelta = 0,
+  Nickel
+}
+namespace silver;
+
+struct AtollTheta {
+  beta_metric: [PrairiePacket:1];
+  tundra:byte;
+  level: int8;
+  zinc: uint64;
+}
+
+namespace ;
+
+rpc_service ThetaForge {
+  OrbitSpan(HangarCopper):HangarCopper;
+  ToneFinch(HangarCopper):HangarCopper;
+}
+
+root_type HangarCopper;
+file_identifier "C2TB";

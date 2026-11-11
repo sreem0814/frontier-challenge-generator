@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:29: 12: error: expecting: ; instead got: EntryCount
+

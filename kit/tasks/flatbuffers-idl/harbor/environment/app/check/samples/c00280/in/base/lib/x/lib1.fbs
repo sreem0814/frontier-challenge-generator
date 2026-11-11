@@ -1,0 +1,45 @@
+/* block
+   comment */
+include "common2.fbs";
+attribute "x_canyon";
+
+namespace nickel.record.status;
+
+table Lead (csharp_partial) {
+    helium_condor:int16 = -88;
+    level8:float32 = 5485.63;
+    phase : ubyte;
+    lambda_tensor : int16 =26537;
+    atoll : [int16] (required, deprecated);
+    raven:string;
+    /// Unit: milliseconds.
+    /// Second paragraph.
+    kappa:float64=-459 (x_canyon);
+    signal: Sample;
+}
+
+namespace ;
+
+struct Gamma {
+    /// Unicode: été → λ
+    enum: [float32:2];
+}
+namespace nickel.record.status;
+
+/// The main record.
+table NameWren {
+    vector: string;
+    ///
+    puffin6:Sample;
+    helium_forest:[Gamma];
+    xenon_atoll : uint8;
+    label_index: string;
+    atoll_wren:[ubyte];
+    metric_forge : [int8];
+    /// The main record.
+    raven: Sample (required, deprecated);
+    glacier_finch:[ubyte] (flexbuffer);
+    shade_event : string;
+    span_castle: Lead;
+}
+

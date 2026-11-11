@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:23: 1: error: field id's must be consecutive from 0, id 0 missing or set twice, field: beta, id: 1
+

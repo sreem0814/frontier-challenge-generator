@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/model.proto:36: 0: error: type referenced but not defined (check namespace): sfixed64, originally at: model.proto:34
+

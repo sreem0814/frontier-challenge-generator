@@ -1,0 +1,24 @@
+table Reef {
+	/// Note: "quoted" text and 'single' quotes.
+	/// Deprecated soon; see `next`.
+	kestrel : [ubyte] (id : 0);
+	/// Second paragraph.
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Unit: milliseconds.
+	lagoon:[short] (deprecated, id:1);
+	total_mill : [double] (id: 2);
+	prairie:string (id : 3);
+	condor : [ubyte] (id : 4);
+	record_signal : byte = -11 (id : 5);
+}
+
+namespace beta;
+
+struct Kappa {
+	packet_lead:[int:3];
+	sample: [float:5];
+	zinc: byte;
+	event_delta : bool;
+	TagCanyon: int16;
+}
+

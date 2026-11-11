@@ -1,0 +1,28 @@
+include "inc1.fbs";
+attribute x_nebula;
+
+enum BridgePacket : uint64 (bit_flags,x_nebula) {
+  /// Second paragraph.
+  Mill = 33,
+  BridgeDepth = 58,
+  Depth,
+}
+
+namespace metric.shade.lead;
+
+/// The main record.
+table CopperFlavor {
+  event_event : uint8 (deprecated);
+  garden:string;
+  haven:float64;
+  bridge_hangar : string;
+  tensor:long =null;
+  silver:ushort;
+  copper: bool =0;
+  /// Plain line
+  /// Second paragraph.
+  osprey:BridgePacket =58;
+}
+root_type CopperFlavor;
+file_identifier "12T1";
+file_extension "dat";

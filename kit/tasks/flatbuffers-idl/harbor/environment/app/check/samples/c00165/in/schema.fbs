@@ -1,0 +1,17 @@
+// Generated test schema.
+include "types1.fbs";
+native_include "native/types.h";
+
+table Prairie {
+  metric_vector: int16 =null;
+  metric_lagoon:string (deprecated);
+  delta : int16 (deprecated);
+  label: ubyte;
+  boron:uint16;
+  index_signal:string;
+  async : short=-17438;
+  name_level: [int64];
+  mode : cobalt.gamma.EpochOrbit;
+}
+
+root_type Prairie;

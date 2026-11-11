@@ -1,0 +1,25 @@
+/* block
+   comment */
+include "common1.fbs";
+include "common2.fbs";
+namespace packet;
+
+enum SwiftAtoll87 : uint16 {
+  ThetaAtoll = +0,
+  MARKET = 1,
+  /// Plain line
+  IndexPelican
+}
+
+namespace shade.castle.atoll;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Holds a value.
+/// Holds a value.
+table Total {
+  depot_kappa: int16 (deprecated);
+  packet : [Total];
+}
+root_type Total;
+file_identifier "GKYR";
+file_extension "mon";

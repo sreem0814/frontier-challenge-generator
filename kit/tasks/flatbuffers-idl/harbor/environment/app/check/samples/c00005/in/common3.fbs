@@ -1,0 +1,15 @@
+// © example
+attribute "x_sample";
+namespace phase.width;
+
+table Name {
+    flavor : string (id : 0);
+    width_forest: string (shared,id: 1);
+    finch:[float32] (id: 2);
+    zinc: uint8 (id: 3);
+    /// Second paragraph.
+    /// Unicode: été → λ
+    note_event:[ubyte] (flexbuffer, x_sample, id:4);
+    phase_depot:[int64] (id : 5);
+}
+

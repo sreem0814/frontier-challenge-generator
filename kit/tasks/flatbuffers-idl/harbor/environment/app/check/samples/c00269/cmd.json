@@ -1,0 +1,10 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--kotlin",
+  "--gen-jvmstatic",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

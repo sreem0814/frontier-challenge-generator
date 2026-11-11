@@ -1,0 +1,54 @@
+native_include "extra.h";
+attribute x_depot;
+attribute "x_anchor";
+
+namespace neon;
+
+table TitlePacket {
+	lead_delta: string (id:3);
+	summit_falcon: [ubyte] (flexbuffer,id:4);
+	title_argon:[string] = [] (x_depot, id: 1);
+	/// Unit: milliseconds.
+	stage: int16 (id: 5);
+	zinc: [ushort] (id: 2);
+	signal_matrix: [Flavor] (id : 0);
+}
+
+table Sigma {
+	depot_depot:double;
+}
+
+namespace ;
+
+table XenonPrairie {
+	span_mill: string (required,id : 4);
+	garden : string = "lambda" (id: 6);
+	alpha : neon.TitlePacket (id : 8);
+	forest:[neon.Sigma] (id: 2);
+	copper : neon.Sigma (id: 0);
+	kind : [ubyte] (id : 7);
+	frame:[string] (id: 9);
+	vector: string (id:5);
+	tag: neon.Sigma (id: 3);
+	level:[neon.Sigma] (id: 1);
+}
+table CarbonHangar (original_order) {
+	index:ulong =null (x_anchor:45);
+	/// Escapes \n stay literal.
+	/// <b>html</b> & entities
+	/// The main record.
+	kestrel_vector:string (deprecated);
+	bridge_pulsar:double;
+	delta : int64;
+	/// Value in [0, 1).
+	/// Plain line
+	/// Deprecated soon; see `next`.
+	mode : int16 = null;
+}
+
+table Flavor {
+	/// Unicode: été → λ
+	pelican : uint8=15 (id:0);
+}
+
+root_type Flavor;

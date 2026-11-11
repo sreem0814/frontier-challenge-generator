@@ -1,0 +1,22 @@
+// Generated test schema.
+include "types1.fbs";
+include "common2.fbs";
+
+/// Second paragraph.
+/// <b>html</b> & entities
+/// Escapes \n stay literal.
+table NameOsprey {
+  h: [ubyte] (nested_flatbuffer: "Nope");
+	sample : ulong;
+	tag : zinc.delta.color.CondorMill;
+	atoll_comet: float32;
+	wren_alpha : [zinc.delta.color.CondorMill];
+	stage : string (key);
+	forge:ulong;
+	carbon_argon : double;
+	StageMatrix: string;
+}
+
+root_type NameOsprey;
+file_identifier "K6PM";
+file_extension "dat";

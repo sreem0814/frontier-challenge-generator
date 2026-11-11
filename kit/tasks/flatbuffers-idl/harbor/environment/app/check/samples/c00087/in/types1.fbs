@@ -1,0 +1,17 @@
+// © example
+attribute "x_valley";
+
+namespace state;
+
+/// Unicode: été → λ
+/// Second paragraph.
+/// Value in [0, 1).
+table Height {
+  height_falcon : int;
+  entry_phase:string;
+  sample_width: [ubyte] (flexbuffer);
+}
+
+namespace sample.tag.lambda;
+
+enum DeltaEntry : ushort { LabelReef = 1, WREN = 6, Lead = 8, Tower, MILL = 10, BRIDGE, Limit (x_valley: 32) }

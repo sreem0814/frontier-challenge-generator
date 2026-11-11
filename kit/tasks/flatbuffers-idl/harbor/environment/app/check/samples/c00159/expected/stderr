@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:17: 1: error: field id's must be consecutive from 0, id 1 missing or set twice, field: canyon, id: 2
+

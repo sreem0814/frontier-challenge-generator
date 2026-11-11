@@ -1,0 +1,13 @@
+{
+ "bucket": "json_binary",
+ "argv": [
+  "-b",
+  "--strict-json",
+  "--root-type",
+  "garden.phase.wren.LimitArgon",
+  "-o",
+  "out",
+  "schema.fbs",
+  "input.json"
+ ]
+}

@@ -1,0 +1,15 @@
+namespace forest.tick;
+
+table Garden {
+    /// Second paragraph.
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Unicode: été → λ
+    argon: byte;
+    tick : [string];
+    zeta_total: byte =0;
+    /// Deprecated soon; see `next`.
+    copper: [short] (deprecated);
+    nickel: [int16] (required);
+    reef_nova : int32 =0x7FFFFFFF;
+    falcon_tick:[Garden];
+}

@@ -1,0 +1,59 @@
+// © example
+attribute x_omega;
+
+table Matrix {
+    orbit_falcon : string;
+    valley_mill : string (deprecated);
+    condor : [int];
+    frame: [ubyte] (flexbuffer);
+    wren_shade : [ubyte] (flexbuffer);
+    XenonKestrel:[ubyte];
+    color: double = -175.5481;
+    iron_state:string;
+    tick_zinc: uint;
+}
+namespace zeta;
+
+table PelicanValley {
+    event_lambda:string (required);
+    comet_status: float32 (x_omega: "tensor");
+    label: [Matrix];
+    boron_carbon:Matrix;
+    anchor:Matrix;
+    quasar: [int32];
+    /// Unicode: été → λ
+    /// Second paragraph.
+    /// Value in [0, 1).
+    pulsar_nickel : string;
+    neon:[Matrix] (required);
+    orbit: Matrix;
+    packet : [Zinc];
+}
+
+namespace ;
+
+table Zinc {
+    orbit_state : float = 3792.74;
+    span_quarry: ushort (key);
+    limit_delta: short;
+    shade: zeta.PelicanValley;
+    /// Plain line
+    nebula_xenon: double;
+    cobalt : string = "forge" (required);
+    depth:[Matrix];
+}
+
+///
+/// Unicode: été → λ
+/// Unit: milliseconds.
+rpc_service CarbonMeadow {
+    PrairieBridge(zeta.PelicanValley):Zinc;
+    CarbonForge(Matrix):Zinc;
+    CondorSample(zeta.PelicanValley):Matrix;
+    ///
+    CastleMatrix(Matrix):zeta.PelicanValley;
+}
+
+root_type zeta.PelicanValley;
+file_identifier "R1KS";
+file_extension "bin";

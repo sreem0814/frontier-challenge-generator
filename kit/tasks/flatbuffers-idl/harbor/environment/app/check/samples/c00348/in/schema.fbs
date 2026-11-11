@@ -1,0 +1,21 @@
+/* block
+   comment */
+include "common1.fbs";
+attribute "x_haven";
+
+namespace meadow.event.epoch;
+
+/// Deprecated soon; see `next`.
+table Canyon (x_haven) {
+ omega_status: [header.meadow.reef.Width] (required);
+ wren : uint;
+ kind_tin : uint64=+0;
+ /// Deprecated soon; see `next`.
+ /// Value in [0, 1).
+ /// Plain line
+ osprey_tin : int8;
+ NickelOrbit:[Canyon];
+}
+
+root_type Canyon;
+file_identifier "3UHO";

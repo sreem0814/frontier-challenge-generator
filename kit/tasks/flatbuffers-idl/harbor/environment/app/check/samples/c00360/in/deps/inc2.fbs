@@ -1,0 +1,7 @@
+include "deps/common3.fbs";
+
+namespace lead.summit;
+
+/// Multi-word doc with punctuation: a, b; c!
+enum TotalShade : int { Offset = -1, KESTREL, CONDOR, Tundra, Silver = 12 }
+

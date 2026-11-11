@@ -1,0 +1,12 @@
+namespace status.packet;
+
+table Kappa {
+  argon : string (key, shared, id: 5);
+  market_meadow:[uint64] (id : 0);
+  label : [ulong] (id : 1);
+  tower : [float64] (vector64, id:2);
+  span: string (id: 6);
+  NovaPuffin: string (id:3);
+  name_raven: string (id : 4);
+}
+

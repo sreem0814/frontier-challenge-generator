@@ -1,0 +1,49 @@
+/* block
+   comment */
+namespace tensor;
+
+table CastleHeader {
+  ///
+  ///  Indented doc line.
+  /// Holds a value.
+  in: string (id:5);
+  argon: [long] (id : 0);
+  offset : int16 = 32617 (id : 7);
+  shade : string (id:4);
+  beta: string (id : 1);
+  index_swift : int8=null (id: 2);
+  bridge_argon: ushort = 38591 (id: 3);
+  kappa_xenon : [double] (id: 6);
+  total_nova: [uint8] (id:8);
+}
+
+namespace height.depot;
+
+table TensorKestrel19 {
+  bridge:[int32];
+  delta_lambda: [int64];
+  count_carbon : [float32];
+  lambda:string;
+  packet: string (required,shared);
+  mode : [tensor.CastleHeader];
+  GlacierQuarry : float32;
+  argon: tensor.CastleHeader (deprecated);
+  entry: string (key);
+  metric : tensor.HeronKappa;
+}
+
+namespace tensor;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Multi-word doc with punctuation: a, b; c!
+table HeronKappa {
+  ///
+  /// Holds a value.
+  /// Escapes \n stay literal.
+  span: uint8;
+  quarry : ushort;
+  offset:ulong;
+  kestrel_kappa:short;
+  color: [HeronKappa];
+}
+

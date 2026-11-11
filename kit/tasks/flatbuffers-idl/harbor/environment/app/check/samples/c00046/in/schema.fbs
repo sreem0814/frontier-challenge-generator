@@ -1,0 +1,129 @@
+// © example
+attribute "x_cobalt";
+attribute "x_condor";
+attribute "x_limit";
+
+enum SignalRecord : int16 { COBALT = 3, }
+
+table Quasar {
+ anchor: byte = null;
+ flavor : [string];
+ alpha:long;
+ XenonLagoon:bool;
+ sample: SignalRecord = COBALT (deprecated);
+ move:[ubyte];
+ forest_entry : uint16;
+ silver_atoll: ubyte =null;
+}
+namespace gate;
+
+struct MillPulsar {
+ vector: uint;
+ frame_neon:[int:3];
+ lead_gamma:int;
+}
+namespace depot.event;
+
+table BetaKappa (csharp_partial) {
+ span : [ubyte];
+ flavor_hangar : [gate.MillPulsar];
+ signal_status: [uint];
+ reef_color: SignalRecord=COBALT;
+ tone_lagoon:SignalRecord =COBALT (x_cobalt);
+ neon_label: [int64] (required);
+ beta : gate.MillPulsar (deprecated);
+ pelican_limit: uint32=null;
+ flavor : [short];
+ nova_delta : float;
+}
+
+namespace ;
+
+struct Gamma {
+ /// Deprecated soon; see `next`.
+ sigma: double;
+ puffin:uint8;
+ helium_nova : byte;
+ river_theta : [uint:4];
+ /// Holds a value.
+ /// Deprecated soon; see `next`.
+ kestrel: gate.MillPulsar;
+}
+
+table Puffin {
+ /// The main record.
+ flavor_label : SignalRecord=COBALT;
+ nil : uint64 =0xF8534C9F48E78D5E;
+ pulsar:uint64 =5214638934916132844;
+ height:[depot.event.BetaKappa] (required);
+ hangar_bridge: bool = 1;
+ depot_limit:uint = 0;
+ LabelZeta : [string];
+ cobalt: gate.MillPulsar;
+ zeta:gate.Pulsar;
+}
+
+namespace depot.event;
+
+///
+///
+table SummitDelta {
+ gate_state:Gamma (id:0);
+ forge_kestrel: [Puffin] (id : 1);
+ struct:short (id : 2);
+ /// Second paragraph.
+ /// Value in [0, 1).
+ tower_flavor : uint64 (id:3);
+}
+namespace ;
+
+/// Unit: milliseconds.
+///  Indented doc line.
+/// Escapes \n stay literal.
+union Omega {
+ /// The main record.
+ depot.event.BetaKappa
+}
+
+namespace gate;
+
+table Pulsar {
+ kind_atoll:depot.event.BetaKappa;
+ limit: SignalRecord=COBALT;
+ /// Unicode: été → λ
+ frame: Omega;
+ ///
+ /// Second paragraph.
+ heron : [Gamma];
+ canyon_count:[Puffin] (required,x_condor:37);
+ tick_stage:SignalRecord=COBALT;
+ var:uint8;
+}
+
+namespace ;
+
+struct CondorFlavor {
+ /// The main record.
+ /// <b>html</b> & entities
+ lead_gamma : uint32;
+ falcon : int8;
+ wren: Gamma;
+ market_wren : ubyte (x_limit);
+ index : uint;
+}
+
+namespace depot.event;
+
+union Bridge {
+ ReefColor: Quasar,
+ BetaKappa,
+ SummitDelta
+}
+union Argon {
+ gate.Pulsar,
+ Puffin,
+ BetaKappa,
+ Quasar
+}
+root_type Quasar;
+file_identifier "TRVD";

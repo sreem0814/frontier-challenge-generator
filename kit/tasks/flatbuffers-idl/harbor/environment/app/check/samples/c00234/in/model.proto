@@ -1,0 +1,35 @@
+// test proto
+syntax = "proto3";
+
+package title.tower;
+
+option optimize_for = SPEED;
+
+message Meadow {
+  enum LagoonHangar {
+    // Note: "quoted" text and 'single' quotes.
+    COMET = 0;
+    LAGOONHANGAR_BETA = 10;
+    // <b>html</b> & entities
+    // <b>html</b> & entities
+    HUE = 11;
+    // Value in [0, 1).
+    // Second paragraph.
+    ENTRY = 12;
+    LAGOONHANGAR_LIMIT = 14;
+  }
+  // <b>html</b> & entities
+  // Multi-word doc with punctuation: a, b; c!
+  optional Meadow.LagoonHangar tag = 1;
+  // Unicode: été → λ
+  optional sint32 falcon_gamma = 2;
+  Meadow.LagoonHangar flavor = 3;
+  Meadow.LagoonHangar orbit = 4;
+  optional Meadow.LagoonHangar mode = 5;
+  map<string, int32> title_title_map = 6;
+}
+
+message DeltaArgon {
+  repeated double tensor = 1;
+  map<string, sfixed64> matrix_matrix_map = 2;
+}

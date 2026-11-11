@@ -1,0 +1,9 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--dart",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

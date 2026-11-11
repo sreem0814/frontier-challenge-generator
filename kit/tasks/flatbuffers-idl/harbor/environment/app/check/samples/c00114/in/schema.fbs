@@ -1,0 +1,16 @@
+// Generated test schema.
+include "types1.fbs";
+
+table LimitForest {
+	/// Unit: milliseconds.
+	valley: string (id:5);
+	span:ulong (id : 4);
+	forge_canyon: string (id: 1);
+	record_span: quasar.matrix.kestrel.OspreySummit (id: 2);
+	omega: float64 =-2337.6 (id:6);
+	nickel_mode : [LabelNova99] (id : 3);
+	osprey : int=47 (id:0);
+}
+root_type LimitForest;
+file_identifier "5464";
+file_extension "x";

@@ -1,0 +1,10 @@
+
+warning:
+  @/schema.fbs:11: 13: warning: field names should be lowercase snake_case, got: HeronSparrow
+@/schema.fbs:12: 12: warning: field names should be lowercase snake_case, got: FrameStatus
+@/schema.fbs:17: 11: warning: field names should be lowercase snake_case, got: ZetaForest
+
+
+error:
+  @/data.json:2: 15: error: enum values need to be qualified by an enum type
+

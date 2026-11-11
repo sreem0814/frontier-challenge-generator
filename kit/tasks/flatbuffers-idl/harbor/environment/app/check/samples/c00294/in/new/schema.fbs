@@ -1,0 +1,47 @@
+attribute "x_boron";
+attribute x_condor;
+
+table Bridge (x_boron) {
+    /// Holds a value.
+    /// Note: "quoted" text and 'single' quotes.
+    theta: int64;
+    title_zinc:uint32 = +3011424091;
+    tick_falcon : string="forge" (deprecated);
+    boron : int64;
+    mode: string;
+    as:[ubyte];
+    /// Plain line
+    /// The main record.
+    /// Plain line
+    iron:string;
+    /// Holds a value.
+    name_falcon : int32;
+}
+
+///  Indented doc line.
+table CountSwift {
+    static : short;
+    color : string;
+    /// Escapes \n stay literal.
+    ///  Indented doc line.
+    /// Holds a value.
+    bridge_stage:[string];
+    delta:double;
+    color_wren : int64;
+    hue: Bridge;
+    tag: long (required);
+    pelican : Bridge;
+    nebula: Bridge;
+    puffin_zeta: string ="forest" (x_condor);
+    castle : [CountSwift];
+}
+
+rpc_service Forest {
+    /// Value in [0, 1).
+    /// Unit: milliseconds.
+    NickelMarket(CountSwift):CountSwift;
+    HeliumMeadow(CountSwift):Bridge (idempotent);
+}
+
+root_type Bridge;
+file_identifier "Q5VP";

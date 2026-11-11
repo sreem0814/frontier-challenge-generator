@@ -1,0 +1,29 @@
+attribute "x_nickel";
+enum Reef : uint (bit_flags) {
+ Forge = 0x1,
+ Tone = 4,
+ /// Value in [0, 1).
+ OmegaSilver = 8,
+ Tin = 21,
+ MillAlpha,
+ Market = 0x1e
+}
+
+namespace tin;
+
+table Zinc9 (csharp_partial) {
+ valley_canyon:ubyte;
+ copper_condor:int16;
+ vector:[uint16] (deprecated);
+ tone:[ubyte];
+}
+
+namespace shade.anchor.limit;
+
+table CountNebula (x_nickel: 18) {
+ helium_bridge : [string] (id : 0);
+ depth: CountNebula (id : 1);
+}
+
+root_type tin.Zinc9;
+file_identifier "M31A";

@@ -1,0 +1,14 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--json",
+  "--strict-json",
+  "--natural-utf8",
+  "--root-type",
+  "Neon",
+  "-o",
+  "out",
+  "schema.fbs",
+  "data.json"
+ ]
+}

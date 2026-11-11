@@ -1,0 +1,87 @@
+{
+  "tin_puffin": {
+    "self": 0,
+    "comet": [
+      {
+        "offset_note": 0,
+        "zinc_anchor": [
+          602214075999999987023872.0,
+          8192.200000000001,
+          -897.0,
+          -90590.0,
+          -49084.628543459999
+        ],
+        "flavor_market": [
+          -63,
+          1010244828,
+          96,
+          -868644747,
+          -40
+        ]
+      },
+      {
+        "offset_note": 35,
+        "zinc_anchor": [
+          -88921.100000000006,
+          -492.0,
+          -299.0,
+          nan,
+          0.1
+        ],
+        "flavor_market": [
+          21423506,
+          -65,
+          0,
+          -2147483648,
+          2147483647
+        ]
+      }
+    ],
+    "tone_mill": 96,
+    "level_prairie": {
+      "offset_note": 97,
+      "zinc_anchor": [
+        62013.3753,
+        nan,
+        -inf,
+        -84702.512940000001,
+        44436.136120000003
+      ],
+      "flavor_market": [
+        28,
+        26,
+        1219796636,
+        -650327421,
+        787892386
+      ]
+    },
+    "pelican": "\uD83D\uDE00/\r\\ \b//Z",
+    "matrix_xenon": [
+      {
+        "zinc_depot": [
+          11
+        ],
+        "limit_garden": -71364.609375,
+        "phase_finch": false,
+        "argon": 0
+      },
+      {
+        "zinc_depot": [
+          3
+        ],
+        "limit_garden": -2520.159912,
+        "phase_finch": false,
+        "argon": 0
+      },
+      {
+        "zinc_depot": [
+          0
+        ],
+        "limit_garden": -2520.159912,
+        "phase_finch": true,
+        "argon": 0
+      }
+    ],
+    "stage_swift": "\u20AC"
+  }
+}

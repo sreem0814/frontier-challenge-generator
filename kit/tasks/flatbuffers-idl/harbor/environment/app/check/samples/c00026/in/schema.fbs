@@ -1,0 +1,27 @@
+// Generated test schema.
+include "lib1.fbs";
+
+namespace wren.puffin;
+
+enum CountTotal : uint64 (bit_flags) {
+    Theta = 7,
+    Reef = 0x26
+}
+
+namespace tag;
+
+table TundraDepth40 {
+    tundra_delta : uint;
+    width_shade : helium.ToneFlavor88 (deprecated);
+}
+
+namespace wren.puffin;
+
+table TickLambda {
+    SilverPhase : ulong;
+    /// Escapes \n stay literal.
+    /// The main record.
+    falcon: helium.SampleWren =Reef;
+}
+
+file_extension "mon";

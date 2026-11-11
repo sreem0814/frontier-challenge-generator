@@ -1,0 +1,101 @@
+attribute "x_count";
+
+namespace forge.heron.kestrel;
+
+/// Holds a value.
+table RavenRaven {
+    depth: uint8;
+    quasar: uint;
+}
+
+table GammaQuarry {
+    /// Unit: milliseconds.
+    /// Value in [0, 1).
+    ///
+    state_canyon:string;
+    shade_summit: int64;
+    alpha : [int16];
+    kestrel:[string];
+    /// Unicode: été → λ
+    sparrow0 : [RavenRaven];
+    omega8:[string];
+    depth : string;
+    delta: float64;
+    canyon_haven : [RavenRaven];
+    stage: GammaQuarry;
+}
+
+/// Plain line
+/// Escapes \n stay literal.
+table Anchor5 {
+    depot: uint16=39549;
+    prairie:[float];
+    condor: long;
+    forge_entry: int64 = -6188856116504665757;
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Value in [0, 1).
+    ///  Indented doc line.
+    pulsar_epoch:[double];
+    flavor_header : ubyte;
+    ///
+    offset:[int16];
+    meadow_header : bool (deprecated);
+    delta: uint32 =1758600889;
+    castle_glacier: string="haven";
+    sample : Anchor5;
+}
+namespace ;
+
+table GardenMatrix {
+    stage: ulong =52;
+    falcon_zinc : string;
+    /// Value in [0, 1).
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Escapes \n stay literal.
+    carbon_index:[bool];
+}
+
+namespace total.gate;
+
+/// Plain line
+/// Value in [0, 1).
+enum MarketNickel : uint16 (x_count: 44) {
+    LAGOON = 0x0,
+    GARDEN,
+    /// Holds a value.
+    ///
+    /// Unit: milliseconds.
+    Carbon = 3,
+    Title,
+    /// Holds a value.
+    TENSOR
+}
+
+namespace forge.heron.kestrel;
+
+struct Frame {
+    cobalt_argon : int8;
+    /// Second paragraph.
+    ///  Indented doc line.
+    /// The main record.
+    raven: short;
+    table : total.gate.MarketNickel;
+    depth : [ubyte:2];
+    shade : [int8:2];
+}
+
+namespace ;
+
+enum MeadowTick : int8 {
+    /// The main record.
+    /// Escapes \n stay literal.
+    /// Value in [0, 1).
+    Index = 1,
+    EVENT,
+    /// Value in [0, 1).
+    /// Plain line
+    /// Value in [0, 1).
+    Raven
+}
+
+root_type forge.heron.kestrel.GammaQuarry;

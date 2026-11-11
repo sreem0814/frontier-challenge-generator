@@ -1,0 +1,17 @@
+include "common3.fbs";
+
+namespace gate;
+
+/// Escapes \n stay literal.
+table Depot {
+ zinc : [byte];
+ metric:bool;
+ FinchHeader:long;
+ default:[ubyte];
+ title7 : string;
+ sigma : ulong;
+ swift: [ubyte];
+ zeta:uint32;
+ forest: Depot;
+}
+

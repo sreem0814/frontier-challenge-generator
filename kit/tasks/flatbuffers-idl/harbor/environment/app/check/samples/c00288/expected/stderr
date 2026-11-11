@@ -1,0 +1,12 @@
+
+warning:
+  @/base/schema.fbs:13: 14: warning: field names should be lowercase snake_case, got: TotalLimit
+
+
+warning:
+  @/new/schema.fbs:13: 11: warning: field names should be lowercase snake_case, got: TotalLimit
+
+
+error:
+  schemas don't conform: offsets differ for field: color.Carbon.tag_atoll
+

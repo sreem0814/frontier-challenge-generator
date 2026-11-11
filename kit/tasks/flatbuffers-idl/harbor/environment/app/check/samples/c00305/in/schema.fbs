@@ -1,0 +1,64 @@
+native_include "native/types.h";
+
+/// Plain line
+/// Plain line
+table TagRiver {
+    height_depot:string (id : 0);
+    theta: [float] (id:1);
+    canyon:[ubyte] (flexbuffer,id : 2);
+    nova6: [short] (id:3);
+    anchor : int8 (id:4);
+    DepthHue: short=null (id:5);
+}
+namespace forge;
+
+table Entry {
+    sparrow_sparrow: float = -2247.6;
+    /// Value in [0, 1).
+    xenon:uint = 3793768622;
+    tensor:[string];
+    TundraAnchor: int16;
+}
+
+namespace lead.note;
+
+enum ValleyTin : ushort (bit_flags) {
+    Quarry = 0x1,
+    /// Unit: milliseconds.
+    /// Escapes \n stay literal.
+    /// Second paragraph.
+    CanyonHeight = 3,
+    Zeta,
+    Helium = 9,
+    Matrix,
+    /// Plain line
+    /// Plain line
+    Castle = 11,
+    /// Second paragraph.
+    Kappa = 13,
+    Omega = +15
+}
+
+namespace gamma.argon;
+
+enum SummitLimit : ulong (bit_flags) { Epoch = 16, Garden = 17, Total = 0x15, Tensor = 0x1E, Count = 50, Flavor = 51, Osprey = 54, Width = 61, Tone = 63 }
+
+table Height {
+    /// Unit: milliseconds.
+    /// Note: "quoted" text and 'single' quotes.
+    epoch : int16;
+    count_reef:forge.Entry;
+    /// Unit: milliseconds.
+    ///
+    /// Second paragraph.
+    vector : uint64=null;
+    quasar: float32 = 7260.31;
+    /// Escapes \n stay literal.
+    tensor_phase:lead.note.ValleyTin = Matrix;
+    signal:string (shared);
+    garden: int16 =0x20d7;
+}
+
+root_type forge.Entry;
+file_identifier "IMW8";
+file_extension "mon";

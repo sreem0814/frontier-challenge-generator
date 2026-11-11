@@ -1,0 +1,6 @@
+/* block
+   comment */
+
+namespace span.zeta;
+
+enum CometLabel : int64 { SIGMA = +1, TITLE, Gamma = 7, LambdaSummit, Note, }

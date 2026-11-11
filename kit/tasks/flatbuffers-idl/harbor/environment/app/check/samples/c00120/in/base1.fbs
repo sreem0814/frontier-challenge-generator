@@ -1,0 +1,21 @@
+// © example
+include "inc2.fbs";
+
+namespace osprey;
+
+/// Plain line
+struct Iron {
+ /// Note: "quoted" text and 'single' quotes.
+ /// Value in [0, 1).
+ /// Unit: milliseconds.
+ helium_label : int;
+ alpha:float;
+ shade:status.packet.GardenOmega;
+ /// Value in [0, 1).
+ /// <b>html</b> & entities
+ /// Deprecated soon; see `next`.
+ stage: short;
+ tag_alpha:status.packet.GardenOmega;
+ mode_delta:int8;
+}
+

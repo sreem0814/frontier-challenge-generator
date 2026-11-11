@@ -1,0 +1,50 @@
+attribute "x_summit";
+attribute "x_heron";
+table SignalSparrow {
+	/// Escapes \n stay literal.
+	frame_alpha: string;
+}
+
+namespace orbit.river.vector;
+
+table Color (x_summit : 60) {
+	func:float32 = null;
+	depth_quarry: float;
+	depth : uint = 3928338117;
+	reef:string;
+	/// Note: "quoted" text and 'single' quotes.
+	/// Multi-word doc with punctuation: a, b; c!
+	header:[SignalSparrow] (deprecated);
+	garden_falcon:string;
+	name_title: [int8];
+	delta: uint32;
+	helium_glacier: ushort = null;
+	metric_theta:[SignalSparrow];
+}
+
+table Copper {
+	sparrow_carbon:ushort =null;
+	object:string;
+	CobaltQuasar : [Copper];
+}
+namespace ;
+
+table ArgonRiver (x_heron:"alpha",csharp_partial) {
+	packet: string;
+}
+
+union TinQuasar {
+	orbit.river.vector.Copper,
+	/// Deprecated soon; see `next`.
+	/// Holds a value.
+	orbit.river.vector.Color
+}
+
+namespace orbit.river.vector;
+
+rpc_service Limit {
+	PulsarSigma(ArgonRiver):Color (streaming: "server");
+	GammaAtoll(Copper):Copper;
+}
+
+root_type Copper;

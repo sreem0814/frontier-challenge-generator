@@ -1,0 +1,64 @@
+// © example
+attribute "x_lead";
+attribute x_boron;
+attribute x_meadow;
+attribute "x_sigma";
+table Entry {
+    WidthTower: [string] (id:5);
+    /// Deprecated soon; see `next`.
+    /// Multi-word doc with punctuation: a, b; c!
+    cobalt_puffin : bool (id:1);
+    forge: [ubyte] (id:3);
+    /// The main record.
+    /// Holds a value.
+    /// Escapes \n stay literal.
+    XenonGarden : [int8] (id : 2);
+    /// Unit: milliseconds.
+    ///  Indented doc line.
+    helium_raven : [int32] (id: 6);
+    omega_boron: [ubyte] (id:0);
+    AlphaKappa: [long] (id: 4);
+}
+
+table CometFlavor {
+    /// <b>html</b> & entities
+    label : string (required,id:5);
+    ColorCobalt:Entry (id:7);
+    lambda_gate : string (id: 2);
+    beta_puffin : int (id : 3);
+    wren:Entry (required,id : 4);
+    lead_flavor: Entry (id:1);
+    /// Unit: milliseconds.
+    /// Value in [0, 1).
+    /// Multi-word doc with punctuation: a, b; c!
+    flavor: ubyte =255 (id:6);
+    delta : ubyte (id:0);
+}
+
+namespace signal.silver;
+
+table BoronRiver {
+    /// Value in [0, 1).
+    /// Unicode: été → λ
+    pelican_record: CometFlavor (x_lead);
+    /// Value in [0, 1).
+    /// Holds a value.
+    /// Holds a value.
+    beta_sigma : [CometFlavor] (deprecated);
+    metric:uint32 = +2870585537;
+    enum: string;
+    reef: bool = false;
+    helium_quarry:float;
+}
+
+namespace signal.limit.limit;
+
+table Span {
+    matrix: string (id : 0);
+    falcon_pelican:float64 (id: 1);
+    count_name : uint = 366271514 (id: 2);
+}
+namespace signal.silver;
+
+enum NameAlpha59 : short { Color = 0, Flavor = 10, HERON = +12 (x_boron : "signal"), Kind = 22 (x_meadow), SPARROW = 24, AtollOrbit, LAGOON, REEF (x_sigma), Tensor }
+

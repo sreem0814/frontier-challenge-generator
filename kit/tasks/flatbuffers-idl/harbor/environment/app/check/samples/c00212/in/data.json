@@ -1,0 +1,31 @@
+{
+  glacier: {
+    "depth": 119246110,
+    "quarry": "x€0Z\\\u0001\\\\€\n",
+    "garden": -52,
+    quasar_nickel: {
+      "depth": 0,
+      "height": 93,
+      "garden_castle": "offset",
+      forest: [138],
+      "quarry": "",
+      "garden": null,
+      quasar_nickel: {
+        "garden": 34,
+        "garden_castle": "x\ud83d\ude00\bx",
+        status: " ",
+        "forest": [0]
+      }
+    }
+  },
+  "helium_vector": ["false"],
+  stage: "",
+  depth: [],
+  enum: {
+    "depth": 846116499,
+    "garden": -20,
+    "status": "\u20ac\r \t\t\n\r\n\ud83d\ude00\r",
+    height: 84,
+    "quarry": "中😀x😀a \u0001\na\rx"
+  }
+}

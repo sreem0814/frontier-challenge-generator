@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:4: 21: error: underlying enumtype must be integral
+

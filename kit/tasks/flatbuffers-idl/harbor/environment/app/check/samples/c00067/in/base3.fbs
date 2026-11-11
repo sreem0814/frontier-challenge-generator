@@ -1,0 +1,54 @@
+attribute x_raven;
+attribute "x_total";
+
+namespace falcon;
+
+///
+struct LambdaPacket {
+	pulsar_frame: int64;
+	///  Indented doc line.
+	/// Holds a value.
+	name:[ubyte:4];
+}
+
+/// <b>html</b> & entities
+table HeronPulsar24 (original_order) {
+	heron : uint16 =0;
+	nova : string (required);
+	width : string (x_raven);
+	argon_tensor: string;
+	offset_tone: short = null;
+	signal : [string] (required);
+	tick_entry : [string]=[];
+	quasar : LambdaPacket;
+	matrix_total : string;
+	tundra: LambdaPacket;
+	/// The main record.
+	/// Unicode: été → λ
+	/// Unicode: été → λ
+	tensor_argon: [LevelPelican];
+}
+
+namespace ;
+
+/// Deprecated soon; see `next`.
+enum AnchorTone : short { Finch = 0x3, SAMPLE }
+
+/// <b>html</b> & entities
+/// The main record.
+/// Holds a value.
+table LevelPelican {
+	canyon: falcon.HeronPulsar24;
+	CastleDelta : string;
+	zinc:float = 21.7753 (x_total: 13);
+	/// Plain line
+	/// Second paragraph.
+	/// Second paragraph.
+	tensor:falcon.HeronPulsar24;
+	valley:int32=3;
+	hue_nickel:ushort =null;
+	/// Value in [0, 1).
+	status:byte = -37;
+	lagoon_tick : LevelPelican;
+}
+

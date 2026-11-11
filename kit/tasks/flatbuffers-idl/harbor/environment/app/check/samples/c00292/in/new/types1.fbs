@@ -1,0 +1,14 @@
+attribute x_theta;
+/// The main record.
+table Castle {
+    canyon: string (x_theta : 47);
+    record : [ubyte] (flexbuffer);
+    epoch: [string] = [];
+    osprey_nova: string;
+    flavor : [byte] (deprecated);
+    atoll_nova: string = "forest";
+    object:byte = 83 (deprecated);
+    canyon_atoll:bool (key);
+    market_castle: string (shared);
+}
+

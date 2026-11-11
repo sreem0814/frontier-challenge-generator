@@ -1,0 +1,21 @@
+native_include "native/types.h";
+
+table QuarryHue {
+	puffin_kind:[string] (deprecated,id : 0);
+	epoch : uint8 (id:1);
+	WidthLabel: string (id : 2);
+	quasar2 : [ubyte] (flexbuffer, id:3);
+	width : uint16 (id : 4);
+	DepthWidth : int32 (id:5);
+	count: string (deprecated,id : 6);
+	NickelSilver:ulong = 0 (id : 7);
+	alpha_iron : [bool] (required,id : 8);
+}
+
+namespace comet.copper.river;
+
+struct Wren {
+	nickel : [int:2];
+}
+
+root_type QuarryHue;

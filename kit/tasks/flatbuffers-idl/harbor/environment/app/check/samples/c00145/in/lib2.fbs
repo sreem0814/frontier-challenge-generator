@@ -1,0 +1,32 @@
+include "common3.fbs";
+attribute "x_gate";
+attribute "x_meadow";
+
+namespace hangar.bridge;
+
+table Depot {
+	tin_forest:beta.meadow.carbon.OrbitForge;
+	PrairieHelium:float = 6140.53;
+	nova: string;
+	depot_name : [beta.meadow.carbon.OrbitForge] (required);
+	sigma_neon:uint64=null;
+	signal:string;
+	summit:uint64;
+	anchor : double=4836.1841465;
+	kappa: string;
+}
+
+namespace ;
+
+table Label (original_order) {
+	label_summit : int64 (id : 0);
+	type: string (required, x_gate, id:1);
+	span_heron:string (id: 2);
+	title: string (id : 3);
+	header: [hangar.bridge.Depot] (x_meadow, id:4);
+	glacier_reef: uint8 (id:5);
+	/// Unicode: été → λ
+	///  Indented doc line.
+	header_glacier : [hangar.bridge.Depot] (id : 6);
+}
+

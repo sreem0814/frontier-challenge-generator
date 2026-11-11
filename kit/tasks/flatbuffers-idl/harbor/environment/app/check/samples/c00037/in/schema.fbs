@@ -1,0 +1,49 @@
+include "sub/base1.fbs";
+native_include "extra.h";
+attribute x_tone;
+attribute "x_lead";
+
+namespace color.frame;
+
+/// <b>html</b> & entities
+/// Multi-word doc with punctuation: a, b; c!
+table ShadeMetric77 {
+  gamma_omega : [long]=[];
+  /// The main record.
+  /// Note: "quoted" text and 'single' quotes.
+  MetricPulsar:double;
+  swift: LeadTin=KestrelReef41;
+  zinc_anchor:[color.frame.MatrixAlpha];
+}
+
+namespace lead.delta.kappa;
+
+struct HangarWren {
+  ref : int;
+  ShadeSwift : float;
+  entry: uint16 (x_tone);
+  theta: uint64;
+  MillRaven : color.frame.TundraSilver;
+  stage_hangar: int16;
+}
+
+namespace ;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Unit: milliseconds.
+/// Escapes \n stay literal.
+table Offset (x_lead) {
+  bridge_lagoon:LeadTin=PACKET;
+}
+
+namespace color.frame;
+
+/// Holds a value.
+///  Indented doc line.
+table MatrixAlpha {
+  /// Plain line
+  river_nova: float64;
+  tensor:float64 =121.1;
+  swift: ShadeMetric77;
+}
+root_type Offset;

@@ -1,0 +1,10 @@
+include "inc1.fbs";
+native_include "extra.h";
+
+enum QuarryHeron : int8 { GLACIER = -128, TITLE = -118, CASTLE, ValleyFlavor = -115, Color }
+/// Second paragraph.
+table AnchorComet {
+  atoll_condor: [float] (id:0);
+  condor_meadow : [AnchorComet] (id: 1);
+}
+root_type AnchorComet;

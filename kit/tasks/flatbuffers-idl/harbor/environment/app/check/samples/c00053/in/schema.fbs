@@ -1,0 +1,103 @@
+namespace puffin.kind;
+
+enum AtollSample : uint32 (bit_flags) {
+    Sigma = 6,
+    Finch = 0x8,
+    BetaKind,
+    QuasarOsprey = 18,
+    Haven = 25,
+    MarketBridge = 27,
+    ForgeDelta = 29,
+}
+
+enum MarketArgon : byte {
+    State = 3,
+    CARBON,
+    GAMMA,
+    Limit = 7,
+    ForestRecord,
+    TITLE,
+    Atoll,
+    Status = 11,
+    QuasarComet = 12
+}
+
+namespace ;
+
+///
+/// The main record.
+/// Unit: milliseconds.
+table HangarAlpha (original_order) {
+    object : [ubyte];
+    ///  Indented doc line.
+    frame:int8;
+    epoch6: puffin.kind.AtollSample =Sigma;
+    name_theta : [uint16];
+    kappa:int32 =-0x7736C1E8;
+    ///
+    /// Escapes \n stay literal.
+    xenon:[uint32];
+    flavor : uint32;
+}
+
+table HueQuasar {
+    meadow : HangarAlpha (id: 1);
+    tundra:HangarAlpha (id:1);
+}
+
+namespace metric;
+
+table DepotDepth {
+    meadow_offset : string;
+    haven_neon : HangarAlpha;
+    count : uint=null;
+    record:string;
+    market:short;
+    tone : [HangarAlpha];
+}
+
+/// Second paragraph.
+/// Deprecated soon; see `next`.
+/// Escapes \n stay literal.
+union HeliumCount {
+    DepotDepth,
+    HangarAlpha,
+    HueQuasar
+}
+
+namespace zinc;
+
+///
+///  Indented doc line.
+struct VectorBoron {
+    bridge: ubyte;
+    tin: ulong;
+    zeta_carbon:[puffin.kind.AtollSample:4];
+}
+
+namespace metric;
+
+enum Gamma : int64 (bit_flags) {
+    /// <b>html</b> & entities
+    ///
+    Omega = 12,
+    Lagoon = 15,
+}
+
+namespace ;
+
+table Span {
+    canyon: long;
+    /// Holds a value.
+    /// Second paragraph.
+    /// <b>html</b> & entities
+    comet_bridge:zinc.VectorBoron;
+    total:metric.Gamma =Omega;
+    glacier_zeta : [zinc.VectorBoron];
+    header:string (key);
+    haven: uint8=24;
+    GammaNickel: zinc.VectorBoron;
+}
+
+root_type HueQuasar;
+file_identifier "C3HE";

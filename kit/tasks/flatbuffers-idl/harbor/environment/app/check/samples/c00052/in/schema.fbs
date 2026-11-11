@@ -1,0 +1,29 @@
+namespace sparrow.epoch;
+
+/// Holds a value.
+enum PulsarEpoch : long { FlavorNote = 100, IronCarbon, HeronKappa, VectorZinc, HELIUM, Mill, Boron = 107 }
+
+namespace atoll.bridge;
+
+/// Holds a value.
+/// Unit: milliseconds.
+enum ZincTensor : uint16 (bit_flags) { DeltaTitle }
+
+struct PulsarDepot {
+    finch: [byte:2];
+    metric:[ZincTensor:5];
+    wren_flavor : ushort;
+    delta : [int8:4];
+    reef_limit:int16;
+}
+namespace ;
+
+table IronSummit78 {
+    forge1:[string];
+    lambda : [int16];
+    epoch: [float];
+    status : byte =-0x3e;
+    argon_swift: [ubyte];
+}
+
+root_type IronSummit78;

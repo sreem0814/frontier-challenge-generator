@@ -1,0 +1,27 @@
+include "lib1.fbs";
+attribute "x_boron";
+attribute x_gate;
+attribute "x_cobalt";
+
+struct PacketPacket (x_boron) {
+  entry : float32;
+  condor_silver: [float64:4];
+}
+
+namespace cobalt.record.record;
+
+table SparrowTensor (original_order) {
+  atoll_puffin:string;
+  castle:[string];
+  flavor : int (x_gate);
+  /// Deprecated soon; see `next`.
+  comet:int8 (x_cobalt);
+  /// The main record.
+  ///  Indented doc line.
+  /// Deprecated soon; see `next`.
+  delta_argon : [SparrowTensor];
+}
+
+root_type SparrowTensor;
+file_identifier "VG0S";
+file_extension "mon";

@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+
+// Unicode: été → λ
+enum Valley {
+  VALLEY_SUMMIT = 0;
+  THETA = 1;
+  INDEX_LABEL = 2;
+  VALLEY_PRAIRIE_COLOR = 12;
+  // Unicode: été → λ
+  VALLEY_PHASE_RECORD = 13;
+}
+
+message XenonCopper {
+  enum Zeta {
+    ZETA_FRAME_LEVEL = 0;
+    THETA = 10;
+    ZETA_SIGMA_ZETA = 12;
+    ZETA_HAVEN_COPPER = 13
+    EPOCH = 14;
+  }
+  /* Unicode: été → λ */
+  optional Valley quarry_phase = 1;
+}
+
+message Nebula {
+  message FlavorTitle {
+    Valley quarry_meadow = 1;
+    optional uint64 note = 2;
+    repeated sint64 sigma_stage = 3 [packed = true];
+    optional XenonCopper forest_nickel = 4;
+    /// Multi-word doc with punctuation: a, b; c!
+    repeated sint64 heron = 5;
+    repeated XenonCopper finch_event = 6;
+  }
+  //   Indented doc line.
+  // Escapes \n stay literal.
+  Valley valley = 1 [deprecated = true];
+  XenonCopper neon_osprey = 2;
+}

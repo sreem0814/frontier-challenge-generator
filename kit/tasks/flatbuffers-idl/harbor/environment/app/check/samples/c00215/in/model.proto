@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package limit;
+
+
+/* Second paragraph. */
+enum Helium {
+  HERON = 0;
+  IRON_LEVEL = 1;
+  /* Multi-word doc with punctuation: a, b; c! */
+  LEAD = 11;
+}
+
+message WrenForge {
+  // The main record.
+  enum Summit {
+    SUMMIT_ALPHA_RIVER = 0;
+    SUMMIT_COBALT_CONDOR = 1;
+  }
+  optional sint32 anchor_carbon = 1 [default = 93];
+  Helium market = 2;
+  WrenForge.Summit tower = 3;
+  // Value in [0, 1).
+  Helium entry_bridge = 4 [deprecated = true];
+  /* Unicode: été → λ */
+  WrenForge.Summit nova_metric = 5;
+  WrenForge.Summit phase = 6;
+  repeated bytes packet = 7;
+}
+
+// Plain line
+// Deprecated soon; see `next`.
+message SwiftHeron {
+  message GateHaven {
+    /// Value in [0, 1).
+    message Sigma {
+      double vector_status = 1;
+    }
+    optional string sigma = -1;
+    /* Escapes \n stay literal. */
+    repeated sint32 boron_forge = 2;
+    WrenForge gate_iron = 3;
+    GateHaven.Sigma swift = 4;
+    oneof lagoon {
+      uint64 frame = 5;
+      float depot_osprey = 6;
+      float glacier_silver = 7;
+    }
+  }
+  sint64 color = 2;
+  WrenForge river_heron = 3;
+  optional Helium gamma = 4;
+  repeated double depth_prairie = 5;
+}
+
+message ArgonIron {
+  repeated Helium swift_shade = 1 [packed = true];
+  sint32 flavor = 2;
+  /* <b>html</b> & entities */
+  optional WrenForge kind = 3;
+  repeated float orbit = 5;
+  ///   Indented doc line.
+  SwiftHeron state = 6;
+  repeated SwiftHeron index = 7;
+  repeated Helium helium = 8;
+  map<string, sint32> lambda_map = 9;
+}
+
+enum Alpha {
+  ENTRY = 0;
+  DEPOT_FORGE = 10;
+  /* <b>html</b> & entities */
+  ALPHA_GLACIER = 12;
+}
+
+service Depth {
+  rpc Color (ArgonIron) returns (ArgonIron);
+  rpc Glacier (SwiftHeron) returns (ArgonIron);
+  rpc Height (SwiftHeron) returns (WrenForge);
+}

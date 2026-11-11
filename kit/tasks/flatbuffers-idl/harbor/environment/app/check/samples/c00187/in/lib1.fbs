@@ -1,0 +1,30 @@
+namespace zeta.title;
+
+table ValleyLabel {
+ note_kestrel : [int8] = [] (id:0);
+ summit:[BoronBeta70] (id : 1);
+}
+
+/// Holds a value.
+struct HangarBeta {
+ span_index : long;
+ shade:[int:2];
+ tower:uint;
+ FalconCarbon: [float32:5];
+ matrix:ulong;
+}
+
+namespace ;
+
+/// Unicode: été → λ
+/// Deprecated soon; see `next`.
+table BoronBeta70 (original_order,csharp_partial) {
+ /// The main record.
+ kestrel : string;
+ /// Note: "quoted" text and 'single' quotes.
+ /// Plain line
+ name_lambda : string;
+ summit : float64 (deprecated);
+ copper:zeta.title.HangarBeta;
+}
+

@@ -1,0 +1,15 @@
+include "deps/inc2.fbs";
+attribute x_wren;
+attribute "x_hue";
+namespace color;
+
+/// Multi-word doc with punctuation: a, b; c!
+enum Copper : int32 {
+	OrbitHaven = 0 (x_wren),
+}
+
+///  Indented doc line.
+/// Deprecated soon; see `next`.
+/// Holds a value.
+enum Epoch : short { Span = 0x3 (x_hue), PuffinEvent, HELIUM, Zinc, Note, State = 12, }
+

@@ -1,0 +1,12 @@
+namespace atoll.canyon.swift;
+
+table NickelState {
+  finch: float;
+  status: string;
+  theta:string;
+  /// Unicode: été → λ
+  lead_mode : string;
+  /// The main record.
+  helium: float32;
+  zeta_tower : NickelState;
+}

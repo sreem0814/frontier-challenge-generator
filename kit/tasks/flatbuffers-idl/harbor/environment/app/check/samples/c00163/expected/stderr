@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:25: 11: warning: field names should be lowercase snake_case, got: ZincRaven
+
+
+error:
+  @/doc.json:2: 11: error: unknown field: meadow
+

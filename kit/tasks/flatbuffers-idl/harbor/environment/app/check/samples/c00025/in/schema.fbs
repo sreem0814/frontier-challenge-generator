@@ -1,0 +1,137 @@
+attribute "x_quarry";
+attribute "x_omega";
+/// Value in [0, 1).
+table SignalFrame {
+ let:bool;
+ /// Deprecated soon; see `next`.
+ market_omega:uint64;
+ anchor3 : long;
+ nickel_comet : [uint64];
+ name: int = null;
+ boron_phase : string;
+ ///
+ /// <b>html</b> & entities
+ /// Second paragraph.
+ quasar_delta:int16;
+ delta : string;
+ header:string;
+}
+
+table NebulaOffset {
+ depth: short (id:6);
+ nova:SignalFrame (id:4);
+ limit: SignalFrame (id : 1);
+ /// Escapes \n stay literal.
+ HueSparrow : SignalFrame (id: 7);
+ /// Unit: milliseconds.
+ /// Second paragraph.
+ shade_raven : int64 (id: 8);
+ lead_wren: string (id:9);
+ beta : SignalFrame (id: 2);
+ epoch : string (id : 0);
+ state_valley: string (id:5);
+ /// The main record.
+ /// Unicode: été → λ
+ /// Deprecated soon; see `next`.
+ total_label: [Mode] (id:3);
+}
+
+namespace orbit.forge;
+
+///
+///
+/// <b>html</b> & entities
+table RavenSignal (x_quarry : 57) {
+ height:float32=null;
+ quarry_color: [SignalFrame];
+ copper_height:[SignalFrame] (required);
+ /// Deprecated soon; see `next`.
+ atoll_vector:NebulaOffset;
+ /// Note: "quoted" text and 'single' quotes.
+ /// Note: "quoted" text and 'single' quotes.
+ record: [NebulaOffset];
+ kestrel_tick : string;
+ heron:long;
+ copper : [uint8];
+ garden:uint8 =null;
+ stage_prairie:[orbit.forge.RavenSignal];
+}
+
+namespace ;
+
+enum HavenHeader : uint16 {
+ Carbon = 5
+}
+/// Deprecated soon; see `next`.
+enum Metric : byte {
+ Mode = 1,
+ Span,
+ PACKET,
+ FinchSwift = 5,
+ /// Value in [0, 1).
+ ///
+ /// Unit: milliseconds.
+ TickNebula8,
+ Title,
+ Argon
+}
+
+namespace orbit.forge;
+
+/// Holds a value.
+enum Tundra : uint64 {
+ RECORD = 0x5,
+ Xenon = 10,
+}
+namespace zinc.phase.theta;
+
+table HavenZeta {
+ NebulaCondor:[string] (id: 0);
+ tower_finch: uint32 =56 (id: 1);
+ OspreySignal : string (id : 2);
+ count: float64 (id : 3);
+}
+
+namespace ;
+
+table Mode (original_order) {
+ condor_level : int16;
+ bridge:ushort = null;
+ carbon : [NebulaOffset];
+ argon: int;
+ heron_zinc: short;
+}
+
+struct Prairie (force_align : 1) {
+ kappa:byte;
+ /// Multi-word doc with punctuation: a, b; c!
+ helium8: [int16:3];
+}
+
+namespace title.tower.reef;
+
+table ToneSparrow {
+ true:ulong = 6776550427532764580;
+ count: [ubyte];
+ theta_wren : [Atoll];
+}
+namespace ;
+
+table Atoll {
+ title_gate: uint (id : 0);
+}
+
+namespace zinc.phase.theta;
+
+/// Note: "quoted" text and 'single' quotes.
+/// The main record.
+struct DeltaPelican (force_align: 16) {
+ signal_omega: float;
+ sparrow:Prairie;
+ tundra : short;
+ self: Prairie (x_omega);
+ header : Prairie;
+}
+
+root_type orbit.forge.RavenSignal;
+file_identifier "QOZE";

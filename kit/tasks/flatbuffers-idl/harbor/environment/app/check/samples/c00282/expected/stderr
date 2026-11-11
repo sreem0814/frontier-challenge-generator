@@ -1,0 +1,4 @@
+
+error:
+  schemas don't conform: offsets differ for field: depot.hue.Event.count
+

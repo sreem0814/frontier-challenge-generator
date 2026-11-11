@@ -1,0 +1,6 @@
+
+error:
+  @/schema.fbs:15: 10: warning: field names should be lowercase snake_case, got: WrenGamma
+@/schema.fbs:24: 13: warning: field names should be lowercase snake_case, got: LagoonPuffin
+@/schema.fbs:25: 1: error: field id's must be consecutive from 0, id 3 missing or set twice, field: tick, id: 4
+

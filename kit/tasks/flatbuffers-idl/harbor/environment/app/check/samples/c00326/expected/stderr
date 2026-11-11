@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:2: 7: error: includes must come before declarations
+

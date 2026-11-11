@@ -1,0 +1,14 @@
+table Metric70 {
+	raven:ushort;
+	/// Deprecated soon; see `next`.
+	def : bool;
+	market: [ubyte];
+	wren_height: [ubyte];
+	/// Escapes \n stay literal.
+	mill: [ubyte];
+	namespace:string;
+}
+
+root_type Metric70;
+file_identifier "LPA9";
+file_extension "x";

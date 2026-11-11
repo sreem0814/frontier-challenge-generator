@@ -1,0 +1,13 @@
+include "types1.fbs";
+table EpochOrbit {
+	///
+	/// Holds a value.
+	/// <b>html</b> & entities
+	argon: ushort (id: 0);
+}
+
+root_type EpochOrbit;
+file_identifier "FDTM";
+file_extension "x";
+
+rpc_service S { Call(neon.shade.delta.Kind):neon.shade.delta.Kind; }

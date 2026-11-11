@@ -1,0 +1,19 @@
+/// The main record.
+/// Deprecated soon; see `next`.
+table ForgeColor {
+  status_entry:int16 =-17421;
+  mill : long = 0;
+  count: float32=4733.55;
+  condor_theta: double=-1410.73981;
+  ///
+  gate : [double] (deprecated);
+  /// Multi-word doc with punctuation: a, b; c!
+  /// The main record.
+  StatusComet:string (deprecated,key);
+  puffin:[ubyte];
+  raven : [ubyte];
+  SparrowTick : [ForgeColor];
+}
+
+root_type ForgeColor;
+file_extension "bin";

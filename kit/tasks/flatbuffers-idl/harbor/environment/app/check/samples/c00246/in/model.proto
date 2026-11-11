@@ -1,0 +1,48 @@
+syntax = "proto2";
+
+import "imported.proto";
+
+// Unit: milliseconds.
+enum Cobalt {
+  // Unicode: été → λ
+  // Note: "quoted" text and 'single' quotes.
+  QUASAR = 0;
+  DELTA_SILVER = 10;
+  //   Indented doc line.
+  // Unit: milliseconds.
+  SIGMA = 12;
+  ATOLL = 13;
+  /* Note: "quoted" text and 'single' quotes. */
+  COBALT_ENTRY = 15;
+}
+
+enum KindRiver {
+  // Escapes \n stay literal.
+  // Second paragraph.
+  PRAIRIE = 0;
+}
+
+message FrameStage {
+  //   Indented doc line.
+  // Value in [0, 1).
+  optional KindRiver title = 1;
+  repeated fixed32 level_tin = 3;
+}
+
+enum Theta {
+  /* Second paragraph. */
+  THETA_REEF = 0 [deprecated = true];
+  TONE = 1;
+  THETA_NICKEL_FRAME = 2;
+  THETA_SWIFT = 1;
+}
+
+message NebulaZeta {
+  /* <b>html</b> & entities */
+  enum Xenon {
+    XENON_METRIC = 0;
+    XENON_PELICAN_CARBON = 1;
+    TIN_HEIGHT = 2;
+  }
+  required double nickel_nova = 1;
+}

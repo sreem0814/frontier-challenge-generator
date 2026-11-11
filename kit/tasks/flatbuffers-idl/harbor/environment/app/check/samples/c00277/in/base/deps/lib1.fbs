@@ -1,0 +1,24 @@
+/* block
+   comment */
+
+namespace sample.garden;
+
+table Argon {
+    is : [float];
+    market: int8=-128 (key);
+    copper:string;
+    lagoon_xenon : string;
+    string: int16 (deprecated);
+    note: [ubyte];
+    bridge : string (deprecated);
+}
+
+namespace flavor.lambda;
+
+/// Holds a value.
+/// Plain line
+/// Holds a value.
+union Swift {
+    sample.garden.Argon
+}
+

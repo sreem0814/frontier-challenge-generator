@@ -1,0 +1,40 @@
+attribute "x_theta";
+struct Record (x_theta) {
+ level: [int:5];
+ GlacierCanyon : float32;
+}
+/// Multi-word doc with punctuation: a, b; c!
+/// Deprecated soon; see `next`.
+table TundraName {
+ /// Plain line
+ ///
+ /// Escapes \n stay literal.
+ header:string;
+ flavor:string;
+ gamma_pulsar: bool=null;
+ nebula_summit:[double];
+ ///
+ /// Second paragraph.
+ /// Deprecated soon; see `next`.
+ helium8:uint8 = 212;
+ tag : [ubyte] (flexbuffer);
+ /// The main record.
+ garden_heron:string;
+ /// Plain line
+ ///  Indented doc line.
+ /// Value in [0, 1).
+ signal_phase: uint;
+ /// Unicode: été → λ
+ neon: [long];
+ theta_phase: [TundraName];
+}
+
+rpc_service LeadSummit94 {
+ /// Unit: milliseconds.
+ DepthSignal(TundraName):TundraName;
+ ShadeSample(TundraName):TundraName;
+ MarketSummit(TundraName):TundraName;
+}
+
+root_type TundraName;
+file_identifier "PBG1";

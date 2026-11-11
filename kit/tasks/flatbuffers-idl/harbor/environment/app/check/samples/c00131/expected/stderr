@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:8: 4: error: required field is missing: height in Osprey
+

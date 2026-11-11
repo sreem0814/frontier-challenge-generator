@@ -1,0 +1,14 @@
+{
+  "RecordKestrel": {
+    "osprey_phase": [11024.01013, -70828.5182724],
+    "forest": [],
+    "tag": -72
+  },
+  "limit_condor": ["0", 0, 3943, 52375, 59],
+  "tin_count": 1e10,
+  "sparrow": {
+    "atoll": 0,
+    "alpha_depth": ["", "", "shade", "depot", "omega"],
+    "tag": 70
+  }
+}

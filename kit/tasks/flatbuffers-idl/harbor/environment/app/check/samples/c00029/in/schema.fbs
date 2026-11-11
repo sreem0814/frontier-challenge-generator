@@ -1,0 +1,156 @@
+// Generated test schema.
+attribute "x_river";
+attribute "x_nickel";
+attribute "x_epoch";
+attribute x_helium;
+namespace hangar.flavor.tensor;
+
+table Index (original_order) {
+  ///  Indented doc line.
+  quasar:float;
+  mode: bool;
+}
+
+namespace label.omega.market;
+
+/// The main record.
+/// Multi-word doc with punctuation: a, b; c!
+/// Escapes \n stay literal.
+table Matrix {
+  HueCarbon:string;
+  note: byte = -124;
+  tone: string;
+  matrix_raven:hangar.flavor.tensor.Index;
+  /// The main record.
+  ///
+  index_hangar : uint8 =0;
+  color_garden:string="theta" (required);
+  status_tag:uint = 0x8afd3851;
+  gate8:int32 =-824267879;
+  falcon_theta:string;
+  heron_note : string;
+}
+
+namespace ;
+
+table SampleNickel {
+  prairie8: uint32 =0x36;
+  prairie_mill:hangar.flavor.tensor.Index (x_river);
+  mode:[label.omega.market.Matrix];
+  /// Plain line
+  /// Value in [0, 1).
+  /// Second paragraph.
+  sample : [string];
+  /// Note: "quoted" text and 'single' quotes.
+  lead_kind: int8;
+  end : int;
+  AlphaMill: string;
+  /// Multi-word doc with punctuation: a, b; c!
+  /// Escapes \n stay literal.
+  /// <b>html</b> & entities
+  total_header: int8;
+  /// Multi-word doc with punctuation: a, b; c!
+  alpha : string;
+  record_haven: label.omega.market.Matrix;
+}
+
+///
+struct LabelTotal {
+  valley_pulsar:float64 (x_nickel: "pelican");
+  river : [uint32:4];
+  mode : uint32;
+  kind : [bool:4];
+}
+/// <b>html</b> & entities
+/// Second paragraph.
+enum Depth : int8 { MILL = 0 (x_epoch), Record = 10, Tone, PuffinCount, TICK }
+
+table ValleyLagoon {
+  ///  Indented doc line.
+  haven_total: string;
+  tower_flavor : uint16;
+  glacier_tag: [uint8];
+  delta: [LabelTotal];
+  /// Escapes \n stay literal.
+  VectorCarbon:[Depth];
+  glacier_kind: float32;
+  event_iron : LabelTotal (required);
+  wren: int64 =15;
+  ///  Indented doc line.
+  /// <b>html</b> & entities
+  lagoon_mill:ushort = 0 (x_helium : 58);
+  move:hangar.flavor.tensor.MatrixPacket;
+}
+
+namespace hangar.flavor.tensor;
+
+table MatrixPacket {
+  level_carbon : Depth=13;
+  KappaTin: Depth (deprecated);
+  flavor:[uint8];
+  new:LabelTotal;
+  kestrel:[Index] =[];
+  note : string (required);
+  /// <b>html</b> & entities
+  /// The main record.
+  ///  Indented doc line.
+  KestrelTensor : string;
+}
+
+namespace ;
+
+/// Holds a value.
+table SignalHelium {
+  label_finch : int (id: 1);
+  /// Plain line
+  metric : uint64 (id : 8);
+  glacier_garden: ulong=null (id:0);
+  offset:[hangar.flavor.tensor.Index] (deprecated,id : 6);
+  /// Value in [0, 1).
+  ///  Indented doc line.
+  /// Escapes \n stay literal.
+  shade: [SampleNickel] (id: 5);
+  quasar:uint = null (id: 8);
+  limit : [int32] (id : 4);
+  var:int16 (key,id:3);
+  offset_lagoon:uint8 (id: 9);
+  /// The main record.
+  /// Escapes \n stay literal.
+  /// Value in [0, 1).
+  gamma: [uint32] (id: 2);
+}
+
+namespace hangar.flavor.tensor;
+
+table ToneHelium14 {
+  meadow_mill: int32;
+  pelican_note : [string];
+  market: bool;
+  ref : string;
+}
+
+namespace label.omega.market;
+
+enum Hue : int64 { SignalAlpha96 = -0x1, STATE, Puffin = 10 }
+
+namespace hangar.flavor.tensor;
+
+table Theta {
+  /// Deprecated soon; see `next`.
+  /// Deprecated soon; see `next`.
+  depth_packet: SignalHelium;
+  pelican_market : Depth;
+  /// Multi-word doc with punctuation: a, b; c!
+  neon_meadow:ubyte;
+  /// Unit: milliseconds.
+  /// Escapes \n stay literal.
+  hue_title : label.omega.market.Matrix;
+  carbon_tundra: string="tensor";
+  header_meadow : label.omega.market.Hue = STATE (deprecated);
+}
+
+rpc_service GammaPhase {
+  BoronTitle(ValleyLagoon):Theta (streaming: "bidi");
+}
+
+root_type Index;

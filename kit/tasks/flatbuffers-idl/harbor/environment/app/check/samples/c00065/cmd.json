@@ -1,0 +1,13 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--cpp",
+  "--ts",
+  "--gen-all",
+  "--ts-no-import-ext",
+  "--ts-omit-entrypoint",
+  "-o",
+  "out",
+  "no_namespace.fbs"
+ ]
+}

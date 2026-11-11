@@ -1,0 +1,11 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "-b",
+  "--size-prefixed",
+  "-o",
+  "out",
+  "schema.fbs",
+  "input.json"
+ ]
+}

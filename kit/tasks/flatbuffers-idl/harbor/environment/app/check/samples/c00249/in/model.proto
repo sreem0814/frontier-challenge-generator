@@ -1,0 +1,71 @@
+// test proto
+syntax = "proto3";
+
+
+message FlavorArgon {
+  repeated sfixed32 phase = 1;
+  optional fixed32 delta_swift = 2;
+}
+
+message DeltaEntry {
+  enum ValleyKappa {
+    NOVA_VALLEY = 0;
+    CONDOR = 2;
+    LAMBDA_ORBIT = 3;
+    HUE_ATOLL = 5;
+    /* <b>html</b> & entities */
+    VALLEYKAPPA_NEON_MODE = 7;
+    COLOR = 8;
+  }
+  // Holds a value.
+  // Unit: milliseconds.
+  optional int64 color_kestrel = 1;
+  string atoll_boron = 2;
+  /* The main record. */
+  repeated FlavorArgon finch_glacier = 3;
+  FlavorArgon zeta_note = 4;
+  DeltaEntry.ValleyKappa falcon = 5;
+  DeltaEntry.ValleyKappa quasar_level = 6;
+  DeltaEntry.ValleyKappa color = 7 [deprecated = true];
+}
+
+/* Holds a value. */
+enum Entry {
+  // Second paragraph.
+  // Plain line
+  ENTRY_DELTA = 0;
+  // Second paragraph.
+  ENTRY_ALPHA = 10;
+  NICKEL = 11;
+}
+
+// The main record.
+message PhaseGlacier {
+  optional FlavorArgon color = 1;
+  FlavorArgon carbon_hangar = 2;
+  option deprecated = true;
+}
+
+message OffsetDepot {
+  enum Prairie {
+    // Second paragraph.
+    PRAIRIE_DEPTH = 0;
+    // Holds a value.
+    TAG = -1;
+    PRAIRIE_VECTOR_MATRIX = 9;
+    WIDTH = 10;
+    // Escapes \n stay literal.
+    // Second paragraph.
+    MEADOW = 20;
+    PRAIRIE_ENTRY = 21;
+  }
+  optional PhaseGlacier signal = 1;
+  repeated sint64 kind = 2;
+  repeated PhaseGlacier level = 3;
+  FlavorArgon tag_frame = 4;
+  optional uint32 copper = 5;
+  // Plain line
+  repeated fixed64 puffin_title = 6 [packed = true];
+  optional sint32 offset_nebula = 7;
+  optional double finch_omega = 8;
+}

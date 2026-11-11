@@ -1,0 +1,10 @@
+{
+ "bucket": "schema_bfbs",
+ "argv": [
+  "-b",
+  "--schema",
+  "-o",
+  "out",
+  "nested_union_test.fbs"
+ ]
+}

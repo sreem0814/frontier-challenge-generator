@@ -1,0 +1,7 @@
+namespace index;
+
+/// Note: "quoted" text and 'single' quotes.
+table LambdaPelican {
+    func: uint16=0;
+}
+

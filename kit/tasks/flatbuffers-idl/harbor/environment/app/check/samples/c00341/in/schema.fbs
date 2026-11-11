@@ -1,0 +1,30 @@
+include "lib1.fbs";
+attribute "x_pulsar";
+
+namespace gamma;
+
+union TundraMarket53 {
+    depot.garden.nickel.Epoch,
+    Reef
+}
+
+/// Escapes \n stay literal.
+table Haven {
+    delta_name : int;
+    swift:short;
+    /// Escapes \n stay literal.
+    /// Holds a value.
+    carbon: float;
+    tag:[TensorNebula];
+    forest_shade : TundraMarket53 (deprecated);
+    haven:float=-0.0;
+    ///
+    osprey:string (key, x_pulsar);
+    /// <b>html</b> & entities
+    /// Escapes \n stay literal.
+    /// Unicode: ét	é → λ
+    castle_gamma: ushort;
+    forest_kappa:beta.Kappa;
+    name:Haven;
+}
+file_extension "dat";

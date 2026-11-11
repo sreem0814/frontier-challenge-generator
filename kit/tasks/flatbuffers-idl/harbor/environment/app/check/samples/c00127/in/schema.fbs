@@ -1,0 +1,34 @@
+include "common1.fbs";
+
+namespace raven;
+
+enum Level : uint64 {
+ /// Holds a value.
+ Mill = 0,
+ Puffin,
+ COPPER,
+ Nickel = 4,
+ ///  Indented doc line.
+ /// <b>html</b> & entities
+ /// Unicode: été → λ
+ TotalLagoon = 9
+}
+
+namespace ;
+
+struct LambdaFrame {
+ falcon9:[ubyte:2];
+}
+
+/// Holds a value.
+table MatrixCobalt {
+ ShadeGate: [uint16] (required);
+ index_tensor: raven.Level;
+ nickel:uint16;
+ forge_shade:[bool];
+ kestrel : MatrixCobalt;
+}
+
+root_type MatrixCobalt;
+file_identifier "CDOU";
+file_extension "dat";

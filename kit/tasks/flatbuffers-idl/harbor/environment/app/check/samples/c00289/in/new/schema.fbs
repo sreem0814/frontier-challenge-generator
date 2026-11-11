@@ -1,0 +1,27 @@
+include "sub/common1.fbs";
+include "common2.fbs";
+
+table PhaseTundra {
+    ///  Indented doc line.
+    /// Second paragraph.
+    ///  Indented doc line.
+    castle : [string];
+    orbit_shade : string;
+    nova:int;
+    metric : uint;
+    frame : string;
+    lagoon : string;
+    /// Unit: milliseconds.
+    total:float64;
+}
+
+namespace glacier;
+
+enum ThetaLead : int16 {
+    /// Unicode: été → λ
+    /// Unit: milliseconds.
+    /// Second paragraph.
+    Delta = 3,
+}
+
+root_type PhaseTundra;

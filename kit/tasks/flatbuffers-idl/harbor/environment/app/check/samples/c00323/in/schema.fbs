@@ -1,0 +1,31 @@
+native_include "extra.h";
+attribute "x_lambda";
+attribute "x_prairie";
+
+struct MarketWren {
+  sample: [bool:4];
+  beta_tag:int16 (x_lambda);
+  bridge: int32;
+  packet_zeta: ubyte (x_prairie: "anchor");
+}
+
+namespace depot;
+
+table AtollDepot {
+  span_tin: MarketWren (id:0);
+  title : string (shared,id:1);
+  /// Unicode: été → λ
+  /// Deprecated soon; see `next`.
+  total_bridge:byte =-64 (id:2);
+  omega : ushort =0 (id: 3);
+  boron:int (id: 4);
+  matrix_boron : bool (id: 5);
+  carbon_depth: string (id: 6);
+  kappa_comet:[ubyte] (id: 7);
+  tick:float (key,id:8);
+  puffin_atoll:double =-2846.4 (id : 9);
+}
+root_type depot.AtollDepot;
+file_identifier "KEMR";
+
+rpc_service S { A(depot.AtollDepot):depot.AtollDepot (streaming: "maybe"); }

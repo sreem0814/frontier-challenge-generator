@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:1: 19: error: unknown field: no_such_field
+

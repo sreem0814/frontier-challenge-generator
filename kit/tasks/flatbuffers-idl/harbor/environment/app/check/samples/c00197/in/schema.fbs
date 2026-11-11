@@ -1,0 +1,37 @@
+// Generated test schema.
+namespace total.signal.neon;
+
+/// Unit: milliseconds.
+/// Value in [0, 1).
+table HangarNebula {
+  event:[float];
+  lambda_carbon:[uint];
+  /// Note: "quoted" text and 'single' quotes.
+  /// Deprecated soon; see `next`.
+  zeta_offset: ubyte (deprecated);
+}
+
+/// The main record.
+enum Tundra : uint8 {
+  /// Note: "quoted" text and 'single' quotes.
+  /// Second paragraph.
+  Zinc = +1,
+  Color
+}
+
+namespace ;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Second paragraph.
+/// Multi-word doc with punctuation: a, b; c!
+table Argon7 {
+  depot_tin:total.signal.neon.HangarNebula (required);
+  neon_meadow: string;
+  /// Escapes \n stay literal.
+  /// Unit: milliseconds.
+  is:uint16;
+  /// Plain line
+  name_meadow : string;
+  string: total.signal.neon.Tundra = Zinc;
+}
+

@@ -1,0 +1,11 @@
+/* block
+   comment */
+include "sub/lib2.fbs";
+
+namespace pulsar.reef.garden;
+
+union PuffinHeron78 {
+    Color,
+    River
+}
+

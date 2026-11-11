@@ -1,0 +1,13 @@
+/* block
+   comment */
+attribute "x_silver";
+
+namespace kind.copper.condor;
+
+table Lambda {
+ color:ushort;
+ sample_nova : [int] (vector64,x_silver:"sample");
+ OrbitFrame : bool = 0;
+ packet:[ubyte] (required);
+}
+

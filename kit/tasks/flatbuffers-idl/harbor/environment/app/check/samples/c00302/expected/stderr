@@ -1,0 +1,14 @@
+
+warning:
+  @/base/schema.fbs:11: 14: warning: field names should be lowercase snake_case, got: EpochPhase
+@/base/schema.fbs:36: 8: warning: field names should be lowercase snake_case, got: None
+
+
+warning:
+  @/new/schema.fbs:12: 11: warning: field names should be lowercase snake_case, got: EpochPhase
+@/new/schema.fbs:37: 5: warning: field names should be lowercase snake_case, got: None
+
+
+error:
+  schemas don't conform: offsets differ for field: event.Gamma.span
+

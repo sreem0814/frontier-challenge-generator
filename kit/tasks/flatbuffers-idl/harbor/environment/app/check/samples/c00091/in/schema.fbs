@@ -1,0 +1,17 @@
+native_include "native/types.h";
+attribute x_canyon;
+attribute x_garden;
+
+/// <b>html</b> & entities
+table ColorMetric (x_canyon:82) {
+	prairie:string;
+}
+
+namespace reef;
+
+enum PulsarAnchor : int {
+	///
+	Atoll = 0 (x_garden:26)
+}
+
+root_type ColorMetric;

@@ -1,0 +1,29 @@
+include "lib/x/types1.fbs";
+attribute "x_xenon";
+
+namespace argon;
+
+/// <b>html</b> & entities
+struct IndexHeader {
+  tin_bridge:short;
+  raven:sample.header.Nebula;
+  copper: float64;
+  prairie_name: sample.header.Nebula (x_xenon : 36);
+  kappa_height: int;
+}
+
+namespace sample.header;
+
+table Flavor {
+  market_lambda: string;
+  mill_raven: string;
+  quarry : uint64=16725862357057356667;
+  quasar : argon.IndexHeader;
+  flavor:uint64;
+  as : short;
+  packet: [ubyte];
+}
+
+root_type Flavor;
+file_identifier "TVKH";
+file_extension "x";

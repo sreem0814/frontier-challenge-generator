@@ -1,0 +1,62 @@
+// © example
+attribute "x_glacier";
+attribute x_market;
+attribute "x_sample";
+attribute "x_anchor";
+attribute x_silver;
+
+struct Pelican {
+	xenon : double (x_glacier);
+	/// <b>html</b> & entities
+	/// Deprecated soon; see `next`.
+	///  Indented doc line.
+	end: [long:1];
+	prairie_count : [uint64:5];
+}
+table Atoll (csharp_partial) {
+	title: int (x_market);
+	osprey_haven:Pelican;
+	limit_river : [uint64];
+	kappa: bool =false;
+	zinc_garden : string;
+	PhaseRecord: int8=null;
+	frame: [uint16];
+	/// Unicode: été → λ
+	carbon : float64;
+	kestrel_finch:float=nan;
+	count:string;
+}
+
+enum SilverCount : uint64 {
+	Shade96 = +1,
+	ToneForge,
+	NOTE,
+	/// Unit: milliseconds.
+	OSPREY (x_sample: 63),
+	Status = 6,
+	REEF = 8,
+	Stage,
+	Tin5 = 19
+}
+
+/// Plain line
+table Flavor {
+	///
+	/// <b>html</b> & entities
+	/// Multi-word doc with punctuation: a, b; c!
+	zeta:uint (id : 0);
+	mode : int16 (id : 1);
+	puffin:double (id : 2);
+	status : [long] (id:3);
+}
+namespace silver.limit;
+
+enum Heron : long {
+	VALLEY = -0x1 (x_anchor:"span"),
+	TENSOR,
+	Level = 10,
+	Helium (x_silver)
+}
+
+root_type Atoll;
+file_extension "dat";

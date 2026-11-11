@@ -1,0 +1,18 @@
+// Generated test schema.
+namespace valley.forge.matrix;
+
+table Epoch {
+    limit_flavor : string (required);
+    type: Height;
+}
+/// Unicode: été → λ
+table Height {
+    beta_kestrel : Epoch (required);
+    haven_quasar:Epoch (deprecated);
+    /// Unicode: été → λ
+    /// The main record.
+    /// Multi-word doc with punctuation: a, b; c!
+    index: Epoch;
+    metric_raven:[ubyte]=[] (nested_flatbuffer:"valley.forge.matrix.Epoch");
+}
+

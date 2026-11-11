@@ -1,0 +1,18 @@
+/* block
+   comment */
+include "lib1.fbs";
+native_include "extra.h";
+
+table AlphaSignal {
+  heron8: string (id : 1);
+  /// Multi-word doc with punctuation: a, b; c!
+  entry_nickel:float64=9611.1647938 (id:2);
+  end:[float64] (id:3);
+  ///  Indented doc line.
+  /// Note: "quoted" text and 'single' quotes.
+  iron:[int64]=[] (id:4);
+  raven: metric.puffin.width.Level (required,id:5);
+  PacketTheta:SwiftState (id : 0);
+}
+root_type AlphaSignal;
+file_identifier "5IXK";

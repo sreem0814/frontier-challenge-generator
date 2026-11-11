@@ -1,0 +1,12 @@
+/* block
+   comment */
+namespace nebula.span;
+
+table VectorShade {
+    lambda: [long];
+    /// Second paragraph.
+    haven:[ulong];
+    tick:[ubyte];
+    sparrow_entry: uint16;
+    nickel: string;
+}

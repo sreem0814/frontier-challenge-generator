@@ -1,0 +1,19 @@
+struct Packet24 {
+ forge_index: uint64;
+}
+
+struct AnchorPulsar {
+ flavor_depth:uint;
+}
+
+table DeltaBridge {
+  ii : int = 1 2;
+ epoch_tower: [ubyte];
+ vector_pelican : ubyte=212;
+ nickel: float32 =-7653.97;
+ pulsar:[ushort];
+ /// Note: "quoted" text and 'single' quotes.
+ matrix_note: uint;
+ boron:ulong =0;
+}
+root_type DeltaBridge;

@@ -1,0 +1,7 @@
+
+error:
+  @/schema.fbs:25: 11: warning: field names should be lowercase snake_case, got: HueSparrow
+@/schema.fbs:89: 13: warning: field names should be lowercase snake_case, got: NebulaCondor
+@/schema.fbs:91: 13: warning: field names should be lowercase snake_case, got: OspreySignal
+@/schema.fbs:109: 1: error: unexpected force_align value '1', alignment must be a power of two integer ranging from the type's natural alignment 2 to 32
+

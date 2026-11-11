@@ -1,0 +1,10 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--python",
+  "--gen-onefile",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

@@ -1,0 +1,19 @@
+include "deps/types2.fbs";
+attribute "x_orbit";
+
+namespace state;
+
+/// <b>html</b> & entities
+/// Multi-word doc with punctuation: a, b; c!
+table SpanHangar {
+    tick: [LabelNova99] (id:5);
+    nebula : string (required, id:4);
+    stage : float64=-5861.1791 (id: 8);
+    anchor_event:ushort (id:7);
+    title : [string] (id: 0);
+    depth_header : uint32 (deprecated, id: 2);
+    neon_argon:int16 =0x2280 (id: 6);
+    index_comet : [int8] (id: 3);
+    EpochBoron: float = -inf (x_orbit : "title",id:2);
+}
+

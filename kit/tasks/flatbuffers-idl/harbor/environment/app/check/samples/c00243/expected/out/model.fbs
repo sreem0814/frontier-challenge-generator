@@ -1,0 +1,19 @@
+// Generated from model.proto
+
+include "imported.fbs";
+
+namespace ;
+
+table StateSilver {
+  quarry:double = 1.5 (id: 1);
+  swift:uint (id: 2);
+  carbon:StateSilver_.Anonymous2 (id: 0);
+}
+
+namespace StateSilver_;
+
+table Anonymous2 {
+  summit:ulong (id: 0);
+  nebula_mill:long (id: 1);
+}
+

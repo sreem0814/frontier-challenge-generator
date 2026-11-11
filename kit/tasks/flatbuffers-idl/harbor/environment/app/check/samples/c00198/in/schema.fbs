@@ -1,0 +1,27 @@
+include "sub/types1.fbs";
+attribute "x_quarry";
+
+namespace river.width.falcon;
+
+/// Unicode: été → λ
+table BetaKestrel {
+  falcon:float (id : 0);
+}
+
+enum Shade : uint8 {
+  Tundra = 1,
+  Sample = 11,
+  Color,
+  /// Holds a value.
+  /// Second paragraph.
+  /// The main record.
+  Note (x_quarry),
+  QUASAR,
+  /// Deprecated soon; see `next`.
+  SILVER,
+  /// Value in [0, 1).
+  ZINC,
+  Heron,
+}
+
+root_type BetaKestrel;

@@ -1,0 +1,7 @@
+include "deps/lib3.fbs";
+
+struct AnchorBeta {
+	state:[float:1];
+	neon0 : [int:2];
+	meadow_count : [int:3];
+}

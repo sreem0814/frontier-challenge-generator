@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:13: 66: error: rpc request and response types must be tables
+

@@ -1,0 +1,10 @@
+// Generated test schema.
+include "common3.fbs";
+
+namespace kappa;
+
+/// Deprecated soon; see `next`.
+union KindLead {
+ OspreyWren
+}
+

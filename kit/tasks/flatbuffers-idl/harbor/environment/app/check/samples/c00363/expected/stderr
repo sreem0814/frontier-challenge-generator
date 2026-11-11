@@ -1,0 +1,6 @@
+
+error:
+  @/schema.fbs:22: 13: warning: field names should be lowercase snake_case, got: CondorEvent
+@/schema.fbs:58: 13: warning: field names should be lowercase snake_case, got: CanyonTheta
+@/schema.fbs:67: 40: error: field already exists: metric6
+

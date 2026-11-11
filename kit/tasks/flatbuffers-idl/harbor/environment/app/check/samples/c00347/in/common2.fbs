@@ -1,0 +1,9 @@
+// © example
+
+namespace quarry.packet.tick;
+
+/// Second paragraph.
+struct Tag {
+  swift: uint16;
+}
+

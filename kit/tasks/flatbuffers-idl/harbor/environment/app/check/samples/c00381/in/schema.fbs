@@ -1,0 +1,34 @@
+include "common1.fbs";
+attribute x_puffin;
+
+namespace hue.neon;
+
+struct AlphaGlacier {
+    /// Deprecated soon; see `next`.
+    /// Deprecated soon; see `next`.
+    /// Escapes \n stay literal.
+    ModeMarket: vector.market.event.CobaltFinch;
+    true:bool;
+}
+
+namespace vector.market.event;
+
+table LeadOrbit {
+    /// <b>html</b> & entities
+    /// Holds a value.
+    /// Deprecated soon; see `next`.
+    nova : string (required, id : 1);
+    copper_tin: CobaltFinch (id: 6);
+    mill3:Frame = FORGE (id: 4);
+    /// The main record.
+    ///  Indented doc line.
+    record_title : CobaltFinch (x_puffin : "label", id:5);
+    AnchorValley:[ulong] (id: 2);
+    EventLambda:string (id : 0);
+    boron : CobaltFinch (id: 8);
+    in:string (key,id: 7);
+    silver9:[LeadOrbit] (id : 3);
+}
+
+root_type LeadOrbit;
+file_identifier "RRPX";

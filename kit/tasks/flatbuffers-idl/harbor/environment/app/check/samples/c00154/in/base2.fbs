@@ -1,0 +1,8 @@
+// © example
+
+namespace orbit;
+
+table VectorSignal28 {
+  hue : string (id: 0);
+}
+

@@ -1,0 +1,30 @@
+// © example
+include "inc1.fbs";
+native_include "extra.h";
+
+namespace status.condor.xenon;
+
+///  Indented doc line.
+/// Value in [0, 1).
+union Kind52 {
+ meadow.falcon.IndexLead,
+ NoteZeta,
+}
+
+table Cobalt (original_order) {
+ LambdaSigma:HeliumStage;
+ omega : [ulong];
+ falcon:status.condor.xenon.Kind52;
+ /// Value in [0, 1).
+ /// Unit: milliseconds.
+ forge_alpha:uint =0;
+ depot:[double];
+ theta_label: [HeliumStage] (required);
+ atoll_name: HeliumStage;
+ boron: uint16 = 40908;
+ pelican_copper : Kind52;
+ /// Second paragraph.
+ kind: [meadow.falcon.IndexLead];
+}
+
+root_type Cobalt;

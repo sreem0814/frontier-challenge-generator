@@ -1,0 +1,27 @@
+// © example
+include "lib/x/inc1.fbs";
+
+/// Unit: milliseconds.
+union Falcon {
+	ColorIron,
+	///  Indented doc line.
+	/// Note: "quoted" text and 'single' quotes.
+	total.epoch.omega.XenonSummit
+}
+/// <b>html</b> & entities
+///  Indented doc line.
+/// Escapes \n stay literal.
+struct Valley {
+	finch: index.raven.name.Xenon;
+	nickel : uint16;
+	width: byte;
+	matrix_raven : [uint8:2];
+	header_span : uint32;
+	nova_kind: uint32;
+}
+
+table PelicanGate {
+	reef_argon : short;
+}
+
+root_type PelicanGate;

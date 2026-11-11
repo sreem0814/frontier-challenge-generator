@@ -1,0 +1,14 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--rust",
+  "--cpp",
+  "--gen-nullable",
+  "--no-includes",
+  "--cpp-std=c++17",
+  "--cpp-std=c++0x",
+  "-o",
+  "out",
+  "annotated_binary_old.fbs"
+ ]
+}

@@ -1,0 +1,163 @@
+native_include "native/types.h";
+attribute "x_glacier";
+attribute "x_height";
+attribute "x_beta";
+namespace iron.total;
+
+enum Tensor : uint { Nickel = 200, Forest, REEF, FRAME, IRON = 213, RecordLabel }
+
+namespace ;
+
+table KestrelTotal {
+  /// Multi-word doc with punctuation: a, b; c!
+  frame:ubyte (id:6);
+  /// Escapes \n stay literal.
+  neon_xenon : string (required, id:3);
+  quasar : [ubyte] (id : 8);
+  /// Second paragraph.
+  kestrel:int32 = null (id : 1);
+  beta_puffin: [ubyte] (offset64, id: 4);
+  delta:ubyte (id: 5);
+  copper_delta: [ubyte] (id : 9);
+  forest_quarry:uint64 (key, id:0);
+  falcon:[ubyte] (id: 2);
+  boron_frame: [ulong] (required,id:7);
+}
+table Pulsar {
+  height : [KestrelTotal] (id: 3);
+  /// The main record.
+  /// Deprecated soon; see `next`.
+  title: short (id: 2);
+  osprey:bool =false (id : 0);
+  osprey_kind: string (id:6);
+  swift_carbon: int32=2142221263 (id:1);
+  matrix: int16 (id : 5);
+  /// Plain line
+  /// Second paragraph.
+  /// Plain line
+  tin : uint32 (hash:"fnv1a_32", id : 4);
+}
+table NoteHeight (original_order) {
+  ///  Indented doc line.
+  /// Deprecated soon; see `next`.
+  /// Unicode: été → λ
+  GammaQuarry: iron.total.Tensor =200;
+  shade_matrix:int8=null;
+  /// <b>html</b> & entities
+  reef_carbon : float;
+  heron_market:Pulsar;
+  wren9 : [uint8] (required);
+}
+
+namespace tick.atoll.signal;
+
+/// Deprecated soon; see `next`.
+/// Second paragraph.
+/// Holds a value.
+table Nickel54 {
+  /// Holds a value.
+  MillRaven : NoteHeight (required);
+  depth:double;
+  ///
+  /// Value in [0, 1).
+  /// Escapes \n stay literal.
+  nova: NoteHeight;
+  stage_nebula: float32;
+  entry: int16;
+  ToneDelta:NoteHeight (deprecated);
+  ZincGlacier: int8 = -90;
+  metric: int16;
+  metric_falcon: string (x_glacier);
+  epoch_atoll:Pulsar;
+}
+
+namespace iron.total;
+
+union Valley {
+  KestrelTotal,
+  RecordZinc: Pulsar,
+  NoteHeight,
+  tick.atoll.signal.Nickel54,
+  StrCount: string
+}
+
+namespace ;
+
+struct Hangar {
+  title_event:uint16 (x_height: 87);
+}
+union Mill {
+  /// Value in [0, 1).
+  ///  Indented doc line.
+  KestrelTotal
+}
+namespace iron.total;
+
+struct FrameSample (force_align : 32,x_height) {
+  packet: int16;
+}
+namespace ;
+
+/// Deprecated soon; see `next`.
+table Tag {
+  /// <b>html</b> & entities
+  orbit_lead:ubyte=0 (deprecated);
+  delta_tick:[Pulsar];
+  /// Plain line
+  /// Deprecated soon; see `next`.
+  gamma_bridge: NoteHeight;
+}
+
+namespace iron.total;
+
+///
+/// Second paragraph.
+enum BridgeTheta : uint64 {
+  Mill = 1,
+  SAMPLE,
+  /// The main record.
+  /// Multi-word doc with punctuation: a, b; c!
+  /// Deprecated soon; see `next`.
+  Castle,
+  HUE = 13,
+  TOTAL = 113,
+  /// Note: "quoted" text and 'single' quotes.
+  /// Multi-word doc with punctuation: a, b; c!
+  /// Multi-word doc with punctuation: a, b; c!
+  Puffin = 123
+}
+
+namespace ;
+
+///  Indented doc line.
+table MillTitle {
+  name_record: iron.total.BridgeTheta=13 (deprecated);
+  canyon:string (shared);
+  depot: short;
+  lambda_osprey:[short];
+  /// Unicode: été → λ
+  /// Holds a value.
+  /// Unicode: été → λ
+  kappa_height: int64;
+  title: int8 (key);
+  level:[KestrelTotal];
+}
+
+namespace tick.atoll.signal;
+
+enum PulsarFalcon : uint64 (x_beta : "falcon") { TIN = 0, Packet = 1, Anchor }
+
+namespace ;
+
+rpc_service Total {
+  /// Holds a value.
+  AlphaSwift(NoteHeight):KestrelTotal;
+  EpochTag(Pulsar):tick.atoll.signal.Nickel54 (idempotent);
+  ForestNote(Pulsar):MillTitle;
+  /// Plain line
+  /// Multi-word doc with punctuation: a, b; c!
+  BetaSummit(KestrelTotal):Tag (streaming: "bidi");
+}
+
+root_type Pulsar;
+file_identifier "2VRL";

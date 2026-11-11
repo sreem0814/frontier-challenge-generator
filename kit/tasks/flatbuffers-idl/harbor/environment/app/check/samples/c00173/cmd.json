@@ -1,0 +1,11 @@
+{
+ "bucket": "json_binary",
+ "argv": [
+  "-b",
+  "--flexbuffers",
+  "--strict-json",
+  "-o",
+  "out",
+  "flex.json"
+ ]
+}

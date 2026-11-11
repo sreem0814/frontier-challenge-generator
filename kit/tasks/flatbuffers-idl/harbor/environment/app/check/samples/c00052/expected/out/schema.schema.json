@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "sparrow_epoch_PulsarEpoch" : {
+      "type" : "string",
+      "enum": ["FlavorNote", "IronCarbon", "HeronKappa", "VectorZinc", "HELIUM", "Mill", "Boron"]
+    },
+    "atoll_bridge_ZincTensor" : {
+      "type" : "string",
+      "enum": ["DeltaTitle"]
+    },
+    "atoll_bridge_PulsarDepot" : {
+      "type" : "object",
+      "properties" : {
+        "finch" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -128, "maximum" : 127},
+                "minItems": 2,
+                "maxItems": 2
+              },
+        "metric" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/atoll_bridge_ZincTensor"},
+                "minItems": 5,
+                "maxItems": 5
+              },
+        "wren_flavor" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 65535
+              },
+        "delta" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -128, "maximum" : 127},
+                "minItems": 4,
+                "maxItems": 4
+              },
+        "reef_limit" : {
+                "type" : "integer", "minimum" : -32768, "maximum" : 32767
+              }
+      },
+      "additionalProperties" : false
+    },
+    "IronSummit78" : {
+      "type" : "object",
+      "properties" : {
+        "forge1" : {
+                "type" : "array", "items" : {"type" : "string"}
+              },
+        "lambda" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -32768, "maximum" : 32767}
+              },
+        "epoch" : {
+                "type" : "array", "items" : {"type" : "number"}
+              },
+        "status" : {
+                "type" : "integer", "minimum" : -128, "maximum" : 127
+              },
+        "argon_swift" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" :255}
+              }
+      },
+      "additionalProperties" : false
+    }
+  },
+  "$ref" : "#/definitions/IronSummit78"
+}

@@ -1,0 +1,4 @@
+namespace stage.summit;
+
+enum Hangar : int8 { PuffinTick = -128, Index = -28 }
+

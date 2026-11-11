@@ -1,0 +1,10 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--java",
+  "--gen-nullable",
+  "-o",
+  "out",
+  "include_test2.fbs"
+ ]
+}

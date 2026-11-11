@@ -1,0 +1,15 @@
+///  Indented doc line.
+table GammaNebula95 {
+	xenon_limit : [ubyte];
+	lagoon_index:string (required);
+	/// The main record.
+	vector: string ="lead";
+	/// The main record.
+	/// Deprecated soon; see `next`.
+	/// Deprecated soon; see `next`.
+	metric5: string (required);
+	delta_boron : uint64;
+	tone_anchor : [byte];
+	castle1: GammaNebula95;
+}
+

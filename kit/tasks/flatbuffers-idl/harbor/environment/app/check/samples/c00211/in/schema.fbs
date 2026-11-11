@@ -1,0 +1,50 @@
+// © example
+native_include "native/types.h";
+
+struct Matrix (force_align : 16) {
+	swift_carbon : ubyte;
+	level_sigma : int8;
+	sparrow3: ushort;
+	kappa:double;
+}
+
+namespace comet.matrix;
+
+table CanyonForest23 (original_order) {
+	level:[string];
+	sparrow : int8=96;
+	title: float32 = 5560.29;
+	/// <b>html</b> & entities
+	///  Indented doc line.
+	limit: [int16];
+	beta: string;
+	span_boron : [string];
+	width_iron: string;
+	packet : width.omega.glacier.BetaHeader;
+}
+
+namespace ;
+
+/// Escapes \n stay literal.
+union CometGamma17 {
+	comet.matrix.CanyonForest23
+}
+namespace width.omega.glacier;
+
+table BetaHeader {
+	width:[string] (id: 1);
+	LabelPulsar : [Matrix] (id:0);
+}
+
+namespace comet.matrix;
+
+enum QuarryKind : int32 {
+	Argon = 1,
+	TagStatus,
+	THETA,
+	COMET,
+	WIDTH = 6
+}
+
+root_type width.omega.glacier.BetaHeader;
+file_extension "dat";

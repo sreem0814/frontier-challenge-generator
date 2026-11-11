@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:4: 13: error: illegal character: @
+

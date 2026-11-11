@@ -1,0 +1,19 @@
+/* block
+   comment */
+include "inc2.fbs";
+namespace sample;
+
+table CopperLabel {
+ FalconGlacier : name.note.entry.SummitBridge;
+ neon_summit: [LimitIron];
+}
+
+namespace event;
+
+///
+union TitleMode26 {
+ WidthCount,
+ sample.CopperLabel,
+ StrIndex: string
+}
+

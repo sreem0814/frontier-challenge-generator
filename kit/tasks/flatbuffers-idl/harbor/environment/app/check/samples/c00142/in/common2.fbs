@@ -1,0 +1,10 @@
+attribute "x_swift";
+
+namespace shade.castle.atoll;
+
+struct PacketPacket42 {
+    epoch:short (x_swift);
+    theta: float;
+    neon_mill : uint32;
+    omega: [int:5];
+}

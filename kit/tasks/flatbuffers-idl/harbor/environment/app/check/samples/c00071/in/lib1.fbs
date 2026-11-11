@@ -1,0 +1,35 @@
+/* block
+   comment */
+include "common2.fbs";
+attribute "x_state";
+attribute x_iron;
+
+namespace header.puffin.valley;
+
+///  Indented doc line.
+table MarketNickel {
+	lagoon_forge:string;
+	sample: [uint8] (deprecated);
+	market_delta : string;
+	title: double;
+	anchor: float64=null;
+	hue: [string] (x_state:6);
+	glacier6: byte =59;
+	tone_neon : [ubyte] (flexbuffer,deprecated);
+}
+
+namespace condor.cobalt;
+
+enum SignalCobalt4 : long {
+	Sample = 0x0,
+	SAMPLE,
+	Glacier = 11,
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Value in [0, 1).
+	/// Deprecated soon; see `next`.
+	Level (x_iron),
+	ForestEntry,
+	GAMMA,
+	Beta
+}
+

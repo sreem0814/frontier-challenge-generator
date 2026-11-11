@@ -1,0 +1,24 @@
+// Generated from model.proto
+
+namespace hangar;
+
+table Pulsar {
+  color:double;
+  condor:[long];
+  wren:ulong;
+  haven_hangar:int;
+  quasar:[long];
+  argon:ulong = 37;
+  index:bool;
+  /// Holds a value.
+  event_color:float;
+  phase_wren_map:[hangar.Pulsar_.PhaseWrenMapEntry];
+}
+
+namespace hangar.Pulsar_;
+
+table PhaseWrenMapEntry {
+  key:int (key);
+  value:ulong;
+}
+

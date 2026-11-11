@@ -1,0 +1,55 @@
+// Generated from model.proto
+
+namespace reef.frame.osprey;
+
+enum Finch : int {
+  CARBON = 0,
+  TOTAL = 1,
+}
+
+namespace reef.frame.osprey.EpochMill_.TinOsprey_;
+
+enum StageTin : int {
+  ZETA_EVENT = 0,
+  EPOCH = 1,
+  STAGETIN_FLAVOR_MARKET = 2,
+}
+
+namespace reef.frame.osprey;
+
+table EpochMill {
+  tick:[int];
+  gamma:[reef.frame.osprey.Finch];
+  metric:[reef.frame.osprey.Finch];
+}
+
+namespace reef.frame.osprey.EpochMill_;
+
+table TinOsprey {
+  metric_market:long;
+  ///   Indented doc line.
+  copper_anchor:int;
+  forge_tick:reef.frame.osprey.Finch;
+  falcon_state:reef.frame.osprey.EpochMill_.TinOsprey_.StageTin;
+  title:[reef.frame.osprey.Finch];
+  delta_map:[reef.frame.osprey.EpochMill_.TinOsprey_.DeltaMapEntry];
+}
+
+namespace reef.frame.osprey.EpochMill_.TinOsprey_;
+
+table DeltaMapEntry {
+  key:int (key);
+  value:reef.frame.osprey.EpochMill_.TinOsprey_.StageTin;
+}
+
+namespace reef.frame.osprey;
+
+table Prairie {
+  valley:[reef.frame.osprey.Finch];
+  state:double;
+  orbit:reef.frame.osprey.EpochMill;
+  cobalt:[long];
+  glacier:uint = 50;
+  heron_heron:double;
+}
+

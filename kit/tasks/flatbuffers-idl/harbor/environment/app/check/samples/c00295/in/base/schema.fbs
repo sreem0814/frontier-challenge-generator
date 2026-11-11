@@ -1,0 +1,14 @@
+include "lib1.fbs";
+
+table Helium (csharp_partial) {
+  mode : [ubyte] (deprecated,id:1);
+  condor_height:[color.Copper] (id : 3);
+  signal_valley: [string] (id:0);
+  tundra: long (id : 5);
+  /// The main record.
+  delta_omega:[color.Copper] (id : 4);
+  tin:double=null (id: 6);
+  silver_condor:string (required,id: 2);
+}
+
+root_type Helium;

@@ -1,0 +1,10 @@
+include "inc3.fbs";
+namespace tag.orbit.tag;
+
+/// Holds a value.
+/// Unicode: été → λ
+table Mill {
+    delta:uint32 (key);
+    bridge : short;
+}
+

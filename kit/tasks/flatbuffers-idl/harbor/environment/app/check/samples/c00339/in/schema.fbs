@@ -1,0 +1,18 @@
+/* block
+   comment */
+
+struct CountOrbit {
+ comet_omega: uint32;
+}
+
+table Tower {
+ nebula_wren:[uint16];
+}
+
+enum Flavor91 : uint32 {
+ FalconHeron = 0,
+ FORGE,
+ ZINC = 3,
+ Copper
+}
+root_type Tower;

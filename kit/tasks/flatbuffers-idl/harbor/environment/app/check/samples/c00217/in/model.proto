@@ -1,0 +1,27 @@
+// test proto
+syntax = "proto2";
+
+package height.zinc;
+
+option java_package = "com.example.nebula";
+
+message Omega {
+  optional int32 nickel_tone = 1;
+  optional int64 alpha = 2;
+  /* Escapes \n stay literal. */
+  repeated string anchor_carbon = 3 [packed = true];
+}
+
+message Label {
+  repeated Omega level_canyon = 1 [deprecated = true];
+  required Omega note_name = 2 [deprecated = true];
+  optional sint64 index = 3;
+  optional bytes copper_limit = 4 [deprecated = true];
+}
+
+// Unicode: été → λ
+// Escapes \n stay literal.
+message Forest {
+  optional Omega valley = 1;
+  map<bool, Label> falcon_map = 2;
+}

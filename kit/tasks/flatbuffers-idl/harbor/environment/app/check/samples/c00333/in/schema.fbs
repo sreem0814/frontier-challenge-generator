@@ -1,0 +1,53 @@
+/* block
+   comment */
+
+namespace theta.depot;
+
+table Quarry39 {
+	vector_prairie : [ubyte] (required);
+	anchor : uint32 (deprecated);
+	NebulaTower : float64;
+	lead: ushort =null;
+	ZincFinch:string;
+	/// Holds a value.
+	lagoon_index : string;
+	record: [ubyte] (flexbuffer);
+}
+
+namespace orbit.atoll;
+
+table Hue {
+  i: [int] (flexbuffer);
+	hangar : [int64]=[] (id: 0);
+	FrameTick: [theta.depot.Quarry39] (required, id: 1);
+	tone_nova:ushort=0x40 (id : 2);
+	nova:ulong = null (id : 3);
+	copper_neon : [theta.depot.Quarry39] (id:4);
+	quasar:int (key,id : 5);
+	castle_event : theta.depot.Quarry39 (id: 6);
+	/// Plain line
+	iron_entry:theta.depot.Quarry39 (id : 7);
+	iron:theta.depot.Quarry39 (id: 8);
+	///  Indented doc line.
+	/// Escapes \n stay literal.
+	///
+	sample : string (id : 9);
+}
+
+namespace ;
+
+/// Plain line
+/// Second paragraph.
+enum QuarryVector : ushort {
+	CastleQuasar = 0,
+	Xenon,
+	Height = 3,
+	CondorNickel = 8,
+	Mill = 0x6c,
+	Tundra = 109,
+	Nickel = 114,
+	ToneLabel,
+	Shade
+}
+
+root_type theta.depot.Quarry39;

@@ -1,0 +1,18 @@
+// Generated test schema.
+
+namespace comet;
+
+/// Plain line
+table Osprey {
+ /// <b>html</b> & entities
+ /// The main record.
+ haven : string;
+ forest_forest: float32;
+ /// <b>html</b> & entities
+ height: string (key,shared);
+ mill_gate:[string];
+ status_nebula: float;
+ new:[int16];
+ record_nickel:string;
+}
+

@@ -1,0 +1,22 @@
+/* block
+   comment */
+include "common1.fbs";
+
+/// Plain line
+/// Value in [0, 1).
+/// Second paragraph.
+table Raven3 {
+  state: summit.atoll.offset.CarbonCount;
+  raven : float64=null;
+}
+
+rpc_service Prairie {
+  LimitSigma(summit.atoll.offset.CarbonCount):summit.atoll.offset.CarbonCount;
+  TickTensor(Raven3):summit.atoll.offset.CarbonCount (streaming: "client");
+  /// Plain line
+  ReefOffset(summit.atoll.offset.Limit):Raven3;
+  TinBoron(Raven3):summit.atoll.offset.Limit;
+}
+
+root_type Raven3;
+file_identifier "MWW5";

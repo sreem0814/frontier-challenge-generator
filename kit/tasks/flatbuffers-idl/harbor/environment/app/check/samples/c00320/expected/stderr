@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:12: 14: error: declaration expected
+

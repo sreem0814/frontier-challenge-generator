@@ -1,0 +1,5 @@
+
+warning:
+  @/schema.fbs:19: 13: warning: field names should be lowercase snake_case, got: GardenHue
+@/schema.fbs:85: 15: warning: field names should be lowercase snake_case, got: PhaseQuasar
+

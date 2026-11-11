@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "Kestrel" : {
+      "type" : "object",
+      "properties" : {
+        "hue" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" : 4294967295}
+              },
+        "BoronCastle" : {
+                "$ref" : "#/definitions/Title"
+              },
+        "lead" : {
+                "$ref" : "#/definitions/nova_state_LambdaQuarry"
+              },
+        "mode" : {
+                "type" : "array", "items" : {"type" : "string"}
+              },
+        "pelican" : {
+                "type" : "string"
+              },
+        "haven_beta" : {
+                "type" : "string"
+              }
+      },
+      "required" : ["lead", "haven_beta"],
+      "additionalProperties" : false
+    },
+    "Record" : {
+      "type" : "object",
+      "properties" : {
+        "hue_hangar" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 65535,
+                "description" : "<b>html</b> & entities\n"
+              },
+        "width" : {
+                "$ref" : "#/definitions/nova_state_LambdaQuarry"
+              },
+        "tick" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/nova_state_LambdaQuarry"},
+                "minItems": 5,
+                "maxItems": 5
+              },
+        "forge" : {
+                "$ref" : "#/definitions/nova_state_LambdaQuarry"
+              },
+        "castle_reef" : {
+                "type" : "number"
+              }
+      },
+      "additionalProperties" : false
+    },
+    "Title" : {
+      "type" : "object",
+      "properties" : {
+        "quarry" : {
+                "type" : "string"
+              },
+        "epoch_orbit" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/nova_state_LambdaQuarry"}
+              }
+      },
+      "additionalProperties" : false
+    },
+    "nova_NovaHangar" : {
+      "type" : "object",
+      "properties" : {
+        "zinc_reef" : {
+                "type" : "integer", "minimum" : -2147483648, "maximum" : 2147483647
+              },
+        "orbit" : {
+                "$ref" : "#/definitions/nova_NovaHangar"
+              }
+      },
+      "additionalProperties" : false
+    },
+    "nova_state_LambdaQuarry" : {
+      "type" : "object",
+      "properties" : {
+        "lambda_packet" : {
+                "type" : "integer", "minimum" : -9223372036854775808, "maximum" : 9223372036854775807
+              },
+        "matrix_mill" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" : 65535},
+                "minItems": 1,
+                "maxItems": 1
+              },
+        "tensor_total" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" : 4294967295},
+                "minItems": 2,
+                "maxItems": 2,
+                "description" : "Unicode: été → λ"
+              },
+        "finch_offset" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295
+              },
+        "count_sparrow" : {
+                "type" : "array", "items" : {"type" : "number"},
+                "minItems": 1,
+                "maxItems": 1,
+                "description" : "Escapes \\n stay literal."
+              },
+        "event" : {
+                "type" : "number"
+              }
+      },
+      "additionalProperties" : false
+    }
+  },
+  "$ref" : "#/definitions/Kestrel"
+}

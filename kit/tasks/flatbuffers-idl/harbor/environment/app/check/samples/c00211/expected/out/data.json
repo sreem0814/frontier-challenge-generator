@@ -1,0 +1,20 @@
+{
+  LabelPulsar: [
+    {
+      swift_carbon: 161,
+      level_sigma: -13,
+      sparrow3: 95,
+      kappa: -5074.24
+    },
+    {
+      swift_carbon: 228,
+      level_sigma: -34,
+      sparrow3: 1961,
+      kappa: 340282349999999991754788743781432688640.0
+    }
+  ],
+  width: [
+    " \u20AC\u20ACx\uD83D\uDE00/\r\t\u20AC/",
+    "\u00010\u0001\nxxZ\b\u0001\u20ACx"
+  ]
+}

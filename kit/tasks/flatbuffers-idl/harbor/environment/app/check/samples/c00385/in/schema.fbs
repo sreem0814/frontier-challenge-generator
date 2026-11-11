@@ -1,0 +1,20 @@
+attribute x_vector;
+
+namespace alpha;
+
+enum TitleFlavor : long {
+    Quarry = 0,
+    Depot,
+    THETA,
+    Zinc = 7 (x_vector)
+}
+
+namespace ;
+
+table PhaseLabel {
+    async: [uint64] (required);
+    title9: uint;
+    heron_zeta : [PhaseLabel];
+}
+
+root_type PhaseLabel;

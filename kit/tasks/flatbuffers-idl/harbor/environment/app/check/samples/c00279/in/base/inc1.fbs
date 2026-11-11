@@ -1,0 +1,25 @@
+namespace nickel;
+
+enum Prairie : uint8 (bit_flags) {
+ Argon = 3,
+ Signal = 4,
+ Kappa = 5,
+ Lambda = 7
+}
+
+table FlavorRecord26 {
+ /// Note: "quoted" text and 'single' quotes.
+ osprey: ushort;
+ /// Note: "quoted" text and 'single' quotes.
+ /// Second paragraph.
+ /// <b>html</b> & entities
+ PrairieCarbon : string;
+ wren_name:int32;
+ anchor_quarry : [ubyte];
+ nil : ubyte;
+ /// Unicode: été → λ
+ forge: [long];
+ var:[float64];
+ tick:ushort = null;
+}
+

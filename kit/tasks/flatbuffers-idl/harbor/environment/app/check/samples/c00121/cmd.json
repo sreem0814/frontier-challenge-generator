@@ -1,0 +1,12 @@
+{
+ "bucket": "json_binary",
+ "argv": [
+  "-b",
+  "--strict-json",
+  "--force-defaults",
+  "-o",
+  "out",
+  "schema.fbs",
+  "input.json"
+ ]
+}

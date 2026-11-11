@@ -1,0 +1,47 @@
+{
+  header_heron: 2294308234657605691,
+  label: [
+    "\u4E2D\u00E9\u0001\r\u20AC\b\uD83D\uDE00/\\\u4E2D"
+  ],
+  gate: " \u00E90\u20ACx \b\u00E9",
+  zeta3: 0,
+  tower: 0.0,
+  SigmaHue: [
+    46
+  ],
+  canyon_garden: {
+    header_heron: 0,
+    zeta3: 0,
+    packet: [
+      84,
+      53,
+      -40,
+      33,
+      47
+    ],
+    tower: 0.0,
+    SigmaHue: [
+      0,
+      26,
+      28833,
+      25450,
+      1532
+    ],
+    canyon_garden: {
+      header_heron: 41,
+      summit: "\u4E2D",
+      gate: "\t\u20ACZZ\f\b\r\u4E2D\u20AC\u20AC\u00E9",
+      zeta3: 0,
+      packet: [
+        1,
+        -96,
+        127
+      ],
+      tower: 0.0,
+      SigmaHue: [
+        0,
+        25288
+      ]
+    }
+  }
+}

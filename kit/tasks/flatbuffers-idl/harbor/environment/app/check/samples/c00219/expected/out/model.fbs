@@ -1,0 +1,33 @@
+// Generated from model.proto
+
+namespace tensor;
+
+enum CastleForge : int {
+  CASTLEFORGE_LABEL = 0,
+  CASTLEFORGE_STATE = 1,
+  CASTLEFORGE_CANYON = 2,
+  SHADE_KAPPA = 12,
+  CASTLEFORGE_HAVEN_DEPTH = 22,
+  CASTLEFORGE_NEON = 24,
+}
+
+namespace ;
+
+enum Comet : int {
+  ZINC = 0,
+  TUNDRA_STAGE = 2,
+  COMET_DEPTH_EVENT = 3,
+  COMET_FRAME = 4,
+  EVENT_CARBON = 5,
+  COMET_SILVER_SIGMA = 6,
+}
+
+namespace tensor;
+
+table Raven {
+}
+
+table Canyon {
+  valley_valley:tensor.CastleForge;
+}
+

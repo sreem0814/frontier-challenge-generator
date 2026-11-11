@@ -1,0 +1,51 @@
+namespace count.lead;
+
+table StateLagoon {
+	color_mode : short =32767 (id : 0);
+	kappa_vector : ulong (id: 1);
+	///
+	kestrel : [ubyte] (id: 2);
+	vector : uint32 (id:3);
+	nova : [string] (required,id:4);
+}
+
+namespace ;
+
+table Lead27 {
+	falcon:float;
+	title_delta: ulong=328200658782442207;
+}
+
+/// Second paragraph.
+/// Multi-word doc with punctuation: a, b; c!
+enum BetaGate : int { NovaMill = -1, TOWER, Matrix }
+table GlacierNickel {
+	phase:string;
+	delta : int8 =14;
+	/// Plain line
+	/// Unit: milliseconds.
+	/// Holds a value.
+	PelicanForest: [byte] (required);
+	alpha_omega: uint16 = 0 (key);
+	bridge:[float32];
+	osprey:uint16=30434;
+	color_lagoon : int8;
+	stage_mill: uint;
+	nebula : float;
+	width : Lead27;
+}
+
+/// The main record.
+rpc_service Prairie {
+	EpochDepot(GlacierNickel):count.lead.StateLagoon;
+	///
+	/// Unit: milliseconds.
+	/// Second paragraph.
+	ValleyIron(GlacierNickel):GlacierNickel;
+	MillPacket(count.lead.StateLagoon):count.lead.StateLagoon;
+	AtollBridge(count.lead.StateLagoon):Lead27 (streaming:"client");
+}
+
+root_type GlacierNickel;
+file_identifier "JS1A";
+file_extension "x";

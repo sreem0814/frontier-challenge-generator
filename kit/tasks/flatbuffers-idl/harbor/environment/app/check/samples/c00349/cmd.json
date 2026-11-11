@@ -1,0 +1,9 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--java",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

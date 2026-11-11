@@ -1,0 +1,62 @@
+// test proto
+syntax = "proto3";
+
+package helium.garden;
+
+option java_package = "com.example.status";
+
+enum Signal {
+  option allow_alias = true;
+  OMEGA_MILL = 0;
+  DEPOT = 1;
+}
+
+/// The main record.
+message CometStatus {
+  // <b>html</b> & entities
+  enum Delta {
+    option allow_alias = true;
+    PULSAR = 0;
+  }
+  message StageTheta {
+    //   Indented doc line.
+    // Value in [0, 1).
+    message Raven {
+      /*  */
+      int32 theta_forge = 1;
+      // 
+      // Multi-word doc with punctuation: a, b; c!
+      repeated uint32 note = 2 [packed = true];
+      // Second paragraph.
+      optional fixed32 kappa = 3 [default = 6];
+      CometStatus.Delta neon = 5 [deprecated = true];
+      double shade = 6 [deprecated = true];
+      repeated sint64 tundra = 7;
+      sfixed64 reef = 8;
+      oneof orbit_tower {
+        sint32 canyon = 9;
+      }
+    }
+    Signal kappa_entry = 1;
+    // 
+    repeated Signal reef = 2;
+    // 
+    repeated CometStatus.Delta haven = 3 [packed = true];
+    uint64 swift = 4;
+    uint32 width_theta = 5;
+    optional uint64 tone = 6 [deprecated = true];
+    // Note: "quoted" text and 'single' quotes.
+    // Holds a value.
+    Signal tundra_record = 7;
+    option deprecated = true;
+  }
+  // The main record.
+  // The main record.
+  optional double beta = 1;
+  fixed64 river_forest = 2;
+  Signal depth = 3;
+  oneof tag {
+    bytes frame = 4;
+    sint64 forge_gamma = 5;
+  }
+}

@@ -1,0 +1,29 @@
+// © example
+include "lib/x/types1.fbs";
+attribute "x_meadow";
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Deprecated soon; see `next`.
+/// Plain line
+table Sparrow (x_meadow : 87) {
+    level:uint8=3;
+    /// The main record.
+    /// Unicode: été → λ
+    /// Multi-word doc with punctuation: a, b; c!
+    matrix : wren.level.tin.MarketEpoch =GammaPelican;
+    iron: [Argon];
+    tower: wren.level.tin.Xenon;
+    def : ulong = 26;
+    quasar_status : [uint32];
+    width : Argon;
+    mill_castle:[wren.level.tin.Xenon];
+}
+
+table HangarPhase {
+    anchor:int8 = 80;
+    hangar:uint32;
+    alpha_event: Argon;
+}
+
+root_type HangarPhase;
+file_identifier "B5ZV";

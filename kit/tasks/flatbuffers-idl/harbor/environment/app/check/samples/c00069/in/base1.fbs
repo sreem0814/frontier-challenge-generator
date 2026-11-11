@@ -1,0 +1,8 @@
+include "deps/inc2.fbs";
+
+namespace canyon;
+
+union ColorMeadow {
+    WrenGarden
+}
+

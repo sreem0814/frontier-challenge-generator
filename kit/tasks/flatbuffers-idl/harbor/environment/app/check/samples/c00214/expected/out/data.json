@@ -1,0 +1,14 @@
+{
+  condor: {
+    packet_pelican: [
+      726.0
+    ],
+    flavor_atoll: -128,
+    beta_matrix: "\uD83D\uDE00\u20ACZ\b\\/\u4E2D\u0001\n0\f ",
+    alpha_zeta: [
+      3279,
+      35609,
+      41516
+    ]
+  }
+}

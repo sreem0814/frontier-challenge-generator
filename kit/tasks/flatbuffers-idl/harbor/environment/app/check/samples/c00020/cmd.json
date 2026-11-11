@@ -1,0 +1,12 @@
+{
+ "bucket": "schema_bfbs",
+ "argv": [
+  "-b",
+  "--schema",
+  "--bfbs-comments",
+  "--bfbs-builtins",
+  "-o",
+  "out",
+  "vector_table_naked_ptr.fbs"
+ ]
+}

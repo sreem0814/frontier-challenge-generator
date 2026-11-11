@@ -1,0 +1,12 @@
+
+warning:
+  @/base/schema.fbs:27: 12: warning: field names should be lowercase snake_case, got: GardenTick
+
+
+warning:
+  @/new/schema.fbs:28: 19: warning: field names should be lowercase snake_case, got: GardenTick_renamed
+
+
+error:
+  schemas don't conform: offsets differ for field: GateAnchor.height
+

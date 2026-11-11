@@ -1,0 +1,26 @@
+// Generated test schema.
+
+namespace total;
+
+/// Multi-word doc with punctuation: a, b; c!
+table Nova {
+	/// <b>html</b> & entities
+	/// The main record.
+	iron:float32;
+	heron_beta:string;
+	forest : string;
+}
+namespace falcon.atoll;
+
+table MatrixBridge27 (original_order) {
+	tower:int64 (id: 1);
+	flavor:ulong =16697058519811110313 (id : 8);
+	metric: [ubyte] (flexbuffer,id:0);
+	entry_kind : string (id:7);
+	limit_tower:uint8 (id: 3);
+	name:uint16=null (id: 4);
+	end:[total.Nova] (id: 6);
+	kappa_raven:[ubyte] (id : 5);
+	width_tower: bool = 1 (id: 2);
+}
+

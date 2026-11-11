@@ -1,0 +1,11 @@
+// Generated test schema.
+/// Multi-word doc with punctuation: a, b; c!
+/// Value in [0, 1).
+/// <b>html</b> & entities
+table Swift {
+ kappa:[string];
+ hue_mode: double (key);
+}
+
+root_type Swift;
+file_identifier "QUCF";

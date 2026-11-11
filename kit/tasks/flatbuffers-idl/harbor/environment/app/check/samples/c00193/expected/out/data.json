@@ -1,0 +1,16 @@
+{
+  SilverForge: 7991655424759969485,
+  alpha: -90249.0,
+  kappa: 31,
+  depth: { anchor0: [ "count", 631426630848, 0.166020492733, 9.668267856401 ], tin2: { delta3: "reef", iron0: [ null, 3.449237900259, "metric", "\"\r\tx\u4E2D" ], orbit1: null, width2: [ true ] }, tundra1: [  ] },
+  sparrow_metric: [
+    73,
+    0,
+    193
+  ],
+  heron_forest: {
+    alpha: 602214075999999987023872.0,
+    stage5: 22,
+    depth: [ -3837, { count1: 565801660793, depot0: {  }, limit3: 502349080122, vector2: [ -2732 ] }, [ { depot0: 342703034466, market2: -279, shade1: null } ], {  } ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "tone": "delta",
+  atoll: [],
+  string: {
+    "nickel": 0x0,
+    "atoll": [{"quasar_heron": 0,"WidthSummit": 0,"note": 255,quasar_boron: {"gamma_phase": 65788.9,"canyon": [20019, 50578, 0, 0, 3568],frame_signal: [-1224540315, -68, -96, 2147483647, 88],"swift": 17626295511944678459,"bridge": [1764965473, -528600595, 43, 606580534, 1350792987],event_finch: [5308.07, 588, 6.02214076e23, 0.0],},kappa: nan,"prairie_depth": 0}, {"quasar_heron": 81,"WidthSummit": 10502206603832036888,note: 0,quasar_boron: {"gamma_phase": 36038.9,canyon: [62001, 3619, 28558, 0, 56361],"frame_signal": [-1422750535, 794262879, -647039826, -73, -162055514],swift: 9275351086832077273,"bridge": [-1169129294, 1905759490, 72, -76, 1029891997],"event_finch": [-978, nan, -54898.95, 97506.16593352]},"kappa": 38465.61,"prairie_depth": 0}, {"quasar_heron": 91,"WidthSummit": 18446744073709551615,note: 221,quasar_boron: {"gamma_phase": 84574.5262,"canyon": [0, 0, 53996, 0, 0],frame_signal: [0, -38, -66, 1834807056, -19],"swift": 18297227854757042861,bridge: [0, 1152787412, 60, 80, 1099431637],event_finch: [83315.826167301, 24929.529, 96803.761318, 182]},"kappa": -7968.8,"prairie_depth": 56523}],
+    "None": "Z",
+    "string": {
+      "tone": "x",
+      "None": "/中\t",
+      "string": {
+        "string": {
+          "tone": "name",
+          "atoll": [],
+          "string": {}
+        },
+        "atoll": [],
+        "None": "sparrow"
+      }
+    }
+  },
+  None: "\t\né/😀\u0001😀/😀中Z"
+}

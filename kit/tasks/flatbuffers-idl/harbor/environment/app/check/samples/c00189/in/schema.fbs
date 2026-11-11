@@ -1,0 +1,34 @@
+include "deps/inc1.fbs";
+attribute x_flavor;
+
+namespace tower.epoch.tone;
+
+table CarbonFalcon {
+ wren : string;
+ ref : string ="mode";
+ width_nebula : [float64];
+ record : uint16=27;
+ union: string;
+ state: [width.gamma.WidthHue];
+ /// Unit: milliseconds.
+ SignalOsprey: width.gamma.WidthHue;
+ tundra_depth:width.gamma.WidthHue;
+ tick_pulsar : string;
+ /// The main record.
+ nova_name : short =-21;
+}
+namespace width.gamma;
+
+struct Summit {
+ tin : int64;
+ forest_name : int8;
+}
+
+namespace ;
+
+struct KindOrbit {
+ packet:ulong (x_flavor);
+}
+
+root_type tower.epoch.tone.CarbonFalcon;
+file_identifier "465O";

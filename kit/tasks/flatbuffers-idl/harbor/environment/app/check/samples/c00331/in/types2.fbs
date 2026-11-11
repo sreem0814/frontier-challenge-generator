@@ -1,0 +1,12 @@
+include "deps/lib3.fbs";
+namespace delta.lambda.neon;
+
+table OrbitTag {
+    copper : [float];
+    tensor : float = -5972.39;
+    zeta:index.LambdaPelican;
+    neon_matrix:string;
+    bridge: short=3548;
+    val: index.LambdaPelican;
+}
+

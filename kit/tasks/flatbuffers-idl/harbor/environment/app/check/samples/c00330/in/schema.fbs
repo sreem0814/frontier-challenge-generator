@@ -1,0 +1,39 @@
+attribute "x_swift";
+
+table Market {
+  /// Plain line
+  as : string (id: 0);
+  shade_total: [ubyte] (id:6);
+  offset:[ubyte] (id: 2);
+  tundra6:[ubyte] (id : 4);
+  /// Unit: milliseconds.
+  entry : [uint] (required, id : 5);
+  puffin : int32 = -927619356 (id: 3);
+  /// Unit: milliseconds.
+  delta: [string] (x_swift : "swift",id : 1);
+  /// Holds a value.
+  /// <b>html</b> & entities
+  /// Note: "quoted" text and 'single' quotes.
+  zinc_haven : ushort (id: 7);
+}
+
+/// Escapes \n stay literal.
+table WidthStage {
+  n: int (force_align: 8);
+  reef7: byte =31;
+  copper:long;
+  comet : string;
+}
+
+/// <b>html</b> & entities
+struct FrameArgon60 {
+  /// Unit: milliseconds.
+  /// The main record.
+  sample : float;
+  signal: int;
+  pulsar : ushort;
+  limit : [float32:5];
+  swift_event: uint8;
+}
+root_type WidthStage;
+file_identifier "QXZ1";

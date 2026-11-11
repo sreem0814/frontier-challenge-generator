@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:25: 14: warning: field names should be lowercase snake_case, got: KappaLimit
+
+
+error:
+  @/data.json:4: 0: error: required field is missing: vector_delta in OrbitIndex
+

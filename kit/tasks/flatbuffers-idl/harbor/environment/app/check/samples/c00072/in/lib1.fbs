@@ -1,0 +1,19 @@
+attribute x_tower;
+
+namespace raven.lead.theta;
+
+table NebulaRaven (csharp_partial) {
+  falcon_header : [ubyte];
+}
+
+namespace ;
+
+table QuasarTin {
+  mill_label: double=-691;
+  note_atoll:string;
+}
+
+namespace raven.lead.theta;
+
+enum KappaCount : uint16 (x_tower) { Nickel = 1, SIGNAL = 11, ATOLL, Header }
+

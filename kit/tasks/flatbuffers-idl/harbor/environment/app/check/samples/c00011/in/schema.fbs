@@ -1,0 +1,33 @@
+attribute "x_color";
+
+namespace sigma;
+
+enum MeadowOmega : uint (bit_flags, x_color) {
+	Nova = +1,
+	Condor = 8,
+	Gate = 12,
+	Wren = 17,
+	Stage = 18,
+	Lead88 = 26
+}
+
+table ToneHangar {
+	lagoon_lead: short=null;
+	bridge_alpha:long;
+	entry:[ubyte];
+	sample:[double];
+	vector : [string];
+	gate:[MeadowOmega]=[];
+	state_frame : [ubyte];
+}
+namespace nickel.zeta;
+
+rpc_service ReefOffset94 {
+	TundraFinch(sigma.ToneHangar):sigma.ToneHangar;
+	ShadeGlacier(sigma.ToneHangar):sigma.ToneHangar (streaming : "client");
+	LabelRiver(sigma.ToneHangar):sigma.ToneHangar (streaming: "bidi");
+	ColorGarden(sigma.ToneHangar):sigma.ToneHangar (streaming : "client");
+}
+
+root_type sigma.ToneHangar;
+file_extension "mon";

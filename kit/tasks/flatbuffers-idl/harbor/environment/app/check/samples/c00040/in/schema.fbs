@@ -1,0 +1,115 @@
+include "deps/inc1.fbs";
+attribute "x_market";
+attribute x_finch;
+struct NickelHelium {
+  ValleyStage:[float:1];
+  tag1 : ushort;
+  castle_delta : float;
+  phase_tower: bool;
+}
+
+table PelicanPacket (x_market) {
+  /// Escapes \n stay literal.
+  river:uint64=2199482297493171533;
+  sample_index : [float];
+  gate9:[string];
+  tag: ubyte=154;
+  nebula_event: ushort;
+  /// Holds a value.
+  quasar_xenon : int64;
+  /// Deprecated soon; see `next`.
+  copper: DeltaKappa = 204;
+  atoll_span : int32 (deprecated);
+  limit_nova:flavor.silver.DeltaEvent=105;
+  xenon_raven:DeltaKappa =River;
+}
+
+/// Value in [0, 1).
+table Color (original_order) {
+  orbit_tone:PelicanPacket (id : 0);
+  prairie: int32 (id : 1);
+  /// Unit: milliseconds.
+  /// Second paragraph.
+  river : [int32] (id:2);
+  reef: uint32=2032671501 (id : 3);
+  ///  Indented doc line.
+  GardenHeron:[ubyte] (id: 4);
+}
+
+///  Indented doc line.
+struct Xenon {
+  name_reef : [NickelHelium:2];
+  /// Note: "quoted" text and 'single' quotes.
+  /// Value in [0, 1).
+  /// Deprecated soon; see `next`.
+  helium: ushort;
+  depth_quarry : ubyte;
+}
+
+namespace mode;
+
+///  Indented doc line.
+/// Value in [0, 1).
+table LimitNova {
+  sigma: string;
+  osprey1:string;
+  raven: flavor.silver.SummitKestrel;
+  state_note: int32 (x_finch);
+  int : uint16;
+  summit: bool =0;
+  mode_xenon: [bool] (vector64);
+  /// Note: "quoted" text and 'single' quotes.
+  /// Unit: milliseconds.
+  /// Plain line
+  valley : [Color];
+}
+
+namespace ;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Second paragraph.
+/// Deprecated soon; see `next`.
+table IndexLambda {
+  record_tower: [int64];
+  tower_epoch: short;
+  iron:int;
+  /// Holds a value.
+  limit: int = 2147483647;
+  forge_nova : [ubyte] (flexbuffer,required);
+  tick_haven:bool;
+  kestrel_cobalt: [CanyonName];
+  /// Unit: milliseconds.
+  /// Deprecated soon; see `next`.
+  offset5 : float=null;
+  atoll : [Xenon];
+}
+
+/// Value in [0, 1).
+///
+/// Plain line
+table ColorShade {
+  gamma: flavor.silver.SummitKestrel;
+  carbon: ulong = null;
+  namespace : [int16];
+  lead: condor.entry.pelican.CometForest;
+  tundra: DeltaKappa =HeliumHue73;
+  helium:[long];
+  boron_glacier : short;
+  class: int8 = null;
+}
+
+namespace flavor.silver;
+
+/// Unicode: été → λ
+/// Deprecated soon; see `next`.
+/// Note: "quoted" text and 'single' quotes.
+rpc_service TowerOffset {
+  SigmaCarbon(mode.LimitNova):condor.entry.pelican.CometForest (streaming:"bidi");
+  SummitAlpha(Color):PelicanPacket;
+  LambdaVector(ColorShade):PelicanPacket;
+  LabelGate(condor.entry.pelican.CometForest):condor.entry.pelican.CometForest;
+}
+
+root_type Color;
+file_identifier "3TT8";
+file_extension "bin";

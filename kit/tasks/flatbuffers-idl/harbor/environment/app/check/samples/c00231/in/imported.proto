@@ -1,0 +1,54 @@
+syntax = "proto2";
+
+package osprey;
+
+
+/// Second paragraph.
+message Tower {
+  enum GateBoron {
+    HERON = 0;
+    BRIDGE_RIVER = 1;
+    GATEBORON_ALPHA_FLAVOR = 2;
+    GATEBORON_ENTRY = 3 [deprecated = true];
+    MARKET_TONE = 13;
+    EPOCH = 14;
+  }
+}
+
+message Hangar {
+  required Tower theta = 1;
+  // 
+  // <b>html</b> & entities
+  optional sint64 status = 2;
+  optional bool kappa_nova = 3;
+  /* <b>html</b> & entities */
+  required int32 flavor = 4;
+  repeated sint64 mill = 5;
+  repeated Tower kappa = 6;
+  // Deprecated soon; see `next`.
+  required Tower index = 7 [deprecated = true];
+  oneof carbon {
+    bytes offset_forest = 8;
+    uint64 anchor = 9;
+    string alpha = 10;
+  }
+}
+
+message ValleyHue {
+  required sfixed64 atoll_total = 1;
+}
+
+message Width {
+  repeated uint64 stage = 1;
+  optional fixed64 total_atoll = 2;
+  optional Tower matrix = 3;
+  optional ValleyHue nickel_kind = 4;
+  repeated sint64 anchor_entry = 5;
+  optional ValleyHue carbon = 6;
+  map<uint64, Hangar> nova_silver_map = 7;
+}
+
+service OffsetSigma {
+  rpc IndexHaven (Tower) returns (Hangar);
+  rpc Atoll (Tower) returns (Width);
+}

@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package packet.prairie.note;
+
+import "imported.proto";
+
+enum Depot {
+  /* Multi-word doc with punctuation: a, b; c! */
+  DEPOT_TITLE = 0 [deprecated = true];
+  DEPOT_RAVEN = 1;
+  SWIFT_EVENT = 0;
+}
+
+message LevelSpan {
+  enum Canyon {
+    ARGON = 0;
+    CANYON_TENSOR = 1;
+    reserved 16;
+  }
+  //   Indented doc line.
+  LevelSpan.Canyon neon_orbit = 1;
+  optional fixed64 stage_carbon = 2;
+  //   Indented doc line.
+  LevelSpan.Canyon flavor_carbon = 3;
+  LevelSpan.Canyon sigma = 4;
+  repeated bytes header = 5;
+  double kind = 6 [default = 1.5];
+  // Holds a value.
+  // Note: "quoted" text and 'single' quotes.
+  optional Depot omega_anchor = 7;
+  // The main record.
+  optional sint32 hangar_tundra = 8;
+  oneof packet {
+    uint64 theta = 9;
+    fixed32 event_flavor = 10;
+    double castle_osprey = 11;
+  }
+  reserved 13, 15 to 17;
+}
+
+enum RavenLead {
+  PELICAN_TENSOR = 0;
+  RAVENLEAD_FALCON = 1;
+}
+
+message PulsarSparrow {
+  message Sample {
+    message Zeta {
+      Depot name_omega = 2 [deprecated = true];
+      // Unit: milliseconds.
+      optional LevelSpan depth_pelican = 3;
+      repeated LevelSpan raven_zeta = 4;
+      optional bytes anchor_tower = 5;
+      oneof vector {
+        float forge_index = 6;
+        sint32 tag = 7;
+        double silver = 8;
+      }
+    }
+    // Escapes \n stay literal.
+    LevelSpan limit = 1;
+    Depot nebula = 2;
+    oneof quasar {
+      sint64 gamma = 3;
+      sint64 level_garden = 4;
+    }
+  }
+  repeated LevelSpan alpha_kestrel = 1;
+  optional fixed32 index = 2;
+  repeated LevelSpan atoll = 3;
+  oneof beta {
+    sfixed64 event = 4;
+    bool summit = 5;
+    bool delta = 6;
+  }
+}
+
+// Unicode: été → λ
+// Unicode: été → λ
+message Pelican {
+  enum LabelSignal {
+    LABELSIGNAL_MARKET = 0 [deprecated = true];
+    SILVER = 2;
+    // 
+    // Unit: milliseconds.
+    TUNDRA = 3;
+    // Value in [0, 1).
+    // Plain line
+    XENON_DEPOT = 4;
+    /* Plain line */
+    LEAD = 5;
+  }
+  repeated float signal = 1;
+  repeated fixed64 wren_finch = 2;
+  Pelican.LabelSignal tensor_theta = 3;
+}

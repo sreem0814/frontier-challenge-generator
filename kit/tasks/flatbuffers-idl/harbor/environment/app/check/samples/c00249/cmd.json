@@ -1,0 +1,12 @@
+{
+ "bucket": "proto",
+ "argv": [
+  "--proto",
+  "--keep-proto-id",
+  "--proto-id-gap",
+  "error",
+  "-o",
+  "out",
+  "model.proto"
+ ]
+}

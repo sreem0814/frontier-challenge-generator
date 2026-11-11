@@ -1,0 +1,13 @@
+attribute x_depth;
+
+namespace gate.flavor.castle;
+
+table Theta (csharp_partial) {
+ flavor_metric:string;
+ zeta_neon : float =9440.37 (x_depth: "lead");
+ mode_stage: uint16 = 32589;
+}
+
+root_type Theta;
+native_include 3;
+file_identifier "IRTQ";

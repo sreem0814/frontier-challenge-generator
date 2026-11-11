@@ -1,0 +1,27 @@
+// © example
+attribute "x_title";
+
+namespace note.tower.label;
+
+/// Unit: milliseconds.
+///
+table GlacierNeon {
+ label : string;
+ tensor:bool;
+ header:[ubyte] (flexbuffer);
+ record : uint;
+ sparrow_zeta:[ubyte] (flexbuffer,x_title: "comet");
+ tone: [ubyte] (flexbuffer, required);
+ delta_metric:string (deprecated);
+ mode:[ubyte] (deprecated);
+ market: string ="name";
+ castle:string;
+}
+
+namespace ;
+
+table MeadowHue {
+ /// Holds a value.
+ cobalt_quasar:[uint8];
+}
+

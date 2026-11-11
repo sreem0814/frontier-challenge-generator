@@ -1,0 +1,12 @@
+attribute "x_note";
+
+namespace glacier;
+
+struct TinLead (force_align:16) {
+    gamma_puffin: [int:5];
+    /// Holds a value.
+    kestrel_helium : [int:2] (x_note:72);
+    heron : int;
+    match: [float64:1];
+    nebula_lagoon: uint;
+}

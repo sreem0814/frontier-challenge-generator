@@ -1,0 +1,23 @@
+// © example
+
+namespace beta.meadow.carbon;
+
+table OrbitForge (csharp_partial) {
+	carbon : string;
+	gamma_swift:int8;
+	condor_omega : [ubyte];
+	header: string;
+	/// Value in [0, 1).
+	/// Second paragraph.
+	boron:[float32];
+	/// Escapes \n stay literal.
+	/// Note: "quoted" text and 'single' quotes.
+	/// Second paragraph.
+	alpha_event:float64;
+	lead:[ubyte] (flexbuffer, required);
+	delta : [uint];
+	/// Note: "quoted" text and 'single' quotes.
+	/// <b>html</b> & entities
+	/// Escapes \n stay literal.
+	summit_summit: bool = true;
+}

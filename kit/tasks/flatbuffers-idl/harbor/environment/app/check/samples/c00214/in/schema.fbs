@@ -1,0 +1,41 @@
+// © example
+attribute "x_glacier";
+
+table ReefCastle {
+	packet_pelican : [double] (required);
+	/// Value in [0, 1).
+	flavor_atoll:byte;
+	sample : int64;
+	beta_matrix : string (required);
+	///  Indented doc line.
+	alpha_zeta:[uint16];
+	iron: [int64];
+}
+
+enum IronQuasar : byte (x_glacier) {
+	STATUS = 100
+}
+
+namespace width;
+
+table EventPuffin (csharp_partial) {
+	lead_bridge : [uint16];
+	/// Holds a value.
+	pulsar: ReefCastle;
+	carbon : ulong;
+	kind:[ubyte] (nested_flatbuffer : "ReefCastle");
+	/// Value in [0, 1).
+	tower_event:ubyte;
+	frame:[uint16];
+	xenon:[uint32] =[] (deprecated);
+	sparrow_summit: ReefCastle;
+}
+
+table SigmaCount {
+	condor:ReefCastle;
+	quasar:IronQuasar=STATUS;
+	level_canyon : bool;
+}
+
+root_type width.SigmaCount;
+file_identifier "YD8J";

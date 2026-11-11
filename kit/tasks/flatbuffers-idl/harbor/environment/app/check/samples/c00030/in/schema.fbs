@@ -1,0 +1,26 @@
+// © example
+attribute x_omega;
+attribute x_limit;
+
+table HeaderForest {
+ frame_copper: [ubyte] (flexbuffer);
+ forest:short;
+}
+struct ToneSigma {
+ market_boron: float;
+ entry_limit: [long:2];
+ nova:[ushort:2] (x_omega : "zinc");
+ pulsar_argon: float32;
+}
+
+namespace gamma.tag;
+
+enum GammaMeadow : uint64 {
+ Comet = 1,
+ HeliumStage,
+ DeltaStage,
+ REEF (x_limit),
+ SIGNAL
+}
+
+root_type HeaderForest;

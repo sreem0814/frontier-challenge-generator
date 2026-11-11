@@ -1,0 +1,57 @@
+// © example
+namespace sparrow.nickel.title;
+
+table Phase {
+  /// Note: "quoted" text and 'single' quotes.
+  GateHaven: [uint16];
+  forest_iron: string;
+  tundra_beta : string;
+  /// Deprecated soon; see `next`.
+  wren: [ubyte];
+  StateEvent: string (required);
+  prairie_sigma: float;
+  packet : [string];
+  heron:[ubyte] (flexbuffer);
+  /// Unit: milliseconds.
+  kappa_castle:Note;
+}
+
+table BridgeSparrow {
+  heron:string (id : 0);
+  atoll : int8 (id: 1);
+  width_river: [BridgeSparrow] (id:2);
+}
+
+namespace ;
+
+struct Castle {
+  status: [long:1];
+}
+/// Holds a value.
+table Note (csharp_partial) {
+  finch: double (id: 0);
+  condor_cobalt : string (id:1);
+  /// Second paragraph.
+  /// Deprecated soon; see `next`.
+  atoll: int64 (id: 2);
+  /// Unit: milliseconds.
+  ///
+  metric_total:uint64 (id : 3);
+  name_flavor: [sparrow.nickel.title.Phase] (id : 4);
+  count_event : string (key, id : 5);
+  delta_depot: int64 (id : 6);
+  /// Unicode: été → λ
+  /// Unit: milliseconds.
+  color:int16 = 12034 (deprecated, id : 7);
+  river_title : Note (id:8);
+}
+enum TensorName : uint32 (bit_flags) {
+  Nebula = 3,
+  Tick = 6,
+  Helium = +15,
+  Record = 19,
+  Lead = 22
+}
+
+root_type sparrow.nickel.title.BridgeSparrow;
+file_extension "x";

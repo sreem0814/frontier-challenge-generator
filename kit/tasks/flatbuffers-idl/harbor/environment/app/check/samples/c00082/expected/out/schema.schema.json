@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "definitions": {
+    "tag_nickel_Nova" : {
+      "type" : "string",
+      "enum": ["Event", "FLAVOR", "CastleDepth"]
+    },
+    "RavenPrairie" : {
+      "type" : "string",
+      "enum": ["Kind", "LambdaHue", "Iron", "SHADE"]
+    },
+    "matrix_garden_StatusTin" : {
+      "type" : "string",
+      "enum": ["NONE", "PhasePuffin"]
+    },
+    "Forge" : {
+      "type" : "object",
+      "properties" : {
+        "omega_lead" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -2147483648, "maximum" : 2147483647},
+                "minItems": 1,
+                "maxItems": 1
+              },
+        "lagoon_gamma" : {
+                "type" : "integer", "minimum" : -128, "maximum" : 127,
+                "description" : "Unicode: été → λ"
+              }
+      },
+      "additionalProperties" : false
+    },
+    "TinTag22" : {
+      "type" : "object",
+      "properties" : {
+        "width_alpha" : {
+                "type" : "integer", "minimum" : -32768, "maximum" : 32767
+              },
+        "gamma_glacier" : {
+                "type" : "integer", "minimum" : -2147483648, "maximum" : 2147483647
+              },
+        "shade_glacier" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/Forge"}
+              },
+        "copper_market" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" : 18446744073709551615}
+              },
+        "prairie" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -128, "maximum" : 127}
+              },
+        "meadow" : {
+                "type" : "integer", "minimum" : 0, "maximum" :255
+              },
+        "OspreyHangar" : {
+                "type" : "integer", "minimum" : -9223372036854775808, "maximum" : 9223372036854775807,
+                "deprecated" : true,
+                "description" : "Value in [0, 1)."
+              }
+      },
+      "additionalProperties" : false
+    },
+    "PhasePuffin" : {
+      "type" : "object",
+      "properties" : {
+        "GateOsprey" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 18446744073709551615
+              },
+        "shade_river" : {
+                "type" : "integer", "minimum" : -128, "maximum" : 127,
+                "description" : "Escapes \\n stay literal.\nDeprecated soon; see `next`."
+              },
+        "label_pelican" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/Forge"},
+                "description" : "Unicode: été → λ"
+              },
+        "TickLead" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" : 65535}
+              },
+        "atoll" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -9223372036854775808, "maximum" : 9223372036854775807}
+              },
+        "kestrel_gate" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : -32768, "maximum" : 32767}
+              },
+        "nebula_tin" : {
+                "$ref" : "#/definitions/lead_Condor"
+              }
+      },
+      "additionalProperties" : false
+    },
+    "lead_Argon" : {
+      "type" : "object",
+      "properties" : {
+        "nebula_frame" : {
+                "$ref" : "#/definitions/Forge"
+              },
+        "comet_meadow" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" : 18446744073709551615},
+                "minItems": 5,
+                "maxItems": 5,
+                "description" : "Escapes \\n stay literal."
+              },
+        "note_tensor" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295,
+                "description" : "The main record."
+              }
+      },
+      "additionalProperties" : false
+    },
+    "matrix_garden_Lead" : {
+      "type" : "object",
+      "properties" : {
+        "ShadeSparrow" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 18446744073709551615
+              },
+        "sparrow" : {
+                "$ref" : "#/definitions/tag_nickel_Nova"
+              },
+        "XenonCanyon" : {
+                "type" : "integer", "minimum" : -128, "maximum" : 127
+              },
+        "gate" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 65535
+              },
+        "shade" : {
+                "type" : "array", "items" : {"type" : "integer", "minimum" : 0, "maximum" :255}
+              },
+        "ZetaForest" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 65535
+              },
+        "lambda_iron" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/TinTag22"}
+              },
+        "silver_haven" : {
+                "type" : "string"
+              },
+        "kestrel_nebula" : {
+                "$ref" : "#/definitions/tag_nickel_Nova",
+                "description" : "Indented doc line."
+              },
+        "glacier" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/TinTag22"}
+              }
+      },
+      "additionalProperties" : false
+    },
+    "lead_ShadeMetric" : {
+      "type" : "object",
+      "properties" : {
+        "signal" : {
+                "type" : "number"
+              }
+      },
+      "additionalProperties" : false
+    },
+    "TensorState" : {
+      "type" : "object",
+      "properties" : {
+        "xenon" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295,
+                "description" : "Plain line"
+              },
+        "namespace" : {
+                "type" : "string"
+              },
+        "mode_frame" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/TensorState"}
+              }
+      },
+      "additionalProperties" : false
+    },
+    "lead_Condor" : {
+      "type" : "object",
+      "properties" : {
+        "falcon_helium" : {
+                "type" : "integer", "minimum" : 0, "maximum" : 4294967295
+              },
+        "sparrow_theta" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/TinTag22"}
+              },
+        "omega_boron" : {
+                "$ref" : "#/definitions/lead_Argon"
+              },
+        "entry2" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/lead_Argon"}
+              },
+        "pulsar" : {
+                "type" : "number"
+              },
+        "gate" : {
+                "type" : "array", "items" : {"$ref" : "#/definitions/TensorState"}
+              }
+      },
+      "additionalProperties" : false
+    }
+  },
+  "$ref" : "#/definitions/lead_ShadeMetric"
+}

@@ -1,0 +1,46 @@
+// Generated test schema.
+attribute x_haven;
+attribute "x_quasar";
+
+namespace omega.kind;
+
+table DeltaPrairie {
+  state_width:string;
+  tone_reef : bool;
+  hue : [float];
+  offset:[ubyte] (flexbuffer);
+}
+
+/// <b>html</b> & entities
+/// Note: "quoted" text and 'single' quotes.
+/// The main record.
+table HeliumPacket {
+  quasar:DeltaPrairie;
+  pulsar_span : DeltaPrairie;
+  SparrowTower : string;
+  total_sample: float =-2885.46;
+  neon:ushort;
+  epoch: ulong;
+  ///
+  /// The main record.
+  /// Value in [0, 1).
+  boron_theta:DeltaPrairie;
+  phase : [DeltaPrairie];
+}
+
+namespace kestrel.forest;
+
+table RecordWidth (x_haven) {
+  let : ushort=0x0;
+}
+namespace ;
+
+table ZetaTin (original_order) {
+  /// Deprecated soon; see `next`.
+  /// Second paragraph.
+  kind : kestrel.forest.RecordWidth;
+  cobalt5: [omega.kind.DeltaPrairie] (x_quasar);
+  /// Value in [0, 1).
+  total : [uint32];
+}
+

@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:16: 13: warning: field names should be lowercase snake_case, got: CopperPuffin
+
+
+error:
+  @/data.json:3: 10: error: Cannot assign token starting with '[' to value of <ushort> type.
+

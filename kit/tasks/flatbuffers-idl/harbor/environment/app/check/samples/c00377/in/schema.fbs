@@ -1,0 +1,28 @@
+attribute x_stage;
+
+namespace index.sample;
+
+/// Plain line
+/// Second paragraph.
+table MarketLambda (original_order) {
+ gate_kappa : [string];
+ pulsar:[ubyte] (flexbuffer);
+ hangar_total: [uint16];
+ tin: bool=true;
+ beta_theta: string (x_stage);
+}
+
+struct ArgonWidth {
+ reef_meadow:uint16;
+ /// Deprecated soon; see `next`.
+ bridge:[int32:5];
+ pulsar: int8;
+ tower_name : [uint64:4];
+ struct : int;
+ level: int16;
+}
+
+root_type MarketLambda;
+file_identifier "N73X";
+
+rpc_service S { A(index.sample.MarketLambda):index.sample.MarketLambda (streaming: "maybe"); }

@@ -1,0 +1,17 @@
+include "base3.fbs";
+attribute x_gate;
+
+namespace vector;
+
+table XenonState {
+    gate_helium : uint64;
+    haven:string (required);
+    ///
+    mill: [ubyte] (flexbuffer);
+    depth: float64;
+    /// Unicode: été → λ
+    ThetaVector: [ubyte];
+    nickel_depth: hue.nova.StateSpan = GAMMA;
+    hangar: float64 = 6715.2945553 (x_gate : 57);
+}
+

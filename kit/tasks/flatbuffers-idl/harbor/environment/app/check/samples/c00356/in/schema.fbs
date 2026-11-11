@@ -1,0 +1,35 @@
+namespace pelican.anchor;
+
+table Summit {
+	comet : [ubyte];
+	xenon : [pelican.anchor.Summit];
+}
+
+namespace ;
+
+table FramePacket {
+	tower_kappa: uint8;
+	forest_hue:pelican.anchor.Summit;
+	frame_epoch:string;
+	tick_depot : [pelican.anchor.Summit];
+	let:pelican.anchor.Summit (required);
+	swift_quarry: FramePacket;
+}
+
+/// Holds a value.
+/// Multi-word doc with punctuation: a, b; c!
+enum Status : uint16 (bit_flags) {
+	OmegaLagoon = 1,
+	Lagoon = 3,
+	Kestrel = 0x5,
+	Valley = 0x6,
+	///
+	Argon = 8,
+	Index = 10,
+	/// The main record.
+	/// Value in [0, 1).
+	Neon = 14,
+	Mill
+}
+root_type FramePacket;
+file_identifier "JNFL";

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package count;
+
+option java_package = "com.example.label";
+
+message Gate {
+  /// Deprecated soon; see `next`.
+  repeated string nickel_total = 1;
+  fixed32 neon_mode = 2;
+  // Deprecated soon; see `next`.
+  // Unit: milliseconds.
+  repeated bytes record_span = 3;
+  oneof castle_tone {
+    float packet_osprey = 4;
+  }
+}
+
+service Kappa {
+  rpc PhaseMeadow (Gate) returns (Gate);
+}

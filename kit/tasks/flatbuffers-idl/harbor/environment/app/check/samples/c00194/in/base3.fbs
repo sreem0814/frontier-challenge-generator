@@ -1,0 +1,21 @@
+/* block
+   comment */
+
+namespace hangar.stage.castle;
+
+/// Plain line
+///  Indented doc line.
+/// Second paragraph.
+enum OrbitForest : ubyte (bit_flags) {
+	MarketSummit,
+	Puffin,
+	Nebula = 2,
+	Raven,
+	Phase,
+	Signal = 5,
+	Wren = 6,
+	/// The main record.
+	/// Escapes \n stay literal.
+	Kappa = 7
+}
+

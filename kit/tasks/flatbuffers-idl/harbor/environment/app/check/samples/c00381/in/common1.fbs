@@ -1,0 +1,12 @@
+include "types2.fbs";
+attribute x_height;
+attribute x_silver;
+
+namespace vector.market.event;
+
+enum Frame : ushort (x_height : "silver") { GLACIER = 200, MODE, Tone, HavenTensor, FORGE, SAMPLE }
+
+struct CobaltFinch (x_silver : 23) {
+	finch_haven: byte;
+	silver_market:float;
+}

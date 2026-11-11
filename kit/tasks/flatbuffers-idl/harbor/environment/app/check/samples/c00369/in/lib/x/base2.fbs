@@ -1,0 +1,8 @@
+namespace span.sparrow.condor;
+
+table HavenSummit {
+    zeta: [ushort];
+    nickel2: [int8];
+    sparrow: [HavenSummit];
+}
+

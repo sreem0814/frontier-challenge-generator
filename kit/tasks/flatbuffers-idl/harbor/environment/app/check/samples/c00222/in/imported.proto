@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+
+message Note {
+  enum DepotSigma {
+    DEPOTSIGMA_ORBIT = 0;
+    DEPOTSIGMA_NOVA_MATRIX = 2;
+    HUE = 3;
+    DEPOTSIGMA_SPARROW = 4;
+  }
+  Note.DepotSigma swift = 1 [deprecated = true];
+  repeated Note.DepotSigma status = 2;
+  optional int64 frame = 3;
+  repeated Note.DepotSigma pulsar_tag = 4;
+  oneof hangar {
+    uint64 valley_argon = 5;
+    bytes note_kestrel = 6;
+    sfixed32 heron = 7;
+  }
+}
+
+enum Hangar {
+  HANGAR_THETA = 0;
+  HANGAR_INDEX_ZINC = 10;
+}
+
+// 
+//   Indented doc line.
+message Quarry {
+  repeated Hangar tag_limit = 1 [deprecated = true];
+  Hangar stage_mill = 2;
+  bool reef_flavor = 3 [default = true];
+  oneof forest {
+    uint64 falcon_tin = 4;
+    double hangar = 5;
+  }
+}
+
+/* Deprecated soon; see `next`. */
+enum Delta {
+  DELTA_FORGE_INDEX = 0;
+  DELTA_NEBULA = 1;
+  DELTA_FRAME_RIVER = 3;
+  // Unicode: été → λ
+  // 
+  DELTA_VECTOR_GATE = 4;
+}
+
+service QuarryLambda {
+  rpc Tensor (Quarry) returns (Note);
+  rpc Shade (Quarry) returns (Note);
+  rpc LagoonGlacier (Quarry) returns (Note);
+}

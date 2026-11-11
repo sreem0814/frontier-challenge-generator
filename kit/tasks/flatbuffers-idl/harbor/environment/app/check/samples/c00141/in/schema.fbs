@@ -1,0 +1,50 @@
+attribute "x_nebula";
+attribute "x_packet";
+
+namespace record.pelican;
+
+table Matrix (x_nebula) {
+    /// Plain line
+    /// Unit: milliseconds.
+    /// Multi-word doc with punctuation: a, b; c!
+    condor_comet: [ubyte] (id : 0);
+    sample_height : int = -1123341117 (id:1);
+    sigma_osprey : [ubyte] (x_nebula, id: 2);
+    /// Unicode: été → λ
+    garden : [string] (id:3);
+    color:[byte] (id: 4);
+    /// Second paragraph.
+    river_carbon:[string] (id: 6);
+    count_header:[ubyte] (id: 6);
+}
+
+namespace ;
+
+table BoronOmega {
+    garden: [record.pelican.Matrix];
+    forge : record.pelican.Matrix;
+    await: [record.pelican.Matrix];
+    /// Escapes \n stay literal.
+    frame: [float64];
+    record_copper: string;
+    river_lambda:[record.pelican.Matrix];
+    namespace:string;
+    name:ubyte;
+    kestrel : int32;
+    silver:int;
+}
+
+namespace record.pelican;
+
+table BridgeHelium {
+    CountNeon : [string];
+    depth_gamma:uint16;
+    stage_epoch:BoronOmega (required);
+    cobalt_osprey : [string] (x_packet: 41);
+    nebula_limit : bool = false (deprecated);
+    omega_raven: string;
+}
+
+root_type Matrix;
+file_identifier "HE5B";
+file_extension "mon";

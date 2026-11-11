@@ -1,0 +1,68 @@
+// Generated test schema.
+attribute "x_theta";
+namespace matrix.garden;
+
+struct TickHelium {
+	comet:bool;
+	silver_tundra: uint64;
+	haven:uint8;
+}
+
+namespace kind;
+
+///  Indented doc line.
+table GlacierVector {
+	depth_bridge: [ubyte];
+	count : int32 =null;
+	sparrow_comet: [ubyte];
+	boron_state:[ubyte];
+	BetaHue : byte =0x46;
+}
+namespace comet;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Second paragraph.
+///
+table DeltaEpoch (csharp_partial) {
+	/// Note: "quoted" text and 'single' quotes.
+	///
+	entry_event:short;
+	reef:uint16;
+	tensor_cobalt: [matrix.garden.TickHelium]=[];
+	quasar_raven:[uint16] (deprecated);
+	alpha_width : string;
+	///
+	valley_event:float64;
+	title : matrix.garden.TickHelium (required);
+	title_gamma:kind.GlacierVector;
+	helium_metric: float = null (x_theta : 46);
+	TundraForest : uint=+4294967295;
+	kappa:[kind.GlacierVector];
+}
+
+namespace ;
+
+table Gamma {
+	color: string;
+	mode_argon : matrix.garden.TickHelium;
+	sigma_span : bool (deprecated,key);
+	tin : matrix.garden.TickHelium;
+	prairie:string;
+	metric : kind.GlacierVector;
+	shade:[byte] (required);
+	comet:int32;
+	puffin_index : [int16] = [];
+	signal_glacier: [comet.DeltaEpoch]=[];
+}
+namespace kind;
+
+///
+enum GardenLagoon : short { DEPOT = -1, QUASAR = 0x63, MARKET, Hangar, ThetaVector, PACKET, AtollZinc, KESTREL }
+
+namespace comet;
+
+table Meadow {
+	TowerColor:matrix.garden.TickHelium (id: 1);
+	delta_width: uint64 =null (id : 0);
+}
+

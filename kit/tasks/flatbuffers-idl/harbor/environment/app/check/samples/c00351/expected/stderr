@@ -1,0 +1,4 @@
+
+error:
+  @/types1.fbs:4: 30: error: Default values for strings and vectors are not supported in one of the specified programming languages
+

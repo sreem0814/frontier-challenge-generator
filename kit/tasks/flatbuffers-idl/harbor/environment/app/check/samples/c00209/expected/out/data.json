@@ -1,0 +1,14 @@
+{
+  lambda_tundra: {
+    cobalt: -98,
+    omega: [
+      -53,
+      2454,
+      17318,
+      -9320
+    ]
+  },
+  EventBridge: 36,
+  frame_header: "a\nZ😀\r€",
+  puffin: -18704
+}

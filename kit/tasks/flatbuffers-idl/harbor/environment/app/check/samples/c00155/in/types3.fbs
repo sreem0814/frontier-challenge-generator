@@ -1,0 +1,7 @@
+// Generated test schema.
+enum LabelCobalt : ushort {
+    Limit = 1,
+    /// The main record.
+    Epoch
+}
+

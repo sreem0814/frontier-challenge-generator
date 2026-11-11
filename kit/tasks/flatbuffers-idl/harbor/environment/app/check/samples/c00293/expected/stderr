@@ -1,0 +1,8 @@
+
+warning:
+  @/base/schema.fbs:21: 14: warning: field names should be lowercase snake_case, got: CarbonKestrel
+
+
+warning:
+  @/new/schema.fbs:22: 14: warning: field names should be lowercase snake_case, got: CarbonKestrel
+

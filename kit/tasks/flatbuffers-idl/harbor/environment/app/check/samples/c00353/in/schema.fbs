@@ -1,0 +1,57 @@
+/* block
+   comment */
+native_include "extra.h";
+attribute "x_sparrow";
+attribute "x_note";
+struct Pulsar47 {
+  /// Note: "quoted" text and 'single' quotes.
+  name : int64;
+  kappa_event : [int32:4] (x_sparrow);
+  pulsar : [float:4];
+  /// Unit: milliseconds.
+  copper_copper : [int:4];
+  lambda_note: int8;
+}
+table Silver {
+  iron : Pulsar47;
+  ColorGamma:[ubyte] (flexbuffer);
+  StateStatus : byte = null;
+  table: string (key);
+  finch_alpha:[Pulsar47];
+  matrix_sparrow: [short];
+  delta : Pulsar47;
+  nil:string;
+  LabelComet:Pulsar47;
+  sparrow : Silver;
+}
+
+///  Indented doc line.
+table CondorEvent10 {
+  tag_condor: string (id: 2);
+  package: [Silver] (id: 6);
+  forest : string (key,id: 9);
+  zeta : [float64] (id:7);
+  raven_orbit:Silver (id: 8);
+  boron: string (x_note,id:4);
+  true:[Silver] (id: 0);
+  width_helium : [ubyte] (id : 5);
+  nova : string (id : 3);
+  tag : Silver (deprecated, id: 1);
+}
+namespace state.iron;
+
+enum NovaWren47 : uint8 {
+  GateMatrix = 0x1,
+  Kind,
+  TONE,
+  Signal
+}
+
+namespace atoll.mill;
+
+table PrairieGate {
+  river_tone:uint64;
+}
+
+root_type Silver;
+file_extension "bin";

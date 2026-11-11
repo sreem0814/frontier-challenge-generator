@@ -1,0 +1,13 @@
+namespace heron.sample.phase;
+
+table PulsarHeader {
+  forge_pulsar:float64;
+  title_tick: uint64 =null;
+  int : float32 =1941.33;
+  nova_nova : [ubyte];
+  nova: [string];
+  CopperRaven:uint16;
+  cobalt:[uint32];
+  anchor5 : [ubyte];
+}
+

@@ -1,0 +1,17 @@
+include "sub/inc2.fbs";
+
+namespace iron.delta.castle;
+
+table Packet {
+  cobalt : [float64];
+  atoll:int;
+  /// Holds a value.
+  phase_nebula: [ubyte];
+  index1: Packet;
+}
+
+namespace span.zeta;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Note: "quoted" text and 'single' quotes.
+enum DeltaSwift : byte { Height = 0x0 }

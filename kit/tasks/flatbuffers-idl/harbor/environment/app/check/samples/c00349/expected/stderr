@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:20: 32: error: type referenced but not defined (check namespace): int, originally at: schema.fbs:20
+

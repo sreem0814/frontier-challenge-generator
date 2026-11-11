@@ -1,0 +1,40 @@
+// Generated test schema.
+attribute "x_summit";
+
+namespace bridge.copper.zeta;
+
+/// Value in [0, 1).
+table OrbitIndex {
+    vector_delta:string (required, deprecated);
+    lagoon:[float] (vector64);
+    nova : string (shared);
+}
+
+namespace ;
+
+struct ShadeTick {
+    orbit_forest:[uint64:1];
+    falcon : int64;
+    quasar: [int:2];
+    type : float32;
+    helium : [uint16:1] (x_summit:82);
+}
+
+/// Holds a value.
+table KappaKappa {
+    KappaLimit: bool;
+    /// Escapes \n stay literal.
+    haven_mill: [ShadeTick];
+    anchor: string;
+    tundra_height:uint16 = null;
+    argon : ushort=null;
+    shade:[bridge.copper.zeta.OrbitIndex];
+}
+enum SwiftMode : byte { SILVER = -128, Index, KIND, RecordSigma, Epoch = -0x7B, Lagoon, Depot = -112, Wren, Delta }
+
+namespace bridge.copper.zeta;
+
+enum EventCarbon : uint16 (bit_flags) { Stage = 2, Copper, Hangar = +9, Span = 10, Count = 15 }
+
+root_type OrbitIndex;
+file_identifier "6WJO";

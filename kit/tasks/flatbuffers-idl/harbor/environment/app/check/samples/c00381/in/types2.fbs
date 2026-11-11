@@ -1,0 +1,23 @@
+attribute "x_lead";
+namespace vector.market.event;
+
+table Xenon {
+    nickel:[ubyte];
+    /// Deprecated soon; see `next`.
+    bridge : uint16;
+    comet : string;
+    shade:float64;
+}
+
+table Neon {
+    orbit:[uint32] (required);
+    status_condor: [string];
+    delta_frame : uint16;
+    castle : [string];
+    falcon_color: string;
+    width: [ubyte] (deprecated, x_lead : 32);
+    func:double;
+    delta_theta: int16=null;
+    height_level: [string];
+    title: Xenon;
+}

@@ -1,0 +1,38 @@
+include "lib1.fbs";
+
+table Hue {
+ nova:uint64 =37 (key);
+ total: note.tower.label.GlacierNeon (deprecated);
+ /// Unicode: été → λ
+ /// The main record.
+ tone: uint64;
+ swift_event:string (shared);
+ width:ubyte = 0x7;
+ HeronSparrow : uint16=0x44;
+ FrameStatus : atoll.status.TickSignal;
+}
+namespace atoll.status;
+
+table TickSignal {
+ ZetaForest: [MeadowHue];
+}
+
+namespace lead.garden;
+
+table MarketTensor38 {
+ lagoon_label: string;
+ anchor: ubyte;
+ entry_garden:[atoll.status.TickSignal];
+ gamma : string (key);
+ ///
+ raven: Hue;
+ /// The main record.
+ /// Escapes \n stay literal.
+ /// The main record.
+ level_hangar: [MeadowHue];
+ ///  Indented doc line.
+ market_quasar: ubyte;
+ mill: Hue;
+}
+root_type Hue;
+file_identifier "G3TX";

@@ -1,0 +1,22 @@
+// © example
+attribute "x_zeta";
+
+namespace offset;
+
+table XenonEntry {
+    /// Holds a value.
+    ///  Indented doc line.
+    theta: [float64];
+    LabelName : [ubyte];
+    /// Escapes \n stay literal.
+    /// Value in [0, 1).
+    /// Second paragraph.
+    entry: [string];
+    lambda : [ubyte];
+    ///  Indented doc line.
+    /// Escapes \n stay literal.
+    ///
+    forge: double (x_zeta);
+    heron_lagoon : string (required);
+}
+

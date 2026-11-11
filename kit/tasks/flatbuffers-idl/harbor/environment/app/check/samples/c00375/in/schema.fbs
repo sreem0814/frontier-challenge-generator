@@ -1,0 +1,11 @@
+/* block
+   comment */
+table Osprey {
+ kappa_tundra: string;
+ title:[ubyte] (flexbuffer);
+ enum:int64=-2387745397681067089;
+ canyon_sigma: [short] (vector64);
+ FalconH{ue: uint8 = 0;
+ offset_delta: float64=null;
+}
+root_type Osprey;

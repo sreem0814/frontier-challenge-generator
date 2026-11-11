@@ -1,0 +1,4 @@
+
+error:
+  @/common2.fbs:12: 28: error: Optional scalars are not yet supported in at least one of the specified programming languages.
+

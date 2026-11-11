@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:8: 17: error: expecting: ; instead got: signal_cobalt
+

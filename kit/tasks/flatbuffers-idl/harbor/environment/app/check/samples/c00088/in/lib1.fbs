@@ -1,0 +1,17 @@
+table KestrelDelta {
+ total:float=-9772.89;
+ offset: [uint16] (required);
+ nebula_pelican : [short];
+ total_nova: [float64];
+ summit: uint8 = null;
+ /// Plain line
+ /// Second paragraph.
+ /// Plain line
+ tundra_mode: [int32] = [] (required);
+ lead:uint64;
+ depth:[float32];
+ depot:string="sample";
+ /// Value in [0, 1).
+ canyon_silver : ubyte;
+}
+

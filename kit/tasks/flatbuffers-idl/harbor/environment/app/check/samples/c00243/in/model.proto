@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "imported.proto";
+
+// The main record.
+// Unit: milliseconds.
+message StateSilver {
+  required double quarry = 1 [default = 1.5];
+  optional fixed32 swift = 2;
+  oneof carbon {
+    uint64 summit = 3;
+    int64 nebula_mill = 4;
+  }
+}

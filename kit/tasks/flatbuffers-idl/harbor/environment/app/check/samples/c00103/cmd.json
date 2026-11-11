@@ -1,0 +1,20 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--python",
+  "--cpp",
+  "--gen-object-api",
+  "--gen-mutable",
+  "--no-prefix",
+  "--gen-generated",
+  "--no-includes",
+  "--cpp-std=c++0x",
+  "--no-emit-min-max-enum-values",
+  "--cpp-field-case-style",
+  "unchanged",
+  "--gen-absl-hash",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

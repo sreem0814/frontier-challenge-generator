@@ -1,0 +1,25 @@
+attribute "x_glacier";
+attribute "x_color";
+
+/// Multi-word doc with punctuation: a, b; c!
+/// The main record.
+/// <b>html</b> & entities
+struct Vector (x_glacier) {
+  anchor: [int:3] (x_color);
+}
+
+table StatusNickel {
+  quasar_boron : [Vector];
+  swift_forge:float=null;
+  /// Unicode: été → λ
+  ///
+  name:bool;
+  /// Multi-word doc with punctuation: a, b; c!
+  kappa:string;
+  quarry: [ubyte];
+  /// Value in [0, 1).
+  state_label : [StatusNickel];
+}
+
+root_type StatusNickel;
+file_extension "dat";

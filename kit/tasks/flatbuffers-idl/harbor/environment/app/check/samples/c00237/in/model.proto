@@ -1,0 +1,20 @@
+// test proto
+syntax = "proto3";
+
+package metric.omega.epoch;
+
+
+// Plain line
+//   Indented doc line.
+message KappaSignal {
+  optional bool atoll_tundra = 1 [default = true];
+  // <b>html</b> & entities
+  // Second paragraph.
+  optional sint64 glacier_offset = 2;
+  // Value in [0, 1).
+  // Escapes \n stay literal.
+  repeated sfixed64 wren = 3;
+  repeated sfixed32 hue = 4;
+  map<bool, bool> packet_map = 5;
+  reserved 7, 9 to 11;
+}

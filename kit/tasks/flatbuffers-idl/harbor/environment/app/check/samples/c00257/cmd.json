@@ -1,0 +1,12 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--cpp",
+  "--gen-compare",
+  "--cpp-std=c++0x",
+  "--no-emit-min-max-enum-values",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

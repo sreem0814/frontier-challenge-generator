@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:11: 15: warning: field names should be lowercase snake_case, got: PrairieMeadow
+
+
+error:
+  @/input.json:13: 4: error: required field is missing: entry in TensorKestrel19
+

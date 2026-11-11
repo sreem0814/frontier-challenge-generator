@@ -1,0 +1,7 @@
+struct Osprey {
+    await:[long:2];
+    heron_matrix: [byte:5];
+    copper_count:[ubyte:4];
+    count : [bool:5];
+    raven_label:[float:4];
+}

@@ -1,0 +1,28 @@
+// © example
+namespace quasar.matrix.kestrel;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Second paragraph.
+table OspreySummit (original_order) {
+ /// Escapes \n stay literal.
+ /// Unit: milliseconds.
+ event:uint;
+ omega_height : string;
+ atoll:[ubyte];
+ offset : [string];
+ heron: bool=0;
+ in : float32 =null;
+ nebula : float = 4987.29;
+ limit8: ubyte;
+ heron_canyon:[OspreySummit];
+}
+
+namespace ;
+
+struct LabelNova99 {
+ nickel : [int8:4];
+ shade : [int64:2];
+ status_heron : [uint8:1];
+ glacier:int;
+}
+

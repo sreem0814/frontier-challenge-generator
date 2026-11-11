@@ -1,0 +1,12 @@
+/* block
+   comment */
+
+namespace tick;
+
+struct ZincSigma (force_align : 32) {
+ /// Second paragraph.
+ /// Second paragraph.
+ /// Unit: milliseconds.
+ nebula_hangar:[int:1];
+ self:[int:2];
+}

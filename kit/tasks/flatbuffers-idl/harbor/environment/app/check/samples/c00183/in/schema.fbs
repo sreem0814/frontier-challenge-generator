@@ -1,0 +1,21 @@
+native_include "extra.h";
+attribute "x_market";
+namespace nebula.status.tundra;
+
+enum Canyon : int32 { CarbonStatus = 0 (x_market), Frame }
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Unicode: été → λ
+table ZetaLabel {
+ tag_cobalt : [uint16] (deprecated);
+ BetaZinc:ZetaLabel;
+}
+
+namespace orbit.cobalt;
+
+rpc_service FlavorQuarry {
+ NovaNote(nebula.status.tundra.ZetaLabel):nebula.status.tundra.ZetaLabel;
+}
+
+root_type nebula.status.tundra.ZetaLabel;
+file_identifier "UTXL";

@@ -1,0 +1,35 @@
+include "base1.fbs";
+
+namespace frame;
+
+/// Escapes \n stay literal.
+/// The main record.
+/// Deprecated soon; see `next`.
+enum Omega : uint8 { FLAVORRenamed = 1, GLACIER = +3, Delta, ANCHOR = 5, OSPREY = 6, Offset = 0x6A, AlphaZinc, }
+
+namespace ;
+
+///  Indented doc line.
+enum Comet : short {
+    Falcon = 0,
+    ReefCondor,
+}
+
+/// Escapes \n stay literal.
+/// Unicode: été → λ
+/// <b>html</b> & entities
+union ZetaNote {
+    Flavor55
+}
+
+namespace frame;
+
+/// Second paragraph.
+table Market (csharp_partial) {
+    condor_lead: [ZetaNote];
+    vector6:ubyte =0;
+    phase_silver : short=-18537;
+}
+
+root_type Market;
+file_extension "mon";

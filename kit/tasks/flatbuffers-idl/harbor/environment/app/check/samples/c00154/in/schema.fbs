@@ -1,0 +1,32 @@
+include "lib1.fbs";
+include "base2.fbs";
+
+/// Escapes \n stay literal.
+enum TensorTensor : uint16 {
+  Alpha = 1,
+  HELIUM = 11,
+  Puffin = 21,
+  MEADOW,
+  Iron,
+  MatrixTundra,
+  /// <b>html</b> & entities
+  Metric
+}
+table RecordHeader {
+  record_delta:ulong=6831649824626179778;
+  boron_limit: orbit.VectorSignal28;
+  /// Plain line
+  ///  Indented doc line.
+  status : orbit.VectorSignal28 (required);
+  neon_iron: uint;
+  entry_zinc:SampleOmega=NickelPrairie;
+  GammaGamma: int16;
+}
+
+namespace orbit;
+
+rpc_service AtollBoron55 {
+  MeadowGamma(orbit.VectorSignal28):RecordHeader;
+}
+root_type RecordHeader;
+file_extension "mon";

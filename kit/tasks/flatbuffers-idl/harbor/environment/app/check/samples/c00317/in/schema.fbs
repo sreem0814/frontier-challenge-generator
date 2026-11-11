@@ -1,0 +1,51 @@
+// Generated test schema.
+
+namespace packet.canyon;
+
+table KestrelCobalt66 {
+  tensor_puffin: double;
+  ArgonSigma: uint16 = 0;
+  metric_zinc : [ubyte];
+  tower: uint64;
+  sigma: string;
+  condor : string;
+  height:[KestrelCobalt66];
+}
+namespace ;
+
+table NickelRiver {
+  omega_reef: uint64;
+  puffin: uint8=33;
+}
+
+namespace swift.metric;
+
+struct Theta {
+  kappa_sigma: [int:1];
+  orbit_boron : uint32;
+  gamma_anchor: ushort;
+  entry : [bool:4];
+  span_kind:ulong;
+  import:[float:2];
+}
+
+struct KestrelHeader {
+  beta: [uint32:2];
+}
+
+namespace ;
+
+/// The main record.
+/// The main record.
+struct Kind {
+  name: swift.metric.Theta;
+  PulsarName: swift.metric.Theta;
+  PacketGate:[swift.metric.KestrelHeader:1];
+  /// Second paragraph.
+  finch_pulsar:uint64;
+  castle:int8;
+  CopperName:uint64;
+}
+
+root_type packet.canyon.KestrelCobalt66;
+file_identifier "V26N";

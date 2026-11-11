@@ -1,0 +1,14 @@
+table CanyonQuarry {
+	zinc : [string];
+	meadow_metric:float64;
+	neon:[ubyte] = [] (flexbuffer);
+	atoll : float;
+	copper: [short];
+	/// Escapes \n stay literal.
+	xenon_atoll:float32 =8795.56;
+	raven : [ubyte] (flexbuffer,required);
+	kappa:[ulong];
+	delta_pulsar : [ubyte] (required);
+	reef: [CanyonQuarry];
+}
+

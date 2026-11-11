@@ -1,0 +1,12 @@
+namespace finch.signal;
+
+/// Multi-word doc with punctuation: a, b; c!
+struct XenonTundra57 {
+	/// Escapes \n stay literal.
+	/// Escapes \n stay literal.
+	/// <b>html</b> & entities
+	width : ushort;
+	nil:double;
+	/// Second paragraph.
+	RiverTotal:[byte:5];
+}

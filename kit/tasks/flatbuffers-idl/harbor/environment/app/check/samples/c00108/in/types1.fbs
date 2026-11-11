@@ -1,0 +1,6 @@
+namespace status;
+
+table StageTundra83 {
+  index : byte;
+  KestrelSummit:[string];
+}

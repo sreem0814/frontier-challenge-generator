@@ -1,0 +1,95 @@
+attribute "x_nova";
+attribute x_hangar;
+attribute "x_event";
+namespace helium.heron;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Note: "quoted" text and 'single' quotes.
+enum BoronDepot : ubyte {
+  ModeEpoch = 200,
+  Tag,
+  ARGON,
+  STATE,
+  Valley,
+  LabelForge77 = 205,
+  CANYON,
+  Atoll = 255,
+}
+
+namespace ;
+
+table Sigma9 {
+  tag_label:[double];
+  haven_puffin : string;
+  /// Escapes \n stay literal.
+  type : int8;
+  glacier : string;
+  /// Unit: milliseconds.
+  /// Holds a value.
+  signal: string;
+  ///  Indented doc line.
+  index7:uint8;
+  /// Second paragraph.
+  /// Unicode: été → λ
+  ref : ubyte =65;
+  wren: uint16 = null;
+  lead : string;
+}
+
+/// Second paragraph.
+table TinKappa (x_nova) {
+  frame_limit: string (key,id:6);
+  nova: helium.heron.BoronDepot = LabelForge77 (id: 3);
+  index:Sigma9 (id: 11);
+  true: Sigma9 (required, id: 2);
+  anchor:string (x_hangar,id : 10);
+  height_silver:Sigma9 (required, id: 5);
+  summit: uint16 (id : 1);
+  kappa_nova:Sigma9 (deprecated,id: 8);
+  /// Value in [0, 1).
+  ///
+  haven:bool = 1 (id: 0);
+  boron_tick: helium.heron.BoronDepot = CANYON (id: 9);
+  matrix:[Title] (id:7);
+  depth_sample:bool (id: 4);
+}
+
+table Title {
+  tick:ulong (deprecated);
+  vector_neon:float=9996.89;
+  boron:[ubyte];
+  ///  Indented doc line.
+  height_quasar : helium.heron.BoronDepot=Tag;
+}
+
+namespace helium.heron;
+
+enum DepotAlpha : short {
+  TagLeadRenamed = 0,
+  /// <b>html</b> & entities
+  Width,
+  SwiftHelium = 6,
+  Valley,
+  Beta,
+}
+struct DeltaAnchor {
+  sample:uint64;
+  nickel : [int:5];
+  offset_wren: short;
+  theta:uint32;
+}
+
+namespace ;
+
+table BetaZeta {
+  glacier:helium.heron.BoronDepot =CANYON;
+  event_neon : [ulong] (required,x_event);
+  record_depot : [Sigma9];
+  quasar_wren: BetaZeta;
+  /// Unit: milliseconds.
+  /// Escapes \n stay literal.
+  lagoon_kestrel : double;
+}
+
+root_type TinKappa;
+file_identifier "2RUW";

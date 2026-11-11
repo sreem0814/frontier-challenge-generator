@@ -1,0 +1,36 @@
+/// Second paragraph.
+/// Value in [0, 1).
+struct SignalCanyon (force_align: 32) {
+    pelican: [int:5];
+    boron_hangar : [int:4];
+}
+table Event {
+    meadow : [SignalCanyon] (required, id : 1);
+    gamma : [SignalCanyon] (required,deprecated,id: 2);
+    prairie_status:[ulong] (id : 3);
+    omega_stage : ushort (key, id: 0);
+}
+
+namespace theta.glacier;
+
+table Valley {
+    depot:[bool];
+    delta_iron: string;
+    /// Value in [0, 1).
+    /// Unit: milliseconds.
+    ///
+    hue:[uint64] = [];
+    /// Holds a value.
+    /// Holds a value.
+    kind:string;
+    puffin_zeta : SignalCanyon;
+    packet: uint64 = 7872501176146930386;
+    /// Holds a value.
+    ///
+    atoll_limit: [SignalCanyon];
+    note:ubyte;
+    helium_reef : string;
+    epoch : [Event];
+}
+
+root_type Event;

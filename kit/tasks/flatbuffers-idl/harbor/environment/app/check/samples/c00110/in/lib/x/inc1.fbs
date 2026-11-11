@@ -1,0 +1,16 @@
+attribute "x_lead";
+namespace metric.carbon.silver;
+
+table CometValley {
+ nil: [lagoon.status.zinc.SilverPuffin];
+}
+
+namespace lagoon.status.zinc;
+
+table SilverPuffin {
+ height:uint8 =null;
+ boron:string;
+ kappa:[float64] = [];
+ haven4 : int16=-12977;
+ limit:uint32 (x_lead:28);
+}

@@ -1,0 +1,14 @@
+include "lib1.fbs";
+include "types2.fbs";
+native_include "extra.h";
+
+table Phase {
+  note : ulong;
+  signal_span : uint32=3946533936 (key)
+  anchor_haven: uint32 = null;
+  quarry8:[string];
+  LimitNeon: delta.lambda.neon.OrbitTag;
+}
+
+root_type Phase;
+file_identifier "CPR3";

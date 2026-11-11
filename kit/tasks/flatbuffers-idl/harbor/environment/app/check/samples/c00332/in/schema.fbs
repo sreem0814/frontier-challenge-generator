@@ -1,0 +1,23 @@
+include "types1.fbs";
+include "inc2.fbs";
+
+namespace xenon.beta;
+
+union ColorTin33 {
+    DepotMatrix: vector.XenonState,
+    hue.nova.Carbon
+}
+
+namespace hue.nova;
+
+table Reef {
+    height:float32
+    falcon : bool;
+    omega_sparrow:xenon.beta.ColorTin33;
+    /// Deprecated soon; see `next`.
+    /// Holds a value.
+    TinLabel: xenon.beta.ColorTin33;
+    reef : [vector.XenonState];
+}
+
+root_type Reef;

@@ -1,0 +1,46 @@
+attribute "x_tensor";
+
+namespace carbon;
+
+/// Unicode: été → λ
+/// Note: "quoted" text and 'single' quotes.
+table Orbit {
+	pulsar4:float =-5981.87;
+	metric_total: [short];
+	haven:uint16;
+	///
+	silver_carbon:ubyte;
+	/// Second paragraph.
+	///
+	garden:[ubyte];
+	CopperPuffin : float;
+	boron: short;
+	limit:[ushort];
+}
+
+namespace ;
+
+struct TotalNova (force_align:8) {
+	gate : [int:5];
+	theta:float32;
+	/// Value in [0, 1).
+	hangar : [int:4];
+}
+
+table NebulaKestrel {
+	depot:long (id : 0);
+	theta_lagoon:carbon.Orbit (required,id:1);
+	nova:double=-2910.2173393 (deprecated, x_tensor : "market", id : 2);
+	quasar: ubyte (id:3);
+	/// Deprecated soon; see `next`.
+	/// Plain line
+	/// Second paragraph.
+	sigma: [carbon.Orbit] (id : 4);
+}
+
+rpc_service Tone {
+	LambdaSample(carbon.Orbit):NebulaKestrel;
+}
+root_type carbon.Orbit;
+file_identifier "2EGE";
+file_extension "mon";

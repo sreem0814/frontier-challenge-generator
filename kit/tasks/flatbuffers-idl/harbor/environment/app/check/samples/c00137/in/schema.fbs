@@ -1,0 +1,26 @@
+include "base1.fbs";
+
+/// Escapes \n stay literal.
+table QuasarSignal64 {
+ argon2: [string];
+}
+
+enum Kind : uint64 (bit_flags) {
+ Tag = 2,
+ Osprey = 13
+}
+table NovaIndex {
+ orbit_gate : atoll.raven.height.MillZinc = 200;
+ MillState : Kind = Osprey;
+ vector: ulong;
+ xenon : [Nova31];
+ /// Unicode: été → λ
+ beta : string;
+ heron_mill: [string];
+ kappa_matrix:[ubyte] (nested_flatbuffer:"QuasarSignal64");
+ span: string (required);
+ comet_lambda:float64=5774.0593274;
+ zeta : Kind =Osprey;
+}
+root_type QuasarSignal64;
+file_identifier "14IT";

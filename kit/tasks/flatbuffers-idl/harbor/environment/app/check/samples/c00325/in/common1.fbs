@@ -1,0 +1,16 @@
+include "common2.fbs";
+namespace condor.tower;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Plain line
+table AtollNeon (csharp_partial) {
+    ///
+    /// Escapes \n stay literal.
+    /// Deprecated soon; see `next`.
+    falcon:int;
+    status_silver : byte;
+    /// Value in [0, 1).
+    mill:delta.NebulaComet;
+    depot_quarry: [string];
+}
+

@@ -1,0 +1,4 @@
+
+error:
+  @/inc2.fbs:8: 43: error: flexbuffer attribute may only apply to a vector of ubyte
+

@@ -1,0 +1,35 @@
+// Generated test schema.
+namespace sparrow.neon.theta;
+
+/// Unicode: été → λ
+table HeaderOffset {
+ sigma:double = 499;
+ object:double=null;
+ garden: float;
+ CarbonSigma : string;
+ gamma_level:[ubyte];
+}
+
+namespace ;
+
+table Hangar {
+ /// The main record.
+ cobalt: sparrow.neon.theta.HeaderOffset;
+ gamma_tag : [ubyte];
+ comet_tin : string;
+ entry: string;
+ width_forest: string (shared);
+ sparrow: uint64;
+}
+
+union Iron : ushort {
+ Hangar,
+ sparrow.neon.theta.HeaderOffset,
+}
+
+namespace xenon;
+
+rpc_service ForestPrairie {
+ KappaSignal(Hangar):sparrow.neon.theta.HeaderOffset;
+}
+

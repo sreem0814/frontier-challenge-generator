@@ -1,0 +1,11 @@
+{
+ "bucket": "json_text",
+ "argv": [
+  "--json",
+  "--defaults-json",
+  "-o",
+  "out",
+  "schema.fbs",
+  "data.json"
+ ]
+}

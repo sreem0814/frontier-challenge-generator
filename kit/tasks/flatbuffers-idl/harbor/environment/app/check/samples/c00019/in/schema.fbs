@@ -1,0 +1,41 @@
+///
+/// Second paragraph.
+/// Holds a value.
+struct CopperAnchor {
+	anchor_status : int32;
+	swift_limit: [int:5];
+	beta: long;
+}
+namespace puffin.label;
+
+table ShadeSparrow67 (original_order) {
+	beta: [int32] (id: 1);
+	count_reef: string (required, id : 1);
+	mode_flavor : CopperAnchor (id: 2);
+	valley: CopperAnchor (id: 3);
+	/// Multi-word doc with punctuation: a, b; c!
+	quasar: ubyte=0x8 (id: 4);
+	garden_lambda : uint16 = 11690 (id: 5);
+	osprey : string (id:6);
+	lead_tin:short (id: 7);
+	glacier : [string] (id:8);
+	count_heron:[short] (id : 9);
+}
+
+namespace metric.reef;
+
+table FlavorPhase {
+	event: ushort=null;
+	gate : int=40;
+	mode_flavor:[puffin.label.ShadeSparrow67];
+	await:string;
+	/// The main record.
+	///  Indented doc line.
+	color_tundra: uint16;
+	/// Second paragraph.
+	label_beta:int64 = 9223372036854775807;
+	reef : float64;
+	beta_tundra:string;
+	frame : [CopperAnchor];
+}
+root_type FlavorPhase;

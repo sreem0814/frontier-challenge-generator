@@ -1,0 +1,39 @@
+include "base1.fbs";
+
+namespace hangar.prairie.event;
+
+enum Sparrow66 : byte {
+  FalconHue = 1,
+  KIND = 3,
+}
+namespace ;
+
+enum ForestBoron62 : ulong {
+  Depth = 0x0,
+  /// Multi-word doc with punctuation: a, b; c!
+  ///
+  SparrowPuffin,
+  GAMMA,
+  Hangar,
+  PRAIRIE,
+  Boron,
+  Omega
+}
+
+/// Value in [0, 1).
+table LimitTheta {
+  tundra:string;
+  kappa_phase: [ubyte];
+  ///  Indented doc line.
+  frame_heron:string
+  EntryCount:[ubyte];
+  stage_packet:hangar.prairie.event.RavenDelta=XenonGamma;
+  haven:[ubyte];
+  label_mode : [ubyte];
+  neon_tone:[int64] (required);
+  /// Note: "quoted" text and 'single' quotes.
+  span:[ubyte] (flexbuffer);
+  iron: float=null;
+}
+root_type LimitTheta;
+file_identifier "KVNK";

@@ -1,0 +1,29 @@
+native_include "native/types.h";
+attribute "x_forest";
+/// Value in [0, 1).
+table StatusComet (csharp_partial) {
+	/// Plain line
+	/// Plain line
+	///  Indented doc line.
+	forest:int64;
+	swift_gamma: long;
+	heron_wren: [uint16] (required);
+	nova : [string];
+	neon: ubyte;
+}
+struct LeadOmega {
+	falcon_gate : float64;
+	theta_entry: [int16:2];
+	kind2: int64;
+	/// Unit: milliseconds.
+	level_quasar:ulong (x_forest);
+	glacier: float;
+}
+
+table StatusCastle (csharp_partial) {
+	beta: float64;
+	delta_pulsar: [float32];
+	width_carbon: StatusComet;
+}
+
+root_type StatusComet;

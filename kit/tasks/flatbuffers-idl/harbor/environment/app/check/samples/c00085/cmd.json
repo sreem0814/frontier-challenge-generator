@@ -1,0 +1,9 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--kotlin",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

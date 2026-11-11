@@ -1,0 +1,8 @@
+
+warning:
+  @/new/schema.fbs:67: 12: warning: field names should be lowercase snake_case, got: BoronOffset
+
+
+error:
+  schemas don't conform: offsets differ for field: hangar.Theta.match
+

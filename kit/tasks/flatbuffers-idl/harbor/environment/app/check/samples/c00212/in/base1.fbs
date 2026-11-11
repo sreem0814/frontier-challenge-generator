@@ -1,0 +1,21 @@
+namespace glacier;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Plain line
+table Title {
+	valley: bool;
+	depth:uint;
+	height: int8=null;
+	status:string;
+	tower: string (deprecated);
+	garden_castle:string;
+	forest : [ubyte];
+	quarry:string (key);
+	garden:int8 = null;
+	quasar_nickel : Title;
+}
+enum Label37 : long {
+	Mode = 0,
+	KindDepth = 1,
+	Color
+}

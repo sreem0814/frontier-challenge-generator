@@ -1,0 +1,5 @@
+
+error:
+  @/schema.fbs:24: 13: warning: field names should be lowercase snake_case, got: QuasarStatus
+@/schema.fbs:48: 6: error: declaration expected
+

@@ -1,0 +1,19 @@
+// Generated test schema.
+attribute "x_theta";
+
+namespace hangar.epoch;
+
+/// Unit: milliseconds.
+/// Deprecated soon; see `next`.
+table LevelValley {
+    color : [ubyte];
+    quasar: string (deprecated);
+    status : string;
+    pelican : int16 = -42;
+    copper_kind:[uint64] (x_theta : 27);
+    /// Holds a value.
+    /// Unicode: été → λ
+    name:ubyte;
+    nickel : [LevelValley];
+}
+

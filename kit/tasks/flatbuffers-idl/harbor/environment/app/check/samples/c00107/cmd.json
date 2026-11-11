@@ -1,0 +1,11 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--ts",
+  "--ts-omit-entrypoint",
+  "--no-warnings",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

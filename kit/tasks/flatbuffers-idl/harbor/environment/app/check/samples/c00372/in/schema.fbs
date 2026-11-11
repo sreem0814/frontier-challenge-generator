@@ -1,0 +1,85 @@
+attribute "x_note";
+table Market {
+    garden: [int];
+    zeta : double;
+    meadow:kind.Bridge;
+}
+
+enum ForestCastle : ushort (bit_flags) {
+    Sparrow = 2,
+    Quarry = 7,
+    Sample = 0x8,
+    Note = 9,
+    Quasar,
+    /// Second paragraph.
+    Atoll = 11
+}
+
+namespace market.pelican.sparrow;
+
+enum Condor : ulong (bit_flags) { Nickel = 5, Signal = 10, Offset = 17, Shade = 0x16, Kappa = 30, Color = 0x2f, Total = 0x3d }
+
+namespace state.hue;
+
+table Beta {
+    label:[string];
+    mill_carbon:string (deprecated);
+    object : string;
+    raven : long (deprecated, x_note : 17);
+    total_name:int16 = null;
+    quarry:string;
+    index_tensor:string;
+    wren_haven:uint;
+    osprey : uint16 =10355;
+}
+
+namespace kind;
+
+table Bridge (original_order) {
+    signal_falcon: uint64;
+}
+
+namespace ;
+
+table Gamma {
+    comet:string (required,id: 0);
+    neon_name:uint =2418955321 (id: 1);
+    argon : int8 (id: 2);
+    sample: [uint] (id : 3);
+    /// Deprecated soon; see `next`.
+    /// <b>html</b> & entities
+    market_pulsar:Market (id:4);
+    nebula:[market.pelican.sparrow.Condor] (required,id : 5);
+    market:int32 =2147483647 (id: 6);
+    /// The main record.
+    level_gate:kind.Bridge (id : 7);
+}
+
+/// Deprecated soon; see `next`.
+union HeightForest : ushort {
+    kind.Bridge,
+    ///
+    /// Unicode: été → λ
+    state.hue.Beta,
+    Market,
+    Gamma
+}
+
+namespace state.hue;
+
+///  Indented doc line.
+/// Plain line
+rpc_service FrameSilver {
+    /// Deprecated soon; see `next`.
+    DeltaMill(Gamma):Gamma;
+    ///  Indented doc line.
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Holds a value.
+    KestrelMeadow(Market):Gamma;
+    ArgonBridge(kind.Bridge):kind.Bridge (streaming: "client");
+    /// Escapes \n stay literal.
+    SampleSilver(kind.Bridge):Gamma (streaming: "client");
+}
+
+
+rpc_service S { Call(int):int; }

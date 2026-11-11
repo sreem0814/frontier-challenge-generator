@@ -1,0 +1,20 @@
+// © example
+native_include "extra.h";
+
+struct Anchor (force_align:32) {
+  count_zinc: ushort;
+  finch_summit:uint64;
+  river: [ushort:5];
+}
+namespace condor;
+
+table ColorState {
+  index: [uint] (id: 2);
+  alpha : float64 = -5445.5656472 (id:4);
+  omega_garden:string (key, id:0);
+  signal_forge:Anchor (id : 1);
+  status:uint64 (id : 5);
+  heron_span : [Anchor] (id: 3);
+}
+
+root_type ColorState;

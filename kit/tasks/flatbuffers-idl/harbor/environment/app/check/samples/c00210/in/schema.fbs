@@ -1,0 +1,37 @@
+attribute "x_summit";
+attribute x_forest;
+
+enum LevelBridge : int32 { THETA = -0x1, CarbonNickel = 9, CastleTower, FOREST, Delta, IRON (x_summit), CASTLE, LIMIT }
+
+/// Note: "quoted" text and 'single' quotes.
+table Alpha {
+  sparrow_tower : [ushort] =[];
+  move : [string] (required);
+  state_quasar:float;
+  kind_nebula : ushort;
+  kestrel:ushort;
+  title_flavor:int16=-36;
+  /// Value in [0, 1).
+  /// Unit: milliseconds.
+  tundra2:[int64];
+  beta_prairie: string;
+}
+
+enum TowerBridge : uint (bit_flags) { Gamma = 0 }
+
+struct Lambda {
+  level : [int:5];
+  swift_helium: uint;
+  color : int16 (x_forest);
+}
+
+rpc_service SwiftBeta {
+  TickValley(Alpha):Alpha (streaming: "server");
+  StatusFlavor(Alpha):Alpha;
+  StatusNova(Alpha):Alpha (streaming:"none");
+  /// Deprecated soon; see `next`.
+  QuarryMatrix(Alpha):Alpha (streaming: "bidi", idempotent);
+}
+
+root_type Alpha;
+file_identifier "47NA";

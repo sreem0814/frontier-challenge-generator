@@ -1,0 +1,41 @@
+// © example
+attribute "x_heron";
+
+namespace summit.tensor.nova;
+
+table SpanXenon {
+  /// <b>html</b> & entities
+  /// The main record.
+  /// Note: "quoted" text and 'single' quotes.
+  lambda_falcon: [uint8] (id : 0);
+  title : long = 7916874097930176258 (key, id : 1);
+  river:int64=null (id:2);
+  offset_limit : [string] (id: 3);
+  helium:[uint64] (id:4);
+  /// Second paragraph.
+  /// <b>html</b> & entities
+  /// Note: "quoted" text and 'single' quotes.
+  cobalt: [int8]=[] (id: 5);
+}
+///  Indented doc line.
+/// The main record.
+/// The main record.
+struct Nova {
+  /// Second paragraph.
+  ///
+  /// The main record.
+  silver_metric : [uint16:1];
+  width:ushort;
+}
+struct Offset (force_align : 16) {
+  lead_gamma : bool;
+  condor_vector:Nova;
+}
+
+enum Mode : uint16 {
+  PelicanEpoch = 0,
+  Iron,
+  HavenFrame,
+  Copper = 3 (x_heron)
+}
+

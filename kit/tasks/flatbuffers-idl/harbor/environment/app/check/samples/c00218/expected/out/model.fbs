@@ -1,0 +1,55 @@
+// Generated from model.proto
+
+include "imported.fbs";
+
+namespace index.stage.lagoon;
+
+enum Forge : int {
+  FORGE_HANGAR = 0,
+  TOTAL_SPAN = 2,
+  FORGE_STATE_SPARROW = 3,
+  /// Deprecated soon; see `next`.
+  FORGE_NOVA_GARDEN = 4,
+  DEPOT = 5,
+  CARBON = 7,
+}
+
+table BridgeLabel {
+  neon:string;
+  beta:long;
+  limit:[uint];
+  gate:ulong;
+  raven:[ulong];
+  iron:[ulong];
+  metric:string;
+  color_copper:[ulong];
+}
+
+table Canyon {
+  total:[int];
+  swift_delta:index.stage.lagoon.BridgeLabel;
+  silver_width:index.stage.lagoon.BridgeLabel (required);
+  orbit:float;
+  zinc_depot:ulong;
+  castle:index.stage.lagoon.BridgeLabel (required);
+  condor_offset:index.stage.lagoon.BridgeLabel (required);
+  mode_map:[index.stage.lagoon.Canyon_.ModeMapEntry];
+}
+
+namespace index.stage.lagoon.Canyon_;
+
+table ModeMapEntry {
+  key:bool (key);
+  value:uint;
+}
+
+namespace index.stage.lagoon;
+
+table Color {
+  boron_name:index.stage.lagoon.Forge;
+  comet:int;
+  frame:[string];
+  gamma_zeta:[int];
+  puffin:index.stage.lagoon.Canyon;
+}
+

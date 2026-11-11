@@ -1,0 +1,12 @@
+namespace tin;
+
+struct RavenMatrix {
+    prairie_level:int64;
+}
+
+table TundraRecord {
+    argon: string (shared);
+    package : [float32];
+    canyon_alpha : [string];
+}
+

@@ -1,0 +1,24 @@
+// © example
+attribute "x_name";
+
+enum Name2 : int64 { Level = -1, MATRIX = 0, Frame = 2 }
+
+/// Second paragraph.
+enum Level : uint64 (bit_flags) { }
+struct DeltaQuasar54 (force_align : 8) {
+  type:[uint32:2];
+  stage : [byte:5];
+}
+
+namespace bridge;
+
+/// The main record.
+///
+table Matrix {
+  name_tick: short (x_name);
+  sample : DeltaQuasar54;
+  garden_raven:[bridge.Matrix];
+}
+
+root_type bridge.Matrix;
+file_identifier "IMFG";

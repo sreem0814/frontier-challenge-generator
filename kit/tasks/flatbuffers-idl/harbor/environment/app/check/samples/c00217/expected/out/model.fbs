@@ -1,0 +1,29 @@
+// Generated from model.proto
+
+namespace height.zinc;
+
+table Omega {
+  nickel_tone:int (id: 0);
+  alpha:long (id: 1);
+  anchor_carbon:[string] (id: 2);
+}
+
+table Label {
+  level_canyon:[height.zinc.Omega] (id: 0);
+  note_name:height.zinc.Omega (required,id: 1);
+  index:long (id: 2);
+  copper_limit:[ubyte] (id: 3);
+}
+
+table Forest {
+  valley:height.zinc.Omega (id: 0);
+  falcon_map:[height.zinc.Forest_.FalconMapEntry] (id: 1);
+}
+
+namespace height.zinc.Forest_;
+
+table FalconMapEntry {
+  key:bool (key);
+  value:height.zinc.Label;
+}
+

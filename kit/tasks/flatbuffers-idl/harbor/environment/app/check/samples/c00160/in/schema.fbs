@@ -1,0 +1,37 @@
+include "sub/lib1.fbs";
+attribute "x_title";
+table Delta {
+  sigma:[long] = [];
+  /// Unicode: été → λ
+  /// The main record.
+  /// Second paragraph.
+  height_gamma:[beta.Tone];
+  tick: int16=10;
+  header_depth:beta.DeltaEvent (x_title: "beta");
+  wren_tower : beta.Tone;
+  swift_tag: ubyte;
+  sparrow_garden: uint;
+  count:bool;
+  /// Second paragraph.
+  span: Delta;
+}
+
+union PuffinMarket {
+  beta.DeltaEvent,
+  Delta,
+  beta.Tone
+}
+
+namespace beta;
+
+///
+rpc_service TundraTick {
+  DeltaCopper(Tone):DeltaEvent;
+  HangarReef(DeltaEvent):DeltaEvent;
+  ShadeHeader(DeltaEvent):beta.Tone;
+  PelicanMill(DeltaEvent):DeltaEvent;
+}
+
+root_type Delta;
+file_identifier "BPH9";
+file_extension "mon";

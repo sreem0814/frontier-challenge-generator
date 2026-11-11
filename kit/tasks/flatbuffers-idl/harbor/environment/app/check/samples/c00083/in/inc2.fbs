@@ -1,0 +1,34 @@
+// Generated test schema.
+include "types3.fbs";
+
+namespace span.matrix;
+
+union ValleyNeon {
+	packet.bridge.GardenLagoon
+}
+
+namespace ;
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Holds a value.
+enum ValleyHaven : uint64 (bit_flags) {
+	Index = 3,
+	Zeta = 37,
+	Delta = 55
+}
+namespace bridge.mode.kappa;
+
+table TickPuffin {
+	record_height:uint8;
+	market : span.matrix.ValleyNeon;
+	/// Holds a value.
+	/// Plain line
+	title_nova : string;
+	mode: span.matrix.Meadow91;
+	frame_beta: [packet.bridge.GardenLagoon] (required);
+	phase: span.matrix.Meadow91;
+	beta:[ubyte];
+	raven_phase:span.matrix.ValleyNeon;
+	delta_pulsar:uint16 =0;
+}
+

@@ -1,0 +1,16 @@
+include "common1.fbs";
+namespace garden.phase.wren;
+
+table LimitArgon {
+    lambda_matrix:atoll.castle.mode.Haven23 = 200;
+    metric: [int16] (required);
+    swift:garden.phase.wren.Stage;
+    tin_delta: ubyte;
+    /// Second paragraph.
+    tag:[int8];
+    forest_title:[lagoon.gamma.GateZeta];
+    garden_cobalt: double =-2274.041508;
+    note_nova : int16;
+}
+file_identifier "B5BW";
+file_extension "bin";

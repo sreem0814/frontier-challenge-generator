@@ -1,0 +1,29 @@
+include "types2.fbs";
+namespace boron.glacier.tin;
+
+table Stage {
+    puffin_orbit:uint8=null (deprecated);
+    valley_pulsar: ushort=30377;
+    condor: color.argon.osprey.Market (required);
+    osprey_quasar:bool=null;
+    ///  Indented doc line.
+    flavor_level : string;
+    castle:[bool];
+    sparrow:string;
+    raven: int32=-1385724126;
+    finch_gamma : color.argon.osprey.Market;
+    status_height: [color.argon.osprey.Market] (deprecated);
+}
+
+namespace stage.title.condor;
+
+table RavenZinc {
+    kind_finch: long;
+    end : [double];
+    signal_boron: int;
+    /// <b>html</b> & entities
+    /// Escapes \n stay literal.
+    let: [ushort];
+    argon_epoch : [short];
+}
+

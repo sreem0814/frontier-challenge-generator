@@ -1,0 +1,14 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--cpp",
+  "--gen-name-strings",
+  "--scoped-enums",
+  "--cpp-std=c++17",
+  "--cpp-std=c++0x",
+  "--gen-absl-hash",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

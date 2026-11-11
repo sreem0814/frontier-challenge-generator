@@ -1,0 +1,102 @@
+syntax = "proto2";
+
+package reef;
+
+import "imported.proto";
+
+message StageTower {
+  enum Name {
+    // Holds a value.
+    // Holds a value.
+    SHADE = 0;
+    NEBULA_DELTA = 1;
+    // <b>html</b> & entities
+    // Deprecated soon; see `next`.
+    NEBULA = 3;
+    //   Indented doc line.
+    // Plain line
+    NAME_VECTOR = 5;
+    HAVEN_FRAME = 6;
+  }
+  message TickName {
+    message WidthForest {
+      optional bool silver = 1;
+      // Unit: milliseconds.
+      //   Indented doc line.
+      optional StageTower.Name signal = 2;
+      // Second paragraph.
+      required bytes sample_packet = 3;
+      repeated uint32 lead_sparrow = 4;
+    }
+    /// Unit: milliseconds.
+    optional StageTower.Name tundra = 1;
+    optional TickName.WidthForest offset_theta = 2;
+    repeated uint64 lagoon_packet = 3;
+    repeated TickName.WidthForest gamma = 4;
+    optional TickName.WidthForest omega_title = 5;
+    // Deprecated soon; see `next`.
+    optional StageTower.Name prairie = 6;
+    extensions 100 to 199;
+  }
+  // The main record.
+  repeated StageTower.Name stage_lagoon = 1;
+  repeated StageTower.Name theta_hue = 2;
+}
+
+enum Tin {
+  option allow_alias = true;
+  // Holds a value.
+  FALCON_BORON = 0;
+  // Unit: milliseconds.
+  // <b>html</b> & entities
+  MODE = 1;
+  KAPPA = 2;
+  // The main record.
+  TIN_TOWER = 12;
+  TIN_GARDEN = 13;
+  TIN_LAMBDA = 15;
+}
+
+// Escapes \n stay literal.
+// Second paragraph.
+message Quarry {
+  enum Orbit {
+    ORBIT_QUARRY = 0;
+    ORBIT_LABEL_GATE = 10;
+    TENSOR = 11;
+  }
+  extensions 100 to 199;
+}
+
+message SummitNote {
+  enum PuffinMeadow {
+    PUFFINMEADOW_KAPPA = 0;
+    // Unit: milliseconds.
+    // 
+    CONDOR = 1;
+    /*   Indented doc line. */
+    SUMMIT_PELICAN = 2;
+    // Plain line
+    // 
+    PUFFINMEADOW_FALCON = 12;
+  }
+  message Comet {
+    // Escapes \n stay literal.
+    enum DeltaNeon {
+      DELTANEON_QUASAR_NEON = 0;
+      HAVEN = 2;
+      // Value in [0, 1).
+      DELTANEON_QUARRY_BETA = 4;
+      /* Deprecated soon; see `next`. */
+      QUARRY = 5;
+    }
+    /* Unit: milliseconds. */
+    required bool index = 1;
+    // Unit: milliseconds.
+    optional string helium_kappa = 2;
+    required double sparrow = 3;
+  }
+  required SummitNote.PuffinMeadow tundra = 1;
+  optional sint64 color = 2;
+  reserved 4, 6 to 8;
+}

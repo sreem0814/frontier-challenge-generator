@@ -1,0 +1,11 @@
+{
+ "bucket": "json_text",
+ "argv": [
+  "--annotate",
+  "schema.fbs",
+  "-o",
+  "out",
+  "--",
+  "data.bin"
+ ]
+}

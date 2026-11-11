@@ -1,0 +1,7 @@
+include "base2.fbs";
+attribute "x_sigma";
+
+struct Quarry (x_sigma) {
+	market_prairie:uint64;
+}
+

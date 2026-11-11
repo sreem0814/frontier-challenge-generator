@@ -1,0 +1,129 @@
+{
+  kappa_tundra: [
+    {
+      frame: {
+        wren_orbit: [
+          9134463429345392682,
+          -87
+        ],
+        pulsar_river: 38841.0
+      },
+      castle: -20063,
+      omega_nickel: {
+        wren_orbit: [
+          71,
+          5308878446302499892
+        ],
+        pulsar_river: 37408.500899999999
+      },
+      metric: 16221,
+      vector: 78,
+      limit: -78970.5
+    },
+    {
+      frame: {
+        wren_orbit: [
+          -1088259731443157021,
+          -8836743289805494298
+        ],
+        pulsar_river: 75727.0
+      },
+      castle: -30206,
+      omega_nickel: {
+        wren_orbit: [
+          9223372036854775807,
+          19
+        ],
+        pulsar_river: 0.1
+      },
+      metric: 36,
+      vector: 881519376,
+      limit: inf
+    },
+    {
+      frame: {
+        wren_orbit: [
+          86,
+          -36
+        ],
+        pulsar_river: 100000.0
+      },
+      castle: 6465,
+      omega_nickel: {
+        wren_orbit: [
+          2122383756496140849,
+          1699028000505014290
+        ],
+        pulsar_river: 62190.915999999997
+      },
+      metric: -16,
+      vector: 0,
+      limit: 24822.0
+    },
+    {
+      frame: {
+        wren_orbit: [
+          3039792355596767951,
+          49
+        ],
+        pulsar_river: inf
+      },
+      castle: 31,
+      omega_nickel: {
+        wren_orbit: [
+          4465166028986314015,
+          95
+        ],
+        pulsar_river: 53220.849999999999
+      },
+      metric: 86,
+      vector: 0,
+      limit: -77075.289062
+    },
+    {
+      frame: {
+        wren_orbit: [
+          -1583690009063678428,
+          -83
+        ],
+        pulsar_river: 44456.0
+      },
+      castle: 27247,
+      omega_nickel: {
+        wren_orbit: [
+          -3191351738595739861,
+          -3370783972023742093
+        ],
+        pulsar_river: 20142.650600000001
+      },
+      metric: 12643,
+      vector: 0,
+      limit: -51499.398438
+    }
+  ],
+  count_pulsar: "\bZ\t中中éx\fa\"",
+  index_zeta: [
+
+  ],
+  finch: [
+    83,
+    2147483647
+  ],
+  flavor_depth: 86754.328125,
+  frame: [
+    113,
+    49,
+    184
+  ],
+  LabelSample: {
+    kappa_tundra: [
+
+    ],
+    flavor_depth: 28818.230469,
+    frame: [
+      28,
+      0,
+      164
+    ]
+  }
+}

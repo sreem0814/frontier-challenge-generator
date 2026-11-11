@@ -1,0 +1,57 @@
+include "types1.fbs";
+
+namespace sample.tag.lambda;
+
+/// Unicode: été → λ
+/// Multi-word doc with punctuation: a, b; c!
+/// <b>html</b> & entities
+enum ZetaCanyon : uint16 (bit_flags) { Delta = 1, Pelican = 9, }
+
+namespace ;
+
+struct EventCobalt {
+  mill: int8;
+  kappa:uint64;
+  nebula_prairie: float;
+  mode: uint64;
+  meadow : sample.tag.lambda.ZetaCanyon;
+}
+namespace state.wren.count;
+
+enum Garden : uint64 (bit_flags) {
+  /// Unicode: été → λ
+  /// Value in [0, 1).
+  Name = 38,
+  Zeta = 45,
+}
+
+namespace ;
+
+/// Unicode: été → λ
+enum SpanBridge : uint16 {
+  Theta = 5,
+  GAMMA
+}
+///  Indented doc line.
+/// The main record.
+table CometColor {
+  height: string;
+  header:int16 =null (deprecated);
+  kappa_valley:string (deprecated);
+  carbon_quasar: [int8] (required);
+  castle : state.Height (deprecated);
+  falcon : state.Height (deprecated);
+  /// Second paragraph.
+  ///
+  /// Note: "quoted" text and 'single' quotes.
+  tick:bool = null (deprecated);
+  orbit_sparrow : string;
+  forest : [string];
+  zinc_neon: uint32 = 3633242555;
+  valley_comet : [CometColor];
+}
+
+rpc_service LevelCanyon {
+  MatrixMode(CometColor):state.Height (streaming:"none");
+}
+root_type CometColor;

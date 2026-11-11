@@ -1,0 +1,10 @@
+{
+ "bucket": "schema_bfbs",
+ "argv": [
+  "-b",
+  "--schema",
+  "-o",
+  "out",
+  "dictionary_lookup.fbs"
+ ]
+}

@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:9: 12: warning: field names should be lowercase snake_case, got: CarbonSigma
+
+
+error:
+  @/input.json:2: 19: error: unknown field: sigma
+

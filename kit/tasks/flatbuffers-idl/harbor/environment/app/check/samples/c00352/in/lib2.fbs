@@ -1,0 +1,9 @@
+include "lib/x/base3.fbs";
+
+namespace index.tone;
+
+/// The main record.
+table Lagoon (csharp_partial) {
+  name : uint8 (key);
+}
+

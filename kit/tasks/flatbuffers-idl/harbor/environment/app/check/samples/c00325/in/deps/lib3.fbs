@@ -1,0 +1,11 @@
+// Generated test schema.
+
+namespace delta;
+
+struct Tundra36 {
+    sample_gate : uint;
+    forest_argon: int64;
+    iron:int8;
+    bridge : int64;
+}
+

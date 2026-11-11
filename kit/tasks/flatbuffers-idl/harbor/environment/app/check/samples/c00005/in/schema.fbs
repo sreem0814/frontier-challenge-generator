@@ -1,0 +1,29 @@
+/* block
+   comment */
+include "lib1.fbs";
+include "types2.fbs";
+attribute x_tick;
+attribute x_width;
+
+namespace phase.width;
+
+union BoronMode {
+	Name,
+	atoll.Theta
+}
+
+namespace nebula.xenon;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Multi-word doc with punctuation: a, b; c!
+///  Indented doc line.
+table CondorOrbit {
+	/// Unicode: été → λ
+	note : uint (hash : "fnv1_32", x_tick);
+	state_mill : phase.width.BoronMode;
+	total: atoll.MillAtoll = -128 (x_width:48);
+	entry:phase.width.BoronMode;
+	depot_nebula : int = -96744113 (deprecated);
+}
+
+root_type CondorOrbit;

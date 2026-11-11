@@ -1,0 +1,14 @@
+include "sub/base2.fbs";
+
+namespace state;
+
+table Label (csharp_partial) {
+	gamma_summit : string;
+	///
+	signal : ushort;
+	sigma:uint16;
+	default : uint = 1716989181 (deprecated);
+	tick_mill:bool = false;
+	delta:[falcon.Prairie] (required);
+}
+

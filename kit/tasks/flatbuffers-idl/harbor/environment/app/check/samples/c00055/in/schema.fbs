@@ -1,0 +1,18 @@
+include "lib1.fbs";
+include "inc2.fbs";
+
+namespace castle;
+
+table ForgeDepth {
+  index_entry:string;
+  falcon : short;
+  state : bool;
+  /// Escapes \n stay literal.
+  osprey_reef : [uint64] (required);
+  lambda:valley.name.status.Garden;
+  /// Unit: milliseconds.
+  metric_flavor : valley.name.status.DepotTotal=301;
+}
+
+root_type ForgeDepth;
+file_identifier "RKIG";

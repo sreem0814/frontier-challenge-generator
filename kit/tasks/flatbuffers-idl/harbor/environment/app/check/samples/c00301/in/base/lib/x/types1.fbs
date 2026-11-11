@@ -1,0 +1,13 @@
+include "lib/x/inc2.fbs";
+
+namespace wren.level.tin;
+
+/// Unicode: été → λ
+enum MarketEpoch : uint { Mill = 0, Tag, Zeta, Metric = 4, GammaPelican = 14, SparrowHue4 }
+
+///
+/// Escapes \n stay literal.
+/// Deprecated soon; see `next`.
+table Xenon {
+	kind:Argon;
+}

@@ -1,0 +1,7 @@
+namespace header.meadow.reef;
+
+table Width {
+ limit:[ubyte] (id: 1);
+ state3: [ubyte] (id: 0);
+}
+

@@ -1,0 +1,10 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--java",
+  "--gen-object-api",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

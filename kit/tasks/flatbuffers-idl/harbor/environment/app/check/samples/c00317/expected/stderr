@@ -1,0 +1,11 @@
+
+warning:
+  @/schema.fbs:7: 12: warning: field names should be lowercase snake_case, got: ArgonSigma
+@/schema.fbs:42: 12: warning: field names should be lowercase snake_case, got: PulsarName
+@/schema.fbs:43: 12: warning: field names should be lowercase snake_case, got: PacketGate
+@/schema.fbs:47: 12: warning: field names should be lowercase snake_case, got: CopperName
+
+
+error:
+  @/data.json:1: 19: error: unknown field: no_such_field
+

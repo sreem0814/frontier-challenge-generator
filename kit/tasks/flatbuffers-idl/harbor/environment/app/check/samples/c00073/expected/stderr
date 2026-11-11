@@ -1,0 +1,6 @@
+
+error:
+  @/schema.fbs:6: 11: warning: field names should be lowercase snake_case, got: GateHaven
+@/schema.fbs:11: 12: warning: field names should be lowercase snake_case, got: StateEvent
+@/schema.fbs:28: 19: error: Arrays are not yet supported in all the specified programming languages.
+

@@ -1,0 +1,6 @@
+namespace sigma;
+
+enum Level : uint32 (bit_flags) {
+  Tag = 5
+}
+

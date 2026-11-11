@@ -1,0 +1,38 @@
+// test proto
+syntax = "proto2";
+
+
+// Note: "quoted" text and 'single' quotes.
+// Value in [0, 1).
+message Nickel {
+  repeated fixed32 limit = 1;
+  /// Deprecated soon; see `next`.
+  optional fixed32 forge_atoll = 2;
+  repeated fixed32 boron = 3;
+  /* Multi-word doc with punctuation: a, b; c! */
+  repeated sfixed64 lambda_quasar = 4;
+  /* Plain line */
+  repeated uint32 hue = 5;
+  optional fixed32 lead_delta = 6;
+  reserved 8, 10 to 12;
+}
+
+message HeaderDepot {
+  // The main record.
+  optional int64 forge = 1;
+  optional int64 pelican = 2;
+  repeated Nickel packet_title = 3 [deprecated = true];
+  // Value in [0, 1).
+  optional Nickel garden_nickel = 4;
+  /* Second paragraph. */
+  repeated string height_garden = 5;
+  /* Note: "quoted" text and 'single' quotes. */
+  optional Nickel neon = 6;
+  oneof alpha {
+    int64 valley = 7;
+  }
+}
+
+service Count {
+  rpc Entry (HeaderDepot) returns (Nickel);
+}

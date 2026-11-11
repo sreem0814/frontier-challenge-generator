@@ -1,0 +1,22 @@
+include "common3.fbs";
+attribute x_argon;
+attribute "x_osprey";
+
+namespace atoll;
+
+/// Plain line
+/// Holds a value.
+/// <b>html</b> & entities
+table Theta (x_argon,csharp_partial) {
+  xenon_gamma : uint32=2752288541;
+  limit_header:phase.width.Name;
+  namespace:short;
+  prairie_swift : [phase.width.Name];
+  offset_alpha: [ulong];
+  valley : string;
+  /// Escapes \n stay literal.
+  carbon_heron:[ubyte] (x_osprey:41);
+  name:[ushort] (required);
+  quarry_kind: bool = null;
+}
+

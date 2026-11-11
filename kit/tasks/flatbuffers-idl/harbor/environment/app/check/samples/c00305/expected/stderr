@@ -1,0 +1,5 @@
+
+warning:
+  @/schema.fbs:11: 12: warning: field names should be lowercase snake_case, got: DepthHue
+@/schema.fbs:20: 16: warning: field names should be lowercase snake_case, got: TundraAnchor
+

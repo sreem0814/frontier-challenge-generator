@@ -1,0 +1,12 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "-b",
+  "--root-type",
+  "FinchValley",
+  "-o",
+  "out",
+  "model.bfbs",
+  "data.json"
+ ]
+}

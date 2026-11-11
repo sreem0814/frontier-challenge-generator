@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:22: 17: error: expecting: identifier instead got: }
+

@@ -1,0 +1,43 @@
+include "types1.fbs";
+
+namespace matrix;
+
+enum Note : ulong {
+ PRAIRIE = 200,
+ Color = 300,
+ COPPER,
+ /// Value in [0, 1).
+ /// Unicode: été → λ
+ Index = 302,
+ VALLEY,
+ Delta,
+ /// Deprecated soon; see `next`.
+ /// Unit: milliseconds.
+ ALPHA,
+ Hangar = 306
+}
+
+table HueXenon94 {
+ tin_lead:float32;
+ index:string;
+ tower_height : uint;
+ sample_frame:Note=Delta;
+ label : int = 2147483647;
+ /// Deprecated soon; see `next`.
+ /// Multi-word doc with punctuation: a, b; c!
+ /// Multi-word doc with punctuation: a, b; c!
+ depot_mode : float = -779;
+ finch_limit : [MillSample];
+}
+
+namespace ;
+
+/// Deprecated soon; see `next`.
+/// Holds a value.
+rpc_service CopperLagoon {
+ PhaseSilver(matrix.HueXenon94):matrix.HueXenon94;
+ SigmaSummit(matrix.HueXenon94):matrix.HueXenon94;
+ EpochTheta(matrix.HueXenon94):matrix.HueXenon94;
+ NickelIndex(matrix.HueXenon94):matrix.HueXenon94 (idempotent);
+}
+root_type matrix.HueXenon94;

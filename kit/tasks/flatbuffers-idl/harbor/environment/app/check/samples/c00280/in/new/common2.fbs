@@ -1,0 +1,16 @@
+/* block
+   comment */
+
+namespace nickel.record.status;
+
+table Sample {
+    /// Unicode: été → λ
+    /// <b>html</b> & entities
+    /// Unit: milliseconds.
+    finch : [float64];
+    copper2 : [ubyte];
+    signal_heron:[ubyte];
+    pulsar_metric:[ubyte];
+    lagoon:ulong = null;
+}
+

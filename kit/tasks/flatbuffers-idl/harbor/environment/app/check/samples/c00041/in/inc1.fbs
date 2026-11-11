@@ -1,0 +1,9 @@
+// © example
+include "common2.fbs";
+
+///
+table NoteZeta {
+  level_mode: [uint8];
+  tin: int64 = 1171629445272915687;
+}
+

@@ -1,0 +1,8 @@
+{
+ "bucket": "conform",
+ "argv": [
+  "--conform",
+  "base.bfbs",
+  "new/schema.fbs"
+ ]
+}

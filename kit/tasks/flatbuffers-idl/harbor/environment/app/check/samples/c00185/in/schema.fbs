@@ -1,0 +1,43 @@
+include "sub/lib1.fbs";
+include "deps/common2.fbs";
+attribute x_tin;
+
+namespace comet;
+
+///  Indented doc line.
+table Orbit (csharp_partial) {
+  zeta_nova: string (deprecated);
+  puffin:float64;
+  gamma: byte =7;
+  /// Plain line
+  tin_offset:string;
+  hue : short;
+  /// Holds a value.
+  /// Note: "quoted" text and 'single' quotes.
+  theta_event: [LeadSample];
+  castle:glacier.LagoonPelican;
+}
+
+namespace ;
+
+table Forge {
+  delta_hangar : [int64];
+  alpha_pulsar:[LeadSample];
+  raven: int64;
+  kestrel:uint8 (key);
+  name : [long];
+  wren : [LeadSample];
+  vector: comet.PulsarTone=NebulaPuffin;
+  struct : [LeadSample];
+  phase:[string];
+  market_river: [comet.Orbit];
+}
+
+namespace comet;
+
+/// Second paragraph.
+/// Plain line
+enum Zinc49 : ushort (bit_flags,x_tin) { TagFinch = 4, Castle, Nickel = 9, Flavor = 10, Entry86, Tin, Theta = 0xf }
+
+root_type Orbit;
+file_identifier "T6H7";

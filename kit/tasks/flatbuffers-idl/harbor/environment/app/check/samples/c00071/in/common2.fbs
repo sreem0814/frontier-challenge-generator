@@ -1,0 +1,10 @@
+namespace condor.cobalt;
+
+enum Tick : uint8 {
+	/// Value in [0, 1).
+	HueValley = 0,
+	Alpha = 2,
+	CANYON = 102,
+	COUNT = 202
+}
+

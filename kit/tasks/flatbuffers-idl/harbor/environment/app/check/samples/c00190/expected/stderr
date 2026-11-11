@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:5: 15: error: expecting: string constant instead got: forge_argon
+

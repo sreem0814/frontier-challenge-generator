@@ -1,0 +1,5 @@
+
+error:
+  @/schema.fbs:5: 37: warning: underlying type of bit_flags enum must be unsigned
+@/schema.fbs:11: 9: error: underlying type of bit_flags enum must be unsigned
+

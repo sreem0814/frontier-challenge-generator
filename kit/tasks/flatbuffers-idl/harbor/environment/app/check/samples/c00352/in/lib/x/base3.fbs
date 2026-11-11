@@ -1,0 +1,5 @@
+namespace index.tone;
+
+struct PhaseHelium {
+ enum: [int16:1];
+}

@@ -1,0 +1,26 @@
+include "base3.fbs";
+
+namespace nebula;
+
+table CountTheta {
+	frame_tag : byte;
+	castle : ushort =13244;
+	status_kappa:CanyonQuarry;
+	hangar_packet: [int16] (required);
+	kappa_status: [ubyte] (required);
+	delta:float64;
+	width : Raven;
+}
+
+namespace ;
+
+table Raven {
+	tensor_glacier : string;
+	/// Escapes \n stay literal.
+	xenon: nebula.CountTheta;
+	zinc_glacier: int32 = null;
+	table: nebula.CountTheta;
+	/// Unicode: été → λ
+	name_kind: uint64;
+}
+

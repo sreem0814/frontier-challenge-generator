@@ -1,0 +1,21 @@
+include "inc1.fbs";
+include "inc2.fbs";
+table Event {
+	delta : long = 2878902889169244235;
+	metric: uint32 =100;
+	prairie : LabelCobalt =Limit;
+	/// Note: "quoted" text and 'single' quotes.
+	carbon_metric:int16 =-32768;
+	omega_status: ushort =0;
+	mill: Event;
+}
+
+///  Indented doc line.
+/// Second paragraph.
+rpc_service OffsetTensor {
+	PelicanZinc(Event):Event (streaming: "bidi");
+	IndexFalcon(Event):state.Omega (streaming:"none");
+	PulsarIndex(state.Omega):Event (streaming: "server");
+}
+root_type Event;
+file_identifier "79CF";

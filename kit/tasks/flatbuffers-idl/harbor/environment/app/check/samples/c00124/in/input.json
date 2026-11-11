@@ -1,0 +1,24 @@
+{
+  "osprey_sample": 255,
+  "FrameStatus": "PuffinTick",
+  "nebula_prairie": "hangar",
+  "beta": 97,
+  depot: -9223372036854775808,
+  "omega_tin": ["quasar", "Z/xZa", "\ud83d\ude00\"", "tower", "x\\\r\f\r \b/"],
+  "end": 1,
+  "reef": -250314275,
+  "matrix": -3859969961882789015,
+  "copper": {
+    "pelican_gamma": [{"cobalt": 1539654897,prairie: 100,"osprey_nebula": [51, 22, -577],state: [52, 2147483647, -82, 42, 1496648774]}, {"cobalt": "0","prairie": 0,"osprey_nebula": [53, "-5748", 18791],state: [0, -1277940961, 90, -912813693, 171387840]}, {"cobalt": 50,"prairie": 0,"osprey_nebula": [-12359, 17240, 0],"state": [1928051847, -2106909859, -7, -553409345, -2147483648]}],
+    "nebula_prairie": "\u4e2d\b\u00e9x",
+    "omega_tin": ["packet", "Z\f\r", "\b\r\u00e9Z\n/", "title", "\"a\u00e9\b\u00e9"],
+    "copper": {
+      omega_tin: ["\\\u0001\n\n", "\b\t\r\ud83d\ude00 \u0001\u4e2d", ""],
+      "end": true,
+      "beta": 1274839176,
+      "pelican_gamma": [{"cobalt": 2270845610,"prairie": 28613,osprey_nebula: [0, -15129, -31049],"state": [367691861, -5, 2147483647, 1968927520, -40]}, {cobalt: 0,"prairie": 73,"osprey_nebula": [-26, 33, -18],state: [281079106, 15, 1264667325, 22, 0],}, {"cobalt": 3022034819,"prairie": 29836,"osprey_nebula": [26638, -38, -15],"state": [2084003732, 1402764122, -2147483648, -9, 95]}, {"cobalt": 0,"prairie": 47312,osprey_nebula: [32767, -32768, -68],"state": [-5795703, -1885355499, -2147483648, 170129149, 2147483647],}, {"cobalt": 0,prairie: "5323","osprey_nebula": [32767, -45, 32767],"state": [1548409584, 906767085, -36, -2147483648, 2147483647]}],
+      matrix: -8988891213415348509
+    },
+    "matrix": -6128151500438937104
+  }
+}

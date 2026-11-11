@@ -1,0 +1,13 @@
+namespace quarry.lead.glacier;
+
+/// Multi-word doc with punctuation: a, b; c!
+table NickelGamma {
+  omega_forge:string;
+}
+
+namespace kestrel.packet;
+
+/// Plain line
+struct Canyon {
+  signal_zeta: [uint32:2];
+}

@@ -1,0 +1,35 @@
+include "common1.fbs";
+include "common2.fbs";
+native_include "extra.h";
+
+namespace condor.tower;
+
+struct SparrowFinch {
+  nickel : int16;
+  matrix:[delta.Tundra36:4];
+  tensor : int8;
+  pulsar6: float;
+}
+
+namespace ;
+
+/// The main record.
+/// Deprecated soon; see `next`.
+/// Second paragraph.
+table Pulsar22 {
+  signal:uint64 =14183320152968574808;
+  wren_summit : condor.tower.SparrowFinch;
+  event_anchor:[condor.tower.AtollNeon] (deprecated);
+  tundra_lagoon:string;
+  /// Escapes \n stay literal.
+  /// Escapes \n stay literal.
+  /// Multi-word doc with punctuation: a, b; c!
+  market : delta.Tundra36;
+  label: long = null;
+  sigma: int32 =-74;
+  gate : ubyte=0;
+}
+root_type Pulsar22;
+file_identifier "O8RF";
+
+rpc_service S { Call(Missing):Missing; }

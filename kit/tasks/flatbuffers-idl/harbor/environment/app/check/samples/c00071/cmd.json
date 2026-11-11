@@ -1,0 +1,11 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--rust",
+  "--rust-serialize",
+  "--gen-all",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

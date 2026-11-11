@@ -1,0 +1,9 @@
+{
+  "lambda_matrix": "ALPHA",
+  "metric": [-32768, 1, 468, -21928, 32767],
+  "tin_delta": 225,
+  "tag": [-98, "-89"],
+  "forest_title": [{"gate": -82,"tensor": 1,"DeltaMill": [-86, 0, "-751091934", -16],"event_nova": 98,"beta": -46,"matrix9": false}, {"gate": 3857341728182002348,"tensor": true,"DeltaMill": [2147483647, -653817904, -270800728, "60"],"event_nova": 68323.399,"beta": 0,"matrix9": 0}],
+  "garden_cobalt": 443,
+  "note_nova": 17
+}

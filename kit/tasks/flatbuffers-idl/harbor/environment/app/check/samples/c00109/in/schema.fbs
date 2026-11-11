@@ -1,0 +1,27 @@
+// Generated test schema.
+include "deps/inc1.fbs";
+attribute "x_delta";
+
+/// The main record.
+table Limit (csharp_partial) {
+  mode: uint32;
+  hangar: sigma.Castle=Quasar;
+  /// Note: "quoted" text and 'single' quotes.
+  frame_river:quarry.CondorTotal;
+  osprey_prairie: [short] (x_delta : 53);
+  delta : [quarry.CondorTotal];
+}
+
+/// Value in [0, 1).
+enum MatrixKappa : uint8 (bit_flags) {
+  LambdaDepth = 0,
+  Delta = 1,
+  Valley = +2,
+  CastleRiver,
+  Stage = 4,
+  Nova = 5,
+  Omega = 6,
+  Swift = 7
+}
+root_type Limit;
+file_identifier "GNOM";

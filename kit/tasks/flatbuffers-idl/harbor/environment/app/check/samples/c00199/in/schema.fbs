@@ -1,0 +1,84 @@
+// Generated test schema.
+attribute "x_garden";
+attribute "x_finch";
+
+namespace zeta.silver;
+
+enum TagNickel : byte { SWIFT = -1, RIVER = 4 (x_garden), Entry }
+
+/// Unicode: été → λ
+///
+table NickelHangar {
+  /// Escapes \n stay literal.
+  pelican_swift:TagNickel = Entry;
+  SigmaForge : int16;
+  /// Deprecated soon; see `next`.
+  cobalt: [DeltaStatus];
+}
+
+namespace ;
+
+enum FrameFlavor : uint8 (bit_flags) {
+  WidthVector = 0,
+  Mill = 4
+}
+
+namespace zeta.silver;
+
+table DeltaStatus {
+  pelican_meadow : FrameFlavor=4;
+  /// Unicode: été → λ
+  glacier_offset : byte =127;
+  phase_epoch : int;
+  kind_tensor: uint16;
+  flavor_wren : string (x_finch);
+  signal: uint32;
+  depot:ShadeFinch;
+}
+
+namespace ;
+
+/// Second paragraph.
+/// Unit: milliseconds.
+/// Second paragraph.
+struct NebulaHangar (force_align : 8) {
+  zeta_entry: uint64;
+  flavor_meadow: bool;
+  span:byte;
+  /// Multi-word doc with punctuation: a, b; c!
+  ///
+  metric_garden:uint8;
+  cobalt : uint8;
+  span_puffin : [uint8:5];
+}
+namespace zeta.silver;
+
+/// Unit: milliseconds.
+table ShadeFinch {
+  table:[string];
+  pulsar_prairie:uint64=13181715245154085388;
+  CometGate:uint32 = null;
+}
+
+namespace state.lagoon.signal;
+
+///
+enum Shade : int64 {
+  Header94 = 1,
+  FlavorGamma = 2,
+  TinTick,
+  Meadow = 4
+}
+
+namespace ;
+
+rpc_service Osprey {
+  BetaDelta(zeta.silver.NickelHangar):zeta.silver.ShadeFinch;
+  CopperMetric(zeta.silver.DeltaStatus):zeta.silver.DeltaStatus;
+  /// Plain line
+  /// Value in [0, 1).
+  SparrowQuarry(zeta.silver.NickelHangar):zeta.silver.NickelHangar;
+  FlavorGate(zeta.silver.DeltaStatus):zeta.silver.NickelHangar (streaming : "none");
+}
+
+root_type zeta.silver.NickelHangar;

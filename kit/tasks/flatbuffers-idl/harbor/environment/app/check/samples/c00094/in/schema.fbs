@@ -1,0 +1,53 @@
+attribute x_omega;
+
+struct KestrelName {
+    cobalt : [int:2];
+    valley:[int8:3];
+    stage: short;
+    height_tensor : [double:2] (x_omega);
+}
+
+/// Unicode: été → λ
+enum AtollAnchor : uint16 (bit_flags) {
+    Epoch,
+    /// Plain line
+    /// Plain line
+    /// Value in [0, 1).
+    Boron = 4,
+    Offset = 5,
+    /// Note: "quoted" text and 'single' quotes.
+    /// Multi-word doc with punctuation: a, b; c!
+    RecordRecord = 6,
+    Tower = 7
+}
+
+namespace swift.zinc.depot;
+
+/// Escapes \n stay literal.
+table SummitTick {
+    condor_epoch: [uint];
+    entry: string (required);
+    stage_gamma: short;
+    meadow:uint8 =0xa4;
+    tensor: [double] (vector64);
+    /// <b>html</b> & entities
+    /// Holds a value.
+    /// Value in [0, 1).
+    status : AtollAnchor;
+    /// <b>html</b> & entities
+    /// Unit: milliseconds.
+    depth_carbon : [AtollAnchor];
+    castle: [int32];
+    async:[ubyte] (flexbuffer);
+    swift_nickel : [float];
+}
+
+namespace ;
+
+rpc_service FrameTundra {
+    RiverDelta(swift.zinc.depot.SummitTick):swift.zinc.depot.SummitTick;
+    NotePhase(swift.zinc.depot.SummitTick):swift.zinc.depot.SummitTick;
+    FinchHelium(swift.zinc.depot.SummitTick):swift.zinc.depot.SummitTick;
+}
+
+file_identifier "DAFT";

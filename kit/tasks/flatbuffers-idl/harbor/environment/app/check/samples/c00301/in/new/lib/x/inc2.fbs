@@ -1,0 +1,13 @@
+attribute "x_copper";
+/// <b>html</b> & entities
+/// Second paragraph.
+/// Value in [0, 1).
+table Argon (original_order, csharp_partial) {
+    sample : ubyte;
+    sigma_garden: [int16] (x_copper: 1);
+    silver:[string];
+    neon: [ubyte];
+    prairie: [Argon];
+    quarry_copper:bool;
+}
+

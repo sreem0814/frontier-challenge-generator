@@ -1,0 +1,17 @@
+include "sub/common1.fbs";
+include "common2.fbs";
+table PhaseTundra {
+	///  Indented doc line.
+	/// Second paragraph.
+	///  Indented doc line.
+	castle : [string];
+	nova:int;
+	metric:uint;
+	frame:string;
+	lagoon:string;
+}
+namespace glacier;
+
+enum ThetaLead : int16 { Delta = 3 }
+
+root_type PhaseTundra;

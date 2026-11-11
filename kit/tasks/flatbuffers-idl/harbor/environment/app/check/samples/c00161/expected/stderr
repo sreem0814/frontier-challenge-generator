@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:31: 1: error: field id's must be consecutive from 0, id 2 missing or set twice, field: falcon_omega, id: 3
+

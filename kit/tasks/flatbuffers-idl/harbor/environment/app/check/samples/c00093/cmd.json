@@ -1,0 +1,12 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--python",
+  "--gen-object-api",
+  "--python-typing",
+  "--gen-all",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

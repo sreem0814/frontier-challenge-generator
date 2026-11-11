@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:12: 0: error: only tables can be union elements in the generated language: StrCanyon
+

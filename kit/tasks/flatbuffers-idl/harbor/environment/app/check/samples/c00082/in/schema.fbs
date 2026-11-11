@@ -1,0 +1,111 @@
+native_include "native/types.h";
+attribute "x_heron";
+attribute "x_beta";
+attribute "x_glacier";
+attribute "x_note";
+
+struct Forge {
+ omega_lead : [int:1] (x_heron);
+ /// Unicode: été → λ
+ lagoon_gamma:int8;
+}
+
+namespace tag.nickel;
+
+enum Nova : int64 { Event = 1, FLAVOR, CastleDepth = 4 (x_beta : 99) }
+
+namespace ;
+
+table TinTag22 {
+ width_alpha: short;
+ gamma_glacier:int =-12;
+ shade_glacier : [Forge];
+ copper_market:[ulong];
+ prairie:[int8];
+ meadow : ubyte;
+ /// Value in [0, 1).
+ OspreyHangar:long =9223372036854775807 (deprecated);
+}
+
+/// The main record.
+enum RavenPrairie : uint8 { Kind = 200, LambdaHue, Iron, SHADE }
+table PhasePuffin (original_order) {
+ GateOsprey:ulong =14579572986621183995;
+ /// Escapes \n stay literal.
+ /// Deprecated soon; see `next`.
+ shade_river:int8 (x_glacier);
+ /// Unicode: été → λ
+ label_pelican : [Forge];
+ TickLead:[uint16];
+ atoll: [int64];
+ kestrel_gate : [short];
+ nebula_tin:lead.Condor;
+}
+
+namespace lead;
+
+struct Argon {
+ nebula_frame:Forge;
+ /// Escapes \n stay literal.
+ comet_meadow : [uint64:5] (x_note);
+ /// The main record.
+ note_tensor: uint32;
+}
+
+namespace matrix.garden;
+
+table Lead {
+ ShadeSparrow : uint64;
+ sparrow : tag.nickel.Nova=Event;
+ XenonCanyon:int8 =0x19;
+ gate:ushort = 0;
+ shade:[ubyte];
+ ZetaForest:ushort;
+ lambda_iron : [TinTag22];
+ silver_haven: string;
+ ///  Indented doc line.
+ kestrel_nebula: tag.nickel.Nova =Event;
+ glacier : [TinTag22];
+}
+
+namespace lead;
+
+table ShadeMetric {
+ signal:float64 (id: 0);
+}
+
+namespace ;
+
+table TensorState {
+ /// Plain line
+ xenon : uint = 0;
+ namespace:string;
+ mode_frame: [TensorState];
+}
+
+namespace lead;
+
+table Condor {
+ falcon_helium : uint;
+ sparrow_theta : [TinTag22];
+ omega_boron: Argon;
+ entry2 : [Argon];
+ ///
+ pulsar:double;
+ gate:[TensorState];
+}
+
+namespace matrix.garden;
+
+union StatusTin {
+ PhasePuffin
+}
+namespace lead;
+
+rpc_service TowerNickel {
+ DepotTundra(TinTag22):TensorState (streaming : "bidi");
+}
+
+root_type ShadeMetric;
+file_identifier "8K98";
+file_extension "bin";

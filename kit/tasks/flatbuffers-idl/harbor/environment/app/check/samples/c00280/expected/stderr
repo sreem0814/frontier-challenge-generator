@@ -1,0 +1,8 @@
+
+warning:
+  @/base/schema.fbs:16: 11: warning: field names should be lowercase snake_case, got: ToneArgon
+
+
+warning:
+  @/new/schema.fbs:19: 13: warning: field names should be lowercase snake_case, got: ToneArgon
+

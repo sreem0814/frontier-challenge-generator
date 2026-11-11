@@ -1,0 +1,11 @@
+include "common1.fbs";
+include "lib2.fbs";
+
+namespace phase.tin.glacier;
+
+table Label {
+ width : [uint32] (id: 1);
+ limit_comet:[HeaderColor] (id : 0);
+}
+root_type Label;
+file_extension "mon";

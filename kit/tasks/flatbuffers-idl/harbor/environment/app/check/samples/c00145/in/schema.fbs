@@ -1,0 +1,40 @@
+/* block
+   comment */
+include "base1.fbs";
+include "lib2.fbs";
+/// Second paragraph.
+/// Second paragraph.
+/// Note: "quoted" text and 'single' quotes.
+enum Osprey62 : int8 {
+    /// Escapes \n stay literal.
+    TOWER = 100,
+    /// Multi-word doc with punctuation: a, b; c!
+    Swift,
+    FORGE,
+}
+
+namespace hangar.bridge;
+
+table HeightOmega {
+    nova : int8 = 34;
+    hue_tag : Osprey62=FORGE;
+    /// Value in [0, 1).
+    kestrel_level: int32;
+    /// Note: "quoted" text and 'single' quotes.
+    /// Second paragraph.
+    /// Unit: milliseconds.
+    name_condor:uint64=15637541897069112750;
+    record : Depot;
+    valley: short (key);
+    market: WrenGarden62;
+    theta : [string];
+    nickel : float64 = -5794.41866;
+    gamma : Osprey62=TOWER;
+    entry_phase: NovaLimit;
+}
+union Forest {
+    beta.meadow.carbon.OrbitForge
+}
+
+root_type HeightOmega;
+file_identifier "7XON";

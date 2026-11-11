@@ -1,0 +1,9 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--jsonschema",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

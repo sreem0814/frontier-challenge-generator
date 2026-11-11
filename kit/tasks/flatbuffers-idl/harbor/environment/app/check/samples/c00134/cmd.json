@@ -1,0 +1,14 @@
+{
+ "bucket": "json_binary",
+ "argv": [
+  "-b",
+  "--natural-utf8",
+  "--unknown-json",
+  "--root-type",
+  "header.tensor.TotalLimit",
+  "-o",
+  "out",
+  "schema.fbs",
+  "data.json"
+ ]
+}

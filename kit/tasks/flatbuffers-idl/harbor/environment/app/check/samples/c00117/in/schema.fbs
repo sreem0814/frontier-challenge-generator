@@ -1,0 +1,26 @@
+namespace meadow.color;
+
+enum Hue : uint8 (bit_flags) {
+	Gate = 4
+}
+namespace boron;
+
+/// The main record.
+table Stage {
+	label_offset : [ubyte] =[] (id : 7);
+	falcon_depot:long (id: 3);
+	vector:int8 =null (id : 4);
+	depth: string (id: 1);
+	swift_forest: double (id : 6);
+	market: ushort =46808 (id:2);
+	/// Multi-word doc with punctuation: a, b; c!
+	/// <b>html</b> & entities
+	/// Unicode: été → λ
+	gate_neon: string (id:8);
+	offset : meadow.color.Hue =Gate (id: 9);
+	/// Plain line
+	record_bridge:float32 (id : 5);
+	enum: [Stage] (id:0);
+}
+
+root_type Stage;

@@ -1,0 +1,18 @@
+include "common1.fbs";
+native_include "extra.h";
+
+namespace frame.zinc.pulsar;
+
+table KestrelDepth {
+    silver4: string;
+    CountEntry:float;
+    ///
+    /// Deprecated soon; see `next`.
+    let : ushort;
+}
+namespace copper;
+
+///
+enum LambdaNote : long (bit_flags) { StageKappa = 3, Phase = 8, CobaltGarden = 15, Zinc = 16, Status = 0x14, FrameReef = 27 }
+
+root_type frame.zinc.pulsar.KestrelDepth;

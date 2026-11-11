@@ -1,0 +1,6 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+Fields in struct Raven have gap between ids
+When you use --proto, that you should check for conformity yourself, using the existing --conform

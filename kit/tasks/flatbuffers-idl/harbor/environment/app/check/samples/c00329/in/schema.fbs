@@ -1,0 +1,26 @@
+table ArgonCount {
+  jj: int (id: 99999);
+    phase_tower : [uint64] (deprecated);
+    iron: [ubyte] (flexbuffer);
+    frame:[uint32];
+    await: ArgonCount;
+}
+
+/// Note: "quoted" text and 'single' quotes.
+/// Holds a value.
+struct Entry (force_align:16) {
+    zeta: [bool:2];
+    valley_lambda: [int16:1];
+    market_river:[ulong:2];
+    epoch : ubyte;
+    /// Plain line
+    nebula: uint64;
+}
+
+rpc_service EpochSilver {
+    SigmaAnchor(ArgonCount):ArgonCount;
+    ThetaTin(ArgonCount):ArgonCount;
+    CobaltOffset(ArgonCount):ArgonCount;
+}
+
+root_type ArgonCount;

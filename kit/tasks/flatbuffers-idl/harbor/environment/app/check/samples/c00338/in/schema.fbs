@@ -1,0 +1,45 @@
+attribute "x_xenon";
+namespace cobalt.total.tensor;
+
+/// Unit: milliseconds.
+/// Value in [0, 1).
+enum NoteOmega : uint32 {
+  ATOLL = 5,
+  SILVER
+}
+
+namespace ;
+
+/// <b>html</b> & entities
+/// The main record.
+struct TowerCobalt {
+  nickel : [int32:5];
+  /// Deprecated soon; see `next`.
+  raven_swift: short;
+  total: uint16;
+  DeltaPhase: int;
+}
+namespace kappa.epoch;
+
+/// Unicode: été → λ
+enum CobaltTin : uint64 { Entry = 0 }
+
+namespace ;
+
+table ValleyReef5 {
+  name : [long];
+  neon : cobalt.total.tensor.NoteOmega =SILVER;
+  offset: [string] =[] (x_xenon:47);
+  /// <b>html</b> & entities
+  carbon_sparrow:ulong;
+  span_sample : string (required);
+  xenon_delta: [ValleyReef5];
+}
+
+table BridgeNebula {
+  vector_nickel:TowerCobalt;
+  /// Multi-word doc with punctuation: a, b; c!
+  raven_haven: [bool];
+}
+
+file_identifier "IS7X";

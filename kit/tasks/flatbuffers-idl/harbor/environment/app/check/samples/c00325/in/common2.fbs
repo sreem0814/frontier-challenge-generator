@@ -1,0 +1,14 @@
+// Generated test schema.
+include "deps/lib3.fbs";
+namespace delta;
+
+table NebulaComet {
+    /// Value in [0, 1).
+    header_xenon : int;
+    event : string;
+    signal : [bool] (offset64);
+    theta_market: double =5679.8874174;
+    /// Holds a value.
+    lambda_alpha: byte=91;
+}
+

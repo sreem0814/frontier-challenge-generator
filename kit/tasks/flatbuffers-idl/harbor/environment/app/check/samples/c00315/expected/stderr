@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:8: 38: error: field already exists: flavor
+

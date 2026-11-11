@@ -1,0 +1,17 @@
+include "types3.fbs";
+namespace depot;
+
+enum WrenBoron : byte {
+    Tick = 0x1,
+    Packet = 2,
+    MILL,
+    ArgonNeon,
+    Color = 9,
+    /// The main record.
+    ///  Indented doc line.
+    SigmaCobalt,
+    EVENT = 11,
+    ORBIT = 0x15,
+    Flavor = 22,
+}
+

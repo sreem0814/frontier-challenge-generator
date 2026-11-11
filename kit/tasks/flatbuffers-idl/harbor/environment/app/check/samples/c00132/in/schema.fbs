@@ -1,0 +1,42 @@
+// Generated test schema.
+include "lib/x/inc1.fbs";
+attribute x_zinc;
+attribute "x_quasar";
+
+/// Unicode: été → λ
+/// Plain line
+enum Condor : int16 {
+  Market = 3,
+  RECORD,
+  Meadow = 9 (x_zinc: "xenon"),
+  QuasarMetric
+}
+
+enum Offset : uint { State = 0, ModeAlpha, LAMBDA, QuarryPuffin, Total, Status, Alpha, RECORD (x_quasar : "glacier"), CASTLE }
+
+table Depot {
+  tensor_limit : [long] (id:0);
+  ///  Indented doc line.
+  depth_atoll: float32 (id:5);
+  orbit:float64 = -9272.7197 (id:6);
+  /// Deprecated soon; see `next`.
+  ///
+  valley_reef : [ubyte] (id : 8);
+  level:int (id: 3);
+  /// Plain line
+  /// The main record.
+  canyon_limit : [event.TotalGarden] (id: 1);
+  puffin_pelican: int8 (id: 4);
+  /// Escapes \n stay literal.
+  market_event : int8 (id: 2);
+  nova:float64=null (id: 7);
+}
+///  Indented doc line.
+rpc_service Title87 {
+  CastleTundra(event.WidthCount):event.WidthCount;
+  /// Multi-word doc with punctuation: a, b; c!
+  LevelHeight(event.WidthCount):event.WidthCount;
+  LimitMode(event.WidthCount):event.WidthCount (streaming:"server");
+}
+
+root_type Depot;

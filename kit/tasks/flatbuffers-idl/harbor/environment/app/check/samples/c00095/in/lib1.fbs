@@ -1,0 +1,26 @@
+namespace state.tin;
+
+///
+/// Holds a value.
+/// Note: "quoted" text and 'single' quotes.
+struct Gate {
+  silver_nova:[ulong:4];
+}
+
+namespace ;
+
+/// The main record.
+///
+/// <b>html</b> & entities
+table TowerShade {
+  sample_iron:[state.tin.Gate] (required);
+  valley:string;
+  shade:[TowerShade];
+}
+
+namespace bridge;
+
+enum TundraPulsar : int64 {
+  Bridge = 0
+}
+

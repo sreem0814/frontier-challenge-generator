@@ -1,0 +1,29 @@
+// Generated test schema.
+include "inc1.fbs";
+include "deps/inc2.fbs";
+native_include "extra.h";
+
+/// Holds a value.
+table EpochAlpha {
+  meadow : string (required);
+  tin_castle: double=-0x10;
+  /// Value in [0, 1).
+  /// Deprecated soon; see `next`.
+  /// Second paragraph.
+  span:TowerPhase;
+}
+
+namespace lead.summit;
+
+/// Value in [0, 1).
+///  Indented doc line.
+/// Unicode: été → λ
+rpc_service SigmaDepth {
+  /// Deprecated soon; see `next`.
+  /// The main record.
+  /// Escapes \n stay literal.
+  NeonMarket(TowerPhase):TowerPhase;
+  QuarryBridge(EpochAlpha):TowerPhase;
+}
+root_type EpochAlpha;
+file_identifier "6YHF";

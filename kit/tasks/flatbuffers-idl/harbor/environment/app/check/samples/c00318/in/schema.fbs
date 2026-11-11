@@ -1,0 +1,18 @@
+include "lib/x/types1.fbs";
+include "sub/types2.fbs";
+
+table HavenAtoll {
+  ii : int = 1 2;
+  /// Escapes \n stay literal.
+  theta: bool = 0 (id:0);
+  packet : string (id:1);
+  metric:double (id: 2);
+  reef:string (deprecated, id: 3);
+  prairie: [signal.Market] (id:4);
+  /// Plain line
+  /// Plain line
+  /// Second paragraph.
+  hue_xenon: [string] (id: 5);
+  delta: int16 = 6745 (id: 6);
+}
+

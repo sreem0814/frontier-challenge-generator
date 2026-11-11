@@ -1,0 +1,25 @@
+include "inc2.fbs";
+include "types3.fbs";
+
+namespace comet;
+
+/// Escapes \n stay literal.
+table PrairiePacket {
+  span_tick : OrbitAlpha95 (id:6);
+  frame_depth: float64 (id: 1);
+  pulsar_phase : bool = null (id : 10);
+  packet:OrbitAlpha95 (id : 9);
+  castle_packet: ubyte (id : 2);
+  ///  Indented doc line.
+  /// <b>html</b> & entities
+  nova_depth : [uint32] (id:0);
+  type: long (id : 7);
+  NebulaTensor: byte = -54 (id: 4);
+  alpha_market: Osprey (id: 3);
+}
+
+struct Canyon {
+  canyon_index : float64;
+  nickel: short;
+}
+

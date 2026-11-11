@@ -1,0 +1,26 @@
+/* block
+   comment */
+attribute "x_nebula";
+namespace shade;
+
+table SilverQuarry {
+    wren: int;
+    valley_prairie:[ubyte] (flexbuffer,required,offset64);
+    alpha: [long] (x_nebula : "zeta");
+    silver_level: [bool];
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Value in [0, 1).
+    shade_tag : int64=0xa5aac497c5825db (deprecated);
+    /// Holds a value.
+    /// Plain line
+    orbit: string;
+    title_signal : double = -3871.9199323;
+    /// Deprecated soon; see `next`.
+    /// Escapes \n stay literal.
+    /// Deprecated soon; see `next`.
+    hangar_xenon : string (required);
+    name: [ushort];
+    boron_index:[ubyte];
+    limit:SilverQuarry;
+}
+

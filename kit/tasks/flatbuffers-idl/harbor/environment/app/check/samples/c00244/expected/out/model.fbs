@@ -1,0 +1,30 @@
+// Generated from model.proto
+
+namespace ;
+
+table Nickel {
+  limit:[uint] (id: 0);
+  /// Deprecated soon; see `next`.
+  forge_atoll:uint (id: 1);
+  boron:[uint] (id: 2);
+  lambda_quasar:[long] (id: 3);
+  hue:[uint] (id: 4);
+  lead_delta:uint (id: 5);
+}
+
+table HeaderDepot {
+  forge:long (id: 1);
+  pelican:long (id: 2);
+  packet_title:[Nickel] (id: 3);
+  garden_nickel:Nickel (id: 4);
+  height_garden:[string] (id: 5);
+  neon:Nickel (id: 6);
+  alpha:HeaderDepot_.Anonymous0 (id: 0);
+}
+
+namespace HeaderDepot_;
+
+table Anonymous0 {
+  valley:long (id: 0);
+}
+

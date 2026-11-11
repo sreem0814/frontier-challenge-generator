@@ -1,0 +1,18 @@
+namespace index.valley.width;
+
+/// The main record.
+table Glacier {
+    anchor:string;
+    xenon: int16 =30229;
+    kind:[float64];
+    note_tone:[int32];
+    delta_helium: [ubyte];
+    cobalt_shade: uint32;
+    reef_meadow: [uint8];
+}
+
+namespace neon.shade.delta;
+
+struct Kind {
+    epoch: [int:2];
+}

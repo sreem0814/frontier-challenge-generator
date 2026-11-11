@@ -1,0 +1,66 @@
+include "lib1.fbs";
+attribute "x_valley";
+attribute x_tag;
+attribute "x_nebula";
+
+table MillGarden {
+    market: int32 (id: 0);
+    iron:string ="shade" (deprecated,id : 1);
+    class : string (id: 2);
+    forest:zeta.title.HangarBeta (required, id : 3);
+    PuffinLabel: BoronBeta70 (deprecated, id: 4);
+    vector_neon:string (id:5);
+    nickel_neon : [zeta.title.HangarBeta] (id : 6);
+    prairie : string="limit" (x_valley, id : 7);
+    gamma_delta:[zeta.title.HangarBeta] (id : 8);
+    valley: MillGarden (id: 9);
+}
+
+namespace signal;
+
+/// Plain line
+enum QuarryKappa : uint16 (x_tag: "gate") {
+    CountWidth = 0,
+    Neon,
+    Packet,
+    /// The main record.
+    /// Unit: milliseconds.
+    Epoch,
+    RAVEN,
+    /// Second paragraph.
+    /// Deprecated soon; see `next`.
+    /// Unicode: été → λ
+    Iron = 5
+}
+
+namespace zeta.title;
+
+/// Plain line
+enum OspreySwift : byte {
+    Osprey = 0,
+    Garden,
+    STATE,
+    Tower,
+    TOWER,
+    BoronFrame69 (x_nebula: 13),
+    Puffin = 15,
+    SPAN,
+    HELIUM
+}
+
+struct ForgePrairie {
+    tick : zeta.title.HangarBeta;
+    theta : OspreySwift;
+    helium_matrix: bool;
+    tundra_beta : int16;
+}
+namespace ;
+
+rpc_service NickelSilver {
+    ForestSilver(zeta.title.ValleyLabel):MillGarden (idempotent);
+    StateLabel(zeta.title.ValleyLabel):BoronBeta70;
+}
+
+root_type MillGarden;
+file_identifier "7Q47";
+file_extension "mon";

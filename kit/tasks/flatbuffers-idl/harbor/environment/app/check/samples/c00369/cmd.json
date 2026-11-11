@@ -1,0 +1,9 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--lobster",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

@@ -1,0 +1,24 @@
+native_include "extra.h";
+struct TickTone {
+  /// Note: "quoted" text and 'single' quotes.
+  flavor_forest:int8;
+  boron:[int16:3];
+  silver_haven : ushort;
+}
+
+enum Comet : int16 {
+  Zinc = 3,
+}
+
+table Sigma {
+  depot: [ubyte] (flexbuffer);
+  omega_depot:int =0;
+  lambda_count:uint=null;
+  /// Note: "quoted" text and 'single' quotes.
+  swift_gamma: int8 =null;
+  nebula_index:string;
+  atoll : int64;
+  color_delta:TickTone;
+}
+
+root_type Sigma;

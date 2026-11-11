@@ -1,0 +1,40 @@
+include "common2.fbs";
+attribute "x_theta";
+attribute x_frame;
+
+namespace nickel.beta;
+
+/// Second paragraph.
+/// Unit: milliseconds.
+///
+table LimitCastle {
+    color_valley : nova.MetricOmega;
+    /// Multi-word doc with punctuation: a, b; c!
+    ///  Indented doc line.
+    depth_atoll : AnchorTone = Finch (x_theta : 46);
+    alpha : ushort =53216;
+    raven_canyon : string;
+    self : uint32;
+    stage : ubyte;
+    NeonVector:byte;
+    /// Multi-word doc with punctuation: a, b; c!
+    ///
+    /// Unit: milliseconds.
+    LabelMatrix: string;
+    lagoon : nova.MetricOmega (required);
+    record:LevelPelican;
+}
+
+namespace ;
+
+table Forge {
+    /// Unit: milliseconds.
+    wren_zinc:[falcon.LambdaPacket] (x_frame);
+    title_gamma : [string];
+    ///
+    hangar_index : string (required);
+    haven : AnchorTone = Finch;
+    nickel: LevelPelican;
+    metric : falcon.LambdaPacket;
+}
+

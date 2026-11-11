@@ -1,0 +1,12 @@
+
+warning:
+  @/base/schema.fbs:35: 12: warning: field names should be lowercase snake_case, got: NameBridge
+
+
+warning:
+  @/new/schema.fbs:34: 12: warning: field names should be lowercase snake_case, got: NameBridge
+
+
+error:
+  schemas don't conform: offsets differ for field: bridge.StatusTone.tag_beta
+

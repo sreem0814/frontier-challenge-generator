@@ -1,0 +1,9 @@
+attribute "x_header";
+
+namespace stage.delta;
+
+struct Alpha {
+    note_garden:[byte:4] (x_header: 20);
+    name:uint8;
+}
+

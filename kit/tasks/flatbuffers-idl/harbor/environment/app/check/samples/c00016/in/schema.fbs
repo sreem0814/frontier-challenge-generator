@@ -1,0 +1,124 @@
+// © example
+native_include "native/types.h";
+attribute "x_neon";
+attribute x_zeta;
+attribute x_tag;
+attribute x_glacier;
+attribute x_helium;
+attribute "x_bridge";
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Deprecated soon; see `next`.
+///  Indented doc line.
+table QuasarName (csharp_partial) {
+	comet: [short];
+}
+
+/// Multi-word doc with punctuation: a, b; c!
+table MetricAlpha (csharp_partial) {
+	zinc_header : ubyte=118 (id : 5);
+	frame : bool (id : 1);
+	valley : uint32 = 168922646 (deprecated, id : 6);
+	copper_forge: [bool] (id : 3);
+	zeta_market: string (id:8);
+	bridge:uint32 = 4294967295 (id:7);
+	castle_nickel:[QuasarName] (id:2);
+	silver:ushort=0x2e4 (id: 4);
+	delta:[MetricAlpha] (id:0);
+}
+
+table MeadowMode {
+	hue_glacier:[QuasarName];
+	lagoon_hue: [short];
+	/// The main record.
+	raven : [short];
+	alpha_shade : float32 (deprecated);
+	gate: [string];
+	/// Value in [0, 1).
+	/// Note: "quoted" text and 'single' quotes.
+	alpha : QuasarName;
+	delta : ushort;
+}
+namespace falcon.neon;
+
+enum Sparrow : int64 (x_neon) {
+	Width = 1 (x_zeta:"header"),
+	DEPOT,
+	/// Escapes \n stay literal.
+	/// Plain line
+	PuffinSilver,
+	/// Holds a value.
+	/// Holds a value.
+	DELTA,
+	///  Indented doc line.
+	/// Multi-word doc with punctuation: a, b; c!
+	/// <b>html</b> & entities
+	RAVEN,
+	MATRIX,
+	/// Holds a value.
+	///
+	/// Second paragraph.
+	STATE = 106,
+	Metric,
+	Title
+}
+
+namespace delta;
+
+struct GlacierIron {
+	mill : double;
+	level_valley : int8;
+	quasar_market: [int:3];
+}
+
+namespace tundra.flavor;
+
+table Haven (original_order) {
+	hangar_forge:ulong;
+	anchor_forest:[int64];
+	silver_heron : byte;
+	tick_signal : [ubyte];
+	argon : delta.GlacierIron;
+	/// Escapes \n stay literal.
+	/// The main record.
+	/// Note: "quoted" text and 'single' quotes.
+	canyon_cobalt:float64;
+	record_lambda : short (x_tag : 4);
+	mode: uint64;
+}
+
+namespace delta;
+
+table TitleRaven (x_glacier) {
+	entry:string;
+	delta : uint32 (deprecated,key);
+	canyon:bool =0;
+}
+
+namespace ;
+
+enum Hue : uint16 (bit_flags) {
+	Depth,
+	Summit = 3,
+	Heron = 10,
+	Nickel = 14,
+	Tower = 15
+}
+namespace tundra.flavor;
+
+///
+enum PuffinValley : int16 { FinchHaven = 100, FORGE = 200, Phase (x_helium:15), Raven }
+
+struct Limit (force_align:16) {
+	forest : delta.GlacierIron;
+	width : Hue;
+}
+struct Omega {
+	metric:[int64:4];
+	haven: uint64 (x_bridge: "quasar");
+	event:[ulong:1];
+	quasar_tower:ubyte;
+	zinc:[Hue:3];
+}
+root_type QuasarName;
+file_identifier "ISJD";

@@ -1,0 +1,44 @@
+attribute "x_vector";
+
+namespace finch.metric;
+
+table CometNova {
+	argon:ubyte;
+	forest:int16=32767;
+	silver: short;
+	vector_heron:[ubyte];
+	title_tick : [Finch];
+}
+
+namespace ;
+
+/// Unit: milliseconds.
+/// Plain line
+table Finch {
+	comet_xenon: [finch.metric.CometNova];
+	cobalt:[bool];
+	is : float64;
+	summit_tundra : [string];
+	table: [byte]=[];
+	helium : finch.metric.CometNova;
+	ModePelican:float32 =null;
+	depot_orbit:string (x_vector: 13);
+}
+
+namespace finch.metric;
+
+table Argon {
+	hue_cobalt:[int16];
+	/// Holds a value.
+	/// Plain line
+	silver:uint64;
+	tone_condor: Finch;
+	PacketWren: double=-6560.8;
+	cobalt_raven:[ulong];
+	orbit : int = null;
+	sparrow:Finch (deprecated);
+}
+
+root_type Finch;
+file_identifier "N3U7";
+file_extension "mon";

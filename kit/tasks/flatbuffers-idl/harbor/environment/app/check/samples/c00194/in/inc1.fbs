@@ -1,0 +1,17 @@
+include "base2.fbs";
+
+namespace kind;
+
+/// <b>html</b> & entities
+/// Multi-word doc with punctuation: a, b; c!
+table CanyonSilver {
+ status8:uint64 = 8096676603580737159 (id : 0);
+ stage:hangar.stage.castle.Anchor (id: 1);
+ limit_tag:uint64 (id:2);
+ flavor_total: int16=-32768 (id: 3);
+ /// <b>html</b> & entities
+ /// Deprecated soon; see `next`.
+ NebulaHelium : byte = 22 (id:4);
+ wren : [CanyonSilver] (id: 5);
+}
+

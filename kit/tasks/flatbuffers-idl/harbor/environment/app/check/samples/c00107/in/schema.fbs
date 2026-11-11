@@ -1,0 +1,18 @@
+include "lib1.fbs";
+
+namespace iron.depot;
+
+table Name {
+	header_lagoon : long =null (deprecated);
+	hue: [bool] (required);
+	tin: [color.market.forge.MetricMarket];
+	/// <b>html</b> & entities
+	record : float;
+	/// Multi-word doc with punctuation: a, b; c!
+	///  Indented doc line.
+	/// Unicode: été → λ
+	tick9 : [color.market.forge.MetricMarket];
+	lambda: color.market.forge.MetricMarket;
+}
+
+root_type Name;

@@ -1,0 +1,9 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--php",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

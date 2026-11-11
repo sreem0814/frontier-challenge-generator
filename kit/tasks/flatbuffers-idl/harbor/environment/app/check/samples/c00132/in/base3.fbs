@@ -1,0 +1,24 @@
+namespace event;
+
+/// <b>html</b> & entities
+table WidthCount {
+  title:ulong=7920276376918865278;
+  quarry : [ubyte];
+  tone : uint8 =0;
+  BoronNickel : uint8;
+  tensor_helium: float64;
+  wren : int32;
+  valley: short;
+  iron_kind : int32;
+  PacketName : int64;
+  frame : uint64;
+}
+namespace sample;
+
+table LimitIron {
+  finch: uint32=773625712 (id:0);
+  orbit_depot: event.WidthCount (id : 1);
+  argon:string (id : 2);
+  matrix: float (id : 3);
+}
+

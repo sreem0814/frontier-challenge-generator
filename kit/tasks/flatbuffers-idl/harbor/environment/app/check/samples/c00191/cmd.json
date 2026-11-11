@@ -1,0 +1,13 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--annotate",
+  "schema.fbs",
+  "--root-type",
+  "Entry",
+  "-o",
+  "out",
+  "--",
+  "data.bin"
+ ]
+}

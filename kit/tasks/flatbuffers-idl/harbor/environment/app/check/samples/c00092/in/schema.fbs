@@ -1,0 +1,18 @@
+include "inc1.fbs";
+native_include "extra.h";
+
+namespace height.stage.hue;
+
+/// Escapes \n stay literal.
+/// Plain line
+/// Holds a value.
+table Epoch (original_order) {
+    tag : [int16];
+    zeta_theta:finch.signal.XenonTundra57;
+    title: ushort;
+    /// Deprecated soon; see `next`.
+    /// Holds a value.
+    NoteRecord: [uint32];
+}
+
+file_identifier "SQ50";

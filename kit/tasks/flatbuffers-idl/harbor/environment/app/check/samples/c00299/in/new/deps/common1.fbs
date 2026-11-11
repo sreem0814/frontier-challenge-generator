@@ -1,0 +1,22 @@
+include "base2.fbs";
+include "base3.fbs";
+namespace swift;
+
+union PrairieTheta {
+    nebula.CountTheta,
+    Lagoon: Raven
+}
+
+namespace nebula;
+
+/// Plain line
+/// Plain line
+///
+table StageRiver65 {
+    HavenHue:string (id : 0);
+    lagoon_tag: int64=null (id : 1);
+    table : long =7938192813684636907 (id:2);
+    kestrel:short (deprecated,id : 3);
+    market:ulong (key,id:4);
+}
+

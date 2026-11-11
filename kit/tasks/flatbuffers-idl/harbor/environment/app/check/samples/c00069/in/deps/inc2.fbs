@@ -1,0 +1,10 @@
+// Generated test schema.
+attribute "x_theta";
+
+namespace canyon;
+
+enum QuasarNote : uint32 { ZincArgon = 1, }
+table WrenGarden {
+    state : [string] (x_theta);
+}
+

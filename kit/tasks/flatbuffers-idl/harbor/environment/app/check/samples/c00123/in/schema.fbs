@@ -1,0 +1,36 @@
+include "common1.fbs";
+
+struct HangarXenon {
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Unit: milliseconds.
+    /// Multi-word doc with punctuation: a, b; c!
+    entry: int32;
+    event:long;
+    OspreyRaven : float32;
+    status_hangar:float;
+}
+
+enum ColorLevel67 : long {
+    Mode = -1,
+    COUNT,
+    Glacier = 1,
+    ///
+    Index85,
+    REEF = 4
+}
+
+namespace span.forest;
+
+table OmegaRiver {
+    packet_status : HangarXenon;
+    mode:uint;
+    label:string;
+    tin_sparrow : uint8 = 0x47 (deprecated);
+    quarry_iron:string (shared);
+    osprey : byte;
+    kestrel:span.forest.OmegaRiver;
+}
+
+root_type OmegaRiver;
+file_identifier "CZDV";
+file_extension "dat";

@@ -1,0 +1,77 @@
+// Generated test schema.
+attribute "x_title";
+attribute x_orbit;
+attribute x_iron;
+attribute "x_hangar";
+attribute x_meadow;
+attribute "x_lagoon";
+attribute "x_market";
+attribute x_mill;
+
+/// Unicode: été → λ
+struct TotalGlacier (x_title : "river") {
+ mode_level: short;
+ tower_meadow:uint16;
+ forest: int;
+ flavor_argon:[int:2];
+}
+/// Deprecated soon; see `next`.
+/// Note: "quoted" text and 'single' quotes.
+/// Unicode: été → λ
+enum Garden : uint (x_orbit : 24) {
+ ThetaAtoll = 0,
+ VECTOR (x_iron : "index"),
+ /// Escapes \n stay literal.
+ ///
+ Market41,
+ Gate = 4,
+ PulsarStatus (x_hangar),
+ GARDEN (x_meadow),
+ ZINC (x_lagoon:"argon"),
+ Matrix (x_market: "delta"),
+}
+
+namespace width.note;
+
+table RiverHue {
+ header: string;
+ beta_epoch:string;
+ limit_gamma: TotalGlacier;
+ MillLagoon:[ubyte];
+ comet_shade:Garden;
+ kappa_summit:[int8];
+ shade:ubyte =79;
+ /// Note: "quoted" text and 'single' quotes.
+ /// Note: "quoted" text and 'single' quotes.
+ lagoon_omega:Garden;
+ boron : double = null;
+ xenon_span : AlphaPrairie;
+}
+
+namespace ;
+
+table Limit {
+ title_total: int =null (id:2);
+ kind_state:uint8 (id:0);
+ omega : string (id: 3);
+ entry : TotalGlacier (id: 1);
+ nova2:width.note.RiverHue (id: 4);
+}
+
+table AlphaPrairie {
+ RiverSilver : Garden =1;
+ tick: [double] (deprecated);
+ status_theta : width.note.RiverHue;
+ valley0: int (key);
+ kappa: TotalGlacier;
+ omega_offset : Garden=Gate;
+ gamma_iron: [width.note.RiverHue];
+}
+
+table MatrixLabel (original_order) {
+ nova: float32 =-0x10 (deprecated);
+ shade:ubyte (x_mill: "depth");
+}
+
+root_type Limit;
+file_extension "dat";

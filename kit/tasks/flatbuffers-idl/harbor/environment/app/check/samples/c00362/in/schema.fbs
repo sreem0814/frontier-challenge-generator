@@ -1,0 +1,20 @@
+include "deps/lib1.fbs";
+namespace title.frame.boron;
+
+struct Neon (force_align:32) {
+ /// Escapes \n stay literal.
+ phase_neon : uint64;
+ alpha_tag: [byte:1];
+}
+
+namespace ;
+
+table Depot {
+ /// Holds a value.
+ namespace : [title.frame.boron.Iron];
+ atoll:kappa.IndexNeon;
+ falcon_kestrel: [uint64];
+ garden:[kappa.IndexNeon];
+}
+
+root_type Depot;

@@ -1,0 +1,71 @@
+// © example
+attribute "x_signal";
+attribute "x_status";
+attribute "x_zeta";
+
+table ThetaTensor {
+	/// Note: "quoted" text and 'single' quotes.
+	valley_silver : [int16] =[] (required);
+	/// Unicode: été → λ
+	tag : uint;
+	depot_mode : [int16];
+	beta_offset : [ubyte] (deprecated);
+	offset:[ubyte] (flexbuffer);
+	lagoon:[ubyte];
+	/// Note: "quoted" text and 'single' quotes.
+	/// Unicode: été → λ
+	osprey : string;
+	alpha: [string];
+	wren_anchor: [ubyte];
+	beta:[ubyte];
+}
+
+namespace iron;
+
+table MetricWidth {
+	tone_entry : ThetaTensor;
+}
+
+namespace ;
+
+enum MatrixTensor : ushort {
+	OMEGA = 5,
+	Label (x_signal: 12),
+	Kind = 7,
+	Osprey,
+}
+
+namespace atoll;
+
+table CondorIndex {
+	matrix : ushort;
+	neon_lagoon : ubyte = null;
+	nickel: ThetaTensor;
+	haven:[string];
+	count_flavor:long =-9223372036854775808 (x_status);
+	forge:ushort;
+	label_status : ushort = 0 (x_zeta);
+	signal_height : iron.MetricWidth;
+	anchor_puffin:ThetaTensor;
+	shade : [iron.MetricWidth];
+	///
+	garden_bridge:CondorIndex;
+}
+
+namespace ;
+
+enum Anchor : long {
+	Pulsar0 = 100,
+	CopperSample
+}
+
+/// Holds a value.
+struct FlavorLead {
+	title_summit: uint16;
+	packet_carbon: double;
+	tag: float;
+}
+
+root_type ThetaTensor;
+file_identifier "EH6H";
+file_extension "bin";

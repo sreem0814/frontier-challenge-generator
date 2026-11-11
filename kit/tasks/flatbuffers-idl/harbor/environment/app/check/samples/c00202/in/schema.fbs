@@ -1,0 +1,34 @@
+// Generated test schema.
+
+table OmegaKind {
+ stage2: [ushort];
+ /// Unicode: été → λ
+ /// <b>html</b> & entities
+ condor_quasar : ubyte=0;
+ epoch:int;
+ note_packet:[uint16] (required);
+ total:[ubyte] (flexbuffer);
+ alpha: [ubyte];
+ depth : [float32];
+ tag_summit : float32=null;
+ count_valley: [string];
+ RavenSpan: total.HavenTotal94;
+}
+
+/// Deprecated soon; see `next`.
+table KappaWidth {
+ phase_level : uint16;
+}
+
+namespace total;
+
+table HavenTotal94 (csharp_partial) {
+ packet_neon:uint;
+ /// Second paragraph.
+ /// Deprecated soon; see `next`.
+ /// Deprecated soon; see `next`.
+ shade_gamma : ulong;
+ finch3 : [KappaWidth];
+}
+
+root_type OmegaKind;

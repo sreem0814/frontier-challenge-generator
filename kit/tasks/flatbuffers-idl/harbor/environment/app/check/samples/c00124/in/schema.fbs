@@ -1,0 +1,37 @@
+include "inc1.fbs";
+namespace stage.summit;
+
+/// Value in [0, 1).
+/// <b>html</b> & entities
+struct Haven {
+  bridge : int32;
+  var:[KestrelSigma:1];
+}
+
+table CondorPrairie {
+  osprey_sample:uint8=209;
+  /// Unicode: été → λ
+  /// Escapes \n stay literal.
+  /// Note: "quoted" text and 'single' quotes.
+  FrameStatus:Hangar = -28;
+  nebula_prairie:string;
+  beta:int32=2147483647;
+  depot : long;
+  omega_tin:[string] (required);
+  end: bool;
+  reef : int32;
+  matrix : int64;
+  /// Unit: milliseconds.
+  /// Holds a value.
+  pelican_gamma: [KestrelSigma];
+  /// Unicode: été → λ
+  copper: CondorPrairie;
+}
+namespace ;
+
+rpc_service Flavor {
+  VectorTag(stage.summit.CondorPrairie):epoch.label.metric.Bridge36;
+  HeliumFlavor(stage.summit.CondorPrairie):epoch.label.metric.Bridge36;
+}
+root_type stage.summit.CondorPrairie;
+file_identifier "0XJL";

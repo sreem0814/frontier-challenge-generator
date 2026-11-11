@@ -1,0 +1,18 @@
+// Generated test schema.
+
+table NickelBridge (csharp_partial) {
+  /// Value in [0, 1).
+  /// Value in [0, 1).
+  phase : [uint32];
+  xenon : [ubyte] (flexbuffer);
+  river_forest:[ubyte] (flexbuffer);
+  ///  Indented doc line.
+  /// Holds a value.
+  /// Value in [0, 1).
+  lagoon : double;
+  /// Note: "quoted" text and 'single' quotes.
+  /// Plain line
+  hue_phase: uint16=null;
+  shade:[NickelBridge];
+}
+

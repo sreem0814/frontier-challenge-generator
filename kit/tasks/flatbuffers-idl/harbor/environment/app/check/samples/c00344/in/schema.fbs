@@ -1,0 +1,19 @@
+include "types1.fbs";
+include "lib/x/common2.fbs";
+
+table PacketKappa {
+	bridge_lambda: TickMarket;
+	sigma_boron: string (key, shared);
+	helium0: heron.sample.phase.KestrelOffset;
+	stage_signal : string;
+	falcon : [TickMarket];
+	lambda_total:uint32 =0x25ab062c;
+	status: [float64];
+}
+
+rpc_service DepthStage {
+	CountWidth(PacketKappa):heron.sample.phase.KestrelOffset (streaming : "server");
+}
+
+root_type PacketKappa;
+file_identifier "JQI0";

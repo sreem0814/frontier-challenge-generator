@@ -1,0 +1,11 @@
+// Generated test schema.
+include "base1.fbs";
+native_include "native/types.h";
+
+namespace limit.event;
+
+/// Unicode: été → λ
+table CanyonTotal {
+    label:string;
+    RavenShade: CanyonTotal;
+}

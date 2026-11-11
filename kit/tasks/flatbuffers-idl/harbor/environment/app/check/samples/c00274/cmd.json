@@ -1,0 +1,10 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--swift",
+  "--swift-implementation-only",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

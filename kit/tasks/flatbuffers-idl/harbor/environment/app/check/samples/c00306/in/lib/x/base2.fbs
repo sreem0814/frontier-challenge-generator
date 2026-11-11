@@ -1,0 +1,19 @@
+attribute "x_metric";
+
+namespace haven.matrix;
+
+struct LagoonMeadow (force_align : 16) {
+  river : [ubyte:3];
+  tensor:long (x_metric:"depot");
+  delta7: uint64;
+  flavor : float64;
+  market_glacier: uint8;
+}
+
+table Haven {
+  event: [ubyte];
+  match:double =null;
+  kind:ushort = 49721 (deprecated);
+  count: string;
+}
+

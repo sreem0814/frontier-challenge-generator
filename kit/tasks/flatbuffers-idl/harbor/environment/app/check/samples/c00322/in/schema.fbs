@@ -1,0 +1,56 @@
+// Generated test schema.
+
+namespace color;
+
+table CobaltCanyon {
+    gate_depth:string;
+    vector_market : [float64];
+    depot3 : [int] (vector64);
+    xenon: [uint16];
+    label : short;
+    kind:[ubyte];
+    packet: ulong =null;
+}
+
+namespace ;
+
+table DeltaAnchor {
+    helium:[color.CobaltCanyon]=[] (id : 0);
+}
+
+union GateCondor {
+    DeltaAnchor,
+    Entry: color.CobaltCanyon
+}
+
+/// Multi-word doc with punctuation: a, b; c!
+/// Unit: milliseconds.
+/// Deprecated soon; see `next`.
+table KindTick {
+    meadow: string (deprecated);
+    lead6:uint64 (hash:"fnv1a_64");
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Deprecated soon; see `next`.
+    hue: GateCondor;
+    quasar_nickel: color.CobaltCanyon;
+    /// Plain line
+    /// Unit: milliseconds.
+    /// Unicode: été → λ
+    static : string (required);
+    title_mode:GateCondor;
+    garden: GateCondor;
+    argon: uint32=0x0;
+    state : [ushort];
+    vector:string ="stage" (requunion U { A }ired,key);
+}
+
+///  Indented doc line.
+/// Escapes \n stay literal.
+rpc_service Comet {
+    /// Holds a value.
+    /// <b>html</b> & entities
+    NovaHeight(DeltaAnchor):KindTick (idempotent);
+}
+
+root_type color.CobaltCanyon;
+file_identifier "T300";

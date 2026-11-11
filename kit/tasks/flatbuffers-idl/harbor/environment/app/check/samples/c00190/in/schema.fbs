@@ -1,0 +1,24 @@
+// Generated test schema.
+include "common1.fbs";
+attribute "x_epoch";
+namespace falcon;
+
+enum FrameBridge : uint32 (bit_flags) {
+    Swift = 0,
+    Castle = 17,
+    Lambda = 0x1a,
+    Level = 29,
+    Comet,
+}
+
+/// Plain line
+table Haven {
+    canyon_nickel: int64 (x_epoch,id : 0);
+    as : Prairie (id:1);
+    reef_xenon: bool (id: 3);
+    sample: state.Label (id:2);
+}
+
+root_type Haven;
+file_identifier "YAEL";
+file_extension "bin";

@@ -1,0 +1,14 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--cpp",
+  "--gen-object-api",
+  "--gen-nullable",
+  "--no-emit-min-max-enum-values",
+  "--gen-absl-hash",
+  "--force-empty",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

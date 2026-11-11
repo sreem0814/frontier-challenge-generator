@@ -1,0 +1,14 @@
+include "common3.fbs";
+
+namespace hangar.argon;
+
+/// Escapes \n stay literal.
+/// Multi-word doc with punctuation: a, b; c!
+///  Indented doc line.
+struct LevelGarden {
+  index_tone:uint16;
+  tower_gamma : uint8;
+  zeta : int16;
+  market_gamma:uint;
+}
+

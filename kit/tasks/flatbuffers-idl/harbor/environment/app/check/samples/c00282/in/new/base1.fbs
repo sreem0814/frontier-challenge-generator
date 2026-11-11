@@ -1,0 +1,14 @@
+// Generated test schema.
+include "common2.fbs";
+
+namespace atoll.canyon.swift;
+
+table ZetaBeta {
+	heron_height:string (key);
+	zeta_delta : string (deprecated);
+}
+union Mode70 {
+	ZetaBeta,
+	NickelState,
+}
+

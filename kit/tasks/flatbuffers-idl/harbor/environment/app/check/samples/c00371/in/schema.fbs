@@ -1,0 +1,22 @@
+include "base1.fbs";
+table LabelGlacier {
+	HeronPulsar:[short] (deprecated);
+	forge_note:reef.pulsar.HeightSparrow;
+	xenon_gamma: string;
+	haven : reef.pulsar.HeightSparrow;
+	meadow: [string];
+	sparrow:reef.pulsar.HeightSparrow;
+/*	reef_wren:[int8] (deprecated);
+	new: float;
+	static: reef.pulsar.HeightSparrow (deprecated);
+}
+
+struct DeltaFlavor96 (force_align: 4) {
+	finch_zeta : float64;
+	count_osprey : int8;
+	tensor:[int:3];
+	orbit_kind:bool;
+	carbon_tick: float32;
+}
+
+root_type LabelGlacier;

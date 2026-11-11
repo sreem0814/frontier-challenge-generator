@@ -1,0 +1,31 @@
+// © example
+attribute "x_sample";
+
+/// Unit: milliseconds.
+enum Nova : uint8 (bit_flags,x_sample: "kestrel") {
+ Header = 0,
+ Valley,
+ Sparrow,
+ Nova = 4,
+ /// Multi-word doc with punctuation: a, b; c!
+ /// Holds a value.
+ /// Value in [0, 1).
+ Reef,
+ Metric = 6,
+ Tick,
+}
+
+table NebulaSample (csharp_partial) {
+ namespace: [string] (id: 0);
+ span_finch : [float] (id: 1);
+ nebula_silver: long = -1723665080945112563 (id:2);
+ delta:[ubyte] (flexbuffer, id:3);
+ market: [ubyte] (required,id: 4);
+ summit_header:string (id:5);
+ ///
+ prairie: [ubyte] (required,id: 6);
+ color:[float32] (id:7);
+}
+
+root_type NebulaSample;
+file_identifier "XV94";

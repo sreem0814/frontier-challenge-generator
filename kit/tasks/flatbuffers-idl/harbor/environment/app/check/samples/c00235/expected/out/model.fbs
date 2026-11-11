@@ -1,0 +1,20 @@
+// Generated from model.proto
+
+namespace gamma.phase;
+
+table DepthCanyon {
+  frame:long;
+  xenon:int;
+  level:ulong = 24;
+  tag:ulong;
+  color_canyon:gamma.phase.DepthCanyon_.Anonymous0;
+}
+
+namespace gamma.phase.DepthCanyon_;
+
+table Anonymous0 {
+  mill_orbit:int;
+  cobalt_carbon:int;
+  boron_height:string;
+}
+

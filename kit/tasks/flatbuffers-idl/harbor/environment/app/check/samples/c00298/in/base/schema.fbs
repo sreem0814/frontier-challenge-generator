@@ -1,0 +1,44 @@
+attribute x_falcon;
+
+/// Escapes \n stay literal.
+/// Value in [0, 1).
+/// Value in [0, 1).
+table TensorPacket {
+    raven : float;
+    river_label:string;
+    pelican: copper.status.Matrix;
+}
+
+namespace atoll.quasar;
+
+struct Omega {
+    silver_entry:[int:1];
+    canyon : byte;
+    xenon: double;
+    puffin: int64;
+    HueCopper: int16;
+}
+
+namespace copper.status;
+
+table Event {
+    nebula_forge : string (shared,id : 2);
+    reef : ushort = 8505 (deprecated,id : 0);
+    argon_forest:[atoll.quasar.Omega] (id : 1);
+    kappa_tower : string (deprecated,id: 3);
+    quarry:long (id : 4);
+    copper_quarry: string (id:8);
+    pulsar: [uint16] =[] (id : 5);
+    zinc_comet:TensorPacket (id:6);
+    total : [ubyte] (required,id : 7);
+}
+table Matrix (x_falcon:40) {
+    pelican: string (id:4);
+    in : int16 (id: 0);
+    status: [ubyte] (required, id:5);
+    limit_boron: [Event] (id : 2);
+    matrix : int64 (id : 1);
+    swift : [Event] (id: 3);
+}
+
+file_identifier "Y3L9";

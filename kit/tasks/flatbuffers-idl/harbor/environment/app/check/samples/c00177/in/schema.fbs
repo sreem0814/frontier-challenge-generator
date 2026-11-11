@@ -1,0 +1,21 @@
+include "lib1.fbs";
+
+struct HueSignal (force_align: 16) {
+	ForgeZinc: int32;
+}
+table Tower {
+	kappa_tundra:[mode.haven.Nickel] (required);
+	count_pulsar:string;
+	index_zeta:[int] =[];
+	/// The main record.
+	finch:[int];
+	packet_meadow: uint8 =0;
+	flavor_depth: float;
+	/// The main record.
+	frame : [ubyte];
+	LabelSample: Tower;
+}
+
+root_type Tower;
+file_identifier "OAO8";
+file_extension "x";

@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:8: 12: warning: field names should be lowercase snake_case, got: NickelFrame
+
+
+error:
+  @/data.json:2: 59: error: escape code must be followed by 4 hex digits
+

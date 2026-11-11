@@ -1,0 +1,28 @@
+// Generated from model.proto
+
+namespace hue.gamma.kind.Label_;
+
+enum Helium : int {
+  HELIUM_ATOLL_COLOR = 0,
+  COUNT_COLOR = 10,
+  HELIUM_FRAME_NAME = 12,
+}
+
+namespace hue.gamma.kind;
+
+table Label {
+  phase:int (id: 0);
+  hangar:hue.gamma.kind.Label_.Helium (id: 1);
+  raven:hue.gamma.kind.Label_.Helium (id: 2);
+  copper_signal:[hue.gamma.kind.Label_.Helium] (id: 3);
+  forge_condor:[hue.gamma.kind.Label_.Helium] (id: 4);
+  gamma:ulong (id: 5);
+  flavor_tundra:hue.gamma.kind.Label_.Helium (id: 6);
+}
+
+table StatusHue {
+  copper_prairie:[long] (id: 0);
+  river:[hue.gamma.kind.Label] (id: 1);
+  copper:hue.gamma.kind.Label (id: 2);
+}
+

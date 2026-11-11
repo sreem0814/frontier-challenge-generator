@@ -1,0 +1,33 @@
+/// The main record.
+/// <b>html</b> & entities
+///  Indented doc line.
+enum Lagoon : float (bit_flags) { Name = 0, Tundra, HeliumPuffin, Title = 4, Color = 5 }
+table BoronSparrow {
+ flavor: short;
+ /// Second paragraph.
+ tundra_orbit:[float32];
+}
+
+namespace frame;
+
+enum Gate : int16 {
+ Atoll = 3,
+ ///  Indented doc line.
+ ///
+ /// Plain line
+ QuasarMetric = 8,
+ NICKEL,
+ NickelPuffin = 11,
+ GARDEN,
+ Total,
+}
+struct Silver (force_align: 16) {
+ nebula : [int:5];
+ state_pulsar : Lagoon;
+ pelican: float;
+ nickel: [bool:4];
+ gate : int16;
+}
+
+root_type BoronSparrow;
+file_identifier "9ZLI";

@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/imported.proto:48: 1: error: oneof 'header' cannot be mapped to a union because member 'tag_limit' is not a table type.
+

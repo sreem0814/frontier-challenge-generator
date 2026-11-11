@@ -1,0 +1,72 @@
+/* block
+   comment */
+attribute "x_packet";
+
+namespace flavor.silver;
+
+table SummitKestrel {
+  nickel_kind: ulong =1660822736078404473 (x_packet);
+  alpha:[ubyte];
+  bridge : string;
+  /// Unicode: été → λ
+  heron:uint16 = 45915;
+  zinc:float32;
+  /// Multi-word doc with punctuation: a, b; c!
+  osprey: double;
+  river: [ubyte];
+  /// Holds a value.
+  heron_prairie:int;
+  matrix: [SummitKestrel];
+}
+
+namespace condor.entry.pelican;
+
+table CometForest {
+  epoch:[string];
+  orbit : int =1211378257;
+  event_quarry:byte = -10;
+  FlavorPuffin : int;
+}
+
+namespace ;
+
+table CanyonName {
+  label_wren:int64=-4792435890540798105;
+  cobalt: float = -8015.15;
+  state_mode:[byte];
+  carbon : [flavor.silver.SummitKestrel];
+  CobaltOrbit:float64 = 3257.66304;
+  title:condor.entry.pelican.CometForest;
+  zeta:byte;
+  /// Escapes \n stay literal.
+  finch: string (required);
+}
+
+namespace flavor.silver;
+
+enum DeltaEvent : int {
+  GARDEN = 3,
+  /// Unit: milliseconds.
+  Packet = 103,
+  Title,
+  Sigma,
+  Record,
+  TENSOR
+}
+namespace ;
+
+enum DeltaKappa : ulong {
+  HeliumHue73 = 200,
+  /// Multi-word doc with punctuation: a, b; c!
+  Entry,
+  River,
+  AtollKappa = 203,
+  BETA,
+  /// <b>html</b> & entities
+  /// Multi-word doc with punctuation: a, b; c!
+  /// Multi-word doc with punctuation: a, b; c!
+  ZincAnchor,
+  Valley,
+  ThetaCarbon = 306,
+  RiverZinc12,
+}

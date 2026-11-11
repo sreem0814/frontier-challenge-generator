@@ -1,0 +1,22 @@
+namespace depot.sparrow.offset;
+
+table Lambda (original_order) {
+	castle6: ushort =14695 (id : 1);
+	///  Indented doc line.
+	/// Escapes \n stay literal.
+	/// Holds a value.
+	neon_level:Lambda (id : 0);
+}
+
+namespace ;
+
+struct Wren31 {
+	bridge: long;
+	cobalt : [int8:1];
+	table:int16;
+}
+
+root_type depot.sparrow.offset.Lambda;
+file_identifier "D88V";
+
+rpc_service S { }

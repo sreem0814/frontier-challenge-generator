@@ -1,0 +1,18 @@
+include "lib1.fbs";
+
+/// Holds a value.
+/// Value in [0, 1).
+union Tower {
+    flavor.tundra.ModeMatrix,
+    flavor.tundra.TickOffset,
+    alpha.pulsar.lambda.Bridge,
+}
+
+table Valley {
+    entry_quasar:bool (id : 1);
+    span:long =1883090025071074825 (id : 2);
+    packet_falcon: float32 = null (id:0);
+    pulsar_alpha : string = "sigma" (id:3);
+}
+
+root_type Valley;

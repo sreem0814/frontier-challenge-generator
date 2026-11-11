@@ -1,0 +1,4 @@
+
+error:
+  @/lib/x/base2.fbs:15: 21: error: Optional scalars are not yet supported in at least one of the specified programming languages.
+

@@ -1,0 +1,4 @@
+namespace header.tick;
+
+enum MetricNova : long { Sigma = 3, HELIUM, LAGOON, Condor, Sample }
+

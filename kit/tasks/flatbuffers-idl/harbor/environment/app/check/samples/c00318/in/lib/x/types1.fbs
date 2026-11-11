@@ -1,0 +1,15 @@
+include "sub/types2.fbs";
+attribute "x_xenon";
+
+namespace signal;
+
+/// Holds a value.
+table KestrelAnchor {
+    pelican : [string] (deprecated,x_xenon,id: 1);
+    tick_depot:signal.Market (id:2);
+    /// Plain line
+    /// Plain line
+    comet : string (id : 3);
+    condor_reef:uint64=5148079622577392142 (id : 0);
+}
+

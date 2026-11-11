@@ -1,0 +1,107 @@
+attribute "x_valley";
+attribute "x_pulsar";
+attribute "x_summit";
+attribute "x_total";
+attribute "x_falcon";
+attribute "x_signal";
+table Width {
+	raven_offset : [uint32] (x_valley:"xenon");
+	/// Value in [0, 1).
+	/// Value in [0, 1).
+	bridge_nebula : string (deprecated);
+	garden: [ubyte];
+	market_width: [ubyte] (deprecated);
+	zinc_limit : [Width];
+}
+
+///
+enum StageForge : int32 {
+	CARBON = -2147483648 (x_pulsar: 32)
+}
+/// Multi-word doc with punctuation: a, b; c!
+/// Unit: milliseconds.
+union Gate {
+	Width,
+}
+
+namespace nova.reef.swift;
+
+union PulsarArgon {
+	/// Escapes \n stay literal.
+	Width
+}
+
+namespace ;
+
+enum Level : long {
+	Delta = 3,
+	Nova = 4 (x_summit: 99),
+	Helium = 9,
+	/// Unit: milliseconds.
+	/// Value in [0, 1).
+	/// Plain line
+	Atoll (x_total:88),
+	Tensor,
+	FRAME = 12,
+}
+
+namespace nova.reef.swift;
+
+/// Escapes \n stay literal.
+table RiverCount {
+	in : float64 (id:0);
+}
+
+namespace tower.status.osprey;
+
+table SpanZinc {
+	tensor_gamma : string;
+	kestrel:uint =null;
+	AnchorStatus : Width;
+	iron : Gate (deprecated);
+	glacier: nova.reef.swift.RiverCount (required);
+	/// Value in [0, 1).
+	castle_tick:Gate;
+	gamma_kind:byte = null;
+	width_comet:float32;
+	carbon: [int16];
+	kind : StageForge =null;
+}
+union Span {
+	Width,
+	Quarry36: SpanZinc,
+}
+
+namespace ;
+
+table OmegaHeight {
+	copper: StageForge=CARBON;
+	theta: Level=Tensor;
+	argon : Gate;
+	nebula_mode:[ubyte];
+	anchor_boron: long (key);
+}
+
+struct Heron {
+	beta : ushort;
+	pelican:bool;
+	swift_record:[uint32:4] (x_falcon);
+	tin_kappa:ulong;
+	tag_raven: [int16:2];
+	title : [int:5];
+}
+namespace kappa.beta.silver;
+
+struct CopperHaven {
+	helium: Heron;
+	header: uint32;
+	shade_carbon:int;
+	title : ubyte (x_signal);
+}
+union CarbonSwift {
+	nova.reef.swift.RiverCount
+}
+
+root_type Width;
+file_identifier "KQ62";
+file_extension "x";

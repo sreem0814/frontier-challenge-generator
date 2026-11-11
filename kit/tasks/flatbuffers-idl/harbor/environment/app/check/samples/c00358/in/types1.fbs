@@ -1,0 +1,12 @@
+include "common2.fbs";
+include "common3.fbs";
+attribute x_event;
+
+namespace zinc.delta.color;
+
+struct Sparrow {
+ wren_xenon : CondorMill;
+ height: zinc.delta.color.CondorMill (x_event);
+ end : CondorMill;
+ vector : int;
+}

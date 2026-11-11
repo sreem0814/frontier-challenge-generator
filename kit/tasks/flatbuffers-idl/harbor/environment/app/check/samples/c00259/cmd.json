@@ -1,0 +1,10 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--csharp",
+  "--cs-global-alias",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

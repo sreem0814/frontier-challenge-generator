@@ -1,0 +1,47 @@
+syntax = "proto2";
+
+import "imported.proto";
+
+/* Unit: milliseconds. */
+message Title {
+  optional uint32 height_condor = 1;
+  optional sint64 orbit = 2;
+  optional sint64 valley = 3 [default = 45];
+  /* Unit: milliseconds. */
+  required sfixed64 tundra = 4;
+  oneof pulsar {
+    float note = 5;
+    string title_meadow = 6;
+  }
+}
+
+// Value in [0, 1).
+// Note: "quoted" text and 'single' quotes.
+message Gate {
+  // Escapes \n stay literal.
+  // Value in [0, 1).
+  message SwiftWidth {
+    // Second paragraph.
+    optional float vector_delta = 1;
+    optional Title glacier = 2;
+    required Title alpha_event = 3;
+    // The main record.
+    optional string tower = 4;
+    required Title mode_comet = 5;
+    required int64 status = 6;
+    repeated uint32 nickel_nova = 7 [packed = true];
+  }
+  required sfixed32 stage = 1;
+  required sfixed64 nebula_osprey = 2;
+  // 
+  optional bool mode = 3;
+  repeated int32 bridge_swift = 4;
+  required Gate.SwiftWidth lead = 5;
+  optional Title height_state = 6;
+  optional Title summit = 7 [deprecated = true]
+  oneof comet_xenon {
+    Title kestrel_sample = 8;
+    fixed32 record_helium = 9;
+    bool name = 10;
+  }
+}

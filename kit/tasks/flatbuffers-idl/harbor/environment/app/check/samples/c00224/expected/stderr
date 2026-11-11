@@ -1,0 +1,8 @@
+
+warning:
+  cannot generate code directly from .proto files
+
+
+error:
+  @/model.proto:101: 0: error: type referenced but not defined (check namespace): fixed64, originally at: model.proto:37
+

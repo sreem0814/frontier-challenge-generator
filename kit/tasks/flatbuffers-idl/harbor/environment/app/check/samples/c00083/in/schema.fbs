@@ -1,0 +1,32 @@
+/* block
+   comment */
+include "sub/lib1.fbs";
+include "inc2.fbs";
+attribute x_prairie;
+
+namespace packet.bridge;
+
+table CondorBridge {
+  raven:ubyte (key, id : 2);
+  stage_title: [uint16] (id: 1);
+  silver: int8 = 117 (id:7);
+  phase:[span.matrix.DeltaNeon] (deprecated, id : 4);
+  atoll_valley : ulong = null (id: 0);
+  status_forge: ValleyHaven = null (id: 8);
+  alpha:uint8 (id:6);
+  RiverTotal:[ushort] (required, id:9);
+  flavor_zinc:uint8 (id:5);
+}
+
+namespace ;
+
+struct Depot21 {
+  raven: ValleyHaven (x_prairie);
+  /// Plain line
+  /// <b>html</b> & entities
+  tundra_valley: long;
+  LeadHeron:ubyte;
+}
+
+root_type packet.bridge.CondorBridge;
+file_identifier "MNA5";

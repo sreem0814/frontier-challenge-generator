@@ -1,0 +1,24 @@
+native_include "extra.h";
+
+table Delta (original_order) {
+    /// <b>html</b> & entities
+    /// The main record.
+    /// Note: "quoted" text and 'single' quotes.
+    delta_vector: int16;
+    pelican:[ubyte];
+    /// Deprecated soon; see `next`.
+    /// Holds a value.
+    canyon : string (key);
+    tundra : [ubyte] (required);
+    entry_metric : float32 = 9228.84;
+}
+
+namespace shade;
+
+/// Holds a value.
+/// Second paragraph.
+///  Indented doc line.
+enum StateCopper : int16 { Tag = -1, River, HeliumAtoll = 100 }
+
+root_type Delta;
+file_identifier "NKUV";

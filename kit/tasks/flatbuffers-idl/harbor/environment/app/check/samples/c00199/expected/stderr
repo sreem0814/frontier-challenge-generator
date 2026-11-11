@@ -1,0 +1,9 @@
+
+warning:
+  @/schema.fbs:14: 12: warning: field names should be lowercase snake_case, got: SigmaForge
+@/schema.fbs:60: 11: warning: field names should be lowercase snake_case, got: CometGate
+
+
+error:
+  @/data.json:4: 36: error: unknown enum value: TagNickel.SWIFT
+

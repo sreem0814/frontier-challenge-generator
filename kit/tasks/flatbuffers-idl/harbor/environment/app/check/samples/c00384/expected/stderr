@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:16: 8: warning: field names should be lowercase snake_case, got: None
+
+
+error:
+  @/data.json:1: 14: error: expecting: string constant instead got: castle_metric
+

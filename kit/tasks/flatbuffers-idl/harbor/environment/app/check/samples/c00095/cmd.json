@@ -1,0 +1,12 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--csharp",
+  "--gen-object-api",
+  "--cs-global-alias",
+  "--gen-mutable",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

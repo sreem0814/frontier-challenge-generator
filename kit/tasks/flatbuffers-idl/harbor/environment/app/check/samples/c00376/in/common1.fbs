@@ -1,0 +1,21 @@
+// © example
+include "deps/base2.fbs";
+namespace stage.delta;
+
+struct SparrowColor {
+  flavor_height: bool;
+  cobalt: byte;
+  heron: double;
+}
+
+namespace ;
+
+table ReefKappa {
+  epoch : byte;
+  silver: uint64;
+  wren_meadow: [ubyte];
+  wren_nova:string;
+  hangar : [int64];
+  cobalt: string;
+  reef: [uint64];
+}

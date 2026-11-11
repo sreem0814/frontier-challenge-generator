@@ -1,0 +1,10 @@
+{
+ "bucket": "bfbs_input",
+ "argv": [
+  "--swift",
+  "--gen-mutable",
+  "-o",
+  "out",
+  "model.bfbs"
+ ]
+}

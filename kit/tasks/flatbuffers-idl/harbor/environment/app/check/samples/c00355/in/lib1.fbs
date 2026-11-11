@@ -1,0 +1,12 @@
+// © example
+attribute "x_glacier";
+attribute x_argon;
+
+namespace iron.neon.osprey;
+
+table MetricEpoch (x_glacier) {
+  falcon_hangar:uint8=null;
+  kind7: string (key);
+  state: int8=-102 (x_argon: 30);
+}
+

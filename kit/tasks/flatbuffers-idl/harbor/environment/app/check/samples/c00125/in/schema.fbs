@@ -1,0 +1,35 @@
+attribute x_puffin;
+table CondorZeta {
+  ///  Indented doc line.
+  reef: string;
+  lead: [ubyte] (flexbuffer, x_puffin:"packet");
+  /// Second paragraph.
+  limit : float = -8537.06 (key);
+  class : [double];
+  zinc : [uint16];
+  forge_span : float64;
+}
+
+namespace hangar.meadow;
+
+table PulsarXenon {
+  sparrow_quarry: [uint] (id:0);
+  FinchCount : float32 (id:1);
+  prairie: [CondorZeta] (id:2);
+}
+
+namespace ;
+
+table Mode {
+  delta_pelican : [string];
+  stage_hangar:string (deprecated);
+  hangar_delta:string;
+  wren_status: int=-27;
+  ///
+  header:int32 = 0x29330475;
+  anchor: uint32=2700275370;
+  nova : short;
+  gate: [string];
+}
+root_type hangar.meadow.PulsarXenon;
+file_identifier "47K4";

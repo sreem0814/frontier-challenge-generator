@@ -1,0 +1,5 @@
+
+error:
+  @/base2.fbs:9: 14: warning: field names should be lowercase snake_case, got: PulsarName
+@/base2.fbs:11: 1: error: field id's must be consecutive from 0, id 5 missing or set twice, field: iron, id: 6
+

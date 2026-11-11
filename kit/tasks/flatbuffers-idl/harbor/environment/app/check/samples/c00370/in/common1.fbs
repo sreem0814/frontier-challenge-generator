@@ -1,0 +1,45 @@
+attribute "x_quarry";
+
+namespace tag.frame.haven;
+
+table StatusPacket {
+ /// <b>html</b> & entities
+ nickel: [float64] (required);
+ lambda : [ubyte];
+ ///  Indented doc line.
+ /// Escapes \n stay literal.
+ /// The main record.
+ pelican_anchor : [ubyte]=[];
+ heron:[bool];
+ orbit_mode:[ubyte];
+ /// Escapes \n stay literal.
+ /// Deprecated soon; see `next`.
+ /// Holds a value.
+ omega_anchor:byte = -58;
+ tin : short;
+ puffin:[uint8] (x_quarry);
+ WrenMatrix : [int32];
+ boron_valley : [ubyte] (vector64);
+}
+
+namespace ;
+
+/// Deprecated soon; see `next`.
+enum Count : ubyte { Cobalt = 0x1, LeadReef, TOTAL, WREN = 0xD, Canyon, Level }
+
+namespace falcon.lead.height;
+
+table ReefCastle {
+ market_copper : uint16 =0;
+ name:int8;
+ header_header : long (deprecated);
+ canyon_kind : [byte] (deprecated);
+ market_quarry:[tag.frame.haven.StatusPacket];
+ argon_total: tag.frame.haven.StatusPacket;
+ /// Deprecated soon; see `next`.
+ /// Holds a value.
+ ///  Indented doc line.
+ in: Count = 2;
+ summit:ReefCastle;
+}
+

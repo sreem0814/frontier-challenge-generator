@@ -1,0 +1,41 @@
+include "deps/lib1.fbs";
+native_include "native/types.h";
+attribute "x_mill";
+
+namespace iron.prairie.zinc;
+
+///
+///
+table ArgonMetric {
+ iron_atoll : [HueOsprey] (deprecated);
+ /// Unicode: été → λ
+ height_heron: [ubyte] (flexbuffer);
+ /// Multi-word doc with punctuation: a, b; c!
+ /// Escapes \n stay literal.
+ /// Multi-word doc with punctuation: a, b; c!
+ gate:string;
+ anchor:[uint64] (required);
+ await : HueOsprey;
+ ///
+ fn : [short];
+ /// Value in [0, 1).
+ /// Plain line
+ /// Deprecated soon; see `next`.
+ neon:HueOsprey (x_mill:"epoch");
+ copper : [ArgonMetric];
+}
+
+namespace mode.atoll;
+
+rpc_service State {
+ /// Multi-word doc with punctuation: a, b; c!
+ ///  Indented doc line.
+ /// Deprecated soon; see `next`.
+ CondorTheta(iron.prairie.zinc.ArgonMetric):iron.prairie.zinc.ArgonMetric;
+ KindKestrel(iron.prairie.zinc.ArgonMetric):iron.prairie.zinc.ArgonMetric;
+ /// Holds a value.
+ SampleKind(iron.prairie.zinc.ArgonMetric):iron.prairie.zinc.ArgonMetric;
+}
+
+root_type iron.prairie.zinc.ArgonMetric;
+file_identifier "AVUV";

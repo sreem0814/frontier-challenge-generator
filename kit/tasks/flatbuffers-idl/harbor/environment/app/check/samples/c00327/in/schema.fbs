@@ -1,0 +1,49 @@
+attribute "x_mill";
+attribute "x_tundra";
+
+namespace height.sigma.kind;
+
+table CountHelium {
+    kestrel_iron: string (deprecated);
+    packet:ubyte;
+    ///  Indented doc line.
+    /// Unicode: été → λ
+    /// The main record.
+    lagoon_kappa : [nova.SignalEvent];
+}
+
+namespace ;
+
+/// <b>html</b> & entities
+table Index90 {
+    limit2:double = 367 (id:4);
+    wren:height.sigma.kind.CountHelium (deprecated, id:2);
+    /// Plain line
+    ///
+    /// Deprecated soon; see `next`.
+    tin_label: [ubyte] (id: 0);
+    bridge_pulsar: [ubyte] (id:1);
+    shade: [height.sigma.kind.CountHelium] (id: 3);
+}
+
+table Puffin {
+    package: [Index90] (required,id : 1);
+    garden:string (deprecated,x_mill,id: 1);
+    condor: int16 = 23 (x_tundra, id : 2);
+}
+
+namespace nova;
+
+table SignalEvent {
+    /// Holds a value.
+    quarry_wren: height.sigma.kind.CountHelium;
+    xenon_tundra:string;
+    forge3:string;
+    xenon: [Missing];
+    packet : double;
+    iron_lead:Index90;
+    height_neon : [height.sigma.kind.CountHelium];
+}
+
+root_type Puffin;
+file_identifier "3DQ9";

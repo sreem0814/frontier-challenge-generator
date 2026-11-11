@@ -1,0 +1,19 @@
+attribute "x_span";
+
+namespace zinc;
+
+/// Value in [0, 1).
+enum ThetaFrame : ulong (x_span) {
+    TITLE = 0,
+    Count = 5,
+    TUNDRA,
+    /// Escapes \n stay literal.
+    OFFSET,
+    GammaNebula,
+    ZINC,
+    Sample,
+    ///  Indented doc line.
+    /// Multi-word doc with punctuation: a, b; c!
+    NickelNeon99
+}
+

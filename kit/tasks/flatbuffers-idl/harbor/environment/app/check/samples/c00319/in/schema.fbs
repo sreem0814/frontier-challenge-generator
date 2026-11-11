@@ -1,0 +1,64 @@
+attribute x_depot;
+attribute "x_delta";
+
+namespace argon;
+
+/// Note: "quoted" text and 'single' quotes.
+struct TowerPacket {
+	event : uint32;
+}
+
+namespace ;
+
+enum HavenKappa : ubyte (bit_flags) { BetaDelta = 0, Alpha = 1, Omega = 6, Beta = 7 }
+struct LambdaStage {
+	status_zinc : argon.TowerPacket;
+	state:bool;
+	CondorStage: uint16;
+}
+
+namespace entry.forest.castle;
+
+struct Reef {
+	raven_header : uint32;
+	tag:[float32:4] (x_depot:43);
+	shade:[LambdaStage:2] (x_delta);
+	/// Value in [0, 1).
+	/// Value in [0, 1).
+	falcon:uint16;
+}
+
+namespace ;
+
+table Mill {
+  c: int (required);
+	packet:string (required);
+}
+
+/// Unit: milliseconds.
+enum TowerHaven : uint8 {
+	OmegaTotal = 5,
+	Comet = 7,
+	LAGOON,
+	/// <b>html</b> & entities
+	/// <b>html</b> & entities
+	Status,
+	PHASE = 10
+}
+/// Second paragraph.
+/// Multi-word doc with punctuation: a, b; c!
+table DeltaDepth {
+	glacier_hangar:bool;
+	sigma4:bool;
+	lambda : Mill (required);
+	packet_heron: string;
+	beta7 : LambdaStage;
+	zeta : ushort;
+	condor_iron:[Mill];
+	glacier_count:HavenKappa;
+	sparrow6 : [Mill];
+}
+
+root_type DeltaDepth;
+file_identifier "YTO9";
+file_extension "bin";

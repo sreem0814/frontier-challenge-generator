@@ -1,0 +1,55 @@
+syntax = "proto2";
+
+package canyon;
+
+
+enum ZincOmega {
+  GLACIER_TICK = 3;
+  ZINCOMEGA_GATE_LEAD = 13;
+  MATRIX_GATE = 14;
+  // Second paragraph.
+  ZINCOMEGA_FINCH_RAVEN = 16;
+  ZINCOMEGA_TONE = 17;
+  reserved 32;
+}
+
+message Metric {
+  /* Unicode: été → λ */
+  optional ZincOmega orbit = 1;
+  repeated ZincOmega delta_gamma = 2;
+  /*  */
+  optional ZincOmega frame = 3;
+  repeated bool header = 4;
+}
+
+enum Nickel {
+  // Holds a value.
+  // 
+  HELIUM = 0;
+  SPARROW = 1;
+}
+
+message RavenSample {
+  enum StatePhase {
+    COLOR = 1;
+    STATEPHASE_QUASAR_SILVER = 3;
+    TOTAL_NEBULA = 13;
+    // Multi-word doc with punctuation: a, b; c!
+    // Deprecated soon; see `next`.
+    STATEPHASE_REEF = 14;
+    // Deprecated soon; see `next`.
+    STATEPHASE_OFFSET = 15;
+    SPARROW = 16;
+    reserved 23;
+  }
+  map<bool, string> sigma_map = 1;
+}
+
+enum EventHeader {
+  // <b>html</b> & entities
+  // Unit: milliseconds.
+  RAVEN = -2 [deprecated = true];
+  EVENTHEADER_ZINC = -1;
+  EVENTHEADER_PELICAN = 0;
+  STATE_WREN = 1;
+}

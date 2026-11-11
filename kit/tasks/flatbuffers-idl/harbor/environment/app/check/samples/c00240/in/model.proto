@@ -1,0 +1,50 @@
+// test proto
+syntax = "proto2";
+
+package title.pelican;
+
+option java_package = "com.example.tag";
+
+message ValleyWidth {
+  /* Note: "quoted" text and 'single' quotes. */
+  enum Tag {
+    option allow_alias = true;
+    TAG_LEVEL = 0;
+    // Value in [0, 1).
+    TAG_ZINC = 1;
+    // Note: "quoted" text and 'single' quotes.
+    // Deprecated soon; see `next`.
+    NOVA = 2;
+    TAG_QUARRY = 12;
+    TAG_PULSAR_CANYON = 13;
+  }
+  message HavenOsprey {
+    repeated double raven_nebula = 1;
+    /* Value in [0, 1). */
+    optional sfixed64 index_nova = 2 [deprecated = true];
+    repeated sint32 level = 3;
+    optional ValleyWidth.Tag label_phase = 4;
+    optional ValleyWidth.Tag cobalt_neon = 5;
+    required bytes nickel_status = 6;
+    // Plain line
+    required ValleyWidth.Tag record_condor = 7;
+  }
+  required bytes entry_mode = 1;
+  repeated double tin_lambda = 2 [packed = true];
+  required ValleyWidth.Tag level_xenon = 3;
+  repeated sint32 status = 4;
+}
+
+message Heron {
+  /// Escapes \n stay literal.
+  enum TitleForge {
+    TITLEFORGE_DELTA_GARDEN = 0;
+    TITLEFORGE_XENON_KAPPA = 10;
+    GARDEN = 12;
+    GLACIER_DEPOT = 13;
+    /// Deprecated soon; see `next`.
+    TITLEFORGE_NEBULA = 14;
+  }
+  repeated sint32 hangar = 1 [deprecated = true];
+  optional Heron.TitleForge kestrel = 2;
+}

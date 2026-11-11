@@ -1,0 +1,6 @@
+{
+  omega_status: {} , "x": [{"limit": [162, 190, 0, 0, 255],"state3": [0]}, {"limit": [71, 205, 9, 0, "97"]}, {"state3": ["255", 180]}],
+  "kind_tin": 16727844521139615670,
+  osprey_tin: 1,
+  "NickelOrbit": [{"omega_status": [{"state3": [],limit: [255]}, {"state3": []}, {state3: []}],osprey_tin: -100}, {omega_status: [{"limit": []}, {"state3": [0],"limit": []}, {}, {limit: []}, {"limit": [0],"state3": []}],"osprey_tin": 53,NickelOrbit: [{omega_status: [],"kind_tin": 0,"osprey_tin": 0,"NickelOrbit": []}, {"omega_status": [],"osprey_tin": 92,kind_tin: 14916677573534322391}, {"omega_status": [],NickelOrbit: []}]}, {omega_status: [{"state3": [147]}, {"state3": [48]}, {limit: [191],"state3": [],}],"wren": 0,"osprey_tin": -17,"NickelOrbit": [{"omega_status": [],"NickelOrbit": [{}]}]}]
+}

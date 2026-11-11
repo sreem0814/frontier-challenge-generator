@@ -1,0 +1,41 @@
+// Generated test schema.
+attribute x_limit;
+attribute "x_kind";
+table ArgonStage49 {
+  zinc_signal:uint16 = 64077;
+  river: [ubyte] (x_limit:"limit");
+  kind_canyon:int;
+  argon: [string];
+  func:[ubyte];
+  sample_summit:tag.silver.TundraNickel71;
+}
+
+namespace tag.silver;
+
+table Metric {
+  tone_tag : ArgonStage49 (id : 3);
+  signal_atoll: uint32 =0 (id : 0);
+  /// Plain line
+  /// The main record.
+  record_entry : string (required,id : 2);
+  color_depot : ArgonStage49 (id: 4);
+  None: [Metric] (id:1);
+}
+
+/// Second paragraph.
+table TundraNickel71 {
+  packet_header: string (required);
+  bridge:Metric;
+  stage_argon : [Metric];
+  CondorZinc : string;
+  finch_glacier: float =null (deprecated);
+  prairie_lead:[string] (x_kind:"metric");
+  sigma:ArgonStage49;
+  finch_state : ArgonStage49 (required);
+  self : int16=36;
+  lambda: ArgonStage49;
+  beta: TundraNickel71;
+}
+
+root_type TundraNickel71;
+file_identifier "HS39";

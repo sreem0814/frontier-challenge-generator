@@ -1,0 +1,76 @@
+attribute x_kappa;
+attribute x_nova;
+namespace market.reef.hue;
+
+struct AnchorHaven {
+  meadow_forge:bool;
+}
+
+namespace ;
+
+/// Deprecated soon; see `next`.
+/// Escapes \n stay literal.
+/// Deprecated soon; see `next`.
+struct Tundra {
+  status:uint32;
+}
+
+namespace market.reef.hue;
+
+table StatusTower {
+  cobalt: uint8 (deprecated);
+  CondorEvent:Tundra;
+  /// Second paragraph.
+  /// Value in [0, 1).
+  /// Value in [0, 1).
+  label : string;
+  packet_glacier:[market.reef.hue.AnchorHaven];
+  finch : [AnchorHaven];
+  canyon: uint64;
+  height_zinc:string (deprecated);
+  falcon : [string];
+  alpha_tin: [ubyte];
+  river : ushort (deprecated);
+}
+
+namespace nova.status.delta;
+
+///
+/// Unicode: été → λ
+/// Unicode: été → λ
+enum PacketLabel : short {
+  Market = 0,
+  /// Plain line
+  /// The main record.
+  LABEL,
+  STAGE,
+  Valley = 0x3,
+  Sigma (x_kappa: 52)
+}
+
+namespace ;
+
+/// Value in [0, 1).
+table SilverPelican (original_order) {
+  canyon_comet:[market.reef.hue.AnchorHaven] (id : 3);
+  /// <b>html</b> & entities
+  alpha: double = 187.3 (id: 4);
+  CanyonTheta:float (id: 1);
+  /// Plain line
+  zinc:int8 (id: 6);
+  frame : [uint8] (id:7);
+  height: string (id : 9);
+  def:ulong = 15477285015718290117 (id : 2);
+  depth:[ubyte] (flexbuffer,x_nova:"nova",id: 8);
+  river_status : int32=-29 (id: 5);
+  metric6: market.reef.hue.StatusTower (id:0);
+  metric6: market.reef.hue.StatusTower (id:0);
+}
+
+union Depot {
+  /// Multi-word doc with punctuation: a, b; c!
+  SilverPelican,
+  market.reef.hue.StatusTower
+}
+
+root_type SilverPelican;

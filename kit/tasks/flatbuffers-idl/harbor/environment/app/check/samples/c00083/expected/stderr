@@ -1,0 +1,5 @@
+
+error:
+  @/types3.fbs:7: 13: warning: field names should be lowercase snake_case, got: MatrixNebula
+@/types3.fbs:8: 29: error: Default values for strings and vectors are not supported in one of the specified programming languages
+

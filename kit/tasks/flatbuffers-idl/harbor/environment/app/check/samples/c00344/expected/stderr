@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:5: 56: error: expecting: string constant instead got: integer constant
+

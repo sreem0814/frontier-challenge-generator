@@ -1,0 +1,10 @@
+
+warning:
+  @/schema.fbs:17: 12: warning: field names should be lowercase snake_case, got: ColorGamma
+@/schema.fbs:18: 13: warning: field names should be lowercase snake_case, got: StateStatus
+@/schema.fbs:24: 12: warning: field names should be lowercase snake_case, got: LabelComet
+
+
+error:
+  @/data.json:1: 12: error: expecting: { instead got: integer constant
+

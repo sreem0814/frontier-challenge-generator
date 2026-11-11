@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:2: 8: error: expecting: string constant instead got: puffin
+

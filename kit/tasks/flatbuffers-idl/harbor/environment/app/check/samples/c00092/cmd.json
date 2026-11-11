@@ -1,0 +1,15 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--cpp",
+  "--gen-mutable",
+  "--scoped-enums",
+  "--gen-nullable",
+  "--cpp-std=c++17",
+  "--force-empty",
+  "--no-warnings",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

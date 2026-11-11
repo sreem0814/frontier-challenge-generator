@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package tundra.helium.delta;
+
+import "imported.proto";
+option java_package = "com.example.height";
+
+// <b>html</b> & entities
+message Tick {
+  double silver_neon = 1;
+  oneof state {
+    bytes state_index = 2;
+    bool meadow_kestrel = 3;
+  }
+}

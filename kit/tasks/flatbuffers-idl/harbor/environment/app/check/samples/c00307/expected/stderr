@@ -1,0 +1,10 @@
+
+warning:
+  @/schema.fbs:1: 38: warning: underlying type of bit_flags enum must be unsigned
+@/schema.fbs:17: 14: warning: field names should be lowercase snake_case, got: GateRecord
+@/schema.fbs:29: 14: warning: field names should be lowercase snake_case, got: FrameTheta
+
+
+error:
+  @/data.json:2: 30: error: unknown field: x
+

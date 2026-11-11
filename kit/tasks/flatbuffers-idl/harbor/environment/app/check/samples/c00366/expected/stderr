@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:2: 15: error: type mismatch: expecting: string, found: int, name: d, value: 5
+

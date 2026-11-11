@@ -1,0 +1,13 @@
+// © example
+namespace depth.packet.kind;
+
+table HeightDepot {
+    is: [ubyte] (flexbuffer);
+    GardenTundra:[ubyte];
+    tin_pelican : string ="gamma";
+    hangar : [ubyte];
+    osprey:[HeightDepot];
+}
+
+root_type HeightDepot;
+file_extension "mon";

@@ -1,0 +1,34 @@
+include "types1.fbs";
+attribute "x_tower";
+
+namespace osprey;
+
+/// Unit: milliseconds.
+enum Forest82 : ulong (x_tower) {
+	Depth = 0,
+	Quasar = 1,
+	Record,
+	Hue = 102,
+	ShadeBoron,
+	SignalHelium = 203,
+	Tower
+}
+
+namespace ;
+
+table GlacierEvent {
+	omega_lead : int=405324490;
+	garden:float32 = -4599.43 (key);
+	tensor7: ubyte;
+	atoll_finch:[float32];
+}
+
+/// Note: "quoted" text and 'single' quotes.
+rpc_service Limit {
+	/// Note: "quoted" text and 'single' quotes.
+	AnchorXenon(forest.tick.Garden):forest.tick.Garden;
+	SignalKestrel(GlacierEvent):GlacierEvent;
+}
+
+root_type GlacierEvent;
+file_identifier "DX0V";

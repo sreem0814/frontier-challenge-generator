@@ -1,0 +1,44 @@
+namespace haven;
+
+table Bridge {
+    pelican:int;
+    heron : ushort;
+    sample_swift : string;
+    bridge_metric : double;
+    status_condor:string;
+    width_zinc:[ubyte] (flexbuffer);
+    omega : [uint];
+    ///  Indented doc line.
+    /// Plain line
+    prairie_epoch : byte =null;
+    tin_boron: string (deprecated);
+}
+namespace ;
+
+/// Unicode: été → λ
+/// <b>html</b> & entities
+/// Unit: milliseconds.
+table PhaseNeon46 {
+    /// Unit: milliseconds.
+    /// Deprecated soon; see `next`.
+    ///  Indented doc line.
+    zeta:[string];
+    quasar: byte;
+}
+
+namespace depth.width;
+
+table Total {
+    alpha_nebula: ushort = 0;
+    tin_orbit: string;
+}
+
+namespace alpha;
+
+union Silver {
+    WidthFinch: haven.Bridge,
+    depth.width.Total,
+}
+
+root_type haven.Bridge;
+file_identifier "HDRX";

@@ -1,0 +1,56 @@
+native_include "native/types.h";
+
+struct HeaderBridge {
+ forest : [short:4];
+ puffin_forest : uint8;
+ count_anchor:uint16;
+ lagoon : int;
+ self: [uint16:1];
+}
+
+namespace helium;
+
+/// Holds a value.
+/// Escapes \n stay literal.
+table Meadow {
+ name : [float] (offset64);
+ carbon: string;
+ anchor_lead: string;
+}
+
+namespace ;
+
+///
+table HeaderAnchor47 {
+ zinc_raven:int64=977736027950063944;
+ quarry : int8 =null;
+ import: HeaderBridge;
+ canyon_nickel : string;
+}
+
+namespace forge.kestrel.quasar;
+
+/// The main record.
+/// Escapes \n stay literal.
+/// Deprecated soon; see `next`.
+table Castle {
+ zeta_theta:[string];
+ IndexForest: int64;
+ glacier_status : HeaderBridge (deprecated);
+ level:string;
+ tower_tower:helium.Meadow;
+ total : string;
+ kestrel: [uint32];
+ phase_tone : byte;
+ phase : HeaderAnchor47;
+}
+
+namespace ;
+
+rpc_service PelicanMeadow {
+ CometGate(helium.Meadow):helium.Meadow (streaming : "bidi");
+ ColorReef(helium.Meadow):HeaderAnchor47;
+ StatusAnchor(HeaderAnchor47):forge.kestrel.quasar.Castle (streaming:"client");
+}
+root_type forge.kestrel.quasar.Castle;
+file_identifier "E6VH";

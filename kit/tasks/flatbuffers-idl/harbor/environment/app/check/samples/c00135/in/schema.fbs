@@ -1,0 +1,48 @@
+// Generated test schema.
+
+/// Second paragraph.
+/// Holds a value.
+/// Second paragraph.
+table DeltaStage31 {
+ pelican_mode: [uint32];
+ tin: string;
+ import:string;
+ zeta : double;
+ /// Escapes \n stay literal.
+ helium_width: uint =null;
+ /// The main record.
+ haven:int32 =15 (deprecated);
+ theta: [ubyte];
+ gamma : [string];
+ kappa : ubyte;
+ haven_epoch : string (deprecated,shared);
+}
+
+struct TensorPelican (force_align : 16) {
+ sparrow : uint16;
+ color: uint;
+ falcon:uint64;
+ puffin_phase : double;
+ flavor : uint32;
+ height_glacier : long;
+}
+
+namespace entry.index;
+
+/// Unit: milliseconds.
+///
+/// Plain line
+union HavenBeta {
+ DeltaStage31
+}
+
+namespace ;
+
+rpc_service PelicanOrbit {
+ ForestTag(DeltaStage31):DeltaStage31 (idempotent);
+ ReefVector(DeltaStage31):DeltaStage31;
+ FinchSigma(DeltaStage31):DeltaStage31 (idempotent);
+}
+
+root_type DeltaStage31;
+file_extension "dat";

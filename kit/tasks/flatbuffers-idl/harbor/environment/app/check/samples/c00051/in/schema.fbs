@@ -1,0 +1,22 @@
+// © example
+include "inc1.fbs";
+
+namespace entry.vector.wren;
+
+union Wren {
+	comet.alpha.metric.PrairieWidth,
+	frame.span.SummitCobalt55
+}
+
+table PrairieHangar (csharp_partial) {
+	hangar: string;
+	tin_quasar: ubyte;
+	puffin: int64;
+	heron_tundra: int16;
+	nova_nebula : comet.alpha.metric.PrairieWidth;
+	anchor_anchor: string;
+	anchor : uint32;
+}
+
+root_type PrairieHangar;
+file_identifier "09SF";

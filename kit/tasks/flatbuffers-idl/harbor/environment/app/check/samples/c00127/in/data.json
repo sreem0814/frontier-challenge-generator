@@ -1,0 +1,13 @@
+{
+  ShadeGate: [62656],
+  "index_tensor": "Puffin",
+  "forge_shade": [false, true, true],
+  kestrel: {
+    "ShadeGate": [38128],
+    kestrel: {
+      "ShadeGate": [0, 0, 54643],
+      "index_tensor": "COPPER",
+      "nickel": 53160
+    }
+  }
+}

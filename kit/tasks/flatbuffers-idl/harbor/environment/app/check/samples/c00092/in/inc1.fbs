@@ -1,0 +1,9 @@
+include "common2.fbs";
+namespace finch.signal;
+
+/// Second paragraph.
+table BetaTone (original_order) {
+  delta:[uint8];
+  count: string;
+}
+

@@ -1,0 +1,31 @@
+include "common1.fbs";
+
+table RavenPulsar {
+  hh: int = +;
+    /// The main record.
+    hangar:[uint16];
+    stage_kappa : ulong;
+    depot: float32;
+    span:uint32;
+    gate:Count =Canyon;
+    lambda_carbon: Count = 2;
+    garden: int8;
+    haven_frame:ushort =12670;
+    wren_kestrel: [long];
+    tower : tag.frame.haven.StatusPacket;
+}
+
+namespace tag.zinc.summit;
+
+enum PhaseAlpha : ubyte {
+    Haven = 0,
+    SigmaSigma9 = 1
+}
+
+namespace tag.frame.haven;
+
+enum PrairieReef : int8 {
+    Width = 100,
+    NOTE = 127,
+}
+root_type RavenPulsar;

@@ -1,0 +1,4 @@
+
+error:
+  @/schema.fbs:5: 16: error: expecting: ; instead got: integer constant
+

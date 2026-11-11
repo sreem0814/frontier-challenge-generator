@@ -1,0 +1,12 @@
+namespace kappa;
+
+table OspreyWren {
+ quarry_glacier:[ushort];
+ shade : int8 = 67;
+ state: uint;
+ sparrow_color : float32=8397.48;
+ fn : long;
+ func: uint = 96;
+ lambda_lagoon:OspreyWren;
+}
+

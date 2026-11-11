@@ -1,0 +1,13 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "--cpp",
+  "--gen-object-api",
+  "--gen-compare",
+  "--gen-name-strings",
+  "--cpp-std=c++17",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

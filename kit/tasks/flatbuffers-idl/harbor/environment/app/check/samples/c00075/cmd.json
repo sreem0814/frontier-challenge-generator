@@ -1,0 +1,18 @@
+{
+ "bucket": "codegen",
+ "argv": [
+  "--cpp",
+  "--gen-object-api",
+  "--gen-compare",
+  "--bfbs-gen-embed",
+  "--cpp-std=c++17",
+  "--cpp-std=c++0x",
+  "--cpp-field-case-style",
+  "upper",
+  "--gen-absl-hash",
+  "--force-empty",
+  "-o",
+  "out",
+  "schema.fbs"
+ ]
+}

@@ -1,0 +1,24 @@
+/* block
+   comment */
+include "base3.fbs";
+attribute "x_boron";
+
+namespace valley.name.status;
+
+table Garden {
+  None: [uint16];
+  quasar_raven:double =5162.72820784;
+  vector : [string];
+  /// Holds a value.
+  mill_comet : [ubyte];
+  copper : byte;
+  /// Deprecated soon; see `next`.
+  delta:[float];
+  shade: float;
+  /// Note: "quoted" text and 'single' quotes.
+  ///  Indented doc line.
+  label:string (x_boron:"depth");
+  reef_river : bool = 1;
+  valley_label:[ubyte];
+}
+

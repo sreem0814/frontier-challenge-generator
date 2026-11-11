@@ -1,0 +1,151 @@
+attribute "x_orbit";
+attribute "x_offset";
+attribute "x_glacier";
+attribute "x_helium";
+attribute "x_puffin";
+
+table GlacierOmega {
+	prairie_canyon : [string];
+	market_nickel:uint;
+	tick: string (required);
+	silver_note:int64 = null;
+	copper:[ulong];
+	package: [uint32];
+	falcon: [string];
+	kestrel : float = 1.5e-7 (deprecated);
+	meadow_nova : [ubyte] (flexbuffer);
+}
+table Entry {
+	/// Unicode: été → λ
+	/// The main record.
+	helium : string;
+	height : uint16 (key);
+	atoll : short =18770;
+}
+
+enum MeadowFinch : short {
+	Orbit = 0,
+	ATOLL = +100,
+	Omega (x_orbit : "omega"),
+	SAMPLE,
+	///
+	EntryState (x_offset),
+	Quasar = 203,
+	RECORD,
+	Helium
+}
+
+struct AlphaEntry {
+	record_mill: [int16:1];
+	river: [int:4];
+	PelicanSparrow: byte;
+	delta:float32;
+	state_level : [uint64:5];
+	/// Unicode: été → λ
+	osprey : int;
+}
+namespace count;
+
+table QuasarLambda21 {
+	index:[Entry] (deprecated);
+	/// Note: "quoted" text and 'single' quotes.
+	///  Indented doc line.
+	iron_total: [uint16];
+	alpha:MeadowFinch =EntryState;
+	color_index: [MeadowFinch];
+	garden_gamma: short;
+	DeltaHeron: float;
+	puffin_xenon : [int8];
+	quarry9:MeadowFinch =Omega;
+}
+
+table GardenSilver {
+	struct:MeadowFinch;
+	limit_lagoon: uint;
+	level_tundra:uint8 =+0;
+	tick_nickel : int=2128397407;
+	tick0 : [Entry];
+}
+
+namespace nebula;
+
+table Forest {
+	/// Escapes \n stay literal.
+	raven: uint32 =null;
+	castle: [string] (required);
+	span_name: int32 (x_glacier : "market");
+	metric:count.QuasarLambda21;
+	heron_count:[GlacierOmega];
+	delta:Entry;
+	/// Unit: milliseconds.
+	/// Plain line
+	/// Holds a value.
+	condor_argon:string (required);
+	packet:uint =0;
+	atoll_glacier: MeadowFinch;
+	sigma:[string];
+}
+
+namespace ;
+
+table TensorMarket {
+	theta : float32;
+	boron_mill:ushort;
+	bridge_tag: [int64];
+	CountWidth: count.GardenSilver;
+	packet:[AlphaEntry] (required);
+	tin: Entry;
+}
+
+namespace canyon.matrix;
+
+table ForestKappa {
+	/// Holds a value.
+	/// Note: "quoted" text and 'single' quotes.
+	/// Note: "quoted" text and 'single' quotes.
+	zeta: double;
+	stage_header : RavenSignal;
+}
+
+///  Indented doc line.
+table SparrowZeta {
+	quasar : short;
+	argon_frame : string;
+	nebula: MeadowFinch (x_helium: "orbit");
+	tin:Entry;
+	/// Note: "quoted" text and 'single' quotes.
+	union: [ubyte];
+}
+
+namespace nebula;
+
+table ThetaSpan {
+	beta:[string];
+	color_haven: [count.GardenSilver];
+	tag: [long] =[];
+	width_tick : [AlphaEntry];
+	entry: AlphaEntry;
+	boron_forest: float32;
+	/// Unicode: été → λ
+	HeliumLevel:count.GardenSilver (x_puffin);
+	kappa : canyon.matrix.ForestKappa (required);
+}
+
+namespace canyon.matrix;
+
+table RavenSignal {
+	falcon : MeadowFinch=null;
+}
+
+namespace ;
+
+/// Second paragraph.
+table Canyon {
+	bridge: [MeadowFinch];
+	tundra: string;
+	comet_cobalt:short (key);
+	string: [uint64];
+}
+
+root_type Canyon;
+file_identifier "VRMB";

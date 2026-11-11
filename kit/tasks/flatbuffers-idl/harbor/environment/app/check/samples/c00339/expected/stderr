@@ -1,0 +1,4 @@
+
+error:
+  @/data.json:3: 16: error: expecting: [ instead got: }
+

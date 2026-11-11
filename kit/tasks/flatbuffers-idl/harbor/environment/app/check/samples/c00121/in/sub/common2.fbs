@@ -1,0 +1,18 @@
+include "types3.fbs";
+namespace flavor.tundra;
+
+table TickOffset {
+	flavor:int64 = null;
+	beta:string (required);
+	span_zeta: float=-2044.09;
+	reef: byte=null (deprecated);
+	status: flavor.tundra.ModeMatrix;
+	color : int64;
+	shade_pelican : ulong;
+	/// Unit: milliseconds.
+	///  Indented doc line.
+	/// Value in [0, 1).
+	lagoon: [bool] (deprecated);
+	count:FinchDelta45=null;
+}
+

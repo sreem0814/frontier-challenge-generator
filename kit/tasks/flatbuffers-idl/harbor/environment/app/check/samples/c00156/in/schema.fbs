@@ -1,0 +1,59 @@
+attribute "x_bridge";
+
+/// Escapes \n stay literal.
+table Pelican {
+    /// <b>html</b> & entities
+    ///  Indented doc line.
+    ///  Indented doc line.
+    sparrow_total:int16 =-82 (id : 2);
+    canyon_river: [float] (id:0);
+    iron : short = -0x2f (x_bridge:"frame",id: 1);
+}
+
+struct Xenon {
+    swift : float32;
+}
+namespace hue;
+
+table Canyon {
+    state:bool = 0;
+    record : string;
+    /// Note: "quoted" text and 'single' quotes.
+    /// Note: "quoted" text and 'single' quotes.
+    /// Unit: milliseconds.
+    BridgeGlacier: string;
+    /// Deprecated soon; see `next`.
+    /// The main record.
+    /// Plain line
+    state_omega: string (required);
+    osprey_quarry: int8 = 96;
+    forest:string;
+    kestrel : int;
+    SignalVector:Pelican;
+}
+
+/// The main record.
+/// Second paragraph.
+/// Unit: milliseconds.
+table Cobalt {
+    nova:[float32];
+    shade : int32 = -901617395;
+    level_anchor : float32;
+    alpha:float32;
+    epoch_garden : int8;
+    theta_lagoon:Pelican (required);
+    haven : uint16;
+    ///
+    canyon_forge : uint8 =0 (key);
+}
+
+namespace count.kappa;
+
+/// The main record.
+rpc_service GardenEvent {
+    /// Note: "quoted" text and 'single' quotes.
+    /// Value in [0, 1).
+    KindDepth(Pelican):hue.Canyon;
+}
+
+root_type hue.Cobalt;

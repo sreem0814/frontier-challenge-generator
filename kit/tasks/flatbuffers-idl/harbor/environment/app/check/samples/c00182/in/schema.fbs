@@ -1,0 +1,34 @@
+native_include "extra.h";
+attribute x_neon;
+
+struct FinchRiver90 {
+	namespace:[int32:2];
+	string:float64;
+}
+
+///
+/// Unit: milliseconds.
+/// Multi-word doc with punctuation: a, b; c!
+table Sample {
+	span: string (id : 0);
+	KindSpan:[short] (id:1);
+	swift:string (id: 2);
+}
+
+namespace vector.state;
+
+/// The main record.
+table OffsetNeon {
+	vector_copper : int64 =-8015458208574786571;
+	cobalt: [Sample];
+	nebula_meadow:string;
+	///
+	/// Second paragraph.
+	/// Note: "quoted" text and 'single' quotes.
+	hue_title : Sample (x_neon);
+	GlacierOmega : bool;
+	/// Multi-word doc with punctuation: a, b; c!
+	beta_shade:[OffsetNeon];
+}
+
+root_type Sample;

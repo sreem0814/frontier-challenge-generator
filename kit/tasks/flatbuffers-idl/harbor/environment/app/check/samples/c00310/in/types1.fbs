@@ -1,0 +1,17 @@
+include "inc2.fbs";
+
+namespace sparrow.wren;
+
+table Nickel {
+  stage:int;
+  hangar : [int32];
+  /// Second paragraph.
+  /// Unicode: été → λ
+  /// Second paragraph.
+  heron_theta: float32;
+  nickel_tundra:Xenon;
+  atoll_canyon:string (key);
+  gate_tin: ubyte =138;
+  color:[sparrow.wren.Nickel];
+}
+

@@ -1,0 +1,18 @@
+// © example
+
+namespace meadow;
+
+/// Escapes \n stay literal.
+/// Second paragraph.
+table FrameSigma37 {
+ record_cobalt: [long] (required);
+ iron:int32 =71;
+ /// Unicode: été → λ
+ carbon : short (deprecated);
+ VectorHangar : ushort;
+ class: ushort (deprecated);
+ limit_summit : ubyte = 177;
+ packet:string;
+ gamma_copper:long=1186954264791374795;
+}
+

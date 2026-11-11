@@ -1,0 +1,52 @@
+/* block
+   comment */
+table VectorGlacier {
+    hue:string;
+    /// Unicode: été → λ
+    /// Note: "quoted" text and 'single' quotes.
+    /// Unicode: été → λ
+    sample_tundra: string (deprecated);
+}
+
+enum Index47 : uint32 { Atoll = 5, OffsetTundra, WidthRecord, HangarNeon }
+table Tick {
+    /// Value in [0, 1).
+    /// Unicode: été → λ
+    comet:byte;
+}
+/// Unicode: été → λ
+/// <b>html</b> & entities
+table Nebula (original_order) {
+    tin:Index47 = HangarNeon (deprecated);
+    TickIron: HeronOrbit;
+}
+
+table ModeGlacier {
+    /// <b>html</b> & entities
+    width:string;
+    theta : uint8;
+    kind: int16 (key);
+    comet:string;
+    xenon : ulong=0x0;
+}
+
+table HeronOrbit {
+    tensor_finch : byte = null (id:0);
+    header_anchor: [string] (id : 1);
+    span: float32=-4641.47 (id:2);
+}
+
+namespace forest;
+
+table Nova {
+    market_swift: [short];
+    title: long =0x0;
+    forest:Nebula;
+    market_height:string;
+    mode_quasar : [string] (deprecated);
+    kind: [Nebula];
+}
+
+root_type Tick;
+
+rpc_service S { A(VectorGlacier):VectorGlacier (streaming: "maybe"); }

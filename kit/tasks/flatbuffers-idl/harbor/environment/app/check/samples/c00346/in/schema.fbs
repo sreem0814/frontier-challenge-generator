@@ -1,0 +1,13 @@
+include "inc1.fbs";
+native_include "native/types.h";
+
+namespace forge.quasar;
+
+table ForestTone {
+ /// The main record.
+ river_forest:uint16;
+ note_hangar: int32 =0x43;
+ tower_lambda:[sigma.CobaltCondor];
+}
+root_type ForestTone;
+file_identifier "VE1X";

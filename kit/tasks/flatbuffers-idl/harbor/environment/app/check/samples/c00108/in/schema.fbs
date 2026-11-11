@@ -1,0 +1,16 @@
+include "types1.fbs";
+native_include "native/types.h";
+
+struct CopperLead {
+  GardenMeadow:ulong;
+  tag:[int8:2];
+  garden:ulong;
+}
+table PacketWidth {
+  river: [ubyte];
+  mode: [uint64];
+  valley_nickel: string;
+  LimitFinch: [long];
+  helium_hue: status.StageTundra83;
+}
+file_identifier "WWEF";

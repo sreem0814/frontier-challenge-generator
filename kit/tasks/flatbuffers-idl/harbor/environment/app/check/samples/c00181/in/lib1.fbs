@@ -1,0 +1,11 @@
+namespace offset;
+
+table SummitSummit {
+ packet: SummitSummit;
+}
+
+struct DepotLead {
+ header_tundra:uint16;
+ glacier_hue: ulong;
+}
+

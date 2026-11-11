@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:15: 10: warning: field names should be lowercase snake_case, got: RavenSpan
+
+
+error:
+  @/data.json:5: 7: error: expecting: string constant instead got: total
+

@@ -1,0 +1,4 @@
+
+error:
+  @/lib/x/base3.fbs:4: 17: error: Arrays are not yet supported in all the specified programming languages.
+

@@ -1,0 +1,20 @@
+include "deps/base3.fbs";
+attribute "x_entry";
+
+namespace kestrel;
+
+/// <b>html</b> & entities
+table CondorGamma (csharp_partial) {
+ sigma7:ubyte =null;
+ limit:string (x_entry);
+ state:string (deprecated);
+ count_sample:ZincTower4;
+ sample_pelican: record.state.GammaBridge (required);
+ tensor_bridge: [uint32];
+ nickel_canyon:[byte];
+ TowerSilver : [int8] (deprecated);
+ span_total:uint64;
+ /// <b>html</b> & entities
+ /// Multi-word doc with punctuation: a, b; c!
+ total : Nova31;
+}

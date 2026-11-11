@@ -1,0 +1,9 @@
+
+error:
+  @/schema.fbs:20: 11: warning: field names should be lowercase snake_case, got: HueCarbon
+@/schema.fbs:47: 11: warning: field names should be lowercase snake_case, got: AlphaMill
+@/schema.fbs:75: 14: warning: field names should be lowercase snake_case, got: VectorCarbon
+@/schema.fbs:89: 10: warning: field names should be lowercase snake_case, got: KappaTin
+@/schema.fbs:97: 15: warning: field names should be lowercase snake_case, got: KestrelTensor
+@/schema.fbs:121: 1: error: field id's must be consecutive from 0, id 7 missing or set twice, field: metric, id: 8
+

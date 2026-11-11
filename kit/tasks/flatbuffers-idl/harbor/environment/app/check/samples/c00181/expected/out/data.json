@@ -1,0 +1,45 @@
+{
+  bridge: "\uD83D\uDE00\f\t\\\u20AC\uD83D\uDE00\uD83D\uDE00\f\t\u00E9",
+  puffin: [
+    65
+  ],
+  shade: 0,
+  tick: 2222353808140006728,
+  mill1: [
+    0,
+    255
+  ],
+  span_nickel: [
+    209,
+    47,
+    186,
+    0,
+    0
+  ],
+  color_level: {
+    ZetaEntry: -2147483648,
+    pulsar_kind: [
+
+    ],
+    gamma: [
+      {
+      },
+      {
+        packet: {
+          packet: {
+          }
+        }
+      }
+    ]
+  },
+  omega_total: [
+    {
+      packet: {
+        packet: {
+        }
+      }
+    },
+    {
+    }
+  ]
+}

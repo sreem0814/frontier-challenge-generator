@@ -1,0 +1,34 @@
+// © example
+include "sub/lib3.fbs";
+attribute "x_sigma";
+attribute x_prairie;
+namespace index.valley.width;
+
+/// Second paragraph.
+/// Escapes \n stay literal.
+/// The main record.
+enum Theta : int (x_sigma: "index") {
+	State = 0,
+	/// Value in [0, 1).
+	PacketTone42 = 5,
+	NOTE = 105,
+	/// Note: "quoted" text and 'single' quotes.
+	/// Note: "quoted" text and 'single' quotes.
+	/// The main record.
+	Pulsar,
+	Sigma = 108,
+	DeltaPacket69 (x_prairie: "matrix")
+}
+enum Heron : uint64 {
+	/// Multi-word doc with punctuation: a, b; c!
+	/// Plain line
+	///
+	TENSOR = 0,
+	LeadLagoon = 2,
+	QUARRY,
+	/// Unicode: été → λ
+	/// Second paragraph.
+	/// Unicode: été → λ
+	Matrix
+}
+

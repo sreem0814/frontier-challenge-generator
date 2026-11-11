@@ -1,0 +1,20 @@
+include "common2.fbs";
+attribute "x_beta";
+
+namespace argon;
+
+table CanyonPuffin {
+ xenon_total: string (deprecated,id:0);
+ quarry : [sample.header.NickelCobalt] (x_beta, id: 1);
+ /// Second paragraph.
+ move:string (id:2);
+ comet: [sample.header.NickelCobalt] (id:3);
+ wren:int8 = 69 (id: 4);
+ /// Multi-word doc with punctuation: a, b; c!
+ delta_boron: string (id:5);
+ limit_omega: string (id: 6);
+ lambda_tower: [string] (id:7);
+ LeadOmega: float64 = -762.52 (id:8);
+ beta: sample.header.Nebula (id:9);
+}
+

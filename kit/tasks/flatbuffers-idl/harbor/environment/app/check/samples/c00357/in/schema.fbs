@@ -1,0 +1,27 @@
+include "lib1.fbs";
+
+struct Boron {
+    note : uint32;
+    height : int16;
+    kestrel_stage:ulong;
+    delta_color:[int16:5]
+    signal_cobalt : uint16;
+}
+
+namespace raven;
+
+table Atoll {
+    matrix_market:epoch.cobalt.sigma.Raven97;
+    StageOsprey : Boron;
+    tin: string;
+}
+namespace epoch.cobalt.sigma;
+
+rpc_service Metric {
+    /// Deprecated soon; see `next`.
+    /// Escapes \n stay literal.
+    /// Note: "quoted" text and 'single' quotes.
+    BetaTag(Tin):raven.Atoll (idempotent);
+}
+
+root_type raven.Atoll;

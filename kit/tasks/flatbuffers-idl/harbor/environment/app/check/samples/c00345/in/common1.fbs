@@ -1,0 +1,4 @@
+// Generated test schema.
+include "sub/common2.fbs";
+
+enum NameTone17 : uint16 { HangarHangar12 = 0x0, CopperKappa, Hangar, NOVA, Gate, Note }

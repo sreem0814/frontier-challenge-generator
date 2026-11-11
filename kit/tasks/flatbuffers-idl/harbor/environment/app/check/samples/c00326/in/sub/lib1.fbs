@@ -1,0 +1,16 @@
+// Generated test schema.
+include "lib/x/common2.fbs";
+
+namespace neon.depot;
+
+/// Unicode: été → λ
+/// Holds a value.
+/// Note: "quoted" text and 'single' quotes.
+struct Sample48 {
+    /// Plain line
+    color_hue:[zinc.ThetaFrame:5];
+    silver_boron:int16;
+    event_castle: [float32:1];
+    swift_title: double;
+}
+

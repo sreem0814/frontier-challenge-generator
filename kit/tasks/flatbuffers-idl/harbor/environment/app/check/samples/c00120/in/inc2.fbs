@@ -1,0 +1,13 @@
+include "inc3.fbs";
+namespace status.packet;
+
+struct GardenOmega {
+ AlphaSignal: double;
+ /// Value in [0, 1).
+ quasar_osprey : bool;
+ shade_falcon:long;
+ HueBeta : [int:1];
+ anchor: [int:2];
+ falcon:[byte:4];
+}
+

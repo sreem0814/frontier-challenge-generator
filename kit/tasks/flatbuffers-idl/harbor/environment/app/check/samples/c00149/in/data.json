@@ -1,0 +1,8 @@
+{
+  "helium": 0,
+  "phase_limit": {
+    "copper": [-667, 29970.557, -32302.74, -173, 859],
+    valley: 100
+  },
+  "metric_count": -82
+}

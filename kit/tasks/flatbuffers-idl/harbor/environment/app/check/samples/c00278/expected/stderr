@@ -1,0 +1,14 @@
+
+warning:
+  @/base/schema.fbs:10: 16: warning: field names should be lowercase snake_case, got: CastleOsprey
+@/base/schema.fbs:12: 16: warning: field names should be lowercase snake_case, got: AnchorCobalt
+
+
+warning:
+  @/new/schema.fbs:17: 14: warning: field names should be lowercase snake_case, got: CastleOsprey
+@/new/schema.fbs:19: 14: warning: field names should be lowercase snake_case, got: AnchorCobalt
+
+
+error:
+  schemas don't conform: offsets differ for field: pelican.packet.QuasarGamma.glacier
+

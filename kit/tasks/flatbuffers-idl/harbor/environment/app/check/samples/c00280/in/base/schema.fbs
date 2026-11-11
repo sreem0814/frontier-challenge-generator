@@ -1,0 +1,28 @@
+include "lib/x/lib1.fbs";
+
+enum Frame : ulong (bit_flags) { Width = 31, QuasarHue = 39, Hangar = 41 }
+/// Holds a value.
+/// Second paragraph.
+///
+enum PrairieSwift : uint {
+  River = 1,
+  Phase,
+  /// <b>html</b> & entities
+  DEPTH
+}
+
+table GammaTensor {
+  record_atoll:double=null;
+  ToneArgon : Frame = QuasarHue;
+  width_orbit:float32 =nan;
+  packet0:[float];
+  forge: float =null;
+  matrix_shade : uint16=null;
+  copper: string;
+  record_quasar : long=null;
+  meadow: int32;
+  mill_wren: [float32];
+  haven_falcon:[nickel.record.status.Sample];
+}
+
+root_type GammaTensor;

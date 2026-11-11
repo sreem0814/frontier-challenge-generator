@@ -1,0 +1,9 @@
+// Generated test schema.
+include "types3.fbs";
+
+namespace comet;
+
+union OrbitAlpha95 {
+    Osprey
+}
+

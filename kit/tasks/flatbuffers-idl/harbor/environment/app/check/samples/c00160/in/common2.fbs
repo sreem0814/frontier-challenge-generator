@@ -1,0 +1,12 @@
+attribute x_finch;
+
+namespace beta;
+
+table Tone {
+  packet: [ubyte] (flexbuffer, x_finch:"label");
+  depot: uint8;
+  ZincStage : short = -3379;
+  gamma_count : string;
+  neon : int;
+}
+

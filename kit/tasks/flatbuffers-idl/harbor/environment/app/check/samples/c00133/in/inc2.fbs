@@ -1,0 +1,16 @@
+table BridgeReef {
+	raven : int8;
+	depot_hue: [ubyte];
+	market_omega : [ubyte] (required);
+	bridge : float;
+	total_limit:ushort;
+	limit : [int];
+}
+
+namespace entry;
+
+///
+union Quasar {
+	BridgeReef
+}
+

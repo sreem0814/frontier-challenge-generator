@@ -1,0 +1,8 @@
+/// Value in [0, 1).
+table River {
+  copper:string;
+  nebula : int64;
+  zeta_cobalt:int8;
+  heron_tick : float32;
+}
+

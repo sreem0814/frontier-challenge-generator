@@ -1,0 +1,34 @@
+attribute x_level;
+namespace limit.color.delta;
+
+enum MarketOsprey : int32 {
+  Record = -2147483648,
+}
+
+namespace iron;
+
+table CopperOmega74 {
+  tone_lambda: limit.color.delta.MarketOsprey=Record (deprecated, id : 4);
+  quasar : [uint64] (id: 5);
+  xenon: [ubyte]=[] (flexbuffer, id: 8);
+  gate_helium : [ubyte] (flexbuffer, id : 7);
+  iron_swift: [uint16] (id:0);
+  depot_lagoon:[ubyte] (id : 2);
+  /// Escapes \n stay literal.
+  MarketGate : int64 = 7010339488580057455 (id : 3);
+  frame:ubyte (deprecated,id : 1);
+  depot:[ubyte] (flexbuffer, id: 6);
+}
+namespace ;
+
+/// Escapes \n stay literal.
+struct ArgonOffset (x_level : 22) {
+  vector:ushort;
+  label: int8;
+  iron: [ubyte:4];
+  nickel_omega:ubyte;
+  level_gamma:int32;
+  DeltaWren : int8;
+}
+
+root_type iron.CopperOmega74;

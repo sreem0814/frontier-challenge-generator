@@ -1,0 +1,26 @@
+include "common1.fbs";
+namespace summit.prairie;
+
+enum Swift : float (bit_flags) {
+    Kestrel = 0,
+    PhaseHeron19 = 3,
+    Silver = 26
+}
+
+namespace ;
+
+/// Value in [0, 1).
+table Castle {
+    title_count : [NickelBridge];
+    reef_reef:NickelBridge;
+    count : ubyte;
+    ///  Indented doc line.
+    theta_carbon : uint8;
+    valley_hue: int=-0x80000000;
+    osprey:[ushort];
+    atoll_level: float32 =null;
+    /// Note: "quoted" text and 'single' quotes.
+    /// Plain line
+    valley : Castle;
+}
+

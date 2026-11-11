@@ -1,0 +1,15 @@
+table Tower (csharp_partial) {
+ iron_total : int32 (id : 0);
+ lagoon: int64 (id : 1);
+ heron_orbit : [ubyte] (id:2);
+ quarry_beta : int64=42 (id:3);
+ gate:[ubyte] (id : 4);
+ alpha_anchor: string (id:5);
+ /// <b>html</b> & entities
+ beta_xenon: [short] (id : 6);
+ ///
+ xenon_prairie:byte = null (id:7);
+ raven: [ubyte] (flexbuffer,id:8);
+ name_omega:[uint16] (id:9);
+}
+

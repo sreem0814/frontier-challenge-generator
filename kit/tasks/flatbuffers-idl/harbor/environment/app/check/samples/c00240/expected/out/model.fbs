@@ -1,0 +1,52 @@
+// Generated from model.proto
+
+namespace title.pelican.fbs.ValleyWidth_;
+
+enum Tag : int {
+  TAG_LEVEL = 0,
+  TAG_ZINC = 1,
+  NOVA = 2,
+  TAG_QUARRY = 12,
+  TAG_PULSAR_CANYON = 13,
+}
+
+namespace title.pelican.fbs.Heron_;
+
+/// Escapes \n stay literal.
+enum TitleForge : int {
+  TITLEFORGE_DELTA_GARDEN = 0,
+  TITLEFORGE_XENON_KAPPA = 10,
+  GARDEN = 12,
+  GLACIER_DEPOT = 13,
+  /// Deprecated soon; see `next`.
+  TITLEFORGE_NEBULA = 14,
+}
+
+namespace title.pelican.fbs;
+
+table ValleyWidth {
+  entry_mode:[ubyte] (required,id: 0);
+  tin_lambda:[double] (id: 1);
+  level_xenon:title.pelican.fbs.ValleyWidth_.Tag (id: 2);
+  status:[int] (id: 3);
+}
+
+namespace title.pelican.fbs.ValleyWidth_;
+
+table HavenOsprey {
+  raven_nebula:[double] (id: 0);
+  index_nova:long (id: 1);
+  level:[int] (id: 2);
+  label_phase:title.pelican.fbs.ValleyWidth_.Tag (id: 3);
+  cobalt_neon:title.pelican.fbs.ValleyWidth_.Tag (id: 4);
+  nickel_status:[ubyte] (required,id: 5);
+  record_condor:title.pelican.fbs.ValleyWidth_.Tag (id: 6);
+}
+
+namespace title.pelican.fbs;
+
+table Heron {
+  hangar:[int] (id: 0);
+  kestrel:title.pelican.fbs.Heron_.TitleForge (id: 1);
+}
+

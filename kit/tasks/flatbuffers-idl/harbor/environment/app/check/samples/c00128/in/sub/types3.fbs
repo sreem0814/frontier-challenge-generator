@@ -1,0 +1,13 @@
+namespace pulsar.reef.garden;
+
+///  Indented doc line.
+table Cobalt {
+ wren_forest:string;
+ alpha:string;
+ forge_stage : [ubyte];
+ delta_alpha : [ubyte];
+ kappa_osprey: [uint64];
+ flavor:byte;
+ tone:[string];
+ bridge_sparrow:[string];
+}

@@ -1,0 +1,38 @@
+attribute x_garden;
+attribute x_prairie;
+namespace span.limit;
+
+table Header {
+    SigmaFinch: [ubyte];
+    /// <b>html</b> & entities
+    async:[double];
+}
+
+namespace delta.alpha;
+
+table Comet {
+    state: [span.limit.Header] (x_garden);
+    theta:[int64];
+    theta_sparrow : [string];
+    span:span.limit.Header (x_prairie);
+    let : span.limit.Header;
+    phase:uint8=255;
+    delta_puffin:string;
+    /// Second paragraph.
+    /// <b>html</b> & entities
+    omega: ulong;
+    /// Unit: milliseconds.
+    ///
+    haven: [string];
+    heron : double;
+    /// Note: "quoted" text and 'single' quotes.
+    /// <b>html</b> & entities
+    /// <b>html</b> & entities
+    swift:span.limit.Header;
+}
+namespace span.limit;
+
+struct TowerPacket (force_align : 16) {
+    state_span: uint;
+}
+

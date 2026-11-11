@@ -1,0 +1,5 @@
+
+error:
+  @/schema.fbs:3: 14: warning: field names should be lowercase snake_case, got: WidthOmega
+@/schema.fbs:5: 32: error: fields using 64-bit offsets are not yet supported in at least one of the specified programming languages.
+

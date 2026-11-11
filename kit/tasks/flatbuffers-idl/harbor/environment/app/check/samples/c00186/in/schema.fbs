@@ -1,0 +1,23 @@
+native_include "native/types.h";
+attribute "x_depot";
+
+namespace heron;
+
+enum HeaderFinch : ushort { OmegaQuarry = 0, COPPER = 2, Lambda = 3, Silver (x_depot) }
+
+namespace carbon.epoch.atoll;
+
+/// Unit: milliseconds.
+/// Escapes \n stay literal.
+table ValleyHaven (original_order) {
+	condor:[short];
+}
+
+namespace ;
+
+rpc_service TagTundra {
+	HavenSignal(carbon.epoch.atoll.ValleyHaven):carbon.epoch.atoll.ValleyHaven;
+}
+
+root_type carbon.epoch.atoll.ValleyHaven;
+file_identifier "38AT";

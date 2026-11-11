@@ -1,0 +1,13 @@
+{
+ "bucket": "diag",
+ "argv": [
+  "-b",
+  "--natural-utf8",
+  "--root-type",
+  "falcon.atoll.MatrixBridge27",
+  "-o",
+  "out",
+  "schema.fbs",
+  "doc.json"
+ ]
+}

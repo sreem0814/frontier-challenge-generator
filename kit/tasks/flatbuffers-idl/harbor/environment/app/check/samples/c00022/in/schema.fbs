@@ -1,0 +1,66 @@
+attribute "x_nickel";
+
+namespace castle;
+
+/// Value in [0, 1).
+/// Multi-word doc with punctuation: a, b; c!
+struct TotalPuffin {
+ tone_neon: ushort;
+ gate_height:float32;
+ tag:short;
+ mill:[int:1];
+ garden : int8;
+ AlphaSummit: [uint64:1];
+}
+
+struct Gate {
+ kestrel : TotalPuffin;
+ lead:byte;
+}
+
+namespace ;
+
+table AlphaZinc31 {
+ mode_market: string;
+ /// Unicode: été → λ
+ zeta_anchor: int16;
+ osprey_span : [ubyte];
+ sparrow_height : bool = false;
+ SigmaKappa:[castle.Gate];
+ haven : uint64;
+ condor : string ="osprey";
+}
+
+struct Neon {
+ puffin : castle.Gate;
+ sample_shade:uint16;
+}
+
+namespace cobalt.gate;
+
+table RavenForge {
+ swift_glacier: [float];
+ epoch_puffin: int16 =-98;
+ iron_meadow : short;
+ /// Note: "quoted" text and 'single' quotes.
+ ///
+ neon_note: int64;
+ color: string;
+ bridge_signal:string;
+ ///
+ /// Deprecated soon; see `next`.
+ flavor_delta:[castle.Gate];
+ /// Escapes \n stay literal.
+ /// Multi-word doc with punctuation: a, b; c!
+ default: byte (x_nickel: 63);
+}
+
+namespace castle;
+
+/// Unicode: été → λ
+rpc_service Level {
+ PhaseAnchor(AlphaZinc31):AlphaZinc31 (streaming : "server");
+ EpochTone(AlphaZinc31):cobalt.gate.RavenForge;
+}
+
+root_type AlphaZinc31;

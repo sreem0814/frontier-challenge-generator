@@ -1,0 +1,44 @@
+include "base1.fbs";
+
+struct Mode {
+    offset_note:uint8;
+    zinc_anchor : [double:5];
+    /// Value in [0, 1).
+    ///
+    flavor_market : [int:5];
+}
+
+namespace comet;
+
+table CobaltOmega {
+    /// Unit: milliseconds.
+    /// Second paragraph.
+    kind_color: string;
+    /// Plain line
+    /// Plain line
+    tin_puffin : HeightKestrel;
+}
+
+namespace ;
+
+table HeightKestrel {
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Deprecated soon; see `next`.
+    /// The main record.
+    pelican:string (id:5);
+    tone_mill : uint32 (id: 2);
+    self:int (id:0);
+    /// Note: "quoted" text and 'single' quotes.
+    level_prairie: Mode (required,id : 4);
+    matrix_xenon: [comet.TinTheta] (id:6);
+    ///  Indented doc line.
+    /// Deprecated soon; see `next`.
+    HeliumNote : Mode (id : 3);
+    stage_swift: string (id:7);
+    /// Plain line
+    ///
+    /// <b>html</b> & entities
+    comet : [Mode] (id : 1);
+}
+
+root_type comet.CobaltOmega;

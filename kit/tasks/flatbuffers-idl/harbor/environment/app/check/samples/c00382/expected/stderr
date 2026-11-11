@@ -1,0 +1,4 @@
+
+warning:
+  @/schema.fbs:21: 12: warning: field names should be lowercase snake_case, got: TickIron
+

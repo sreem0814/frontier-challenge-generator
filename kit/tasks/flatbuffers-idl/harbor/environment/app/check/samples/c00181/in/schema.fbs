@@ -1,0 +1,40 @@
+include "lib1.fbs";
+
+table HavenOffset {
+    title_shade: offset.DepotLead;
+    ZetaEntry: int=-1001509113;
+    finch_neon:[string];
+    /// Unicode: été → λ
+    /// Multi-word doc with punctuation: a, b; c!
+    pulsar_kind: [string];
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Value in [0, 1).
+    forest_tag : string;
+    gamma:[offset.SummitSummit];
+}
+
+namespace gamma.delta;
+
+struct Garden (force_align: 32) {
+    mill: offset.DepotLead;
+    hangar: int32;
+    metric_forge: ubyte;
+    lead : uint8;
+}
+
+namespace ;
+
+table CometBeta {
+    lambda_stage: uint64;
+    bridge : string;
+    puffin:[byte];
+    shade:ulong =0 (key);
+    tick: int64;
+    level_tundra: uint;
+    mill1:[ubyte];
+    span_nickel : [uint8];
+    color_level:HavenOffset;
+    omega_total : [offset.SummitSummit];
+}
+root_type CometBeta;
+file_identifier "X6FD";

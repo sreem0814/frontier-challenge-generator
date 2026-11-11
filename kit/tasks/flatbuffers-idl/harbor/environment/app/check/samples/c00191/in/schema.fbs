@@ -1,0 +1,41 @@
+/* block
+   comment */
+attribute "x_wren";
+/// Multi-word doc with punctuation: a, b; c!
+/// Escapes \n stay literal.
+table LeadArgon64 {
+	shade : long =-1;
+}
+
+/// Value in [0, 1).
+struct DeltaFrame92 {
+	quasar4:[int:1];
+	phase_forest:ushort (x_wren: "iron");
+	mode: float;
+}
+
+namespace falcon.haven.mill;
+
+table LimitTundra {
+	/// Deprecated soon; see `next`.
+	/// Second paragraph.
+	condor_tag : string;
+	offset : LeadArgon64;
+}
+
+namespace ;
+
+table Entry {
+	/// Escapes \n stay literal.
+	/// Unicode: été → λ
+	ColorIron : [DeltaFrame92] (id:0);
+	quarry : [DeltaFrame92] (id:1);
+	count:ubyte (id: 2);
+	/// The main record.
+	atoll_matrix:int16 (id : 3);
+	/// Deprecated soon; see `next`.
+	beta: uint (id:4);
+	omega : LeadArgon64 (id:5);
+}
+
+file_identifier "UMV1";

@@ -1,0 +1,8 @@
+
+warning:
+  @/base/schema.fbs:22: 12: warning: field names should be lowercase snake_case, got: PhaseRecord
+
+
+warning:
+  @/new/schema.fbs:22: 12: warning: field names should be lowercase snake_case, got: PhaseRecord
+

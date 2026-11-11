@@ -1,0 +1,32 @@
+///
+struct Pelican {
+  cobalt:byte;
+  /// Plain line
+  /// Unit: milliseconds.
+  omega : [int16:4];
+}
+
+table Delta {
+  lambda_tundra : Pelican;
+  EventBridge : byte;
+  frame_header:string (key);
+  prairie_mode: bool;
+  nebula_boron:uint64;
+  height : float32;
+  puffin: short;
+  delta_vector: int64 =null (deprecated);
+  /// <b>html</b> & entities
+  /// Plain line
+  name: [uint64];
+}
+
+rpc_service Theta {
+  /// The main record.
+  /// <b>html</b> & entities
+  BridgeDelta(Delta):Delta (streaming : "none", idempotent);
+  QuasarCarbon(Delta):Delta (streaming : "bidi");
+  CountPuffin(Delta):Delta (streaming : "client");
+  PacketCastle(Delta):Delta;
+}
+
+root_type Delta;

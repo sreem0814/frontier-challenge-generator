@@ -1,0 +1,13 @@
+{
+ "bucket": "proto",
+ "argv": [
+  "--proto",
+  "--keep-proto-id",
+  "--proto-namespace-suffix",
+  "fbs",
+  "--no-warnings",
+  "-o",
+  "out",
+  "model.proto"
+ ]
+}

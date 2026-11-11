@@ -1,0 +1,20 @@
+// Generated test schema.
+include "lib/x/base2.fbs";
+attribute "x_phase";
+namespace signal.argon.shade;
+
+table GardenXenon (original_order) {
+  kind_state: string (required, id : 0);
+  val: [string] (id:1);
+  TagMill:string (id: 2);
+  /// The main record.
+  /// Unicode: été → λ
+  /// Note: "quoted" text and 'single' quotes.
+  lead:[bool] (deprecated,id: 3);
+  ///  Indented doc line.
+  enum: string (x_phase, id : 4);
+  carbon: string (id : 5);
+  count:span.sparrow.condor.HavenSummit (required, deprecated, id: 6);
+  heron : GardenXenon (id:7);
+}
+

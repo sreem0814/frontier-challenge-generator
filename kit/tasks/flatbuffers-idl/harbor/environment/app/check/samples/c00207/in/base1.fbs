@@ -1,0 +1,35 @@
+/* block
+   comment */
+include "common2.fbs";
+
+namespace header;
+
+struct StateReef {
+	quasar_heron:uint32;
+	WidthSummit:ulong;
+	note : uint8;
+	quasar_boron:level.valley.puffin.Condor;
+	kappa:float;
+	prairie_depth : uint16;
+}
+
+/// Unit: milliseconds.
+///
+///
+table LabelPhase54 {
+	note: [level.valley.puffin.ToneValley];
+	sample : ushort;
+	LevelBeta:string;
+	pulsar:[string];
+	/// Value in [0, 1).
+	def: Event;
+	cobalt_river: bool;
+	DepotShade : StateReef;
+	level: [short];
+	copper_beta: uint16;
+	state:[LabelPhase54];
+}
+namespace level.valley.puffin;
+
+enum Delta : uint16 { PUFFIN = 0x1 }
+

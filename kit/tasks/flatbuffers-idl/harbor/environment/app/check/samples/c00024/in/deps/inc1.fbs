@@ -1,0 +1,20 @@
+namespace stage.swift.valley;
+
+/// Note: "quoted" text and 'single' quotes.
+/// Second paragraph.
+table Lambda {
+    offset:double (id: 2);
+    falcon_depot: string (id:4);
+    /// Multi-word doc with punctuation: a, b; c!
+    /// Deprecated soon; see `next`.
+    /// Multi-word doc with punctuation: a, b; c!
+    nova : int32 = 824074752 (id: 0);
+    tag: ubyte (id : 1);
+    canyon : bool (id:5);
+    record:string (id:8);
+    orbit:uint64 =null (id:7);
+    total: [int] (id: 9);
+    tin_delta: int8 (id: 6);
+    record_silver: [uint32] (id:3);
+}
+

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package hue.gamma.kind;
+
+
+message Label {
+  enum Helium {
+    HELIUM_ATOLL_COLOR = 0 [deprecated = true];
+    COUNT_COLOR = 10;
+    HELIUM_FRAME_NAME = 12;
+  }
+  sint32 phase = 1;
+  optional Label.Helium hangar = 2;
+  optional Label.Helium raven = 3;
+  repeated Label.Helium copper_signal = 4;
+  repeated Label.Helium forge_condor = 5;
+  fixed64 gamma = 6;
+  Label.Helium flavor_tundra = 7;
+}
+
+message StatusHue {
+  repeated int64 copper_prairie = 1;
+  repeated Label river = 2;
+  Label copper = 3;
+}

@@ -1,0 +1,36 @@
+/* block
+   comment */
+
+table Signal (original_order) {
+	theta: [string];
+	prairie : double=null;
+	string:[double];
+	tundra:[Signal];
+	tundra:[Signal];
+}
+table DepthStatus {
+	lead_state:string (shared);
+	sample3 : [int16];
+	iron: long =null;
+	zinc : float32 =null;
+	func: byte=null;
+	total: [Signal];
+	level_wren: string (required);
+	/// Plain line
+	/// The main record.
+	theta : string;
+	metric_castle: [ubyte]=[] (required);
+}
+
+namespace swift.puffin;
+
+table MeadowFinch {
+	level_quasar : [uint64] (id: 2);
+	anchor:[string] (id:0);
+	/// Note: "quoted" text and 'single' quotes.
+	/// Multi-word doc with punctuation: a, b; c!
+	///
+	def:MeadowFinch (id : 1);
+}
+
+root_type Signal;

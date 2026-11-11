@@ -1,0 +1,35 @@
+syntax = "proto2";
+
+package condor;
+
+import "imported.proto";
+
+enum PelicanXenon {
+  // The main record.
+  // Unit: milliseconds.
+  DELTA_RECORD = 0;
+  // <b>html</b> & entities
+  // Second paragraph.
+  PRAIRIE = 1;
+  OMEGA = 2;
+  CARBON = 3;
+  EVENT_FLAVOR = 4;
+}
+
+message NeonHue {
+  enum Nickel {
+    // Plain line
+    NICKEL_FOREST = 1;
+    SPARROW_MODE = 2;
+    NICKEL_PUFFIN_BORON = 3;
+    // Deprecated soon; see `next`.
+    STATUS = 5;
+  }
+  // Escapes \n stay literal.
+  // Value in [0, 1).
+  optional fixed64 total = 1;
+}
+
+service CanyonLimit {
+  rpc Tag (NeonHue) returns (NeonHue);
+}

@@ -1,0 +1,13 @@
+attribute x_depth;
+table LimitRaven {
+  name_cobalt : [ulong];
+  carbon : uint8;
+  iron_signal: ushort;
+  tag_pulsar : [ubyte] (x_depth:1);
+  comet_swift: string;
+  /// Deprecated soon; see `next`.
+  state_count:byte =null;
+  await:byte;
+  tower : [float] (deprecated);
+}
+

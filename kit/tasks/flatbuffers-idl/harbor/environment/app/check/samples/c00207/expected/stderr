@@ -1,0 +1,8 @@
+
+warning:
+  @/schema.fbs:29: 5: warning: field names should be lowercase snake_case, got: None
+
+
+error:
+  @/data.json:16: 9: error: required field is missing: None in SparrowCount
+

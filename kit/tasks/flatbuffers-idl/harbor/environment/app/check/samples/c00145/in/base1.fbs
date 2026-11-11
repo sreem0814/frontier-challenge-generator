@@ -1,0 +1,50 @@
+/* block
+   comment */
+include "lib2.fbs";
+include "common3.fbs";
+namespace hangar.bridge;
+
+table StateRecord {
+  osprey: ulong =94;
+  /// Note: "quoted" text and 'single' quotes.
+  /// Deprecated soon; see `next`.
+  /// Deprecated soon; see `next`.
+  forest : ushort = 15502 (key);
+  /// Second paragraph.
+  /// Unicode: été → λ
+  market: [string];
+  frame_pelican: int16;
+  event : int8;
+  swift_depth : string;
+}
+table NovaLimit {
+  /// Escapes \n stay literal.
+  /// Note: "quoted" text and 'single' quotes.
+  reef: ushort;
+  quasar:string;
+  /// <b>html</b> & entities
+  raven_status : uint32;
+  index: hangar.bridge.Depot;
+  /// Note: "quoted" text and 'single' quotes.
+  index_kind: string;
+}
+
+namespace ;
+
+/// Unit: milliseconds.
+/// Value in [0, 1).
+/// Unicode: été → λ
+table WrenGarden62 (csharp_partial) {
+  heron_total : uint64;
+  atoll_orbit: string (key);
+  forest_pelican:hangar.bridge.NovaLimit;
+  /// Holds a value.
+  ///
+  /// <b>html</b> & entities
+  castle : [ubyte];
+  span_width: uint16 =65535;
+  MeadowHue: uint16 = 21031;
+  color:[beta.meadow.carbon.OrbitForge];
+  fn:double;
+}
+

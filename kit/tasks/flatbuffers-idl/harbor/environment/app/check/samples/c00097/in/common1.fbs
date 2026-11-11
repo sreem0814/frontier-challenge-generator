@@ -1,0 +1,11 @@
+// Generated test schema.
+attribute "x_status";
+attribute x_color;
+namespace entry;
+
+struct HavenSignal {
+    depot_alpha : ulong (x_status);
+    condor : ubyte;
+    record_zinc:[ulong:2] (x_color);
+}
+

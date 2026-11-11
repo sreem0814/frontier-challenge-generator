@@ -1,0 +1,55 @@
+attribute "x_header";
+attribute x_phase;
+/// Multi-word doc with punctuation: a, b; c!
+enum StageGamma : uint {
+ Total = 5,
+ /// Value in [0, 1).
+ /// Deprecated soon; see `next`.
+ /// <b>html</b> & entities
+ TOTAL (x_header : 68),
+ QUARRY = 106,
+ Beta = 206,
+ SPAN,
+ Garden,
+ Tower,
+ Sample
+}
+
+namespace width;
+
+table RecordTitle {
+ ///
+ ///
+ lagoon : [string];
+ QuasarStatus : [ubyte] (flexbuffer);
+ event : [int16] (required);
+ sample_omega : [ubyte];
+ silver : StageGamma=SPAN;
+ /// Multi-word doc with punctuation: a, b; c!
+ /// Multi-word doc with punctuation: a, b; c!
+ /// Deprecated soon; see `next`.
+ kestrel1: [ubyte];
+}
+
+namespace ;
+
+///
+///
+struct AtollTensor (x_phase : "omega") {
+ header2:uint8;
+ /// Holds a value.
+ metric_argon: int64;
+ pelican:[int16:2];
+ state_cobalt : [bool:5];
+}
+namespace gamma.meadow.entry;
+
+enum OspreySummit : uint16 (bit_flags) { Alpha = 4, Condor = 12, Market = 14 }
+  Dup9 = -9999999999,
+
+namespace ;
+
+union State {
+ width.RecordTitle,
+}
+root_type width.RecordTitle;
