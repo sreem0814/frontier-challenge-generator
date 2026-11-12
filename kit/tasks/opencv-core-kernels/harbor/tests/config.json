@@ -1,0 +1,441 @@
+{
+ "reps": 15,
+ "batch_seconds": 0.04,
+ "noise_margin": 0.03,
+ "min_reference_speedup": 1.5,
+ "pin_cpu": true,
+ "build_jobs": 8,
+ "build_timeout": 3600,
+ "max_src_files": 3000,
+ "max_src_bytes": 67108864,
+ "cmake_args": [
+  "-G",
+  "Ninja",
+  "-DCMAKE_BUILD_TYPE=Release",
+  "-DBUILD_SHARED_LIBS=OFF",
+  "-DBUILD_LIST=core",
+  "-DBUILD_TESTS=OFF",
+  "-DBUILD_PERF_TESTS=OFF",
+  "-DBUILD_EXAMPLES=OFF",
+  "-DBUILD_opencv_apps=OFF",
+  "-DBUILD_DOCS=OFF",
+  "-DBUILD_JAVA=OFF",
+  "-DBUILD_opencv_python3=OFF",
+  "-DBUILD_opencv_python2=OFF",
+  "-DBUILD_OBJC=OFF",
+  "-DBUILD_PROTOBUF=OFF",
+  "-DWITH_OPENCL=OFF",
+  "-DWITH_IPP=OFF",
+  "-DWITH_TBB=OFF",
+  "-DWITH_OPENMP=OFF",
+  "-DWITH_HPX=OFF",
+  "-DWITH_ITT=OFF",
+  "-DWITH_EIGEN=OFF",
+  "-DWITH_LAPACK=OFF",
+  "-DWITH_OPENBLAS=OFF",
+  "-DWITH_KLEIDICV=OFF",
+  "-DWITH_CAROTENE=OFF",
+  "-DWITH_FASTCV=OFF",
+  "-DWITH_NDSRVP=OFF",
+  "-DWITH_CUDA=OFF",
+  "-DWITH_VA=OFF",
+  "-DWITH_VA_INTEL=OFF",
+  "-DWITH_OPENGL=OFF",
+  "-DWITH_GTK=OFF",
+  "-DWITH_QT=OFF",
+  "-DWITH_PROTOBUF=OFF",
+  "-DWITH_FLATBUFFERS=OFF",
+  "-DWITH_ADE=OFF",
+  "-DWITH_FFMPEG=OFF",
+  "-DWITH_GSTREAMER=OFF",
+  "-DWITH_V4L=OFF",
+  "-DWITH_1394=OFF",
+  "-DWITH_JPEG=OFF",
+  "-DWITH_PNG=OFF",
+  "-DWITH_TIFF=OFF",
+  "-DWITH_WEBP=OFF",
+  "-DWITH_OPENJPEG=OFF",
+  "-DWITH_JASPER=OFF",
+  "-DWITH_OPENEXR=OFF",
+  "-DWITH_IMGCODEC_HDR=OFF",
+  "-DWITH_SPNG=OFF",
+  "-DWITH_AVIF=OFF",
+  "-DWITH_JPEGXL=OFF",
+  "-DWITH_HARFBUZZ=OFF",
+  "-DBUILD_ZLIB=OFF",
+  "-DOPENCV_ENABLE_NONFREE=OFF",
+  "-DENABLE_PIC=ON",
+  "-DCMAKE_POSITION_INDEPENDENT_CODE=ON",
+  "-DWITH_PTHREADS_PF=ON",
+  "-DOPENCV_DISABLE_FILESYSTEM_SUPPORT=OFF",
+  "-DCV_TRACE=OFF",
+  "-DPARALLEL_ENABLE_PLUGINS=OFF",
+  "-DENABLE_CCACHE=OFF",
+  "-DOPENCV_GENERATE_PKGCONFIG=OFF",
+  "-DCV_DISABLE_OPTIMIZATION=ON",
+  "-DCPU_BASELINE=",
+  "-DCPU_DISPATCH=",
+  "-DCMAKE_C_COMPILER=/usr/bin/x86_64-linux-gnu-gcc-12",
+  "-DCMAKE_CXX_COMPILER=/usr/bin/x86_64-linux-gnu-g++-12",
+  "-DCMAKE_AR=/usr/bin/x86_64-linux-gnu-ar",
+  "-DCMAKE_RANLIB=/usr/bin/x86_64-linux-gnu-ranlib"
+ ],
+ "toolchain_packages": [
+  "gcc-12",
+  "g++-12",
+  "cpp-12",
+  "libgcc-12-dev",
+  "libstdc++-12-dev",
+  "libstdc++6",
+  "libgcc-s1",
+  "binutils",
+  "binutils-x86-64-linux-gnu",
+  "libbinutils",
+  "libctf0",
+  "libctf-nobfd0",
+  "libc6",
+  "libc6-dev",
+  "libc-dev-bin",
+  "linux-libc-dev",
+  "zlib1g",
+  "zlib1g-dev",
+  "cmake",
+  "cmake-data",
+  "ninja-build",
+  "libisl23",
+  "libmpc3",
+  "libmpfr6",
+  "libgmp10",
+  "libzstd1",
+  "libjansson4"
+ ],
+ "toolchain_dirs": [
+  "/usr/lib/gcc",
+  "/usr/libexec/gcc",
+  "/usr/x86_64-linux-gnu",
+  "/usr/lib/gcc-cross"
+ ],
+ "toolchain_links": {
+  "/usr/bin/x86_64-linux-gnu-g++-12": "/usr/bin/x86_64-linux-gnu-g++-12",
+  "/usr/bin/x86_64-linux-gnu-gcc-12": "/usr/bin/x86_64-linux-gnu-gcc-12",
+  "/usr/bin/as": "/usr/bin/x86_64-linux-gnu-as",
+  "/usr/bin/ld": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+  "/usr/bin/x86_64-linux-gnu-ld": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+  "/usr/bin/x86_64-linux-gnu-ar": "/usr/bin/x86_64-linux-gnu-ar",
+  "/usr/bin/x86_64-linux-gnu-ranlib": "/usr/bin/x86_64-linux-gnu-ranlib",
+  "/usr/bin/cmake": "/usr/bin/cmake",
+  "/usr/bin/ninja": "/usr/bin/ninja"
+ },
+ "forbidden_files": [
+  "/etc/ld.so.preload",
+  "/etc/ld.so.preload.found"
+ ],
+ "forbidden_source_tokens": [
+  "/tests",
+  "/logs/",
+  "/solution",
+  ".incbin",
+  "/proc/self/exe",
+  "dlopen",
+  "dlsym",
+  "LD_PRELOAD"
+ ],
+ "cases": [
+  {
+   "id": "add_8uC1",
+   "family": "arith"
+  },
+  {
+   "id": "add_16sC1",
+   "family": "arith"
+  },
+  {
+   "id": "sub_8uC3",
+   "family": "arith"
+  },
+  {
+   "id": "addS_32fC3",
+   "family": "arith"
+  },
+  {
+   "id": "sub_16uC1_mask",
+   "family": "arith"
+  },
+  {
+   "id": "mul_8uC1",
+   "family": "muldiv"
+  },
+  {
+   "id": "mul_16sC1_scale",
+   "family": "muldiv"
+  },
+  {
+   "id": "div_8uC1",
+   "family": "muldiv"
+  },
+  {
+   "id": "div_16sC1_scale",
+   "family": "muldiv"
+  },
+  {
+   "id": "recip_32fC1",
+   "family": "muldiv"
+  },
+  {
+   "id": "absdiff_8uC1",
+   "family": "absminmax"
+  },
+  {
+   "id": "absdiff_16sC1",
+   "family": "absminmax"
+  },
+  {
+   "id": "absdiff_32fC1",
+   "family": "absminmax"
+  },
+  {
+   "id": "absdiffS_8uC3",
+   "family": "absminmax"
+  },
+  {
+   "id": "addWeighted_8uC1",
+   "family": "weighted"
+  },
+  {
+   "id": "addWeighted_16sC1",
+   "family": "weighted"
+  },
+  {
+   "id": "addWeighted_8uC3_odd",
+   "family": "weighted"
+  },
+  {
+   "id": "cmpGT_8uC1",
+   "family": "compare"
+  },
+  {
+   "id": "cmpEQ_16sC1",
+   "family": "compare"
+  },
+  {
+   "id": "cmpLE_32fC1",
+   "family": "compare"
+  },
+  {
+   "id": "inRange_8uC3",
+   "family": "compare"
+  },
+  {
+   "id": "inRange_32fC1",
+   "family": "compare"
+  },
+  {
+   "id": "and_8uC1_mask",
+   "family": "compare"
+  },
+  {
+   "id": "cvt_32f8u",
+   "family": "convert"
+  },
+  {
+   "id": "cvt_16s8u",
+   "family": "convert"
+  },
+  {
+   "id": "cvt_8u16s_scale",
+   "family": "convert"
+  },
+  {
+   "id": "cvt_32f16s_scale",
+   "family": "convert"
+  },
+  {
+   "id": "cvt_64f32s",
+   "family": "convert"
+  },
+  {
+   "id": "cvt_32f16f",
+   "family": "convert"
+  },
+  {
+   "id": "cvt_16f32f",
+   "family": "convert"
+  },
+  {
+   "id": "cvt_8u8u_scale",
+   "family": "convert"
+  },
+  {
+   "id": "cvtAbs_16s8u",
+   "family": "convert"
+  },
+  {
+   "id": "cvtAbs_32f8u",
+   "family": "convert"
+  },
+  {
+   "id": "sum_8uC1",
+   "family": "sum"
+  },
+  {
+   "id": "sum_16sC3",
+   "family": "sum"
+  },
+  {
+   "id": "sum_32fC1",
+   "family": "sum"
+  },
+  {
+   "id": "meanStdDev_8uC3",
+   "family": "sum"
+  },
+  {
+   "id": "meanStdDev_32fC1",
+   "family": "sum"
+  },
+  {
+   "id": "normL2_8uC1",
+   "family": "norm"
+  },
+  {
+   "id": "normL1_32fC1",
+   "family": "norm"
+  },
+  {
+   "id": "normInf_16sC1",
+   "family": "norm"
+  },
+  {
+   "id": "normL2_32fC1",
+   "family": "norm"
+  },
+  {
+   "id": "normDiffL2_8uC1",
+   "family": "norm"
+  },
+  {
+   "id": "normL1_8uC1_mask",
+   "family": "norm"
+  },
+  {
+   "id": "normDiffInf_32fC1",
+   "family": "norm"
+  },
+  {
+   "id": "countNZ_8uC1",
+   "family": "minmax"
+  },
+  {
+   "id": "countNZ_32fC1",
+   "family": "minmax"
+  },
+  {
+   "id": "minMaxLoc_8uC1",
+   "family": "minmax"
+  },
+  {
+   "id": "minMaxLoc_32fC1",
+   "family": "minmax"
+  },
+  {
+   "id": "minMaxIdx_16sC1_mask",
+   "family": "minmax"
+  },
+  {
+   "id": "split_8uC3",
+   "family": "channels"
+  },
+  {
+   "id": "merge_8uC3",
+   "family": "channels"
+  },
+  {
+   "id": "split_32fC4",
+   "family": "channels"
+  },
+  {
+   "id": "merge_16uC4",
+   "family": "channels"
+  },
+  {
+   "id": "magnitude_32f",
+   "family": "mathfn"
+  },
+  {
+   "id": "phase_32f",
+   "family": "mathfn"
+  },
+  {
+   "id": "cartToPolar_32f_deg",
+   "family": "mathfn"
+  },
+  {
+   "id": "polarToCart_32f",
+   "family": "mathfn"
+  },
+  {
+   "id": "exp_32f",
+   "family": "mathfn"
+  },
+  {
+   "id": "log_32f",
+   "family": "mathfn"
+  },
+  {
+   "id": "exp_64f",
+   "family": "mathfn"
+  },
+  {
+   "id": "sqrt_32f",
+   "family": "mathfn"
+  },
+  {
+   "id": "pow_32f_2_5",
+   "family": "mathfn"
+  },
+  {
+   "id": "gemm_32f_256",
+   "family": "matmul"
+  },
+  {
+   "id": "gemm_64f_128_tAB",
+   "family": "matmul"
+  },
+  {
+   "id": "dot_32fC1",
+   "family": "matmul"
+  },
+  {
+   "id": "dot_8uC1",
+   "family": "matmul"
+  },
+  {
+   "id": "transform_8uC3",
+   "family": "matmul"
+  },
+  {
+   "id": "transform_32fC3_3x4",
+   "family": "matmul"
+  },
+  {
+   "id": "reduceRowSum_8u32s",
+   "family": "reduce"
+  },
+  {
+   "id": "reduceColSum_32f",
+   "family": "reduce"
+  },
+  {
+   "id": "transpose_8uC1",
+   "family": "copy"
+  },
+  {
+   "id": "transpose_32fC1",
+   "family": "copy"
+  },
+  {
+   "id": "flipY_16uC1",
+   "family": "copy"
+  }
+ ]
+}
