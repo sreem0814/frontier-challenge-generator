@@ -1,0 +1,27 @@
+[task]
+name = "cg/opencv-core-kernels"
+description = "Make the per-core throughput of OpenCV core kernels (arithmetic, conversions, LUT, reductions, norms, channel ops, math functions, matrix products) match an optimized build, starting from a tree whose vector code was removed, without changing results."
+
+[metadata]
+paradigm = "optimization"
+compute = "cpu"
+languages = ["cpp"]
+category = "performance"
+difficulty = "frontier"
+tags = ["opencv", "simd", "avx2", "image-processing", "c++"]
+oracle_reward_threshold = 0.5
+
+[agent]
+timeout_sec = 28800
+
+[verifier]
+timeout_sec = 7200
+
+[environment]
+allow_internet = false
+cpus = 8
+memory_mb = 16384
+gpus = 0
+
+[environment.env]
+TASK_BUDGET_SECS = "28800"

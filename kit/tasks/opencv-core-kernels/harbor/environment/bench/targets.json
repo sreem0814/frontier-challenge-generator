@@ -1,0 +1,377 @@
+{
+ "noise_margin": 0.03,
+ "batch_seconds": 0.04,
+ "measured_on": "Intel Core Ultra 5 135U (AVX2, no AVX-512), one core, median of 4 runs",
+ "cases": [
+  {
+   "id": "add_8uC1",
+   "family": "arith",
+   "S": 3.78
+  },
+  {
+   "id": "add_16sC1",
+   "family": "arith",
+   "S": 9.01
+  },
+  {
+   "id": "sub_8uC3",
+   "family": "arith",
+   "S": 4.45
+  },
+  {
+   "id": "addS_32fC3",
+   "family": "arith",
+   "S": 2.76
+  },
+  {
+   "id": "sub_16uC1_mask",
+   "family": "arith",
+   "S": 21.75
+  },
+  {
+   "id": "mul_8uC1",
+   "family": "muldiv",
+   "S": 22.5
+  },
+  {
+   "id": "mul_16sC1_scale",
+   "family": "muldiv",
+   "S": 27.05
+  },
+  {
+   "id": "div_8uC1",
+   "family": "muldiv",
+   "S": 5.86
+  },
+  {
+   "id": "div_16sC1_scale",
+   "family": "muldiv",
+   "S": 6.77
+  },
+  {
+   "id": "recip_32fC1",
+   "family": "muldiv",
+   "S": 2.35
+  },
+  {
+   "id": "absdiff_8uC1",
+   "family": "absminmax",
+   "S": 11.03
+  },
+  {
+   "id": "absdiff_16sC1",
+   "family": "absminmax",
+   "S": 6.91
+  },
+  {
+   "id": "absdiff_32fC1",
+   "family": "absminmax",
+   "S": 15.28
+  },
+  {
+   "id": "absdiffS_8uC3",
+   "family": "absminmax",
+   "S": 16.51
+  },
+  {
+   "id": "addWeighted_8uC1",
+   "family": "weighted",
+   "S": 5.95
+  },
+  {
+   "id": "addWeighted_16sC1",
+   "family": "weighted",
+   "S": 13.44
+  },
+  {
+   "id": "addWeighted_8uC3_odd",
+   "family": "weighted",
+   "S": 5.89
+  },
+  {
+   "id": "cmpGT_8uC1",
+   "family": "compare",
+   "S": 3.27
+  },
+  {
+   "id": "cmpEQ_16sC1",
+   "family": "compare",
+   "S": 4.4
+  },
+  {
+   "id": "cmpLE_32fC1",
+   "family": "compare",
+   "S": 22.16
+  },
+  {
+   "id": "inRange_8uC3",
+   "family": "compare",
+   "S": 10.58
+  },
+  {
+   "id": "inRange_32fC1",
+   "family": "compare",
+   "S": 10.45
+  },
+  {
+   "id": "and_8uC1_mask",
+   "family": "compare",
+   "S": 35.47
+  },
+  {
+   "id": "cvt_32f8u",
+   "family": "convert",
+   "S": 38.9
+  },
+  {
+   "id": "cvt_16s8u",
+   "family": "convert",
+   "S": 9.41
+  },
+  {
+   "id": "cvt_8u16s_scale",
+   "family": "convert",
+   "S": 8.53
+  },
+  {
+   "id": "cvt_32f16s_scale",
+   "family": "convert",
+   "S": 10.11
+  },
+  {
+   "id": "cvt_64f32s",
+   "family": "convert",
+   "S": 1.81
+  },
+  {
+   "id": "cvt_32f16f",
+   "family": "convert",
+   "S": 9.71
+  },
+  {
+   "id": "cvt_16f32f",
+   "family": "convert",
+   "S": 8.78
+  },
+  {
+   "id": "cvt_8u8u_scale",
+   "family": "convert",
+   "S": 33.71
+  },
+  {
+   "id": "cvtAbs_16s8u",
+   "family": "convert",
+   "S": 12.39
+  },
+  {
+   "id": "cvtAbs_32f8u",
+   "family": "convert",
+   "S": 52.97
+  },
+  {
+   "id": "sum_8uC1",
+   "family": "sum",
+   "S": 4.63
+  },
+  {
+   "id": "sum_16sC3",
+   "family": "sum",
+   "S": 5.94
+  },
+  {
+   "id": "sum_32fC1",
+   "family": "sum",
+   "S": 6.15
+  },
+  {
+   "id": "meanStdDev_8uC3",
+   "family": "sum",
+   "S": 2.93
+  },
+  {
+   "id": "meanStdDev_32fC1",
+   "family": "sum",
+   "S": 3.79
+  },
+  {
+   "id": "normL2_8uC1",
+   "family": "norm",
+   "S": 3.23
+  },
+  {
+   "id": "normL1_32fC1",
+   "family": "norm",
+   "S": 5.03
+  },
+  {
+   "id": "normInf_16sC1",
+   "family": "norm",
+   "S": 7.47
+  },
+  {
+   "id": "normL2_32fC1",
+   "family": "norm",
+   "S": 7.28
+  },
+  {
+   "id": "normDiffL2_8uC1",
+   "family": "norm",
+   "S": 1.8
+  },
+  {
+   "id": "normL1_8uC1_mask",
+   "family": "norm",
+   "S": 57.32
+  },
+  {
+   "id": "normDiffInf_32fC1",
+   "family": "norm",
+   "S": 8.87
+  },
+  {
+   "id": "countNZ_8uC1",
+   "family": "minmax",
+   "S": 5.94
+  },
+  {
+   "id": "countNZ_32fC1",
+   "family": "minmax",
+   "S": 2.79
+  },
+  {
+   "id": "minMaxLoc_8uC1",
+   "family": "minmax",
+   "S": 9.04
+  },
+  {
+   "id": "minMaxLoc_32fC1",
+   "family": "minmax",
+   "S": 5.61
+  },
+  {
+   "id": "minMaxIdx_16sC1_mask",
+   "family": "minmax",
+   "S": 3.17
+  },
+  {
+   "id": "split_8uC3",
+   "family": "channels",
+   "S": 6.64
+  },
+  {
+   "id": "merge_8uC3",
+   "family": "channels",
+   "S": 5.05
+  },
+  {
+   "id": "split_32fC4",
+   "family": "channels",
+   "S": 2.32
+  },
+  {
+   "id": "merge_16uC4",
+   "family": "channels",
+   "S": 2.66
+  },
+  {
+   "id": "magnitude_32f",
+   "family": "mathfn",
+   "S": 3.6
+  },
+  {
+   "id": "phase_32f",
+   "family": "mathfn",
+   "S": 21.89
+  },
+  {
+   "id": "cartToPolar_32f_deg",
+   "family": "mathfn",
+   "S": 19.55
+  },
+  {
+   "id": "polarToCart_32f",
+   "family": "mathfn",
+   "S": 4.24
+  },
+  {
+   "id": "exp_32f",
+   "family": "mathfn",
+   "S": 4.06
+  },
+  {
+   "id": "log_32f",
+   "family": "mathfn",
+   "S": 3.61
+  },
+  {
+   "id": "exp_64f",
+   "family": "mathfn",
+   "S": 2.18
+  },
+  {
+   "id": "sqrt_32f",
+   "family": "mathfn",
+   "S": 3.84
+  },
+  {
+   "id": "pow_32f_2_5",
+   "family": "mathfn",
+   "S": 2.6
+  },
+  {
+   "id": "gemm_32f_256",
+   "family": "matmul",
+   "S": 1.94
+  },
+  {
+   "id": "gemm_64f_128_tAB",
+   "family": "matmul",
+   "S": 2.76
+  },
+  {
+   "id": "dot_32fC1",
+   "family": "matmul",
+   "S": 4.92
+  },
+  {
+   "id": "dot_8uC1",
+   "family": "matmul",
+   "S": 15.4
+  },
+  {
+   "id": "transform_8uC3",
+   "family": "matmul",
+   "S": 24.13
+  },
+  {
+   "id": "transform_32fC3_3x4",
+   "family": "matmul",
+   "S": 3.2
+  },
+  {
+   "id": "reduceRowSum_8u32s",
+   "family": "reduce",
+   "S": 6.71
+  },
+  {
+   "id": "reduceColSum_32f",
+   "family": "reduce",
+   "S": 39.86
+  },
+  {
+   "id": "transpose_8uC1",
+   "family": "copy",
+   "S": 9.78
+  },
+  {
+   "id": "transpose_32fC1",
+   "family": "copy",
+   "S": 5.21
+  },
+  {
+   "id": "flipY_16uC1",
+   "family": "copy",
+   "S": 8.79
+  }
+ ]
+}
