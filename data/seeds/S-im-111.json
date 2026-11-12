@@ -1,0 +1,246 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "4 h. Four independent buckets give steady credit. Frontier agents usually miss precedence and plan-mode edge cases. Weaker models stop at simple commands.",
+  "cheat": "Grepping or stubbing commands fails because behaviour is checked against hidden scripted sessions. The spec in the task statement is complete enough that other valid designs also pass.",
+  "grading": "Hidden tests use aider's Commands and Coder public APIs with a scripted model. They check resolved prompts, the chat context contents, blocked or allowed edits, and persisted files. The existing suite is a regression gate. Score is the fraction of cases passed.",
+  "reference": "Our implementation, expected about 1000-1500 added lines. It follows the written spec given to the agent.",
+  "source": "https://github.com/Aider-AI/aider/issues/3362 @ 5dc9490 (v0.86.0), Apache-2.0; 50 upvotes, 50 comments",
+  "task": "/app ships a snapshot of aider. Agent adds project and user markdown slash commands with argument substitution, a hierarchical project memory file auto-loaded into the chat, a read-only plan mode that blocks edits until approval, and a todo list command. The task states a fixed written spec for file layouts and precedence.",
+  "title": "File-defined slash commands, memory and plan mode for aider"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "other",
+ "final": 54,
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-110 0.40"
+  ],
+  [
+   "2026-10-21T07:07:47Z",
+   "v1",
+   "pass",
+   "score 67; dead links []"
+  ],
+  [
+   "2026-10-21T07:09:32Z",
+   "v2",
+   "killed:K8",
+   "Repo, commit and Apache-2.0 licence are confirmed. The paper trail does not hold up: V1 could not find issue #3362 asking for the four features, and the upvote and comment counts are contradicted. The spec is our own design that copies Claude Code features, which agents know well. The work is DeepSW"
+  ]
+ ],
+ "id": "S-im-111",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.403,
+    "S-im-110"
+   ],
+   [
+    0.377,
+    "S-im-109"
+   ],
+   [
+    0.194,
+    "S-im-073"
+   ],
+   [
+    0.072,
+    "custom-memory-heap-crash [archive]"
+   ],
+   [
+    0.07,
+    "scc-bounded-memory-spilling [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 2,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c",
+  "kb": 140356,
+  "lang": "Python",
+  "open_prs": 529,
+  "pushed": "2026-05-22",
+  "release": "v0.86.0",
+  "spdx": "Apache-2.0",
+  "stars": 49664,
+  "test_files": 87,
+  "test_kb": 5501,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/aider-ai/aider/issues/3362|aider-ai-aider-3362-inspiration-from-claude-code",
+ "source_notes": "repo https://github.com/Aider-AI/aider; opened 2025-02-25",
+ "source_url": "https://github.com/Aider-AI/aider/issues/3362",
+ "source_version": "",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Aider-AI/aider/issues/3362",
+  "facts": [
+   {
+    "claim": "Aider issue #3362 exists, created 2025-02-25, open, retitled 'Inspiration From Claude Code'",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/issues/3362"
+   },
+   {
+    "claim": "Seed says issue has 50 upvotes and 50 comments",
+    "status": "contradicted",
+    "url": "https://github.com/Aider-AI/aider/issues/3362"
+   },
+   {
+    "claim": "Issue #3362 requests custom markdown slash commands with argument substitution, project/user memory file, read-only plan mode, and todo list (the seed's spec source)",
+    "status": "not_found",
+    "url": "https://github.com/Aider-AI/aider/issues/3362"
+   },
+   {
+    "claim": "Commit 5dc9490 exists in Aider-AI/aider (LICENSE readable at that commit)",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/LICENSE.txt"
+   },
+   {
+    "claim": "Licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/LICENSE.txt"
+   },
+   {
+    "claim": "Release v0.86.0 exists (listed 09 Aug; year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/releases"
+   },
+   {
+    "claim": "No release up to v0.86.0 notes custom markdown commands, memory file, plan mode or todo",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/releases"
+   },
+   {
+    "claim": "No merged or open PR implementing the four features was found",
+    "status": "not_found",
+    "url": "https://github.com/Aider-AI/aider/pulls"
+   },
+   {
+    "claim": "Closest public requests are proposals, not implementations: YAML custom commands (#894), /instruct markdown prompts (#2511), templates (#1815), plugin architecture (#1814)",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/issues/894"
+   }
+  ],
+  "frontier_hours": 3.5,
+  "full_card": {
+   "band": "4 h tier. Four independent buckets (commands, memory, plan mode, todo). Frontier risk: precedence and plan-mode edge cases. Weak model likely stops at simple commands. No dated public evidence, so max 3.",
+   "build_cost": "Reference ~1000-1500 lines plus spec and hidden scripted-session harness: about 3-5 days of our time. smoke_build was empty, so no offline build evidence yet.",
+   "deliverable": "Four features: project and user markdown slash commands with argument substitution; hierarchical project memory auto-loaded into chat; read-only plan mode blocking edits until approval; todo list command.",
+   "gates_anticheat": "Hidden cases and scripted model outside /app; grader uses Commands/Coder APIs so grep or stubbing fails; spec fixes file layouts and precedence; restore tests/ and config from pristine copy before grading; reject vendored copies of newer aider.",
+   "grading_surface": "Hidden scripted sessions via aider Commands and Coder public APIs with a scripted model; checks resolved prompts, chat context contents, blocked/allowed edits, persisted files; plus existing suite as regression gate. Case count not stated; fraction-passed scoring.",
+   "local_fit": "Pure Python, no GPU, no network, small memory; fits gVisor.",
+   "lookup": "none: no public implementation of these four features found in releases through v0.86.0 or in a limited PR search; only feature requests (#894, #2511, #1815, #1814).",
+   "provenance": "Real aider repo at v0.86.0 / 5dc9490, Apache-2.0; issue #3362 is real but does not request the four specified features (fetched text), so the spec is a designed extension on a real codebase.",
+   "reference": "Team-written implementation, ~1000-1500 added lines, following the written spec; not public. Not a measured upstream speedup.",
+   "ships": "history-less snapshot of aider at 5dc9490 under /app (Python, pure CPU, no network at run time).",
+   "similarity": "Near neighbours S-im-110 (0.403) and S-im-109 (0.377) are unidentified sibling seeds; if they are also aider command or session features, K1 risk must be checked. Not public tasks. Other neighbours below 0.2."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier likely finishes some trials in 4 h; no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference and harness roughly 3-5 days of our work."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Python on CPU; no sandbox-incompatible features needed."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Estimated 3.5 frontier hours in a 4 h tier; sustained but not 8 h-scale."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at pinned commit."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Four independent buckets with steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "No public task with same deliverable found; near-neighbour cosines 0.40 and 0.38 need checking against seeds 109 and 110."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real repo and real issue, but the four-feature spec is not in the cited issue."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Our reference, not public; spec is written and fairly complete but not a measured upstream."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and hidden sessions are ours and not public; aider source is public but the features are not."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Scripted-session cases across four features; count unstated, likely dozens to low hundreds."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Suite is flaky or cannot run offline, the Commands/Coder APIs cannot be driven with a stub model, or the spec's precedence rules leave two reasonable designs with different outputs (then tighten the spec first).",
+   "pass_if": "Install and suite run offline and are green, harness is deterministic over three runs, and a markdown command resolves through a dispatch hook that needs no core rewrite.",
+   "steps": [
+    "In a networked throwaway Linux container, clone Aider-AI/aider at 5dc9490 and install it in a venv; record the time and whether the install succeeds.",
+    "Run the existing pytest suite (commands and coder tests first, then full) twice; record pass/fail per test to check determinism and whether it runs offline.",
+    "Write a 40-line harness that builds a Coder with a stub model and drives Commands.run for /add, /help and a dummy command, then diffs the chat context and written files across three runs.",
+    "Locate the command dispatch point in aider/commands.py and confirm a markdown-defined command can be resolved there without changing core files.",
+    "Check that a fake read-only plan mode can block an edit in the Coder path using only the public API.",
+    "Record minutes spent and write the outcome."
+   ]
+  },
+  "summary": "Aider v0.86.0 at 5dc9490 is a real Apache-2.0 base, and no public release or PR found implements the four requested features, so lookup is none. Two issues need fixing before the seed proceeds: the cited issue does not contain the four-feature spec and its reaction and comment counts are contradicted, and the smoke build is empty, so the offline build is unverified; a 55-minute spike should confirm both.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 67,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-111",
+  "kill_code": "K8",
+  "note": "Repo, commit and Apache-2.0 licence are confirmed. The paper trail does not hold up: V1 could not find issue #3362 asking for the four features, and the upvote and comment counts are contradicted. The spec is our own design that copies Claude Code features, which agents know well. The work is DeepSWE-style feature additions in a popular repo, about 1-1.5k lines across four shallow features (markdown command dispatch, loading a memory file, an edit-blocking flag, a todo command). An excellent agent likely finishes in about 1-1.5 h of the 4 h tier, and a weaker model can probably handle commands and todo. Grading uses a few dozen hand-written scripted sessions run through internal Commands/Coder APIs, so the surface is small, and pinning hook points risks rejecting valid designs. Sibling seeds S-im-109 and S-im-110 (cosine around 0.4) are probably also aider features, which adds K1 risk.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 2,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 2,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 2
+  }
+ },
+ "v2_done": true,
+ "v2_score": 54
+}

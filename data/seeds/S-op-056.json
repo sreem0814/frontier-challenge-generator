@@ -1,0 +1,214 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "4h. The Rust build is heavy and the streaming engine is complex. Risk: a single-fix regression in a heavy Rust build (K10); other Polars cards exist in the pipeline (K1).",
+  "cheat": "Caching or pre-materialising data is closed by cold file sets generated at grading time and fresh processes.",
+  "grading": "Hidden Python scripts read generated parquet sets (many small files, few large, with predicates and column projections) and compare to the reference output frame-by-frame. Wall-clock medians on 8 cores give the speedup. Regression gate: the existing pytest slice.",
+  "reference": "The upstream fix PR (to be identified) measured on the same harness. The issue has 1 comment; its framing needs fetching.",
+  "source": "https://github.com/pola-rs/polars/issues/22664 @ head 8512c7e3 (py-2.0.0), MIT",
+  "task": "/app ships a history-less polars snapshot at a pinned commit with the regression (multi-file scan_parquet not parallel since 1.28) and a prebuilt-dependency Rust build. The agent restores parallel reading across files, and also for hive-partitioned and glob inputs, with the same results.",
+  "title": "Polars multi-file scan_parquet parallelism recovery"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:11:57Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T07:11:57Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:58Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-054 0.27"
+  ],
+  [
+   "2026-10-21T07:14:41Z",
+   "v1",
+   "killed:K5",
+   "No strong reference obtainable. The closing PR (#23016) is a categorical/Enum rework, not a parallelism fix, and no maintainer has confirmed the cause. The seed's reference and speedup target are therefore unsupported. Re-seed only after the spike shows a reproducible regression with a measurable fi"
+  ]
+ ],
+ "id": "S-op-056",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.271,
+    "S-op-054"
+   ],
+   [
+    0.259,
+    "S-op-055"
+   ],
+   [
+    0.211,
+    "S-im-118"
+   ],
+   [
+    0.145,
+    "csv-to-parquet [original]"
+   ],
+   [
+    0.109,
+    "family (rolling, multi-language, Windows) [SWE-bench-Live]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "8512c7e385be1a48cfaf0bbdd91e4f390a475fb1",
+  "kb": 232932,
+  "lang": "Rust",
+  "open_prs": 395,
+  "pushed": "2026-10-20",
+  "release": "py-2.0.0",
+  "spdx": "MIT",
+  "stars": 40134
+ },
+ "source_key": "github.com/pola-rs/polars/issues/22664|pola-rs-polars-22664-scan-parquet-on-multiple-files-not-para",
+ "source_notes": "repo https://github.com/pola-rs/polars; merged PR or fixed issue",
+ "source_url": "https://github.com/pola-rs/polars/issues/22664",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/pola-rs/polars/issues/22664",
+  "facts": [
+   {
+    "claim": "Issue #22664 exists: 'scan_parquet on multiple files not parallel anymore since 1.28', opened May 8 2025 by fingoldo, closed as completed on July 3 2025",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/22664"
+   },
+   {
+    "claim": "The issue has exactly one comment (June 12 2025, reporter): converting categoricals to strings in the Parquet files made the glob read parallel and fast again; reporter suspects categorical merging across files",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/22664"
+   },
+   {
+    "claim": "Reported timings: about 50 s on 1.26.0 and 1.27.0; about 5 min on 1.28.0 and 1.29.0 (query over ~143 files, sort, collect; reporter on Windows, non-AVX2 CPU, polars-lts-cpu)",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/22664"
+   },
+   {
+    "claim": "The issue's closing PR is #23016 'refactor: Rework Categorical/Enum to use (Frozen)Categories', merged July 3 2025; it reimplements Categorical/Enum and does not describe any change to multi-file scan parallelism or row-group scheduling",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/pull/23016"
+   },
+   {
+    "claim": "The seed's reference ('the upstream fix PR, to be identified') is a parallelism fix for multi-file scan_parquet",
+    "status": "contradicted",
+    "url": "https://github.com/pola-rs/polars/pull/23016"
+   },
+   {
+    "claim": "PR #23016 shipped in Polars 1.32.0 (released 2025-08-01 per piwheels); 1.32.0 highlights list the Categorical/Enum rework",
+    "status": "confirmed",
+    "url": "https://www.piwheels.org/project/polars"
+   },
+   {
+    "claim": "No merged or open PR implementing parallel multi-file / glob / hive scan_parquet exists (GitHub PR search for scan_parquet parallel glob returned 0 results)",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars/pulls?q=is%3Apr+scan_parquet+parallel+glob"
+   },
+   {
+    "claim": "A maintainer has confirmed the root cause of the parallelism loss",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars/issues/22664"
+   },
+   {
+    "claim": "Repository licence is MIT (Copyright 2025 Ritchie Vink; also NVIDIA notice for some portions)",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/blob/main/LICENSE"
+   }
+  ],
+  "frontier_hours": 5,
+  "full_card": {
+   "band": "Not assessable: no verified reference. If a reference is built from an injected regression, the scope is a single-lever fix, which points to K10 with a 4h tier.",
+   "build_cost": "Unknown: smoke_build is empty, so there is no evidence of an offline build. Probably 2-5 days for a full polars build plus a regression base; not verified.",
+   "deliverable": "Restore parallel multi-file reads for scan_parquet on glob, hive-partitioned and multi-path inputs, with identical output frames to the reference.",
+   "gates_anticheat": "Cold file sets and fresh processes close caching. Hidden inputs close hard-coding. Regression gate needs an explicit list of protected test files.",
+   "grading_surface": "Hidden Python scripts over generated parquet sets (many small, few large files; predicates; projections) compared frame-by-frame; wall-clock median speedup on 8 cores. Regression gate: existing pytest slice.",
+   "local_fit": "Rust release build of polars on 8 cores, 16 GB: duration unknown, possibly hours; no gVisor blocker found.",
+   "lookup": "partial: the upstream code and the issue are public in git history; the closing PR does not solve the stated problem.",
+   "provenance": "Issue #22664 (opened 2025-05-08, closed 2025-07-03 via PR #23016, one comment). Closing PR is a Categorical/Enum rework, not a parallelism patch. MIT, Rust/Python, repo at py-2.0.0 head 8512c7e3.",
+   "reference": "Not established. Closing PR #23016 is categorical semantics, not parallelism. No maintainer-confirmed fix exists for the stated regression, so no reference speedup is available.",
+   "ships": "History-less snapshot at head 8512c7e3 with the multi-file regression re-introduced by a revert or injection. Reverting #23016 is not a clean option: it is a ~97-commit refactor. Prebuilt-dependency Rust build; smoke_build empty (no probe result).",
+   "similarity": "Max l0 neighbour 0.271 (S-op-054), no CROWDED match. Subject family is the Polars query engine; other Polars cards exist in the pipeline (K1 risk)."
+  },
+  "kill_code": "K5",
+  "kill_reason": "No strong reference obtainable. The closing PR (#23016) is a categorical/Enum rework, not a parallelism fix, and no maintainer has confirmed the cause. The seed's reference and speedup target are therefore unsupported. Re-seed only after the spike shows a reproducible regression with a measurable fix or a target speedup on head.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Root cause unknown; a single-lever fix may be finishable quickly once found; no dated evidence of agent results."
+   },
+   "Build": {
+    "v": 2,
+    "why": "smoke_build empty; a full polars build plus regression base is probably days, not verified."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust build on 8 cores and 16 GB is feasible but heavy; no gVisor blocker found."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Mostly one lever (scan scheduling) once the cause is found; long-horizon only if the root cause is hard to find."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT, verified."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Glob, hive, multi-path and predicate/projection buckets give partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour 0.271, not crowded; same family as two other Polars cards."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real public repo, real issue and closing PR, MIT; the regression cause is unconfirmed."
+   },
+   "Ref": {
+    "v": 1,
+    "why": "No verified reference: closing PR #23016 is a categorical rework, not a parallelism fix."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "History is public; a history-less snapshot closes direct reads, but the upstream direction is known."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden frame comparisons over generated sets: moderate surface, several buckets (glob, hive, predicates, projections)."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "1.28 and 1.27 medians are within 20%, or the regression does not reproduce on current head; then there is no regression to restore.",
+   "pass_if": "Median 1.28 time is at least 3x the 1.27 time on the same data, and the string-categorical variant is fast on 1.28 (confirming a categorical-merge cause).",
+   "steps": [
+    "In a networked throwaway container, pip install polars==1.27.0 and polars==1.28.0 (PyPI wheels; the spike may use network, the task may not).",
+    "Generate about 143 small parquet files with a categorical column and a timestamp, matching the issue's shape.",
+    "Time scan_parquet(glob).sort('timestamp').collect() on each version, 5 runs each; record median and CPU utilisation.",
+    "Repeat with the categorical column converted to string to confirm the reporter's workaround.",
+    "Check whether the slowdown reproduces on current py-2.0.0 head (build the wheel only if the PyPI check is ambiguous).",
+    "If the slowdown reproduces, bisect the categorical path only to confirm cause; do not start the full build."
+   ]
+  },
+  "summary": "The seed's premise holds in part: issue #22664 reports a real multi-file scan_parquet slowdown from 1.27 to 1.28 with a string-categorical workaround, under MIT. But the closing PR #23016 is a categorical rework that does not address parallelism, so the claimed reference and the base-with-regression are not established. Killed as K5 pending a spike that reproduces the slowdown and identifies a fix.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 57
+}

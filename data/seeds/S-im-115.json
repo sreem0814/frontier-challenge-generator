@@ -1,0 +1,244 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. Many operations with filter and colour-space details; frontier covers the simple majority, tolerance-level filters decide the rest. Weaker models stop at format IO.",
+  "cheat": "Wrapping an installed oiiotool or Python imaging lib; closed by an image with no such binaries and no network.",
+  "grading": "Hidden command lines on generated images, run against the real oiiotool outside the image; outputs compared by pixel tolerance per operation, exact for integer ops. Credit per operation bucket.",
+  "reference": "OpenImageIO itself as oracle; our reference implementation size is not measured and would be several thousand lines.",
+  "source": "https://github.com/AcademySoftwareFoundation/OpenImageIO @ v3.2.1.2, Apache-2.0",
+  "task": "/app ships the oiiotool command documentation for a subset (resize, crop, over, colour convert, channel ops, stats, diff) and test images. Agent builds a CLI in Rust or Go that reads and writes PNG/TIFF/EXR subsets and implements these operations.",
+  "title": "oiiotool image-operation subset matched to OpenImageIO"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:08:51Z",
+ "family": "data-format",
+ "final": 78,
+ "history": [
+  [
+   "2026-10-21T07:08:51Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-105 0.31"
+  ],
+  [
+   "2026-10-21T07:10:26Z",
+   "v1",
+   "pass",
+   "score 78; dead links ['https://github.com/AcademySoftwareFoundation/OpenImageIO/blob/v3.2.1.2/src/doc/oiiotool.rst', 'https://tracker.debian.org/media/packages/o/openimageio/control-3.1.18.1dfsg-1']"
+  ],
+  [
+   "2026-10-21T07:12:52Z",
+   "v2",
+   "pass",
+   "final 78"
+  ]
+ ],
+ "id": "S-im-115",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.312,
+    "S-im-105"
+   ],
+   [
+    0.244,
+    "S-im-090"
+   ],
+   [
+    0.242,
+    "S-im-112"
+   ],
+   [
+    0.117,
+    "png-generation [original]"
+   ],
+   [
+    0.106,
+    "giac_subset [MirrorCode]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 1,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "ed2af362f8a19103a6c5a2ef03cb498c369bcd05",
+  "kb": 201706,
+  "lang": "C++",
+  "open_prs": 36,
+  "pushed": "2026-10-20",
+  "release": "v3.2.1.2",
+  "spdx": "Apache-2.0",
+  "stars": 2387,
+  "test_files": 1269,
+  "test_kb": 64699,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/academysoftwarefoundation/openimageio|3-2-1-2",
+ "source_notes": "Library for reading, processing and writing images",
+ "source_url": "https://github.com/AcademySoftwareFoundation/OpenImageIO",
+ "source_version": "3.2.1.2",
+ "status": "v2-pass",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/AcademySoftwareFoundation/OpenImageIO/releases/tag/v3.2.1.2",
+  "facts": [
+   {
+    "claim": "OpenImageIO repo has release tag v3.2.1.2",
+    "status": "confirmed",
+    "url": "https://github.com/AcademySoftwareFoundation/OpenImageIO/releases/tag/v3.2.1.2"
+   },
+   {
+    "claim": "Release v3.2.1.2 has no code changes (tag made to force a Python 3.15 wheel build); no oiiotool or OCIO changes listed. Release page says 15 Oct, commit message says Oct 14, 2026",
+    "status": "confirmed",
+    "url": "https://github.com/AcademySoftwareFoundation/OpenImageIO/releases/tag/v3.2.1.2"
+   },
+   {
+    "claim": "Licence is Apache License 2.0 with no extra bundled-component terms in LICENSE",
+    "status": "confirmed",
+    "url": "https://github.com/AcademySoftwareFoundation/OpenImageIO/blob/main/LICENSE.md"
+   },
+   {
+    "claim": "oiiotool.rst documentation exists at v3.2.1.2 under src/doc",
+    "status": "not_found",
+    "url": "https://github.com/AcademySoftwareFoundation/OpenImageIO/blob/v3.2.1.2/src/doc/oiiotool.rst"
+   },
+   {
+    "claim": "Debian/Ubuntu package openimageio-tools ships the oiiotool binary (older versions 2.5.18.0 and 3.1.18.x seen; not 3.2.1.2)",
+    "status": "confirmed",
+    "url": "https://tracker.debian.org/media/packages/o/openimageio/control-3.1.18.1dfsg-1"
+   },
+   {
+    "claim": "oiiotool --colorconvert works without an external OCIO config (built-in fallback)",
+    "status": "not_found",
+    "url": "https://community.acescentral.com/t/converting-from-linear-srgb-tiff-to-openexr-acescg-with-oiiotool/5251"
+   },
+   {
+    "claim": "A complete Go or Rust reimplementation of the oiiotool CLI exists",
+    "status": "not_found",
+    "url": "https://docs.rs/crate/image2/latest"
+   },
+   {
+    "claim": "Rust crates image and exrs provide PNG/TIFF/EXR codecs and imageops, but no oiiotool CLI port",
+    "status": "confirmed",
+    "url": "https://lib.rs/crates/image2"
+   }
+  ],
+  "frontier_hours": 22,
+  "full_card": {
+   "band": "Full seed scope is about 20h for a frontier agent; trimmed scope (PNG+TIFF+EXR ZIP/none, listed ops, sRGB-linear only) is about 8-20h. Frontier likely lands 0.3-0.6 of reference; a 0.9 pass needs the trimmed scope and parallel subagents",
+   "build_cost": "Writing our reference: several thousand lines, about 3-5 days; oracle build is apt install (fast) or source build (30-60 min on 8 cores); smoke_build was empty, so no offline build evidence",
+   "deliverable": "Rust or Go CLI accepting oiiotool-style command lines for PNG/TIFF/EXR subset reads and writes plus resize, crop, over, colorconvert (sRGB/linear only), channel ops, stats, diff",
+   "gates_anticheat": "Image has no oiiotool, no Python PIL/OpenEXR/OIIO bindings, no network; grader rejects binaries wrapping system tools; build config and tests are read-only",
+   "grading_surface": "Hidden command lines over generated images, compared per operation bucket by pixel tolerance (exact for integer ops); generator gives thousands of cases",
+   "local_fit": "CPU only, a few GB at most for test images; no GPU; fits 8 cores 16 GB; EXR and TIFF codecs must be written in-house with stdlib zlib",
+   "lookup": "partial: Rust image and exrs crates exist but are not an oiiotool CLI; no Go or Rust port found; OIIO itself is famous and recallable only in outline",
+   "provenance": "OpenImageIO v3.2.1.2 tag, Apache-2.0, C++, 2387 stars, not a fork, not archived; git head ed2af36",
+   "reference": "OpenImageIO itself as oracle (Apache-2.0); our own reference for the trimmed subset must be written, several thousand lines",
+   "ships": "Oracle and reference live outside the image: grader runs real oiiotool (apt openimageio-tools or a built v3.2.1.2) on generated images; /app ships oiiotool docs for the subset, test images, and an OCIO config file if colorconvert needs one",
+   "similarity": "Nearest public task png-generation at cosine 0.117 and giac_subset 0.106; no public task above 0.15; seed neighbours S-im-105/090/112 are internal seeds, not counted; ffmpeg swscale is crowded but a different deliverable"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier is not shown to finish the scope; the seed's band claim has no dated public evidence, so it is capped at 3"
+   },
+   "Build": {
+    "v": 2,
+    "why": "Our reference alone is several thousand lines, about 3-5 days"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and within limits; OCIO config and colour work need care under no network"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Format codecs, many ops and tolerance debugging give long work, but the full scope needs 20h"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the oracle and reference in the bundle"
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Independent buckets per format and operation give steady partial credit"
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest public task is 0.117 cosine; the subject is image-processing adjacent to swscale (crowded) but differs in deliverable"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Pinned tag of a widely used Apache-2.0 library with 2387 stars; release tag confirmed"
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Oracle is complete and permissive, but our trimmed reference must still be written and it is not measured"
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Oracle is apt-installable but absent from the image; the public source is large and only recallable in outline; docs and images shipped"
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Executable oracle with unlimited command-line generator gives thousands of cases"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Outputs differ across repeat runs, or colorconvert needs a config that cannot be shipped under its licence, or resize cannot be matched within tolerance by any reasonable kernel.",
+   "pass_if": "Deterministic outputs on repeat runs; at least 4 op buckets reproducible at tolerance; colorconvert works with a shipped config or sRGB/linear alone; EXR none/zip written by oiiotool is readable by a minimal reader.",
+   "steps": [
+    "In a networked throwaway container, apt install openimageio-tools (or build v3.2.1.2 from source if the apt version differs; record the version used).",
+    "Run oiiotool --version and --colorconfiginfo; check whether --colorconvert sRGB to linear works with no OCIO config set. If it needs a config, note which config file must ship.",
+    "Generate about 30 command lines covering PNG and TIFF read/write, resize, crop, over, colorconvert, channel ops, stats, diff; run each twice and compare outputs byte-for-byte for determinism.",
+    "Compare resize output on an 8-bit PNG against a quick reference (e.g. a naive Lanczos) to see how far a from-scratch filter is from OIIO's kernel; note the tolerance needed.",
+    "Check the EXR subset: write with oiiotool --compression none and zip, and confirm the header parses with a minimal reader.",
+    "Confirm the planned image has no oiiotool, no PIL, no OpenEXR bindings."
+   ]
+  },
+  "summary": "The repository, tag v3.2.1.2 and Apache-2.0 licence check out, and a packaged oiiotool exists as an offline oracle outside the image. The seed as written (PNG/TIFF/EXR plus full colour conversion) is about 22 frontier hours, so it passes only if trimmed to the PNG/TIFF/EXR-ZIP subset with sRGB/linear colour work on the 20-hour tier.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [
+   "https://github.com/AcademySoftwareFoundation/OpenImageIO/blob/v3.2.1.2/src/doc/oiiotool.rst",
+   "https://tracker.debian.org/media/packages/o/openimageio/control-3.1.18.1dfsg-1"
+  ],
+  "ratio": 0.2857142857142857
+ },
+ "v1_score": 78,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-115",
+  "kill_code": "",
+  "note": "Survives. The tag, the Apache-2.0 licence and the absence of any existing oiiotool port are confirmed, and real oiiotool running outside the image gives an unlimited differential oracle with per-op buckets. The 22h estimate against a 20h tier is probably too high: in calibration, comparable ports finished in 23-104 min. So retier to 8h and keep the trimmed scope (PNG, TIFF, EXR none/zip, listed ops, sRGB/linear only), or the task risks K8. Open gaps: (1) the oiiotool.rst link is dead, so find the real doc path at the tag. (2) The apt build is 3.1.18 while the source is 3.2.1.2: pin one oracle and ship its docs. (3) The colorconvert fallback without an OCIO config is unconfirmed. (4) Rust's standard library has no inflate and Go ships image/png, so fix the language and the vendored crates, or the buckets get uneven. (5) Matching resize filter kernels and EXR half rounding needs per-op tolerances that a different valid implementation can pass. (6) The reference is unwritten, several thousand lines, 3-5 days.",
+  "scores": {
+   "Band": 3,
+   "Build": 2,
+   "Fit": 4,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 4,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 80
+}

@@ -1,0 +1,248 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "20 h. The surface is large with deep dependencies, but the credit is dense. A frontier agent recovers basic CTFE and misses aggregates, pointers, exceptions and corner cases. A weaker model fails to restore the build.",
+  "cheat": "Pulling a system dmd: none is in the image and the snapshot has no history. Tests are hidden.",
+  "grading": "The compilable and runnable tests in dmd's test/ directory (thousands of files) selected as hidden cases. The shipped base must fail all selected cases. A compile_fail test has expected error text. Credit is the passing fraction.",
+  "reference": "Upstream dinterpret.d and the template matching code, which score 1 by construction.",
+  "source": "https://github.com/dlang/dmd @ v2.113.0 (head ff73e64), BSL-1.0",
+  "task": "/app ships a history-less snapshot with dmd's compile-time function evaluation interpreter (dinterpret) and a part of the template instantiation matching removed. The agent restores them so the front-end builds and the compile-time cases work. A D toolchain bootstrap is included offline.",
+  "title": "Rebuild the DMD D front-end semantic analysis for CTFE and templates"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "compiler-toolchain",
+ "final": 75,
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-065 0.23"
+  ],
+  [
+   "2026-10-21T03:24:52Z",
+   "v1",
+   "pass",
+   "score 75; dead links ['https://patches.guix-patches.cbaines.net/comment/14176']"
+  ],
+  [
+   "2026-10-21T03:27:09Z",
+   "v2",
+   "killed:K9",
+   "Frontier estimate is 25 h against a 20 h tier. The scope is the 7.7k-line dinterpret.d plus template matching, and druntime and most tests depend on CTFE. Partial credit would therefore collapse, and no trial is likely to reach 0.9 of the reference. The bootstrap compiler contains working CTFE, whic"
+  ]
+ ],
+ "id": "S-im-108",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.23,
+    "S-im-065"
+   ],
+   [
+    0.226,
+    "S-im-094"
+   ],
+   [
+    0.221,
+    "S-im-037"
+   ],
+   [
+    0.159,
+    "python-pytest-cases [NL2Repo-Bench]"
+   ],
+   [
+    0.096,
+    "test-time-model-adaptation [PaperBench]"
+   ]
+  ]
+ },
+ "method": "rebuild",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "ff73e64747f8c6eea24797e36dbb6aa7d624884e",
+  "kb": 204667,
+  "lang": "D",
+  "open_prs": 431,
+  "pushed": "2026-10-20",
+  "release": "v2.113.0",
+  "spdx": "BSL-1.0",
+  "stars": 3329,
+  "test_files": 5399,
+  "test_kb": 9259,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/dlang/dmd|2-113-0",
+ "source_notes": "Digital Mars D compiler",
+ "source_url": "https://github.com/dlang/dmd",
+ "source_version": "2.113.0",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/dlang/dmd/releases/tag/v2.113.0",
+  "facts": [
+   {
+    "claim": "dlang/dmd tag v2.113.0 exists (release page titled 'DMD v2.113.0'; year on page not captured)",
+    "status": "confirmed",
+    "url": "https://github.com/dlang/dmd/releases/tag/v2.113.0"
+   },
+   {
+    "claim": "Licence is Boost Software License 1.0 (BSL-1.0)",
+    "status": "confirmed",
+    "url": "https://github.com/dlang/dmd/blob/master/LICENSE.txt"
+   },
+   {
+    "claim": "compiler/src/dmd/dinterpret.d exists (module dmd.dinterpret, 7,707 lines; checked on master, not on the v2.113.0 tag)",
+    "status": "confirmed",
+    "url": "https://github.com/dlang/dmd/blob/master/compiler/src/dmd/dinterpret.d"
+   },
+   {
+    "claim": "compiler/test contains compilable, runnable, fail_compilation, dshell, unit, tools subdirectories",
+    "status": "confirmed",
+    "url": "https://github.com/dlang/dmd/tree/master/compiler/test"
+   },
+   {
+    "claim": "Per-directory test file counts (thousands of compilable/runnable/fail_compilation files)",
+    "status": "not_found",
+    "url": "https://github.com/dlang/dmd/tree/master/compiler/test"
+   },
+   {
+    "claim": "Current posix.mak auto-downloads a prebuilt DMD only when no host compiler is found; newer releases need a host compiler",
+    "status": "not_found",
+    "url": "https://www.digitalmars.com/d/archives/digitalmars/D/dmd_build_instructions_from_source_don_t_work_anymore_262889.html"
+   },
+   {
+    "claim": "Staged bootstrap with an earlier DMD (2.106.1) is used for packaging",
+    "status": "confirmed",
+    "url": "https://patches.guix-patches.cbaines.net/comment/14176"
+   },
+   {
+    "claim": "Offline D toolchain bootstrap in the image is a compiler older than v2.113.0 and lacks the removed CTFE code",
+    "status": "not_found",
+    "url": ""
+   },
+   {
+    "claim": "Phobos/druntime sources are present in the snapshot so runnable tests can link",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "frontier_hours": 25,
+  "full_card": {
+   "band": "20 h tier. Scope is large (7.7k-line interpreter plus template part) and grading is dense, but no dated public evidence of frontier performance; seed's 'recovers basic CTFE, misses aggregates' is unverified.",
+   "build_cost": "About 3-5 days to build a validated grading harness (offline build, per-test runner, stubbed base, reference run). Smoke build not run (smoke_build empty), so build cost is an estimate.",
+   "deliverable": "Restored CTFE interpreter (dinterpret) and template matching so dmd builds and selected compile-time tests pass.",
+   "gates_anticheat": "Closes: no system dmd in image; history-less snapshot; grader rebuilds from agent source and must reject a shipped prebuilt binary; test/ and build config are read-only for grading. Open risk: the bootstrap compiler must be older than the target and lack CTFE, or the agent can ship it.",
+   "grading_surface": "Hidden cases = selected compilable, runnable and compile_fail tests from upstream test/ (thousands); per-test pass fraction. Per-directory counts not verified.",
+   "local_fit": "Gated on a 4-8 core CPU build of dmd; gVisor-safe; no network at run time required if bootstrap is included.",
+   "lookup": "Public upstream file and tests at v2.113.0 and master; snapshot is history-less but the code is recallable in outline by a model that knows dmd. Verdict direct.",
+   "provenance": "dlang/dmd v2.113.0 (head ff73e64), BSL-1.0, 3329 stars, 5399 test files; tag and licence confirmed.",
+   "reference": "Upstream dinterpret.d (7,707 lines) and matching code, public on GitHub; permissive BSL-1.0 so reference scores 1 by construction.",
+   "ships": "History-less snapshot of dmd with dinterpret.d and part of template matching removed; offline D bootstrap compiler included (its version and whether it contains CTFE is unverified).",
+   "similarity": "Max l0 neighbour 0.23 (S-im-065, a sibling seed, not a public task); python-pytest-cases 0.159. Not in CROWDED list (D front-end is not a C compiler), though it is adjacent to compiler-front-end work."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of frontier performance on this kind of work; expected difficulty plausible but unverified."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 3-5 days to make the harness and validate the reference and stubbed base."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Fits 8 cores and 16 GB; dmd builds on CPU; depends on offline bootstrap working."
+   },
+   "Hor": {
+    "v": 5,
+    "why": "Rebuilding a 7.7k-line interpreter plus template matching is a 20 h task."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSL-1.0 permits shipping the system, data and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Per-test buckets across aggregates, pointers, exceptions and templates give steady credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest l0 neighbour 0.23 is a sibling seed; no public task with same subject and deliverable."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real dlang/dmd repo at a tagged release, BSL-1.0, 3.3k stars."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Upstream dinterpret.d and matching code are a complete permissive implementation scoring 1 by construction."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream code and test corpus are public at this tag; sealed only as far as the snapshot excludes test/ and later history."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Thousands of upstream test files give dense per-test partial credit; not an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Bootstrap compiler can build v2.113.0 with CTFE intact (cheat path), reference build is not reproducible offline, results vary between runs, or runnable tests cannot link without phobos sources the snapshot does not ship.",
+   "pass_if": "Reference build is offline-reproducible in under 60 min, two runs give identical per-test results, and the stubbed base fails all selected CTFE cases.",
+   "steps": [
+    "In a fresh networked Linux container, git archive dlang/dmd v2.113.0 (no history) and record size.",
+    "Build with the offline bootstrap or host dmd via posix.mak; record time, and check the bootstrap's version and whether its CTFE works (a bootstrap at v2.113.0 would be a cheat path and kill-level).",
+    "Re-run the build with network disabled to confirm offline reproducibility.",
+    "Run the compilable and fail_compilation subsets twice on the reference build; record per-test results and check determinism.",
+    "Stub dinterpret.d's CTFE entry points so they error, rebuild, and run the same subset; confirm the base fails every selected CTFE case.",
+    "Check whether phobos and druntime sources are needed for runnable tests and whether they are in the image."
+   ]
+  },
+  "summary": "The seed is real and licensed (dmd v2.113.0 tag exists, BSL-1.0, dinterpret.d confirmed at 7,707 lines), with dense per-test grading and a 20 h tier. Main risks are that the public upstream code and tests make the oracle weakly sealed, the bootstrap compiler may already contain CTFE, and frontier agents may not reach 0.9 of the reference on the full scope, so the spike must confirm these before build.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [
+   "https://patches.guix-patches.cbaines.net/comment/14176"
+  ],
+  "ratio": 0.16666666666666666
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-108",
+  "kill_code": "K9",
+  "note": "Frontier estimate is 25 h against a 20 h tier. The scope is the 7.7k-line dinterpret.d plus template matching, and druntime and most tests depend on CTFE. Partial credit would therefore collapse, and no trial is likely to reach 0.9 of the reference. The bootstrap compiler contains working CTFE, which opens a cheat path. Phobos and druntime linking and offline bootstrap are unverified, and one evidence link is dead.",
+  "scores": {
+   "Band": 1,
+   "Build": 2,
+   "Fit": 3,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 4,
+   "Real": 5,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 75
+}

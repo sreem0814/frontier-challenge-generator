@@ -1,0 +1,214 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. The regression is located by profiling, but gains need changes in several join paths (hash build, partitioning, string gather). Frontier gets partial credit per workload bucket; weaker models only tweak thread counts.",
+  "cheat": "Falling back to a different engine or row-limited chunks that change semantics; closed by exact-result gate over varied dtypes and null patterns, with memory measured in a fresh process.",
+  "grading": "Generated join workloads (key skew, null keys, multi-key, many-to-many, sorted vs unsorted). Gate: result frames equal to a reference run up to row order and dtypes exactly. Score: median wall time and measured peak RSS in separate runs against the reference result.",
+  "reference": "The upstream fix commits and later join-path work on the same data (measured speedup and memory on the generator); size of diff not verified.",
+  "source": "https://github.com/pola-rs/polars/issues/14201 @ version just after 0.20.6 (commit not found), MIT",
+  "task": "/app ships a snapshot of polars Rust core at the regressing version with a Python build recipe baked in. Agent reduces peak RSS and wall time of inner/left/semi joins on wide, skewed, string-key and categorical frames without changing results.",
+  "title": "Polars join peak-memory regression recovery"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:08:50Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T07:08:50Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-045 0.37"
+  ],
+  [
+   "2026-10-21T07:10:52Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 2, 'Band': 3, 'Hor': 3, 'Multi': 3, 'Seal': 3, 'Nov': 4, 'Lic': 5, 'Fit': 3, 'Build': 2}"
+  ]
+ ],
+ "id": "S-op-051",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.369,
+    "S-op-045"
+   ],
+   [
+    0.258,
+    "S-op-050"
+   ],
+   [
+    0.212,
+    "S-op-048"
+   ],
+   [
+    0.118,
+    "fd-deterministic-multi-key-sorting [DeepSWE]"
+   ],
+   [
+    0.112,
+    "fix-pandas-version [original]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "8512c7e385be1a48cfaf0bbdd91e4f390a475fb1",
+  "kb": 232932,
+  "lang": "Rust",
+  "open_prs": 395,
+  "pushed": "2026-10-20",
+  "release": "py-2.0.0",
+  "spdx": "MIT",
+  "stars": 40134
+ },
+ "source_key": "github.com/pola-rs/polars/issues/14201|pola-rs-polars-14201-intermittent-out-of-memory-performing-j",
+ "source_notes": "repo https://github.com/pola-rs/polars; merged PR or fixed issue",
+ "source_url": "https://github.com/pola-rs/polars/issues/14201",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/pola-rs/polars/issues/14201",
+  "facts": [
+   {
+    "claim": "pola-rs/polars issue #14201 exists: 'Intermittent out-of-memory performing join after 0.20.6 update', opened Feb 1, 2024, closed Feb 4, 2024",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/14201"
+   },
+   {
+    "claim": "The regression was reported in Polars 0.20.6 (reporter says 0.20.5 was unaffected); symptom is memory growth until swap is exhausted on a left string-key join; casting the key to Categorical avoided it",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/issues/14201"
+   },
+   {
+    "claim": "The fix is PR #14264, titled 'fix: deduplicate recursive growables', merged Feb 4, 2024 as commit fd781eb, which 'Fixes #14201'",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/pull/14264"
+   },
+   {
+    "claim": "The public fix concerns recursive growables (nested-type gather), not hash build, partitioning or string gather as the seed's reference description states",
+    "status": "contradicted",
+    "url": "https://github.com/pola-rs/polars/pull/14264"
+   },
+   {
+    "claim": "PR #14264 diff size (files changed, lines added and deleted) and any benchmark or memory numbers",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars/pull/14264"
+   },
+   {
+    "claim": "A python-polars release py-0.20.7 exists (Feb 4) and its notes contain no join-memory or regression fix; the only join bug fix is 'Fix join validation for String types' (#14229)",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars/releases/tag/py-0.20.7"
+   },
+   {
+    "claim": "Repo is MIT-licensed, Rust, 40134 stars, release py-2.0.0 exists (from the GitHub API facts supplied in the seed)",
+    "status": "confirmed",
+    "url": "https://github.com/pola-rs/polars"
+   },
+   {
+    "claim": "The seed's measured reference speedup and memory on the generator, and the generated workload suite",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars/issues/14201"
+   },
+   {
+    "claim": "Later join-path work on the same data exists upstream (seed's 'later join-path work' claim)",
+    "status": "not_found",
+    "url": "https://github.com/pola-rs/polars"
+   }
+  ],
+  "frontier_hours": 5,
+  "full_card": {
+   "band": "Optimization with 2^u-1 reward. Frontier likely reaches partial credit by locating the nested-growable memory cost. Whether a 8h frontier run reaches the reference depends on whether the reference needs multiple join paths beyond the PR; unverified. Score 3 without dated evidence.",
+   "build_cost": "About 2-4 days: offline cargo vendor for polars, maturin build recipe, generator, exact-equality gate, RSS harness. Smoke build is empty so build time is unmeasured.",
+   "deliverable": "Code changes in the Rust join path (and any gather/growable code it uses) that cut peak RSS and wall time for inner/left/semi joins on wide, skewed, string, categorical, null-key and multi-key frames, with results unchanged.",
+   "gates_anticheat": "Exact-result gate over varied dtypes and null patterns; fresh-process RSS; no engine fallback (pandas or other) permitted; reject edits to grader, build config or vendored deps; history-less snapshot so PR #14264 cannot be read.",
+   "grading_surface": "Generated join workloads (key skew, null keys, multi-key, many-to-many, sorted vs unsorted, string and categorical keys, nested columns). Exact-equality gate up to row order and dtypes; then median wall time and peak RSS in separate fresh-process runs, scored against reference.",
+   "local_fit": "Rust release build plus Python wheel on 8 cores/16 GB under gVisor. Wall-clock and RSS timing are feasible but noisy; LTO builds may exceed 16 GB and be slow, so the agent needs a dev-like profile for iteration.",
+   "lookup": "partial: the fix is public in git history (PR #14264, fd781eb) and is short; snapshot is history-less; a strong agent may recall the growable area in outline only.",
+   "provenance": "Polars issue #14201 (OOM in left string-key join after 0.20.6, reporter david-waterworth) fixed by merged PR #14264 'fix: deduplicate recursive growables' (commit fd781eb, Feb 4 2024). MIT.",
+   "reference": "Not built yet. Public upstream fix PR #14264 is a small recursive-growables dedupe, so the seed's multi-path reference is unverified; CG would need its own reference that meets the claimed speedup.",
+   "ships": "History-less snapshot of the polars Rust core and Python bindings at the 0.20.6-era code, plus a pinned offline cargo vendor and a build recipe. Generator and grader withheld.",
+   "similarity": "Nearest l0 neighbours: S-op-045 0.369 (sibling seed, not public), S-op-050 0.258 (seed), S-op-048 0.212 (seed), DeepSWE fd-deterministic-multi-key-sorting 0.118, fix-pandas-version 0.112. No public benchmark task above 0.15; not on the CROWDED list. Differs: database-engine memory optimization on a Rust query engine."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Plausible at 8h but no dated public evidence for optimization of this kind; a single-lever fix could make it too easy."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Offline cargo vendor plus maturin build and harness is roughly 2-4 days; smoke build not run."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Rust build is heavy under gVisor and 16 GB; timing is noisy but workable."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8h tier fits profiling plus several join paths only if the reference really needs them; otherwise the work is short."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per source facts."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Inner, left, semi, string, categorical, null and multi-key buckets give partial credit per workload."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max public neighbour 0.118; neighbours above 0.15 are internal seeds; not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real repo, real issue #14201 and merged fix PR #14264 (fd781eb), MIT."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference built or measured; the public fix is a small recursive-growables dedupe, not the multi-path work the seed claims."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Fix is public in history, so the snapshot must be history-less; generator and grader are not shipped."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated workloads with an exact gate and unlimited generator; many dtype and null combinations."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The regression does not reproduce on 0.20.5 vs 0.20.6, or the PR alone closes the gap (one-lever, K10), or the release build cannot finish in the spike window.",
+   "pass_if": "0.20.6 is measurably worse than 0.20.5 in peak RSS or wall time on at least one join shape; the PR alone leaves a residual gap across several join paths; medians repeat within about 10%.",
+   "steps": [
+    "In a throwaway networked container, pip install polars==0.20.5 and polars==0.20.6 into separate venvs (versions per the issue; confirm they exist on PyPI).",
+    "Write a generator: left table ~90k rows, 15 columns including nested list/struct columns and a String key; right lookup ~500 rows; also inner/left/semi variants, skewed keys, null keys, multi-key, categorical keys.",
+    "Run each join in a fresh process, recording median wall time (5 runs) and peak RSS via resource.getrusage(RUSAGE_SELF).ru_maxrss. Confirm 0.20.6 is worse than 0.20.5 on at least one shape; if not, the regression is not reproduced and the idea is killed.",
+    "Check out the commit before fd781eb (PR #14264 parent) and build the Python wheel with maturin in release mode (budget up to 60 min; if the build exceeds this, stop and report build time). Compare the nested-growable fix alone against the 0.20.6 wheel on the same generator.",
+    "Decide scope: if the PR alone recovers most of the memory and time gap, the task is one-lever (K10/K8 risk) and must be reshaped; if a large gap remains on string or categorical joins, that gap defines the multi-path scope.",
+    "Check determinism: repeat medians on two runs; reject if the variance exceeds the expected gain."
+   ]
+  },
+  "summary": "The seed's regression is real: polars issue #14201 reports an OOM in a string-key left join from 0.20.6, closed by merged PR #14264 (fd781eb). That PR is a small \"deduplicate recursive growables\" fix, which contradicts the seed's multi-path reference (hash build, partitioning, string gather), so the 8h scope and reward cap need a spike before the task is built.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 69
+}

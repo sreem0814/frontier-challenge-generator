@@ -1,0 +1,216 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "8 h. Multi-part scope (auth, refresh, routing, discovery, CLI and config, error paths). A frontier agent finishes the core in some trials but misses refresh and edge-case buckets. A weaker model stops after the happy-path login.",
+  "cheat": "Hard-coding the mock's responses is closed because hidden mocks differ in tokens, endpoints, catalogues and failure timing. No upstream solution exists to copy. The snapshot has no git history.",
+  "grading": "Hidden behavioural tests run through aider's public Coder, models and main() entry points against several differently scripted mock servers (expiry mid-session, rate limits, entitlement errors, streaming and non-streaming, differing model catalogues). Existing aider suite is a regression gate. Score is the fraction of hidden cases passed.",
+  "reference": "Our own implementation, expected about 1200-1800 added lines plus tests. It passes every hidden case by construction. Mock protocol is documented from public behaviour of the Copilot plugins.",
+  "source": "https://github.com/Aider-AI/aider/issues/2227 @ 5dc9490 (v0.86.0), Apache-2.0; long-standing issue (118 upvotes, 214 comments), no merged upstream support found",
+  "task": "/app ships a history-less snapshot of aider at the base. Agent adds a Copilot provider: device-code login flow, token cache file, short-lived API token exchange and refresh, per-model endpoint and header routing, model-list discovery, litellm integration, /model and CLI flags, error mapping for expired or unentitled accounts. Network is absent, so a local mock Copilot/GitHub server ships for development.",
+  "title": "GitHub Copilot model provider for aider"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-070 0.23"
+  ],
+  [
+   "2026-10-21T07:07:47Z",
+   "v1",
+   "killed:K11",
+   "Cannot be sealed: the device-code login, token exchange and refresh logic already ship in the litellm package that aider installs (docs.litellm.ai/docs/providers/github_copilot), so the auth half of the reference is readable in the image. The seed's 'no upstream solution exists to copy' is contradic"
+  ]
+ ],
+ "id": "S-im-109",
+ "kill": "K11",
+ "l0": {
+  "neighbours": [
+   [
+    0.232,
+    "S-im-070"
+   ],
+   [
+    0.227,
+    "S-im-012"
+   ],
+   [
+    0.223,
+    "S-im-006"
+   ],
+   [
+    0.095,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ],
+   [
+    0.076,
+    "family (Java, TS, JS, Go, Rust, C, C++) [Multi-SWE-bench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c",
+  "kb": 140356,
+  "lang": "Python",
+  "open_prs": 529,
+  "pushed": "2026-05-22",
+  "release": "v0.86.0",
+  "spdx": "Apache-2.0",
+  "stars": 49664,
+  "test_files": 87,
+  "test_kb": 5501,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/aider-ai/aider/issues/2227|aider-ai-aider-2227-feature-add-github-copilot-as-model-prov",
+ "source_notes": "repo https://github.com/Aider-AI/aider; opened 2024-11-03",
+ "source_url": "https://github.com/Aider-AI/aider/issues/2227",
+ "source_version": "",
+ "status": "killed:K11",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Aider-AI/aider/issues/2227",
+  "facts": [
+   {
+    "claim": "Aider issue #2227 'Feature: Add GitHub Copilot as model provider' exists, opened 2024-11-03, and is still open with labels enhancement and priority",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/issues/2227"
+   },
+   {
+    "claim": "The only maintainer (paul-gauthier) doubted the approach: it would need an undocumented or abused API, Copilot may not sanction it, and he pointed users to litellm instead",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/issues/2227"
+   },
+   {
+    "claim": "No merged aider-side Copilot support is linked from the issue; no maintainer has marked it planned or wontfix",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/issues/2227"
+   },
+   {
+    "claim": "Open PR #4459 (adds github_copilot/ models) is referenced in the issue thread; its current status was not visible on the page",
+    "status": "not_found",
+    "url": "https://github.com/Aider-AI/aider/issues/2227"
+   },
+   {
+    "claim": "litellm ships a GitHub Copilot provider using OAuth device-code login, with tokens cached under ~/.config/litellm/github_copilot and a GITHUB_COPILOT_TOKEN_DIR override",
+    "status": "confirmed",
+    "url": "https://docs.litellm.ai/docs/providers/github_copilot"
+   },
+   {
+    "claim": "The litellm Copilot provider handles the device-code flow and token storage that the seed asks aider to build; aider depends on litellm, so this code is present in the image",
+    "status": "confirmed",
+    "url": "https://docs.litellm.ai/docs/providers/github_copilot"
+   },
+   {
+    "claim": "Repo at 5dc9490 (v0.86.0) has LICENSE.txt, tests/, and the aider/ package; licence type is not shown on the page, so Apache-2.0 relies on the GitHub API spdx field",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/tree/5dc9490bb35f9729ef2c95d00a19ccd30c26339c"
+   },
+   {
+    "claim": "The mock Copilot protocol is 'documented from public behaviour of the Copilot plugins'; no public protocol specification for the token exchange or endpoint routing was found",
+    "status": "not_found",
+    "url": "https://docs.litellm.ai/docs/providers/github_copilot"
+   },
+   {
+    "claim": "Seed claim 'No upstream solution exists to copy' is contradicted: a working Copilot device-flow and routing implementation is public in litellm, which is installed with aider",
+    "status": "contradicted",
+    "url": "https://docs.litellm.ai/docs/providers/github_copilot"
+   }
+  ],
+  "frontier_hours": 5,
+  "full_card": {
+   "band": "8 h tier. Aider-side scope is smaller than the seed suggests because litellm covers auth; a frontier agent likely finishes the routing and CLI buckets, and refresh is copyable from litellm.",
+   "build_cost": "Unknown: smoke_build was empty, so no build was verified. Estimate 3-5 days for mock plus reference plus hidden suite.",
+   "deliverable": "Aider-side Copilot provider: routing, /model and CLI flags, config, and error mapping on top of litellm; the auth flow is already present in litellm.",
+   "gates_anticheat": "Hidden mocks differ in tokens and endpoints. Cheat path not closed: the installed litellm github_copilot source is readable in the image and gives the auth and token-exchange logic directly.",
+   "grading_surface": "Hidden behavioural tests via Coder, models and main() against scripted mocks (expiry, rate limits, entitlement errors, streaming). Likely dozens of cases; executable-oracle grade not established.",
+   "local_fit": "Pure Python, offline mock, no GPU or network at run time. Fits the sandbox.",
+   "lookup": "direct for auth and token flow (litellm github_copilot); partial for aider-side integration (open PR #4459 status unknown).",
+   "provenance": "Real aider issue #2227 open since 2024-11-03 at tag v0.86.0 (5dc9490); Apache-2.0 per GitHub API; history-less snapshot planned.",
+   "reference": "Own reference, 1200-1800 lines, not yet written. Mock protocol not publicly documented; it is a reconstruction.",
+   "ships": "Full aider Python package (~140 MB git, 87 test files) plus a planned local mock Copilot/GitHub server. litellm, a runtime dependency, already contains a Copilot device-flow provider.",
+   "similarity": "Nearest l0 neighbours 0.232, 0.227, 0.223 (S-im-070/012/006), all above 0.15, subjects not given; no CROWDED overlap; SWE-bench family 0.095."
+  },
+  "kill_code": "K11",
+  "kill_reason": "Cannot be sealed: the device-code login, token exchange and refresh logic already ship in the litellm package that aider installs (docs.litellm.ai/docs/providers/github_copilot), so the auth half of the reference is readable in the image. The seed's 'no upstream solution exists to copy' is contradicted. Re-scoping to an aider-side-only deliverable would need a new seed.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Litellm supplies device flow and token storage, so a frontier agent likely reaches a high share; no dated evidence of partial success on this kind of work."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-5 days for mock, reference and suite; not probed."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Python, offline mock, within 8 CPU and 16 GB."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Several modules and a long horizon, but much of the auth surface is shortcut by litellm."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping the repo and reference."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Routing, CLI, config, catalogue and error buckets are independent, but auth buckets collapse once litellm is used."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours score 0.22-0.23, above the 0.15 bar, with unknown subjects; not crowded."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real long-running issue in a 49k-star repo, but the protocol it targets is undocumented and maintainer-doubted."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Own reference, not written; 'passes by construction' is not evidence; the auth half duplicates litellm, which weakens its strength as a yardstick."
+   },
+   "Seal": {
+    "v": 1,
+    "why": "The Copilot device-flow and token logic is shipped inside the installed litellm dependency, so the reference is in the image."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Scripted mock scenarios give a moderate case count; no evidence of thousands of cases or an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 40,
+   "kill_if": "Litellm's provider covers device-flow, token exchange and refresh as shipped, so the reference is recoverable from the image (confirms K11).",
+   "pass_if": "Litellm's provider is confirmed to be the only auth path, and a stub run shows the aider-side work left is a small remainder (under about 300 lines); a re-scoped aider-side idea would then be worth a new seed.",
+   "steps": [
+    "In a throwaway container with network, install aider at 5dc9490 (v0.86.0) in a venv and note the pinned litellm version.",
+    "Read the installed litellm github_copilot provider source (device-flow, token exchange, refresh, endpoint and header routing) and list which seed buckets it already covers.",
+    "Run aider with a github_copilot/ model against a local stub server that mimics the seed's token exchange, to see whether the aider-side wiring works with no new code.",
+    "Check open PR #4459 status and whether it changes aider's model list or settings.",
+    "Decide: if litellm covers auth and the aider-side work is under about 300 lines, kill (K11). If the task is rebuilt to be aider-side only, re-scope and re-score."
+   ]
+  },
+  "summary": "The seed targets a real, long-open aider feature request (#2227, Apache-2.0), but the litellm dependency already implements the Copilot device-flow and token logic, so the seed's sealing and novelty claims fail. The idea is killed as K11 (cannot be sealed) unless it is re-scoped to aider-side routing and CLI work that litellm does not supply.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 55
+}

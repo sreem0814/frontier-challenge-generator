@@ -1,0 +1,213 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "8 h. The parser and binary protocol are quick. Compact-protocol varint/zigzag edge cases, JSON protocol quirks, union and default semantics, and error classification are the deep parts. A frontier agent reaches about 60 to 75 percent. A weaker model stops at the binary protocol.",
+  "cheat": "Using a pip thrift package: not installable offline. Golden vectors are hidden and generated from unseen IDLs, so memorising samples fails.",
+  "grading": "Hidden cases: (a) 1000+ IDL files taken from thrift's own test/ tree and generated variants, comparing a canonical AST dump and error class against the real compiler; (b) cross-language wire-byte tests, where the runtime must encode and decode structures byte-identical to golden vectors from the C++ library across the three protocols; (c) a service round-trip suite. Scored per bucket.",
+  "reference": "The upstream compiler and Python library, trimmed to the required subset, are our reference. They pass the whole hidden set by construction.",
+  "source": "https://github.com/apache/thrift @ v0.25.0 (head db8caa7), Apache-2.0",
+  "task": "/app ships a skeleton. The agent builds a Thrift IDL parser and validator (includes, typedefs, enums, unions, exceptions, services, annotations, constants). It adds a Python code generator plus a runtime for the binary, compact and JSON protocols and framed/buffered transports. A client-server pair runs over local sockets.",
+  "title": "Thrift IDL compiler and wire protocols matched to the Apache Thrift reference"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-077 0.28"
+  ],
+  [
+   "2026-10-21T03:20:13Z",
+   "v1",
+   "killed:K9",
+   "As specified for an 8h tier this is too hard: the whole scope (full IDL validator, Python codegen, three protocols, transports, service suite) is about 20h of frontier work, and nothing in the seed shows a trial reaching 0.9 of the reference in 8h. Resubmit with tier 20h, or cut scope to a real subs"
+  ]
+ ],
+ "id": "S-im-103",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.279,
+    "S-im-077"
+   ],
+   [
+    0.249,
+    "S-im-085"
+   ],
+   [
+    0.176,
+    "S-im-073"
+   ],
+   [
+    0.118,
+    "c_compiler [SpecBench]"
+   ],
+   [
+    0.109,
+    "rust-c-compiler [SWE-Marathon]"
+   ]
+  ]
+ },
+ "method": "conform",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "db8caa7ba6c9a3ee92026a51270e6bfa1cacff26",
+  "kb": 41593,
+  "lang": "C++",
+  "open_prs": 26,
+  "pushed": "2026-10-19",
+  "release": "v0.25.0",
+  "spdx": "Apache-2.0",
+  "stars": 10959,
+  "test_files": 1245,
+  "test_kb": 7228,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/apache/thrift|apache-thrift",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: cd cmake-build && ctest --verbose --output-on-failure --rerun-failed --repeat until-pass:1. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/apache/thrift",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/apache/thrift/releases/tag/v0.25.0",
+  "facts": [
+   {
+    "claim": "Apache Thrift release v0.25.0 exists (tag v0.25.0, released by Jens-G, dated 30 Sep; year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/thrift/releases/tag/v0.25.0"
+   },
+   {
+    "claim": "Repo licence is Apache-2.0 (spdx from GitHub API; not re-read from LICENSE file)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/thrift"
+   },
+   {
+    "claim": "Python Thrift runtime lives in lib/py (src/ package, README, pyproject/setup.py)",
+    "status": "confirmed",
+    "url": "https://github.com/apache/thrift/tree/v0.25.0/lib/py"
+   },
+   {
+    "claim": "test/ tree has 32 .thrift files directly; subdirectory contents not visible",
+    "status": "confirmed",
+    "url": "https://github.com/apache/thrift/tree/v0.25.0/test"
+   },
+   {
+    "claim": "Hidden grading corpus of 1000+ IDL files from test/ tree (seed claim)",
+    "status": "not_found",
+    "url": "https://api.github.com/repos/apache/thrift/git/trees/v0.25.0?recursive=1"
+   },
+   {
+    "claim": "compiler/cpp/ contains the C++ compiler source (161 tree entries in the truncated recursive listing)",
+    "status": "confirmed",
+    "url": "https://api.github.com/repos/apache/thrift/git/trees/v0.25.0?recursive=1"
+   },
+   {
+    "claim": "Official Python package 'thrift' is on PyPI (latest seen 0.22.0, published from apache/thrift via trusted publishing), so pip-installable outside the run",
+    "status": "confirmed",
+    "url": "https://pypi.org/project/thrift"
+   },
+   {
+    "claim": "PyPI package named 'apache-thrift' exists",
+    "status": "not_found",
+    "url": "https://pypi.org/project/thrift"
+   }
+  ],
+  "frontier_hours": 20,
+  "full_card": {
+   "band": "8h tier claimed by seed; estimated whole-scope frontier effort about 20h, so 8h is too short. No dated public evidence of agents on this work (E0).",
+   "build_cost": "Unknown until built; estimate 3 to 5 days for reference (C++ compiler build plus trimmed Python lib plus golden-vector generation); smoke_build not run.",
+   "deliverable": "Thrift IDL parser+validator (includes, typedefs, enums, unions, exceptions, services, annotations, constants), Python generator, Python runtime for binary/compact/JSON protocols and framed/buffered transports, local-socket client-server pair.",
+   "gates_anticheat": "Hidden IDLs and golden vectors not in image; block pip/apt thrift at run time; bundle must not contain upstream compiler or lib/py sources readable to the agent; tests/config edits closed by sealed verifier.",
+   "grading_surface": "Claimed: 1000+ IDL files (AST dump + error class vs real compiler), cross-language golden wire bytes for 3 protocols, service round-trip. Visible IDL corpus is 32 direct files in test/; total not verified. AST dump canonical format and error-class taxonomy are not specified in the seed.",
+   "local_fit": "CPU-only, local sockets, Python runtime: fits gVisor and 8 cores/16 GB; reference C++ build needs cmake, bison, flex.",
+   "lookup": "partial: upstream C++ compiler and Python lib are public on GitHub and PyPI; a frontier model knows Thrift protocols and the compiler layout in outline; no complete port recalled verbatim.",
+   "provenance": "Apache Thrift v0.25.0 (apache/thrift, Apache-2.0, C++ compiler + Python lib in same repo); release tag exists; 1245 test files per source_facts.",
+   "reference": "Upstream compiler (compiler/cpp) plus lib/py trimmed to subset; reference solution not yet built; smoke_build is empty so build status is unknown.",
+   "ships": "Skeleton /app with IDL parser/validator/codegen/runtime stubs; must not contain a thrift package, thrift-compiler or libthrift in the image (check base image and apt state).",
+   "similarity": "Nearest public task by L0: c_compiler [SpecBench] 0.118, rust-c-compiler [SWE-Marathon] 0.109; seed neighbours S-im-077 0.279 and S-im-085 0.249 are seeds, not public tasks. Not in CROWDED list (JSON parsers differ: this is IDL + wire protocols)."
+  },
+  "kill_code": "K9",
+  "kill_reason": "As specified for an 8h tier this is too hard: the whole scope (full IDL validator, Python codegen, three protocols, transports, service suite) is about 20h of frontier work, and nothing in the seed shows a trial reaching 0.9 of the reference in 8h. Resubmit with tier 20h, or cut scope to a real subset that fits 8h (e.g., IDL parser and validator plus binary and compact protocols in Python, dropping JSON, transports and services). The 1000+ IDL corpus and the AST dump format are also unverified and must be pinned before it can be accepted.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Seed claims 60-75% in 8h but there is no dated public evidence; whole scope looks like about 20h work, so the band is likely below the reference."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference is a C++ compiler build plus trimmed Python lib plus golden vectors; estimated 3 to 5 days, unverified because smoke_build is empty."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, local sockets, Python runtime fit the sandbox; C++ build tooling is standard."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Clearly sustained work across parser, codegen, three protocols, transports and services; tier choice (8h vs 20h) is the open issue."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 per GitHub API; permits shipping the system inside the bundle."
+   },
+   "Multi": {
+    "v": 5,
+    "why": "Many independent buckets: IDL features, codegen, each protocol, transports, service round trip, error classes."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task neighbour above 0.15 (max 0.118); seed neighbours at 0.279 are seeds, not public tasks; not on CROWDED list."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public Apache repo at v0.25.0 with release tag and Apache-2.0 licence; real toolchain and history."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Upstream compiler and lib are a complete permissive implementation; trimming to the subset is needed and the reference is not yet built."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Public upstream that a model knows in outline; hidden vectors and reference can stay out of the image, but the thrift package and possibly apt thrift packages must be kept out of the image."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Visible IDL corpus is 32 direct files; the 1000+ claim is not verified, and the AST dump format is undefined, so surface size is uncertain."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build fails or needs network; fewer than about 200 usable IDL files; output is nondeterministic; or the AST dump and error-class mapping cannot be specified for the grader.",
+   "pass_if": "Compiler builds offline-reproducible from the tag in under 30 min; at least 150 IDL files classify deterministically; golden bytes are reproducible across runs and round-trip for all three protocols; total IDL count is verifiable at 1000+ or the bucket is rescoped.",
+   "steps": [
+    "In a throwaway networked Linux container, clone apache/thrift at tag v0.25.0 (no history needed beyond the tag).",
+    "Build the C++ compiler (cmake, bison, flex) and record wall time and any failures; this replaces the empty smoke_build.",
+    "Run the built thrift binary over the 32 direct .thrift files in test/ and the subdirectories; record exit code and first error line per file, and rerun twice to check determinism.",
+    "Count the real total of .thrift files under test/ via a full clone (not the truncated API listing) to settle the 1000+ IDL claim.",
+    "pip install thrift==0.22.0 in a venv (or build lib/py from the tag); write a fixed struct with nested list, map, union, and default-valued fields; encode with TBinaryProtocol, TCompactProtocol, TJSONProtocol and save bytes as golden vectors.",
+    "Rerun the encoder twice and diff bytes to confirm determinism; decode each vector back and compare to the input.",
+    "Draft the AST dump and error-class taxonomy on paper for 5 IDL files and check whether the real compiler output can be mapped to it; if not, the grading contract is underspecified."
+   ]
+  },
+  "summary": "The Apache Thrift v0.25.0 source is real, public and Apache-2.0 licensed, with a substantial compiler and Python runtime, but the seed's 1000+ IDL corpus claim is unverified (only 32 visible .thrift files directly under test/) and the AST dump format is undefined. As specified the scope is about 20h of work, so it fails K9 at the 8h tier and should be resubmitted at 20h or rescoped to a subset that fits 8h.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 77
+}

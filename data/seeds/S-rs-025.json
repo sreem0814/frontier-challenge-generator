@@ -1,0 +1,210 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. Frontier builds a working estimator in some trials but integration and generalisation to new templates limit the mean; credit is proportional. Weaker models produce estimators that worsen plans.",
+  "cheat": "Memorising true cardinalities of known queries or editing the query text; closed by new templates, a hook-only interface and result-equality checks. Build offline risk noted: needs a source build of pinned submodules.",
+  "grading": "Hidden query templates not in training, run on a fixed database copy; score is total workload time with the injected estimates and plan-result equality, normalised between native PostgreSQL estimates and the reference estimator. Result rows are checked against a native run.",
+  "reference": "Estimator built from the shipped training logs (learned or sampling based); numbers not found, would be measured by us.",
+  "source": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval @ main (commit 2af3e83), Apache-2.0; data on OPARA CC BY 4.0",
+  "task": "/app ships PostgreSQL with the repo's pg_lab hooks, the Stack and JOB-style workloads and plan/true-cardinality logs for training templates. Agent trains an estimator (injected through the hook as a per-subplan cardinality) to lower end-to-end workload time.",
+  "title": "Cardinality estimator for PostgreSQL on unseen query templates"
+ },
+ "class": "research",
+ "created": "2026-10-21T07:08:51Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T07:08:51Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-051 0.16"
+  ],
+  [
+   "2026-10-21T07:11:26Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 3, 'Seal': 3, 'Nov': 4, 'Lic': 5, 'Fit': 3, 'Build': 2}"
+  ]
+ ],
+ "id": "S-rs-025",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.157,
+    "S-op-051"
+   ],
+   [
+    0.154,
+    "S-op-045"
+   ],
+   [
+    0.12,
+    "S-im-111"
+   ],
+   [
+    0.116,
+    "lua-native-compiler [FrontierSWE]"
+   ],
+   [
+    0.097,
+    "postgres-csv-clean [original]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "2af3e83ba301b6262d5e36dd2cb17e995104e274",
+  "kb": 2089,
+  "lang": "Jupyter Notebook",
+  "open_prs": 0,
+  "pushed": "2025-12-19",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 7
+ },
+ "source_key": "github.com/db-tu-dresden/sigmod25-postgreeval|main-branch-64-commits-no-commit-hash-or-release-tag-shown-d",
+ "source_notes": "Experiments are Python scripts plus Jupyter notebooks, and the repo includes a Docker-based ARI pipeline. Needs a PostgreSQL build (pg_lab and postbound submodules pinned at a8ccc1b and b731b03), which is heavy and may not be offline-buildable. Objective is analytic, not a clear engineering target, so it would need reframing (for example, a cardinality or plan-selection improvement scored on held-out queries). Memorisation risk is low. CPU-only. Crowding: not on the CROWDED list. Dataset page lists the OPARA DOI-style record and the Attribution 4.0 licence. Verified via GitHub and OPARA pages.",
+ "source_url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval",
+ "source_version": "main branch, 64 commits; no commit hash or release tag shown; data archive dated 2025-01-23",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval",
+  "facts": [
+   {
+    "claim": "Repo db-tu-dresden/SIGMOD25-PostgreEval exists and is Apache-2.0 licensed (supplement to 'An Elephant Under the Microscope', SIGMOD'25)",
+    "status": "confirmed",
+    "url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval"
+   },
+   {
+    "claim": "pg_lab submodule pinned at a8ccc1b and postbound submodule pinned at b731b03",
+    "status": "confirmed",
+    "url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval"
+   },
+   {
+    "claim": "Paper DOI 10.1145/3709659 (SIGMOD 2025, 'An Elephant Under the Microscope')",
+    "status": "confirmed",
+    "url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval"
+   },
+   {
+    "claim": "Repo contains Python experiment scripts, notebooks, ari/ pipeline; README gives no PostgreSQL/pg_lab/PostBOUND build steps and defers to ari/README.md; calls the frameworks 'under active development'",
+    "status": "confirmed",
+    "url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval"
+   },
+   {
+    "claim": "OPARA data record is CC BY 4.0, about 1.55 GB, DOI 10.25532/OPARA-721, authors Bergmann et al., TU Dresden",
+    "status": "confirmed",
+    "url": "https://opara.zih.tu-dresden.de/items/caf1add1-a309-4956-8291-9f3d9cb932dc/full"
+   },
+   {
+    "claim": "Shipped data contains plan logs and true-cardinality logs for training templates",
+    "status": "not_found",
+    "url": "https://opara.zih.tu-dresden.de/items/caf1add1-a309-4956-8291-9f3d9cb932dc/full"
+   },
+   {
+    "claim": "A reference cardinality estimator (learned or sampling) is published with the work",
+    "status": "not_found",
+    "url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval"
+   },
+   {
+    "claim": "Repo supplies a pg_lab hook that injects per-subplan cardinalities into PostgreSQL (the seed's injection path)",
+    "status": "not_found",
+    "url": "https://github.com/db-tu-dresden/SIGMOD25-PostgreEval"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "8h tier. Expected: frontier agent gets a partial estimator, credit proportional to templates handled and plan wins. No dated public evidence, so Band capped at 3.",
+   "build_cost": "About 3-4 days: PostgreSQL + pg_lab + PostBOUND offline build, DB copy, ground-truth cardinalities for hidden split, reference estimator. Build 2.",
+   "deliverable": "Estimator module injecting per-subplan cardinalities through the pg_lab hook, plus training code.",
+   "gates_anticheat": "Hidden templates and held-out DB copy kept out of image; hook-only interface; result-row equality against native run; freeze grader and hook code outside /app; no test-file edits. Memorisation risk low, but estimates could be read from shipped logs if they contain true cards for hidden templates, so hold those out.",
+   "grading_surface": "Hidden unseen query templates on the fixed DB copy; per-template buckets; plan-result equality checked against native run. Proposed reframing: deterministic plan-quality metric (true-cost of chosen plan under true cards and/or q-error on hidden subplans), with timing as a secondary metric to avoid wall-clock noise.",
+   "local_fit": "CPU-only, 8 cores, 16 GB is probably sufficient for a JOB-scale DB but the Stack-scale copy and gVisor disk I/O need checking. smoke_build was not run ({}), so offline build is unverified.",
+   "lookup": "partial: PostBOUND and the public repo already contain cardinality-injection scaffolding; only partly reusable offline once stripped of experiments.",
+   "provenance": "TU Dresden SIGMOD'25 supplement (Apache-2.0, pinned at 2af3e83); data on OPARA (CC BY 4.0, DOI 10.25532/OPARA-721); paper DOI 10.1145/3709659",
+   "reference": "None public for injected cardinalities. We would build our own estimator and measure it; no numbers found.",
+   "ships": "PostgreSQL built with pg_lab, PostBOUND, Stack/JOB-style workloads and a fixed DB copy. Must strip the experiment scripts, ari/ pipeline and any cardinality-injection code from the image so the agent cannot read the answer path. Training logs unverified in repo.",
+   "similarity": "Max l0 neighbour 0.157 (S-op-051), slightly above 0.15; not on CROWDED list; cardinality estimation is a distinct subject."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8h tier plausible, but no dated evidence and the reference is unmeasured."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 3-4 days including the offline PostgreSQL/pg_lab/PostBOUND build and reference work."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "CPU-only PostgreSQL fits the sandbox, but DB size and gVisor I/O are unverified."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Estimator design, injection, training and integration support an 8h scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 code and CC BY 4.0 data both allow shipping with attribution."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Per-template and per-query buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Max neighbour 0.157 is just above the 0.15 threshold; not crowded."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Public repo at pinned commit, SIGMOD'25 paper with DOI, and OPARA data; training logs not confirmed."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No public reference estimator; we must build and measure our own."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden templates and DB copy can be held out; public PostBOUND code remains a partial lookup path."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden template workload with per-query buckets; likely hundreds of queries, not thousands."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Build needs network or fails; timing CV above 15% with no deterministic cost fallback; oracle cards do not separate from native (metric is non-discriminative); or no usable true-cardinality data exists and our own ground-truth build is too heavy for the tier.",
+   "pass_if": "Build completes offline in under 45 min, injected runs are equal in rows, timing CV is under 10% (or a deterministic cost metric is stable), and oracle cards beat native on a meaningful share of queries.",
+   "steps": [
+    "In a throwaway networked Linux container, clone SIGMOD25-PostgreEval at 2af3e83 and init submodules at a8ccc1b (pg_lab) and b731b03 (postbound).",
+    "Build PostgreSQL with pg_lab; time it and note any network fetches.",
+    "Load a JOB-scale IMDB subset (or the smallest Stack slice) into the built server.",
+    "Run about 50 queries with native estimates, then with true cardinalities injected through the pg_lab hook; record plan changes and result-row equality.",
+    "Repeat the native and injected runs 3 times each; compute per-query and total time spread (coefficient of variation).",
+    "Check that oracle true-card injection improves total time or plan cost on enough queries to make the metric discriminative.",
+    "Check whether shipped logs (OPARA) contain plan or true-cardinality data and at what scale."
+   ]
+  },
+  "summary": "The repo, Apache-2.0 licence, pinned submodules, SIGMOD'25 paper and CC BY 4.0 OPARA data are confirmed, but the shipped training logs with true cardinalities and any reference estimator are not found, and the offline PostgreSQL/pg_lab build is unverified (smoke_build not run). Not killed, but it needs the 60-minute spike and a reframing from raw workload time to a deterministic plan-cost or q-error metric on hidden templates; expect Build 2 and Band 3 until the reference is measured.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 2,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 65
+}

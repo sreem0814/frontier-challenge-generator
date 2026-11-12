@@ -1,0 +1,128 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "4h. Continuous reward with many levers; the frontier plateaus near the reference quickly and a weaker model sticks near the baseline. Risk: a tabular OOD card exists already (K1) and the data licence needs checking (K6).",
+  "cheat": "Loading hidden-state data is closed because it is not in the image; predictions are made from features only.",
+  "grading": "Hidden disjoint states from 2018 are scored by accuracy and AUC, plus a worst-state term, normalised between the baseline and the reference.",
+  "reference": "A tuned GBDT/CatBoost ensemble with feature engineering that we train; TableShift-style published figures (CatBoost 0.8141 OOD accuracy) give the ceiling.",
+  "source": "https://github.com/socialfoundations/folktables @ head ebace19d, code MIT; data governed by Census Bureau terms (public-domain status not verified)",
+  "task": "/app ships the folktables code plus several states of 2014-2016 PUMS person data as training data and a baseline logistic regression. The agent builds a better predictor for ACSIncome and ACSPublicCoverage using feature engineering, GBDT/ensembles and shift-robust reweighting. It delivers a predict.py within the CPU budget.",
+  "title": "ACS PUMS income and coverage prediction under state and year shift"
+ },
+ "class": "research",
+ "created": "2026-10-21T07:11:58Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T07:11:58Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:58Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-055 0.15"
+  ],
+  [
+   "2026-10-21T07:27:41Z",
+   "smoke",
+   "green",
+   "python: build ok, 15 tests, 8 failing, deterministic over 3 runs"
+  ]
+ ],
+ "id": "S-rs-027",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.152,
+    "S-op-055"
+   ],
+   [
+    0.139,
+    "S-op-057"
+   ],
+   [
+    0.133,
+    "shift_2d [AlgoTune]"
+   ],
+   [
+    0.129,
+    "S-im-096"
+   ],
+   [
+    0.108,
+    "logistic-regression-divergence [original]"
+   ]
+  ]
+ },
+ "method": "research",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 2,
+  "clone_ok": true,
+  "cmd_build": ". /p/venv/bin/activate && python -c \"import sys; print(sys.version)\"",
+  "cmd_fetch": "python3 -m venv /p/venv && . /p/venv/bin/activate && pip install -q -U pip &&\n         ex=$(python3 - <<\"EOF\"\nimport tomllib\nx=[]\ntry:\n  d=tomllib.load(open(\"pyproject.toml\",\"rb\")); x=list(((d.get(\"project\") or {}).get(\"optional-dependencies\") or {}).keys())\nexcept Exception: pass\nprint(\",\".join(e for e in x if not any(b in e.lower() for b in (\"doc\",\"gpu\",\"cuda\",\"win\",\"mac\"))))\nEOF\n);\n         grp",
+  "cmd_test": ". /p/venv/bin/activate && pytest -p no:cacheprovider -q -o junit_family=xunit2 --junitxml=$OUT/run$i.xml",
+  "commit": "ebace19d8065efc43589f0067bf183398eb156b9",
+  "deterministic": true,
+  "eco": "python",
+  "fetch_ok": true,
+  "fetch_s": 61,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   1,
+   1,
+   1
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "tests.test_examples::test_download",
+   "tests.test_examples::test_train",
+   "tests.test_pandas::test_definitions_download",
+   "tests.test_pandas::test_pandas_automatic_categories",
+   "tests.test_pandas::test_pandas_with_numpy",
+   "tests.utils.test_download_utils::test_download_datasets_only_one_file",
+   "tests.utils.test_download_utils::test_download_datasets_with_multiple_files",
+   "tests.utils.test_download_utils::test_download_file"
+  ],
+  "stable_failures": 8,
+  "subdir": "",
+  "suite_s": 3,
+  "test_files": 8,
+  "tests_fail": 8,
+  "tests_listed": 15,
+  "tests_pass": 7,
+  "tests_skip": 0,
+  "tests_total": 15,
+  "timeouts": [],
+  "verdict": "green",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "ebace19d8065efc43589f0067bf183398eb156b9",
+  "kb": 1298,
+  "lang": "Python",
+  "open_prs": 6,
+  "pushed": "2024-05-15",
+  "release": "",
+  "spdx": "MIT",
+  "stars": 295
+ },
+ "source_key": "github.com/socialfoundations/folktables|baseline-logisticregression-readme-example-or-default-gbdt-t",
+ "source_notes": "Hidden split idea: train on states A in 2014-2016, hidden test on disjoint states in 2018 (combined geographic + temporal shift). 2018 1-year person file csv_pus.zip is 536M for all states (census.gov directory listing). README shows ACSDataSource(survey_year, horizon='1-Year', survey='person') and get_data(states=[...]). Levers: feature engineering, GBDT tuning, state-robust reweighting, monotone constraints. INFERRED: ~1-3 min per eval on ~1M training rows, 8 threads. Single-source for licence (README). Overlap: none known.",
+ "source_url": "https://github.com/socialfoundations/folktables",
+ "source_version": "Baseline: LogisticRegression (README example) or default GBDT trained on one or more source states in 2014, evaluated on other states or 2018. -> Reference: tuned GBDT/CatBoost ensemble with feature engineering; or TableShift-style ACS numbers (Income OOD acc CatBoost 0.8141, LightGBM 0.8091, XGBoost 0.7919).",
+ "status": "l0-pass"
+}

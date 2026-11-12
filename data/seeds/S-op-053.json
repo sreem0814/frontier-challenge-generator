@@ -1,0 +1,251 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "20h. Large C codebase; the ceiling needs a rewrite-scale change, so frontier earns partial credit by buckets (small-key GET/SET, hashes, sorted sets, pipelined traffic). Weaker models break replies or persistence.",
+  "cheat": "Dropping durability or replies, or answering from a cache in the client path; closed by digest and reply gates and an fsync/persistence reload check.",
+  "grading": "Hidden generated command traces replayed with a client script across data types and sizes. Gate: reply streams and DEBUG DIGEST equal to the reference on all traces, plus a subset of the repo's own tests. Score: median throughput/latency over traces, 2^u-1 against the 9.x speedup.",
+  "reference": "Valkey 9.1.2 built from source as the speed target; the corresponding diff (hashtable rewrite, embedded keys, IO threads) is thousands of lines.",
+  "source": "https://github.com/valkey-io/valkey @ 8.0.x base, target 9.1.2 (base tag not verified), BSD-3-Clause",
+  "task": "/app ships a history-less Valkey snapshot at the older release. Agent speeds up the keyspace hashtable, SET/GET/HSET/ZADD paths and I/O threading while keeping RESP replies and persistence identical.",
+  "title": "Valkey 8.0 to 9.x keyspace and command-path speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:08:50Z",
+ "family": "database-query",
+ "final": 71,
+ "history": [
+  [
+   "2026-10-21T07:08:50Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-052 0.32"
+  ],
+  [
+   "2026-10-21T07:12:08Z",
+   "v1",
+   "pass",
+   "score 75; dead links []"
+  ],
+  [
+   "2026-10-21T07:12:52Z",
+   "v2",
+   "killed:K4",
+   "The repo and licence are solid, but the score is a client-server throughput median over loopback under gVisor. gVisor's network stack and syscall overhead would dominate per-command CPU, so the published 17-30% bare-metal gains (no benchmark setup given) likely shrink to near the noise floor. IO-thr"
+  ]
+ ],
+ "id": "S-op-053",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.321,
+    "S-op-052"
+   ],
+   [
+    0.202,
+    "S-op-048"
+   ],
+   [
+    0.2,
+    "S-op-050"
+   ],
+   [
+    0.07,
+    "giac_subset [MirrorCode]"
+   ],
+   [
+    0.069,
+    "set_cover [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "rank": null,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "bc5aae2479fdb138dfc0e86b1bbdda02927f16c7",
+  "kb": 269473,
+  "lang": "C",
+  "open_prs": 377,
+  "pushed": "2026-10-20",
+  "release": "9.1.2",
+  "spdx": "BSD-3-Clause",
+  "stars": 27475,
+  "test_files": 638,
+  "test_kb": 5950,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/valkey-io/valkey|valkey-io-valkey",
+ "source_notes": "SWE-smith profile (c): its suite runs in a container; test command: TERM=dumb ./runtest --durable. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/valkey-io/valkey",
+ "source_version": "",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://valkey.io/blog/valkey-9-1-delivers-improvements-in-security-performance-and-more/",
+  "facts": [
+   {
+    "claim": "valkey-io/valkey has a 9.1.2 release tag",
+    "status": "confirmed",
+    "url": "https://github.com/valkey-io/valkey/releases/tag/9.1.2"
+   },
+   {
+    "claim": "9.1.2 is dated 31 Aug 2026 and is a security release (RDMA and Lua debugger use-after-free advisories)",
+    "status": "confirmed",
+    "url": "https://github.com/valkey-io/valkey/releases/tag/9.1.2"
+   },
+   {
+    "claim": "8.0.x tags exist: 8.0.10 and 8.0.11 are listed; no other 8.0.x tag appears",
+    "status": "confirmed",
+    "url": "https://github.com/valkey-io/valkey/tags"
+   },
+   {
+    "claim": "The 8.0.x base tag the snapshot uses is specified",
+    "status": "not_found",
+    "url": "https://github.com/valkey-io/valkey/tags"
+   },
+   {
+    "claim": "Licence is BSD-3-Clause (COPYING at 9.1.2 carries the SPDX identifier)",
+    "status": "confirmed",
+    "url": "https://github.com/valkey-io/valkey/blob/9.1.2/COPYING"
+   },
+   {
+    "claim": "9.1 redesigned IO threading communication model gives up to 17% throughput gain across workloads",
+    "status": "confirmed",
+    "url": "https://valkey.io/blog/valkey-9-1-delivers-improvements-in-security-performance-and-more/"
+   },
+   {
+    "claim": "The 17% IO-thread figure has a published benchmark setup and baseline version",
+    "status": "not_found",
+    "url": "https://valkey.io/blog/valkey-9-1-delivers-improvements-in-security-performance-and-more/"
+   },
+   {
+    "claim": "Raising the string embedding size threshold gives up to 30% higher string GET throughput",
+    "status": "confirmed",
+    "url": "https://valkey.io/blog/valkey-9-1-delivers-improvements-in-security-performance-and-more/"
+   },
+   {
+    "claim": "A hashtable rewrite and embedded keys as the seed describes them",
+    "status": "not_found",
+    "url": "https://valkey.io/blog/valkey-9-1-delivers-improvements-in-security-performance-and-more/"
+   },
+   {
+    "claim": "Hash table rehashing optimised; resizing paused during SREM, ZREM and HDEL bulk deletes (no figures given)",
+    "status": "confirmed",
+    "url": "https://valkey.io/blog/valkey-9-1-delivers-improvements-in-security-performance-and-more/"
+   }
+  ],
+  "frontier_hours": 30,
+  "full_card": {
+   "band": "Expected to be partial: 9.1 gains are modest per workload (17-30%), so the reward curve depends on how far S is above 1; frontier should reach some buckets; no dated evidence",
+   "build_cost": "about 1 to 2 days to build the snapshot, reference binary, traces and harness; smoke_build was empty, so no build verdict exists yet",
+   "deliverable": "Faster server on the same RESP replies and persistence: keyspace hashtable, SET/GET/HSET/ZADD paths, IO threading, verified by DEBUG DIGEST and reply-stream equality on hidden traces",
+   "gates_anticheat": "Digest and reply gates; persistence reload check with fsync; must keep server binary, no client-side cache; snapshot excludes upstream history",
+   "grading_surface": "Hidden generated command traces (data types, sizes) replayed by client; reply and digest equality gate, repo test subset gate, median throughput/latency score 2^u-1",
+   "local_fit": "gVisor: loopback networking and timing noise under gVisor are the risk for throughput medians; 8 cores and 16 GB are enough",
+   "lookup": "partial: 9.1 release notes and blog describe the changes at headline level; full diff is public git history so the snapshot must be history-less",
+   "provenance": "valkey-io/valkey, BSD-3-Clause, 27.5k stars, tag 9.1.2 exists (security release 31 Aug 2026); base 8.0.10 or 8.0.11 (exact base not verified)",
+   "reference": "Valkey 9.1.2 build (permissive, complete); its upstream speedup on the hidden traces is unmeasured; published gains are 17% (IO threads) and 30% (string GET) with no setup given",
+   "ships": "history-less snapshot of 8.0.x source (no .git, no later tags), built C, redis-compatible server with tests (runtest, 638 test files)",
+   "similarity": "Nearest l0 neighbour S-op-052 at 0.321 (sibling seed, not a public task); S-op-048 0.202; S-op-050 0.200; Redis-family servers are crowded but this is optimisation of a real server, not a clone"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated evidence of frontier performance on this kind of work; modest gain range may cap scores."
+   },
+   "Build": {
+    "v": 4,
+    "why": "C build with make is quick, but the harness, traces and snapshot need work."
+   },
+   "Fit": {
+    "v": 3,
+    "why": "Loopback throughput under gVisor is noisy; medians may vary between runs."
+   },
+   "Hor": {
+    "v": 5,
+    "why": "20h tier on a large C codebase with several subsystems."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSD-3-Clause confirmed in COPYING."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Buckets by data type and pipelining, but the score is largely one aggregate throughput number."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest neighbour is a sibling seed at 0.321; Redis-family crowding but not a clone task."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public 27k-star repo, tag 9.1.2 confirmed, real bug and security history."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Upstream 9.1.2 is complete and permissive, but its speedup on the hidden traces is unmeasured and published gains are modest."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Diff is public git history, so a history-less snapshot is required; agents can recall outline only."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated traces across types and sizes plus digest gate give a large surface, but scoring is throughput medians."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "9.1.2 is within 5% of 8.0.x on all families (too little headroom for a reward curve), or run-to-run CV exceeds 10% so the median score is noise.",
+   "pass_if": "Both builds pass the test subset; reply streams and digests are identical across runs; 9.1.2 beats 8.0.x by at least 15% median on at least one trace family; run-to-run CV is below 5%.",
+   "steps": [
+    "Fetch valkey 8.0.10 and 9.1.2 as source archives (no git history); build both with make in a throwaway container with network.",
+    "Run a short runtest subset on both builds to confirm they pass.",
+    "Write a trace generator for GET/SET/HSET/ZADD at 16B, 512B and 64KB, pipeline depth 1 and 10, 9 IO threads.",
+    "Replay each trace on both builds with redis-benchmark or a custom client; record DEBUG DIGEST and the reply stream for each.",
+    "Repeat each run 5 times to measure run-to-run variance of median throughput.",
+    "Check that the reply streams and digests match between the two builds for every trace (determinism check)."
+   ]
+  },
+  "summary": "Valkey 9.1.2 exists and is BSD-3-Clause, so the source and licence claims hold, but the \"hashtable rewrite, embedded keys\" description is not in the public release notes, which only describe rehash tuning, a string embedding threshold, and an IO-thread redesign. The idea is viable as a 20h optimisation with a history-less snapshot, though the reference's measured speedup on the hidden traces is unknown and must be measured in the spike before the score curve is trusted.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 75,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-op-053",
+  "kill_code": "K4",
+  "note": "The repo and licence are solid, but the score is a client-server throughput median over loopback under gVisor. gVisor's network stack and syscall overhead would dominate per-command CPU, so the published 17-30% bare-metal gains (no benchmark setup given) likely shrink to near the noise floor. IO-thread gains also depend on cgroup CPU behaviour, and cgroup CPU limits are stubs in this sandbox. The hashtable rewrite and embedded keys are not confirmed in the 9.1 notes, the base tag is unpinned, S is unmeasured, and frontier_hours of 30 exceed the 20h tier. The subject also sits next to the crowded Redis-clone family.",
+  "scores": {
+   "Band": 2,
+   "Build": 4,
+   "Fit": 2,
+   "Hor": 5,
+   "Lic": 5,
+   "Multi": 3,
+   "Nov": 3,
+   "Real": 5,
+   "Ref": 3,
+   "Seal": 3,
+   "Surf": 4
+  }
+ },
+ "v2_done": true,
+ "v2_score": 71
+}

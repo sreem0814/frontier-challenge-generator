@@ -1,0 +1,217 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "8h. Many option buckets (indexing, SIMD, threading, I/O). A frontier agent gets part of the speedup. Risk: the later release is public (a model may recall the direction).",
+  "cheat": "Output caching is closed by fresh corpora and distinct runs; a prebuilt newer binary is not shipped.",
+  "grading": "Hidden corpus generated at grade time (text, source trees, binary and UTF-16 files) with a pattern/option matrix. Output is compared byte-for-byte to the reference binary and the wall-clock median speedup is measured.",
+  "reference": "The later release is the measured upstream speedup; the real size of the delta is not verified. Grep is a crowded subject, but the deliverable is speed.",
+  "source": "https://github.com/Genivia/ugrep @ v7.8.5 head f2cc252c, BSD-3-Clause",
+  "task": "/app ships a snapshot of an older ugrep release (the pair to be pinned; not verified) with its make test suite. The agent makes it faster toward the later release on literal, regex, fuzzy and recursive-directory workloads while keeping output byte-identical.",
+  "title": "ugrep search engine speedup across releases"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:11:58Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T07:11:58Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:58Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-057 0.25"
+  ],
+  [
+   "2026-10-21T07:14:26Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 4, 'Surf': 4, 'Ref': 2, 'Band': 3, 'Hor': 3, 'Multi': 4, 'Seal': 3, 'Nov': 3, 'Lic': 5, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-op-058",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.248,
+    "S-op-057"
+   ],
+   [
+    0.238,
+    "S-op-054"
+   ],
+   [
+    0.236,
+    "S-op-050"
+   ],
+   [
+    0.11,
+    "delta [ProgramBench]"
+   ],
+   [
+    0.096,
+    "regex_engine [SpecBench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f2cc252c011460f6c75b1fb591813b4b6b59c225",
+  "kb": 159707,
+  "lang": "C++",
+  "open_prs": 1,
+  "pushed": "2026-10-19",
+  "release": "v7.8.5",
+  "spdx": "BSD-3-Clause",
+  "stars": 3314,
+  "test_files": 1069,
+  "test_kb": 10799,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/genivia/ugrep|genivia-ugrep",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: make test. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/Genivia/ugrep",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Genivia/ugrep/releases/tag/v7.8.5",
+  "facts": [
+   {
+    "claim": "ugrep v7.8.5 release exists (dated 15 Sep, no year shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/Genivia/ugrep/releases"
+   },
+   {
+    "claim": "Repository licence is BSD-3-Clause",
+    "status": "confirmed",
+    "url": "https://github.com/Genivia/ugrep/blob/master/LICENSE.txt"
+   },
+   {
+    "claim": "v7.8.5 release notes contain a documented speedup over earlier releases",
+    "status": "contradicted",
+    "url": "https://github.com/Genivia/ugrep/releases/tag/v7.8.5"
+   },
+   {
+    "claim": "v7.8.5 release notes list five items: CP437 LF/CR output, --encoding edge case, -z xz/lzma limits, mode-flag ordering, config-file error message; none about performance",
+    "status": "confirmed",
+    "url": "https://github.com/Genivia/ugrep/releases/tag/v7.8.5"
+   },
+   {
+    "claim": "Earlier releases document speed work (v7.5.0 'smaller and faster executable' with PM3+PM5; v7.4.3 branch marking and 'v7.5 ... faster than before')",
+    "status": "confirmed",
+    "url": "https://github.com/Genivia/ugrep/releases"
+   },
+   {
+    "claim": "tests/ holds verify.sh, gen.sh and a makefile with about 34 visible files",
+    "status": "confirmed",
+    "url": "https://github.com/Genivia/ugrep/tree/master/tests"
+   },
+   {
+    "claim": "A make test target exists at the root or in tests/",
+    "status": "not_found",
+    "url": "https://github.com/Genivia/ugrep/tree/master/tests"
+   },
+   {
+    "claim": "test_files 1069 / test_kb 10799 as stated in source_facts",
+    "status": "not_found",
+    "url": "https://github.com/Genivia/ugrep/tree/master/tests"
+   },
+   {
+    "claim": "The 'older release' pin is a specific version with measured slower behaviour",
+    "status": "not_found",
+    "url": "https://github.com/Genivia/ugrep/releases"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "8h tier. Buckets: literal search, regex, fuzzy, recursive walk, binary/UTF-16 paths, I/O buffering, threading. A frontier agent may recover part of the gap; full reference speed is unlikely in 8h without upstream knowledge.",
+   "build_cost": "Unknown: smoke_build is empty, so the offline build is unverified. Estimate 2-4 days including the test matrix harness.",
+   "deliverable": "Faster ugrep binary on literal, regex, fuzzy and recursive-directory workloads with byte-identical output to the reference.",
+   "gates_anticheat": "Byte-for-byte output gate; fresh corpora and distinct runs defeat output caching; do not ship a prebuilt newer binary; reject edits to tests/ or build config via checksum of the grader's harness.",
+   "grading_surface": "Hidden corpora generated at grade time (text, source trees, binary, UTF-16) across a pattern/option matrix; byte-compare plus wall-clock median speedup. Executable oracle, unlimited generator.",
+   "local_fit": "C++ build with 8 cores and 16 GB is fine; wall-clock medians are allowed; gVisor has no perf counters, so use timing only.",
+   "lookup": "partial: upstream later direction is public on GitHub (commits between old pin and v7.8.5); no package install needed offline; history must be removed from /app.",
+   "provenance": "Genivia/ugrep, BSD-3-Clause, C++, 3314 stars; v7.8.5 tag exists; head f2cc252c not independently checked; pinned older release not identified.",
+   "reference": "Upstream v7.8.5 binary (or head). Its speedup over the chosen old pin is NOT shown in release notes; the 7.8.x notes contain no performance items. Real delta unverified.",
+   "ships": "History-less snapshot of an older ugrep release plus tests/ (verify.sh, gen.sh, makefile). Size of the C++ tree ~160 MB per source_facts.",
+   "similarity": "Nearest l0 neighbours are sibling optimization seeds S-op-057 (0.248), S-op-054 (0.238), S-op-050 (0.236); none is a public task. Grep is not on the CROWDED list."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Many buckets and an 8h tier fit, but no dated public evidence of agent results on this subject; the reference speed is unknown."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Offline build unverified (smoke_build empty); estimated 2-4 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only C++ with no network needed at run time; timing-based grading is allowed."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Several subsystems (search core, regex, fuzzy, I/O, threading) make a sustained 8h effort plausible."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSD-3-Clause, confirmed at LICENSE.txt."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Literal, regex, fuzzy, recursive and binary/UTF-16 paths give independent buckets with steady credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours at 0.24-0.25 are sibling seeds, not public tasks; no crowded-list match."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real BSD repo with a v7.8.5 release and a 1069-file test tree; the perf delta is unverified."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "The release notes for the later release show no performance work, so the reference speedup is not established."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Newer code is public on GitHub, so the reference cannot be kept from a model; the history-less snapshot blocks direct reads but not recall of direction."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Byte-compare over a generated pattern/option matrix plus timing is an executable oracle with an unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Median speedup is under 1.2x across all workloads, or outputs differ between v7.8.5 and the pin, or the offline build fails.",
+   "pass_if": "v7.8.5 is at least 1.5x faster than the pinned old release on at least two workloads with stable medians, outputs are byte-identical, and make test passes on both builds.",
+   "steps": [
+    "Clone Genivia/ugrep in a throwaway container with network; check out tag v7.8.5 (f2cc252c as the head reference) and the chosen old pin. Pin candidates: v7.4.3 and v7.5.0 both carry documented speed notes; choose the pin before measuring.",
+    "Build both with the root makefile offline; record build time and any missing optional libraries.",
+    "Run make test (or verify.sh) on both builds; confirm the target exists and records per-test results.",
+    "Generate a corpus with gen.sh or a script: text, source tree, binary and UTF-16 files, 1 GB total.",
+    "Run 4 workloads (literal -F, regex -E, fuzzy -Z, recursive -r) x 3 option sets, 5 timed runs each, median wall clock, and diff stdout byte-for-byte between old and new.",
+    "Compute the per-workload median speedup of v7.8.5 over the old pin. Check the variance (repeat within 10%)."
+   ]
+  },
+  "summary": "The source and licence check out (ugrep v7.8.5 exists and is BSD-3-Clause), but the claimed upstream speedup does not: the v7.8.5 release notes list five non-performance changes, and the pinned older release is not identified. The idea survives only if a spike shows a real speedup of v7.8.5 over a chosen old pin; the reference, pin, and offline build (smoke_build is empty) must be measured before any build.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 68
+}

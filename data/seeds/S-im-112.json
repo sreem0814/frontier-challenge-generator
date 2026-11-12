@@ -1,0 +1,210 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. Semantics (unification, partial sets, defaults, undefined propagation) are deep; frontier passes most of the core buckets, not the builtin tail. Weaker models stop at simple rule bodies.",
+  "cheat": "Shipping or vendoring OPA/regorus, or answering from a recalled case table; closed by no such binaries in the image and a random generator for unseen policies.",
+  "grading": "Hidden cases: OPA's own testdata subset plus a random policy and input generator, with OPA run as an oracle outside the image. Compare result values only, not error strings. Partial credit by case bucket.",
+  "reference": "Regorus and OPA are public. The reference is a clean implementation we write or a snapshot-reduced regorus (size to measure, well above 1000 lines).",
+  "source": "https://github.com/open-policy-agent/opa @ v1.21.3 (licence Apache-2.0); regorus v0.13.0 MIT as a second oracle",
+  "task": "/app ships the `opa eval`-style CLI contract and the public test-case YAML. Agent builds a Rego parser and evaluator (rules, comprehensions, `with`, negation, every, functions, ~150 pure builtins; crypto, time, net scoped out) that outputs JSON results.",
+  "title": "Rego policy evaluator matched to OPA on generated policies"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:08:51Z",
+ "family": "compiler-toolchain",
+ "history": [
+  [
+   "2026-10-21T07:08:51Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:51Z",
+   "l0",
+   "pass",
+   "top neighbour opa-rego-rule-profiling [DeepSWE] 0.25"
+  ],
+  [
+   "2026-10-21T07:10:20Z",
+   "v1",
+   "killed:K8",
+   "Rego evaluator matched to OPA is a documented-language conformance task. Its behaviour is in public docs, so the calibration pattern (documented conformance near 1.0 in under 2h) predicts a frontier agent saturates the core buckets early. The oracle cannot run at agent time, so no behaviour must be "
+  ]
+ ],
+ "id": "S-im-112",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.247,
+    "opa-rego-rule-profiling [DeepSWE]"
+   ],
+   [
+    0.236,
+    "opa-template-string-reconstruction [DeepSWE]"
+   ],
+   [
+    0.236,
+    "S-im-070"
+   ],
+   [
+    0.231,
+    "S-im-037"
+   ],
+   [
+    0.195,
+    "S-im-014"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "smoke": {
+  "skipped": "repo over 2 GB, not probed"
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "63f54da4c6607bef6e6bd8855d2768ce0d0d7336",
+  "kb": 3703655,
+  "lang": "Go",
+  "open_prs": 23,
+  "pushed": "2026-10-20",
+  "release": "v1.21.3",
+  "spdx": "Apache-2.0",
+  "stars": 12387,
+  "test_files": 4578,
+  "test_kb": 4701,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/open-policy-agent/opa|opa-v1-21-3-2026-10-19-commit-1c30900-regorus-v0-13-0-2026-1",
+ "source_notes": "Rego has partial-evaluation, builtins for crypto/time/net that must be scoped out; error strings differ so compare results only; moderate surface and low crowding",
+ "source_url": "https://github.com/open-policy-agent/opa",
+ "source_version": "OPA v1.21.3 (2026-10-19) commit 1c30900; regorus v0.13.0 (2026-10-14) main 124ecb76",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://www.openpolicyagent.org/docs/policy-reference/builtins",
+  "facts": [
+   {
+    "claim": "OPA release v1.21.3 exists (tag, marked Latest, published 19 Oct; headline is a bundle-signature security fix)",
+    "status": "confirmed",
+    "url": "https://github.com/open-policy-agent/opa/releases/tag/v1.21.3"
+   },
+   {
+    "claim": "OPA repository licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/open-policy-agent/opa/blob/main/LICENSE"
+   },
+   {
+    "claim": "regorus licence is MIT (LICENSE file also carries Go-derived BSD and Apache-2.0 notices)",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/microsoft/regorus/main/LICENSE"
+   },
+   {
+    "claim": "regorus v0.13.0 exists as a release",
+    "status": "not_found",
+    "url": "https://github.com/microsoft/regorus"
+   },
+   {
+    "claim": "regorus targets OPA v1.2.0, not v1.21.3, so it is not a version-matched second oracle; its README says some OPA test suites fail because builtins are missing",
+    "status": "contradicted",
+    "url": "https://github.com/microsoft/regorus"
+   },
+   {
+    "claim": "OPA documents about 188 built-in functions (fetch-model count, approximate); crypto 15, net 7, tokens 15, graphql 6, http 1, aws 1, tracing 1, opa 1 are out of scope, leaving roughly 135-140 pure builtins versus the ~150 in the task",
+    "status": "confirmed",
+    "url": "https://www.openpolicyagent.org/docs/policy-reference/builtins"
+   },
+   {
+    "claim": "OPA repo has 4578 test files (4.7 MB of tests) and is not archived, not a fork, pushed 2026-10-20",
+    "status": "confirmed",
+    "url": "https://github.com/open-policy-agent/opa"
+   }
+  ],
+  "frontier_hours": 5,
+  "full_card": {
+   "band": "8h tier claimed; documented conformance work of this kind lands near 1.0 quickly in calibration, so frontier likely finishes core buckets early",
+   "build_cost": "about 3-5 days for reference, generator and oracle harness (Build 2)",
+   "deliverable": "Rego parser and evaluator emitting JSON results for rules, comprehensions, with, negation, every, functions and about 135-150 pure builtins",
+   "gates_anticheat": "No OPA or regorus binaries in image; history-less snapshot; generator unseen by agent; oracle outside image",
+   "grading_surface": "OPA testdata subset plus random policy and input generator; OPA run as oracle outside the image; compares result values only",
+   "local_fit": "CPU-only Go/Rust; repo is 3.7 GB so snapshot must be pruned; sandbox fits",
+   "lookup": "partial: full OPA Go source and regorus Rust source are public and recallable in outline, not installable offline",
+   "provenance": "open-policy-agent/opa @ v1.21.3 (Apache-2.0); regorus v0.13.0 claimed as second oracle, MIT confirmed but version and OPA-version match not",
+   "reference": "Clean implementation we would write (>1000 lines); regorus snapshot would target OPA v1.2.0, not v1.21.3",
+   "ships": "CLI contract and public test-case YAML only; no OPA or regorus binaries or source in /app",
+   "similarity": "Max l0 cosine 0.247 to opa-rego-rule-profiling (DeepSWE, profiling not evaluator); no crowded-list match; Nov 3"
+  },
+  "kill_code": "K8",
+  "kill_reason": "Rego evaluator matched to OPA is a documented-language conformance task. Its behaviour is in public docs, so the calibration pattern (documented conformance near 1.0 in under 2h) predicts a frontier agent saturates the core buckets early. The oracle cannot run at agent time, so no behaviour must be discovered. A redesign would need semantics the agent cannot read from docs, for example an optimization variant measured on OPA-equivalent outputs.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Documented language conformance; calibration shows similar conformance tasks at about 0.99-1.0 in 23-104 minutes; semantics are largely in public docs, so K8 applies."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Reference, generator and oracle harness estimated at 3-5 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only and offline-buildable once pruned; the 3.7 GB repo must be snapshotted down."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8h tier is plausible, but the frontier likely finishes the core early, so the horizon is shorter than claimed."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 and MIT both permit shipping the system, data and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Many builtins and language features give buckets with steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours 0.195-0.247, none crowded; the DeepSWE OPA neighbour is a different deliverable (profiling)."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real OPA repo, pinned release v1.21.3, 12k stars, 4578 test files."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "A complete permissive reference would have to be written by us; regorus is public but targets OPA v1.2.0."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "The oracle and reference stay outside the image, but OPA Go source is famous and partly recallable."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Unlimited random generator plus OPA as executable oracle, result-value comparison."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The 60-minute probe scores 0.85 or more on the core subset (K8 confirmed), or OPA output is nondeterministic.",
+   "pass_if": "OPA builds from the tag, output is deterministic, the generator gives more than 80% valid policies, and the 60-minute probe scores under 0.6 on the sample.",
+   "steps": [
+    "In a throwaway networked container, shallow-clone open-policy-agent/opa at tag v1.21.3 and run go build ./cmd/opa; record time and whether it builds offline after vendoring.",
+    "Count the topdown YAML/rego test cases that would ship as the public subset, and note how many are hidden.",
+    "Write a generator for about 200 policies inside the in-scope feature set (rules, comprehensions, with, negation, every, functions, about 30 pure builtins); run opa eval -f json on each, twice, and diff.",
+    "Confirm the generator yields mostly valid, non-error policies and that OPA output is byte-identical across runs.",
+    "Time-box a 60-minute probe: one frontier agent builds a parser and evaluator for rules, comprehensions and negation only, scored on the sampled policies.",
+    "Record the score on the core subset and the time to reach it; compare with calibration (about 1.0 in under 2h for conformance tasks)."
+   ]
+  },
+  "summary": "Rego evaluator matched to OPA v1.21.3 is real, licensed (Apache-2.0, with MIT regorus as a secondary option that targets only OPA v1.2.0), and has a large generator-plus-oracle surface. It is killed as K8 because its documented-language conformance shape matches calibration tasks that reach near 1.0 quickly, so the frontier would likely saturate the core buckets.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74
+}

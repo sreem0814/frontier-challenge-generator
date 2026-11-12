@@ -1,0 +1,218 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "8 h. Buckets: ELF sections/segments, symbol tables, DWARF compileunits/inlines, Mach-O, WASM, diff mode. A frontier agent gets ELF and sections right, but DWARF attribution (inlines, line programs, ranges) and Mach-O are where it loses, so the average sits well below 1. A weaker model stalls at section tables.",
+  "cheat": "Shelling out to bloaty, readelf or objdump: none are in the image, and the harness blocks them. Hardcoding sample outputs does not help because the hidden binaries are different.",
+  "grading": "Differential: the real bloaty binary (not shipped) runs on thousands of generated and compiled binaries (varied compilers, flags, stripped or not, debug-split). Output is compared as exact CSV size tables per data source. Credit per data source and per format bucket. Visible sample binaries with expected CSVs.",
+  "reference": "Upstream bloaty source built from the pinned commit, with its test corpus. Our reference is a trimmed rewrite of the parsing core (a few thousand lines) that matches the oracle on the hidden binaries; the oracle is the ceiling.",
+  "source": "https://github.com/google/bloaty @ v1.1 (head f1a83e6), Apache-2.0",
+  "task": "/app ships a build harness and an empty CLI skeleton. The agent writes a binary size profiler in C++ or Rust. It parses ELF, Mach-O and WASM and reads DWARF line and symbol info. It supports data sources sections, segments, symbols, compileunits and inlines, plus -d hierarchies, diff mode (-- base) and CSV output.",
+  "title": "Binary size profiler matched to Bloaty on ELF, Mach-O and WebAssembly"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-032 0.22"
+  ],
+  [
+   "2026-10-21T03:19:47Z",
+   "v1",
+   "killed:K9",
+   "As scoped for the 8 h tier, the whole scope (all formats, DWARF inlines, Mach-O, diff, CSV exactness) is about 30 frontier hours, so no trial is likely to reach 0.9 of the reference. Reshape to a 20 h tier, or trim to ELF plus sections, segments, symbols and compileunits, to make it viable. Two open"
+  ]
+ ],
+ "id": "S-im-102",
+ "kill": "K9",
+ "l0": {
+  "neighbours": [
+   [
+    0.224,
+    "S-im-032"
+   ],
+   [
+    0.207,
+    "S-im-038"
+   ],
+   [
+    0.204,
+    "S-im-090"
+   ],
+   [
+    0.132,
+    "extract-elf [archive]"
+   ],
+   [
+    0.098,
+    "elf_linker [SpecBench]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "f1a83e63f36beb628dcf022e1201a2eb391a22a6",
+  "kb": 4679,
+  "lang": "C++",
+  "open_prs": 21,
+  "pushed": "2026-09-24",
+  "release": "v1.1",
+  "spdx": "Apache-2.0",
+  "stars": 5563,
+  "test_files": 226,
+  "test_kb": 19103,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/google/bloaty|google-bloaty",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: cd build && ctest --verbose --output-on-failure --rerun-failed --repeat until-pass:1. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/google/bloaty",
+ "source_version": "",
+ "status": "killed:K9",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "not found",
+  "facts": [
+   {
+    "claim": "google/bloaty v1.1 release exists, marked Latest (release page; date shown as 24 May, no year)",
+    "status": "confirmed",
+    "url": "https://github.com/google/bloaty/releases/tag/v1.1"
+   },
+   {
+    "claim": "Seed says v1.1 head is f1a83e6; the v1.1 tag/release points to commit 87082741b1cc0a97cd84bd17cd4ee41d70a42fc6, so the pin must be the tag commit, not the repo HEAD",
+    "status": "contradicted",
+    "url": "https://github.com/google/bloaty/releases/tag/v1.1"
+   },
+   {
+    "claim": "Licence is Apache License 2.0 at v1.1",
+    "status": "confirmed",
+    "url": "https://github.com/google/bloaty/blob/v1.1/LICENSE"
+   },
+   {
+    "claim": "v1.1 README: input formats ELF, Mach-O, WebAssembly (experimental); PE/COFF and APK not supported",
+    "status": "confirmed",
+    "url": "https://github.com/google/bloaty/blob/v1.1/README.md"
+   },
+   {
+    "claim": "v1.1 README: data sources segments, sections (default), symbols, inputfiles, armembers, compileunits, inlines, custom regex sources, -d hierarchies; diff mode via -- base; --csv and --tsv output",
+    "status": "confirmed",
+    "url": "https://github.com/google/bloaty/blob/v1.1/README.md"
+   },
+   {
+    "claim": "Tests directory at v1.1 holds bloaty_test.cc, bloaty_misc_test.cc, range_map_test.cc, fuzz driver, test.h, strarr.h and testdata/ (count of 226 test files / 19 MB from API not reproduced; only 8 top-level entries visible)",
+    "status": "not_found",
+    "url": "https://github.com/google/bloaty/tree/v1.1/tests"
+   },
+   {
+    "claim": "tests/testdata has linux-x86, linux-x86_64, misc, fuzz_corpus folders and make_test_files.sh; no visible expected-CSV golden files at this level",
+    "status": "confirmed",
+    "url": "https://github.com/google/bloaty/tree/v1.1/tests/testdata"
+   },
+   {
+    "claim": "A bloaty package exists in Debian stable (so it cannot be apt-installed into the image)",
+    "status": "not_found",
+    "url": "https://packages.debian.org/search?keywords=bloaty&searchon=names&suite=stable&section=all"
+   },
+   {
+    "claim": "Debian binutils ships readelf and objdump, and gcc depends on it so the image likely has them (seed says none are in the image)",
+    "status": "not_found",
+    "url": "https://packages.debian.org/stable/binutils"
+   }
+  ],
+  "frontier_hours": 30,
+  "full_card": {
+   "band": "Tier 20 h recommended (seed says 8 h). Frontier agents likely reach ELF sections, segments and symbols; DWARF inlines and line programs and Mach-O are where they lose. As written (all formats, inlines, diff, CSV exactness) the whole scope is about 30 frontier hours, so no trial reaches 0.9 of the reference in 8 h. Partial buckets: ELF sections, ELF segments, symbols, CSV format, -d hierarchies, diff mode, compileunits, WASM, inlines, Mach-O. A weaker model likely stops at section tables.",
+   "build_cost": "3-4 days: reference parsing core (few thousand lines) plus generator and grader-side oracle harness for thousands of binaries across compilers and flags. Smoke build is empty (no probe verdict), so the build is unverified.",
+   "deliverable": "C++ or Rust binary size profiler: ELF, Mach-O and WASM parsing; DWARF line and compile-unit/inline attribution; data sources sections, segments, symbols, compileunits, inlines; -d hierarchies; diff mode (-- base); CSV output matching bloaty exactly.",
+   "gates_anticheat": "Shelling out to bloaty is closed only if no bloaty binary, no Debian package (none in stable), and no source copy exist in the image; readelf/objdump closure is unverified because binutils normally comes with a C++ toolchain. Close by removing or wrapping binutils and llvm-dwarfdump in the harness, and by checking PATH at grading. Hidden binaries are generated grader-side, so hardcoding fails. Ship no upstream expected-output tests.",
+   "grading_surface": "Differential against the real bloaty binary (not shipped) on thousands of generated and compiled binaries; exact CSV per data source, per format bucket; visible sample binaries with expected CSV. Strong surface, but the oracle must stay grader-side only.",
+   "local_fit": "CPU-only, C++ build, DWARF generation done grader-side with compilers. Fits 8 cores and 16 GB; gVisor has no kernel features needed. No network at run time.",
+   "lookup": "partial: upstream public on GitHub; Debian stable lacks the package; no Rust or C++ reimplementation found; frontier models may recall the architecture (ELF/DWARF/Mach-O parsers, range maps) but not byte-exact attribution rules.",
+   "provenance": "google/bloaty, Apache-2.0, 5.5k stars, C++, pushed 2026-09-24. v1.1 tag = commit 87082741 (seed's f1a83e6 is repo HEAD, not the tag). Upstream is public with full history, so the image must ship a history-less snapshot at the base.",
+   "reference": "Upstream bloaty v1.1 is the oracle and a complete Apache-2.0 implementation. Our reference would be a trimmed rewrite of the parsing core (few thousand lines), not yet written and not verified to match the oracle on DWARF inlines or Mach-O.",
+   "ships": "Build harness and empty CLI skeleton; the image must not contain bloaty, its test expectations, or any hidden binary expectation. Snapshot of the v1.1 source is the only upstream code allowed; test binaries under tests/testdata may ship only if stripped of expected outputs.",
+   "similarity": "Nearest l0 neighbours S-im-032 (0.224), S-im-038 (0.207), S-im-090 (0.204): all above 0.15 and their subjects are not given in the input, so Nov needs them checked. Not on the CROWDED list (no size profiler listed there). Upstream bloaty is a real subject, not a public benchmark task."
+  },
+  "kill_code": "K9",
+  "kill_reason": "As scoped for the 8 h tier, the whole scope (all formats, DWARF inlines, Mach-O, diff, CSV exactness) is about 30 frontier hours, so no trial is likely to reach 0.9 of the reference. Reshape to a 20 h tier, or trim to ELF plus sections, segments, symbols and compileunits, to make it viable. Two open gates also need fixing: the pin must be the tag commit 87082741, and the readelf/objdump block must be verified.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Expected band is plausible (ELF easy, DWARF and Mach-O hard), but no dated public evidence of agents on this task, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-4 days for the reference, harness and grader-side oracle corpus."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only C++ build, no network at run time, fits 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-format, multi-source work fits a 20 h tier; at 8 h it is too thin for the whole scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed at v1.1 LICENSE."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Data sources, formats, hierarchies, diff and CSV give independent buckets with steady credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top l0 neighbour is 0.224, above the 0.15 bar, and the neighbours are unnamed, so novelty needs checking; not crowded."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public Apache-2.0 repo with a tagged v1.1 release and confirmed formats and data sources; only the pin needs correcting to 87082741."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Upstream is a complete permissive implementation, but our trimmed rewrite is unwritten and unverified against DWARF inlines and Mach-O."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Upstream is public with history, so it needs a history-less snapshot; not in Debian stable, and the oracle stays grader-side if the harness is set up correctly."
+   },
+   "Surf": {
+    "v": 5,
+    "why": "Differential oracle with a generator over thousands of binaries, exact CSV per source and bucket."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Bloaty fails to build offline or its output is nondeterministic, or readelf/objdump cannot be blocked or removed from the base image.",
+   "pass_if": "Bloaty builds from the tag and its output is deterministic over three runs; the prototype matches sections, segments and symbols CSV on at least 18 of 20 binaries; readelf/objdump can be blocked in a harness.",
+   "steps": [
+    "In a throwaway networked Linux container, clone google/bloaty and check out tag v1.1 (commit 87082741); record the commit.",
+    "Build bloaty with cmake and run its test binaries; record pass/fail per test.",
+    "Compile about 20 small binaries with gcc and clang across -O0/-O2, -g, stripped, and -gsplit-dwarf; include one ELF with inlines.",
+    "Run bloaty three times on each binary for -d sections, segments, symbols, compileunits, inlines and --csv; check byte-identical output across runs.",
+    "Write a 200-line ELF prototype (section and segment tables and symbol sizes) and compare its CSV to bloaty on the 20 binaries.",
+    "Check whether readelf and objdump exist in a Debian base image with gcc and clang installed, and whether the harness can block them; record the result.",
+    "Record which DWARF pieces (line programs, abbrev, ranges, inlines) would be needed for compileunits and inlines, estimated in hours."
+   ]
+  },
+  "summary": "Bloaty v1.1 is real, Apache-2.0, and a strong differential oracle, but the seed pins the wrong commit (f1a83e6 is repo HEAD; the tag is 87082741) and its cheat-path claim about readelf and objdump is unverified. As specified for 8 h it is too large for any trial to finish, so it should be re-tiered to 20 h or trimmed to ELF, segments, symbols and compileunits before a build.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 78
+}

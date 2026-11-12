@@ -1,0 +1,211 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. The grammar is many regex state machines; frontier completes most simple languages and drops on edge states; credit is per language. Weaker models finish a few languages. Memorisation risk is medium.",
+  "cheat": "Table of recalled outputs for known example files; closed by mutated unseen inputs and no Pygments in the image.",
+  "grading": "Hidden snippets and example files from the repo's tests plus generated mutations (truncated, spliced, unicode), compared to Pygments token output exactly. Credit per language and per token type.",
+  "reference": "Reference written by us and checked against Pygments output; scale measured on the 20 chosen lexers.",
+  "source": "https://github.com/pygments/pygments @ 2.21.0, BSD-2-Clause",
+  "task": "/app ships a lexer framework spec and lexing interfaces in Rust or Go without any Pygments source. Agent writes token-stream lexers for a named set of 20 languages (including multi-state and delegating ones) and a CLI that prints type/value pairs.",
+  "title": "Syntax lexers for 20 languages matched to Pygments token streams"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:08:51Z",
+ "family": "font-text",
+ "history": [
+  [
+   "2026-10-21T07:08:51Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-090 0.17"
+  ],
+  [
+   "2026-10-21T07:10:13Z",
+   "v1",
+   "killed:K8",
+   "Famous library port: Pygments lexers are public, Chroma (Go) is a heavily Pygments-derived lexer set, and a frontier model can recall much of the token behaviour, so the task is likely too easy and the Seal gate is weak. Rescue to test: restrict to the 2.21.0 new or changed lexers (BitBake, Caddyfil"
+  ]
+ ],
+ "id": "S-im-113",
+ "kill": "K8",
+ "l0": {
+  "neighbours": [
+   [
+    0.168,
+    "S-im-090"
+   ],
+   [
+    0.153,
+    "S-im-032"
+   ],
+   [
+    0.152,
+    "S-op-053"
+   ],
+   [
+    0.098,
+    "family (21 repos, 8 languages) [RepoMod-Bench]"
+   ],
+   [
+    0.094,
+    "family (rolling, multi-language, Windows) [SWE-bench-Live]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "156d85fdd18d34427fe893527e71da91dcfb0eb5",
+  "kb": 28635,
+  "lang": "Python",
+  "open_prs": 322,
+  "pushed": "2026-09-27",
+  "release": "2.21.0",
+  "spdx": "BSD-2-Clause",
+  "stars": 2215,
+  "test_files": 2360,
+  "test_kb": 39170,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/pygments/pygments/tree/master/tests|2-21-0-2026-08-17-master-156d85f-2026-09-27",
+ "source_notes": "Per-language lexer behaviour is a very wide, data-driven surface (input source + expected token stream); scope to N languages is natural. Low crowding, memorization risk medium (lexers public). Example files carry their own source-file licences (mixed)",
+ "source_url": "https://github.com/pygments/pygments/tree/master/tests",
+ "source_version": "2.21.0 (2026-08-17); master 156d85f 2026-09-27",
+ "status": "killed:K8",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/pygments/pygments/releases/tag/2.21.0",
+  "facts": [
+   {
+    "claim": "pygments/pygments has a 2.21.0 release tag and GitHub release page marked Latest (released 17 Aug, year not shown on page)",
+    "status": "confirmed",
+    "url": "https://github.com/pygments/pygments/releases/tag/2.21.0"
+   },
+   {
+    "claim": "2.21.0 adds lexers BitBake, Caddyfile, CEL and PureScript, and changes C#, C/C++, CUDA, Python, Ruby, Markdown, Bash, JavaScript, Kotlin, Vim, YAML and TypeScript",
+    "status": "confirmed",
+    "url": "https://github.com/pygments/pygments/releases/tag/2.21.0"
+   },
+   {
+    "claim": "Pygments licence is BSD 2-Clause (source and binary redistribution conditions, AS IS disclaimer; copyright 2006-2022 AUTHORS)",
+    "status": "confirmed",
+    "url": "https://github.com/pygments/pygments/blob/2.21.0/LICENSE"
+   },
+   {
+    "claim": "tests/examplefiles holds about 100 or more example files (listing truncated; includes abnf, ada, bash, c, cpp, csharp, clojure, cobol, dart, docker; no Python, Rust or Go names in the visible part)",
+    "status": "confirmed",
+    "url": "https://github.com/pygments/pygments/tree/2.21.0/tests/examplefiles"
+   },
+   {
+    "claim": "Chroma (alecthomas/chroma v2, pure Go) is based heavily on Pygments and ports Pygments lexers via a pygments2chroma_xml.py script; latest v2 listed is v2.20.0 (Aug 2025)",
+    "status": "confirmed",
+    "url": "https://pkg.go.dev/github.com/alecthomas/chroma/v2"
+   },
+   {
+    "claim": "Debian/Ubuntu package python3-pygments exists as a binary of the pygments source package",
+    "status": "confirmed",
+    "url": "https://packages.ubuntu.com/source/noble/pygments"
+   },
+   {
+    "claim": "python3-pygments is installed by default in a Debian or Ubuntu base image (so it would be in /app's image)",
+    "status": "not_found",
+    "url": "https://packages.ubuntu.com/source/noble/pygments"
+   },
+   {
+    "claim": "A complete reference implementation of the 20 chosen lexers exists and matches Pygments output (our reference)",
+    "status": "not_found",
+    "url": "https://github.com/pygments/pygments/tree/2.21.0/tests/examplefiles"
+   }
+  ],
+  "frontier_hours": 4,
+  "full_card": {
+   "band": "Seed claims 8h. Public ports of Pygments lexers exist in Go (Chroma), so frontier recall is likely to be high and fast. Rescue option: restrict scope to the 2.21.0 new or changed lexers (BitBake, Caddyfile, CEL, PureScript, C#, CUDA, Ruby) which are less likely to be memorised. Not validated.",
+   "build_cost": "Reference for 20 lexers matched exactly to Pygments on example files and mutations: about 4 to 8 engineer-days (estimate, not a probe). Smoke build was not run ({}), so no build verdict.",
+   "deliverable": "Token-stream lexers for 20 languages (multi-state and delegating ones) plus CLI",
+   "gates_anticheat": "Close recall cheat: mutated unseen inputs; no Pygments in image (remove python3-pygments and any pip copy; verify with dpkg and pip list); grader-only expected outputs; tests and build config read-only. Vendoring Chroma also needs a check of the module cache",
+   "grading_surface": "Hidden snippets and tests/examplefiles-derived files plus generated mutations (truncated, spliced, unicode), compared to Pygments tokens exactly; credit per language and per token type; judged by code",
+   "local_fit": "Fits the sandbox; pure Python oracle is not needed at run time; CPU-only",
+   "lookup": "Chroma (Go) is a public, heavily Pygments-derived lexer set; Pygments itself is on PyPI. Lookup verdict direct for Go, partial for Rust. Not installable at run time, but recallable.",
+   "provenance": "pygments/pygments @2.21.0 (tag, BSD-2-Clause); head 156d85f, pushed 2026-09-27; 2215 stars; 2360 test files; example files about 100+ under tests/examplefiles",
+   "reference": "Our own reference, checked against Pygments output; not yet built; scale to be measured on the 20 lexers",
+   "ships": "Lexer framework spec and token interface in Rust or Go, no Pygments source, no Pygments installed; 20 named languages; CLI printing type/value pairs",
+   "similarity": "Nearest l0 neighbour 0.168 (S-im-090), next 0.153 and 0.152; no CROWDED entry for syntax highlighters, so not K1. Novelty is fine; subject is a famous library port."
+  },
+  "kill_code": "K8",
+  "kill_reason": "Famous library port: Pygments lexers are public, Chroma (Go) is a heavily Pygments-derived lexer set, and a frontier model can recall much of the token behaviour, so the task is likely too easy and the Seal gate is weak. Rescue to test: restrict to the 2.21.0 new or changed lexers (BitBake, Caddyfile, CEL, PureScript and changed C#, CUDA, Ruby), which are less memorised, then rerun the spike.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Famous port; a frontier model recalls much of Pygments and Chroma, so one-shot recall is likely to score high quickly; K8 risk."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Estimated 4 to 8 days for an exact-match reference over 20 lexers, so near the K12 edge."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only, offline-friendly, small toolchain."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "8h tier is plausible for 20 lexers with delegating states, but calibration suggests recall-heavy work is fast."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSD-2-Clause permits shipping; example files carry mixed licences that need checking."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Independent per-language and per-token-type buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Nearest neighbour 0.168; not CROWDED; but the subject is a famous library port."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Tagged 2.21.0 release, real widely used library, BSD-2-Clause."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Pygments is a complete permissive implementation of the oracle behaviour; our reference is still unbuilt."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Pygments is on PyPI and Chroma is public; python3-pygments may ship in the base image; exact outputs are partly recallable from memory."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Per-language, per-token-type credit over snippets and mutations; about 100+ example files visible; exact match gives a large surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Recall alone matches 80% or more of the mutated streams (K8), or the oracle is not deterministic.",
+   "pass_if": "Recall alone matches under 50% of mutated token streams for the 3 lexers, and the oracle is deterministic across 3 runs.",
+   "steps": [
+    "In a throwaway networked container, pip install pygments==2.21.0 into a venv outside /app and confirm the version; record the exact tests/examplefiles list.",
+    "Pick 3 lexers (one simple, one multi-state such as Python or Ruby, one delegating such as an HTML-embedding lexer). Generate token streams for each example file plus 20 mutated variants (truncated, spliced, unicode) with Pygments.",
+    "Run one tool-less recall call per lexer, writing the lexer in one shot in Go or Rust with no framework, and score exact token-stream match per file and per token type.",
+    "Build a 1-hour reference for one of the 3 lexers to check that the mutated-file oracle is deterministic and that the grader can compare token types exactly.",
+    "Check whether the base image has python3-pygments (dpkg -l) and whether any Chroma module is in the Go cache; both must be removed before shipping."
+   ]
+  },
+  "summary": "Pygments 2.21.0 and its BSD-2-Clause licence are confirmed, and the example-file surface is 100+ files. The idea is a famous port with public Go (Chroma) and PyPI copies, so recall likely makes it too easy (K8) unless the scope is narrowed to the 2.21.0 new or changed lexers and the spike confirms recall is weak.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 74
+}

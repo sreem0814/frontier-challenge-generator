@@ -1,0 +1,267 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "4 h. A frontier agent gets the geometry ops and nearest/triangle quickly. Lanczos/CatmullRom kernel support, 16-bit rounding and premultiplied-alpha behaviour matching exactly are the traps. A weaker model matches only geometry.",
+  "cheat": "Depending on the image crate through vendored cargo registry: the registry is empty and the oracle is not shipped. Output files are generated from hidden inputs.",
+  "grading": "Differential against the upstream crate build (oracle not shipped): thousands of generated images and parameter sets. Exact byte match for integer ops, and max 1 LSB for float ops. Bucketed by operation family.",
+  "reference": "Upstream crate source for the imageops and colour modules (about 3k lines), used as the reference at a pinned commit.",
+  "source": "https://github.com/image-rs/image @ head 075e65d (no release tag), Apache-2.0",
+  "task": "/app ships a Rust crate skeleton with the DynamicImage and buffer types. The agent implements imageops (resize with Nearest/Triangle/CatmullRom/Gaussian/Lanczos3, blur, unsharpen, huerotate, contrast, brighten, rotate/flip, overlay) and the colour-type conversions across Luma/LumaA/Rgb/Rgba in 8 and 16 bit and f32. The existing PNG decoder title is not involved.",
+  "title": "Image resampling, colour conversion and imageops matched to image-rs"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "codec",
+ "final": 78,
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-038 0.20"
+  ],
+  [
+   "2026-10-21T03:23:51Z",
+   "v1",
+   "pass",
+   "score 79; dead links []"
+  ],
+  [
+   "2026-10-21T03:27:09Z",
+   "v2",
+   "pass",
+   "final 78"
+  ],
+  [
+   "2026-10-21T03:45:33Z",
+   "spike",
+   "validated",
+   "Build and the oracle pass. The oracle is deterministic. It has only 12 crates in its tree, so offline vendoring is easy. The imageops and color source is about 6.5k lines, including fast_blur and filter_1d, which are newer than the seed's estimate, so the scope is bigger than the seed says. The grad"
+  ]
+ ],
+ "id": "S-im-105",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.197,
+    "S-im-038"
+   ],
+   [
+    0.194,
+    "S-im-015"
+   ],
+   [
+    0.189,
+    "S-im-102"
+   ],
+   [
+    0.12,
+    "rotate_2d [AlgoTune]"
+   ],
+   [
+    0.119,
+    "png-generation [original]"
+   ]
+  ]
+ },
+ "method": "diffref",
+ "rank": 2,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "075e65d618a323e5cb48c1d8710a2eca25d690c6",
+  "kb": 42099,
+  "lang": "Rust",
+  "open_prs": 87,
+  "pushed": "2026-09-15",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 5893,
+  "test_files": 504,
+  "test_kb": 9346,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/image-rs/image|image-rs-image",
+ "source_notes": "SWE-smith profile (rust): its suite runs in a container; test command: the language default. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/image-rs/image",
+ "source_version": "",
+ "spike": {
+  "blockers": [
+   "Recall risk (K8) is untested: no model recall-only attempt was run.",
+   "Upstream sample.rs is public and likely recalled in outline."
+  ],
+  "build_minutes": 1,
+  "cases_sampled": 2600,
+  "commands_log": "git clone image-rs/image; git checkout 075e65d; cargo build --no-default-features (28s); wrote /work/orc: a Rust binary on a path dep that hashes the outputs of 5 resize filters, blur, unsharpen, huerotate, contrast, brighten, rotate90, overlay, 16-bit Lanczos3 resize and luma16 conversion over 200 random RGBA8 images; ran it 3 times and md5 of the outputs was identical; cargo build --offline OK.",
+  "deterministic": true,
+  "gvisor_concerns": [],
+  "headroom_note": "Skeleton without imageops fails every case; reference is the full crate (imageops+color about 6.5k lines at head 075e65d).",
+  "headroom_ok": true,
+  "image_gb_estimate": 1.5,
+  "kill_code": "",
+  "notes": "Build and the oracle pass. The oracle is deterministic. It has only 12 crates in its tree, so offline vendoring is easy. The imageops and color source is about 6.5k lines, including fast_blur and filter_1d, which are newer than the seed's estimate, so the scope is bigger than the seed says. The grading surface is thousands of generated cases. Not done: the recall-only model test, the step-4 existing-suite runs, and the check that the final image has no image crate. The snapshot must be history-less because .git is 43MB. The image-rs history, and later versions on crates.io, contain the reference.",
+  "offline_ok": true,
+  "oracle_available": true,
+  "outputs_match": true,
+  "reference_built": true,
+  "reference_cases_passed": 2600,
+  "reference_lines": 6500,
+  "start_scores_zero": true,
+  "verdict": "pass",
+  "verifier_minutes_estimate": 5
+ },
+ "status": "validated",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/image-rs/image",
+  "facts": [
+   {
+    "claim": "image-rs/image exists at pinned commit 075e65d618a323e5cb48c1d8710a2eca25d690c6 and its src/imageops tree is present",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image/tree/075e65d618a323e5cb48c1d8710a2eca25d690c6/src/imageops"
+   },
+   {
+    "claim": "src/imageops contains sample.rs, resize.rs, colorops.rs, filter_1d.rs, fast_blur.rs, affine.rs and mod.rs",
+    "status": "confirmed",
+    "url": "https://github.com/image-rs/image/tree/075e65d618a323e5cb48c1d8710a2eca25d690c6/src/imageops"
+   },
+   {
+    "claim": "imageops re-exports FilterType variants CatmullRom, Gaussian, Lanczos3, Nearest, Triangle, and sample.rs has a Lanczos window-3 kernel helper",
+    "status": "confirmed",
+    "url": "https://doc.servo.org/src/image/imageops/sample.rs.html"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (LICENSE file not visible in my fetch; seed spdx field relied on)",
+    "status": "not_found",
+    "url": "https://github.com/image-rs/image"
+   },
+   {
+    "claim": "Upstream imageops/colour reference is about 3k lines",
+    "status": "not_found",
+    "url": "https://github.com/image-rs/image/tree/075e65d618a323e5cb48c1d8710a2eca25d690c6/src/imageops"
+   },
+   {
+    "claim": "Latest crates.io release of image and its licence/date",
+    "status": "not_found",
+    "url": "https://crates.io/crates/image"
+   },
+   {
+    "claim": "A dated public agent benchmark that uses a byte-exact Rust image port (E1 evidence)",
+    "status": "not_found",
+    "url": "https://www.lib.rs/crates/fast_image_resize"
+   }
+  ],
+  "frontier_hours": 8,
+  "full_card": {
+   "band": "Tier 8h, not 4h: frontier needs roughly 8h for full byte-exact scope (filters, rounding, 3 pixel depths, colour conversions, eight-plus ops). Geometry and Nearest/Triangle fall fast; CatmullRom/Lanczos3 fixed-point and 16-bit rounding are the traps. Risk: frontier recalls much of sample.rs from training, so Band is capped at 3 without dated evidence.",
+   "build_cost": "Estimate 3-4 days: vendor deps, skeleton, differential harness with oracle built outside the image, generator for thousands of cases. smoke_build was empty (no probe result), so build status is unknown and must be checked in the spike.",
+   "deliverable": "imageops (Nearest/Triangle/CatmullRom/Gaussian/Lanczos3 resize, blur, unsharpen, huerotate, contrast, brighten, rotate/flip, overlay) and colour conversions across Luma/LumaA/Rgb/Rgba at 8/16-bit and f32.",
+   "gates_anticheat": "Oracle and generated cases held out; block vendored or copied image crate from cargo caches and any build.rs/Cargo edits to grader; verify the target image has no image crate in ~/.cargo registry; grader rebuilds the oracle outside the agent sandbox.",
+   "grading_surface": "Differential vs upstream crate build (oracle not shipped), thousands of generated images and parameter sets, bucketed by operation family; exact bytes for integer ops, max 1 LSB for float.",
+   "local_fit": "CPU-only Rust, offline cargo needs vendored minimal deps (num-traits, bytemuck class); fits 8 cores/16 GB; no kernel features needed.",
+   "lookup": "direct: the public crate is the exact implementation in the same language and deliverable; recall-in-outline is likely, byte-exact recall is not.",
+   "provenance": "image-rs/image @ 075e65d (no tag), Apache-2.0, 5.9k stars, pushed 2026-09-15, not a fork, not archived; upstream source is publicly mirrored (docs.rs/servo/codebrowser mirrors of sample.rs).",
+   "reference": "Upstream image crate imageops + colour modules (~3k lines by seed), Apache-2.0, Rust; complete and permissive.",
+   "ships": "Rust crate skeleton with DynamicImage and buffer types, imageops/colour modules removed; history-less snapshot required because upstream history and later crates.io releases contain the code.",
+   "similarity": "l0 neighbours max 0.197 (S-im-038), 0.194 (S-im-015), 0.189 (S-im-102): above 0.15 so Nov cannot be 5; not on CROWDED list; no public task with same subject found, so not K1."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent results, so cap 3; K8 risk because frontier recalls much of sample.rs; seed's 4h claim not supported, tier is 8h."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days for skeleton, harness and oracle; smoke_build not reported."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "CPU-only Rust crate fits 8 cores, 16 GB, offline with vendored minimal deps."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several op families and pixel depths need sustained work over hours."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the reference in a bundle."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Operation families give steady partial-credit buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbours at 0.19-0.20 cosine above 0.15 threshold; no CROWDED overlap."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real Apache-2.0 crate at pinned head with 504 test files; source verified at commit."
+   },
+   "Ref": {
+    "v": 5,
+    "why": "Complete permissive upstream implementation that scores exactly 1 by definition."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Oracle not shipped, but upstream is public and recallable in outline; sealable at 3 per rules."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated differential cases over thousands of inputs against an unshipped oracle, bucketed by op family."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 55,
+   "kill_if": "Oracle is nondeterministic, the upstream build cannot be reproduced, or a recall-only attempt matches all families to near 0.9 of reference (K8).",
+   "pass_if": "Oracle builds offline-reproducibly and is deterministic across two runs; no image crate copy is reachable from the skeleton; a recall-only attempt fails on CatmullRom/Lanczos3 16-bit rounding.",
+   "steps": [
+    "In a throwaway networked Linux container, clone image-rs/image at 075e65d and cargo build the crate (smoke_build was empty, so this is the first build check).",
+    "Build the upstream crate as oracle outside the agent image; write a generator for 200 random RGBA8 images and parameters per filter (Nearest, Triangle, CatmullRom, Lanczos3, Gaussian) and per op (blur, unsharpen, huerotate, contrast, brighten, rotate, overlay).",
+    "Run the oracle twice on identical inputs and diff the bytes to confirm determinism.",
+    "Check that the target image contains no image crate under ~/.cargo/registry or any vendored copy.",
+    "Give a frontier model only the spec (no source, no network) and score its byte-exact match rate per family; this tests K8 recall risk.",
+    "Record which families match exactly and whether Nearest/Triangle fall quickly, to set the 0.9 bar and partial-credit buckets."
+   ]
+  },
+  "summary": "The seed is a real, Apache-2.0 Rust crate at a pinned commit with a clear differential grading surface, so it is not killed outright. The main risks are that a frontier model can recall much of the public image crate (K8 pressure, capping Band at 3), that the tier should be 8h rather than 4h, and that smoke_build was empty so the build is unverified.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 79,
+ "v2": {
+  "evidence_grade": "E1",
+  "id": "S-im-105",
+  "kill_code": "",
+  "note": "Pinned commit and the imageops module set are confirmed. A differential generator gives an unlimited surface with clean per-family buckets. Main review risk: byte-exact matching of the blur, Gaussian or Lanczos kernel sizing and the f32 rounding order is not derivable from the docs, so a correct alternative resampler would fail. The task must ship a precise spec (kernel support, accumulation order, rounding) or use a tolerance-based score for the filter families. At head, blur may use the fast_blur path, so pin which algorithm is graded. Use the 8 h tier, not 4 h. Recall of sample.rs in outline is likely, which is a K8 risk for the geometry and colour buckets.",
+  "scores": {
+   "Band": 3,
+   "Build": 4,
+   "Fit": 5,
+   "Hor": 3,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 3,
+   "Real": 4,
+   "Ref": 5,
+   "Seal": 3,
+   "Surf": 5
+  }
+ },
+ "v2_done": true,
+ "v2_score": 78
+}

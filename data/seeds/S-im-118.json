@@ -1,0 +1,222 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "8h. Several formats are independent buckets; a frontier agent does the common ones and misses auth/script translation. The weaker model stops at plain request import.",
+  "cheat": "Matching sample files by name is closed by a hidden generated corpus. Risk: expected output is partly our choice (K3), so the cases are limited to fields with unambiguous mappings.",
+  "grading": "Hidden jest cases feed generated and real-world sample export files and compare the resulting collection tree and .bru text. The repo's existing workspace tests are the regression gate (SWE-smith lists an npm test command for it; green status not probed).",
+  "reference": "We write it: expected about 1500 lines for 3-4 formats. Format specs are public; the converter outputs are ours.",
+  "source": "https://github.com/usebruno/bruno @ head dd0281da (v4.2.1), MIT",
+  "task": "/app ships a history-less snapshot of the monorepo at the pinned commit. The agent implements an import path that converts external API collection formats into Bruno's .bru collection model, with auth, environments, scripts and tests, as a library with the existing CLI/electron-free entry points. The exact format list must be pinned to open upstream issues; not verified.",
+  "title": "Bruno collection importers for multiple API-client formats"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:11:57Z",
+ "family": "data-format",
+ "history": [
+  [
+   "2026-10-21T07:11:57Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:57Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-116 0.26"
+  ],
+  [
+   "2026-10-21T07:13:24Z",
+   "v1",
+   "killed:K4",
+   "Expected .bru output for new formats is the author's own mapping choice, and the seed admits partial-choice risk. Exact-text grading would not accept a different valid solution, so the task is not objectively gradable. Lookup overlap also means the Postman/Insomnia/OpenAPI/WSDL buckets are already i"
+  ]
+ ],
+ "id": "S-im-118",
+ "kill": "K4",
+ "l0": {
+  "neighbours": [
+   [
+    0.265,
+    "S-im-116"
+   ],
+   [
+    0.254,
+    "S-im-117"
+   ],
+   [
+    0.22,
+    "S-im-094"
+   ],
+   [
+    0.102,
+    "task-task-graph-export [DeepSWE]"
+   ],
+   [
+    0.09,
+    "true-myth-iterable-collection-combinators [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "dd0281dad107247a4653ff514feb069ac42e7ff8",
+  "kb": 66597,
+  "lang": "JavaScript",
+  "open_prs": 561,
+  "pushed": "2026-10-19",
+  "release": "v4.2.1",
+  "spdx": "MIT",
+  "stars": 47765,
+  "test_files": 2332,
+  "test_kb": 6949,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/usebruno/bruno|usebruno-bruno",
+ "source_notes": "SWE-smith profile (javascript): its suite runs in a container; test command: npm test --workspaces --if-present -- --verbose. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/usebruno/bruno",
+ "source_version": "",
+ "status": "killed:K4",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/usebruno/bruno",
+  "facts": [
+   {
+    "claim": "usebruno/bruno repository exists with a packages/ tree including bruno-converters",
+    "status": "confirmed",
+    "url": "https://github.com/usebruno/bruno/tree/main/packages"
+   },
+   {
+    "claim": "Release v4.2.1 exists (published 30 Sep, year not shown); its notes list two security fixes and no importer or converter changes",
+    "status": "confirmed",
+    "url": "https://github.com/usebruno/bruno/releases/tag/v4.2.1"
+   },
+   {
+    "claim": "packages/bruno-converters/src already contains postman, insomnia, openapi, wsdl and opencollection folders, so the seed's Postman/Insomnia/OpenAPI-style import path ships in the snapshot",
+    "status": "confirmed",
+    "url": "https://github.com/usebruno/bruno/tree/main/packages/bruno-converters/src"
+   },
+   {
+    "claim": "The converters README lists supported inputs: Postman Collections v2.1, Insomnia v4 and v5, OpenAPI 3.0, WSDL",
+    "status": "confirmed",
+    "url": "https://github.com/usebruno/bruno/tree/main/packages/bruno-converters"
+   },
+   {
+    "claim": "Public @usebruno/converters docs list Postman collections and environments, Insomnia exports, OpenAPI 3.x and Swagger 2.0, WSDL; docs do not state whether auth, scripts or tests are translated per format",
+    "status": "confirmed",
+    "url": "https://docs.usebruno.com/converters/overview"
+   },
+   {
+    "claim": "Open feature request for a Thunder Client importer (issue #511, labels module-importers and good first issue, opened 2023-10-10); live state not checked, only a third-party mirror",
+    "status": "confirmed",
+    "url": "https://goodfirstissue.org/usebruno/bruno/issues/511"
+   },
+   {
+    "claim": "A Hoppscotch collection importer issue or PR exists upstream",
+    "status": "not_found",
+    "url": "https://www.goodfirstissue.org/usebruno/bruno"
+   },
+   {
+    "claim": "A HAR importer issue or PR exists upstream",
+    "status": "not_found",
+    "url": "https://www.goodfirstissue.org/usebruno/bruno"
+   },
+   {
+    "claim": "The seed's format list is pinned to open upstream issues (only #511 found; the rest of the list is unverified)",
+    "status": "not_found",
+    "url": "https://goodfirstissue.org/usebruno/bruno/issues/511"
+   },
+   {
+    "claim": "Repo licence is MIT (from source_facts spdx; not re-fetched)",
+    "status": "confirmed",
+    "url": "https://github.com/usebruno/bruno"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Expected 8h tier. Partial buckets: Postman/Insomnia/OpenAPI re-implementations are cheap because the snapshot already has them; new formats (Thunder, Hoppscotch, HAR) carry the real work, especially auth and script translation. Weaker model likely stops at plain request import. Frontier hours estimate 6 for whole scope.",
+   "build_cost": "Reference ~1500 lines plus fixtures and corpus generator: roughly 3-4 days. smoke_build was empty (not run), so the monorepo build and suite cost is unknown and could add time.",
+   "deliverable": "New importer modules in the converters package that map external API-client formats to Bruno .bru collection model (auth, environments, scripts, tests). Format list still unpinned: only Thunder Client (#511) is traced upstream.",
+   "gates_anticheat": "Hidden generated corpus closes name-matching. Editing tests or converter config is not closed by the seed and must be addressed in the spike. Vendoring @usebruno/converters from npm is blocked offline, but the snapshot's own converters are readable and would be a shortcut for three formats.",
+   "grading_surface": "Hidden jest cases on generated and real-world export files, comparing collection tree and .bru text. Expected output is partly our own mapping choice, so cases are limited to unambiguous fields. Existing repo tests are the regression gate; green status not probed.",
+   "local_fit": "JavaScript/Node, jest, CPU only, no network needed to run tests. Fits the sandbox.",
+   "lookup": "partial: Postman, Insomnia, OpenAPI and WSDL conversion to Bruno already exists in the snapshot and public npm; new formats have no public implementation found (Thunder Client request open since 2023).",
+   "provenance": "usebruno/bruno @ dd0281da (v4.2.1), MIT, 47.7k stars, not a fork, pushed 2026-10-19. Real public app with bruno-converters package.",
+   "reference": "Written by us, ~1500 lines for 3-4 formats. Format specs are public; converter output is ours, so no upstream reference exists for new formats.",
+   "ships": "History-less monorepo snapshot at dd0281da. Snapshot already contains packages/bruno-converters with postman, insomnia, openapi, wsdl and opencollection converters, plus tests/ and README. Hidden corpus and reference are not shipped.",
+   "similarity": "Nearest neighbours S-im-116 (0.265), S-im-117 (0.254), S-im-094 (0.22) are unknown siblings and are closer than the 0.15 novelty bar. CROWDED list has no direct match. Within the upstream repo, the subject overlaps with existing converter code."
+  },
+  "kill_code": "K4",
+  "kill_reason": "Expected .bru output for new formats is the author's own mapping choice, and the seed admits partial-choice risk. Exact-text grading would not accept a different valid solution, so the task is not objectively gradable. Lookup overlap also means the Postman/Insomnia/OpenAPI/WSDL buckets are already in the snapshot. A redesigned scope (semantic comparison of parsed collection model, new formats only) could be resubmitted after the spike.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8h tier plausible with partial buckets, but no dated public evidence of agent results on this kind of work."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference plus corpus generator is roughly 3-4 days; smoke_build not run, so monorepo cost is unknown."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Node/jest on CPU; fits the sandbox."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Multi-format work across auth, environments, scripts and tests needs sustained effort in an 8h tier."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT allows shipping the snapshot, data and reference."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Several independent formats and feature areas give natural partial-credit buckets."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "Neighbours at 0.265, 0.254 and 0.22 exceed the 0.15 bar, and upstream already has the same importer family."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT repo at a released tag with 47k stars; release and package structure confirmed."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is ours and not a complete upstream implementation for the new formats; expected output is partly our choice."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden corpus and our reference stay out of the image, but Postman/Insomnia/OpenAPI/WSDL converters ship in the snapshot as a readable head start."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden generated corpus could be large, but expected .bru text is author-defined, so only unambiguous fields count."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Converter suite is red or does not run offline after install, or most new-format auth/script fields have several valid .bru mappings (so exact-text grading would penalise valid solutions).",
+   "pass_if": "Converter suite runs green with per-test results in under ~15 minutes, existing converters cover at least 3 formats end-to-end, and at least 80% of the chosen new format's auth/env/script fields have a unique .bru mapping.",
+   "steps": [
+    "In a throwaway container with network, clone usebruno/bruno at dd0281da into a fresh scratch directory (no history rewrite needed; it is a read-only probe).",
+    "Install dependencies for packages/bruno-converters only (npm ci at workspace scope, or a minimal install) and run its jest suite; record pass count, failures and wall time to answer whether the regression gate is green offline.",
+    "Read the postman and insomnia converters in src to see which of auth, environments, scripts and tests they already map to .bru; this sets the real remaining scope.",
+    "Pick one new format with a public schema (Thunder Client JSON export or Hoppscotch collection JSON) and list each field it has for auth, env, scripts, tests; mark each as unambiguous or subjective.",
+    "Convert the same input twice with a quick script and diff the .bru output to check determinism.",
+    "Count how many fields of the chosen format map unambiguously to the .bru model; this sets the grading surface."
+   ]
+  },
+  "summary": "The Bruno repo is real and MIT-licensed at a released tag, but the snapshot already ships bruno-converters with Postman, Insomnia, OpenAPI and WSDL importers, so the seed's import path is partly present and the format list is largely unverified beyond the open Thunder Client request. The seed's grading depends on expected .bru text that we author, so a different valid mapping would fail, which is a K4 kill; a redesigned scope using new formats with objective semantic comparison could be re-seeded after the spike.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 8,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 69
+}

@@ -1,0 +1,223 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "8h. The large C++ codebase, the multi-layer change (TLV, API, CLI, simulation) and a long build/test cycle make it a real-engineering task. A frontier agent gets the happy path in some trials but misses the parallel branches (error TLVs, truncation, many nodes).",
+  "cheat": "Output-only stubs are closed by simulated multi-node topologies with randomised link states. Risk: the contract is self-written (K3) unless it is anchored to an upstream issue.",
+  "grading": "Hidden gtest unit and simulation (virtual-time) cases build multi-node topologies and check the emitted TLV bytes, the CLI output and the API results. The existing ./script/test unit suite is the regression gate.",
+  "reference": "We write it: expected about 1000+ lines across the core diag module, TLV definitions, CLI and API. The feature's contract must be fixed to a real upstream issue before the build; not verified.",
+  "source": "https://github.com/openthread/openthread @ head 1435ebbb (v2026.10.0), BSD-3-Clause",
+  "task": "/app ships a history-less snapshot with the unit-test build. The agent adds a multi-part diagnostic feature: a TMF-level request/response for an aggregated per-router link-quality and neighbour table report, plus an API, CLI commands and message (de)serialisation. The exact scope is to be pinned to an open upstream issue; no issue has been verified yet.",
+  "title": "OpenThread Thread network diagnostics extension for multi-hop topology reports"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:11:57Z",
+ "family": "protocol",
+ "history": [
+  [
+   "2026-10-21T07:11:57Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:57Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-116 0.26"
+  ],
+  [
+   "2026-10-21T07:13:10Z",
+   "v1",
+   "killed:K3",
+   "The grading surface is self-written: no upstream issue or PR pins the contract (both not_found). The base at the pinned head already ships MeshDiag (topology discovery, router neighbour table query, router link qualities, CLI topology), so the untouched start may already score well and the 'base sco"
+  ]
+ ],
+ "id": "S-im-117",
+ "kill": "K3",
+ "l0": {
+  "neighbours": [
+   [
+    0.262,
+    "S-im-116"
+   ],
+   [
+    0.247,
+    "S-im-081"
+   ],
+   [
+    0.222,
+    "S-im-094"
+   ],
+   [
+    0.112,
+    "family (rolling, multi-language, Windows) [SWE-bench-Live]"
+   ],
+   [
+    0.105,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1435ebbb9e2d50693368156b1e387b3c444da236",
+  "kb": 129500,
+  "lang": "C++",
+  "open_prs": 107,
+  "pushed": "2026-10-20",
+  "release": "v2026.10.0",
+  "spdx": "BSD-3-Clause",
+  "stars": 4051,
+  "test_files": 892,
+  "test_kb": 10678,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/openthread/openthread|openthread-openthread",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: ./script/test unit. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/openthread/openthread",
+ "source_version": "",
+ "status": "killed:K3",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_grade_note": "E0",
+  "evidence_url": "https://github.com/openthread/openthread/blob/main/include/openthread/mesh_diag.h",
+  "facts": [
+   {
+    "claim": "OpenThread mesh_diag.h defines otMeshDiagQueryRouterNeighborTable, otMeshDiagDiscoverTopology, otMeshDiagQueryChildTable, and otMeshDiagRouterInfo with mLinkQualities, i.e. an aggregated router/neighbour topology report already exists upstream",
+    "status": "contradicted",
+    "url": "https://github.com/openthread/openthread/blob/main/include/openthread/mesh_diag.h"
+   },
+   {
+    "claim": "The seed's feature (aggregated per-router link-quality and neighbour table report via TMF) is not already implemented upstream, so the untouched base scores 0",
+    "status": "contradicted",
+    "url": "https://github.com/openthread/openthread/blob/main/include/openthread/mesh_diag.h"
+   },
+   {
+    "claim": "The mesh_diag.h header is BSD-style 3-clause licensed (Copyright The OpenThread Authors)",
+    "status": "confirmed",
+    "url": "https://github.com/openthread/openthread/blob/main/include/openthread/mesh_diag.h"
+   },
+   {
+    "claim": "The Mesh Diagnostics API is gated by OPENTHREAD_CONFIG_MESH_DIAG_ENABLE and OPENTHREAD_FTD",
+    "status": "confirmed",
+    "url": "https://docs.silabs.com/openthread/2.3.2/openthread-api/api-mesh-diag"
+   },
+   {
+    "claim": "A CLI meshdiag implementation exists (src/cli/cli_mesh_diag.cpp) with a topology command",
+    "status": "confirmed",
+    "url": "https://fuchsia.googlesource.com/third_party/openthread/+/refs/heads/main/src/cli/cli_mesh_diag.cpp"
+   },
+   {
+    "claim": "Network diagnostic (netdiag) test files exist under tests/unit",
+    "status": "not_found",
+    "url": "https://github.com/openthread/openthread/tree/main/tests/unit"
+   },
+   {
+    "claim": "tests/unit contains 86 test_*.cpp files",
+    "status": "confirmed",
+    "url": "https://github.com/openthread/openthread/tree/main/tests/unit"
+   },
+   {
+    "claim": "An upstream issue pins the seed's aggregated diagnostic contract",
+    "status": "not_found",
+    "url": "https://github.com/openthread/openthread/pulls"
+   },
+   {
+    "claim": "A merged or open PR implements the seed's aggregated multi-hop netdiag report beyond MeshDiag",
+    "status": "not_found",
+    "url": "https://github.com/openthread/openthread/pulls"
+   },
+   {
+    "claim": "Network diagnostics TLV parsing was refactored upstream into ParseDiagTlv (PR #13247)",
+    "status": "confirmed",
+    "url": "https://fuchsia.googlesource.com/third_party/openthread/+/refs/heads/upstream/main"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "8h tier. The base already has MeshDiag, so the delta is smaller than the seed's 8h claim suggests; frontier agent likely reaches a partial score on the existing topology path.",
+   "build_cost": "3 days: an upstream-pinned contract and a 1000+ line reference in a large C++ codebase with a long unit cycle.",
+   "deliverable": "Extension of network diagnostics/TMF for multi-hop report: TLVs, core module, API, CLI, gtest and virtual-time simulation.",
+   "gates_anticheat": "Edits to tests/build are not an accepted route; wrapping existing MeshDiag would pass cheaply unless the hidden cases check new TLV bytes, which needs a fixed spec.",
+   "grading_surface": "Hidden gtest and simulation cases; scope and wire format not pinned to any upstream issue, so the surface is self-written.",
+   "local_fit": "C++ build with gtest on 8 cores and 16 GB is plausible; no smoke build was run.",
+   "lookup": "direct: the existing mesh_diag.h and cli_mesh_diag.cpp cover the aggregated router and neighbour query the seed asks for.",
+   "provenance": "Upstream OpenThread @ 1435ebbb (v2026.10.0), BSD-3-Clause; real and active (4051 stars, not a fork, not archived).",
+   "reference": "Not written. Would be ~1000+ lines and must be built against an upstream-pinned contract that does not yet exist.",
+   "ships": "Head snapshot already contains MeshDiag (mesh_diag.h: topology discovery, router neighbour table query, router link qualities, child table query), so the base is not a blank slate.",
+   "similarity": "l0 neighbours 0.262 (S-im-116), 0.247 (S-im-081), 0.222 (S-im-094) are below the 0.15 novelty bar only for the public-task rows; the feature itself overlaps existing upstream MeshDiag."
+  },
+  "kill_code": "K3",
+  "kill_reason": "The grading surface is self-written: no upstream issue or PR pins the contract (both not_found). The base at the pinned head already ships MeshDiag (topology discovery, router neighbour table query, router link qualities, CLI topology), so the untouched start may already score well and the 'base scores 0' gate is at risk. Kill unless an upstream issue pins a contract that MeshDiag does not cover.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "8h tier plausible, but no dated public evidence and the base already ships MeshDiag, which narrows the delta."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days to pin a contract and write a 1000+ line reference in a large codebase."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Plausible C++ build and gtest on 8 cores and 16 GB; not verified by a smoke build."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Multi-module work for 8h, but the existing MeshDiag reduces the remaining work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "BSD-3-Clause allows shipping the system and the reference."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several levers (TLV, core, API, CLI, simulation), though the overlap with MeshDiag blurs the buckets."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "The feature substantially overlaps the existing upstream MeshDiag module, so it is close to an existing public feature."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real BSD-3 repo at a pinned head, but the feature has no upstream issue or PR; the contract is self-written."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference exists; it is unwritten and its contract is unpinned."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "The head snapshot already contains MeshDiag, a public implementation of the same query, so the agent can read it directly."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Gtest and simulation cases could be many, but the wire format is not yet fixed."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "MeshDiag already implements the aggregated neighbour/link-quality report, or no upstream issue pins the contract.",
+   "pass_if": "An upstream issue pins the TLV and API contract and the base lacks the required new TLV or API, so the base scores 0 on the new cases.",
+   "steps": [
+    "Clone openthread at 1435ebbb in a throwaway container with network and check out the head snapshot.",
+    "Grep only for MeshDiag, otMeshDiagQueryRouterNeighborTable and cli_mesh_diag.cpp to confirm what the base already ships (this is an exploratory check, not a grading check).",
+    "Run ./script/test unit (or the unit build) once to record the base pass/fail and timing.",
+    "Search the upstream issue tracker for an open issue that pins the aggregated netdiag report contract (TLV type, fields, truncation rule); record the issue number or mark not_found.",
+    "If an issue exists, write a 30-line expected-bytes sketch for one 2-router topology and check it against the issue text; otherwise stop.",
+    "Decide: kill if MeshDiag already covers the requested report (base would pass most cases) or if no issue pins the contract; pass only if a pinned contract exposes a gap MeshDiag does not cover."
+   ]
+  },
+  "summary": "The seed's aggregated router link-quality and neighbour report largely exists upstream as MeshDiag in the pinned head, so the base is not a blank start and the feature overlaps a public implementation. No upstream issue pins the contract, so the grading surface is self-written, and the seed is killed as K3 pending a re-scope to a gap that MeshDiag does not cover.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 6,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 57
+}

@@ -1,0 +1,115 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "4h. The scope has to be widened to several container paths to avoid one-lever. A weaker model breaks copy-on-write semantics.",
+  "cheat": "Aliasing instead of copying is closed by mutation-after-assign checks in the dump.",
+  "grading": "A headless GDScript benchmark with hidden typed container workloads plus a semantic result dump gate. Reward is the wall-clock median speedup against the reference.",
+  "reference": "The PR claims about 2x on Dictionary::assign; the broader S is measured on our harness. The PR is small, so the reference size is unverified and likely under 150 lines (a K10 risk).",
+  "source": "https://github.com/godotengine/godot/pull/123490 @ head 1b16fd14, MIT",
+  "task": "/app ships a Godot snapshot before the Dictionary::assign change. The agent removes needless copies across Dictionary/Array/typed container assign, convert and duplicate paths used by GDScript and the core, preserving semantics.",
+  "title": "Godot Variant container assign and copy-avoidance speedup"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:11:58Z",
+ "family": "emulator-vm",
+ "history": [
+  [
+   "2026-10-21T07:11:58Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:58Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-054 0.39"
+  ]
+ ],
+ "id": "S-op-059",
+ "kill": null,
+ "l0": {
+  "neighbours": [
+   [
+    0.385,
+    "S-op-054"
+   ],
+   [
+    0.315,
+    "S-op-055"
+   ],
+   [
+    0.215,
+    "S-op-057"
+   ],
+   [
+    0.153,
+    "graph_coloring_assign [AlgoTune]"
+   ],
+   [
+    0.148,
+    "assign-seats [original]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 9,
+  "clone_ok": true,
+  "cmd_build": ". /p/venv/bin/activate && python -c \"import sys; print(sys.version)\"",
+  "cmd_fetch": "python3 -m venv /p/venv && . /p/venv/bin/activate && pip install -q -U pip &&\n         ex=$(python3 - <<\"EOF\"\nimport tomllib\nx=[]\ntry:\n  d=tomllib.load(open(\"pyproject.toml\",\"rb\")); x=list(((d.get(\"project\") or {}).get(\"optional-dependencies\") or {}).keys())\nexcept Exception: pass\nprint(\",\".join(e for e in x if not any(b in e.lower() for b in (\"doc\",\"gpu\",\"cuda\",\"win\",\"mac\"))))\nEOF\n);\n         grp",
+  "cmd_test": ". /p/venv/bin/activate && pytest -p no:cacheprovider -q -o junit_family=xunit2 --junitxml=$OUT/run$i.xml",
+  "commit": "679066724352c12673001d692d41dc2dab9314c0",
+  "deterministic": true,
+  "eco": "python",
+  "fetch_ok": true,
+  "fetch_s": 20,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "      To find more information, look for \"package discovery\" on setuptools docs.\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nERROR: Failed to build 'file:///p/src' when getting requirements to build wheel\nREPAIR pip install methods\nERROR: Could not find a version that satisfies the requirement methods (from versions: none)\nERROR: No matching distribution found for methods\n3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   2,
+   2,
+   2
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "::tests.test_builders"
+  ],
+  "stable_failures": 1,
+  "subdir": "",
+  "suite_s": 1,
+  "test_files": 1651,
+  "tests_fail": 1,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 1,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/pull/123490|godotengine-godot-123490-optimize-dictionary-assign-by-avoid",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/pull/123490",
+ "source_version": "",
+ "status": "l0-pass"
+}

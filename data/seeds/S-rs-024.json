@@ -1,0 +1,213 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "4 h. Multi-dimensional scoring gives several levers. Frontier agents beat best-fit in some trials. The weaker model matches the baseline.",
+  "cheat": "Hidden streams use different parameters and seeds. A policy memorising item sequences cannot transfer.",
+  "grading": "Percent excess bins over the lower bound on hidden streams drawn from other shapes, scales, lengths up to 100k, and dimensions. Normalised between the baseline and our reference.",
+  "reference": "Our tuned policy with lookahead and a repacking-free heuristic, measured. The known FunSearch results are only scalar and give context only.",
+  "source": "https://github.com/google-deepmind/funsearch/tree/main/bin_packing, Apache-2.0; instances regenerated synthetically (OR-Library has no stated licence)",
+  "task": "/app ships an online bin packing simulator generalised to 2-D and 3-D vector items, a best-fit baseline and a generator for Weibull and triplet-style streams. The agent designs and trains a placement policy, which may include lookahead and learned scoring, on shipped distributions.",
+  "title": "Online vector bin packing policy with a distribution split"
+ },
+ "class": "research",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-023 0.21"
+  ],
+  [
+   "2026-10-21T07:08:50Z",
+   "v1",
+   "killed:K10",
+   "gate on scores {'Real': 3, 'Surf': 4, 'Ref': 3, 'Band': 3, 'Hor': 2, 'Multi': 3, 'Seal': 3, 'Nov': 2, 'Lic': 4, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-rs-024",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.207,
+    "S-rs-023"
+   ],
+   [
+    0.148,
+    "S-op-045"
+   ],
+   [
+    0.141,
+    "S-op-047"
+   ],
+   [
+    0.093,
+    "vector_quantization [AlgoTune]"
+   ],
+   [
+    0.073,
+    "family (247 tasks) [KernelBench-Verified]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "cc53f274237d7ab05c19df939edbc1f9616a7c19",
+  "kb": 1080,
+  "lang": "Jupyter Notebook",
+  "open_prs": 0,
+  "pushed": "2024-02-05",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 1135
+ },
+ "source_key": "github.com/google-deepmind/funsearch/tree/main/bin_packing|baseline-best-fit-priority-function-skeleton-return-bins-ite",
+ "source_notes": "Notebook q:\"Data from the OR3 benchmark, containing 20 bin packing instances each with 500 items.\" Weibull 5k: 5 instances x 5,000 items, capacity 100; OR3 capacity 150. OOD split: tune on Weibull-like or OR1-OR2 style, hidden on different Weibull shape/scale, n=10k-100k, or triplet class (binpack5-8, cap 100). Weakness: single lever (one priority function), tiny eval; to make multi-lever extend to vector/2D bin packing or add offline repacking + lookahead. INFERRED: ~2-10 s per eval (pure-Python loop over items with numpy over bins). Notes: FunSearch paper (nature.com) paywalled/redirected, not opened. Overlap: well-known public task.",
+ "source_url": "https://github.com/google-deepmind/funsearch/tree/main/bin_packing",
+ "source_version": "Baseline: best-fit priority function (skeleton `return -(bins - item)`) in bin_packing.ipynb; evaluate() returns negative mean number of bins. -> Reference: FunSearch-discovered priority functions from the same notebook. Printed results: OR3 best fit 212.0 bins (5.37% over L1 bound 201.2) -> FunSearch 207.45 (3.11%); Weibull 5k best fit 2067.0 (3.98%) -> 2001.4 (0.68%).",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "not found",
+  "facts": [
+   {
+    "claim": "google-deepmind/funsearch repo has a bin_packing directory containing bin_packing.ipynb (the only file listed), at the pinned head cc53f27",
+    "status": "confirmed",
+    "url": "https://github.com/google-deepmind/funsearch/tree/main/bin_packing"
+   },
+   {
+    "claim": "Repository licence is Apache-2.0 (as reported by the GitHub API in source_facts); the directory page itself shows no licence text, so this was not re-verified on the page",
+    "status": "not_found",
+    "url": "https://github.com/google-deepmind/funsearch/tree/main/bin_packing"
+   },
+   {
+    "claim": "OR-Library bin packing instances (binpack1-8, Falkenauer): uniform class u1-4 sizes in (20,100) with bin 150; triplet class t5-8 with bin 100, n/3 optimum",
+    "status": "confirmed",
+    "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/binpackinfo.html"
+   },
+   {
+    "claim": "OR-Library bin packing page states no licence or redistribution terms, so the seed's choice to regenerate instances synthetically is needed",
+    "status": "confirmed",
+    "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/binpackinfo.html"
+   },
+   {
+    "claim": "FunSearch Weibull setup: 5 instances x 5,000 items, Weibull shape 3 scale 45, capacity 100, lb/n averaged over the five instances; evolved heuristic c14 (secondary account, original Nature paper not opened)",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2510.27353"
+   },
+   {
+    "claim": "Original FunSearch Nature paper text was opened and checked for its bin packing results",
+    "status": "not_found",
+    "url": "https://www.nature.com/articles/s41586-023-06924-6"
+   },
+   {
+    "claim": "A standard public benchmark exists for online vector (multi-dimensional) bin packing with lookahead and learned placement across 2-D and 3-D items",
+    "status": "not_found",
+    "url": "https://arxiv.org/pdf/2601.02649"
+   },
+   {
+    "claim": "Lookahead placement for online 3-D bin packing with MCTS exists in the literature (N=4 known upcoming parcels), so lookahead itself is not novel",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2601.02649"
+   },
+   {
+    "claim": "Later papers reuse the FunSearch Weibull(3,45) five-instance setup as a benchmark",
+    "status": "confirmed",
+    "url": "https://arxiv.org/pdf/2510.27353"
+   }
+  ],
+  "frontier_hours": 3,
+  "full_card": {
+   "band": "Expected 4-5 h frontier work for a strong policy; a frontier agent should beat best-fit on OOD streams in some trials but not reach the tuned reference on average; weaker model stalls near best-fit. No dated public evidence.",
+   "build_cost": "About 3 days: simulator with vector/3-D items, generator, baseline, reference policy, grader and tests.",
+   "deliverable": "A placement policy (scoring/lookahead) that outputs bin choice per item, scored as percent excess over lower bound on hidden OOD streams up to 100k items.",
+   "gates_anticheat": "Hidden streams use unseen seeds and parameters from the shipped generator; grader fixed and sealed; agent cannot edit grader; policy must be deterministic on fixed seeds; reject policies that read stream identity.",
+   "grading_surface": "Executable oracle with unlimited generator over shape, scale, length and dimension; thousands of possible streams, scored by code.",
+   "local_fit": "Pure Python plus numpy, CPU only, fits 8 cores and 16 GB; eval of 100k items in pure Python is unmeasured and may take minutes.",
+   "lookup": "partial: 1-D FunSearch priority function c14 and notebook are public; vector/2-D/3-D lookahead variant not found as a public solution.",
+   "provenance": "DeepMind FunSearch repo bin_packing notebook (Apache-2.0 per API, pinned head cc53f27, pushed 2024-02-05); FunSearch Weibull(3,45) setup via secondary sources; OR-Library instances used only for regenerated analogues.",
+   "reference": "Seed author's tuned lookahead policy, claimed measured but no artifact seen; FunSearch c14 is a public 1-D priority function only.",
+   "ships": "Online 1-D bin packing simulator extended to 2-D/3-D vector items, best-fit baseline, Weibull and triplet stream generator, distribution split (tune vs hidden OOD). Not yet built.",
+   "similarity": "l0 neighbour S-rs-023 at 0.207 (above 0.15, needs a check of its subject); FunSearch 1-D Weibull benchmark is public and reused in several papers, so the base task is crowded."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence; frontier likely earns partial credit, and the brief's band claims are internal, so at most 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days to build simulator, generator, baseline, reference and grader."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only Python with numpy fits the sandbox; 100k-item eval runtime is the open question."
+   },
+   "Hor": {
+    "v": 2,
+    "why": "Core lever is one scoring/placement function; 4 h tier is ample for a strong agent to reach a good policy quickly."
+   },
+   "Lic": {
+    "v": 4,
+    "why": "Apache-2.0 per API; OR-Library has no licence, so instances are regenerated and that is handled."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Several distribution buckets and dimensions give partial credit, but most levers collapse into one scoring function."
+   },
+   "Nov": {
+    "v": 2,
+    "why": "The 1-D Weibull FunSearch benchmark is a public task with the same deliverable; only the vector extension differs, and l0 neighbour is 0.207."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real Apache-2.0 repo and real FunSearch Weibull setup, but the 2-D/3-D vector extension is not a real subject."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is an unbuilt tuned policy; no artifact to measure, and FunSearch c14 covers only 1-D."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Reference and hidden seeds can stay out of reach; the 1-D FunSearch priority function is public, so a recall path exists."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generator-based streams give an effectively unlimited executable oracle over shape, scale, length and dimension."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "Best-fit is within 0.5 points of the best of ten tuned candidates on all OOD buckets (no headroom), or a 100k-item eval exceeds 10 minutes, or results are non-deterministic.",
+   "pass_if": "Some non-trivial policy beats best-fit by at least 2 percentage points on OOD streams and one 100k-item eval takes under 60 s.",
+   "steps": [
+    "Clone google-deepmind/funsearch at cc53f27 into a throwaway container; read bin_packing.ipynb and extract the priority function and Weibull generator.",
+    "Write a 1-D online simulator: best-fit and first-fit baselines plus the FunSearch priority; generate Weibull(3,45) 5 x 5,000 items at capacity 100; lb = ceil(sum/cap); report percent excess.",
+    "Time one 100k-item stream in pure Python with numpy over bins; record seconds per eval.",
+    "Generate OOD streams (different shape and scale, plus triplet cap 100) and check whether a simple lookahead or learned scoring beats best-fit by at least 2 points on at least 2 buckets.",
+    "Run the same seed twice and confirm identical bin counts (determinism)."
+   ]
+  },
+  "summary": "The 1-D FunSearch Weibull bin packing setup is real, Apache-2.0 and public, but the base is crowded and the seed's actual novelty lies in the unbuilt 2-D/3-D vector extension and its reference. It is not killed; it passes conditionally on a spike showing best-fit leaves measurable headroom on OOD streams and 100k-item evals run in reasonable time.",
+  "tier_hours": 4
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 61
+}

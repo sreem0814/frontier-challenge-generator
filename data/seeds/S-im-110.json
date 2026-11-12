@@ -1,0 +1,201 @@
+{
+ "batch": 22,
+ "card": {
+  "band": "4 h. Each edit format is a separate bucket and partial acceptance with commits and undo is where agents slip. Frontier agents get some formats right but rarely all. A weaker model covers editblock only.",
+  "cheat": "Auto-accepting everything fails the reject and partial cases. Tests compare exact final state, so patching only one format scores only that bucket.",
+  "grading": "Hidden tests drive Coder with scripted model replies (many edit formats and multi-file, multi-hunk cases) and scripted confirmation input. They compare final file trees, chat history and git state with expected values. The existing suite is a regression gate. Score is the fraction of hidden cases passed.",
+  "reference": "Our implementation, expected about 800-1200 added lines plus tests. It defines the expected file, git and history outcomes.",
+  "source": "https://github.com/Aider-AI/aider/issues/649 @ 5dc9490 (v0.86.0), Apache-2.0; open since 2024-06 with 41 upvotes",
+  "task": "/app ships a history-less snapshot of aider. Agent implements an option that makes the model's proposed edits reviewable one at a time before they are applied. It covers editblock, wholefile, udiff, patch and architect flows. Per-hunk accept, reject, edit and skip-rest, a non-interactive policy flag, a session auto-accept choice, correct git commit and undo semantics for partial acceptance, and a rejection note fed back to the model.",
+  "title": "Per-change confirmation mode across aider edit formats"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:06:40Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T07:06:40Z",
+   "write",
+   "short",
+   "batch 22"
+  ],
+  [
+   "2026-10-21T07:06:40Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-109 0.35"
+  ],
+  [
+   "2026-10-21T07:07:52Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 4, 'Surf': 3, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 4, 'Nov': 4, 'Lic': 5, 'Fit': 5, 'Build': 3}"
+  ]
+ ],
+ "id": "S-im-110",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.349,
+    "S-im-109"
+   ],
+   [
+    0.235,
+    "S-im-094"
+   ],
+   [
+    0.201,
+    "S-im-037"
+   ],
+   [
+    0.126,
+    "git-to-zig [FrontierSWE]"
+   ],
+   [
+    0.1,
+    "git-graph [ProgramBench]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c",
+  "kb": 140356,
+  "lang": "Python",
+  "open_prs": 529,
+  "pushed": "2026-05-22",
+  "release": "v0.86.0",
+  "spdx": "Apache-2.0",
+  "stars": 49664,
+  "test_files": 87,
+  "test_kb": 5501,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/aider-ai/aider/issues/649|aider-ai-aider-649-add-option-to-force-the-ai-to-ask-the-use",
+ "source_notes": "repo https://github.com/Aider-AI/aider; opened 2024-06-06",
+ "source_url": "https://github.com/Aider-AI/aider/issues/649",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/Aider-AI/aider/issues/649",
+  "facts": [
+   {
+    "claim": "Aider issue #649 exists, titled 'Add option to force the AI to ask the user to confirm each change before doing it', and is open (closed and reopened 2024-06-13), opened 2024-06-06",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/issues/649"
+   },
+   {
+    "claim": "Issue #649 has 41 upvotes",
+    "status": "contradicted",
+    "url": "https://github.com/Aider-AI/aider/issues/649"
+   },
+   {
+    "claim": "Aider repository licence is Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/blob/main/LICENSE.txt"
+   },
+   {
+    "claim": "No merged or open PR in the first 25 aider PRs returned for confirm/hunk/per-change/per-edit queries implements per-change or per-hunk confirmation; issue #649 shows 'No branches or pull requests'",
+    "status": "confirmed",
+    "url": "https://github.com/Aider-AI/aider/pulls?q=is%3Apr+confirm+hunk+OR+per-change+OR+per-edit"
+   },
+   {
+    "claim": "Aider's current release notes or docs describe a per-hunk or per-edit accept/reject option",
+    "status": "not_found",
+    "url": "https://github.com/Aider-AI/aider/issues/649"
+   },
+   {
+    "claim": "Reference implementation (800-1200 lines plus tests) exists",
+    "status": "not_found",
+    "url": ""
+   }
+  ],
+  "frontier_hours": 7,
+  "full_card": {
+   "band": "Tier 8 h, not 4 h as seeded: about 7 h of frontier work across five formats plus git semantics. Buckets: each edit format, each accept/reject/edit/skip action, partial-commit git state, undo, flags, rejection note.",
+   "build_cost": "About 3 days: 800-1200 line reference, scripted-reply harness, and exact-state fixtures for five formats. smoke_build is empty, so offline build of aider is unverified.",
+   "deliverable": "Per-hunk review option across editblock, wholefile, udiff, patch and architect: accept, reject, edit, skip-rest; non-interactive policy flag; session auto-accept; rejection note fed back to the model; git commit and undo semantics for partial acceptance.",
+   "gates_anticheat": "Hidden cases and reference outside /app; test and config edits discarded; grading on final trees, git log and chat history. Exact prompt strings, commit message format and history schema must be pinned in the spec, or a valid alternative fails.",
+   "grading_surface": "Hidden scripted-reply Coder cases comparing final file trees, chat history and git state; case count not stated in the seed. Existing suite is the regression gate.",
+   "local_fit": "Python CLI on CPU, runs offline with scripted model replies; fits the sandbox.",
+   "lookup": "none: no PR, release or fork in the checked aider PRs implements per-change confirmation; issue has no linked PRs.",
+   "provenance": "Aider GitHub issue #649 (open, opened 2024-06-06; feature request, no linked PR) at commit 5dc9490 / v0.86.0, Apache-2.0, Python, 87 test files.",
+   "reference": "Our own implementation, not yet written; expected 800-1200 added lines plus tests.",
+   "ships": "History-less aider snapshot at the base commit with no per-change confirmation code; hidden harness and reference kept out of /app.",
+   "similarity": "Public-task neighbours max 0.126 (git-to-zig, git-graph), below 0.15. Seed neighbour S-im-109 at 0.349 is not checked for content; K1 not raised."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Scope is 8 h work, not 4 h. No dated public evidence, so capped at 3 (E0)."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3 days for the reference, harness and exact-state fixtures."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Python CLI with mocked model replies needs no GPU, network or special kernel features."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Five formats, git partial-commit and undo semantics, and flags make a sustained multi-hour task."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 confirmed by the LICENSE text."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Each edit format and action is an independent bucket with steady partial credit."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Public neighbours are below 0.15, but S-im-109 at 0.349 is another seed and was not checked for overlap."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real Apache-2.0 repo at a pinned commit and a real open feature request; the 41-upvote claim is wrong (max 28 on one comment)."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference exists; the spec is loose on prompts, commit messages and history, so exact-state grading is ambiguous."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and hidden harness are ours; no upstream implementation exists to copy."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Scripted cases can be numerous, but the count is unstated and the oracle is our own, so breadth is unproven."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Scripted Coder runs cannot be made deterministic, or the existing suite cannot run offline, or partial acceptance cannot be expressed without rewriting the core loop.",
+   "pass_if": "Editblock scripted run is deterministic across two runs, and partial acceptance produces a predictable tree, commit and chat history that the spec can pin.",
+   "steps": [
+    "Clone aider at 5dc9490 into a scratch container with network; create a venv and pip install -e . ; run the existing test suite once to see whether it is deterministic and offline-clean.",
+    "Read aider/coders/ for editblock, wholefile, udiff, patch and architect: find where each applies edits and where io.confirm_ask is called; note the hook point for per-hunk review.",
+    "Prototype per-hunk accept/reject/skip for editblock only, driven by a scripted InputOutput that returns a fixed sequence of answers.",
+    "Run one scripted Coder session with a fixed reply on a two-file, three-hunk edit: accept hunk 1, reject hunk 2, skip rest; capture file tree, git log and chat history.",
+    "Run the same script twice with GIT_AUTHOR_DATE and GIT_COMMITTER_DATE pinned to confirm the outputs are byte-identical."
+   ]
+  },
+  "summary": "Aider issue #649 is real and open, with Apache-2.0 licence and no implementing PR found, so the idea passes the paper-trail and lookup gates, though the 41-upvote claim is wrong (max 28) and the seeded 4 h tier is too short for about 7 h of work, so I set 8 h. The main risk is that exact-state grading (chat history, commit form) encodes unpinned choices, so the spec must pin them or the idea should be killed as K9 or K8 after the spike.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

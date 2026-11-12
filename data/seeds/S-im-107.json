@@ -1,0 +1,236 @@
+{
+ "batch": 21,
+ "card": {
+  "band": "8 h. The explainer is easy. Checkpoint re-evaluation and exact semantic parity with the real scheduler across wildcards, ruleorder and params-triggered reruns separate runs. A frontier agent reaches about half. A weaker model delivers only the simple reasons.",
+  "cheat": "Printing the plan from the existing --dry-run text: the JSON contract and critical path need dag internals. Hidden Snakefiles and states are not visible.",
+  "grading": "Hidden behavioural tests over several hundred generated Snakefiles and working-tree states: exact JSON plan, ordering and critical-path values. The repo's existing suite is a regression gate. Credit per feature bucket.",
+  "reference": "Our reference, written by us, is about 1500-2000 added lines across the dag, persistence and CLI modules.",
+  "source": "https://github.com/snakemake/snakemake @ v9.27.0 (head 1c67a66), MIT",
+  "task": "/app ships a snapshot of snakemake at the pinned commit. The agent adds a multi-part feature set: a --plan-json explainer that emits per-job reasons (missing output, changed code/params/input, forced), a --what-if option that simulates a changed file, and a per-rule cost estimator with critical-path calculation. It also adds checkpoint-aware re-evaluation planning without executing jobs. Everything is reached through the CLI and the Python API.",
+  "title": "Snakemake checkpointed DAG introspection and what-if planner"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T03:18:25Z",
+ "family": "build-system",
+ "final": 66,
+ "history": [
+  [
+   "2026-10-21T03:18:25Z",
+   "write",
+   "short",
+   "batch 21"
+  ],
+  [
+   "2026-10-21T03:18:25Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-073 0.25"
+  ],
+  [
+   "2026-10-21T03:24:06Z",
+   "v1",
+   "pass",
+   "score 79; dead links []"
+  ],
+  [
+   "2026-10-21T03:27:09Z",
+   "v2",
+   "killed:K5",
+   "gate on judge scores"
+  ]
+ ],
+ "id": "S-im-107",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.255,
+    "S-im-073"
+   ],
+   [
+    0.208,
+    "S-im-088"
+   ],
+   [
+    0.194,
+    "S-im-006"
+   ],
+   [
+    0.089,
+    "what-will-my-model-forget [PaperBench]"
+   ],
+   [
+    0.082,
+    "shortest_path_dijkstra [AlgoTune]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "rank": 5,
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1c67a66cbe14bbb91fa54c960c4e26d8de2b171f",
+  "kb": 97446,
+  "lang": "Python",
+  "open_prs": 129,
+  "pushed": "2026-10-19",
+  "release": "v9.27.0",
+  "spdx": "MIT",
+  "stars": 2888,
+  "test_files": 2029,
+  "test_kb": 19384,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/snakemake/snakemake/issues/2409|snakemake-snakemake-2409-announcement-snakemake-8-0-released",
+ "source_notes": "repo https://github.com/snakemake/snakemake; opened 2023-08-15",
+ "source_url": "https://github.com/snakemake/snakemake/issues/2409",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/snakemake/snakemake/releases/tag/v9.27.0",
+  "facts": [
+   {
+    "claim": "Snakemake release v9.27.0 exists, dated 2026-09-11",
+    "status": "confirmed",
+    "url": "https://github.com/snakemake/snakemake/releases/tag/v9.27.0"
+   },
+   {
+    "claim": "Repository licence is MIT",
+    "status": "confirmed",
+    "url": "https://github.com/snakemake/snakemake/blob/v9.27.0/LICENSE.md"
+   },
+   {
+    "claim": "Snakemake already prints a per-job reason in dry-run (--reason / printreason, shown as a reason: line per job)",
+    "status": "confirmed",
+    "url": "https://snakemake.readthedocs.io/en/v5.24.1/executing/cli.html"
+   },
+   {
+    "claim": "The current stable CLI page lists a flag that prints job reasons directly",
+    "status": "not_found",
+    "url": "https://snakemake.readthedocs.io/en/stable/executing/cli.html"
+   },
+   {
+    "claim": "No plan-JSON, what-if or cost-estimation flag is documented in the stable CLI",
+    "status": "confirmed",
+    "url": "https://snakemake.readthedocs.io/en/stable/executing/cli.html"
+   },
+   {
+    "claim": "Open PRs (page 1 of 9 checked) contain no JSON job-plan output, job-reason, cost-estimation or changed-file simulation work; closest are #4318 (dry-run protected output checks), #4338, #4279 (elapsed time logging)",
+    "status": "confirmed",
+    "url": "https://github.com/snakemake/snakemake/pulls?q=is%3Apr+dry-run+json+OR+reason+OR+cost"
+   },
+   {
+    "claim": "Release notes for v9.27.0 do not mention job reasons, checkpoints or DAG/job plan output",
+    "status": "confirmed",
+    "url": "https://github.com/snakemake/snakemake/releases/tag/v9.27.0"
+   }
+  ],
+  "frontier_hours": 10,
+  "full_card": {
+   "band": "Seed claims 8 h tier with about half reached by frontier; no dated public evidence. Own estimate: excellent frontier agent needs about 10 h for whole scope, so 20 h tier fits better. Partial buckets: explainer (reasons), what-if, cost/critical path, checkpoint replanning, then exact parity across wildcards, ruleorder, params reruns.",
+   "build_cost": "smoke_build empty (not run); pure Python so build is likely easy, but the suite is 2029 test files and needs a subset plan. Our reference plus hidden generator and per-bucket graders est. 3-4 days (below K12 5-day limit).",
+   "deliverable": "CLI and Python API: --plan-json explainer with per-job reasons (missing output, changed code/params/input, forced); --what-if simulating a changed file; per-rule cost estimator with critical-path values; checkpoint-aware re-evaluation planning without running jobs.",
+   "gates_anticheat": "Hidden Snakefiles and states never shipped. Printing plan from existing --dry-run text fails the JSON contract and critical-path checks. Edits to tests or build config are caught by hidden re-run from clean snapshot; regression gate runs the untouched suite.",
+   "grading_surface": "Hidden behavioural tests over several hundred generated Snakefiles and working-tree states: exact JSON plan, ordering, critical-path values; credit per feature bucket; repo suite as regression gate.",
+   "local_fit": "Pure Python, CPU only, no network needed at run time; fits 8 cores / 16 GB.",
+   "lookup": "partial: --reason (printreason) already emits per-job reasons; no plan-JSON, what-if or cost flag documented; no open PR implementing them on page 1 of 9.",
+   "provenance": "snakemake/snakemake @ v9.27.0 (head 1c67a66), MIT, released 2026-09-11, Python, 2888 stars (GitHub API).",
+   "reference": "Team-written reference, about 1500-2000 added lines across dag, persistence and CLI modules; not public. Live parity oracle available in-image via the real scheduler's existing reasons.",
+   "ships": "History-less snapshot of the pinned commit in /app; reference, hidden generator and hidden states excluded.",
+   "similarity": "Public task neighbours max 0.089 (what-will-my-model-forget, shortest_path_dijkstra), under 0.15. Seed neighbour S-im-073 at 0.255 and S-im-088 at 0.208 need a content check for overlap, not a kill."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Band claim rests on seed author estimate with no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "smoke_build not run; reference plus generator estimated at 3-4 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "Pure Python on CPU, no GPU or network needed at run time."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Four interacting feature sets plus checkpoint replanning and parity work; 8-20 h scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT licence allows shipping the snapshot."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Explainer, what-if, cost/critical path, checkpoint replanning and parity across rule types give separate credit buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "Public task neighbours all under 0.15 (max 0.089); seed-to-seed neighbour 0.255 needs a dedup check against S-im-073."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real MIT project, pinned release v9.27.0 with 2888 stars and a release dated 2026-09-11."
+   },
+   "Ref": {
+    "v": 3,
+    "why": "Reference is team-written and not public, so exact JSON schema and critical-path semantics must be precisely specified in the prompt before the reference can be trusted."
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Reference and hidden cases are team-held; agent can use the real scheduler in-image for parity, which is fine and not a leak of the grader."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Hidden generated Snakefiles and states give hundreds of cases with exact JSON comparison, not an unlimited executable oracle."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 50,
+   "kill_if": "Build or the targeted suite cannot run in the container, or reason output varies between runs so exact-JSON parity cannot be graded.",
+   "pass_if": "Build succeeds offline after install, reason output is deterministic across two runs, the targeted suite subset runs cleanly, and the checkpoint case re-evaluates in dry-run.",
+   "steps": [
+    "In a throwaway container with network, clone snakemake at 1c67a66 and install editable with its test dependencies (the smoke_build was empty, so this is the first real build check).",
+    "Write three tiny Snakefiles: one with wildcards, one with ruleorder, one with a params change and an input change; run the real scheduler with -n and the reason flag to capture reference reasons.",
+    "Run a targeted subset of the existing suite on the scheduler paths those Snakefiles touch and record pass/fail counts and runtime.",
+    "Add a checkpoint Snakefile and confirm the real scheduler re-evaluates it in dry-run without executing jobs; capture the output.",
+    "Run the same Snakefiles twice to check that reason output is deterministic.",
+    "Count how many distinct reason categories and checkpoint paths the three Snakefiles exercise to check the bucket split."
+   ]
+  },
+  "summary": "Snakemake v9.27.0 (MIT, released 2026-09-11) is real, and the card's claims about the repo check out, though --reason already prints per-job reasons, so the explainer is partly lookup-able and a parity oracle exists in-image. No gate fails, so the seed passes to spike with a 20 h tier, since the card's 8 h budget looks short for a roughly 10 h frontier scope.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 79,
+ "v2": {
+  "evidence_grade": "E0",
+  "id": "S-im-107",
+  "kill_code": "",
+  "note": "Real repo, but the features are invented: no issue or PR asks for them. The JSON contract, the cost model and the critical-path semantics are ours, so exact-JSON grading against our unwritten reference risks rejecting reasonable designs. A maintainer is unlikely to accept 'checkpoint re-evaluation without executing' as specified, because checkpoint outputs are unknown before the job runs. --reason already exists, which makes the explainer bucket easy. Keep only if the spec is pinned in detail and grading checks semantic fields rather than the exact layout.",
+  "scores": {
+   "Band": 2,
+   "Build": 3,
+   "Fit": 5,
+   "Hor": 4,
+   "Lic": 5,
+   "Multi": 4,
+   "Nov": 4,
+   "Real": 3,
+   "Ref": 2,
+   "Seal": 4,
+   "Surf": 3
+  }
+ },
+ "v2_done": true,
+ "v2_score": 66
+}

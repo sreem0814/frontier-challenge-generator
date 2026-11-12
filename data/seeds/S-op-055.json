@@ -1,0 +1,240 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "4h. The profile-and-bisect work in a large engine makes it tractable. Risk: it overlaps existing Godot cards, and the cause may be a single lever. A weaker model fails to build the engine.",
+  "cheat": "Reducing the frame rate or skipping updates is closed by the per-frame state hash and fixed frame counts.",
+  "grading": "The hidden scenarios are headless runs of fixed frame counts, measured as CPU-time medians against baseline and reference. A state dump hash per frame gates correctness. Reward is 2^u-1 in the standard form.",
+  "reference": "The merged upstream fix(es) for the issue, measured on the harness. Not verified.",
+  "source": "https://github.com/godotengine/godot/issues/99593 @ head 1b16fd14, MIT",
+  "task": "/app ships a Godot snapshot at the commit exhibiting high CPU use compared with 4.3, built headless, with a script-driven scenario harness. The agent finds the cause(s) and cuts CPU time per frame in the reported scenarios. The issue text has not been fetched, so the framing (cause, scenario) must be verified before a build.",
+  "title": "Godot 4.4 dev idle and editor CPU consumption regression"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:11:57Z",
+ "family": "emulator-vm",
+ "history": [
+  [
+   "2026-10-21T07:11:57Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:57Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-054 0.37"
+  ],
+  [
+   "2026-10-21T07:13:18Z",
+   "v1",
+   "killed:K10",
+   "The one known cause (Windows delay_usec busy-wait, df3367f) was reverted upstream in 8e1a6ea and the current master delay_usec is Sleep-only, so the snapshot likely lacks the regression. The seed's fix PR #99656 was never merged. Remaining scope is one lever at about 20 lines, not a long-horizon tas"
+  ]
+ ],
+ "id": "S-op-055",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.371,
+    "S-op-054"
+   ],
+   [
+    0.211,
+    "S-op-050"
+   ],
+   [
+    0.199,
+    "S-im-117"
+   ],
+   [
+    0.144,
+    "symbolic_regression [METR]"
+   ],
+   [
+    0.106,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 9,
+  "clone_ok": true,
+  "cmd_build": ". /p/venv/bin/activate && python -c \"import sys; print(sys.version)\"",
+  "cmd_fetch": "python3 -m venv /p/venv && . /p/venv/bin/activate && pip install -q -U pip &&\n         ex=$(python3 - <<\"EOF\"\nimport tomllib\nx=[]\ntry:\n  d=tomllib.load(open(\"pyproject.toml\",\"rb\")); x=list(((d.get(\"project\") or {}).get(\"optional-dependencies\") or {}).keys())\nexcept Exception: pass\nprint(\",\".join(e for e in x if not any(b in e.lower() for b in (\"doc\",\"gpu\",\"cuda\",\"win\",\"mac\"))))\nEOF\n);\n         grp",
+  "cmd_test": ". /p/venv/bin/activate && pytest -p no:cacheprovider -q -o junit_family=xunit2 --junitxml=$OUT/run$i.xml",
+  "commit": "679066724352c12673001d692d41dc2dab9314c0",
+  "deterministic": true,
+  "eco": "python",
+  "fetch_ok": true,
+  "fetch_s": 20,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "      To find more information, look for \"package discovery\" on setuptools docs.\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nERROR: Failed to build 'file:///p/src' when getting requirements to build wheel\nREPAIR pip install methods\nERROR: Could not find a version that satisfies the requirement methods (from versions: none)\nERROR: No matching distribution found for methods\n3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   2,
+   2,
+   2
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "::tests.test_builders"
+  ],
+  "stable_failures": 1,
+  "subdir": "",
+  "suite_s": 1,
+  "test_files": 1651,
+  "tests_fail": 1,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 1,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/issues/99593|godotengine-godot-99593-huge-cpu-consumption-comparing-in-4-",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/issues/99593",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/issues/99593",
+  "facts": [
+   {
+    "claim": "Issue #99593 exists and reports Windows idle/editor CPU use in 4.4-dev5 (15-18% per project) versus 0.1% in 4.3-stable",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/issues/99593"
+   },
+   {
+    "claim": "Issue is closed; cause traced to df3367f / PR #99178, which turned OS_Windows::delay_usec from Sleep into a busy-wait with a 1.2 ms spin threshold",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/issues/99593"
+   },
+   {
+    "claim": "Issue closed by commit 8e1a6ea 'Revert Make delay_usec more precise', touching only platform/windows/os_windows.cpp with 4 additions and 16 deletions",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/commit/8e1a6ea"
+   },
+   {
+    "claim": "Seed's reference 'merged upstream fix PR #99656' is merged",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot/pull/99656"
+   },
+   {
+    "claim": "Current master OS_Windows::delay_usec contains only Sleep calls, so the Windows spin-wait regression is absent at upstream head",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/godotengine/godot/master/platform/windows/os_windows.cpp"
+   },
+   {
+    "claim": "The snapshot at head 1b16fd14 still exhibits high CPU use in the scenarios (seed's task framing)",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/issues/99593"
+   }
+  ],
+  "frontier_hours": 1,
+  "full_card": {
+   "band": "Low: the one known cause is one function, already reverted upstream; no evidence of a larger hidden regression at head.",
+   "build_cost": "Godot headless scons build is hours on 8 cores; smoke_build did not build Godot (ran a pytest command, 1 test, amber), so it gives no build evidence.",
+   "deliverable": "Headless Godot binary plus script-driven scenario harness; CPU-time per frame in fixed-frame runs.",
+   "gates_anticheat": "Per-frame state hash and fixed frame counts block skipping frames or updates; build config edits must be detected by hash on the reference binary.",
+   "grading_surface": "Hidden headless fixed-frame scenarios with per-frame state hash; likely few scenarios (2-4).",
+   "local_fit": "Reported symptom is Windows-only and a Linux container cannot reproduce it; headless Linux CPU time may show nothing to fix.",
+   "lookup": "Direct: the fix is a public commit in the same repo history; must be removed from /app.",
+   "provenance": "Godot issue #99593 (closed, Windows-only); fixed by revert commit 8e1a6ea of df3367f/PR #99178. Seed's PR #99656 was closed unmerged.",
+   "reference": "Revert-scale change (~20 lines in os_windows.cpp). Not verified on the harness.",
+   "ships": "Godot snapshot at 1b16fd14 (2026-10-20 master). Upstream delay_usec is Sleep-only, so the reported regression should not be present; snapshot needs a check.",
+   "similarity": "Overlaps S-op-054 (0.371) and existing Godot performance cards; not checked against them in depth."
+  },
+  "kill_code": "K10",
+  "kill_reason": "The one known cause (Windows delay_usec busy-wait, df3367f) was reverted upstream in 8e1a6ea and the current master delay_usec is Sleep-only, so the snapshot likely lacks the regression. The seed's fix PR #99656 was never merged. Remaining scope is one lever at about 20 lines, not a long-horizon task, and the reported symptom is Windows-only and not reproducible in the Linux sandbox.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 1,
+    "why": "One known lever, already fixed upstream; no evidence a frontier agent would fail, but the scope is essentially nil."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Godot headless build is a few hours on 8 cores; under 5 days, but no verified build from the probe."
+   },
+   "Fit": {
+    "v": 2,
+    "why": "Windows-specific symptom cannot be reproduced in the gVisor Linux sandbox."
+   },
+   "Hor": {
+    "v": 1,
+    "why": "Find-and-revert is short; not a long-horizon task."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per source facts."
+   },
+   "Multi": {
+    "v": 1,
+    "why": "One lever; no parallel buckets."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbour S-op-054 at 0.371 is in the same repo family; partial overlap."
+   },
+   "Real": {
+    "v": 3,
+    "why": "Real issue and commits exist, but the seed's framing (cause, merged PR 99656, snapshot showing the bug) is contradicted or unverified."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is a ~20-line revert already upstream; not a complete or measured implementation."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Harness and hashes can be sealed, but the fix itself is public history, so it must be stripped."
+   },
+   "Surf": {
+    "v": 2,
+    "why": "Only a few fixed-frame headless scenarios with a state hash; no broad surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "No CPU gap above noise on Linux, or the snapshot head already matches 4.3 (the reported Windows regression is fixed upstream).",
+   "pass_if": "A reproducible CPU-time gap of at least 20% between head and 4.3-stable on a fixed-frame headless scenario, with a hotspot traceable to one or more files.",
+   "steps": [
+    "Clone godot at 1b16fd14 in a throwaway container with network; confirm platform/windows/os_windows.cpp delay_usec is Sleep-only (already checked on master).",
+    "Build the Godot headless (scons platform=linuxbsd target=template_release headless) on 8 cores and time it.",
+    "Run an idle headless project at 60 fps for a fixed frame count and record CPU time per frame.",
+    "Compare with the 4.3-stable headless build on the same project to see whether any gap exists on Linux.",
+    "Check whether any Linux code path (os_unix.cpp delay_usec, add_frame_delay) shows a hotspot above noise under perf-free timing (time/getrusage)."
+   ]
+  },
+  "summary": "Seed S-op-055 is killed as K10: the reported Godot 4.4-dev Windows CPU regression (issue #99593) has a single cause that was already reverted upstream in commit 8e1a6ea, and current master shows no busy-wait in delay_usec. The seed's cited merged fix PR #99656 was closed unmerged, and the claim that the snapshot still exhibits high CPU is unverified and likely false.",
+  "tier_hours": 2
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 44
+}

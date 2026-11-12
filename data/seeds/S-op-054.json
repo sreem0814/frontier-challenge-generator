@@ -1,0 +1,246 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "4h. A heavy C++ build and a profile-driven search over the property and resource duplication paths. Risk: the single-regression scope may be one-lever (K10), so the card includes a general duplicate-path speedup with several scenarios. A weaker model breaks semantics.",
+  "cheat": "Skipping the property copy is closed by a hidden structural dump (values, owners, resources shared vs unique).",
+  "grading": "A hidden benchmark builds varied scene trees (depth, count, exported properties, groups, signals, subresources) and duplicates them. Output correctness is gated by a structural dump compared across flag combinations. Reward is based on the wall-clock median speedup. The scons build must finish in the container; an amber probe means no test run was verified.",
+  "reference": "The upstream fix for the issue (merged PR to be pinned) gives the speedup S, measured on our harness. The size of the real change has not been verified and may be small.",
+  "source": "https://github.com/godotengine/godot/issues/91230 @ head 1b16fd14 (4.7.2-stable), MIT",
+  "task": "/app ships a history-less Godot source snapshot at a pinned commit that still has the slowdown, plus a headless benchmark harness. Duplicating scene trees with many nodes, properties and signals runs about 2x slower since the property-duplication fix. The agent restores the speed, and goes further, without changing duplicate semantics.",
+  "title": "Godot Node.duplicate() regression recovery"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:11:57Z",
+ "family": "emulator-vm",
+ "history": [
+  [
+   "2026-10-21T07:11:57Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:57Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-050 0.20"
+  ],
+  [
+   "2026-10-21T07:13:10Z",
+   "v1",
+   "killed:K10",
+   "One-lever scope: the regression is one code path in scene/main/node.cpp, and its upstream fix (PR #91329, merged 2024-05-13) is public, small, and recallable. The seed's broadened multi-scenario speedup is unbuilt and unverified, and the seed's premise (2x slowdown still present at 4.7.2) is not sup"
+  ]
+ ],
+ "id": "S-op-054",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.204,
+    "S-op-050"
+   ],
+   [
+    0.203,
+    "S-im-065"
+   ],
+   [
+    0.195,
+    "S-im-117"
+   ],
+   [
+    0.158,
+    "add-benchmark-lm-eval-harness [original]"
+   ],
+   [
+    0.088,
+    "family (500 issues, 12 Python repos) [SWE-bench Verified]"
+   ]
+  ]
+ },
+ "method": "incident",
+ "smoke": {
+  "apt_failed": false,
+  "build_ok": true,
+  "build_s": 0,
+  "ci_files": 9,
+  "clone_ok": true,
+  "cmd_build": ". /p/venv/bin/activate && python -c \"import sys; print(sys.version)\"",
+  "cmd_fetch": "python3 -m venv /p/venv && . /p/venv/bin/activate && pip install -q -U pip &&\n         ex=$(python3 - <<\"EOF\"\nimport tomllib\nx=[]\ntry:\n  d=tomllib.load(open(\"pyproject.toml\",\"rb\")); x=list(((d.get(\"project\") or {}).get(\"optional-dependencies\") or {}).keys())\nexcept Exception: pass\nprint(\",\".join(e for e in x if not any(b in e.lower() for b in (\"doc\",\"gpu\",\"cuda\",\"win\",\"mac\"))))\nEOF\n);\n         grp",
+  "cmd_test": ". /p/venv/bin/activate && pytest -p no:cacheprovider -q -o junit_family=xunit2 --junitxml=$OUT/run$i.xml",
+  "commit": "679066724352c12673001d692d41dc2dab9314c0",
+  "deterministic": true,
+  "eco": "python",
+  "fetch_ok": true,
+  "fetch_s": 20,
+  "flaky_names": [],
+  "flaky_tests": 0,
+  "log": "      To find more information, look for \"package discovery\" on setuptools docs.\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nERROR: Failed to build 'file:///p/src' when getting requirements to build wheel\nREPAIR pip install methods\nERROR: Could not find a version that satisfies the requirement methods (from versions: none)\nERROR: No matching distribution found for methods\n3.11.2 (main, Oct  7 2026, 12:35:07) [GCC 12.2.0]",
+  "oom": false,
+  "ref": "default",
+  "report_format": "xml",
+  "run_rcs": [
+   2,
+   2,
+   2
+  ],
+  "runs_without_report": 0,
+  "stable_failure_names": [
+   "::tests.test_builders"
+  ],
+  "stable_failures": 1,
+  "subdir": "",
+  "suite_s": 1,
+  "test_files": 1651,
+  "tests_fail": 1,
+  "tests_listed": 0,
+  "tests_pass": 0,
+  "tests_skip": 0,
+  "tests_total": 1,
+  "timeouts": [],
+  "verdict": "amber",
+  "work_volume": ""
+ },
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1b16fd14e4ce73de1113ea04479fd09b227e9cd7",
+  "kb": 1897198,
+  "lang": "C++",
+  "open_prs": 5491,
+  "pushed": "2026-10-20",
+  "release": "4.7.2-stable",
+  "spdx": "MIT",
+  "stars": 118744
+ },
+ "source_key": "github.com/godotengine/godot/issues/91230|godotengine-godot-91230-node-duplicate-runs-about-twice-as-s",
+ "source_notes": "repo https://github.com/godotengine/godot; merged PR or fixed issue",
+ "source_url": "https://github.com/godotengine/godot/issues/91230",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/godotengine/godot/issues/91230",
+  "facts": [
+   {
+    "claim": "Godot issue #91230 'Node.duplicate() runs about twice as slow since node property duplication fix' exists, was opened 2024-04-26, and is closed as completed 2024-05-13",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/issues/91230"
+   },
+   {
+    "claim": "The regression was bisected to commit 9851c1b (PR #87387) and reproduces in 4.3.dev5 but not 4.2.1-stable",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/issues/91230"
+   },
+   {
+    "claim": "The issue's title says 'about twice as slow', but the reported timings show about 1.4-1.5x (3571 ms vs 5207 ms in one run; 2246 ms vs 1596 ms on an M3 Mac)",
+    "status": "contradicted",
+    "url": "https://github.com/godotengine/godot/issues/91230"
+   },
+   {
+    "claim": "Upstream fix PR #91329 'Fix a performance regression when duplicating a node' was merged 2024-05-13 into the 4.3 milestone",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/91329"
+   },
+   {
+    "claim": "The fix moves property duplication from duplicate() into a _duplicate_properties function, touching scene/main/node.cpp; the diff is a single-file change, and its line count was not shown on the page",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/pull/91329"
+   },
+   {
+    "claim": "Godot release 4.7.2-stable exists (released 18 Aug, year 2026 per page footer) and lists no duplicate()-related fix",
+    "status": "confirmed",
+    "url": "https://github.com/godotengine/godot/releases/tag/4.7.2-stable"
+   },
+   {
+    "claim": "The seed's claim that head 1b16fd14 (4.7.2-stable) still carries the duplicate slowdown after PR #91329",
+    "status": "not_found",
+    "url": "https://github.com/godotengine/godot/issues/91230"
+   }
+  ],
+  "frontier_hours": 1.5,
+  "full_card": {
+   "band": "Expected frontier solve of the recovery alone is minutes to about an hour; general speedup adds some depth but is not verified. Band 2 at most, not 4.",
+   "build_cost": "2-3 days: full scons editor/template build, benchmark harness, snapshot stripping, and a structural dump tool.",
+   "deliverable": "Faster Node.duplicate() with identical duplicate semantics on varied scene trees, scored by wall-clock median speedup plus a structural-dump correctness gate.",
+   "gates_anticheat": "Structural dump closes skip-property shortcuts; the fix is in public history, so the snapshot must strip it; build must be verified with scons, which the probe did not do.",
+   "grading_surface": "Structural dump across generated scene trees and flag combinations: real but narrow surface, mainly one API path.",
+   "local_fit": "scons build of Godot is heavy (many cores, long compile) but feasible on 8 cores; the probe's pytest run is a Python venv and tells us nothing about the C++ build.",
+   "lookup": "direct: the fix is merged, public, and identifiable from the issue number.",
+   "provenance": "Godot issue #91230 (closed 2024-05-13) bisected to PR #87387; fixed by merged PR #91329 (single file scene/main/node.cpp). Seed head 1b16fd14 is 4.7.2-stable; persistence of the slowdown there is unverified.",
+   "reference": "Upstream PR #91329 (merged, public, small). Measured upstream gain in issue about 1.4-1.5x, not 2x. Broadened multi-scenario reference not yet built.",
+   "ships": "history-less Godot source snapshot at 1b16fd14 plus headless duplicate benchmark (as proposed). Would need to exclude the #91329 change and its history.",
+   "similarity": "Nearest neighbours 0.204 (S-op-050), 0.203 (S-im-065), 0.195 (S-im-117); none is a Godot task. No CROWDED overlap."
+  },
+  "kill_code": "K10",
+  "kill_reason": "One-lever scope: the regression is one code path in scene/main/node.cpp, and its upstream fix (PR #91329, merged 2024-05-13) is public, small, and recallable. The seed's broadened multi-scenario speedup is unbuilt and unverified, and the seed's premise (2x slowdown still present at 4.7.2) is not supported: the issue shows about 1.4-1.5x and was closed as fixed in 2024. The smoke probe ran a Python pytest and verified no Godot build, so it cannot confirm the scons build.",
+  "lookup_verdict": "direct",
+  "scores": {
+   "Band": {
+    "v": 2,
+    "why": "Recovering a known single-file fix is likely quick for a frontier agent; no evidence supports a 4h tier."
+   },
+   "Build": {
+    "v": 4,
+    "why": "Estimated 2-3 days, under the 5-day limit."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "Godot build is heavy but feasible for 8 cores and 16 GB; gVisor issues not checked."
+   },
+   "Hor": {
+    "v": 1,
+    "why": "A single-file regression fix is not long-horizon without the broadened scope, which is unbuilt."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "MIT per the seed's source facts (not separately checked)."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Only one lever (the property-duplication path) plus speculative extra scenarios."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Top neighbour 0.204 is above 0.15 but not a same-subject public task; no Godot neighbour."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real public issue and merged PR in a major MIT repo; the seed's 2x claim is not supported by the issue's 1.4-1.5x numbers."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is a small public merged PR from 2024, not a measured broadened speedup; the seed says the size may be small."
+   },
+   "Seal": {
+    "v": 2,
+    "why": "Reference is in public merged history and likely recallable; the snapshot would need to strip it, and the regression may already be gone at head."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Structural dump over generated trees gives a real grading surface, though the regression is one code path."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 45,
+   "kill_if": "The fix is already present at head, or the median ratio is under 1.2x, or the scons build cannot finish within the spike window.",
+   "pass_if": "Head lacks the #91329 split and the head/fixed median ratio is at least 1.4x with stable repeats.",
+   "steps": [
+    "In a networked container, clone godotengine/godot and check out 1b16fd14.",
+    "Check whether the #91329 change is present at head: read scene/main/node.cpp around duplicate() for the _duplicate_properties split (a targeted read, not a grading check).",
+    "If the split is present, the seed's premise (slowdown still in 4.7.2) is false: stop and kill.",
+    "If absent, build the editor with scons (headless, no tests) to confirm the build finishes; this will likely exceed the spike budget, so record the time.",
+    "Write a 20-line headless benchmark: duplicate a 2k-node tree with properties and signals 20 times, compare median timings at head vs. a tree with the #91329 change applied.",
+    "Measure the ratio. Expect about 1.4x, not 2x; if it is under 1.2x, kill for weak reward."
+   ]
+  },
+  "summary": "The seed's central regression is real (Godot issue #91230, bisected to PR #87387) but was already fixed upstream by the merged single-file PR #91329 in May 2024, and the issue shows about 1.4-1.5x rather than 2x, so the claim that head 1b16fd14 still has the slowdown is unverified. The reference is public and small and the scope is one lever, so the card is killed as K10 unless the seed is rebuilt around a broader, verified duplicate-path speedup.",
+  "tier_hours": 2
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 55
+}

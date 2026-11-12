@@ -1,0 +1,227 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "8h. Many independent operators each give steady credit. A frontier agent speeds up the matmul and misses the others. Overlaps existing quantised-kernel cards (K1 risk).",
+  "cheat": "Skipping computation is closed by randomised hidden shapes and tolerance checks.",
+  "grading": "Hidden shape sweeps compare the outputs of each operator to the shipped baseline implementation within a per-dtype tolerance (exact for integer paths). Reward from the wall-clock median speedup across operator buckets. testOps is the visible self-check.",
+  "reference": "Our own tuned kernels; the measured speedup S comes from the harness. Whether a later upstream version has a CPU speedup was not verified, so the card is a perf task rather than a verified release pair.",
+  "source": "https://github.com/ztxz16/fastllm @ head 6caa8f7a, Apache-2.0",
+  "task": "/app ships a history-less CPU-only snapshot of fastllm (no GPU backends) with the ./build/testOps operator tests. The agent speeds up the hot CPU operators (quantised linear, attention, RMSNorm, softmax, rotary) on 8 cores while keeping outputs within tolerance.",
+  "title": "fastllm CPU operator kernel speedup under the testOps gate"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:11:58Z",
+ "family": "numeric-scientific",
+ "history": [
+  [
+   "2026-10-21T07:11:58Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:58Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-041 0.30"
+  ],
+  [
+   "2026-10-21T07:15:48Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 5, 'Surf': 4, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 3, 'Lic': 5, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-op-057",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.298,
+    "S-op-041"
+   ],
+   [
+    0.212,
+    "S-op-054"
+   ],
+   [
+    0.21,
+    "S-op-055"
+   ],
+   [
+    0.124,
+    "operator_scheduling [HeuriGym]"
+   ],
+   [
+    0.079,
+    "fp8-rmsnorm-gemm [tasks]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "6caa8f7aed02448facc38b198ed8368443c2b62f",
+  "kb": 46362,
+  "lang": "C++",
+  "open_prs": 34,
+  "pushed": "2026-10-20",
+  "release": "",
+  "spdx": "Apache-2.0",
+  "stars": 5110,
+  "test_files": 479,
+  "test_kb": 8178,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/ztxz16/fastllm|ztxz16-fastllm",
+ "source_notes": "SWE-smith profile (cpp): its suite runs in a container; test command: ./build/testOps. The repo is used by a SWE-bench-family dataset.",
+ "source_url": "https://github.com/ztxz16/fastllm",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/ztxz16/fastllm",
+  "facts": [
+   {
+    "claim": "ztxz16/fastllm repository exists and is Apache-2.0 licensed (README and sidebar state Apache License 2.0)",
+    "status": "confirmed",
+    "url": "https://github.com/ztxz16/fastllm"
+   },
+   {
+    "claim": "Pinned commit 6caa8f7a is in master history (commit 'Optimize DeepSeek automatic chunking strategy', Oct 20, 2026)",
+    "status": "confirmed",
+    "url": "https://github.com/ztxz16/fastllm/commits/master"
+   },
+   {
+    "claim": "Seed says source head is 6caa8f7a",
+    "status": "contradicted",
+    "url": "https://github.com/ztxz16/fastllm/commits/master"
+   },
+   {
+    "claim": "A CPU backend exists in the repo (README: built-in CPU/CUDA/ROCm operators)",
+    "status": "confirmed",
+    "url": "https://github.com/ztxz16/fastllm"
+   },
+   {
+    "claim": "A target named testOps exists at the pinned commit (seed's self-check ./build/testOps)",
+    "status": "not_found",
+    "url": "https://raw.githubusercontent.com/ztxz16/fastllm/6caa8f7aed02448facc38b198ed8368443c2b62f/CMakeLists.txt"
+   },
+   {
+    "claim": "Operator test executable exists at pin: optest built from test/ops/cppOps.cpp, plus regressionOps",
+    "status": "confirmed",
+    "url": "https://github.com/ztxz16/fastllm/tree/6caa8f7aed02448facc38b198ed8368443c2b62f/test/ops"
+   },
+   {
+    "claim": "CPU kernel sources exist: linear.cpp, avx2.cpp, avx512f/bf16/vnni.cpp, amx.cpp, cpudevice.cpp at pin",
+    "status": "confirmed",
+    "url": "https://github.com/ztxz16/fastllm/tree/6caa8f7aed02448facc38b198ed8368443c2b62f/src/devices/cpu"
+   },
+   {
+    "claim": "Separate CPU source files for attention, RMSNorm, softmax and rotary exist by name",
+    "status": "not_found",
+    "url": "https://github.com/ztxz16/fastllm/tree/6caa8f7aed02448facc38b198ed8368443c2b62f/src/devices/cpu"
+   },
+   {
+    "claim": "Visible CMake build has no network fetch (no FetchContent/ExternalProject); third_party is vendored; uses -march=native and -O2 by default",
+    "status": "confirmed",
+    "url": "https://raw.githubusercontent.com/ztxz16/fastllm/master/CMakeLists.txt"
+   },
+   {
+    "claim": "An open upstream PR implements CPU operator speedups (quantised linear, attention, RMSNorm, softmax, rotary)",
+    "status": "not_found",
+    "url": "https://github.com/ztxz16/fastllm/pulls?q=is%3Apr+is%3Aopen"
+   },
+   {
+    "claim": "Post-pin upstream commits (17 on master, Oct 20-21) include CPU operator speedups",
+    "status": "not_found",
+    "url": "https://github.com/ztxz16/fastllm/commits/master"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Optimization, 8h tier, multi-operator buckets; frontier agent likely gets matmul and misses others. Score 3 (no dated public evidence).",
+   "build_cost": "About 3-4 days: CPU-only snapshot stripping, reference kernels, sweep harness and timing harness.",
+   "deliverable": "Faster CPU operators (quantised linear, attention, RMSNorm, softmax, rotary) with outputs within per-dtype tolerance.",
+   "gates_anticheat": "Randomised hidden shapes and tolerance checks close skipped computation; exact match for integer paths; harness and hidden shapes sealed. Visible self-check must be optest, not testOps.",
+   "grading_surface": "Hidden randomised shape sweeps per operator compared to the shipped baseline; executable oracle with an unlimited generator. Wall-clock median speedup per bucket.",
+   "local_fit": "CPU-only C++ build with -march=native on 8 cores, 16 GB; gVisor timing noise is the main risk.",
+   "lookup": "none: no upstream CPU operator speedup found in visible open PRs (20 of 32) or the 35 recent commits.",
+   "provenance": "Real repo ztxz16/fastllm (~5.1k stars, Apache-2.0) at pinned commit 6caa8f7a; master has moved 17 commits past the pin (mostly GPU/MoE).",
+   "reference": "Own tuned kernels, not yet built; speedup S comes from the harness. No public reference found.",
+   "ships": "Needs a CPU-only, history-less snapshot at 6caa8f7a with GPU/ROCm/Python code stripped; the pin is real but the snapshot must exclude later commits.",
+   "similarity": "Neighbours S-op-041 (0.298), S-op-054 (0.212), S-op-055 (0.21): overlap with other quantised-kernel seeds, not a near-duplicate of a public task. Needs cross-seed check."
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Optimization with multiple buckets; no dated public evidence, so capped at 3."
+   },
+   "Build": {
+    "v": 3,
+    "why": "About 3-4 days for snapshot, reference kernels and harness."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only build fits 8 cores and 16 GB; gVisor timing noise is a risk."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several operators and a threading/SIMD surface support sustained 8h work."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 allows shipping source and harness."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Five operator buckets give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Neighbour cosines 0.21-0.30 to other seeds in the same family; not a public-task duplicate."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real 5.1k-star Apache-2.0 repo at a pinned commit with a CPU backend."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "Reference is the author's own kernels, not built or shown complete; no reference exists yet."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Harness and hidden shapes stay out of reach; the baseline is in the image by design."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Randomised hidden shape sweeps over five operator families give an effectively unlimited generator."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The build needs GPU or network; the CPU operators are unreachable from the CPU path; headroom is under 1.2x on every operator with noise above 20%.",
+   "pass_if": "CPU-only build completes offline in under 20 minutes; optest runs deterministically; timing noise under 10%; a single change gives at least 1.5x on quantised linear with outputs matching; at least three of the five operator families are reachable on the CPU path.",
+   "steps": [
+    "In a networked throwaway container, clone ztxz16/fastllm at 6caa8f7a and configure a CPU-only Release build (no CUDA/ROCm, no Python API); time the build and check for network fetches.",
+    "Build the optest target and run it three times; check runtime and whether the output is deterministic.",
+    "Locate the CPU entry points for linear, attention, RMSNorm, softmax and rotary (start in src/devices/cpu/cpudevice.cpp and linear.cpp) and record which exist.",
+    "Write a small timing script over three shapes per operator with median of seven runs at 8 threads; time single-thread against 8-thread to see existing parallelism.",
+    "Repeat the timing three times to estimate noise under gVisor-like conditions.",
+    "Try one quick change to the quantised linear loop (for example, threading the outer loop); check outputs against the baseline within tolerance and measure the speedup."
+   ]
+  },
+  "summary": "The card is real (Apache-2.0 fastllm, pinned commit 6caa8f7a with a CPU backend, multi-operator buckets and a continuous speedup reward) and no kill gate fails outright. It needs fixing before build: the named testOps target is not in the pinned CMake (optest and regressionOps are), the head claim is contradicted (master is 17 commits past the pin), the attention/RMSNorm/softmax/rotary CPU files are unconfirmed, and the reference kernels do not yet exist, so a 60-minute spike must confirm headroom and timing noise first.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 7,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 73
+}

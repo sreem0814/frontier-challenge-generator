@@ -1,0 +1,202 @@
+{
+ "batch": 24,
+ "card": {
+  "band": "8h. Several interacting modules (schema, serializer, differ, SQL generator, introspection, push) and many index variants give dense partial credit. A frontier agent usually lands create/drop and misses rename, alter and introspection, and a weaker model stops at the schema builder.",
+  "cheat": "Hardcoding SQL strings for the visible examples is closed by hidden generated schemas with varied names, dialect options and diff sequences. Upstream is not recallable because the feature is unmerged.",
+  "grading": "Hidden vitest cases call the public schema builders and the drizzle-kit diff and SQL-generation functions. They compare emitted SQL statements and snapshot JSON for generated schemas, and cover each index kind (unique, expression, partial, concurrent, method). The repo's existing suite is the regression gate. A real Postgres is not needed because only generated SQL is compared; a bundled embedded Postgres can add execution checks if the licence allows.",
+  "reference": "We write it: expected about 1200-1800 changed lines across drizzle-orm pg-core, drizzle-kit snapshot, diff, serializer and SQL generation, with the issue's requested behaviour. Upstream has not shipped it, as far as the issue shows (open status not re-verified).",
+  "source": "https://github.com/drizzle-team/drizzle-orm/issues/2976 @ head eab8bedb (release 0.45.4), Apache-2.0",
+  "task": "/app ships a history-less snapshot of the repo at the pinned commit. The agent adds index definitions on pg materialized views to the schema API, to the SQL migration generator and to the snapshot diff/introspection in drizzle-kit (create, drop, rename, alter, push), with the matching type inference. The delivery interface is the public TypeScript API and the drizzle-kit generate/push entry points.",
+  "title": "Indexes on materialized views in drizzle-orm and drizzle-kit"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:11:57Z",
+ "family": "database-query",
+ "history": [
+  [
+   "2026-10-21T07:11:57Z",
+   "write",
+   "short",
+   "batch 24"
+  ],
+  [
+   "2026-10-21T07:11:57Z",
+   "l0",
+   "pass",
+   "top neighbour drizzle-orm-window-function-builders [DeepSWE] 0.27"
+  ],
+  [
+   "2026-10-21T07:13:03Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 5, 'Surf': 3, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 4, 'Nov': 3, 'Lic': 5, 'Fit': 4, 'Build': 3}"
+  ]
+ ],
+ "id": "S-im-116",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.269,
+    "drizzle-orm-window-function-builders [DeepSWE]"
+   ],
+   [
+    0.222,
+    "S-im-073"
+   ],
+   [
+    0.212,
+    "S-im-070"
+   ],
+   [
+    0.194,
+    "S-im-094"
+   ],
+   [
+    0.113,
+    "koota-entity-snapshot-rollback [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "eab8bedbb65d5429c54e612ddbd88aa23091d398",
+  "kb": 62547,
+  "lang": "TypeScript",
+  "open_prs": 756,
+  "pushed": "2026-10-20",
+  "release": "0.45.4",
+  "spdx": "Apache-2.0",
+  "stars": 36099,
+  "test_files": 251,
+  "test_kb": 4459,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/drizzle-team/drizzle-orm/issues/2976|drizzle-team-drizzle-orm-2976-feature-indexes-on-materialize",
+ "source_notes": "repo https://github.com/drizzle-team/drizzle-orm; opened 2024-09-16",
+ "source_url": "https://github.com/drizzle-team/drizzle-orm/issues/2976",
+ "source_version": "",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://github.com/drizzle-team/drizzle-orm/issues/2976",
+  "facts": [
+   {
+    "claim": "drizzle-team/drizzle-orm issue #2976 'indexes on materialized views' exists and is open, opened 2024-09-16",
+    "status": "confirmed",
+    "url": "https://github.com/drizzle-team/drizzle-orm/issues/2976"
+   },
+   {
+    "claim": "The issue requests a way to define indexes on pgMaterializedView in pg-core, which currently does not accept a third argument",
+    "status": "confirmed",
+    "url": "https://github.com/drizzle-team/drizzle-orm/issues/2976"
+   },
+   {
+    "claim": "No linked branch or pull request implements matview indexes on the issue page (no merged implementation seen)",
+    "status": "confirmed",
+    "url": "https://github.com/drizzle-team/drizzle-orm/issues/2976"
+   },
+   {
+    "claim": "drizzle-orm is licensed Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/drizzle-team/drizzle-orm/blob/main/LICENSE"
+   },
+   {
+    "claim": "Official pgMaterializedView docs describe any way to define indexes on a materialized view (third argument or index builders)",
+    "status": "not_found",
+    "url": "https://orm.drizzle.team/docs/views"
+   },
+   {
+    "claim": "Web search found a merged PR or later release adding index support for materialized views in drizzle-kit or drizzle-orm",
+    "status": "not_found",
+    "url": "https://orm.drizzle.team/docs/views"
+   }
+  ],
+  "frontier_hours": 10,
+  "full_card": {
+   "band": "Budget tier 20 h (whole scope about 10 h for a frontier agent); the 8 h tier is viable only if cut to create/drop SQL and snapshot for matviews, with rename, alter, introspection and push as later buckets. Weaker model likely stops at the schema builder. No dated public evidence",
+   "build_cost": "About 3 days for our reference (1200-1800 lines across four packages plus test vectors), with smoke build unrun",
+   "deliverable": "Public TypeScript API: third argument or equivalent on pgMaterializedView for index builders (unique, expression, partial, concurrent, method), type inference, and drizzle-kit generate/push emitting create/drop/rename/alter index SQL and snapshot JSON for matviews",
+   "gates_anticheat": "Hidden generated schemas and diff sequences with varied names and dialect options defeat hardcoded SQL for visible examples; the reference and hidden cases stay out of /app; no network at run time; editing tests or build config is caught by the hidden suite and regression gate",
+   "grading_surface": "Hidden vitest cases over generated schemas and diff sequences comparing emitted SQL and snapshot JSON per index kind; repo suite as regression gate. Needs a normalisation or executed-SQL check to avoid brittle string matches; optional embedded Postgres for execution checks",
+   "local_fit": "Node/TypeScript with vitest, no GPU, no network at run time; embedded Postgres optional and must be checked for licence and size; fits 8 CPU / 16 GB",
+   "lookup": "none: no implementation, no merged PR, no later release found; docs silent on matview indexes",
+   "provenance": "drizzle-team/drizzle-orm @ eab8bedb (release 0.45.4), Apache-2.0, TypeScript; feature request issue #2976 open since 2024-09-16, no linked PR",
+   "reference": "Written by us, expected 1200-1800 changed lines across orm pg-core, kit snapshot, diff, serializer and SQL generation; no public implementation",
+   "ships": "history-less snapshot of the monorepo at the pinned commit (drizzle-orm pg-core, drizzle-kit snapshot/diff/serializer/SQL generation, introspection, push), with node_modules and the offline build pre-staged; not yet verified",
+   "similarity": "Nearest l0 neighbour drizzle-orm-window-function-builders [DeepSWE] at 0.269: different subject (window functions) and deliverable; S-im-073 0.222 and S-im-070 0.212 are other seeds; not K1"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "none",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier likely reaches create/drop and some diff paths but not full scope; no dated public evidence so capped at 3"
+   },
+   "Build": {
+    "v": 3,
+    "why": "Reference of 1200-1800 lines across four packages estimated around 3 days; smoke build not run so cost is unverified"
+   },
+   "Fit": {
+    "v": 4,
+    "why": "TypeScript/vitest fits the sandbox; embedded Postgres is optional and must be checked for size and licence"
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Several interacting modules across four packages; realistically 10+ hours of sustained work"
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 permits shipping the system and reference"
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Index kinds (unique, expression, partial, concurrent, method) times operations (create, drop, rename, alter, push) give many buckets"
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Nearest l0 neighbour 0.269 (DeepSWE window functions in drizzle-orm) is above 0.15 but a different subject and deliverable"
+   },
+   "Real": {
+    "v": 5,
+    "why": "Real public repo at a pinned commit with open issue #2976 and Apache-2.0 licence"
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference exists; behaviour is only partly specified by the issue and by existing table-index code, so reference would be our own design"
+   },
+   "Seal": {
+    "v": 4,
+    "why": "Hidden generated schemas and reference are not in the image; upstream unmerged, but repo is public so an agent can read the table-index code path"
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden vitest cases over generated schemas and diffs across index kinds; hundreds of cases plausible but not an executable oracle with unlimited generator"
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "The offline build fails or the existing table-index machinery cannot be extended to views without rewriting most of the snapshot and diff layer, which would push the reference past the 20 h tier",
+   "pass_if": "Baseline suite is green and deterministic, the minimal matview index path generates SQL that executes in Postgres, and a second generate yields no diff",
+   "steps": [
+    "In a throwaway container with network, clone the drizzle-orm repo at eab8bedb and run pnpm install, then build drizzle-orm and drizzle-kit (smoke_build was empty, so this is the first real build check).",
+    "Run the existing pg-core and drizzle-kit pg-views tests to record the baseline pass count and confirm determinism across three runs.",
+    "Add a minimal third-argument index builder to pgMaterializedView (single btree unique index) by mirroring the table-index path in pg-core.",
+    "Run drizzle-kit generate on a schema with one materialized view plus one index and inspect the emitted CREATE MATERIALIZED VIEW and CREATE INDEX statements.",
+    "Execute the emitted SQL against a local or embedded Postgres to confirm it is valid, and check that the snapshot JSON round-trips through a second generate with no diff.",
+    "Time-box to 60 minutes; record which files were touched to estimate the scope of the full reference."
+   ]
+  },
+  "summary": "Issue #2976 is open with no linked PR and Apache-2.0 licensing, and no public implementation of matview indexes was found, so lookup is none and the idea survives the gates. The main risks are the unverified offline build (smoke_build was empty) and exact-string SQL grading, so the spike should confirm the build and the minimal create-index path before the reference is written.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 3,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 72
+}

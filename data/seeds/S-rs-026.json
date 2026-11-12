@@ -1,0 +1,204 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. Frontier gets a gain with features plus a regression model; the family shift limits the mean. Weaker models fit selectors that fail on shifted families.",
+  "cheat": "Running all solvers in parallel inside the budget; closed by a single-process CPU-time accounting and core limit in the harness.",
+  "grading": "Hidden instances from unseen families; score PAR10 of the chosen solver run under a cutoff, normalised between the single best solver and the oracle-free reference selector.",
+  "reference": "A selector built with the shipped SMAC3/random-forest tooling on the training data; scores measured by us.",
+  "source": "https://github.com/automl/SMAC3 @ v2.4.1 (licence per README BSD-3-Clause; SPDX field shows NOASSERTION, verify)",
+  "task": "/app ships three open solvers for one problem class, training instances with solver runtimes and instance features, and a harness. Agent builds a selector (feature design, runtime model, schedule) that picks solver and parameters per instance.",
+  "title": "Per-instance algorithm selector for a local-search solver portfolio"
+ },
+ "class": "research",
+ "created": "2026-10-21T07:08:51Z",
+ "family": "solver",
+ "history": [
+  [
+   "2026-10-21T07:08:51Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-rs-025 0.18"
+  ],
+  [
+   "2026-10-21T07:11:21Z",
+   "v1",
+   "killed:K2",
+   "No real source or paper trail for the subject. The cited repo (SMAC3, a Bayesian/HPO package) contains no solver portfolio or algorithm selector, and the three local-search solvers, their data and the reference selector are not named or obtainable. The smoke build was not run because there is no nam"
+  ]
+ ],
+ "id": "S-rs-026",
+ "kill": "K2",
+ "l0": {
+  "neighbours": [
+   [
+    0.177,
+    "S-rs-025"
+   ],
+   [
+    0.128,
+    "S-op-048"
+   ],
+   [
+    0.125,
+    "S-op-053"
+   ],
+   [
+    0.098,
+    "tengo-callable-instance-isolation [DeepSWE]"
+   ],
+   [
+    0.095,
+    "oxvg-structural-selector-preservation [DeepSWE]"
+   ]
+  ]
+ },
+ "method": "research",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "841488796a82944b7c753c62eec3dfb74f72585e",
+  "kb": 165767,
+  "lang": "Python",
+  "open_prs": 20,
+  "pushed": "2026-10-20",
+  "release": "v2.4.1",
+  "spdx": "NOASSERTION",
+  "stars": 1261
+ },
+ "source_key": "github.com/automl/smac3|baseline-target-solver-at-its-default-parameter-configuratio",
+ "source_notes": "README: q:\"a robust and flexible framework for Bayesian Optimization\"; 2.x has multi-fidelity, multi-thread, ask-and-tell; since 2.4.0 default surrogate is scikit-learn RF. No benchmark numbers on the page (benchmark folder not opened). OOD split idea: tune on instance families A, hidden test on unseen family B (e.g. different structure/size). Levers: search-space definition, conditional params, instance-feature selection, racing/cutoff scheduling, ensembling configs (portfolio). INFERRED: depends on target; with cutoff 10 s x 100 hidden instances /8 cores about 2-3 min per final eval, hours for tuning loop. Single-source.",
+ "source_url": "https://github.com/automl/SMAC3",
+ "source_version": "Baseline: target solver at its default parameter configuration on the training instances; agent may also write its own tuner. -> Reference: SMAC3 (random-forest surrogate + racing) run for a fixed wall budget on the same training instances, best incumbent evaluated on hidden instances.",
+ "status": "killed:K2",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://arxiv.org/html/1506.02465",
+  "facts": [
+   {
+    "claim": "SMAC3 repository exists at github.com/automl/SMAC3, described as a Bayesian optimization / hyperparameter optimization package",
+    "status": "confirmed",
+    "url": "https://github.com/automl/SMAC3"
+   },
+   {
+    "claim": "SMAC3 licence is 3-clause BSD, stated in LICENSE.txt (the SPDX field NOASSERTION is a detection gap, not a licence problem)",
+    "status": "confirmed",
+    "url": "https://github.com/automl/SMAC3"
+   },
+   {
+    "claim": "SMAC3 release v2.4.1 exists; its notes list three bugfixes (sklearn DTYPE alias removal, forbidden clauses preservation, pytest-cases removal) and do not describe a solver portfolio or selector",
+    "status": "confirmed",
+    "url": "https://github.com/automl/SMAC3/releases/tag/v2.4.1"
+   },
+   {
+    "claim": "Since SMAC3 2.4.0 the default surrogate is a scikit-learn random forest",
+    "status": "not_found",
+    "url": "https://github.com/automl/SMAC3/releases/tag/v2.4.1"
+   },
+   {
+    "claim": "The seed's three open local-search solvers for one problem class are named and their licences are known",
+    "status": "not_found",
+    "url": "https://github.com/automl/SMAC3"
+   },
+   {
+    "claim": "A public algorithm selection benchmark format with runtimes and instance features exists (ASlib), so the selection recipe is documented and the task overlaps a known subject",
+    "status": "confirmed",
+    "url": "https://arxiv.org/html/1506.02465"
+   },
+   {
+    "claim": "Per-instance runtime-regression selectors for SAT (SATzilla) are published methods, so the reference recipe is recallable",
+    "status": "confirmed",
+    "url": "https://www.cs.ubc.ca/~hutter/papers/cp07-satzilla.pdf"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Not established. No dated public evidence of agent performance on this kind of selector task.",
+   "build_cost": "Solver build and harness unknown; cannot size without the named solvers. Estimate 2-3 days just to assemble a sealed dataset from unnamed solvers.",
+   "deliverable": "Python selector that picks solver and parameters per instance, scored by PAR10 on hidden unseen families.",
+   "gates_anticheat": "Parallel solver runs closed by single-process CPU-time accounting and core limit. Editing solver binaries or the harness not addressed.",
+   "grading_surface": "Hidden instances from unseen families, PAR10 under cutoff, normalised between best single solver and oracle-free reference. Size unknown.",
+   "local_fit": "CPU-only, small models; fits 8 cores and 16 GB, parallel runs need the single-process accounting.",
+   "lookup": "partial: SATzilla, ASlib and AutoFolio-style runtime-regression selectors are public and recallable; the reference recipe is documented.",
+   "provenance": "Source is SMAC3 v2.4.1 (BSD-3-Clause, LICENSE.txt), a Bayesian/HPO package; it is not a solver portfolio or algorithm selector. The solvers, data and harness are not identified in the seed.",
+   "reference": "Selector 'built with SMAC3 tooling' not published; scores 'measured by us' with no numbers. Reference not obtainable.",
+   "ships": "Not established: three unnamed open local-search solvers, training runtimes and features, harness. None are in the cited repo.",
+   "similarity": "Highest l0 neighbour S-rs-025 at 0.177; no CROWDED match, but ASlib-style algorithm selection is an established public subject."
+  },
+  "kill_code": "K2",
+  "kill_reason": "No real source or paper trail for the subject. The cited repo (SMAC3, a Bayesian/HPO package) contains no solver portfolio or algorithm selector, and the three local-search solvers, their data and the reference selector are not named or obtainable. The smoke build was not run because there is no named artifact to build.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "Frontier gain is plausible but unevidenced; no dated public source; expected band not measurable."
+   },
+   "Build": {
+    "v": 2,
+    "why": "Assembling sealed training and hidden data from unnamed solvers likely takes more than 2 days."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only, fits 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "Feature design, runtime model and schedule could fill 8 h, but the scope is not defined."
+   },
+   "Lic": {
+    "v": 3,
+    "why": "SMAC3 is BSD-3 (confirmed in LICENSE.txt); the solvers' licences are unknown."
+   },
+   "Multi": {
+    "v": 3,
+    "why": "Levers (features, model, schedule, ensembling) exist but partial-credit buckets are not specified."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Max l0 neighbour 0.177 is low, but ASlib-style selection is an established public subject."
+   },
+   "Real": {
+    "v": 2,
+    "why": "SMAC3 is real but it is not the subject; the solver portfolio and training data are unnamed."
+   },
+   "Ref": {
+    "v": 1,
+    "why": "No reference selector is published; scores are 'measured by us' with no numbers."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden families can stay sealed, but the solvers and data sources are unidentified, so reachability is unclear."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Hidden PAR10 over unseen families could be large, but its size is unknown."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Solvers cannot be named or built offline, or the held-out family shows no gap between selector and single-best solver.",
+   "pass_if": "Named open solvers build offline; VBS PAR10 is clearly below single-best PAR10 on training families; a simple RF selector beats single-best on the held-out family by a measurable margin; results are deterministic across three reruns.",
+   "steps": [
+    "Name the three local-search solvers and confirm each has an open licence and a build. Stop here if none can be named.",
+    "Obtain or generate training runtimes (PAR10 under a cutoff) and instance features for at least two instance families; check that the single best solver and virtual best solver differ.",
+    "Fit a random-forest runtime regressor per solver with scikit-learn and select argmin predicted runtime; score PAR10 on a held-out family.",
+    "Repeat with the family held out to measure the OOD gap against the single best solver.",
+    "Check determinism: rerun the selector three times with fixed seeds and compare PAR10.",
+    "Confirm the single-process CPU-time accounting blocks parallel solver runs before any scoring."
+   ]
+  },
+  "summary": "The seed cites SMAC3 v2.4.1 (BSD-3, confirmed) as the source for a per-instance selector over three unnamed local-search solvers, but SMAC3 is a Bayesian optimization package with no selector or portfolio, and the solvers, data and reference are not identified. Killed under K2 because the subject has no real artifact to ground the bundle; a re-seed would need named solvers with an open licence and a public runtime dataset, such as an ASlib-format scenario.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 4,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 54
+}

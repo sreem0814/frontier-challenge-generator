@@ -1,0 +1,209 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "20h. The speedup is spread over content, page-collection and template layers, so credit comes per site shape. Frontier gets a share via profiling and caching; weaker models stop at flag-level or GC changes.",
+  "cheat": "Caching built output between runs or shipping prebuilt public/; closed by clean working dirs per run, fresh sites with unseen content, and a byte-equality gate.",
+  "grading": "Hidden generated sites of varied shape. Gate: every file in public/ byte-equal to the reference build output. Score: median build wall time, 2^u-1 against the speedup of the newer release over base.",
+  "reference": "A later Hugo release built from source, giving a measured speedup on the same sites; the diff is large and spread over many modules.",
+  "source": "https://github.com/gohugoio/hugo @ older release as base (tag pair not verified), Apache-2.0",
+  "task": "/app ships a history-less Hugo snapshot at an older release plus generated sites (thousands of Markdown pages, taxonomies, shortcodes, image processing, multilingual). Agent speeds up full and incremental builds (content parse, template execution, rendering pipeline) while the public/ output stays identical.",
+  "title": "Hugo site build speedup across releases"
+ },
+ "class": "optimization",
+ "created": "2026-10-21T07:08:50Z",
+ "family": "other",
+ "history": [
+  [
+   "2026-10-21T07:08:50Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:50Z",
+   "l0",
+   "pass",
+   "top neighbour S-op-050 0.32"
+  ],
+  [
+   "2026-10-21T07:11:37Z",
+   "v1",
+   "killed:K10",
+   "As written, the base-to-reference speedup appears to be dominated by one public regression fix (v0.164.0; 608s to 117s in one reported site), so the task is one-lever, not spread over many modules. The base tag is also unpinned. A re-seed with a verified pair could be re-tested with the spike."
+  ]
+ ],
+ "id": "S-op-052",
+ "kill": "K10",
+ "l0": {
+  "neighbours": [
+   [
+    0.315,
+    "S-op-050"
+   ],
+   [
+    0.263,
+    "S-op-048"
+   ],
+   [
+    0.247,
+    "S-op-041"
+   ],
+   [
+    0.095,
+    "bun-sourcemap-leak [tasks]"
+   ],
+   [
+    0.088,
+    "parse [NL2Repo-Bench]"
+   ]
+  ]
+ },
+ "method": "perfseries",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "77230eba0469604d28434a8eacee868f3274e6ac",
+  "kb": 151241,
+  "lang": "Go",
+  "open_prs": 25,
+  "pushed": "2026-10-20",
+  "release": "v0.168.0",
+  "spdx": "Apache-2.0",
+  "stars": 90177,
+  "test_files": 189,
+  "test_kb": 5355,
+  "tree_truncated": false
+ },
+ "source_key": "github.com/gohugoio/hugo|oss-fuzz-hugo",
+ "source_notes": "OSS-Fuzz project, language go",
+ "source_url": "https://github.com/gohugoio/hugo",
+ "source_version": "",
+ "status": "killed:K10",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "https://discourse.gohugo.io/t/hugo-building-slowly-from-release-0-128-0/57314?page=2",
+  "facts": [
+   {
+    "claim": "gohugoio/hugo exists and v0.168.0 is the latest release (13 Oct), with v0.162.1 to v0.167.0 also present",
+    "status": "confirmed",
+    "url": "https://github.com/gohugoio/hugo/releases"
+   },
+   {
+    "claim": "Hugo is licensed under Apache License 2.0",
+    "status": "confirmed",
+    "url": "https://github.com/gohugoio/hugo/blob/master/LICENSE"
+   },
+   {
+    "claim": "The seed's base tag ('older release', tag pair not verified) is pinned to a specific tag",
+    "status": "not_found",
+    "url": "https://github.com/gohugoio/hugo/releases"
+   },
+   {
+    "claim": "v0.164.0 fixes a performance regression introduced in v0.128.0, 'mostly prominent in bigger sites' (no numbers in release note)",
+    "status": "confirmed",
+    "url": "https://github.com/gohugoio/hugo/releases/tag/v0.164.0"
+   },
+   {
+    "claim": "Anecdotal forum report: one large site's build went from 608s on 0.163.3 to 117s on 0.164.0, the fix credited to maintainers",
+    "status": "confirmed",
+    "url": "https://discourse.gohugo.io/t/hugo-building-slowly-from-release-0-128-0/57314?page=2"
+   },
+   {
+    "claim": "The speedup between releases is spread over many modules (content, page collection, templates, rendering)",
+    "status": "not_found",
+    "url": "https://discourse.gohugo.io/t/hugo-building-slowly-from-release-0-128-0/57314"
+   },
+   {
+    "claim": "v0.164.0 changes Chroma highlighting styles (paired dark and light modes), so output may differ between releases on sites with code blocks",
+    "status": "confirmed",
+    "url": "https://github.com/gohugoio/hugo/releases/tag/v0.164.0"
+   }
+  ],
+  "frontier_hours": 6,
+  "full_card": {
+   "band": "Seed claims 20h; public evidence points to a single dominant fix, so the realistic tier is 8h. Band 3 at most: no dated evidence of agent performance.",
+   "build_cost": "Estimated 3-4 days: Go module cache offline, generator for varied multilingual sites with image processing, two reference builds, and byte-equality checker. smoke_build was empty (no probe result), so the build is unverified.",
+   "deliverable": "Faster full and incremental hugo builds with byte-identical public/ output versus the reference later release.",
+   "gates_anticheat": "Clean working dir per run, fresh unseen sites, byte-equality gate. Caching build output or shipping public/ is closed by these. Output drift from later-release behaviour (Chroma, new template funcs) must be excluded by pair choice.",
+   "grading_surface": "Hidden generated sites; gate = byte-equal public/; score = median build wall time vs. reference speedup (2^u-1). Surface is a few site shapes, not thousands of cases.",
+   "local_fit": "CPU-only Go build, 8 cores, 16 GB sufficient. Image processing runs offline. Fits the sandbox if the module cache is shipped.",
+   "lookup": "partial: the regression fix and the later release are public upstream history; a history-less snapshot can hide them, but the agent can recall Hugo hot paths.",
+   "provenance": "Real Hugo repo, Apache-2.0, 90k stars, pushed 2026-10-20; fork=false; archived=false. Seed names base as 'an older release' with the tag pair unverified.",
+   "reference": "A later upstream Hugo release (unnamed in seed). Its gain over a 0.163.x base appears dominated by the v0.164.0 regression fix; no published per-module breakdown found.",
+   "ships": "History-less Hugo snapshot at an unpinned older tag (must be chosen), plus generated sites of varied shape. Go module cache must be pre-populated for offline build.",
+   "similarity": "Public-task neighbours max 0.095 (bun-sourcemap-leak, parse). Seed neighbours S-op-050 (0.315), S-op-048 (0.263), S-op-041 (0.247) are sibling seeds whose content was not provided; not judged K1."
+  },
+  "kill_code": "K10",
+  "kill_code_check": "n/a",
+  "kill_reason": "As written, the base-to-reference speedup appears to be dominated by one public regression fix (v0.164.0; 608s to 117s in one reported site), so the task is one-lever, not spread over many modules. The base tag is also unpinned. A re-seed with a verified pair could be re-tested with the spike.",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated evidence; public report suggests a single regression lever that a frontier agent could find quickly."
+   },
+   "Build": {
+    "v": 3,
+    "why": "Estimated 3-4 days: module cache, generator, two reference builds, checker."
+   },
+   "Fit": {
+    "v": 4,
+    "why": "CPU-only Go build fits; offline module cache is required."
+   },
+   "Hor": {
+    "v": 3,
+    "why": "8h realistic; seed's 20h claim is not supported by evidence."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 verified at LICENSE."
+   },
+   "Multi": {
+    "v": 2,
+    "why": "Public evidence points to one dominant lever rather than many independent buckets."
+   },
+   "Nov": {
+    "v": 4,
+    "why": "No public task neighbour above 0.10; sibling seed neighbour at 0.315 unknown in content."
+   },
+   "Real": {
+    "v": 5,
+    "why": "Public Hugo repo, 90k stars, pinned releases confirmed."
+   },
+   "Ref": {
+    "v": 4,
+    "why": "Real later upstream release gives a measured speedup, but the gain looks concentrated in one fix and output may differ."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Later release is public upstream history; a history-less snapshot is possible, and recall of hot paths is a difficulty issue."
+   },
+   "Surf": {
+    "v": 3,
+    "why": "Byte-equal gate over generated sites; a few site shapes give steady but modest surface."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "Output differs between base and reference on any shape, or more than about 70% of the speedup comes from one commit.",
+   "pass_if": "Base and reference public/ are byte-identical on all 3 shapes, and the speedup is spread across at least 3 modules rather than one fix.",
+   "steps": [
+    "In a throwaway networked Linux container, clone gohugoio/hugo at candidate base tags (e.g. v0.163.3, v0.162.1) and at v0.168.0; record exact commits.",
+    "Build each with go build offline-capable settings; record Go version and wall time.",
+    "Generate 3 site shapes (1k pages with taxonomies and shortcodes, a multilingual site, an image-heavy site) with fixed seeds.",
+    "Run each binary on each site from clean dirs; diff every file in public/ byte-for-byte between base and reference builds.",
+    "Time median of 5 full builds per binary per site.",
+    "Profile base vs reference (pprof) and count how many distinct modules change in the top-10 hotspots.",
+    "Check determinism: run the reference build twice and confirm identical public/."
+   ]
+  },
+  "summary": "Hugo is a real, Apache-2.0 project with a public later release (v0.168.0), but the seed's base tag is unpinned and the speedup evidence points to one public regression fix rather than a spread of gains. The idea is killed as K10 (one-lever) with a 60-minute spike to re-test a verified base/reference pair that also keeps public/ byte-identical.",
+  "tier_hours": 8
+ },
+ "v1_links": {
+  "checked": 5,
+  "dead": [],
+  "ratio": 0.0
+ },
+ "v1_score": 70
+}

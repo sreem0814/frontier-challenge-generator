@@ -1,0 +1,269 @@
+{
+ "batch": 23,
+ "card": {
+  "band": "8h. Two formats with finder detection, Reed-Solomon over different fields and mode parsing; frontier does one well, rarely both. Weaker models do clean images only.",
+  "cheat": "Calling any decoder installed in node_modules or hard-coding sample images; closed by no such deps in the offline image and unseen generated images.",
+  "grading": "Hidden images of both symbologies generated with an outside encoder (not shipped), with noise/rotation/blur variants, plus the existing suite as a regression gate. Compare decoded text and metadata exactly; credit per symbology and distortion bucket.",
+  "reference": "We write it from the published standards; size estimated above 2000 lines, not yet measured. Upstream has never added these formats (not verified).",
+  "source": "https://github.com/zxing-js/library @ v0.23.0 (head 1722d07), Apache-2.0",
+  "task": "/app ships a history-less snapshot of the TypeScript library. Agent adds Han Xin Code and MaxiCode readers (locate, error-correct, decode modes) behind the public reader API, plus encoder-side helpers needed for round trips.",
+  "title": "Han Xin and MaxiCode decoding for zxing-js"
+ },
+ "class": "implementation",
+ "created": "2026-10-21T07:08:51Z",
+ "family": "codec",
+ "history": [
+  [
+   "2026-10-21T07:08:51Z",
+   "write",
+   "short",
+   "batch 23"
+  ],
+  [
+   "2026-10-21T07:08:51Z",
+   "l0",
+   "pass",
+   "top neighbour S-im-112 0.22"
+  ],
+  [
+   "2026-10-21T07:10:52Z",
+   "v1",
+   "killed:K5",
+   "gate on scores {'Real': 3, 'Surf': 4, 'Ref': 2, 'Band': 3, 'Hor': 4, 'Multi': 4, 'Seal': 3, 'Nov': 3, 'Lic': 5, 'Fit': 5, 'Build': 2}; dead cited links ['https://6sku3uaup9f9.din.de/en/standard/iso-iec-16023/33736819']"
+  ]
+ ],
+ "id": "S-im-114",
+ "kill": "K5",
+ "l0": {
+  "neighbours": [
+   [
+    0.216,
+    "S-im-112"
+   ],
+   [
+    0.212,
+    "S-im-089"
+   ],
+   [
+    0.194,
+    "S-im-037"
+   ],
+   [
+    0.073,
+    "symbolic_regression [METR]"
+   ],
+   [
+    0.068,
+    "create-bucket [original]"
+   ]
+  ]
+ },
+ "method": "feature",
+ "source_facts": {
+  "archived": false,
+  "fork": false,
+  "head": "1722d0744fb5e8b47aebfbeb2b648e17c95e8595",
+  "kb": 72275,
+  "lang": "TypeScript",
+  "open_prs": 10,
+  "pushed": "2026-10-17",
+  "release": "v0.23.0",
+  "spdx": "Apache-2.0",
+  "stars": 2941,
+  "test_files": 1746,
+  "test_kb": 63220,
+  "tree_truncated": false
+ },
+ "source_key": "git+https://github.com/zxing-js/library|0-23-0",
+ "source_notes": "TypeScript port of ZXing multi-format 1D/2D barcode image processing library.",
+ "source_url": "git+https://github.com/zxing-js/library.git",
+ "source_version": "0.23.0",
+ "status": "killed:K5",
+ "v1": {
+  "evidence_grade": "E0",
+  "evidence_url": "not found",
+  "facts": [
+   {
+    "claim": "zxing-js/library tag v0.23.0 exists and its src tree is readable at that tag",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-js/library/tree/v0.23.0/src"
+   },
+   {
+    "claim": "zxing-js is licensed Apache-2.0",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-js/library"
+   },
+   {
+    "claim": "zxing-js src/core already contains a maxicode folder (so MaxiCode reading is not new upstream)",
+    "status": "contradicted",
+    "url": "https://github.com/zxing-js/library/tree/master/src/core"
+   },
+   {
+    "claim": "zxing-js README lists MaxiCode as supported, marked 'needs testing!'",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-js/library"
+   },
+   {
+    "claim": "zxing-js src/core has no hanxin / han-xin folder (Han Xin never added upstream, on the master tree listing)",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-js/library/tree/master/src/core"
+   },
+   {
+    "claim": "zxing-js is in maintenance mode; changes come from contributed patches",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-js/library"
+   },
+   {
+    "claim": "zxing-js has 10 open PRs, none adding MaxiCode or Han Xin (#655-#663, #380, #376 are dependency bumps, error handling, and existing-format detectors)",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-js/library/pulls"
+   },
+   {
+    "claim": "Han Xin Code is specified by ISO/IEC 20830:2021 (paid, copyrighted); GB/T 21049 is the Chinese national standard",
+    "status": "confirmed",
+    "url": "https://en.wikipedia.org/wiki/Han_Xin_code"
+   },
+   {
+    "claim": "ISO/IEC 20830 full text is not freely available (sold, copyright notice)",
+    "status": "confirmed",
+    "url": "https://webstore.iec.ch/publication/70997"
+   },
+   {
+    "claim": "Han Xin uses Reed-Solomon with generator polynomial x^8+x^6+x^5+x (355 decimal), four error-correction levels, numeric/text/binary/Chinese/ECI/Unicode/GS1/URI modes",
+    "status": "confirmed",
+    "url": "https://en.wikipedia.org/wiki/Han_Xin_code"
+   },
+   {
+    "claim": "ISO/IEC 16023 (MaxiCode) is paid; resellers list roughly 200-370 EUR; no free official copy found",
+    "status": "confirmed",
+    "url": "https://6sku3uaup9f9.din.de/en/standard/iso-iec-16023/33736819"
+   },
+   {
+    "claim": "zxing-cpp lists MaxiCode with partial read support and does not list Han Xin in its format list",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-cpp/zxing-cpp"
+   },
+   {
+    "claim": "zxing-cpp core/src has a maxicode folder and no hanxin folder",
+    "status": "confirmed",
+    "url": "https://github.com/zxing-cpp/zxing-cpp/tree/master/core/src"
+   },
+   {
+    "claim": "zint 2.16.0 ships a hanxin.c backend (Han Xin encoder) so an outside encoder for generated test images exists",
+    "status": "confirmed",
+    "url": "https://fossies.org/linux/zint/backend/hanxin.c"
+   },
+   {
+    "claim": "zint encoder's full list of Han Xin modes and options is verified",
+    "status": "not_found",
+    "url": "https://fossies.org/linux/zint/backend/hanxin.c"
+   },
+   {
+    "claim": "A public Han Xin decoder exists in a package manager or famous codebase (zxing-js, zxing-cpp)",
+    "status": "not_found",
+    "url": "https://github.com/zxing-cpp/zxing-cpp/tree/master/core/src"
+   },
+   {
+    "claim": "Seed claim: the task adds MaxiCode readers from scratch",
+    "status": "contradicted",
+    "url": "https://github.com/zxing-js/library/tree/master/src/core"
+   },
+   {
+    "claim": "Seed claim: upstream has never added Han Xin or MaxiCode",
+    "status": "contradicted",
+    "url": "https://github.com/zxing-js/library/tree/master/src/core"
+   },
+   {
+    "claim": "Seed smoke_build result (offline build and suite)",
+    "status": "not_found",
+    "url": "https://github.com/zxing-js/library"
+   }
+  ],
+  "frontier_hours": 12,
+  "full_card": {
+   "band": "8h stated; my estimate is that Han Xin alone with mode decode and distortion fills most of 8h, so tier 20 is the honest fit or the scope must be cut to Han Xin plus a MaxiCode bucket",
+   "build_cost": "Reference 2000+ lines from paywalled specs, plus validation generator; est. 4-8 days, so Build score 2",
+   "deliverable": "Han Xin reader (locate, RS-correct, mode decode) plus hardening of the existing MaxiCode reader, behind the public reader API, with encoder helpers for round trips",
+   "gates_anticheat": "No decoder in node_modules (offline image, no zxing deps shipped); hidden images unseen; grader must reject edits to tests/build config; anti-wrap of system zint/zxing-cpp must be blocked by a clean PATH and no native binaries in image",
+   "grading_surface": "Hidden images from an outside encoder (zint 2.16.0 has a hanxin backend) with noise, rotation and blur variants; exact text and metadata compare; buckets per symbology and distortion; plus existing suite as regression gate",
+   "local_fit": "TypeScript/Node, CPU only, offline, fits 8 cores / 16 GB; zxing-js already has GenericGF and Reed-Solomon code reusable for GF(256) poly 355",
+   "lookup": "partial: MaxiCode reader already in zxing-js src/core/maxicode and zxing-cpp (partial); no Han Xin reader found in zxing-js or zxing-cpp; zint has a hanxin encoder only (decode not verified)",
+   "provenance": "zxing-js/library v0.23.0 (head 1722d07, Apache-2.0, pushed 2026-10-17); Han Xin is ISO/IEC 20830:2021 (paid); MaxiCode is ISO/IEC 16023:2000 (paid)",
+   "reference": "Not written. To be written from ISO/IEC 20830 and 16023 (paid); reference size estimated above 2000 lines, unmeasured",
+   "ships": "History-less TypeScript snapshot at v0.23.0 that already contains src/core/maxicode (needs testing), no hanxin folder; no standards text, no encoder output",
+   "similarity": "Nearest neighbours S-im-112 (0.216), S-im-089 (0.212), S-im-037 (0.194): cannot see their content; none is a public task; not K1 on the numbers given"
+  },
+  "kill_code": "",
+  "kill_reason": "",
+  "lookup_verdict": "partial",
+  "scores": {
+   "Band": {
+    "v": 3,
+    "why": "No dated public evidence of agent performance on this work; Han Xin is obscure and its spec is not in the image, so the difficulty is plausible but unproven."
+   },
+   "Build": {
+    "v": 2,
+    "why": "A 2000+ line reference from paywalled specs plus a generator and validation is likely 4 to 8 days."
+   },
+   "Fit": {
+    "v": 5,
+    "why": "TypeScript on Node, CPU only, offline, well inside 8 cores and 16 GB."
+   },
+   "Hor": {
+    "v": 4,
+    "why": "Two symbologies with locate, RS, mode parsing and distortion handling form a long multi-day scope."
+   },
+   "Lic": {
+    "v": 5,
+    "why": "Apache-2.0 base; new code can ship under the same licence; standards text is not shipped."
+   },
+   "Multi": {
+    "v": 4,
+    "why": "Independent buckets per symbology and per distortion type give steady partial credit."
+   },
+   "Nov": {
+    "v": 3,
+    "why": "Three neighbours sit above the 0.15 cosine threshold (0.216 max), so novelty cannot score 5; none is shown to be a public task."
+   },
+   "Real": {
+    "v": 4,
+    "why": "Real Apache-2.0 repo at a released tag with 1746 test files; the Han Xin and MaxiCode standards are real but paywalled, so the reference rests on purchased specs."
+   },
+   "Ref": {
+    "v": 2,
+    "why": "No reference exists yet; it would be written from paywalled ISO text and is unmeasured."
+   },
+   "Seal": {
+    "v": 3,
+    "why": "Hidden images stay unseen, but the spec is paywalled and not in the image, and the grader depends on exact mode details; a different valid solution must still pass."
+   },
+   "Surf": {
+    "v": 4,
+    "why": "Generated hidden images with noise, rotation and blur variants per symbology give thousands of cases with a deterministic exact compare."
+   }
+  },
+  "spike_plan": {
+   "est_minutes": 60,
+   "kill_if": "zint cannot be installed or run offline for the generator, the Han Xin output is not deterministic, or the existing MaxiCode reader already decodes nearly all generated samples (leaving no MaxiCode bucket to grow).",
+   "pass_if": "Baseline MaxiCode samples decode at a measurable rate, zint Han Xin output is deterministic across two runs, and the RS round trip with poly 355 works.",
+   "steps": [
+    "Clone zxing-js at v0.23.0 in a networked throwaway container; npm ci; run the full test suite and record per-test results and wall time (smoke_build was not run, so this is the first offline-build check).",
+    "Run the existing MaxiCode tests and samples from the repo to get a baseline pass rate for src/core/maxicode, since the README says 'needs testing!'.",
+    "Install zint 2.16.0 in the container; generate about 20 Han Xin symbols across levels L1-L4 and modes (numeric, text, binary, Chinese) and about 20 MaxiCode symbols.",
+    "Add rotation, blur and noise variants with a small script; decode the clean Han Xin samples with no reader yet, to confirm the generated images are plausibly readable and deterministic (run the encoder twice and diff).",
+    "Implement only a quick GF(256) poly-355 Reed-Solomon round trip against the zxing-js GenericGF to confirm the field parameters.",
+    "Record the MaxiCode baseline and the Han Xin generator output; do not spend time on a full reader."
+   ]
+  },
+  "summary": "The seed's premise is partly wrong: zxing-js already ships a MaxiCode reader (src/core/maxicode, marked 'needs testing!'), so the task must be recast as MaxiCode hardening plus a new Han Xin reader, and the Han Xin part rests on paywalled ISO/IEC 20830 text. The idea is viable at tier 20 (not the stated 8 h) if the scope is cut to Han Xin with a MaxiCode bucket, with a 60-minute spike to test the zint generator, the existing MaxiCode baseline and the RS parameters before any reference is written.",
+  "tier_hours": 20
+ },
+ "v1_links": {
+  "checked": 10,
+  "dead": [
+   "https://6sku3uaup9f9.din.de/en/standard/iso-iec-16023/33736819"
+  ],
+  "ratio": 0.1
+ },
+ "v1_score": 67
+}
