@@ -320,6 +320,8 @@ To have Claude look into something, say "check the cgpipe dashboard". Claude run
 
 ```
 README.md  CLAUDE.md
+.gitignore           runtime files, data-dry/, kit build output, run logs, local settings
+.gitattributes       `* -text`: no line-ending conversion (scripts and fixtures stay byte-exact)
 capture/instructions.md   the spec (read-only on disk; sha256 pinned in config.json)
 pipeline/
   cgpipe.py          the runner (stdlib Python 3.10+)
