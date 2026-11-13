@@ -320,6 +320,7 @@ To have Claude look into something, say "check the cgpipe dashboard". Claude run
 
 ```
 README.md  CLAUDE.md
+LICENSE              MIT, for CG's own code; third-party code in kit/tasks/ keeps its upstream licence (see each PROVENANCE.md)
 .gitignore           runtime files, data-dry/, kit build output, run logs, local settings
 .gitattributes       `* -text`: no line-ending conversion (scripts and fixtures stay byte-exact)
 capture/instructions.md   the spec (read-only on disk; sha256 pinned in config.json)

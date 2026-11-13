@@ -18,7 +18,7 @@ Rules for Claude Code sessions in this folder. The manual is README.md. Read it 
 - Licences must allow shipping an input in a task bundle. No LLM-as-a-judge verifiers.
 
 ## Files
-- Keep the root minimal: README.md, CLAUDE.md, .gitignore, .gitattributes, capture/, pipeline/, data/, kit/, archive/.
+- Keep the root minimal: README.md, CLAUDE.md, LICENSE, .gitignore, .gitattributes, capture/, pipeline/, data/, kit/, archive/.
 - .gitattributes stores every file byte for byte (`* -text`); runtime files, data-dry/ and kit build output are git-ignored.
 - No new markdown files. Results go into data files (data/seeds/, data/sources.tsv); findings and decisions go into an existing section of README.md.
 - kit/ is the task-building kit (kit/BUILD.md): validated ideas become bundles in kit/tasks/<task>/. archive/ holds the raw research tables (archive/research/).
